@@ -1,6 +1,6 @@
 """Original SOULFALL receiver, meters/Z-up. No external assets.
 Run Blender -b --python tools/build_receiver.py; glTF exports Y-up.
-The 1.2 x .8 x .88 cabinet supports a .96m deck; cassette contacts reach .974m.
+The cabinet supports a .96m dock and attached narrow 3.44m beacon mast.
 Per-mesh controls retain exact physical bounds, including front/rear grasp rails.
 """
 import bpy, os, json
@@ -32,9 +32,20 @@ part('Progress',(.0,-.423,.79),(.28,.006,.035),insert)
 for x in [-.574,.574]:
  part('Folded side armor',(x,0,.48),(.04,.75,.72),ivory)
  for j in range(5):part('Edge abrasion',(x,-.28+j*.12,.17),(.043,.035,.014),edge)
-# Grounded cable in flush protective raceway, exactly five metres to rear landmark.
-part('Cable raceway',(0,2.7,-.026),(.12,4.6,.05),dark)
-part('Cable spine',(0,2.7,-.004),(.035,4.6,.008),edge)
+# Rear mast grows directly out of the dock; narrow enough for both side approaches.
+part('Mast foot',(0,.26,.98),(.48,.28,.20),enamel)
+part('Mast',(0,.26,2.12),(.28,.24,2.24),enamel)
+part('Beacon housing',(0,.26,3.24),(.62,.36,.24),ivory)
+part('Beacon',(0,.26,3.40),(.42,.24,.08),cyan)
+# Export every authored cuboid as the authoritative fallback and collider source.
+parts=[]
+for o in bpy.context.scene.objects:
+ if o.type=='MESH':
+  parts.append({'name':o.name,'size':[o.dimensions.x,o.dimensions.z,o.dimensions.y],
+   'position':[o.location.x,o.location.z,-o.location.y],
+   'color':list(o.active_material.diffuse_color[:3]),
+   'emission':float(o.active_material.node_tree.nodes.get('Principled BSDF').inputs['Emission Strength'].default_value)})
+json.dump(parts,open(os.path.join(ROOT,'src/terminal-parts.json'),'w'),indent=2)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT,'memory-receiver.glb'),export_format='GLB',use_selection=True)
 bpy.context.preferences.filepaths.save_version=0
@@ -42,4 +53,4 @@ bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'memory-receiver.blend'))
 tri=0
 for o in bpy.context.scene.objects:
  if o.type=='MESH':tri+=sum(len(p.vertices)-2 for p in o.data.polygons)
-json.dump({'author':'SOULFALL original procedural Blender authorship','source':'tools/build_receiver.py','units':'meters; Blender Z up; glTF Y up','triangles':tri,'objects':len(bpy.context.scene.objects),'glbBytes':os.path.getsize(os.path.join(OUT,'memory-receiver.glb')),'collision':'Continuous cabinet bounds; flush grounded cable at/below floor; controls use matching mesh AABBs.'},open(os.path.join(ROOT,os.environ.get('RECEIVER_PROVENANCE','docs/current-receiver-provenance.json')),'w'),indent=2)
+json.dump({'author':'SOULFALL original procedural Blender authorship','source':'tools/build_receiver.py','units':'meters; Blender Z up; glTF Y up','triangles':tri,'objects':len(bpy.context.scene.objects),'glbBytes':os.path.getsize(os.path.join(OUT,'memory-receiver.glb')),'collision':'Exported terminal-parts.json cuboids are authoritative collision and fallback geometry; narrow attached mast replaces detached tower.'},open(os.path.join(ROOT,os.environ.get('RECEIVER_PROVENANCE','docs/current-receiver-provenance.json')),'w'),indent=2)

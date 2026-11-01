@@ -1,0 +1,95 @@
+{
+  "reviewer": "reviewer2",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Ordinary visible controls with screenshot-driven pause-assisted agent play. Screenshots inspected before decisions. No source, tests, assets, documents, prior reports, hidden state, or test URL inspected. Only driver --help and visible How To were read.",
+  "raw_evidence_directory": "docs/media/build38-review2",
+  "raw_actions_and_outcomes": "Preserved by visible driver in output directory and session transcript; sequences 1\u201335, then explicit close.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "start_sequence": 5,
+      "terminal_sequence": 19,
+      "outcome": "death",
+      "mission_time": "00:45",
+      "score": 2000,
+      "eliminations": 0,
+      "accuracy_percent": 0,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "memories": [
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "observations": [
+        "Advanced past induction guard without eliminating it; initial firing missed.",
+        "Recovered East then Heart using visible markers and hold E prompts.",
+        "Opened M facility map after discovering it in handbook and HUD; map showed receiver reach, cover and extraction, and visibly paused mission.",
+        "At West, 3.8m MOVE CLOSER prompt persisted while strafing across receiver face; failed to enter reach before incoming fire killed operator."
+      ]
+    },
+    {
+      "attempt": 2,
+      "start_sequence": 20,
+      "terminal_sequence": 35,
+      "outcome": "win",
+      "mission_time": "00:53",
+      "score": 5587,
+      "eliminations": 2,
+      "accuracy_percent": 7,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "observations": [
+        "Adjusted aim against visible induction optic and earned critical elimination.",
+        "Used sprint and ordinary receiver prompts to recover West, Heart, East.",
+        "Killed second warden by aiming at visible optic.",
+        "Overshot East initially, corrected direction from screenshot/minimap, recovered all memories.",
+        "Reached extraction using green marker, remained stationary within floor ring while uplink rose from 22% to completion."
+      ]
+    }
+  ],
+  "observations": [
+    "Rain, wet reflections, cyan/orange lighting and restrained menu typography establish a coherent industrial storm mood.",
+    "Main objective, ammo, health and hold-E prompts are readable; receiver cards provide named human stakes.",
+    "Facility map was naturally discoverable via How To and HUD M label. Its explicit wall/cover/receiver legend helped route planning.",
+    "Receiver markers through cover gave useful direction but did not guarantee a direct approach; small reach boundary required careful adjustment under attack.",
+    "Combat optic targeting had a visible payoff in second attempt. Enemy bodies and environment remain simple and angular, with repeated concrete facades and cover.",
+    "Orange charge/recent-fire indicators communicated pressure but several simultaneous broad chevrons did not tell me exactly where every attacker was.",
+    "Mission completion was possible with two kills, so movement and objective interaction dominated this playthrough.",
+    "Visible menu says BUILD 37 despite review artifact name build38; observed label only, no source-version inference."
+  ],
+  "ratings_out_of_10": {
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6.5,
+    "AAA_readiness": 3.5
+  },
+  "rating_rationale": {
+    "gameplay": "Working short objective loop with meaningful optic precision, movement and hold-zone tension; limited encounter variety in observed mission.",
+    "presentation": "Strong coherent atmosphere and UI composition; simple models and repeated geometry limit finish.",
+    "usability": "Controls explained and objectives clear; receiver reach and cover required retries.",
+    "readability": "Core HUD and ring feedback clear, but small fine text and concurrent directional cues are harder to parse.",
+    "AAA_readiness": "Credible playable prototype slice; observed visual detail, variety and refinement fall well short of an AAA release."
+  },
+  "uncertainties": [
+    "Pause assistance and coarse timed actions substantially affect difficulty and aiming; these are not human enjoyment findings.",
+    "Audio was not assessed. Software-WebGL fallback was enabled; no hardware performance certification.",
+    "Did not test upload decay outside ring, map persistence across multiple actions, settings, every combat maneuver, or alternate routes.",
+    "No page errors appeared in driver results; this does not establish general defect absence."
+  ],
+  "closure": {
+    "explicit_command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 74912,
+    "chromePid": 74913,
+    "driver_exit_code": 0,
+    "pid_verification": "ps -p 74912,74913 -o pid=,comm= returned no rows and exit 1, confirming exact PIDs absent."
+  }
+}

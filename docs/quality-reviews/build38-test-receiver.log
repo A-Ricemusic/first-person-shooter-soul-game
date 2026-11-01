@@ -1,0 +1,22 @@
+
+> soulfall-the-last-signal@1.0.0 test:receiver
+> node tests/receiver-regressions.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/receiver-regressions.mjs:8:446 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

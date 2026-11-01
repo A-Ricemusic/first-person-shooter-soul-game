@@ -19,12 +19,12 @@ Use a TTY for an interactive session. Commands are JSON lines:
 {"op":"capture","label":"view"}
 {"op":"status"}
 {"op":"close"}
-Game keys: WASD, R reload, E recover, M toggle live facility map, arrows, Space,
-Shift, Control, Escape, Tab. Map action continues; press M again to close.
+Game keys: WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
+Shift, Control, Escape, Tab. Map freezes the mission; press M again to close and resume.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
 then uses ordinary Escape unless pauseAfter:false. resume:true uses the visible
-Resume button. Capture defaults to pausing only when the playing view is visible.
+Resume button. Capture defaults to Escape pause from playing or planning.
 Escape closes the map as it pauses, including the automatic post-capture pause.
 After resume the map starts closed; M opens it again. To capture a close toggle,
 press M twice within one uninterrupted act.
@@ -63,9 +63,9 @@ async function ui(){
   };
   const text=id=>visible(document.getElementById(id))?document.getElementById(id).innerText:null;
   const dialog=document.querySelector('dialog[open]');
-  const phase=visible(dialog)?'dialog':visible(document.getElementById('end'))?'end':visible(document.getElementById('pause'))?'paused':visible(document.getElementById('menu'))?'menu':visible(document.getElementById('hud'))?'playing':'loading';
+  const phase=visible(dialog)?'dialog':visible(document.getElementById('end'))?'end':visible(document.getElementById('pause'))?'paused':visible(document.getElementById('menu'))?'menu':visible(document.getElementById('facility-map'))?'planning':visible(document.getElementById('hud'))?'playing':'loading';
   const result={phase};
-  if(phase==='playing')for(const id of ['objective','health','shield','ammo','reserve','kills','timer','heading','interaction','signal-distance','extraction-status','memory-card','announcement','event-feed','dash-status','facility-map'])result[id]=text(id);
+  if(['playing','planning'].includes(phase))for(const id of ['objective','health','shield','ammo','reserve','kills','timer','heading','interaction','signal-distance','extraction-status','memory-card','announcement','event-feed','dash-status','facility-map'])result[id]=text(id);
   if(phase==='end')result.outcome=text('end');
   if(phase==='dialog')result.dialog=dialog.innerText;
   return result;
@@ -77,7 +77,7 @@ async function capture(label,pauseAfter){
  const result=await cdp.send('Page.captureScreenshot',{format:'jpeg',quality:75});
  const path=join(output,`${label}.jpg`);await writeFile(path,Buffer.from(result.data,'base64'));
  const captureMs=performance.now()-started;
- if(pauseAfter&&beforePause.phase==='playing')await page.keyboard.press('Escape');
+ if(pauseAfter&&['playing','planning'].includes(beforePause.phase))await page.keyboard.press('Escape');
  return{path,captureMs,beforePause,after:await ui()};
 }
 async function step(action){
@@ -132,14 +132,14 @@ try{
     result=command.capture?await capture(command.capture,command.pauseAfter===true):{ui:await ui()};
    }else if(command.op==='capture')result=await capture(command.label||`${sequence}-capture`,command.pauseAfter!==false);
    else if(command.op==='act'){
-    if(command.resume){const state=await ui();if(state.phase==='paused')await page.locator('#resume').click();else if(state.phase!=='playing')throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
-    if((await ui()).phase!=='playing')throw new Error('Action requires the playing view.');
+    if(command.resume){const state=await ui();if(state.phase==='paused')await page.locator('#resume').click();else if(!['playing','planning'].includes(state.phase))throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
+    if(!['playing','planning'].includes((await ui()).phase))throw new Error('Action requires the playing or planning view.');
     const timings=[];
     try{for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}}finally{await release();}
     result={...await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false),timings};
    }else throw new Error('Use click, capture, act, status or close. No arbitrary evaluation is accepted.');
    const response={type:'result',sequence,...result,clientMs:performance.now()-started,pageErrors:[...pageErrors]};await log(response);emit(response);
-  }catch(error){await release();try{if(page&&(await ui()).phase==='playing')await page.keyboard.press('Escape');}catch{}const response={type:'command-error',sequence,error:error.message};await log(response);emit(response);}
+  }catch(error){await release();try{if(page&&['playing','planning'].includes((await ui()).phase))await page.keyboard.press('Escape');}catch{}const response={type:'command-error',sequence,error:error.message};await log(response);emit(response);}
  }
 }catch(error){emit({type:'fatal',error:error.message});process.exitCode=1;}
 finally{await shutdown('input ended or close requested');}

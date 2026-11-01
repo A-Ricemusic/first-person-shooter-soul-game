@@ -1,3 +1,4 @@
+import terminalParts from './terminal-parts.json';
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
 import UPLINK from './uplink-layout.json';
@@ -168,21 +169,9 @@ export async function buildWorld(scene) {
   }
   // Original modular Blender props, shared geometry/materials between instances.
   const loader=new GLTFLoader();
-  const [pylonAsset,barricadeAsset]=await Promise.all([
-    loader.loadAsync(`${import.meta.env.BASE_URL}assets/signal-pylon.glb`),loader.loadAsync(`${import.meta.env.BASE_URL}assets/barricade.glb`)
-  ]);
-  for(const a of [pylonAsset,barricadeAsset])a.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+  const barricadeAsset=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/barricade.glb`);
+  for(const a of [barricadeAsset])a.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
   function prop(asset,x,z,rot=0){const obj=asset.scene.clone(true);obj.position.set(x,0,z);obj.rotation.y=rot;group.add(obj);return obj;}
-  for(const [x,z] of [[MEDICAL.core[0],-20],[24,-20],[0,-38]]){
-    const pylon=prop(pylonAsset,x,z);pylon.userData.dynamic=true;
-    const materials=[];pylon.traverse(o=>{if(o.isMesh){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
-    const beacon=point(x,3,z,0x26c8eb,18,10);coreVisuals.push({pylon,materials,beacon});
-    sign(x<0?'WEST ARCHIVE':x>0?'EAST ARCHIVE':'THE HEART','MEMORY RECOVERY / AUTHORIZED PERSONNEL',x,6.15,z+.5,6,1.3);
-    colliders.push(new THREE.Box3(new THREE.Vector3(x-1.5,0,z-1.5),new THREE.Vector3(x+1.5,5,z+1.5)));
-    // Technical floor pad makes each signal site recognizable.
-    box(x,.018,z,7,.035,7,steel);
-    for(const s of [-1,1]){box(x+s*3.5,.045,z,.08,.025,7,weakCyan);box(x,.045,z+s*3.5,7,.025,.08,weakCyan);}
-  }
   // One authored asset, shared geometry; per-terminal mutable display materials.
   let receiverAsset;
   try { receiverAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/memory-receiver.glb`)).scene; }
@@ -190,21 +179,24 @@ export async function buildWorld(scene) {
   for(const [i,x,z] of [[0,MEDICAL.core[0],MEDICAL.core[1]],[1,24,-15],[2,0,-33]]) {
     const model=receiverAsset?receiverAsset.clone(true):new THREE.Group();
     model.position.set(x,0,z);model.rotation.y=0;model.userData.dynamic=true;group.add(model);
-    if(!receiverAsset){
-      const fallbackPart=(name,size,position,material)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(...size),material);m.name=name;m.position.set(...position);model.add(m);};
-      const ivory=new THREE.MeshStandardMaterial({color:0xadb5a5,roughness:.7});
-      fallbackPart('Cabinet',[1.2,.88,.8],[0,.44,0],steel);
-      fallbackPart('Top docking rim',[1.18,.10,.78],[0,.91,0],ivory);
-      fallbackPart('MemoryCassette',[.52,.008,.32],[0,.968,0],steel);
-      for(const x of [-.4,.4])for(const z of [-.414,.414])fallbackPart('Grasp rail',[.10,.20,.018],[x,.79,z],ivory);
-      fallbackPart('Progress',[.28,.035,.006],[0,.79,.423],weakCyan.clone());
+    if(!receiverAsset)for(const p of terminalParts){
+      const mat=new THREE.MeshStandardMaterial({color:new THREE.Color(...p.color),emissive:new THREE.Color(...p.color),emissiveIntensity:p.emission,roughness:.6});
+      const mesh=new THREE.Mesh(new THREE.BoxGeometry(...p.size),mat);mesh.name=p.name;mesh.position.set(...p.position);model.add(mesh);
     }
+    for(const p of terminalParts)if(p.name!=='Progress'){
+      const c=new THREE.Vector3(...p.position).add(model.position),h=new THREE.Vector3(...p.size).multiplyScalar(.5);
+      colliders.push(new THREE.Box3(c.clone().sub(h),c.clone().add(h)));
+    }
+    const beacon=point(x,3.5,z,0x26c8eb,18,10),materials=[];
+    model.traverse(o=>{if(o.isMesh&&o.name==='Beacon'){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
+    coreVisuals.push({pylon:model,materials,beacon});
+    sign(x<0?'WEST ARCHIVE':x>0?'EAST ARCHIVE':'THE HEART','MEMORY TERMINAL / HOLD E AT CONSOLE',x,2.8,z-.135,3,.55);
+    box(x,.018,z,3,.035,3,steel);
     model.updateMatrixWorld(true);
     model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;
       // Each visible solid supplies its own matching bounds, including controls.
-      if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));
       if(o.material.emissiveIntensity>0&&o.name==='Progress')o.material=o.material.clone();
-      if(receiverAsset&&o.name!=='Progress'&&o.name!=='MemoryCassette')o.userData.batchHousing=true;
+      if(receiverAsset&&o.name!=='Progress'&&o.name!=='MemoryCassette'&&o.name!=='Beacon')o.userData.batchHousing=true;
     }});
     const progress=model.getObjectByName('Progress'),cassette=model.getObjectByName('MemoryCassette');
     receivers.push({model,progress,cassette});

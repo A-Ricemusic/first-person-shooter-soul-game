@@ -141,8 +141,9 @@ export class Game {
     const listen = (target, event, callback, opts) => { target.addEventListener(event, callback, opts); this.cleanups.push(() => target.removeEventListener(event, callback, opts)); };
     listen(window, 'resize', () => this.resize());
     listen(document, 'keydown', e => {
-      if (e.code === 'Escape' && this.phase === 'playing') { this.pause(); return; }
+      if (e.code === 'Escape' && ['playing','planning'].includes(this.phase)) { this.pause(); return; }
       if (this.phase !== 'playing' || e.target.closest('input,select,textarea,dialog')) return;
+      if (e.repeat && !this.keys.has(e.code)) return; // Held across pause requires release before reuse.
       // Ctrl is sprint: suppress Ctrl+W/R/S browser shortcuts while the game owns input.
       if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyR', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'].includes(e.code)) e.preventDefault();
       if (!e.repeat) {
@@ -169,8 +170,8 @@ export class Game {
     });
     listen(document, 'pointerlockchange', () => { if (document.pointerLockElement !== this.canvas && this.phase === 'playing' && !this.pointerFallback) this.pause(); });
     listen(document, 'pointerlockerror', () => this.enableFallback());
-    listen(window, 'blur', () => { if (this.phase === 'playing') this.pause(); });
-    listen(document, 'visibilitychange', () => { if (document.hidden && this.phase === 'playing') this.pause(); });
+    listen(window, 'blur', () => { if (['playing','planning'].includes(this.phase)) this.pause(); });
+    listen(document, 'visibilitychange', () => { if (document.hidden && ['playing','planning'].includes(this.phase)) this.pause(); });
     listen(this.canvas, 'webglcontextlost', e => { e.preventDefault(); this.pause(); this.event('error', 'Graphics context lost. Reload the page to reconnect.'); });
   }
 
@@ -209,11 +210,21 @@ export class Game {
     this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
-  pause() {
+  openPlanning() {
     if (this.phase !== 'playing') return;
+    this.phase = 'planning'; this.lastFrame = 0; this.clearInput(); this.audio.setActive(false);
+    if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
+    this.emit();
+  }
+  closePlanning() {
+    if (this.phase !== 'planning') return;
+    this.phase = 'paused'; this.resume();
+  }
+  pause() {
+    if (!['playing','planning'].includes(this.phase)) return;
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
-  resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
+  resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.clearInput();
@@ -673,7 +684,7 @@ export class Game {
     for (let remaining = dt; remaining > 1e-7 && this.phase === 'playing';) {
       const step = Math.min(1 / 120, remaining); this.update(step); remaining -= step;
     }
-    const frozen=['paused','won','lost'].includes(this.phase);
+    const frozen=['planning','paused','won','lost'].includes(this.phase);
     if(!frozen||this.renderDirty||this.renderedPhase!==this.phase){
       this.animate(frozen?0:dt);this.renderer.render(this.scene,this.camera);
       this.renderDirty=false;this.renderedPhase=this.phase;

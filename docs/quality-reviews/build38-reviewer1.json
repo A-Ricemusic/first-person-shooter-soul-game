@@ -1,0 +1,115 @@
+{
+  "reviewer": "reviewer1",
+  "build_request": "38",
+  "visible_menu_build": "37",
+  "method": "Screenshot-driven pause-assisted agent play through ordinary controls at http://127.0.0.1:5173/. Read driver --help and visible How To Play. No source, hidden state, tests or other browser used.",
+  "raw_actions": "docs/media/build38-review1/actions.jsonl",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "mission_time": "00:42",
+      "memories": [
+        "Mara Solberg"
+      ],
+      "eliminations": 0,
+      "score": 1000,
+      "accuracy_percent": 0,
+      "summary": "Advanced past induction guard without firing, recovered west memory, opened facility map, exited medical bay after encountering its wall, approached east receiver around low cover and died during recovery/combat attempt."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "mission_time": "00:42",
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "eliminations": 1,
+      "score": 2100,
+      "accuracy_percent": 10,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "summary": "Killed induction guard using aimed continuous fire, recovered west and Heart memories, used sprint/dash toward east, tried to enter receiver ring and recover; died before east recovery. Stopped at two terminal outcomes."
+    }
+  ],
+  "observations": [
+    {
+      "area": "presentation",
+      "finding": "Strong coherent teal/amber identity, rain, reflective ground, monumental relay and polished title/end screens. Geometry and character models are visibly simple, with repeated cover and block architecture.",
+      "evidence": [
+        "menu.jpg",
+        "start.jpg",
+        "heartlast.jpg",
+        "eastescape.jpg"
+      ]
+    },
+    {
+      "area": "combat",
+      "finding": "Opening aimed fire successfully neutralized guard. Later shooting missed moving/close threats; incoming pressure accumulated quickly while stationary at receivers. Threat sectors and orange charge indicators were visible, but screenshots and coarse actions limited reactive aiming.",
+      "evidence": [
+        "firstfight.jpg",
+        "heartfight.jpg",
+        "eastsecond.jpg"
+      ]
+    },
+    {
+      "area": "navigation",
+      "finding": "Objective diamonds and distances made receiver destinations easy to identify. Low cover and medical bay wall blocked direct movement; map helped understand exits.",
+      "evidence": [
+        "cross.jpg",
+        "eastcore.jpg",
+        "map.jpg"
+      ]
+    },
+    {
+      "area": "map_discovery",
+      "finding": "M was advertised in visible handbook and minimap. Naturally opened it after first west recovery. Large paused facility map clearly showed labeled receivers, completion tick, player triangle, walls, low cover, and receiver/reach legend. Did not evaluate extraction map state.",
+      "evidence": [
+        "howto.jpg",
+        "map.jpg"
+      ]
+    },
+    {
+      "area": "receiver_discovery",
+      "finding": "Receiver markers led to tall posts and grounded rings. At Heart and east, MOVE CLOSER / STEP INSIDE THE FLOOR RING clarified failed E attempts; small adjustments secured Heart. East remained unrecovered. Entering reach late while moving meant a first west hold needed repeating.",
+      "evidence": [
+        "secondwest.jpg",
+        "heartfight.jpg",
+        "heartlast.jpg",
+        "eastsecond.jpg"
+      ]
+    }
+  ],
+  "ratings_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 7,
+    "AAA_readiness": 3
+  },
+  "rating_rationale": {
+    "gameplay": "Clear recovery loop and effective opening combat, but limited observed encounter variety and pressure during recovery; mission incomplete.",
+    "presentation": "Attractive cohesive scene and UI; simple repeated geometry limits visual richness.",
+    "usability": "Useful visible handbook, map and actionable prompts; exact approach/reach and collision navigation required several corrections.",
+    "readability": "Core HUD and objective labels readable; crowded world labels, threat cues and small secondary text harder to parse under pressure.",
+    "AAA_readiness": "A promising vertical slice; observed scope, model detail, encounter breadth and unverified end-to-end completion fall well short of AAA readiness."
+  },
+  "uncertainties": [
+    "Extraction and victory were not reached; no claims about final mission behavior.",
+    "No human enjoyment, audio, or hardware/performance certification. Software-WebGL fallback was reported by driver.",
+    "Poor combat performance may reflect pause-assisted agent aiming and coarse temporal control; two deaths do not establish difficulty balance.",
+    "Menu visibly said BUILD 37 although review requested build38."
+  ],
+  "closure": {
+    "explicit_command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 73630,
+    "chromePid": 73631,
+    "driver_exit_code": 0,
+    "exact_pid_verification": "ps -p 73630,73631 -o pid=,comm= returned no rows, exit 1; both absent.",
+    "broad_killing": false
+  }
+}
