@@ -55,8 +55,8 @@ export async function buildWorld(scene) {
   function point(x,y,z,color,intensity=12,dist=13) {const l=new THREE.PointLight(color,intensity,dist,2);l.position.set(x,y,z);group.add(l);return l;}
   function sign(text,sub,x,y,z,width=5,height=1.8,color='#b0d0d5'){
     const c=document.createElement('canvas');c.width=1024;c.height=256;const ctx=c.getContext('2d');
-    ctx.fillStyle='#111e24';ctx.fillRect(0,0,1024,256);ctx.fillStyle=color;ctx.font='700 100px sans-serif';ctx.fillText(text,38,126);
-    ctx.font='26px monospace';ctx.fillStyle='#728f99';ctx.fillText(sub,42,194);
+    ctx.fillStyle='#111e24';ctx.fillRect(0,0,1024,256);ctx.fillStyle=color;ctx.font='700 100px sans-serif';ctx.font=`700 ${Math.min(100,100*948/Math.max(1,ctx.measureText(text).width))}px sans-serif`;ctx.fillText(text,38,126);
+    ctx.font='26px monospace';const subSize=Math.min(26,26*940/Math.max(1,ctx.measureText(sub).width));ctx.font=`${subSize}px monospace`;ctx.fillStyle='#728f99';ctx.fillText(sub,42,194);
     const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;
     const m=new THREE.Mesh(new THREE.PlaneGeometry(width,height),new THREE.MeshStandardMaterial({map:tex,emissive:0x8dbac9,emissiveMap:tex,emissiveIntensity:.25,roughness:.6}));m.position.set(x,y,z);group.add(m);return m;
   }
@@ -173,6 +173,18 @@ export async function buildWorld(scene) {
     box(x,.018,z,7,.035,7,steel);
     for(const s of [-1,1]){box(x+s*3.5,.045,z,.08,.025,7,weakCyan);box(x,.045,z+s*3.5,7,.025,.08,weakCyan);}
   }
+  // Authored memory furniture lives in perimeter bays, outside the generous
+  // archive approaches. Matching simple collision envelopes prevent ghost props.
+  const stories=await Promise.all(['medical','engineering','relay'].map(n=>loader.loadAsync(`${import.meta.env.BASE_URL}assets/memory-${n}.glb`)));
+  for(const [i,x,z] of [[0,-33,-19],[1,33,-19],[2,7,-40]]){
+    prop(stories[i],x,z);
+    colliders.push(new THREE.Box3(new THREE.Vector3(x-1.7,0,z-1.6),new THREE.Vector3(x+1.7,2.4,z+1)));
+    const colors=[0x76e4b0,0xffb347,0x6acbff], labels=['TRIAGE / LAST FERRY','REPAIR / MANUAL CUTOFF','RELAY / STILL HERE'];
+    sign(labels[i],['MARA · THE CHILDREN MADE IT','ELIAN · THE STATION CAN WAIT','SERA · EVERY SIGNAL IS A PERSON'][i],x,3.6,z-.9,7,1.5,['#94e4b9','#ffc078','#8edbff'][i]);
+    point(x,3,z,colors[i],24,12);
+    for(const dx of [-3,3])box(x+dx,.03,z,.1,.04,6,[weakCyan,amber,cyan][i]);
+  }
+  sign('INDUCTION GUARD','AMBER CHARGE: SHIFT CLOSE / SHOOT OPTIC / FLANK',0,4.5,19,10,1.6,'#ffc078');
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){prop(barricadeAsset,x,z,rot);const hw=1.95,hd=.95;colliders.push(new THREE.Box3(new THREE.Vector3(x-hw,0,z-hd),new THREE.Vector3(x+hw,1.6,z+hd)));}
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.

@@ -1,0 +1,59 @@
+{
+  "reviewer": "Independent native GPT-6.1 Sol visible-cue reviewer; agent judgment, not human participant feedback",
+  "build": "Build08 source held stable during review, before final art followups",
+  "ratings": {
+    "prototypeGameplay": 7,
+    "openingPacing": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The opening now gives one comprehensible close threat and actionable alternatives rather than immediate crossfire. I actually achieved an ingress phase break from the rendered charge cue in an ordinary unarranged run. The first attempt missed, and the successful dash passed the guard so its armor opening was behind my view. This establishes visible-cue interaction availability, not blind human discovery, fun, or sustained tactical value. My short opening/bypass sample cannot establish full-mission quality. The same basic courtyard, procedural character shapes and limited content still bound the prototype score."
+  },
+  "methods": [
+    "Read README for controls; did not read current runtime enemy positions, exact spawn coordinates or AI timing to solve the opening. Inherited implementation context already described the intended mechanic, which biases discovery.",
+    "Installed Chrome headless through Playwright, actual WebGL at1440x900. Shared browser fallback had already been established by earlier preview failures. Browser closed after review.",
+    "Decisions used actual screenshots and rendered UI text. Read-only captureState was sampled after input sequences to report outcomes; no enemy position reads, teleport, killAll, resource modification or simulation advance were used.",
+    "Paused between screenshot decisions, so this is not uninterrupted human reaction or input-feel evidence. Second run automated reaction to the visible CHARGING DOM label. That is a substantial reaction aid, explicitly distinguished from human discovery.",
+    "Inspected first-contact, charge-cue, phase-response, second-ingress-break and west-bypass PNGs via image viewer. No perceptual audio listening was performed."
+  ],
+  "controlSequence": [
+    {"run":1,"action":"Deploy; hold W650ms; screenshot first-contact; Escape pause","observed":"At1.0834s,100health/60shield,one enemy,30ammo. Amber guard fills central ingress; overhead sign and coaching state Shift, optic or flank."},
+    {"run":1,"action":"Resume; wait1200ms; screenshot charge-cue; Escape pause","observed":"At3.0833s the rendered CHARGING marker and W+Shift/strafe/shoot-optic coaching are visible. Health/shield unchanged."},
+    {"run":1,"action":"Resume; W down; Shift press; wait250ms; W up; screenshot phase-response; Escape pause","observed":"At4.6667s: one dash,two phaseDodges,ZERO phaseInterrupts,100health/60shield. Screenshot shows PHASE EVADE and guard has passed behind camera. First attempt failed to cancel charge. Resume/input/screenshot latency advanced substantial simulated time; exact cause was not instrumented."},
+    {"run":2,"action":"Fresh page reload; deploy; wait for rendered exact CHARGING label to become visible; W down; Shift press; wait250ms; W up; screenshot second-ingress-break; Escape pause","observed":"At3.1833s: one dash,one phaseInterrupt,zero phaseDodges,100health/60shield,30ammo,zero kills. Screenshot visibly states PHASE BREAK / SHOT CANCELED / ARMOR OPEN 3s. No enemy arrangement or exact position observations. Dash carries guard behind camera."},
+    {"run":2,"action":"Resume; hold A3600ms then W4800ms; screenshot west-bypass; Escape pause","observed":"At9.983s:100health/56shield,three enemies,30ammo,zero kills,one dash/one break. Open west route, triage sign/case and archive beacon visibly readable. Perimeter patrol notice announces two contacts. No recovery or victory attempted."}
+  ],
+  "findings": [
+    {"priority":1,"area":"Phase learning flow","finding":"First real cue-response attempt evaded instead of interrupting. Second visible-label response succeeded, but dash ended beyond guard and the opened armor was behind camera.","recommendation":"Observe actual new players before tuning; consider teaching a lateral or stop-and-turn followup. Do not treat my successful aided reaction as natural human use or increase damage because the parent controller wins without phase."},
+    {"priority":2,"area":"Role and marker clarity","finding":"Gold shoulders, luminous ring and upper optic clearly distinguish the warden from related drones. In frontal ingress the bright upper optic and THE HEART marker overlap, making the exact weakpoint less distinct; emissive forms look very simple.","recommendation":"Further art/marker refinement and human visibility testing remain useful; retain alternate tactics."},
+    {"priority":2,"area":"Content depth","finding":"West approach visibly has an evacuation identity and the opening is calmer. This review did not reach all memory encounters, fire a weapon, recover cores or finish extraction.","recommendation":"Use the separate full-control and arranged stage tests for those claims. Further independent human mission play remains necessary."}
+  ],
+  "verifiedObservations": [
+    "Single-threat ingress allowed reading and waiting with full resources, unlike prior immediate multi-threat opening.",
+    "Visible charge coaching explicitly presents close phase, strafe and precision alternatives.",
+    "An actual ordinary unarranged ingress counter occurred using W+Shift; no arranged-only evidence claim is needed for this one interaction.",
+    "A west bypass remained open after the break and perimeter patrol escalation was announced before meaningful health loss in this short sample."
+  ],
+  "limitations": [
+    "Automated agent assessment with prior knowledge, pause time and fast DOM reaction assistance; not blind human enjoyment or learning evidence.",
+    "Short opening/bypass sample, not a full mission or broad balance study. Parent reports its separate exact-position full controller still wins with zero dashes/breaks; that is outside this review's independently observed run.",
+    "No human audio listening, broad device coverage, target-hardware performance certification or comprehensive accessibility audit.",
+    "Ratings apply to inspected pre-followup source and do not automatically rescore later art fixes."
+  ],
+  "rawObservations": "build08-visible-raw.json",
+  "interactiveDriver": "build08-visible-run.mjs",
+  "screenshots": [
+    "../media/build08-visible-title.png",
+    "../media/build08-visible-first-contact.png",
+    "../media/build08-visible-charge-cue.png",
+    "../media/build08-visible-phase-response.png",
+    "../media/build08-visible-second-ingress-break.png",
+    "../media/build08-visible-west-bypass.png"
+  ],
+  "browserExceptions": [],
+  "browserClosed": true,
+  "runtimeEdited": false
+}

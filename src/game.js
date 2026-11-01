@@ -186,7 +186,8 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitRing.material.color.setHex(0x637b83); this.exitBeam.visible = false;
-    this.spawnWave(7); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
+    this.encounters = new Set(); this.phaseCueAt = -100;
+    this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
   pause() {
@@ -236,7 +237,14 @@ export class Game {
       // A readable telegraph stays visible on both Blender variants and fallback silhouettes.
       const charge = mesh(new THREE.SphereGeometry(0.085, 8, 8), red, 0, 1.3, 0.43); group.add(charge);
     }
-    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, group, leftLeg, rightLeg, red, light, type, health: (type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    if(type==='warden') {
+      // Broad segmented induction shoulders remain distinct from the round drones.
+      const shell=new THREE.MeshStandardMaterial({color:0xb38b51,metalness:.8,roughness:.4});
+      for(const x of [-.68,.68])group.add(mesh(new THREE.BoxGeometry(.38,.95,.6),shell,x,1.3,0));
+      group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
+      group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
+    }
+    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -266,8 +274,8 @@ export class Game {
     this.audio.core(); this.event('core', `${CORE_SITES[core.id].name} // MEMORY SECURED +1000`);
     this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
     for (let i = 0; i < 28; i++) this.particle(core.position.clone().add(new THREE.Vector3(0, 1, 0)), 0x62eaff, 1.5, 0.1);
-    if (this.cores < this.coreNodes.length) this.spawnWave(2+this.cores);
-    else { this.exitRing.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(3); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
+    if (this.cores < this.coreNodes.length) this.event('notice','Memory secured. Supplies restored. Choose your next archive.');
+    else { this.exitRing.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(2); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
     this.emit();
   }
 
@@ -284,7 +292,7 @@ export class Game {
     }
     for (const enemy of this.enemies) {
       const body = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.04, 0)), this.sentinelAsset ? 0.68 : 0.53);
-      const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.68, this.sentinelAsset ? 0.43 : 0).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
+      const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : this.sentinelAsset ? 1.3 : 1.68, enemy.type==='warden' ? .3 : this.sentinelAsset ? 0.43 : 0).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
       const h = this.ray.intersectSphere(head, new THREE.Vector3()), b = this.ray.intersectSphere(body, new THREE.Vector3());
       const point = h || b;
       if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!h; }
@@ -292,10 +300,11 @@ export class Game {
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
     if (hit) {
-      this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= headshot ? 82 : 34;
+      const damage=headshot ? 82 : hit.type==='warden' && !(hit.armorOpen>0) ? 17 : 34;
+      this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= damage;
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
       for (let i = 0; i < 4; i++) this.particle(end, headshot ? 0xffffff : 0xff9a45, 0.35, 0.045);
-      this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage: headshot ? 82 : 34 });
+      this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
       if (hit.health <= 0) this.killEnemy(hit, headshot);
     } else for (let i = 0; i < 3; i++) this.particle(end, 0xffbf75, 0.3, 0.03);
     this.event('shot', '', { ammo: this.ammo });
@@ -375,7 +384,7 @@ export class Game {
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
-    this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
+    this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
     const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
     if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
@@ -388,23 +397,38 @@ export class Game {
     }
   }
 
+  updateEncounters() {
+    const stage=(id,condition,message,units)=>{
+      if(!condition||this.encounters.has(id))return;
+      this.encounters.add(id); this.event('notice',message);
+      for(const [x,z,type] of units)this.spawnEnemy(new THREE.Vector3(x,0,z),type,5);
+    };
+    stage('ingress',this.player.z<13,'PERIMETER PATROL · Two contacts beyond the entry. Side lanes remain open.',[[-22,-5,'sentinel'],[22,-5,'sentinel']]);
+    for(const c of this.coreNodes){
+      const near=Math.hypot(this.player.x-c.position.x,this.player.z-c.position.z)<14;
+      if(c.id===0)stage('medical',near,'WEST / TRIAGE · Two sentinels guard the evacuation lights. Use the west cover.',[[-31,-25,'sentinel'],[-16,-25,'sentinel']]);
+      if(c.id===1)stage('engineering',near,'EAST / MAINTENANCE · Interceptors track movement. Change direction after their charge.',[[31,-25,'stalker'],[16,-25,'stalker']]);
+      if(c.id===2)stage('heart',near,'HEART / RELAY GUARD · Break the warden to open armor, or fire precisely at its optic.',[[0,-40,'warden'],[-16,-35,'sentinel']]);
+    }
+  }
+
   updatePhaseInterrupts() {
     if(this.dashTime<=0)return;
     for(const e of this.enemies){
       if(e.windup<=0 || e.group.position.distanceTo(this.player)>4.8)continue;
       const eye=e.group.position.clone().add(new THREE.Vector3(0,1.3,0));
       if(!this.hasLineOfSight(this.player,eye))continue;
-      e.windup=0; e.stagger=.8; e.cooldown=1.6; e.light.intensity=.3;
+      e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
       e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;
       this.phaseInterrupts++; this.audio.tone(680,.22,'triangle',.15,160);
-      this.event('phaseInterrupt','PHASE BREAK · SHOT CANCELED', {enemyId:e.id});
+      this.event('phaseInterrupt','PHASE BREAK · SHOT CANCELED' + (e.type==='warden'?' · ARMOR OPEN 3s':''), {enemyId:e.id});
     }
   }
 
   updateEnemies(dt) {
     let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
-      enemy.phase += dt; enemy.cooldown -= dt;
+      enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
       if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
@@ -417,14 +441,14 @@ export class Game {
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
       } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && charging<maxCharging) {
-        charging++; enemy.windup = enemy.type === 'stalker' ? 0.42 : 0.65;
+        charging++; enemy.windup = enemy.type === 'warden' ? 1.6 : enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
       }
       const move = new THREE.Vector3();
-      if (distance > (enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
+      if (distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
       else if (distance < 5) move.addScaledVector(dir, -0.7);
-      if (enemy.visible) move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
+      if (enemy.visible && enemy.type!=='warden') move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
         move.normalize(); const speed = (enemy.type === 'stalker' ? 3.2 : 2.1) * this.difficulty.speed * (enemy.windup > 0 ? 0.25 : 1);
@@ -438,6 +462,12 @@ export class Game {
         enemy.leftLeg.rotation.x = Math.sin(enemy.phase * 7) * 0.45; enemy.rightLeg.rotation.x = -enemy.leftLeg.rotation.x;
       }
       enemy.group.rotation.y = Math.atan2(delta.x, delta.z);
+      if(enemy.type==='warden') {
+        enemy.red.emissive.setHex(enemy.armorOpen>0?0x47eaff:0xffb347);
+        if(enemy.windup>0 && distance<11 && enemy.visible && this.dashCooldown<=0 && this.runTime-this.phaseCueAt>5){
+          this.phaseCueAt=this.runTime;this.event('notice','WARDEN CHARGING · W + Shift toward amber ring to break. Or strafe / shoot optic.');
+        }
+      }
       if (distance < 1.4 && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
   }
@@ -558,7 +588,7 @@ export class Game {
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
     const markers=this.coreNodes.filter(c=>!c.collected).map(c=>({id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0)))}));
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
-    for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
+    for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
     return markers;
   }
   captureState() {
@@ -589,7 +619,7 @@ export class Game {
       damage: n => this.damage(n),
       killAll: () => [...this.enemies].forEach(e => this.killEnemy(e)),
       advance: seconds => { for (let elapsed = 0; elapsed < seconds; elapsed += 1 / 60) if (this.phase === 'playing') this.update(1 / 60); this.emit(); },
-      aimAtEnemy: (index = 0, head = false) => { const e = this.enemies[index]; if (!e) return false; const target = e.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : head ? 1.68 : 1.1, this.sentinelAsset && head ? 0.43 : 0).applyAxisAngle(UP, e.group.rotation.y)); const delta = target.sub(this.player); this.yaw = Math.atan2(-delta.x, -delta.z); this.pitch = Math.atan2(delta.y, Math.hypot(delta.x, delta.z)); this.animate(0); return true; },
+      aimAtEnemy: (index = 0, head = false) => { const e = this.enemies[index]; if (!e) return false; const target = e.group.position.clone().add(new THREE.Vector3(0, e.type==='warden' && head ? 2 : this.sentinelAsset ? 1.3 : head ? 1.68 : 1.1, e.type==='warden' && head ? .3 : this.sentinelAsset && head ? 0.43 : 0).applyAxisAngle(UP, e.group.rotation.y)); const delta = target.sub(this.player); this.yaw = Math.atan2(-delta.x, -delta.z); this.pitch = Math.atan2(delta.y, Math.hypot(delta.x, delta.z)); this.animate(0); return true; },
       shoot: () => { this.fireTimer = 0; this.shoot(); },
       reload: () => this.reload(),
       dash: () => this.dash(),

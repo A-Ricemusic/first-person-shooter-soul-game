@@ -63,3 +63,9 @@ The procedural source script authors the signal pylon, barricade, sentinel, and 
 ## Scope
 
 This is a playable pitch prototype, not a finished commercial AAA production. It contains one complete replayable mission, no multiplayer or backend. See the dossier for the production roadmap and evidence boundaries.
+
+## Build 08 staged memories
+
+One amber induction warden introduces the optional close phase counter. Pass it via either side lane, shoot its upper optic, or interrupt its long charge to open armor for three seconds. Finite location stages replace the seven-enemy opening and generic recovery waves: west triage sentinels, east predictive interceptors and a heart relay guard. Recoveries still restore supplies; the final memory sends two sentinels and extraction adds two interceptors. There is no invulnerability gate or required kill.
+
+Original perimeter memory dioramas (evacuation cot/medic case, dismantled induction bench, vacant relay consoles) are reproducible with `blender --background --python tools/build_memory_props.py`; source `public/assets/memory-stories.blend`. Paths remain flat. `npm run test:encounters` checks finite stages, armor/optic alternatives and route connectivity with a running dev server. Fresh review evidence and limitations are recorded in `docs/human.html`; passing automation is not human enjoyment or AAA readiness evidence.
