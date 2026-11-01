@@ -9,6 +9,13 @@ export function recoveryDistance(player, position) {
   return Math.hypot(position.x-player.x,position.z-player.z,player.y-1.7);
 }
 export const EXTRACTION_SECONDS = 6;
+export const EXTRACTION_RADIUS = 2.7;
+export function extractionDistance(player, position) {
+  return Math.hypot(player.x-position.x,player.z-position.z);
+}
+export function isInsideExtraction(player, position) {
+  return extractionDistance(player,position)<EXTRACTION_RADIUS && Math.abs(player.y-1.7)<.5;
+}
 
 // These optional platforms share their world placement with the approach cue.
 export const SERVICE_ROUTES = [-14,14].map(x=>({x,z:9,rearMin:11.45,rearMax:12.85}));

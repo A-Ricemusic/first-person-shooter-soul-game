@@ -1,0 +1,12 @@
+import {chromium} from '/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/node_modules/@playwright/test/index.mjs';
+import {writeFileSync} from 'node:fs';
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+try{
+const p=await b.newPage({viewport:{width:1280,height:800}});await p.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50});await p.click('#deploy',{force:true});
+const data=await p.evaluate(async()=>{const THREE=await import('/node_modules/three/build/three.module.js'),g=window.__SOULFALL__.game,c=g.world.playerSpawn,rows=[];
+for(const point of [[0,0],[-1.5,.8],[1.5,.8],[0,1.8],[0,-1.8]]){const target=new THREE.Vector3(c.x+point[0],1.7,c.z+point[1]);const sources=[];
+for(const degrees of [-75,-60,0,60,75]){const a=degrees*Math.PI/180,source=new THREE.Vector3(c.x+Math.sin(a)*12,1.3,c.z-Math.cos(a)*12);sources.push({degrees,position:source.toArray(),canStand:g.canOccupy(source.x,source.z,.45),clear:g.hasLineOfSight(source,target,0)});}rows.push({offset:point,insideZone:Math.hypot(...point)<2.7,canStand:g.canOccupy(target.x,target.z,.4),sources});}
+g.debug.collectCore(0);g.debug.collectCore(1);g.debug.collectCore(2);g.clearRun();g.player.copy(c);g.yaw=0;g.pitch=-.12;g.animate(0);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);
+return{rows,zoneRadius:2.7,visualRadius:g.exitRing.geometry.parameters.radius,holdSeconds:g.extractionSeconds};});
+await p.screenshot({path:(process.env.EXTRACT_BASELINE_IMAGE||'docs/media/current-extraction-baseline.jpg'),type:'jpeg',quality:80});writeFileSync((process.env.EXTRACT_BASELINE_REPORT||'docs/current-extraction-baseline.json'),JSON.stringify({method:'Parent explicitly arranged static cover/LOS diagnostic with test=1 and no enemies. Five valid standing positions within current extraction radius, five valid northern firing sources12m away. Actual WebGL JPEG. This is geometry evidence, not normal play, damage balance or enjoyment.',...data,screenshot:(process.env.EXTRACT_BASELINE_IMAGE||'docs/media/current-extraction-baseline.jpg')},null,2)+'\n');console.log(JSON.stringify(data));
+}finally{await b.close();}

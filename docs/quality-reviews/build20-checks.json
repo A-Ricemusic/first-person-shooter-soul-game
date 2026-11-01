@@ -1,0 +1,22 @@
+{
+  "build": "Build20 parent extraction boundary/cue followup",
+  "checks": [
+    {
+      "command": "EXTRACTION_CAPTURE_PREFIX=build20-zone EXTRACTION_OBSERVATIONS=docs/quality-reviews/build20-zone-cues.json npm run test:extraction",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:mission",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:marker-composition",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:production",
+      "exitCode": 0
+    }
+  ],
+  "scope": "Parent controlled-state UI/mechanic validation. No independent rescore or new full-mission ordinary play; prior independent failures remain. Shared helpers preserve2.7m radius,0.5m height gate,4/6/8s difficulty holds,2x outside decay and all combat/resource rules."
+}
