@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node tests/smoke.mjs",
-    "test:production": "npm run build && SOULFALL_PRODUCTION=1 node tests/smoke.mjs"
+    "test:production": "npm run build && SOULFALL_PRODUCTION=1 node tests/smoke.mjs",
+    "test:playtest": "node tests/playtest-regressions.mjs",
+    "playtest:controls": "node tests/normal-controls-playtest.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

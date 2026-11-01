@@ -134,7 +134,7 @@ def sentinel():
     for x in [-.24,-.12,0,.12,.24]:box('Vent opening',(x,.45,.1),(.055,.025,.2),dark,.003)
 
 def rifle():
-    # Forward is Blender -Y, exported glTF -Z.
+    # Forward is Blender -Y, exported glTF +Z; the camera rotates it by pi.
     box('Receiver',(0,0,0),(.24,.65,.24),steel,.04)
     box('Upper assembly',(0,-.12,.14),(.20,.78,.10),edge,.025)
     box('Foregrip',(0,-.48,-.06),(.23,.43,.20),dark,.04)
@@ -151,8 +151,13 @@ def rifle():
         box('Coil window',(x,-.45,.055),(.015,.26,.05),cyan,.003)
         box('Safety selector',(x,.14,.015),(.035,.1,.035),amber,.004)
     box('Optic mount',(0,0,.235),(.12,.27,.07),dark)
-    box('Optic hood',(0,0,.31),(.16,.18,.12),steel)
-    box('Optic lens',(0,-.098,.31),(.11,.015,.07),cyan,.002)
+    # A real open aperture: the previous solid hood/lens obscured the ADS target.
+    # HUD reticle remains visible through the center; no opaque lens plane.
+    for x in [-.072,.072]:
+        box('Optic side rail',(x,0,.31),(.016,.18,.12),steel,.004)
+    box('Optic top rail',(0,0,.366),(.16,.18,.016),steel,.004)
+    for x in [-.065,.065]:
+        box('Sight index',(x,-.095,.31),(.006,.008,.025),cyan,.001)
     for y in [-.48,-.38,-.28,-.18,-.08,.02,.12]:
         box('Picatinny rail',(0,y,.208),(.22,.035,.02),dark,.002)
     for x in [-.125,.125]:
@@ -165,5 +170,6 @@ asset('coil-rifle',rifle)
 for c in bpy.data.collections:
     c.hide_viewport=False
     for o in c.objects:o.hide_set(False)
+bpy.context.preferences.filepaths.save_version = 0
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'soulfall-assets.blend'))
 print('SOULFALL original asset set authored and exported:', OUT)

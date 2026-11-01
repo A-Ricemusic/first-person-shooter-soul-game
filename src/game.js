@@ -115,7 +115,8 @@ export class Game {
     listen(document, 'keydown', e => {
       if (e.code === 'Escape' && this.phase === 'playing') { this.pause(); return; }
       if (this.phase !== 'playing' || e.target.closest('input,select,textarea,dialog')) return;
-      if (['Space', 'Tab', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'].includes(e.code)) e.preventDefault();
+      // Ctrl is sprint: suppress Ctrl+W/R/S browser shortcuts while the game owns input.
+      if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyR', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'].includes(e.code)) e.preventDefault();
       if (!e.repeat) {
         if (e.code === 'KeyR') this.reload();
         if (e.code === 'KeyE') this.interact();

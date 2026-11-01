@@ -19,6 +19,12 @@ WASD move · mouse look · left click fire · right click aim · R reload · Shi
 
 Read **[docs/human.html](docs/human.html)** for creative decisions, implementation rationale, original-asset provenance, validation evidence, known limitations, and the production pitch.
 
+## Playtest status
+
+No quality rating or claim of AAA readiness is made. An automated normal-control run completed the mission; it used exact enemy/collision observations and is not human feedback. Build 02 fixes a blocked ADS sight, incorrect out-of-order core indicators, and sprint/browser shortcut conflicts. See the playtest review in `docs/human.html`.
+
+With the dev server running, `npm run test:playtest` checks these regressions; `npm run playtest:controls` runs an automated combat exercise without teleport/resource/enemy cheats.
+
 ## Build and verify
 
 ```sh
