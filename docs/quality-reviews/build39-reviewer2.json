@@ -1,0 +1,66 @@
+{
+  "reviewer": "fresh independent reviewer 2",
+  "build": 39,
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "attempts": 2,
+    "mode": "Installed Chrome visible driver, screenshot/pause-assisted synthetic ordinary keyboard and mouse gameplay",
+    "knowledge": "Visible menu, Operator Handbook, HUD, facility map, screenshots, and playtest:visible --help only. No source, tests, prior reports, hidden state, routes, evaluation, or arrangements inspected.",
+    "controls": "WASD movement; RMB ADS; LMB fire; R reload; E hold recovery; Shift dash; Control sprint; Space jump; M map. Driver releases held controls before screenshots and automatically Esc-pauses; resume uses visible Resume. This can photograph ADS exiting.",
+    "graphics": "Software-WebGL fallback enabled; renderer not certified",
+    "evidenceDirectory": "docs/media/build39-review2"
+  },
+  "attemptResults": [
+    {
+      "attempt": 1,
+      "terminal": "loss",
+      "missionTime": "01:12",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3330,
+      "accuracyPercent": 4,
+      "criticalEliminations": 1,
+      "phaseEvades": 2,
+      "account": "Initial stationary ADS burst killed induction guard. Initial deployment was not paused immediately, leaving uncommanded live time before first act and costing health/shield; this mistake is retained. Advanced toward west, hit cover, backed up and used south intake, jumped low cover and recovered west. Strafed across to east while firing poorly, recovered east. Overshot Heart north, backed south too far, used map to correct and recovered third. Tried direct south return with sprint/jump, died before extraction. No reset within attempt.",
+      "evidence": ["a1-start.jpg", "a1-fire.jpg", "a1-intake.jpg", "a1-coretry.jpg", "a1-heart.jpg", "a1-heartmap.jpg", "a1-third.jpg", "a1-return.jpg"]
+    },
+    {
+      "attempt": 2,
+      "terminal": "win",
+      "missionTime": "01:15",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 5371,
+      "accuracyPercent": 16,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "account": "Deployed again visibly. Killed induction guard with shorter ADS burst, reloaded while advancing. Recovered west, attempted to aim at nearby sentinel but missed; corrected view and attempted more fire without another elimination. Cross movement ran into central wall/cover; used map, backed south, dashed and crossed east. Recovered east then Heart. Returned down east side, became blocked at low cover, jumped/dashed south. Map showed extraction west; moved west and held still for successful upload. All mistakes retained.",
+      "evidence": ["a2-start.jpg", "a2-open.jpg", "a2-approach.jpg", "a2-westcombat.jpg", "a2-cross.jpg", "a2-eastmap.jpg", "a2-eastreceiver.jpg", "a2-hearttry.jpg", "a2-returnmap.jpg", "a2-south.jpg", "a2-extract.jpg"]
+    }
+  ],
+  "observations": {
+    "gameplay": "Recover-three-and-extract loop was complete and understandable. Shield regeneration and receiver supplies let me recover from poor combat, while direct return through danger killed attempt one. Attempt two won with only one elimination, so route planning and movement were more consequential than sustained combat in these runs. Cover obstructed me repeatedly; map and jump solved it. Dash visibly showed cooldown after use, but I did not deliberately verify charge interruption timing.",
+    "firstPersonPresentation": "Rifle and hand/forearm occupy a substantial lower-right silhouette; ADS brings optic centrally. Rain, cool cyan illumination, warm floor reflections, signage, and large relay ring establish a cohesive flooded industrial setting. Enemy silhouettes and environment geometry are simple and repetitive; this reads as a polished small browser slice rather than production AAA detail. Cannot assess continuous animation smoothness or audio quality from this method.",
+    "aiming": "Opening target starts centered and was eliminated in both runs. A 94-unit relative look shifted heading 11 degrees; a further 290 shifted to 44. My attempts to retarget side enemies failed and ammo visibly fell, with final accuracy 4% and 16%. This demonstrates functioning firing and strong synthetic-control limitations, not proof of poor mouse aiming. ADS optic image is clear centrally but framing narrows surrounding awareness. No unsupported recoil/latency quality claim.",
+    "reload": "Pressed R several times; HUD showed Reloading then Weapon ready, and magazines restored to 30 with reserve consumption. Could reload while advancing. Did not capture or inspect enough intermediate frames to rate reload animation, exact duration, or tactile response; long held fire also appeared to cycle ammunition/reload in attempt one.",
+    "usability": "Handbook explains dash, controls, threat visor and extraction ring. Pause map explicitly labels walls, movement-blocking cover, receivers, player, extraction and collected checks. Recovering memories restores supplies and updates objective clearly. World hints explicitly warned signal behind cover. I still overshot Heart and got stuck against cover, partly because command segments last seconds without continuous feedback.",
+    "readability": "Large vitals/ammo/objective and cyan receiver labels were readable at 1280x800. Fine serif/monospace explanatory HUD and lower-left hints are small. Threat chevrons and counts were visible but I could not reliably localize attackers from them under this control method. Central objective announcements overlay world space temporarily; map offers much clearer route overview. End screens unambiguously distinguish loss and completion."
+  },
+  "provisionalRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6.5,
+    "aaaReadiness": 3.5
+  },
+  "ratingRationale": "Complete, recoverable mission loop with tactical cover/navigation and clear progression; visually cohesive but narrow in scale and simple enemy/environment forms. Two short runs and screenshot control cannot establish combat depth, polish consistency, animation/audio fidelity, real-time responsiveness or hardware performance. AAA readiness rates production breadth/fidelity readiness, not whether this browser slice is enjoyable.",
+  "limits": ["Exactly two mission attempts, both terminal; no further attempts", "Pause-assisted screenshots materially improve planning and suppress real-time observation", "Synthetic relative look and seconds-long control intervals are not representative of skilled continuous human aiming", "First attempt includes live idle time before first action", "No extraction decay test, memory text reading, settings inspection, deliberate dash break verification or audio assessment", "No frame-rate benchmark; software graphics fallback", "No page errors appeared in driver result messages"],
+  "closure": {
+    "driverPid": 85011,
+    "chromePid": 85012,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "verification": "ps -p 85011,85012 -o pid=,comm= returned no output and exit 1 after explicit close",
+    "otherProcessesTouched": false
+  }
+}

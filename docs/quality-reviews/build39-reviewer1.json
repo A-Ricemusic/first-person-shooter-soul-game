@@ -1,0 +1,113 @@
+{
+  "reviewer": "build39-reviewer1",
+  "independent": true,
+  "build": 39,
+  "url": "http://127.0.0.1:5173/",
+  "attempt_count": 2,
+  "method": {
+    "driver": "npm run playtest:visible -- --out docs/media/build39-review1",
+    "browser": "installed Chrome; software WebGL fallback",
+    "controls": "Ordinary visible UI clicks, WASD, mouse look, LMB, RMB, R, Shift, E and M through JSON driver. Screenshot/pause-assisted synthetic control; automatic Escape pauses between acts. Map freezes mission. No source, tests, prior reports, hidden state, evaluate, arrangements, preview or code edits. Learned from title, handbook, HUD, screenshots and driver help.",
+    "limitations": "Chunked controls and pauses are unlike continuous human mouse play. Driver releases inputs before capture, so images can show ADS exiting. Audio and performance not assessed; software renderer is not a GPU benchmark."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "loss",
+      "terminal": "OPERATOR LOST",
+      "mission_time": "01:11",
+      "score": 3075,
+      "eliminations": 0,
+      "accuracy_percent": 3,
+      "critical_eliminations": 0,
+      "phase_evades": 1,
+      "memories_recovered": 3,
+      "summary": "Moved past induction guard while firing at wrong elevation; no kill. Reloaded, used paused map, overshot west receiver into wall, backed up and strafed to recover. Reached Heart and recovered. Tried optic fire and forward Shift, moved beyond enemy into wall, expended magazine without kill. Reloaded and routed east, initially blocked by geometry/console, then recovered third memory. Returned to extraction at 57 health/10 shield, fired toward center without a visible target aligned and died during hold. All mistakes retained.",
+      "evidence": [
+        "attempt1-contact.jpg",
+        "attempt1-map.jpg",
+        "attempt1-west-run.jpg",
+        "attempt1-core1.jpg",
+        "attempt1-heart-route.jpg",
+        "attempt1-optic-fire.jpg",
+        "attempt1-east-route.jpg",
+        "attempt1-east-approach.jpg",
+        "attempt1-extract-route.jpg",
+        "attempt1-terminal.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "loss",
+      "terminal": "OPERATOR LOST",
+      "mission_time": "00:42",
+      "score": 1180,
+      "eliminations": 1,
+      "accuracy_percent": 7,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories_recovered": 1,
+      "summary": "Aimed slightly upward at induction optic from start, held ADS/fire and earned WARDEN // CRITICAL +180. Reloaded from 2 rounds to 30. Diagonal route west ran into low cover; moved around it, approached but first E hold was outside receiver ring (4.1 m). Strafed into range and recovered Mara, restoring full health/60 shield. Exposed east then north route toward Heart ended in death before second memory. No restart or death discarded.",
+      "evidence": [
+        "attempt2-guard-fire.jpg",
+        "attempt2-west.jpg",
+        "attempt2-west-recover.jpg",
+        "attempt2-core1.jpg",
+        "attempt2-heart.jpg"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "topic": "whole mission loop",
+      "finding": "Three distinct memory targets and return-to-extraction make a comprehensible small mission. First attempt reached final hold without kills; moving and collecting can bypass most combat until extraction pressure. Second attempt proved one optic kill but still failed on traversal. These two losses alone cannot establish balance for a skilled continuous player."
+    },
+    {
+      "topic": "first-person presentation",
+      "finding": "Coherent cold teal industrial palette, rain streaks, warm puddle reflections, strong central relay silhouette and readable rifle silhouette create atmosphere. Close geometry and enemies are simple/blocky; lockers and cover are large plain slabs, robots have box torsos and thin legs. Repeated open-yard props and limited visible character detail fall far short of AAA finish. Rifle occupies substantial lower-right area, ADS frame is visibly simple and can obstruct a small optic."
+    },
+    {
+      "topic": "aiming",
+      "finding": "Actual ADS and sustained fire were used. First attempt repeatedly missed while aiming at horizon or after moving beyond a guard; second stationary optic adjustment produced a confirmed critical kill. HUD ammo and end accuracy substantiate low hit rate. Threat labels/brackets and orange charging direction cues provide information, but a screenshot does not reveal precise target position during the following multi-second act. Cannot assess fine mouse latency, recoil feel or continuous tracking fidelity with this control method."
+    },
+    {
+      "topic": "reload",
+      "finding": "Manual R produced Reloading feed and replenished magazine to 30 with reserve deduction: attempt1 13/180 to 30/163; attempt2 2/180 to 30/176 (regained rounds/supplies not isolated). Reload worked during movement. No reliable claim about animation quality, exact reload duration or tactical reload timing: pauses and long action intervals hid transitions."
+    },
+    {
+      "topic": "navigation and interaction",
+      "finding": "Paused facility map clearly names archives, Heart, extraction and shows cover plus player orientation. Low cover actually blocked movement in both attempts; sampled views made the cause apparent after the action. Receiver prompt explicitly said move closer/step inside floor ring at 4.1 m. Recovery restored supplies and displayed named memory cards; story text itself was not read."
+    },
+    {
+      "topic": "damage and extraction",
+      "finding": "First extraction screenshot showed green floor ring, HOLD THE EXTRACTION ZONE, 2.5 m and 57 health. Death followed at 01:11. Second attempt went from 100 health/60 shield at 00:31 to terminal loss at 00:42 during exposed movement; no intermediate screenshot, so cannot attribute each hit or exact attacker. Orange/red edge cues communicate pressure, but clustered directions do not substitute for finding enemies."
+    },
+    {
+      "topic": "usability/readability",
+      "finding": "Large objective, health, ammo and end results are clear at 1280x800. Title and end screen hierarchy is polished. Tiny monospaced threat/navigation text, labels layered over world signage, mini-map density and several simultaneous HUD bands require attention. Handbook explains unusual Shift charge-break mechanic, controls and extraction. One phase evade was registered, but successful charge break was not demonstrated."
+    }
+  ],
+  "ratings_provisional_out_of_10": {
+    "gameplay": 5.5,
+    "presentation": 6.0,
+    "usability": 6.5,
+    "readability": 6.0,
+    "AAA_readiness": 2.5
+  },
+  "rating_basis": "Playable and coherent vertical slice with attractive atmospheric framing and functioning mission/retry loop; limited environment/enemy detail, uncertain combat feedback under pressure and two failed missions limit enthusiasm. Scores are independent impressions, not target-driven. AAA readiness measures release-scale craft/content and evidence, not ambition.",
+  "uncertainty": "High for continuous aiming feel, audio, performance, skilled-player difficulty, exact damage timings, extraction success and long-term variety. Neither attempt won. No claim of full game mastery or hardware performance.",
+  "evidence_root": "docs/media/build39-review1",
+  "raw_log": "docs/media/build39-review1/actions.jsonl",
+  "closure": {
+    "explicit_close": true,
+    "browserClosed": true,
+    "driver_exit_code": 0,
+    "driverPid": 83706,
+    "chromePid": 83707,
+    "ps_command": "ps -p 83706,83707 -o pid=,ppid=,command=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "both_exact_owned_pids_absent": true,
+    "session_json": "Requested docs/media/build39-review1/session.json was absent (cat ENOENT). Own directory listing contained actions.jsonl and screenshots only. Ready and close tool responses supplied matching exact owned PIDs; no session metadata fabricated."
+  }
+}

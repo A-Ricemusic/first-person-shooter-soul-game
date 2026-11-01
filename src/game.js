@@ -1,3 +1,4 @@
+import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
 import * as THREE from 'three';
 import {attachLegs,animateLegs,fallbackDrone} from './drone-motion.js';
@@ -101,9 +102,12 @@ export class Game {
     this.flashLight = new THREE.PointLight(0xa1f8ff, 0, 7); this.muzzle.add(this.flashLight);
     // Blender source and exported asset are produced by the environment pipeline.
     new GLTFLoader().load(`${import.meta.env.BASE_URL}assets/coil-rifle-handling.glb`, gltf => {
-      this.weaponFallback.visible = false; const asset = gltf.scene; asset.rotation.y = Math.PI;
+      if(this.disposed){disposeAsset(gltf.scene);return;}
+      if(!['RifleBody','ReloadCell','MuzzleAnchor','SightCenter'].every(n=>gltf.scene.getObjectByName(n))){disposeAsset(gltf.scene);return;}
+      this.weaponFallback.visible = false;if(this.handsAsset)this.handsAsset.visible=true; const asset = gltf.scene; asset.rotation.y = Math.PI;
       asset.scale.setScalar(0.5); asset.position.z = -0.3;
       this.weapon.add(asset); this.weaponAsset = asset;
+      const muzzleAnchor=asset.getObjectByName('MuzzleAnchor');if(muzzleAnchor){asset.updateWorldMatrix(true,true);this.muzzle.position.copy(this.weapon.worldToLocal(muzzleAnchor.getWorldPosition(new THREE.Vector3())));}
       this.reloadCell = asset.getObjectByName("ReloadCell"); if(this.reloadCell)this.cellHome=this.reloadCell.position.clone();
       asset.traverse(obj => { if (obj.isMesh) { obj.frustumCulled = false; obj.castShadow = false; } });
     }, undefined, () => {});
@@ -111,7 +115,8 @@ export class Game {
 
   buildHands() {
     new GLTFLoader().load(`${import.meta.env.BASE_URL}assets/operator-hands.glb`, gltf => {
-      this.weapon.add(gltf.scene); this.handsAsset=gltf.scene;
+      if(this.disposed){disposeAsset(gltf.scene);return;}
+      this.weapon.add(gltf.scene); this.handsAsset=gltf.scene;gltf.scene.visible=!!this.weaponAsset;
       this.supportHand=gltf.scene.getObjectByName('SupportHand');
       gltf.scene.traverse(o=>{if(o.isMesh){o.frustumCulled=false;o.castShadow=false;}});
     }, undefined, ()=>{});
@@ -658,14 +663,7 @@ export class Game {
     this.weapon.visible = !['ready', 'won', 'lost'].includes(this.phase);
     const ads = this.aimBlend;
     const progress=this.reloading?1-this.reloadTimer/1.65:0;
-    const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
-    const reach=smooth(.08,.30,progress)*(1-smooth(.72,.97,progress));
-    const pull=smooth(.25,.46,progress)*(1-smooth(.58,.78,progress));
-    if(this.supportHand){this.supportHand.position.set(.045*reach,-.06*pull,.12*reach);this.supportHand.rotation.z=-.2*reach;}
-    if(this.reloadCell&&this.cellHome){this.reloadCell.position.copy(this.cellHome);this.reloadCell.position.y-=.16*pull;this.reloadCell.position.z+=.06*pull;}
-    const handling=Math.sin(progress*Math.PI);
-    this.weapon.position.set(0.3 * (1 - ads), -0.27 + ads * 0.115 - Math.abs(bob) + handling * 0.035, -0.35 + this.kick * 0.065);
-    this.weapon.rotation.set(this.kick * 0.035 - handling*.12, handling*.08, -handling*.16-bob*.8);
+    poseHandling(this,{ads,progress,bob});
     if (this.flashTimer > 0) {
       // A shot generated during a slow frame must appear in at least one render.
       if (!this.flashJustTriggered) this.flashTimer -= dt;
@@ -758,6 +756,8 @@ export class Game {
   }
   dispose() {
     this.disposed = true; cancelAnimationFrame(this.frameId); this.cleanups.forEach(fn => fn());
-    this.audio.dispose(); this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); o.geometry?.dispose(); if (Array.isArray(o.material)) o.material.forEach(m => m.dispose()); else o.material?.dispose(); }); this.renderer?.dispose();
+    this.audio.dispose();
+    for(const asset of [this.weaponAsset,this.handsAsset])if(asset){asset.removeFromParent();disposeAsset(asset)}
+    this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); o.geometry?.dispose(); if (Array.isArray(o.material)) o.material.forEach(m => m.dispose()); else o.material?.dispose(); }); this.renderer?.dispose();
   }
 }

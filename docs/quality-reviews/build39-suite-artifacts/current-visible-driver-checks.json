@@ -1,0 +1,209 @@
+{
+  "method": "Real installed Chrome lifecycle checks, sequential instances; a concurrent second driver is rejected before browser launch. Gameplay exercise uses normal URL, ordinary inputs and visible DOM only. No independent quality or hardware/enjoyment claims.",
+  "output": "/var/folders/mb/w3bq2hm932372_myp3qh55600000gn/T/soulfall-driver-check-Nrhh0C",
+  "results": [
+    {
+      "check": "Exclusive ownership rejects another driver before Chrome launch",
+      "passed": true,
+      "firstPid": 82202,
+      "denied": {
+        "type": "closed",
+        "reason": "input ended or close requested",
+        "driverPid": 82215,
+        "chromePid": null,
+        "browserLaunched": false,
+        "browserClosed": true
+      }
+    },
+    {
+      "check": "Ordinary deploy/fire/capture/pause, invalid-input release, explicit close",
+      "passed": true,
+      "deploy": {
+        "type": "result",
+        "sequence": 1,
+        "path": "/var/folders/mb/w3bq2hm932372_myp3qh55600000gn/T/soulfall-driver-check-Nrhh0C/normal/deploy.jpg",
+        "captureMs": 88.03720800000019,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "RECOVER THE THREE MEMORIES",
+          "health": "100",
+          "shield": "60",
+          "ammo": "30",
+          "reserve": "180",
+          "kills": "0 ELIMINATED",
+          "timer": "00:00",
+          "heading": "000",
+          "interaction": null,
+          "signal-distance": "NEAREST CORE · 52 M",
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+          "event-feed": "",
+          "dash-status": "SOUL SHIFT READY",
+          "facility-map": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "clientMs": 476.30950000000007,
+        "pageErrors": []
+      },
+      "fire": {
+        "type": "result",
+        "sequence": 2,
+        "path": "/var/folders/mb/w3bq2hm932372_myp3qh55600000gn/T/soulfall-driver-check-Nrhh0C/normal/fire.jpg",
+        "captureMs": 33.30308399999967,
+        "beforePause": {
+          "phase": "planning",
+          "objective": "RECOVER THE THREE MEMORIES",
+          "health": "100",
+          "shield": "60",
+          "ammo": "30",
+          "reserve": "180",
+          "kills": "0 ELIMINATED",
+          "timer": "00:00",
+          "heading": "000",
+          "interaction": null,
+          "signal-distance": "NEAREST CORE · 52 M",
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+          "event-feed": "",
+          "dash-status": "SOUL SHIFT READY",
+          "facility-map": "THE DROWNED RELAY\nN ↑ · KNOWN FACILITY\nCLOSE · M\n WALL\n LOW COVER · BLOCKS MOVEMENT\n■ RECEIVER / REACH\n▲ YOU\n\nMISSION PAUSED · PLAN YOUR ROUTE · M / Close resumes · Esc opens pause menu"
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "timings": [
+          {
+            "action": {
+              "type": "press",
+              "key": "KeyM"
+            },
+            "clientMs": 12.760541999999987
+          },
+          {
+            "action": {
+              "type": "look",
+              "x": 0,
+              "y": -20
+            },
+            "clientMs": 1.9886659999999665
+          },
+          {
+            "action": {
+              "type": "mouseDown",
+              "button": "left"
+            },
+            "clientMs": 1.4465419999999085
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 400
+            },
+            "clientMs": 401.374875
+          }
+        ],
+        "clientMs": 501.7364580000003,
+        "pageErrors": []
+      },
+      "mapClosed": {
+        "type": "result",
+        "sequence": 3,
+        "path": "/var/folders/mb/w3bq2hm932372_myp3qh55600000gn/T/soulfall-driver-check-Nrhh0C/normal/map-closed.jpg",
+        "captureMs": 64.1744590000003,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "RECOVER THE THREE MEMORIES",
+          "health": "100",
+          "shield": "60",
+          "ammo": "30",
+          "reserve": "180",
+          "kills": "0 ELIMINATED",
+          "timer": "00:00",
+          "heading": "000",
+          "interaction": null,
+          "signal-distance": "NEAREST CORE · 52 M",
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+          "event-feed": "",
+          "dash-status": "SOUL SHIFT READY",
+          "facility-map": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "timings": [
+          {
+            "action": {
+              "type": "press",
+              "key": "KeyM"
+            },
+            "clientMs": 5.58324999999968
+          },
+          {
+            "action": {
+              "type": "press",
+              "key": "KeyM"
+            },
+            "clientMs": 11.348500000000058
+          }
+        ],
+        "clientMs": 356.6541659999998,
+        "pageErrors": []
+      },
+      "invalid": {
+        "type": "command-error",
+        "sequence": 4,
+        "error": "Wait must be between0 and12000ms."
+      },
+      "closed": {
+        "type": "closed",
+        "reason": "input ended or close requested",
+        "driverPid": 82202,
+        "chromePid": 82203,
+        "browserLaunched": true,
+        "browserClosed": true
+      }
+    },
+    {
+      "check": "Non-TTY stdin EOF closes Chrome and releases ownership",
+      "passed": true,
+      "closed": {
+        "type": "closed",
+        "reason": "input ended or close requested",
+        "driverPid": 82219,
+        "chromePid": 82220,
+        "browserLaunched": true,
+        "browserClosed": true
+      }
+    },
+    {
+      "check": "Startup navigation failure closes owned browser",
+      "passed": true,
+      "closed": {
+        "type": "closed",
+        "reason": "input ended or close requested",
+        "driverPid": 82232,
+        "chromePid": 82233,
+        "browserLaunched": true,
+        "browserClosed": true
+      }
+    },
+    {
+      "check": "SIGTERM closes owned Chrome and releases ownership",
+      "passed": true,
+      "closed": {
+        "type": "closed",
+        "reason": "SIGTERM",
+        "driverPid": 82246,
+        "chromePid": 82247,
+        "browserLaunched": true,
+        "browserClosed": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "stage": "Final production dossier link check",
+  "missing": [
+    "../public/assets/operator-handling.blend",
+    "../public/assets/coil-rifle-handling.glb",
+    "../public/assets/operator-hands.glb"
+  ],
+  "reason": "Vite publishes public contents at assets/, not public/assets/. Source filesystem existence check had not caught URL mapping.",
+  "fix": "Use ../assets/ from docs/human.html; repeat production build and link verification."
+}
