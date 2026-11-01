@@ -1,0 +1,151 @@
+{
+  "reviewer": "build36-reviewer2",
+  "independence": "Fresh ordinary player; no source, tests, prior reviews, other media, or hidden state inspected. No target score supplied.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "displayedMissionTime": "01:03",
+      "eliminations": 1,
+      "memoriesRecovered": 3,
+      "accuracyPercent": 2,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "score": 3180,
+      "progress": "All memories recovered; reached extraction; last observed uplink 56% at 01:01 before death.",
+      "terminalCapture": "docs/media/build36-review2/a1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "victory",
+      "displayedMissionTime": "00:47",
+      "eliminations": 1,
+      "memoriesRecovered": 3,
+      "accuracyPercent": 7,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "score": 6195,
+      "progress": "All memories recovered and extraction completed. Last gameplay capture showed 72% uplink, 94 health, 0 shield.",
+      "terminalCapture": "docs/media/build36-review2/a2-terminal.jpg"
+    }
+  ],
+  "ratingsOutOf10": {
+    "wholeGameGameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6.5,
+    "aaaReadiness": 3.5
+  },
+  "ratingStatus": "Provisional personal judgments from exactly two ordinary attempts, not perfection certification.",
+  "strengths": [
+    {
+      "observation": "Rain, reflective yard, cyan architectural lines and the large heart relay create a cohesive, attractive station identity. Menu and terminal screens have clear typographic hierarchy.",
+      "captures": [
+        "menu.jpg",
+        "a1-deploy.jpg",
+        "a2-heart-secured.jpg",
+        "a2-terminal.jpg"
+      ]
+    },
+    {
+      "observation": "Opening optic aim produced a critical warden elimination in both attempts; explicit critical feedback made the weak point understandable.",
+      "captures": [
+        "a1-fire.jpg",
+        "a2-optic.jpg"
+      ]
+    },
+    {
+      "observation": "Three named memories, visible objective state, distance markers and lit return aisles gave the short mission a clear arc. Faster second route felt learnable.",
+      "captures": [
+        "a1-west-recover.jpg",
+        "a1-east-secured.jpg",
+        "a2-all-memories.jpg"
+      ]
+    },
+    {
+      "observation": "Extraction produced real pressure: the first attempt failed after recovering everything, while the second survived after moving back into the baffle area and sidestepping.",
+      "captures": [
+        "a1-upload.jpg",
+        "a1-terminal.jpg",
+        "a2-defense.jpg",
+        "a2-terminal.jpg"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "observation": "Receiver approach was fiddly. I repeatedly saw MOVE CLOSER / STEP INSIDE THE FLOOR RING around 3 to 4 metres while visually beside the pylon or receiver. Direction corrections eventually worked, but focus shifted from combat to positioning. Segmented input amplified this.",
+      "captures": [
+        "a1-heart-hold.jpg",
+        "a1-heart-secured.jpg",
+        "a2-east-secured.jpg"
+      ]
+    },
+    {
+      "observation": "Cover blocked several attempted forward routes; apparent progress toward a marker stalled against dumpster geometry and required a lateral detour. Readable as cover afterward, less clear from the initial approach.",
+      "captures": [
+        "a1-west-near.jpg",
+        "a2-west-route.jpg"
+      ]
+    },
+    {
+      "observation": "Distant small orange enemies and muted threat chevrons were harder to interpret amid signs, objective markers and rain. Late extraction fire direction was easier to notice than exact attackers.",
+      "captures": [
+        "a1-upload.jpg",
+        "a2-uplink.jpg",
+        "a2-defense.jpg"
+      ]
+    },
+    {
+      "observation": "The victorious route needed only the opening elimination; most defenders could be bypassed through running and supply-restoring recoveries. This supports route play but left limited demonstrated shooter depth and makes AAA readiness a low rating.",
+      "captures": [
+        "a2-all-memories.jpg",
+        "a2-terminal.jpg"
+      ]
+    },
+    {
+      "observation": "Station geometry, props and robot silhouettes remain fairly simple and repetitive despite the strong lighting and interface styling.",
+      "captures": [
+        "a1-receiver.jpg",
+        "a2-east-cross.jpg"
+      ]
+    }
+  ],
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "Existing tools/visible-playtest.mjs only; help read before launch; npm run playtest:visible -- --out docs/media/build36-review2",
+    "controlsUsed": [
+      "WASD",
+      "mouse look",
+      "LMB",
+      "RMB ADS",
+      "R reload",
+      "CTRL sprint",
+      "SHIFT dash",
+      "hold E",
+      "Escape/visible Resume"
+    ],
+    "briefAndHowToPlayReadBeforeDeployment": true,
+    "gameplayJpegsInspectedBeforeNextDecision": true,
+    "exactlyTwoTerminalAttempts": true,
+    "actionsPath": "docs/media/build36-review2/actions.jsonl"
+  },
+  "limitations": [
+    "Screenshot-driven segmented input with Escape pauses limits claims about continuous aiming, moment-to-moment enjoyment and normal real-time difficulty.",
+    "No audio enjoyment assessment or hardware performance/FPS claim. Software-WebGL fallback does not establish actual renderer or hardware speed.",
+    "Dash used during first return but no successful phase evade or charge break observed; no basis to rate mastery of that mechanic.",
+    "Only this one mission and two routes attempted; no settings or recovered-memory reading coverage.",
+    "Aim errors, wasted rounds and navigation mistakes retained in the raw action record."
+  ],
+  "closure": {
+    "closeCommandExplicit": true,
+    "browserClosed": true,
+    "driverPid": 61378,
+    "chromePid": 61379,
+    "driverProcessExitCode": 0,
+    "pidVerificationCommand": "ps -p 61378,61379 -o pid=,comm=",
+    "pidVerificationExitCode": 1,
+    "pidVerificationOutput": "",
+    "ownedPidsAbsent": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "reviewer": "fresh independent reviewer 1",
+  "build": 36,
+  "method": "Exactly two ordinary attempts at http://127.0.0.1:5173/ using the existing visible-playtest driver and installed Chrome fallback. Read visible Mission Brief and How to Play before deployment. No source, tests, old reviews, hidden state, or implementation inspection.",
+  "attempts": [
+    {"attempt": 1, "outcome": "death", "missionTime": "00:56", "eliminations": 3, "memories": ["Mara Solberg", "Elian Vale"], "memoryProgress": "2/3", "accuracy": "20%", "criticalEliminations": 2, "phaseEvades": 0, "score": 2460, "extractionProgress": "not reached", "terminalCapture": "docs/media/build36-review1/a1lastpush.jpg"},
+    {"attempt": 2, "outcome": "death", "missionTime": "00:33", "eliminations": 1, "memories": ["Elian Vale", "Sera Nord"], "memoryProgress": "2/3", "accuracy": "82%", "criticalEliminations": 0, "phaseEvades": 1, "score": 2175, "extractionProgress": "not reached", "terminalCapture": "docs/media/build36-review1/a2westescape.jpg"}
+  ],
+  "ratingsOutOf10": {"wholeGameGameplay": 6, "presentation": 7, "usability": 6, "readability": 6, "aaaReadiness": 3},
+  "ratingStatus": "Provisional judgment of the game experienced across two failed missions, not a completion or perfection certification.",
+  "strengths": [
+    {"observation": "The storm yard has a coherent cyan/amber visual identity, reflective wet ground, clear large station signs, and a confident title/end screen hierarchy.", "captures": ["docs/media/build36-review1/menu.jpg", "docs/media/build36-review1/a1guard.jpg", "docs/media/build36-review1/a1lastpush.jpg"]},
+    {"observation": "ADS and firing gave an immediately understandable first fight: the centered induction guard could be eliminated, with ammo consumption and neutralized feedback visible. I later corrected aim and killed a smaller sentinel while strafing.", "captures": ["docs/media/build36-review1/a1guard.jpg", "docs/media/build36-review1/a1fight.jpg"]},
+    {"observation": "Core recovery has clear hold-E prompts, named people, filled objective boxes, and useful supplies restoration. I recovered all three distinct archive locations across the two runs.", "captures": ["docs/media/build36-review1/a1westlane.jpg", "docs/media/build36-review1/a1east.jpg", "docs/media/build36-review1/a2heartrecover.jpg"]},
+    {"observation": "Soul Shift produced visible PHASE EVADE feedback on my second run, and its cooldown stayed legible.", "captures": ["docs/media/build36-review1/a2heartcross.jpg"]}
+  ],
+  "issues": [
+    {"observation": "Waypoints led toward destinations through intervening structures. I repeatedly pressed into service cover and the west archive wall while trying to follow the nearest core; the south-intake/east-service hint did not let me resolve the route quickly under fire. This contributed strongly to both deaths. I cannot distinguish my navigation errors from any collision problem and do not claim a collision bug.", "captures": ["docs/media/build36-review1/a1westapproach.jpg", "docs/media/build36-review1/a2westcross.jpg", "docs/media/build36-review1/a2westintake.jpg", "docs/media/build36-review1/a2westaround.jpg"]},
+    {"observation": "Small distant orange emitters were much less readable as enemies than the introductory guard. Multiple broad threat cues accumulated while I was facing a wall or moving toward an objective, but they did not give me a quick usable picture of the attackers. Health collapsed during movement between objectives.", "captures": ["docs/media/build36-review1/a1heartnear.jpg", "docs/media/build36-review1/a2heartrecover.jpg", "docs/media/build36-review1/a2westaround.jpg"]},
+    {"observation": "World geometry and enemies look simple and repetitive compared with the polished graphic design. The mission I experienced offered a promising combat/recovery loop but limited visual variety; the AAA readiness rating reflects that gap and incomplete full-mission coverage.", "captures": ["docs/media/build36-review1/a1westrecover.jpg", "docs/media/build36-review1/a2heartrecover.jpg"]}
+  ],
+  "coverageGapsAndLimits": [
+    "Neither attempt reached three simultaneous memories, extraction upload, upload decay, or victory. Full mission ending and extraction balance remain unassessed.",
+    "Capture-driven synthetic keyboard/mouse controls and Escape pauses substantially limit judgments of continuous aim feel, reaction difficulty, pacing, and enjoyment. My route and aim mistakes remain in the evidence.",
+    "Used mouse look, ADS/fire, reload, sprint, movement, hold-E recovery, and Soul Shift. No successful close-range charge-break was established; one phase evade was displayed.",
+    "No audio enjoyment or hardware/FPS claims. Software-WebGL fallback flags do not certify actual renderer or performance.",
+    "No third attempt, no rescore, and no prior evidence consulted."
+  ],
+  "actionsPath": "docs/media/build36-review1/actions.jsonl",
+  "closure": {"explicitClose": true, "browserClosed": true, "driverExitCode": 0, "driverPid": 60135, "chromePid": 60136, "verification": "After close, ps -p 60135,60136 -o pid=,command= returned no output and exit 1, confirming both exact owned PIDs absent."}
+}
