@@ -16,7 +16,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 35</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 36</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -135,14 +135,16 @@ function drawMarkers(markers){
    el.dataset.members=m.members.join(',');el.dataset.count=m.count;
    const symbol=el.querySelector('.marker-symbol');symbol.textContent='';
    symbol.style.transform=m.onscreen?'none':`rotate(${m.bearing+Math.PI/4}rad)`;
-   el.querySelector('b').textContent=m.onscreen?'':m.charges?`${m.charges} CHARGE${m.charges===1?'':'S'}`:m.fires?'RECENT FIRE':'RECENT HIT';
-   el.querySelector('small').textContent=m.onscreen?'':`${m.count} SOURCE${m.count===1?'':'S'}`;
+   el.querySelector('b').textContent=!m.onscreen&&m.charging?'!':'';
+   el.querySelector('small').textContent=!m.onscreen&&m.count>1?String(m.count):'';
    el.querySelector('small').style.transform='none';
    el.dataset.charges=m.charges;el.dataset.fires=m.fires;el.dataset.hits=m.hits;
-   // Optic brackets stay beside the physical emitter. Directional groups use
-   // one shared ellipse across enemy types; circular mean preserves bearing.
-   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(m.bearing)*.32)}px`;
-   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(m.bearing)*.23)}px`;
+   // Optics retain their exact projection. Fixed 30-degree group slots prevent
+   // adjacent sectors from overlapping; the chevron points at the actual mean.
+   const sectorBearing=m.sector*Math.PI/6;
+   el.dataset.sector=m.onscreen?'':String(m.sector);
+   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(sectorBearing)*.32)}px`;
+   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(sectorBearing)*.23)}px`;
    if(!m.onscreen)placed.push(el.getBoundingClientRect());
    continue;
   }
@@ -176,7 +178,7 @@ function showEnd(s){const won=s.phase==='won';$('end-manifest').replaceChildren(
 async function boot(){try{game=new Game({canvas:$('game-canvas'),onState:renderState,onEvent,onMarkers:drawMarkers});await game.init();game.setSettings(settings);loaded=true;$('deploy').disabled=false;$('deploy-label').textContent='ENTER THE STORM';$('load-status').textContent='SYSTEMS ONLINE · READY TO DEPLOY';$('load-status').classList.add('ready');if(new URLSearchParams(location.search).has('test'))window.__SOULFALL__={game,get state(){return current},deploy,settings};}catch(e){console.error(e);hide('fatal',false);$('fatal-message').textContent=`The 3D engine could not initialize. Use a desktop browser with WebGL 2 and hardware acceleration. ${e.message}`;}}
 boot();
 
-const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · Orange optic bracket: charging. Muted: recent fire/hit. Lower readout follows one target near aim. Bearing chevrons merge enemy types: CHARGES counts charging enemies; SOURCES counts all eligible enemies there. Individual types/histories are omitted in groups. Clear optic line of sight required; cues expire. Full memories remain in the archive.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);
+const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · Orange ! means a charging threat. Muted chevrons show recent fire or hits. A number counts nearby sources in that direction; one source has no number. Offscreen cues use broad direction sectors, not exact positions. Optic brackets stay beside visible emitters. The lower readout follows one target near aim. Cues require clear optic sight and expire.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);
 const handbook=document.querySelector('#controls-dialog'), handbookContent=document.createElement('div');
 handbookContent.className='handbook-content';handbookContent.tabIndex=0;handbookContent.setAttribute('aria-label','Handbook details; scroll for all controls and visor guidance');
 for(const child of [...handbook.children])if(!child.matches('.dialog-header,.primary-button'))handbookContent.append(child);
