@@ -1,0 +1,50 @@
+{
+  "codePlayed": "1bb34a50531f6e660a9c4965843e2ff5e8b6439e",
+  "method": "Normal-URL source-informed, pause-assisted west-entry/departure probe with ordinary keyboard/mouse and visible facility map. No hidden live state. Stopped without terminal mission outcome. Not an independent full mission or human enjoyment measure.",
+  "actions": "../media/build48-parent-route-play/actions.jsonl",
+  "lastLiveState": {
+    "time": "00:18",
+    "memories": 1,
+    "recovered": "Mara Solberg",
+    "eliminations": 2,
+    "health": 100,
+    "shield": 60,
+    "ammo": 30,
+    "reserve": 250
+  },
+  "observations": [
+    {
+      "finding": "Opening optic kill, then first moving-patrol burst missed. Shorter incremental aim corrections eliminated the patrol. Misses retained.",
+      "evidence": [
+        "west-direct-approach.jpg",
+        "west-patrol-aim.jpg",
+        "west-patrol-tracking.jpg"
+      ]
+    },
+    {
+      "finding": "Ended beyond storage on first intake movement; visible paused map supported backing toward receiver and actual Mara recovery. Some command/capture intervals were unusually long; do not attribute overshoot solely to game movement.",
+      "evidence": [
+        "medical-intake.jpg",
+        "medical-planning-map.jpg",
+        "west-receiver-recovery.jpg"
+      ]
+    },
+    {
+      "finding": "Deliberately tested direct bearing toward Heart after recovery and hit solid east wall. Paused map showed service opening to south; moving south then east exited into courtyard. No wall/collision removal or navigation bug inferred from legitimate obstruction.",
+      "evidence": [
+        "heart-direct-bearing.jpg",
+        "medical-departure-map.jpg",
+        "service-exit-correction.jpg"
+      ]
+    }
+  ],
+  "closure": {
+    "driverPid": 37810,
+    "chromePid": 37824,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "exactOwnedPidsAbsent": true
+  },
+  "postProbeFix": "Contextual blocked-receiver hints use medical shelter metadata: inside storage versus leaving the bay. No combat, collision, recovery or mission rule change. Arranged hint verification separately recorded.",
+  "plannedFeature": "Select an objective on paused facility map; optionally hold Tab for a bounded ground route over known static player-walkable geometry. Route excludes enemy knowledge and does not guarantee safety. Endpoint must be reachable interaction/stand-off/upload space, never a cabinet or boss collider."
+}

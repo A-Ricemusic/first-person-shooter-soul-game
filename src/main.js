@@ -126,7 +126,7 @@ function drawMarkers(markers){
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
  const blocked=nearest?.occluded?nearest:null;
  let note=$('blocked-signal');if(!note){note=document.createElement('div');note.id='blocked-signal';$('waypoints').append(note)}
- note.textContent=blocked?`${blocked.label} · SIGNAL BEHIND COVER · ${blocked.id==='core-0'?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH'}`:'';
+ note.textContent=blocked?`${blocked.label} · SIGNAL BEHIND COVER · ${blocked.approachHint||(blocked.id==='core-0'?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH')}`:'';
  note.classList.toggle('hidden',!blocked);
  markers=markers.filter(m=>!m.occluded);
  const visor=threatVisor(markers,visorFocus);

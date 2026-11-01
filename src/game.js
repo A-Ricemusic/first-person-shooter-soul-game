@@ -743,9 +743,12 @@ export class Game {
   captureMarkers() {
     if(this.phase!=='playing')return [];
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
+    const shelter=MEDICAL.shelter;
+    const inMedicalBay=this.player.x>=shelter.minX&&this.player.x<=shelter.maxX&&this.player.z>=shelter.minZ&&this.player.z<=shelter.maxZ&&this.player.y<shelter.ceiling;
     const markers=this.coreNodes.filter(c=>!c.collected).map(c=>{
       const distance=recoveryDistance(this.player,c.position);
-      return {id:`core-${c.id}`,kind:'core',occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
+      const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
+      return {id:`core-${c.id}`,kind:'core',approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
