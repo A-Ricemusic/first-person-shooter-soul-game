@@ -1,0 +1,50 @@
+{
+  "reviewer":"Independent GPT-6.1 Sol marker/combat reviewer; automated browser assessment, not human participant feedback",
+  "build":"Build09 root working changes before review followups",
+  "ratings":{
+    "prototypeGameplayOverall":7.5,
+    "presentation":7.5,
+    "usability":8,
+    "levelReadability":7.5,
+    "aaaProductionReadiness":2.5,
+    "scaleMaximum":10,
+    "provisional":true,
+    "reason":"The forward break is now a usable close counter: a visible-charge normal-input response kept the guard directly ahead for ADS and a subsequent hit. The marker no longer covers the optic. A new reserved-row collision and the enormous induction tutorial sign keep central presentation crowded, while the emissive optic/ring, basic model forms and shared courtyard still limit fidelity and content. A short opening check does not establish whole-mission enjoyment or perfection."
+  },
+  "methods":[
+    "Installed Chrome headless via Playwright, actual WebGL at1280x800 and1440x900; inspected actual screenshots with image viewer.",
+    "Normal unarranged deployment and RMB aim at both sizes. Read-only HUD state sampled after input; no player/enemy placement, resource changes or simulation stepping.",
+    "At1280x800 waited for rendered WARDEN CHARGING label, heldW and pressedShift, releasedW after250ms. Then aimed, inspected screenshot, looked up through a mousemove event and heldLMB600ms, then strafedA1200ms. Actions were normal controls. This uses prior mechanic knowledge and automated cue reaction, not blind human discovery.",
+    "Measured objective/announcement DOM boxes to identify layout collision. Screenshot capture and software rendering affect wall-clock duration, so no frame-rate or firing-rate claim is made."
+  ],
+  "verifiedImprovements":[
+    "One visible-cue phase break occurred with no arrangement; the guard remained directly ahead in actual hip/ADS screenshots instead of passing behind the camera.",
+    "After break, aim and firing consumed one round and registered a hit; final HUD showed30->29ammo,100%accuracy,0kills,1break,100health/60shield at6.8163simulated seconds. This was a short opening sample, not full-mission completion.",
+    "THE HEART marker no longer covers the guard optic in inspected hip/ADS screenshots at both desktop sizes.",
+    "No uncaught browser exceptions occurred."
+  ],
+  "findings":[
+    {
+      "id":"shifted-objective-announcement-row",
+      "severity":"low",
+      "status":"observed",
+      "finding":"The new fixed36%-height central objective slot intersects the mission announcement's reserved rectangle.",
+      "reproduction":"Fresh deployment facing the opening guard at1280x800, or a phasebreak while its center confirmation is visible.",
+      "measured":{"1280x800":{"heart":{"top":221,"bottom":288},"visibleAnnouncement":{"top":184,"bottom":236},"verticalIntersectionPixels":15},"1440x900":{"heart":{"top":257,"bottom":324},"visibleAnnouncement":{"top":207,"bottom":259},"verticalIntersectionPixels":2}},
+      "interpretation":"Actual text glyphs are mostly separated in the captured frames; this is a minor crowding/layout reservation issue rather than a newly blocked optic. THE HEART also overlays the world INDUCTION GUARD signage in both views.",
+      "recommendation":"Prefer fading a central distant objective during ADS at an active visible threat while retaining radar and other goal markers, or implement collision-aware HUD placement. Avoid forcing every central marker into another fixed crowded row."
+    },
+    {
+      "id":"close-ingress-sign-and-emissive-dominance",
+      "severity":"medium quality limitation",
+      "status":"observed",
+      "finding":"After a successful close break and ADS, the world INDUCTION GUARD sign spans most of the upper central view and the very bright upper optic/ring dominate the enemy silhouette. The phase confirmation overlays the sign's instruction text.",
+      "recommendation":"Consider reducing/dismissing the teaching signage after the first resolved guard encounter and refine emissive values/optic anatomy. Preserve the clear charge/armor state distinction. This is presentation feedback, not proof of a mechanical failure."
+    }
+  ],
+  "observed":{"openingBreaks":1,"openingDashes":1,"endHealth":100,"endShield":60,"endKills":0,"endAmmo":29,"endAccuracy":100,"endSimulatedTime":6.8163,"uncaughtExceptions":[]},
+  "rawObservations":"/tmp/soulfall-review09-layout-observations.json",
+  "driver":"/tmp/soulfall-review09-layout-run.mjs",
+  "screenshots":["/tmp/soulfall-review09-1280-hip-announcement.png","/tmp/soulfall-review09-1280-ads-announcement.png","/tmp/soulfall-review09-1280-phase-response.png","/tmp/soulfall-review09-1280-phase-ads.png","/tmp/soulfall-review09-1280-combat-followup.png","/tmp/soulfall-review09-1440-hip-announcement.png","/tmp/soulfall-review09-1440-ads-announcement.png"],
+  "limitations":["Short opening/targeting review, not a complete mission or broad balance study.","Prior knowledge and automated visible-label timing advantage the controller.","No human enjoyment/audio validation, production animation/content work, hardware performance certification or broad accessibility audit.","Ratings are provisional bounded agent judgments; a10/10 or AAA-ready claim is unsupported."]
+}

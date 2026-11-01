@@ -1,0 +1,287 @@
+{
+  "reviewer": "Separate GPT-6.1 Sol visible-cue reviewer; automated browser assessment, not a human participant",
+  "build": "Build09 forward phase-brake and central objective-marker offset, before parent followup layout/emissive/sign changes",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The successful approach now leaves the guard directly in front, making the three-second armor opening usable without a turn. I completed two visible-charge breaks and normal firing followups without enemy-position reads or arrangements. The second continuous attempt killed the guard without pausing between cue and followup. This is a concrete usability improvement. It does not validate blind player discovery, full-mission balance or enjoyment. The large floating instruction sign, highly blown-out white emitter forms, shared-courtyard structure and simple character art remain clear presentation/content limits."
+  },
+  "methods": [
+    "Installed Google Chrome headless through Playwright at1280x800, actual Three.js/WebGL render. No source edits.",
+    "All gameplay actions were deployment clicks, waiting for the rendered CHARGING label, normal W/Shift/RMB/LMB input, and synthetic mouse movement events handled by normal input listeners. No enemy coordinates, windup timers, teleporting, enemy deletion, resource changes or simulation stepping were used to decide actions.",
+    "captureState was sampled only after actions for reporting; it includes player/HUD statistics but was not used to locate or time enemies.",
+    "Attempt1 waited for first visible charge label, heldW+pressedShift, releasedW after250ms, captured actual image and paused. I used the image to choose an upward mouse adjustment for the visible upper optic, then resumed, aimed and fired450ms.",
+    "Attempt2 repeated that learned cue/approach/aim/fire sequence without pausing between charge cue and followup. It reused prior knowledge of the opening and the aiming adjustment.",
+    "Inspected actual phase-break and both post-followup screenshots via image viewer. Browser closed before reporting safe-to-edit."
+  ],
+  "observations": [
+    {
+      "label": "attempt1-break",
+      "state": {
+        "phase": "playing",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 30,
+        "reserve": 180,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 0,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 2.883299999999992,
+        "dashCooldown": 4.233299999999987,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 0,
+        "enemiesAlive": 1,
+        "headshots": 0,
+        "accuracy": 0,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "z": 28.2789833333333,
+          "yaw": 0
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.2789833333333
+          }
+        ],
+        "nearestCoreDistance": 49.4880833975912,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.7210166666666993,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    },
+    {
+      "label": "attempt1-followup",
+      "state": {
+        "phase": "playing",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 25,
+        "reserve": 180,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 1,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 4.316500000000001,
+        "dashCooldown": 2.8000999999999827,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 180,
+        "enemiesAlive": 0,
+        "headshots": 1,
+        "accuracy": 40,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "z": 28.2789833333333,
+          "yaw": 0
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.2789833333333
+          }
+        ],
+        "nearestCoreDistance": 49.4880833975912,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.7210166666666993,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    },
+    {
+      "label": "attempt2-continuous-followup",
+      "state": {
+        "phase": "playing",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 25,
+        "reserve": 204,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 1,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 3.5164999999999904,
+        "dashCooldown": 3.499999999999979,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 180,
+        "enemiesAlive": 0,
+        "headshots": 1,
+        "accuracy": 40,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "z": 28.278983333333297,
+          "yaw": 0
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.4880833975912
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.2789833333333
+          }
+        ],
+        "nearestCoreDistance": 49.4880833975912,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.721016666666703,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    }
+  ],
+  "verifiedImprovements": [
+    "First visible-cue attempt produced1phaseInterrupt and left the warden in front of camera in the actual screenshot, instead of passing it behind.",
+    "Attempt1 followup yielded1criticalelimination,25magazine rounds,100health/60shield at4.3165 simulatedseconds.",
+    "Attempt2 continuous cue-to-followup sequence yielded1phaseInterrupt,1criticalelimination,25rounds,100health/60shield at3.5165 simulatedseconds; no pause between cue and kill.",
+    "THE HEART label is above the aiming region rather than on the upper optic in the inspected phase screenshot."
+  ],
+  "remainingFindings": [
+    {
+      "priority": 1,
+      "area": "Opening visual clarity",
+      "finding": "Upper optic and charge ring become nearly white solid forms under emissive lighting; their shape/weakpoint distinction is less clear than the amber-charge language suggests.",
+      "recommendation": "Tone down emissive output and preserve a distinct, smaller readable weakpoint while retaining the charge/break color vocabulary."
+    },
+    {
+      "priority": 2,
+      "area": "Layering and composition",
+      "finding": "The large floating INDUCTION GUARD sign, shifted THE HEART label and mission announcement occupy the same upper central band in the phase screenshot.",
+      "recommendation": "Relocate or scale the sign as physical scenery and resolve marker/announcement layout without returning labels to the optic."
+    },
+    {
+      "priority": 3,
+      "area": "Mission and validation scope",
+      "finding": "This review only exercised the opening and one enemy. It establishes an available repeatable approach-counter-followup path, not that humans want to use it or that all later encounters are equally readable.",
+      "recommendation": "Retain alternate tactics and collect later encounter and human evidence; do not raise damage solely because this automated sequence wins."
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Prior context explicitly described the charge and phase-brake change; this is not blind discovery.",
+    "Automated visible-label reaction is faster/more consistent than many human responses.",
+    "First attempt paused after break for inspection; second reused its learned mouse adjustment.",
+    "Only opening success was tested, not full mission, replay variety, hardware performance, accessibility or auditory enjoyment.",
+    "Ratings are candid provisional agent judgments; no10/10, perfection or AAA-readiness claim."
+  ],
+  "screenshots": [
+    "/tmp/soulfall-review09-attempt1-break.png",
+    "/tmp/soulfall-review09-attempt1-followup.png",
+    "/tmp/soulfall-review09-attempt2-continuous-followup.png"
+  ],
+  "rawObservations": "/tmp/soulfall-review09-observations.json",
+  "interactiveDriver": "/tmp/soulfall-review09-driver.mjs"
+}

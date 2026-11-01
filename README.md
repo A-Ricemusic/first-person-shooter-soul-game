@@ -39,6 +39,8 @@ Dash close to a charging enemy with line of sight to interrupt its shot and stag
 
 Reproduce the new assets with `blender --background --python tools/build_viewmodel.py`; original sources remain intact. `npm run test:phase` checks interrupt boundaries and audio lifecycle against the running dev server. Fresh agent reviews rated gameplay 7/10, presentation 7.5/10, usability/readability 8/10 and AAA readiness 2.5/10. Human play/audio validation and richer content remain outstanding. Full evidence and limitations: `docs/human.html` and `docs/quality-reviews/build07-*.json`.
 
+Build09 fixes forward phase-break overshoot and target-marker obstruction. A successful approach break brakes the burst, preserving the target ahead; escape/sideways travel stays intact. Final visual followups remove the giant floating sign and bound warden emission. `npm run test:phase-usability` verifies this behavior with a running dev server. Raw fresh reviews remain candid in `docs/quality-reviews/build09-*`. Overall quality work continues.
+
 ## Build and verify
 
 ```sh

@@ -184,7 +184,10 @@ export async function buildWorld(scene) {
     point(x,3,z,colors[i],24,12);
     for(const dx of [-3,3])box(x+dx,.03,z,.1,.04,6,[weakCyan,amber,cyan][i]);
   }
-  sign('INDUCTION GUARD','AMBER CHARGE: SHIFT CLOSE / SHOOT OPTIC / FLANK',0,4.5,19,10,1.6,'#ffc078');
+  // Physical warning placard is mounted beside the lane, not over the target.
+  box(-8,2.2,23.01,3.6,.82,.08,steel,true);
+  for(const x of [-9.3,-6.7])box(x,1.72,22.8,.09,.4,.1,edge);
+  sign('INDUCTION GUARD','CAUTION / ACTIVE INDUCTION FIELD',-8,2.2,23.06,3.5,.75,'#ffc078');
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){prop(barricadeAsset,x,z,rot);const hw=1.95,hd=.95;colliders.push(new THREE.Box3(new THREE.Vector3(x-hw,0,z-hd),new THREE.Vector3(x+hw,1.6,z+hd)));}
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.

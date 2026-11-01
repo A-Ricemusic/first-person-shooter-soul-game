@@ -17,6 +17,12 @@ function mesh(geometry, material, x = 0, y = 0, z = 0) {
 }
 
 
+function wardenEmission(material,opened,charging,hit=false){
+  material.color.setHex(opened?0x11343c:0x3b2815);
+  material.emissive.setHex(hit?0xd6e6ec:opened?0x269cb3:0xf09336);
+  material.emissiveIntensity=hit?1.8:charging?1.5:opened?1.1:.7;
+}
+
 /** A single, owned simulation loop. Rendering is separate from game state. */
 export class Game {
   constructor({ canvas, onState = () => {}, onEvent = () => {}, onMarkers = () => {} }) {
@@ -238,6 +244,7 @@ export class Game {
       const charge = mesh(new THREE.SphereGeometry(0.085, 8, 8), red, 0, 1.3, 0.43); group.add(charge);
     }
     if(type==='warden') {
+      wardenEmission(red,false,false);
       // Broad segmented induction shoulders remain distinct from the round drones.
       const shell=new THREE.MeshStandardMaterial({color:0xb38b51,metalness:.8,roughness:.4});
       for(const x of [-.68,.68])group.add(mesh(new THREE.BoxGeometry(.38,.95,.6),shell,x,1.3,0));
@@ -418,8 +425,12 @@ export class Game {
       if(e.windup<=0 || e.group.position.distanceTo(this.player)>4.8)continue;
       const eye=e.group.position.clone().add(new THREE.Vector3(0,1.3,0));
       if(!this.hasLineOfSight(this.player,eye))continue;
+      // Stop a committed approach at the successful break, preserving the follow-up
+      // target in view. Dodges away from/across a threat keep their normal travel.
+      const toward=e.group.position.clone().sub(this.player);toward.y=0;
+      if(toward.lengthSq()>.01 && this.dashVector.dot(toward.normalize())>.65)this.dashTime=0;
       e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
-      e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;
+      e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;if(e.type==='warden')wardenEmission(e.red,true,false);
       this.phaseInterrupts++; this.audio.tone(680,.22,'triangle',.15,160);
       this.event('phaseInterrupt','PHASE BREAK · SHOT CANCELED' + (e.type==='warden'?' · ARMOR OPEN 3s':''), {enemyId:e.id});
     }
@@ -429,12 +440,12 @@ export class Game {
     let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
-      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
+      if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
+      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
       enemy.visible = this.hasLineOfSight(eye, this.player);
-      if (enemy.hitFlash > 0) { enemy.hitFlash -= dt; if (enemy.hitFlash <= 0) enemy.red.emissive.setHex(0xff341c); }
       if (enemy.windup > 0) {
         if(enemy.type==='stalker' && enemy.windup>.16) { const lead=Math.min(1.7,distance/18+.16); enemy.target.copy(this.player).addScaledVector(this.playerVelocity,lead); }
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
@@ -463,7 +474,7 @@ export class Game {
       }
       enemy.group.rotation.y = Math.atan2(delta.x, delta.z);
       if(enemy.type==='warden') {
-        enemy.red.emissive.setHex(enemy.armorOpen>0?0x47eaff:0xffb347);
+        wardenEmission(enemy.red,enemy.armorOpen>0,enemy.windup>0,enemy.hitFlash>0);
         if(enemy.windup>0 && distance<11 && enemy.visible && this.dashCooldown<=0 && this.runTime-this.phaseCueAt>5){
           this.phaseCueAt=this.runTime;this.event('notice','WARDEN CHARGING · W + Shift toward amber ring to break. Or strafe / shoot optic.');
         }
@@ -589,6 +600,8 @@ export class Game {
     const markers=this.coreNodes.filter(c=>!c.collected).map(c=>({id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0)))}));
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
     for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
+    const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
+    for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
   }
   captureState() {
