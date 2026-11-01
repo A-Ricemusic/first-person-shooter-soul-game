@@ -19,7 +19,7 @@ export function animateLegs(r,group,delta,dt){
    if(!l.swing)l.start=l.world.clone();
    const t=(phase-.5)*2,target=home.clone().addScaledVector(direction,stride/4);
    l.world.copy(l.start||home).lerp(target,t);l.world.y=.065+Math.sin(Math.PI*t)*.12;
-  }else if(l.swing){l.world.copy(home).addScaledVector(direction,stride/4);}
+  }else if(l.swing && distance>1e-7){l.world.copy(home).addScaledVector(direction,stride/4);}
   if(distance<1e-7)l.world.y=THREE.MathUtils.damp(l.world.y,.065,22,dt);
   l.swing=swing;
   // During pivots a foot replants rather than twisting outside the narrow hull clearance.

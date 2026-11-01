@@ -1,0 +1,88 @@
+{
+  "reviewer": "independent-reviewer-2",
+  "buildLabelRequested": "build47",
+  "visibleMenuLabel": "BUILD 45",
+  "url": "http://127.0.0.1:5173/",
+  "attemptCount": 2,
+  "ratingsOutOf10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6,
+    "aaaReadiness": 3,
+    "replayability": 5
+  },
+  "ratingReasons": {
+    "gameplay": "A coherent recover-three-memories then disable-coils mission, with sprint, regenerating shield, ADS and phase adding choices. Both attempts reached the boss. Multi-direction pressure and rapid losses while trying to identify and shoot targets made combat less legible than traversal. My poor aim and standing exposed contributed materially to both deaths.",
+    "presentation": "Strong teal/amber palette, rainy wet ground reflections, composed title/end screens and a distinctive giant relay landmark. Geometry, props and robots remain visibly simple and repeated; the yard feels sparse for an AAA comparison.",
+    "usability": "Visible handbook, key strip, map that pauses, objective distances, receiver proximity guidance, replenishment and clear deploy-again flow worked. Getting within the receiver floor ring required repeated adjustments; the handbook is dense for learning under combat pressure.",
+    "readability": "Large health/ammo and clear objective markers help. Small spaced text, several simultaneous corner/center messages, many directional threat chevrons and small copper target areas against the facility make rapid combat interpretation demanding. Coil OFF confirmation was useful.",
+    "aaaReadiness": "This functions as a cohesive playable slice with strong art direction, but the observed asset simplicity, repetition, sparse space and combat-information density fall well below an AAA-ready presentation and polish standard. This is not a performance or audio certification.",
+    "replayability": "The second attempt benefited from learning routes and exposed-versus-covered decisions. One observed mission and repeated objective structure limit evidence of longer-term variety. This is an analytical judgment, not a claim about human enjoyment."
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "terminalOutcome": "OPERATOR LOST",
+      "missionTime": "01:01",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 14,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "progress": "Reached Custodian, approached to 11 m, died during the first sustained coil firing attempt. No disabled coil confirmed before death.",
+      "terminalCapture": "docs/media/build47-review2/coil-fire.jpg"
+    },
+    {
+      "attempt": 2,
+      "terminalOutcome": "OPERATOR LOST",
+      "missionTime": "00:49",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 19,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "progress": "Reached Custodian at range; visible status confirmed coil 3 OFF while coils 1 and 2 were 100%. Died during further firing. Extraction not reached.",
+      "terminalCapture": "docs/media/build47-review2/attempt2-coil2-fire.jpg"
+    }
+  ],
+  "observedStrengths": [
+    "Complete visible menu-to-mission-to-loss-to-redeploy flow.",
+    "Map identifies archives, player, cover, boss and extraction, and pauses planning.",
+    "Recovery updates individual memory slots, named memory cards and supplies.",
+    "Boss physical numbered plates match visible numbered status, including OFF.",
+    "Distinctive lighting, rain and relay landmark establish atmosphere."
+  ],
+  "observedProblems": [
+    "Repeated movement adjustments needed to enter memory recovery reach despite a nearby marker.",
+    "Enemies and copper targets are relatively small; prop occlusion frequently complicates a firing solution.",
+    "Multiple attack directions and layered instructions can overload the small-text HUD during combat.",
+    "Simple repeated geometry and robot forms leave substantial visual polish work for AAA readiness.",
+    "Requested build number differs from the title screen's BUILD 45 label."
+  ],
+  "method": {
+    "driver": "npm run playtest:visible -- --out docs/media/build47-review2",
+    "interaction": "Only visible game UI, driver help, handbook, map and screenshots. Exactly two terminal ordinary mission attempts, with visible DEPLOY AGAIN between them. No third attempt or rescore.",
+    "evidence": "Driver preserved every action, screenshot and response in docs/media/build47-review2. No page errors were reported in observed responses.",
+    "limits": [
+      "Software-WebGL fallback; not a GPU or hardware performance benchmark.",
+      "Discrete relative-look and timed inputs with pauses for screenshots do not replicate continuous human play or reaction timing.",
+      "No supported audio assessment or human-enjoyment conclusion.",
+      "No extraction experience because both attempts ended in death.",
+      "No source, assets, tests, previous reports, hidden state, arbitrary evaluation or external route guidance inspected."
+    ]
+  },
+  "closure": {
+    "explicitCloseCommand": {"op": "close"},
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 28469,
+    "chromePid": 28474,
+    "psCommand": "ps -p 28469,28474 -o pid=,comm=",
+    "psExitCode": 1,
+    "psOutput": "",
+    "bothExactPidsAbsent": true
+  }
+}

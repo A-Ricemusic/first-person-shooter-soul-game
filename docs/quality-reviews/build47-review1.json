@@ -1,0 +1,91 @@
+{
+  "reviewer": "build47-review1",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "attempts": 2,
+    "ordinaryMission": true,
+    "evidence": "docs/media/build47-review1",
+    "restrictions": "Visible UI, screenshots, visible driver help and in-game facility map only; no source, hidden state, tests, prior reviews or solution guidance.",
+    "limits": [
+      "Software WebGL fallback; no hardware performance conclusion.",
+      "Discrete paused driver inputs differ from continuous human mouse and keyboard play.",
+      "No audio assessment or claims about human enjoyment.",
+      "Extraction not reached; late mission behavior beyond the observed Custodian phase unassessed."
+    ]
+  },
+  "ratings": {
+    "gameplay": {
+      "score": 6,
+      "reason": "Functional optic shots, ammo/reload, supplies on memory recovery and a changing objective give useful decisions. My second attempt recovered all memories and disabled two coils, but incoming damage and multiple small contacts overwhelmed me while orienting; phase timing was difficult with this input method."
+    },
+    "presentation": {
+      "score": 7,
+      "reason": "Coherent teal/amber industrial storm atmosphere, reflective ground, clear title art, archive set dressing and a strong relay landmark. Repeated simple robot forms, blocky weapon and sparse yard geometry limit fidelity."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Visible controls, paused facility map, distance markers and move-closer floor-ring prompt made objectives learnable. I repeatedly caught on cover or pillars while trying to reach markers and had to correct approach. Recovery requires fairly precise proximity."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Health/ammo/objective and coil percentages were clear. Cyan markers and amber charging indicators convey intent. Small robot targets, dark cover silhouettes and overlapping directional/enemy cues made combat prioritization harder."
+    },
+    "aaaReadiness": {
+      "score": 4,
+      "reason": "A coherent playable mission foundation, but the observed visual detail, enemy variety, combat legibility and navigation clarity fall short of a polished large-budget release. Two attempts cannot establish robustness or broader content depth."
+    }
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "result": "OPERATOR LOST",
+      "missionTime": "00:55",
+      "memories": 1,
+      "eliminations": 1,
+      "score": 1180,
+      "accuracyPercent": 4,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "notes": "Recovered Mara Solberg. Lost health while negotiating west archive exit and moving toward Heart; died before second recovery."
+    },
+    {
+      "attempt": 2,
+      "result": "OPERATOR LOST",
+      "missionTime": "00:58",
+      "memories": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 35,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "notes": "Recovered Elian Vale, Sera Nord and Mara Solberg. Reached Custodian; visible coil HUD showed coil 1 at 100%, coils 2 and 3 OFF before death. Mission not completed."
+    }
+  ],
+  "observedStrengths": [
+    "Memory recovery restores supplies and clearly advances objective.",
+    "Paused facility map supports planning without active damage.",
+    "Opening guard optic strategy worked in both attempts.",
+    "Custodian shutter window and per-coil feedback made damage progress visible."
+  ],
+  "observedProblems": [
+    "Straight-line objective approach often ran into cover or wall edges; alternate entrance messaging helped but required correction.",
+    "Small enemy optics and several offscreen threat markers complicated aiming and prioritization.",
+    "Station title screen labels build 45 despite review run named build47."
+  ],
+  "errors": "No pageErrors reported in driver responses. All actions, deaths and captures retained.",
+  "closure": {
+    "command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 26538,
+    "chromePid": 26539,
+    "driverExitCode": 0,
+    "processVerification": {
+      "command": "ps -p 26538,26539 -o pid=,comm=",
+      "exitCode": 1,
+      "output": "",
+      "bothExactPidsAbsent": true
+    }
+  }
+}

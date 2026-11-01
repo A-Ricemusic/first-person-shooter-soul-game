@@ -9,7 +9,7 @@ try {
  await page.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});
  await page.goto('http://127.0.0.1:5173/?test=1');await page.waitForFunction(()=>window.__SOULFALL__?.game.handsAsset,null,{polling:50,timeout:60000});await page.click('#deploy',{force:true});
  const budget=await page.evaluate(()=>{const g=window.__SOULFALL__.game,e=g.enemies[0],r=e.wardenRig;let triangles=0,primitives=0;const names=[];r.model.traverse(n=>{if(n.isMesh){triangles+=(n.geometry.index?.count||n.geometry.attributes.position.count)/3*(n.isInstancedMesh?n.count:1);primitives++;names.push(n.material.name)}});g.scene.updateMatrixWorld(true);const anchor=r.model.getObjectByName('WeakpointAnchor').getWorldPosition(e.group.position.clone());e.group.worldToLocal(anchor);return{triangles,primitives,names,anchor:anchor.toArray(),health:e.health,children:e.group.children.filter(n=>n.visible).map(n=>n.name||n.type)}});
- assert.ok(budget.triangles<60000);assert.ok(budget.primitives<=14);assert.equal(budget.health,150);budget.anchor.forEach((v,i)=>assert.ok(Math.abs(v-[0,2,.3][i])<1e-5));assert.equal(budget.children.length,2,'Only authored model and light visible');
+ assert.ok(budget.triangles<60000);assert.ok(budget.primitives<=14);assert.equal(budget.health,150);budget.anchor.forEach((v,i)=>assert.ok(Math.abs(v-[0,2,.3][i])<1e-5));assert.equal(budget.children.length,3,'Authored model, light and contact assembly visible');assert.ok(budget.children.includes('ContactDischargeAssembly'));
  for(const viewport of [{width:1280,height:800},{width:1440,height:900}]){
   await page.setViewportSize(viewport);
   for(const state of ['hip','ads','close','charge','stagger','open','recovered']){

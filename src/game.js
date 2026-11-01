@@ -1,3 +1,4 @@
+import {CONTACT_WINDUP,fallbackContact,attachContact,contactReach,animateContact,cancelContact} from './contact-discharge.js';
 import {prepareCustodianTurn,custodianAim,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
 import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
@@ -79,6 +80,11 @@ export class Game {
       this.wardenAsset = asset.scene;
     } catch (_) { /* Original primitive Warden remains available if loading fails. */ }
     try { const scene=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/interceptor.glb`)).scene;if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Interceptor rig');this.interceptorAsset=scene; } catch (_) { /* Sentinel remains a loading fallback. */ }
+    try {
+      const asset=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/contact-discharge.glb`)).scene;
+      if(!Array.from({length:6},(_,i)=>asset.getObjectByName('Shutter'+i)?.isMesh).every(Boolean)||!['DischargeAmber','DischargeSteel','DischargeInsulator'].every(n=>asset.getObjectByName(n)?.isMesh)||!asset.getObjectByName('DischargeAmber')?.material?.emissive) { disposeAsset(asset); throw Error('Incomplete discharge'); }
+      this.contactAsset=asset;
+    } catch (_) { this.contactAsset=fallbackContact(); }
     this.facilityLayout = facilityFootprints(this.world.colliders);
     this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
@@ -217,7 +223,7 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
-    resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
+    this.contactHint=false; resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
     this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
@@ -296,7 +302,8 @@ export class Game {
       group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
-    this.enemies.push({ ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    const contactRig=attachContact(this.contactAsset,group,type,type==='warden'&&!this.wardenAsset);
+    this.enemies.push({ contactRig, contactWindup:0, meleeCooldown:0, ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -435,6 +442,7 @@ export class Game {
   }
   finish(won) {
     cancelCapacitors(this.world.capacitors);
+    for(const e of this.enemies){e.contactWindup=0;e.contactFlash=0;animateContact(e,0);}
     clearCustodianLines(this.custodian); this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
     if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
@@ -490,17 +498,17 @@ export class Game {
   updatePhaseInterrupts() {
     if(this.dashTime<=0)return;
     for(const e of this.enemies){
-      if(e.windup<=0 || e.group.position.distanceTo(this.player)>4.8)continue;
+      if(!(e.windup>0||e.contactWindup>0) || e.group.position.distanceTo(this.player)>4.8)continue;
       const eye=e.group.position.clone().add(new THREE.Vector3(0,1.3,0));
       if(!this.hasLineOfSight(this.player,eye))continue;
       // Stop a committed approach at the successful break, preserving the follow-up
       // target in view. Dodges away from/across a threat keep their normal travel.
       const toward=e.group.position.clone().sub(this.player);toward.y=0;
       if(toward.lengthSq()>.01 && this.dashVector.dot(toward.normalize())>.65)this.dashTime=0;
-      e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
+      const contact=e.contactWindup>0;if(contact)cancelContact(e); e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
       e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;if(e.type==='warden')wardenEmission(e.red,true,false);
       this.phaseInterrupts++; this.audio.tone(680,.22,'triangle',.15,160);
-      this.event('phaseInterrupt','PHASE BREAK · SHOT CANCELED' + (e.type==='warden'?' · ARMOR OPEN 3s':''), {enemyId:e.id});
+      this.event('phaseInterrupt','PHASE BREAK · '+(contact?'DISCHARGE CANCELED':'SHOT CANCELED') + (e.type==='warden'?' · ARMOR OPEN 3s':''), {enemyId:e.id});
     }
   }
 
@@ -508,19 +516,38 @@ export class Game {
     const patrolBlocked=prepareCustodianTurn(this,dt);
     let charging=this.enemies.filter(e=>e.windup>0).length+(this.custodian.windup>0?1:0); const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
-      enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
+      if(['won','lost'].includes(this.phase))break;
+      enemy.phase += dt; enemy.cooldown -= dt; enemy.meleeCooldown=Math.max(0,(enemy.meleeCooldown||0)-dt); enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
-      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);this.animateDrone(enemy,dt);continue;}
+      if(enemy.stagger>0){if(enemy.contactWindup>0)cancelContact(enemy);animateContact(enemy,dt);enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);this.animateDrone(enemy,dt);continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
       enemy.visible = this.hasLineOfSight(eye, this.player);
-      if (enemy.windup > 0) {
+      // A newly armed contact never consumes this frame's elapsed time.
+      const rangedCommitted=enemy.windup>0;
+      const contactCommitted=enemy.contactWindup>0;
+      if(!rangedCommitted && !contactCommitted && enemy.meleeCooldown<=0 && contactReach(this,enemy)){
+        enemy.contactWindup=CONTACT_WINDUP;enemy.contactCanceled=false;enemy.contactFlash=0;
+        if(!this.contactHint){this.contactHint=true;this.event('notice','PERIMETER DISCHARGE · Back away, break cover sight, or Shift to interrupt.');}
+        this.audio.tone(250,.18,'triangle',.08,420);
+      }
+      const braced=enemy.contactWindup>0;
+      if(contactCommitted){
+        enemy.contactWindup=Math.max(0,enemy.contactWindup-dt);
+        if(enemy.contactWindup<=1e-8){
+          enemy.contactWindup=0;enemy.meleeCooldown=1;enemy.contactFlash=.22;enemy.contactCanceled=false;
+          enemy.lastAttack=this.runTime;
+          this.audio.tone(100,.12,'triangle',.10,55);
+          if(contactReach(this,enemy))this.damage(15,position,enemy);
+        }
+      }
+      if (rangedCommitted) {
         if(enemy.type==='stalker' && enemy.windup>.16) { const lead=Math.min(1.7,distance/18+.16); enemy.target.copy(this.player).addScaledVector(this.playerVelocity,lead); }
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
-      } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && charging<maxCharging) {
+      } else if (!braced && !contactCommitted && enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && charging<maxCharging) {
         charging++; enemy.windup = enemy.type === 'warden' ? 1.6 : enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
@@ -539,6 +566,7 @@ export class Game {
       const routing = guarding ? move.lengthSq()>.001 : approaching;
       const waypoint=routing?this.navigation.steer(enemy,goal,this.runTime):null;
       if(waypoint)move.set(waypoint.x-position.x,0,waypoint.z-position.z);
+      if(braced)move.set(0,0,0);
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
         move.normalize(); const speed = (enemy.type === 'stalker' ? 3.2 : 2.1) * this.difficulty.speed * (enemy.windup > 0 ? 0.25 : 1);
@@ -568,11 +596,7 @@ export class Game {
       }
       animateWarden(enemy,dt);
       this.animateDrone(enemy,dt);
-      const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
-      // Resolve contact from the actual post-movement pose, including retreats.
-      const contactEye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
-      const contactDistance = Math.hypot(position.x-this.player.x, position.z-this.player.z);
-      if (contactDistance < 1.4 && contactEye.distanceTo(torso) < 1.6 && this.hasLineOfSight(contactEye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position,enemy); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
+      animateContact(enemy,dt);
     }
   }
 
@@ -736,7 +760,7 @@ export class Game {
       const door=doors.filter(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)<25&&this.navigation.clear(this.player,p)&&this.hasLineOfSight(this.player,new THREE.Vector3(p.x,1.7,p.z),0)).sort((a,b)=>Math.hypot(a.x-this.player.x,a.z-this.player.z)-Math.hypot(b.x-this.player.x,b.z-this.player.z))[0];
       if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
     }
-    for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
+    for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||(e.windup>0||e.contactWindup>0))){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.contactWindup>0?'DISCHARGE / SHIFT OR BACK AWAY':e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0||e.contactWindup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18)),aimed=custodianAim(this);if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:aimed?.label||(this.custodian.open>0?'CUSTODIAN / OPEN WINDOW':'CUSTODIAN / ARMORED SHUTTERS'),health:aimed?.health??this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:this.custodian.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
@@ -794,7 +818,11 @@ export class Game {
   dispose() {
     this.disposed = true; cancelAnimationFrame(this.frameId); this.cleanups.forEach(fn => fn());
     this.audio.dispose();
-    for(const asset of [this.weaponAsset,this.handsAsset])if(asset){asset.removeFromParent();disposeAsset(asset)}
-    this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); o.geometry?.dispose(); if (Array.isArray(o.material)) o.material.forEach(m => m.dispose()); else o.material?.dispose(); }); this.renderer?.dispose();
+    // Scene clones and unloaded templates share geometry. Release each resource
+    // once, including template parts not present in a live actor.
+    this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); });
+    const roots=[this.scene,this.weaponAsset,this.handsAsset,this.contactAsset,this.wardenAsset,this.sentinelAsset,this.interceptorAsset];
+    disposeAsset({traverse:fn=>{for(const root of roots)root?.traverse(fn);}});
+    this.renderer?.dispose();
   }
 }
