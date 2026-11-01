@@ -1,0 +1,19 @@
+PASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 214 draw calls in title frame.
+PASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.
+PASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.
+PASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.
+PASS Arena connectivity & cover: 5551 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.
+PASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.
+PASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.
+PASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/.build44-implementation-production.mjs:48:155 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.16.0

@@ -14,23 +14,23 @@ function path(pos,goal){const sx=Math.round(pos.x),sz=Math.round(pos.z),gx=Math.
 for(let i=0;i<q.length;i++){const [x,z]=q[i];if(Math.hypot(x-gx,z-gz)<1.8){end=[x,z];break}for(const [dx,dz]of [[0,-1],[1,0],[0,1],[-1,0]]){const a=x+dx,c=z+dz,k=`${a},${c}`;if(!prev.has(k)&&walkable(a,c)){prev.set(k,[x,z]);q.push([a,c])}}}if(!end)return[];const out=[];for(let e=end;e;e=prev.get(`${e[0]},${e[1]}`))out.push({x:e[0],z:e[1]});return out.reverse()}
 let pathCache=[],routeGoal='',held='',shooting=false,steps=0;const start=Date.now();
 while(Date.now()-start<Number(process.env.CONTROL_TIMEOUT_MS||240000)){
-const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {...g.captureState(),pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),inv:g.invulnerable}});
+const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {...g.captureState(),pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),boss:!g.custodian.dead&&g.custodian.active?g.custodian.coils.filter(n=>n.hp>0).map(n=>({x:n.origin.x,y:2.18,z:16,health:n.hp})):[],inv:g.invulnerable}});
 if(s.phase!=='playing'){log.push({at:Date.now()-start,state:s.phase,kills:s.kills,cores:s.cores,health:s.health});break}
 if(steps%10===0)log.push({at:Date.now()-start,time:s.time,x:s.player.x,z:s.player.z,health:s.health,shield:s.shield,kills:s.kills,cores:s.cores,ammo:s.ammo,targets:s.targets.length});
-const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]?{...goals[0],z:goals[0].z+1.5}:s.exit;
+const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]?{...goals[0],z:goals[0].z+1.5}:s.boss.length?{x:11,z:22}:s.exit;
 const recovering=s.nearestCoreDistance!=null&&s.nearestCoreDistance<2.7; if(recovering){await p.keyboard.down('KeyE');if(held){await p.keyboard.up(held);held='';}}else await p.keyboard.up('KeyE');
 const goalKey=`${goal.x},${goal.z}`;if(routeGoal!==goalKey||steps%10===0){pathCache=path(s.player,goal);routeGoal=goalKey}
 while(pathCache.length&&Math.hypot(pathCache[0].x-s.player.x,pathCache[0].z-s.player.z)<.85)pathCache.shift();
-const nav=pathCache[Math.min(1,pathCache.length-1)]||goal;const target=s.targets.sort((a,b)=>Math.hypot(a.x-s.player.x,a.z-s.player.z)-Math.hypot(b.x-s.player.x,b.z-s.player.z))[0];
+const nav=pathCache[Math.min(1,pathCache.length-1)]||goal;const target=(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-16)<13?s.boss:[])[0]||s.targets.sort((a,b)=>Math.hypot(a.x-s.player.x,a.z-s.player.z)-Math.hypot(b.x-s.player.x,b.z-s.player.z))[0];
 const aim=target||{...nav,y:1.7};let desired=Math.atan2(s.player.x-aim.x,s.player.z-aim.z),delta=desired-s.player.yaw;delta=Math.atan2(Math.sin(delta),Math.cos(delta));const pitch=Math.atan2(aim.y-1.7,Math.hypot(aim.x-s.player.x,aim.z-s.player.z));
 // Mouse movement and keyboard input only; all game observations above are read-only.
 await p.evaluate(({dx,dy})=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:dx,movementY:dy,bubbles:true})),{dx:-Math.max(-180,Math.min(180,delta/.002)),dy:-(pitch-s.pitch)/.002});
 const aligned=Math.abs(delta)<.18;
 if(target&&aligned&&!s.reloading){if(!shooting){await p.mouse.down();shooting=true}}else if(shooting){await p.mouse.up();shooting=false}
-if(s.cores===3&&s.exitDistance<2.2&&held){await p.keyboard.up(held);held='';}
+if(((s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8)||(s.cores===3&&!s.boss.length&&s.exitDistance<2.2))&&held){await p.keyboard.up(held);held='';}
 if(s.ammo<5&&!s.reloading)await p.keyboard.press('KeyR');
 const nd=Math.atan2(nav.x-s.player.x,-(nav.z-s.player.z));const forward={x:-Math.sin(s.player.yaw),z:-Math.cos(s.player.yaw)},right={x:Math.cos(s.player.yaw),z:-Math.sin(s.player.yaw)};const vx=nav.x-s.player.x,vz=nav.z-s.player.z;const f=vx*forward.x+vz*forward.z,r=vx*right.x+vz*right.z;
-const key=Math.abs(f)>Math.abs(r)?f>0?'KeyW':'KeyS':r>0?'KeyD':'KeyA';if(!recovering&&!(s.cores===3&&s.exitDistance<2.2)&&key!==held){if(held)await p.keyboard.up(held);await p.keyboard.down(key);held=key}
+const key=Math.abs(f)>Math.abs(r)?f>0?'KeyW':'KeyS':r>0?'KeyD':'KeyA';if(!recovering&&!(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8)&&!(s.cores===3&&!s.boss.length&&s.exitDistance<2.2)&&key!==held){if(held)await p.keyboard.up(held);await p.keyboard.down(key);held=key}
 if(!recovering&&s.exitDistance>3&&s.shield<20&&s.dashCooldown===0)await p.keyboard.press('ShiftLeft');
 if(steps===50)await p.screenshot({path:'/tmp/soulfall-playtest-mid.png',timeout:15000});
 await p.waitForTimeout(120);steps++;

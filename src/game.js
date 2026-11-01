@@ -1,3 +1,4 @@
+import {createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
 import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
@@ -61,6 +62,7 @@ export class Game {
     this.scene = new THREE.Scene(); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
     this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
     this.world = await buildWorld(this.scene);
+    this.custodian=await createCustodian(this);
     this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = -0.02;
@@ -215,7 +217,7 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
-    this.encounters = new Set(); this.phaseCueAt = -100;
+    resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
     this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
@@ -236,7 +238,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
-    this.clearInput();
+    this.clearInput(); if(this.custodian)clearCustodianLines(this.custodian);
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
       const object = item.mesh || item.group;
       if (object) { this.scene.remove(object); object.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); if (Array.isArray(node.material)) node.material.forEach(m => m.dispose()); else node.material?.dispose(); }); }
@@ -325,7 +327,7 @@ export class Game {
     this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
     for (let i = 0; i < (this.options.reducedMotion?0:6); i++) this.particle(core.position.clone().add(new THREE.Vector3(0, .85, 0)), 0x4297a6, .35, .025);
     if (this.cores < this.coreNodes.length) this.event('notice','Memory secured. Supplies restored. Choose your next archive.');
-    else { this.exitBoundary.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(2); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
+    else { this.custodian.active=true; this.custodian.cooldown=2.5; this.spawnWave(2); this.event('notice','MEMORIES SECURED · STATION COUNTERMEASURE ARMING. Disable the three Custodian coils to release the uplink.'); }
     this.emit();
   }
 
@@ -357,9 +359,12 @@ export class Game {
       const point = precision ? h : b;
       if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!precision; }
     }
+    this.custodian.group.updateWorldMatrix(true,true);
+    let bossHit=this.raycaster.intersectObject(this.custodian.model,true)[0];
+    if(bossHit&&bossHit.distance<distance){distance=bossHit.distance;hit=null;}else bossHit=null;
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
-    if (hit) {
+    if(bossHit) { hitCustodian(this,bossHit); for(let i=0;i<2;i++)this.particle(end,0xb6c5ca,.18,.025); } else if (hit) {
       const damage=headshot ? 82 : hit.type==='warden' && !(hit.armorOpen>0) ? 17 : 34;
       this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= damage;
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
@@ -429,7 +434,7 @@ export class Game {
   }
   finish(won) {
     cancelCapacitors(this.world.capacitors);
-    this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
+    clearCustodianLines(this.custodian); this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
     if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
     this.event(won ? 'win' : 'lose', won ? 'SIGNAL RESTORED. YOU BROUGHT THEM HOME.' : 'SIGNAL LOST. EVERY SOUL DESERVES ANOTHER CHANCE.'); this.emit();
@@ -450,14 +455,15 @@ export class Game {
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
-    this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
+    this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
     const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
     if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
-      const distance=extractionDistance(this.player,this.world.playerSpawn);
-      if(distance<12&&!this.extractionWave){this.extractionWave=true;for(const x of [-18,18])if(this.canOccupy(x,23,.5))this.spawnEnemy(new THREE.Vector3(x,0,23),'stalker',2,'hunter');this.event('notice',`INTERCEPTORS INBOUND. Hold the green zone for ${this.extractionSeconds} seconds.`);}
+      // Build44 replaces distance-triggered extraction Interceptors with the fixed jammer.
+      this.extractionWave=true;
+      if(!this.custodian.dead){this.extractionProgress=0;this.extractionBuffer=0;return;}
       const inside=isInsideExtraction(this.player,this.world.playerSpawn);
       const upload=advanceUpload(this.extractionProgress,this.extractionBuffer,inside,dt);
       this.extractionProgress=upload.progress;this.extractionBuffer=upload.buffer;
@@ -498,7 +504,7 @@ export class Game {
   }
 
   updateEnemies(dt) {
-    let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
+    let charging=this.enemies.filter(e=>e.windup>0).length+(this.custodian.windup>0?1:0); const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
@@ -593,6 +599,7 @@ export class Game {
   }
   updateProjectiles(dt) {
     for (let i = this.projectiles.length - 1; i >= 0; i--) {
+      if(this.projectiles[i].custodianCoil?.hp<=0){const p=this.projectiles[i];this.scene.remove(p.mesh);p.mesh.geometry.dispose();p.mesh.material.dispose();this.projectiles.splice(i,1);continue;}
       const p = this.projectiles[i], previous = p.mesh.position.clone(); p.mesh.position.addScaledVector(p.velocity, dt); p.life -= dt;
       // Exact swept collision, independent of AI sight tolerance and step alignment.
       const travel = previous.distanceTo(p.mesh.position);
@@ -653,7 +660,7 @@ export class Game {
       c.reach.visible=!c.collected&&distance<7.5;
       c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
     }
-    this.world.setUplinkState(this.cores===this.coreNodes.length,Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS)));
+    this.world.setUplinkState(this.cores===this.coreNodes.length&&this.custodian.dead,Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS)));
     this.exitBoundary.material.opacity = this.cores === this.coreNodes.length ? 0.8 : 0.35;
 
     for (let i = this.effects.length - 1; i >= 0; i--) {
@@ -713,7 +720,8 @@ export class Game {
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
-      markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+      if(!this.custodian.dead)markers.push({id:'custodian',kind:'exit',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
+      else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
     }
     // A doorway is actionable only along a swept, walkable approach. This is
     // local aperture guidance, never a cached route through unseen architecture.
@@ -724,6 +732,7 @@ export class Game {
       if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
     }
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
+    if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18));if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:this.custodian.open>0?'CUSTODIAN / COILS EXPOSED':'CUSTODIAN / ARMORED SHUTTERS',health:this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:false,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
@@ -736,7 +745,7 @@ export class Game {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
-      objective: this.cores === this.coreNodes.length ? (isInsideExtraction(this.player,this.world.playerSpawn)?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
+      objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn)?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, extractionBuffer:this.extractionBuffer||0, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
@@ -746,6 +755,7 @@ export class Game {
       extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,
       insideExtraction: this.world ? isInsideExtraction(this.player,this.world.playerSpawn) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
+      custodian:{x:11,z:16,active:this.custodian?.active,dead:this.custodian?.dead,open:this.custodian?.open>0,charging:this.custodian?.windup>0,coils:this.custodian?.coils.map(n=>Math.max(0,n.hp/(160*(this.difficulty?.health||1))))},
       facilityLayout:this.facilityLayout, bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
     };
   }

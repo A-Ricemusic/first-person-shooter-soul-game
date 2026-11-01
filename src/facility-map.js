@@ -18,8 +18,9 @@ export function paintArchitecture(ctx,layout,t){
 }
 export function paintSites(ctx,s,t,labels=false){
   const circle=(x,z,r,color)=>{ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(...t.point(x,z),r*t.scale,0,Math.PI*2);ctx.stroke();};
-  if(s.exit){const b=extractionBounds(s.exit),[x,y]=t.point(b.xMin,b.zMin);ctx.strokeStyle=s.cores===s.totalCores?'#9cffbd':'#d8c59d';ctx.lineWidth=1.5;ctx.strokeRect(x,y,(b.xMax-b.xMin)*t.scale,(b.zMax-b.zMin)*t.scale);}
+  if(s.exit){const b=extractionBounds(s.exit),[x,y]=t.point(b.xMin,b.zMin);ctx.strokeStyle=s.cores===s.totalCores&&(!s.custodian||s.custodian.dead)?'#9cffbd':'#d8c59d';ctx.lineWidth=1.5;ctx.strokeRect(x,y,(b.xMax-b.xMin)*t.scale,(b.zMax-b.zMin)*t.scale);}
   for(const c of s.coreMarkers||[]){const [x,y]=t.point(c.x,c.z);const color=c.collected?'#91c5a0':'#78f1ff';circle(c.x,c.z,RECOVERY_RADIUS,color);ctx.fillStyle=color;ctx.fillRect(x-3,y-3,6,6);ctx.font=labels?'bold 12px sans-serif':'12px monospace';ctx.fillText(labels?`${c.id+1} ${CORE_SITES[c.id].name}${c.collected?' ✓':''}`:String(c.id+1),x+9,y-7);}
+  if(s.custodian){const [x,y]=t.point(s.custodian.x,s.custodian.z);ctx.fillStyle=s.custodian.dead?'#536568':'#ffb76e';ctx.fillRect(x-4,y-4,8,8);if(labels)ctx.fillText(s.custodian.dead?'CUSTODIAN / SPENT':'CUSTODIAN / JAMMER',x+10,y-5);}
   if(labels&&s.exit){const center=extractionCenter(s.exit),[x,y]=t.point(center.x,center.z);ctx.fillStyle='#d8c59d';ctx.fillText('EXTRACTION',x+12,y+5);}
 }
 export function paintPlayer(ctx,p,t){const [x,y]=t.point(p.x,p.z);ctx.save();ctx.translate(x,y);ctx.rotate(-p.yaw);ctx.fillStyle='#fff';ctx.strokeStyle='#07151e';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-10);ctx.lineTo(6,7);ctx.lineTo(0,3);ctx.lineTo(-6,7);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();}

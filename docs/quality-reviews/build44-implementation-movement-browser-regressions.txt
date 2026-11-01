@@ -1,0 +1,119 @@
+{
+  "checks": [
+    {
+      "name": "Arranged normal W+Space lands on actual vent grate",
+      "observed": {
+        "player": [
+          14,
+          3.0149999999999997,
+          9.75000000000005
+        ],
+        "grounded": true,
+        "velocity": 0
+      }
+    },
+    {
+      "name": "Five-second stable support and walking off returns to gravity",
+      "observed": {
+        "y": 3.0149999999999997,
+        "stable": 3.0149999999999997,
+        "walkoff": [
+          19.500000000000036,
+          1.7,
+          9.75000000000005
+        ],
+        "grounded": true
+      }
+    },
+    {
+      "name": "No side-entry pop, no midair jump, front lip remains too high",
+      "observed": {
+        "side": [
+          14,
+          1.7,
+          11.40000000000002
+        ],
+        "v": 5.900000000000002,
+        "repeated": 5.900000000000002,
+        "front": [
+          14,
+          1.7,
+          6.554166666666668
+        ]
+      }
+    },
+    {
+      "name": "Synthetic explicitly arranged ceiling blocks head",
+      "observed": {
+        "max": 2,
+        "end": 1.7
+      }
+    },
+    {
+      "name": "Airborne full-dt dash cannot tunnel actual gantry pillar or perimeter",
+      "observed": {
+        "pillar": [
+          33.980000000000004,
+          2.4918000000000022,
+          20
+        ],
+        "bounds": [
+          -36.584,
+          5.491799999999993,
+          30
+        ]
+      }
+    },
+    {
+      "name": "Pause preserves height, resume support stable, restart resets jump",
+      "observed": {
+        "before": [
+          14,
+          3.015,
+          9
+        ],
+        "after": [
+          14,
+          3.015,
+          9
+        ],
+        "resumed": 3.015,
+        "restart": [
+          0,
+          1.7,
+          31
+        ],
+        "velocity": 0,
+        "grounded": true
+      }
+    },
+    {
+      "name": "Raised aimed projectile hits, grate blocks low projectile, nearby raised phase retains LOS",
+      "observed": {
+        "aimedShield": 41,
+        "lowShield": 60,
+        "phase": 1,
+        "state": "playing",
+        "invulnerable": 0
+      }
+    },
+    {
+      "name": "High above archive cannot channel recovery through vertical range",
+      "observed": {
+        "eye": 4.7,
+        "progress": 0,
+        "cores": 0
+      }
+    },
+    {
+      "name": "Raised cover blocks unreachable melee and low supply collection; ground contact and supply remain",
+      "observed": {
+        "above": 60,
+        "belowPickup": 1,
+        "ground": 45,
+        "groundPickup": 0
+      }
+    }
+  ],
+  "errors": []
+}

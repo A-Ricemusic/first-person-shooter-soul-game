@@ -13,7 +13,7 @@ try {
   await page.setViewportSize({width,height:width===1280?800:900});
   for(const [label,distance,y]of [['center',0,1.7],['inside',7.45,1.7],['outside',7.55,1.7],['airborne',0,2.3],['approach',8.5,1.7],['near-approach',7.7,1.7],['distant',20,1.7]]){
    const row=await page.evaluate(({label,distance,y})=>{
-    const g=window.__SOULFALL__.game;g.restart();for(let i=0;i<3;i++)g.debug.collectCore(i);g.clearRun();g.extractionWave=true;g.encounters=new Set(['ingress','medical','engineering','heart']);
+    const g=window.__SOULFALL__.game;g.restart();for(let i=0;i<3;i++)g.debug.collectCore(i);g.clearRun();g.custodian.dead=true; /* deck-only */ g.extractionWave=true;g.encounters=new Set(['ingress','medical','engineering','heart']);
     g.player.set(g.world.playerSpawn.x+distance,y,g.world.playerSpawn.z);g.yaw=0;g.pitch=-.3;g.extractionBuffer=0;g.extractionProgress=['approach','near-approach','distant'].includes(label)?0:.6;
     if(label!=='airborne')for(let i=0;i<30;i++)g.update(1/120);
     g.animate(0);g.emit();const markers=g.captureMarkers();g.onMarkers(markers);g.renderer.render(g.scene,g.camera);const m=markers.find(m=>m.kind==='exit');

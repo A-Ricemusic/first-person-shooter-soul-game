@@ -1,0 +1,133 @@
+{
+  "method": "Exactly two fresh native GPT-6.1 Sol agents, fork_turns:none, sequential two-terminal-attempt reviews. No source/state hooks, routes, prior results or desired verdicts supplied. No mutations/tests/Blender/other Chrome during either review. First close/exit0/exact PID absence verified before second launch.",
+  "freezeDigest": "edb0efad75a157eecf7c6f2bbfea6ca16f3137b8be1795f31e5d083ba4eb7424",
+  "review1": {
+    "report": "build44-review1.json",
+    "ratings": {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 7,
+      "readability": 6,
+      "AAAReadiness": 3
+    },
+    "outcomes": [
+      {
+        "attempt": 1,
+        "terminal": "OPERATOR LOST",
+        "missionTime": "01:02",
+        "memories": 3,
+        "eliminations": 1,
+        "score": 3180,
+        "accuracyPercent": 9,
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "furthest": "Custodian combat; coil 1 observed at 26%, coils 2 and 3 at 100%.",
+        "evidence": [
+          "a1-east-recover.jpg",
+          "a1-coil-close.jpg",
+          "a1-terminal-or-escape.jpg"
+        ]
+      },
+      {
+        "attempt": 2,
+        "terminal": "OPERATOR LOST",
+        "missionTime": "00:34",
+        "memories": 1,
+        "recovered": "East archive / Elian Vale",
+        "eliminations": 1,
+        "score": 1180,
+        "accuracyPercent": 6,
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "furthest": "Travel toward Heart after east recovery; killed before recovery.",
+        "evidence": [
+          "a2-core-and-interceptor.jpg",
+          "a2-heart-danger.jpg",
+          "a2-heart-final-run.jpg"
+        ]
+      }
+    ],
+    "closure": {
+      "closeOperation": "op close",
+      "driverExitCode": 0,
+      "browserClosed": true,
+      "driverPid": 37729,
+      "chromePid": 37730,
+      "verification": "ps -p 37729,37730 -o pid=,ppid=,command=",
+      "psExitCode": 1,
+      "psOutput": "",
+      "ownedPidsAbsent": true
+    }
+  },
+  "review2": {
+    "report": "build44-review2.json",
+    "ratings": {
+      "gameplay": 6.5,
+      "presentation": 7.5,
+      "usability": 7,
+      "readability": 6.5,
+      "AAAReadiness": 4
+    },
+    "outcomes": [
+      {
+        "attempt": 1,
+        "outcome": "OPERATOR LOST",
+        "missionTime": "00:44",
+        "eliminations": 1,
+        "score": 1100,
+        "accuracyPercent": 12,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "memories": [
+          "Mara Solberg"
+        ],
+        "progress": "Recovered west archive, died trying to reach/recover heart while exposed to multiple enemies.",
+        "evidence": [
+          "westRecover.jpg",
+          "heartFightRecover.jpg",
+          "attempt1EndOrCore.jpg"
+        ]
+      },
+      {
+        "attempt": 2,
+        "outcome": "OPERATOR LOST",
+        "missionTime": "01:11",
+        "eliminations": 4,
+        "score": 3640,
+        "accuracyPercent": 13,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "memories": [
+          "Elian Vale",
+          "Sera Nord",
+          "Mara Solberg"
+        ],
+        "progress": "Recovered all memories, reached Custodian, disabled coil 1; last observed boss HUD coil 2 79%, coil 3 69%. Died during further firing. Extraction not reached.",
+        "evidence": [
+          "eastConsole2.jpg",
+          "heart2Recover.jpg",
+          "third2.jpg",
+          "coilsSpray2.jpg",
+          "coil2Engage.jpg"
+        ]
+      }
+    ],
+    "closure": {
+      "op": "close",
+      "driverPid": 38975,
+      "chromePid": 38976,
+      "driverExitCode": 0,
+      "browserClosed": true,
+      "pidVerification": "ps -p 38975,38976 -o pid=,ppid=,command= returned no rows (exit 1), confirming exact owned PIDs absent.",
+      "broadKillsUsed": false
+    }
+  },
+  "ordinaryIndependentWins": 0,
+  "ordinaryIndependentLosses": 4,
+  "conclusion": "Both second-stage boss visits ended in death: reviewer1 damaged one coil to26%, reviewer2 disabled one and damaged others. No independent upload/completion validated. Mandatory combat is verified mechanically, but enjoyment/readability/balance improvement is not established.",
+  "postReviewUnreviewedEdit": "src/main.js title label BUILD43\u2192BUILD44 only; no mechanics, asset or balance edits; no third reviewer/rescore.",
+  "implementationPlay": "build44-implementation-play.json: two losses then Standard normal-URL win44s/all3/full physical boss defeat/2kills/42%accuracy/score5981; source-informed repeated route and paused synthetic input.",
+  "privilegedController": "build44-final-controls.json: actual full-health boss via normal controls, won/all3/upload1/11kills/59.2144s/health100/errors[]. Reads exact positions/LOS/colliders, not ordinary discovery.",
+  "limitations": "Human enjoyment, audio, hardware performance/backend, independent completion and broader production readiness remain unvalidated.",
+  "postReviewUnreviewedTooling": "Evidence-only preservation helper restricted to generated current-* paths, protecting unrelated dossier edits. Not game behavior."
+}

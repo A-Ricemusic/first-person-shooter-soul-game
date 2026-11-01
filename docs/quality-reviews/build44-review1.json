@@ -1,0 +1,136 @@
+{
+  "reviewer": "independent ordinary-play reviewer 1",
+  "buildRequested": 44,
+  "visibleTitleBuildLabel": 43,
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "npm run playtest:visible -- --out docs/media/build44-review1",
+    "attempts": 2,
+    "interaction": "Visible screenshots and in-game UI/handbook/map; JSON keyboard/mouse actions with pauses between captures. No source, game-state evaluation, debug hooks, prior reports or solutions accessed.",
+    "record": "docs/media/build44-review1/actions.jsonl"
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "terminal": "OPERATOR LOST",
+      "missionTime": "01:02",
+      "memories": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 9,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "furthest": "Custodian combat; coil 1 observed at 26%, coils 2 and 3 at 100%.",
+      "evidence": [
+        "a1-east-recover.jpg",
+        "a1-coil-close.jpg",
+        "a1-terminal-or-escape.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "terminal": "OPERATOR LOST",
+      "missionTime": "00:34",
+      "memories": 1,
+      "recovered": "East archive / Elian Vale",
+      "eliminations": 1,
+      "score": 1180,
+      "accuracyPercent": 6,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "furthest": "Travel toward Heart after east recovery; killed before recovery.",
+      "evidence": [
+        "a2-core-and-interceptor.jpg",
+        "a2-heart-danger.jpg",
+        "a2-heart-final-run.jpg"
+      ]
+    }
+  ],
+  "evidenceAndFriction": [
+    {
+      "finding": "Strong coherent stormy industrial presentation: teal wayfinding, amber enemies, reflective ground, large relay centerpiece, orderly menu and end screen. Geometry and enemies remain visibly simple and repeated.",
+      "evidence": [
+        "menu.jpg",
+        "a1-heart-run.jpg",
+        "a2-engineering.jpg"
+      ]
+    },
+    {
+      "finding": "Handbook explains movement, dash, optic targeting, boss shutters and capacitor hazard. Map and receiver names supported finding all three objectives on first attempt.",
+      "evidence": [
+        "controls.jpg",
+        "a1-map.jpg",
+        "a1-east-recover.jpg"
+      ]
+    },
+    {
+      "finding": "Induction guard optic fire gave a clear critical elimination in both attempts. Later target tracking was substantially harder: several bursts missed, stationary firing cost shield/health, and both terminal accuracies were low. This is observed difficulty under discrete input, not proof of hit-registration failure.",
+      "evidence": [
+        "a1-guard.jpg",
+        "a1-west-guard-target.jpg",
+        "a2-heart-danger.jpg"
+      ]
+    },
+    {
+      "finding": "Receiver range initially caused failed E holds during second attempt; explicit MOVE CLOSER / STEP INSIDE THE FLOOR RING feedback helped correct approach. Recovery restored supplies and health, making objectives useful in combat.",
+      "evidence": [
+        "a2-east-core.jpg",
+        "a2-east-secured.jpg",
+        "a2-core-and-interceptor.jpg"
+      ]
+    },
+    {
+      "finding": "Threat visor conveyed nearby offscreen pressure with counts and charging symbols, but dense threats behind/alongside the player plus small distant emitters made prioritization difficult. I repeatedly moved into crossfire without reliably clearing enemies.",
+      "evidence": [
+        "a1-west-guard-target.jpg",
+        "a2-heart-path.jpg",
+        "a2-heart-danger.jpg"
+      ]
+    },
+    {
+      "finding": "Boss status and coil percentages communicate damage/windows, but getting close put large shutter geometry across most of the view; first boss approach and later shots included clear misses. Backing away restored view, but surrounding enemies ended the run.",
+      "evidence": [
+        "a1-coil-fire.jpg",
+        "a1-coil-close.jpg",
+        "a1-coil-last-fight.jpg"
+      ]
+    },
+    {
+      "finding": "Attempted capacitor shot and dash-away did not visibly establish discharge or elimination. Do not count hazard use as successfully validated.",
+      "evidence": [
+        "a2-core-and-interceptor.jpg",
+        "a2-capacitor-use.jpg"
+      ]
+    },
+    {
+      "finding": "One driver selector error: text=ENTER THE STORM matched description and button; retried using visible deploy-label selector. No pageErrors were reported by successful actions.",
+      "sequence": 4
+    }
+  ],
+  "rawRatingsOutOf10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6,
+    "AAAReadiness": 3
+  },
+  "ratingRationale": "A legible, atmospheric compact mission with useful navigation and meaningful combat pressure. Combat targeting and threat prioritization were difficult in this interaction method. Simple repeated assets, limited observed encounter variety and lack of validated full completion keep AAA readiness low.",
+  "limitations": [
+    "Exactly two deaths; first reached boss, neither disabled all coils or reached extraction, so full mission completion/upload behavior unvalidated.",
+    "Discrete terminal actions and frequent pauses differ from continuous human play and constrain aim, reaction time and enjoyment judgments.",
+    "Audio, human enjoyment and hardware performance not assessed.",
+    "Driver reported Software-WebGL fallback enabled; renderer not certified. This flag does not establish actual renderer backend.",
+    "No claim of camera bug from immediate post-look stale HUD/capture; a follow-up wait showed completed rotation."
+  ],
+  "closure": {
+    "closeOperation": "op close",
+    "driverExitCode": 0,
+    "browserClosed": true,
+    "driverPid": 37729,
+    "chromePid": 37730,
+    "verification": "ps -p 37729,37730 -o pid=,ppid=,command=",
+    "psExitCode": 1,
+    "psOutput": "",
+    "ownedPidsAbsent": true
+  }
+}

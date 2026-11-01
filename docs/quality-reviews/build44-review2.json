@@ -1,0 +1,155 @@
+{
+  "reviewer": "build44-review2",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "ordinaryAttempts": 2,
+    "driver": "npm run playtest:visible -- --out docs/media/build44-review2",
+    "interaction": "Visible screenshots, visible HUD and handbook; keyboard/mouse JSON driver. No source, game-state hooks, prior reports, solutions, builds or tests consulted.",
+    "evidence": "docs/media/build44-review2/actions.jsonl"
+  },
+  "terminalOutcomes": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "00:44",
+      "eliminations": 1,
+      "score": 1100,
+      "accuracyPercent": 12,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "memories": [
+        "Mara Solberg"
+      ],
+      "progress": "Recovered west archive, died trying to reach/recover heart while exposed to multiple enemies.",
+      "evidence": [
+        "westRecover.jpg",
+        "heartFightRecover.jpg",
+        "attempt1EndOrCore.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:11",
+      "eliminations": 4,
+      "score": 3640,
+      "accuracyPercent": 13,
+      "criticalEliminations": 3,
+      "phaseEvades": 0,
+      "memories": [
+        "Elian Vale",
+        "Sera Nord",
+        "Mara Solberg"
+      ],
+      "progress": "Recovered all memories, reached Custodian, disabled coil 1; last observed boss HUD coil 2 79%, coil 3 69%. Died during further firing. Extraction not reached.",
+      "evidence": [
+        "eastConsole2.jpg",
+        "heart2Recover.jpg",
+        "third2.jpg",
+        "coilsSpray2.jpg",
+        "coil2Engage.jpg"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "kind": "strength",
+      "detail": "Strong cohesive storm/industrial mood, reflective ground, cyan signage and large relay landmark. Menu and terminal result layouts read professionally.",
+      "evidence": [
+        "menu.jpg",
+        "heart2Approach.jpg",
+        "coil2Engage.jpg"
+      ]
+    },
+    {
+      "kind": "strength",
+      "detail": "Map, named destination markers, distance readout and recovery prompt made the mission discoverable. Resupply after memories sustained second attempt.",
+      "evidence": [
+        "map1.jpg",
+        "eastConsole2.jpg",
+        "heart2Recover.jpg"
+      ]
+    },
+    {
+      "kind": "strength",
+      "detail": "Deliberate optic aiming improved combat on second attempt; three critical eliminations recorded. Boss coil percentages and exposed/armored status supplied actionable feedback.",
+      "evidence": [
+        "heart2Recover.jpg",
+        "custodianFire2.jpg",
+        "coilsSpray2.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "detail": "Receiving fire from several directions while locating receiver rings was hard to manage; damage accumulated quickly during stationary recovery/aiming. This includes player errors and missed shots, not evidence of unfairness or a defect.",
+      "evidence": [
+        "heartFightRecover.jpg",
+        "heartEmergency.jpg",
+        "eastRecoveredFight2.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "detail": "Receiver reach is fairly strict: MOVE CLOSER at 3.4-4.1 m required further positioning; holding E outside reach did nothing except reminder. Floor ring and receiver can be below/behind the camera, so proximity alone did not settle alignment.",
+      "evidence": [
+        "heartFightRecover.jpg",
+        "heartEmergency.jpg",
+        "west2FightRecover.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "detail": "Close boss model silhouette and surrounding cover made identifying exposed copper targets harder from side views. I spent time orbiting/adjusting aim and taking other enemy fire. Only one coil disabled before death.",
+      "evidence": [
+        "custodianBreakTry2.jpg",
+        "coilView2.jpg",
+        "coilFlank2.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "detail": "Small secondary text, muted hints, and multiple competing HUD elements require attention during combat. Main objective, ammo and health were much easier to scan.",
+      "evidence": [
+        "west2FightRecover.jpg",
+        "coilFlank2.jpg"
+      ]
+    },
+    {
+      "kind": "presentation",
+      "detail": "Visible title identifies BUILD 43 despite report requested as build44; no inference about actual code version.",
+      "evidence": [
+        "menu.jpg"
+      ]
+    }
+  ],
+  "errorsAndMisses": {
+    "driverErrors": [
+      "text=ENTER THE STORM click was ambiguous (two matching elements); corrected using visible deploy-label selector. Raw error preserved sequence 4."
+    ],
+    "playerErrors": "Missed guard and interceptor shots, attempted recovery outside reach, exposed traversal and imperfect boss aim retained in full action log. No attempts discarded.",
+    "pageErrors": "No page errors reported by driver results."
+  },
+  "rawRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 7,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "ratingRationale": "A coherent and learnable vertical slice with good mission scaffolding and appealing atmosphere. Combat is engaging enough to try a changed approach, but target/close boss clarity, HUD density, simple blocklike actors and limited observed encounter breadth keep AAA readiness low. Ratings reflect these two attempts only.",
+  "limitations": [
+    "Exactly two deaths; no completed extraction, successful ending, or full boss disable observed.",
+    "JSON action batches and pause screenshots differ from continuous human mouse play; low recorded accuracy is substantially reviewer input/aim limitation.",
+    "Audio, human enjoyment, hardware performance and renderer backend unvalidated. Driver software-WebGL fallback message does not certify backend.",
+    "No balance claims from two attempts; no debug/source inspection."
+  ],
+  "closure": {
+    "op": "close",
+    "driverPid": 38975,
+    "chromePid": 38976,
+    "driverExitCode": 0,
+    "browserClosed": true,
+    "pidVerification": "ps -p 38975,38976 -o pid=,ppid=,command= returned no rows (exit 1), confirming exact owned PIDs absent.",
+    "broadKillsUsed": false
+  }
+}
