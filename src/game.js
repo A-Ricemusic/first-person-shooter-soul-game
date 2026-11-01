@@ -14,11 +14,7 @@ const DIFFICULTIES = {
 function mesh(geometry, material, x = 0, y = 0, z = 0) {
   const m = new THREE.Mesh(geometry, material); m.position.set(x, y, z); return m;
 }
-function segmentDistance(point, a, b) {
-  const ab = b.clone().sub(a), denom = ab.lengthSq();
-  const t = denom ? clamp(point.clone().sub(a).dot(ab) / denom, 0, 1) : 0;
-  return point.distanceTo(a.clone().addScaledVector(ab, t));
-}
+
 
 /** A single, owned simulation loop. Rendering is separate from game state. */
 export class Game {
@@ -170,11 +166,13 @@ export class Game {
     this.difficulty = DIFFICULTIES[this.options.difficulty] || DIFFICULTIES.standard;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
+    this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
+    this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; });
     this.exitRing.material.color.setHex(0x637b83);
-    this.spawnWave(7); this.phase = 'playing'; this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
+    this.spawnWave(7); this.phase = 'playing'; this.animate(0); this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
   pause() {
@@ -255,7 +253,7 @@ export class Game {
     if (this.fireTimer > 0 || this.reloading || this.phase !== 'playing') return;
     if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', 'No ammunition. Recover a core or collect a fallen sentinel’s supply.'); } return; }
     this.ammo--; this.shotsFired++; this.fireTimer = 0.105; this.recoil = Math.min(0.1, this.recoil + 0.018); this.kick = 1;
-    this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045;
+    this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045; this.flashJustTriggered = true;
     const direction = new THREE.Vector3(); this.camera.getWorldDirection(direction);
     const spread = this.aim ? 0.0014 : 0.006; direction.x += (Math.random() - 0.5) * spread; direction.y += (Math.random() - 0.5) * spread; direction.normalize();
     this.ray.set(this.player, direction); let distance = 120, hit = null, headshot = false;
@@ -317,9 +315,13 @@ export class Game {
       if (this.canOccupy(position.x, position.z + dz / steps, radius)) position.z += dz / steps;
     }
   }
-  hasLineOfSight(from, to) {
+  hasLineOfSight(from, to, endpointMargin = 0.2) {
     const direction = to.clone().sub(from), length = direction.length(); this.ray.set(from, direction.normalize());
-    for (const box of this.world.colliders) { const point = this.ray.intersectBox(box, this.wallPoint); if (point && point.distanceTo(from) < length - 0.2) return false; }
+    for (const box of this.world.colliders) {
+      if (box.containsPoint(from)) return false;
+      const point = this.ray.intersectBox(box, this.wallPoint);
+      if (point && point.distanceTo(from) <= length - endpointMargin) return false;
+    }
     return true;
   }
 
@@ -346,6 +348,7 @@ export class Game {
     else this.moveEntity(this.player, direction.x * speed * dt, direction.z * speed * dt);
     if (!this.grounded) { this.velocityY -= dt * 21; this.player.y += this.velocityY * dt; if (this.player.y <= 1.7) { this.player.y = 1.7; this.velocityY = 0; this.grounded = true; } }
     if (direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
+    this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
     this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if (this.phase === 'playing' && this.cores === this.coreNodes.length && Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) < 2.7) this.finish(true);
@@ -399,10 +402,24 @@ export class Game {
   updateProjectiles(dt) {
     for (let i = this.projectiles.length - 1; i >= 0; i--) {
       const p = this.projectiles[i], previous = p.mesh.position.clone(); p.mesh.position.addScaledVector(p.velocity, dt); p.life -= dt;
-      const playerBody = this.player.clone().add(new THREE.Vector3(0, -0.5, 0));
-      // Cover occlusion wins before damage when both occur in one simulation step.
-      if (!this.hasLineOfSight(previous, p.mesh.position)) p.life = 0;
-      else if (segmentDistance(playerBody, previous, p.mesh.position) < 0.65 || segmentDistance(this.player, previous, p.mesh.position) < 0.38) { this.damage(p.damage); p.life = 0; }
+      // Exact swept collision, independent of AI sight tolerance and step alignment.
+      const travel = previous.distanceTo(p.mesh.position);
+      this.ray.set(previous, p.mesh.position.clone().sub(previous).normalize());
+      let wallDistance = Infinity, playerDistance = Infinity;
+      for (const box of this.world.colliders) {
+        if (box.containsPoint(previous)) { wallDistance = 0; break; }
+        const hit = this.ray.intersectBox(box, this.wallPoint);
+        if (hit) wallDistance = Math.min(wallDistance, previous.distanceTo(hit));
+      }
+      const body = new THREE.Sphere(this.player.clone().add(new THREE.Vector3(0, -0.5, 0)), 0.65);
+      const head = new THREE.Sphere(this.player, 0.38);
+      for (const sphere of [body, head]) {
+        if (sphere.containsPoint(previous)) { playerDistance = 0; break; }
+        const hit = this.ray.intersectSphere(sphere, this.wallPoint);
+        if (hit) playerDistance = Math.min(playerDistance, previous.distanceTo(hit));
+      }
+      if (wallDistance <= travel && wallDistance <= playerDistance) p.life = 0;
+      else if (playerDistance <= travel) { this.damage(p.damage); p.life = 0; }
       if (p.life <= 0) { this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.projectiles.splice(i, 1); }
     }
   }
@@ -424,6 +441,15 @@ export class Game {
   tracer(from, to, color, life) {
     const g = new THREE.BufferGeometry().setFromPoints([from, to]); const m = new THREE.Line(g, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.9 })); this.scene.add(m); this.effects.push({ mesh: m, life, maxLife: life });
   }
+  syncCamera() {
+    const motion = this.options.reducedMotion ? 0 : 1;
+    const moving = this.phase === 'playing' && this.moveDirection().lengthSq() > 0.1;
+    const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
+    this.camera.position.copy(this.player); this.camera.position.y += bob;
+    this.camera.rotation.set(this.pitch + this.recoil * motion, this.yaw, this.dashTime > 0 ? -0.035 * motion : 0, 'YXZ');
+    this.camera.updateWorldMatrix(true, false);
+  }
+
   animate(dt) {
     this.animTime += dt; this.world.update?.(dt, this.animTime);
     for (const c of this.coreNodes) if (!c.collected) { c.crystal.rotation.y += dt * 0.6; c.crystal.position.y = 1.35 + Math.sin(this.animTime * 1.8 + c.id) * 0.12; c.ring.rotation.z += dt * 0.6; }
@@ -440,21 +466,31 @@ export class Game {
     const moving = this.phase === 'playing' && this.moveDirection().lengthSq() > 0.1;
     const motion = this.options.reducedMotion ? 0 : 1;
     const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
-    this.camera.position.copy(this.player); this.camera.position.y += bob;
-    this.camera.rotation.set(this.pitch + this.recoil * motion, this.yaw, this.dashTime > 0 ? -0.035 * motion : 0, 'YXZ');
+    this.syncCamera();
     const desiredFov = this.aim ? 56 : this.dashTime > 0 ? 86 : 75;
     this.camera.fov = THREE.MathUtils.damp(this.camera.fov, desiredFov, 12, dt); this.camera.updateProjectionMatrix();
     this.weapon.visible = !['ready', 'won', 'lost'].includes(this.phase);
     const ads = this.aimBlend;
     this.weapon.position.set(0.3 * (1 - ads), -0.27 + ads * 0.115 - Math.abs(bob) - (this.reloading ? Math.sin((1.65 - this.reloadTimer) / 1.65 * Math.PI) * 0.23 : 0), -0.35 + this.kick * 0.065);
     this.weapon.rotation.set(this.kick * 0.035 + (this.reloading ? -0.32 : 0), 0, this.reloading ? -0.28 : -bob * 0.8);
-    if (this.flashTimer > 0) { this.flashTimer -= dt; this.muzzle.rotation.z = Math.random() * Math.PI; if (this.flashTimer <= 0) { this.muzzle.visible = false; this.flashLight.intensity = 0; } }
+    if (this.flashTimer > 0) {
+      // A shot generated during a slow frame must appear in at least one render.
+      if (!this.flashJustTriggered) this.flashTimer -= dt;
+      this.muzzle.rotation.z = Math.random() * Math.PI;
+      if (this.flashTimer <= 0) { this.muzzle.visible = false; this.flashLight.intensity = 0; }
+    }
+    this.flashJustTriggered = false;
   }
 
   frame(timestamp) {
     if (this.disposed) return;
-    const dt = Math.min(0.04, Math.max(0, (timestamp - (this.lastFrame || timestamp)) / 1000)); this.lastFrame = timestamp;
-    if (this.phase === 'playing') this.update(dt);
+    // Catch up ordinary slow frames in small simulation steps. Only extreme stalls
+    // (>250 ms) are clipped; focus loss pauses rather than simulating time away.
+    const dt = this.lastFrame ? Math.min(0.25, Math.max(0, (timestamp - this.lastFrame) / 1000)) : 0;
+    this.lastFrame = timestamp;
+    for (let remaining = dt; remaining > 1e-7 && this.phase === 'playing';) {
+      const step = Math.min(1 / 120, remaining); this.update(step); remaining -= step;
+    }
     this.animate(this.phase === 'paused' ? 0 : dt); this.renderer.render(this.scene, this.camera);
     this.emitTimer -= dt; if (this.emitTimer <= 0) { this.emit(); this.emitTimer = 0.1; }
     this.frameId = requestAnimationFrame(t => this.frame(t));

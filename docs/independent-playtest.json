@@ -1,0 +1,161 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol subagent; automated browser review, not a human participant",
+  "build": "Build 02 before root fixes in this review turn",
+  "methods": [
+    "Installed Chrome headless via Playwright,1280x800; read actual rendered pause screenshot.",
+    "Normal controls: deployment click, holdW600ms, RMB aim, LMB fire500ms, Escape pause. Observed movement z31 to27.69945 and ammo30 to27, followed by paused state.",
+    "Targeted reproduction: stop RAF, isolate actual enemy projectile code, position player behind actual central concrete, fire projectiles at five small origin offsets, step projectiles at60Hz. These are explicit test arrangements, not unassisted gameplay.",
+    "Targeted visual-lifecycle reproduction: populate ADS/recoil/FOV state, restart and animate zero time; inspect retained state."
+  ],
+  "findings": [
+    {
+      "id": "cover-projectile-endpoint-margin",
+      "severity": "high",
+      "status": "confirmed before fix",
+      "problem": "Enemy projectiles can traverse the central solid concrete and damage the player; result changes with5cm origin offsets.",
+      "reproduction": "Player(0,1.7,-3), projectile emitted by sentinel from(0,1.2,-16.05), targetplayer; call updateProjectiles(1/60) until expiry. Central concrete spans z[-10.5,-5.5]. Repeat atz-16.1,-16.15,-16.2.",
+      "observed": "Four offset cases entered and exited the concrete and reduced shield60 to41. Exact originz-16 was blocked.",
+      "cause": "updateProjectiles reuses hasLineOfSight, which ignores intersections in the last0.2m. At15m/s and60Hz a projectile step is about0.25m. Missed wall entry leaves later steps starting inside the wall.",
+      "recommendation": "Use exact swept segment-box intersection for projectiles with no0.2m AI endpoint margin; handle segments starting inside a collider; resolve hit order along segment."
+    },
+    {
+      "id": "restart-visual-state",
+      "severity": "low",
+      "status": "confirmed before fix",
+      "problem": "Restart inherits the previous run's ADS/FOV/recoil presentation and eases out over subsequentframes.",
+      "reproduction": "Set aimBlend1,cameraFov56,recoil0.1,kick1 from an aimed firing state; restart and animate(0).",
+      "observed": {
+        "aim": false,
+        "blend": 1,
+        "fov": 56,
+        "recoil": 0.1,
+        "kick": 1
+      },
+      "recommendation": "Reset aimBlend, recoil, kick, cameraFov, muzzle visibility/flashTimer and weapon transform to deployment defaults."
+    }
+  ],
+  "rawObservations": {
+    "normalControl": {
+      "phase": "paused",
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 60,
+      "maxShield": 60,
+      "ammo": 27,
+      "reserve": 180,
+      "reloading": false,
+      "reloadProgress": 0,
+      "kills": 0,
+      "cores": 0,
+      "totalCores": 3,
+      "time": 1.2164000000000004,
+      "dashCooldown": 0,
+      "objective": "Recover the three signal cores",
+      "score": 0,
+      "enemiesAlive": 7,
+      "headshots": 0,
+      "accuracy": 0,
+      "difficulty": "standard",
+      "player": {
+        "x": 0,
+        "z": 27.69945,
+        "yaw": 0
+      },
+      "coreMarkers": [
+        {
+          "x": -24,
+          "z": -15,
+          "id": 0,
+          "collected": false,
+          "distance": 48.98206845675772
+        },
+        {
+          "x": 24,
+          "z": -15,
+          "id": 1,
+          "collected": false,
+          "distance": 48.98206845675772
+        },
+        {
+          "x": 0,
+          "z": -33,
+          "id": 2,
+          "collected": false,
+          "distance": 60.69945
+        }
+      ],
+      "nearestCoreDistance": 48.98206845675772,
+      "interaction": "",
+      "heading": 0,
+      "exitDistance": 3.300550000000001,
+      "exit": {
+        "x": 0,
+        "z": 31
+      },
+      "bounds": {
+        "minX": -37,
+        "maxX": 37,
+        "minZ": -42,
+        "maxZ": 42
+      },
+      "pointerFallback": false
+    },
+    "projectiles": [
+      {
+        "originZ": -16,
+        "shield": 60,
+        "health": 100,
+        "entered": false,
+        "exited": false,
+        "maxZ": -10.50406353952777
+      },
+      {
+        "originZ": -16.05,
+        "shield": 41,
+        "health": 100,
+        "entered": true,
+        "exited": true,
+        "maxZ": -3.5591647616286073
+      },
+      {
+        "originZ": -16.1,
+        "shield": 41,
+        "health": 100,
+        "entered": true,
+        "exited": true,
+        "maxZ": -3.6090950113178364
+      },
+      {
+        "originZ": -16.15,
+        "shield": 41,
+        "health": 100,
+        "entered": true,
+        "exited": true,
+        "maxZ": -3.65902605397579
+      },
+      {
+        "originZ": -16.2,
+        "shield": 41,
+        "health": 100,
+        "entered": true,
+        "exited": true,
+        "maxZ": -3.459137035184768
+      }
+    ],
+    "restart": {
+      "aim": false,
+      "blend": 1,
+      "fov": 56,
+      "recoil": 0.1,
+      "kick": 1
+    },
+    "errors": []
+  },
+  "limitations": [
+    "No independent human feedback or quality score.",
+    "Normal-control portion was a short movement/aim/fire/pause check, not a full unassisted mission.",
+    "The cover and restart defects were reproduced with explicit test setup; this does not estimate their frequency for human players.",
+    "Root is separately testing camera/shot timing and low-frame-rate simulation; those findings are not claimed as independently reproduced here.",
+    "The report records pre-fix defects; root owns implementation and post-fix verification."
+  ]
+}

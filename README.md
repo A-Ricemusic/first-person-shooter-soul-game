@@ -25,6 +25,8 @@ No quality rating or claim of AAA readiness is made. An automated normal-control
 
 With the dev server running, `npm run test:playtest` checks these regressions; `npm run playtest:controls` runs an automated combat exercise without teleport/resource/enemy cheats.
 
+Build 03 adds an independent agent review and fixes projectile penetration through concrete, stale aim on turn/fire, low-frame-rate slow motion, and retained restart zoom/recoil. `npm run test:combat` reproduces these six targeted checks with a running dev server. Reports are retained in `docs/independent-playtest.json` and `docs/combat-regressions.json`.
+
 ## Build and verify
 
 ```sh
