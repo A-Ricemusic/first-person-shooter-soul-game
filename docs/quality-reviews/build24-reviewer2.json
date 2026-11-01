@@ -1,0 +1,61 @@
+{
+  "reviewer": "independent reviewer 2",
+  "build": "Build24",
+  "method": "Fresh ordinary visible play through tools/visible-playtest.mjs only. Read visible briefing and controls before deployment. Synthetic keyboard, mouse buttons and relative mouse look; driver captured live JPEGs and used ordinary Escape between actions. Pauses allowed inspection and tactical reasoning; this is not continuous human play.",
+  "sourceAccess": false,
+  "priorReviewAccess": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:46",
+      "memories": ["West Archive"],
+      "eliminations": 1,
+      "accuracyPercent": 10,
+      "phaseEvades": 1,
+      "score": 1175,
+      "tactics": "Advanced centrally, lost shield while passing induction guard, then moved diagonally west. Backed off a wall, found south triage intake, fired while entering, recovered west memory at 00:28. Departed east toward Heart; got a visible phase break but overshot the receiver and turned back under fire.",
+      "corrections": "Hit exterior west wall; backed south and moved west to intake. At Heart, initially aimed and dashed toward guard, then ran beyond receiver to back wall. Turned around, saw marker off left, rotated and dashed back. At 2.9 m prompt still said move closer; final sideways correction ended in death.",
+      "evidence": ["docs/media/build24-review2/west-approach.jpg", "docs/media/build24-review2/west-recover.jpg", "docs/media/build24-review2/heart-engage.jpg", "docs/media/build24-review2/heart-recovery2.jpg", "docs/media/build24-review2/heart-final-reach.jpg"]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death during extraction",
+      "missionTime": "00:47",
+      "memories": ["East Archive", "The Heart", "West Archive"],
+      "eliminations": 0,
+      "accuracyPercent": 4,
+      "score": 3000,
+      "highestVisibleUplinkPercent": 64,
+      "tactics": "Chose east sprint flank rather than central fighting. Recovered east at 00:10, Heart at 00:17, west at 00:27. Used sprint and dash between objectives, chose south departure from west, followed open return aisle toward green beacon. Reached ring, faced yard, fired and attempted lateral dash/recentering while uplink ran.",
+      "corrections": "Cross-yard traverse initially went toward west service rather than Heart; rotated north based on visible Heart marker. West approach hit exterior wall, strafed south to east service doorway. Extraction approach stalled around 13 m, turned back and used sideways dash to reveal beacon and clear obstruction. Corrected right toward beacon, then backed into ring. Lateral dodge did not prevent death.",
+      "evidence": ["docs/media/build24-review2/east-recover2.jpg", "docs/media/build24-review2/heart-core2.jpg", "docs/media/build24-review2/all-cores2.jpg", "docs/media/build24-review2/beacon-obstruction2.jpg", "docs/media/build24-review2/uplink-hold2.jpg", "docs/media/build24-review2/uplink-dodge2.jpg", "docs/media/build24-review2/attempt2-death.jpg"]
+    }
+  ],
+  "observations": [
+    "Briefing and controls are attractive and legible; recovery, regeneration, dash break and return objective were understandable before play.",
+    "Rain, wet reflections, cyan architectural strips and large Heart ring give a coherent moody industrial setting. Geometry and opponents remain visibly simple; this reads as an accomplished small browser prototype rather than AAA production.",
+    "Large cyan objective markers and distance readouts made global goals clear. Markers through walls repeatedly encouraged a direct line into solid architecture. Door signs helped after backing out and looking around.",
+    "Waist-high receiver distinct from tall pylon mattered. Move closer and step inside floor ring prompts were useful, though several captures at roughly 3-4 m required small sideways corrections under pressure.",
+    "The shield regeneration and recovery supply restoration supported a much faster second attempt. All cores were recoverable without eliminations; combat pressure concentrated at departure and extraction.",
+    "Amber charge, orange projectiles and phase-break event text conveyed danger and a successful break. Small threat boxes, edge arrows, percentages and target labels competed with objective and event overlays during busy scenes.",
+    "Extraction became visually crowded with multiple attackers and projectiles. I understood the six-second ring objective but did not confidently identify safe baffle movement before dying. My low aim accuracy and synthetic input limitations materially contributed.",
+    "No page errors were reported by driver results. Some immediate look results showed the old heading in the visible readout while the JPEG already reflected rotation; subsequent captures updated. Input/wall time and mission time were not interchangeable, so mission times above come from the visible HUD/end screen."
+  ],
+  "provisionalWholeGameRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.0,
+    "usability": 6.5,
+    "readability": 6.0,
+    "AAAReadiness": 3.0
+  },
+  "limits": "Two bounded attempts, stopped at second death. No successful ending witnessed. No source, tests, hidden state, prior evidence or other reviewer results consulted. No resource or aim edits. Software-WebGL fallback, not a GPU benchmark. No audio assessment. Pause-assisted synthetic play limits conclusions about continuous mouse feel and difficulty.",
+  "closure": {
+    "command": "close",
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 71383,
+    "chromePid": 71384,
+    "session": 31512
+  }
+}

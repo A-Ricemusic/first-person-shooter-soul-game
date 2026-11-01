@@ -1,0 +1,93 @@
+{
+  "build": "Build24",
+  "reviewer": "independent reviewer 1",
+  "method": "Visible driver ordinary play only. Read menu briefing and handbook first. Synthetic keyboard, mouse-button and relative mouse-look input in bounded batches; live JPEG inspected after each action, ordinary Escape pauses used for deliberation. No source/tests/prior reviews/hidden observations read. No child agents.",
+  "limits": [
+    "Software-WebGL fallback; not GPU performance evidence.",
+    "No audio assessment; screenshots and visible HUD only.",
+    "Paused synthetic input materially impairs reactive tracking and grants deliberation time; ratings provisional.",
+    "Two attempts only; no successful ending witnessed."
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:34",
+      "eliminations": 1,
+      "score": 100,
+      "accuracyPercent": 10,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "cores": 0,
+      "observations": [
+        "Initial command used unsupported button form and returned Unsupported game key after earlier W/Shift movement apparently executed. Corrected using CLI help and mouseDown. This is driver usage error.",
+        "Killed induction guard with sustained center fire, reloaded, used westward diagonal then forward approach.",
+        "At west receiver 3.7m, prompt clearly said MOVE CLOSER / STEP INSIDE THE FLOOR RING. Holding E for five seconds did not recover; health fell to84/shield0. Moved another430ms and fired at orange visible threat while holding E, died before recovery."
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death during extraction",
+      "missionTime": "01:15",
+      "eliminations": 3,
+      "score": 3540,
+      "accuracyPercent": 6,
+      "criticalEliminations": 3,
+      "phaseEvades": 0,
+      "cores": 3,
+      "observations": [
+        "Killed induction warden with optic shot; chose east first. Forward movement initially blocked by cover (41m to40m after5s). Strafed right to bypass.",
+        "East receiver reached00:26; simultaneous E and optic fire secured core and interceptor critical elimination by00:28. Supplies restored feedback clear.",
+        "Heart approached00:33 at7m; killed nearby warden with optic fire and dash, overshot receiver toward rear wall. Turned around, collided with pylon, corrected by strafing around it; recovered Heart00:41.",
+        "Approached west through east service, initially faced wall at16m. Strafed south to opening. At3.1m E still outside ring; another280ms forward allowed recovery00:54.",
+        "Returned south around cover using dash; extraction40m at00:57,20m at01:02,7m at01:05.",
+        "Entered zone facing yard;18% uplink at01:07 and health75/shield60. Alternating short side steps crossed boundary at3.2m; visible UPLINK DECAYING message. Backpedaled to2.3m and52% uplink at01:13, health58/shield0. Attempted small back/right correction and died01:15. No successful ending."
+      ]
+    }
+  ],
+  "findings": [
+    "Atmosphere cohesive: rain, wet floor reflections, cyan architecture, readable typography and strong central ring landmark. Weapon and robot geometry remain simple and repeated; restrained small-arena presentation rather than AAA finish.",
+    "Objective labels, distances and post-recovery text made mission direction understandable. Recovery supplied useful health/ammo and encouraged continued movement. Optic precision produced satisfying critical kills.",
+    "Receiver versus tall pylon distinction takes attention. West prompt is actionable but strict threshold created repeated near-receiver correction under fire.",
+    "Close cover and pylons caused multiple collision corrections. Through-wall objective labels guide bearing but do not explain doorway approach.",
+    "Enemy optics orange and red projectiles are visible, but crowded small threat badges and peripheral arrows were difficult to map quickly to actual shooters. Repeated side attacks punished stationary recovery and reload. Some shots wasted after enemies moved; synthetic tracking is a material confound.",
+    "Extraction requirement was clear and decay feedback immediate. Staying inside the small zone while dodging was difficult; short strafes left zone. I did not effectively exploit split blast baffles and died after three cores, so cannot establish whether final balance is fair for continuous human play."
+  ],
+  "ratingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "ratingsRationale": "Coherent playable short mission with clear objective loop and learnable critical combat, but navigation collisions, busy threat interpretation and final hold challenge reduced fluency in these two attempts. Presentation is polished for a compact prototype, without the asset variety, animation detail or breadth expected of AAA.",
+  "evidenceDirectory": "docs/media/build24-review1",
+  "keyEvidence": [
+    "briefing.jpg",
+    "controls.jpg",
+    "deploy.jpg",
+    "west-recover.jpg",
+    "west-core.jpg",
+    "east-lane.jpg",
+    "east-receiver.jpg",
+    "east-hold.jpg",
+    "heart-guard.jpg",
+    "heart-return.jpg",
+    "heart-core.jpg",
+    "west-second-entry.jpg",
+    "west-final-core.jpg",
+    "all-cores.jpg",
+    "return-aisle.jpg",
+    "uplink.jpg",
+    "uplink-defense.jpg",
+    "uplink-center.jpg",
+    "extraction-outcome.jpg"
+  ],
+  "closure": {
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 67477,
+    "chromePid": 67478,
+    "closeCommand": "{\"op\":\"close\"}"
+  }
+}

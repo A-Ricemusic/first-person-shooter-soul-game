@@ -208,7 +208,10 @@ export async function buildWorld(scene) {
   sign('TRIAGE / EVACUATION','LAST FERRY · INTAKE → ARCHIVE',-25,5.1,-8.66,7,1.1,'#b5d2c2');
   const service=MEDICAL.openings.find(o=>o.name==='service');
   const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',service.center[0]+.34,4.6,service.center[1],4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
-  const exitSign=sign('EXIT / COURTYARD','SERVICE PASSAGE',service.center[0]-.34,4.6,service.center[1],4,.9,'#b5d2c2');exitSign.rotation.y=-Math.PI/2;
+  const wayfinding=MEDICAL.wayfinding;
+  const exitSign=sign('EXIT','COURTYARD',...wayfinding.serviceSign,3.7,.7,'#c0d9ad');exitSign.rotation.y=-Math.PI/2;
+  const wallExit=sign('EXIT →','COURTYARD / LAST FERRY',...wayfinding.wallSign,3.6,.78,'#c0d9ad');wallExit.rotation.y=-Math.PI/2;
+  const intakeExit=sign('EXIT / INTAKE','LAST FERRY',...wayfinding.intakeSign,3.9,.7,'#c0d9ad');intakeExit.rotation.y=Math.PI;
   for(const z of [-12,-22]){box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
   // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.
   point(-18,3.5,-14,0xe3c69b,16,8);
