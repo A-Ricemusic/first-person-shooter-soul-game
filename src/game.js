@@ -30,7 +30,7 @@ export class Game {
     this.player = new THREE.Vector3(); this.velocityY = 0; this.grounded = true;
     this.dashVector = new THREE.Vector3(); this.dashTime = 0; this.dashCooldown = 0;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180;
-    this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
+    this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.reloading = false; this.reloadTimer = 0; this.fireTimer = 0; this.lastDamage = -100;
     this.recoil = 0; this.kick = 0; this.aimBlend = 0; this.stepDistance = 0; this.footTimer = 0;
     this.ray = new THREE.Ray(); this.raycaster = new THREE.Raycaster(); this.wallPoint = new THREE.Vector3();
@@ -56,7 +56,7 @@ export class Game {
       asset.scene.position.y += 0.72 - normalized.min.y;
       this.sentinelAsset = asset.scene;
     } catch (_) { /* Procedural combat silhouette remains a robust loading fallback. */ }
-    this.buildWeapon(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
+    this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
     this.loaded = true; this.emit(); this.frameId = requestAnimationFrame(t => this.frame(t)); return this;
   }
@@ -80,12 +80,21 @@ export class Game {
     const flash = mesh(new THREE.ConeGeometry(0.12, 0.32, 6), new THREE.MeshBasicMaterial({ color: 0xc8ffff, transparent: true, opacity: 0.8 }), 0, 0, -0.05); flash.rotation.x = -Math.PI / 2; this.muzzle.add(flash); this.muzzle.visible = false;
     this.flashLight = new THREE.PointLight(0xa1f8ff, 0, 7); this.muzzle.add(this.flashLight);
     // Blender source and exported asset are produced by the environment pipeline.
-    new GLTFLoader().load(`${import.meta.env.BASE_URL}assets/coil-rifle.glb`, gltf => {
+    new GLTFLoader().load(`${import.meta.env.BASE_URL}assets/coil-rifle-handling.glb`, gltf => {
       this.weaponFallback.visible = false; const asset = gltf.scene; asset.rotation.y = Math.PI;
       asset.scale.setScalar(0.5); asset.position.z = -0.3;
       this.weapon.add(asset); this.weaponAsset = asset;
+      this.reloadCell = asset.getObjectByName("ReloadCell"); if(this.reloadCell)this.cellHome=this.reloadCell.position.clone();
       asset.traverse(obj => { if (obj.isMesh) { obj.frustumCulled = false; obj.castShadow = false; } });
     }, undefined, () => {});
+  }
+
+  buildHands() {
+    new GLTFLoader().load(`${import.meta.env.BASE_URL}assets/operator-hands.glb`, gltf => {
+      this.weapon.add(gltf.scene); this.handsAsset=gltf.scene;
+      this.supportHand=gltf.scene.getObjectByName('SupportHand');
+      gltf.scene.traverse(o=>{if(o.isMesh){o.frustumCulled=false;o.castShadow=false;}});
+    }, undefined, ()=>{});
   }
 
   buildCores() {
@@ -168,7 +177,7 @@ export class Game {
     if (!this.loaded) return;
     this.setSettings(options); this.audio.wake(); this.clearRun(); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
-    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
+    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
@@ -177,14 +186,14 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitRing.material.color.setHex(0x637b83); this.exitBeam.visible = false;
-    this.spawnWave(7); this.phase = 'playing'; this.animate(0); this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
+    this.spawnWave(7); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
   pause() {
     if (this.phase !== 'playing') return;
-    this.phase = 'paused'; this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
+    this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
-  resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.requestLock(); this.emit(); }
+  resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.clearInput();
@@ -346,7 +355,7 @@ export class Game {
     if (this.health <= 0) { this.health = 0; this.finish(false); } this.emit();
   }
   finish(won) {
-    this.phase = won ? 'won' : 'lost'; this.clearInput();
+    this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
     if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
     this.event(won ? 'win' : 'lose', won ? 'SIGNAL RESTORED. YOU BROUGHT THEM HOME.' : 'SIGNAL LOST. EVERY SOUL DESERVES ANOTHER CHANCE.'); this.emit();
@@ -366,7 +375,7 @@ export class Game {
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
-    this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
+    this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
     const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
     if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
@@ -379,10 +388,24 @@ export class Game {
     }
   }
 
+  updatePhaseInterrupts() {
+    if(this.dashTime<=0)return;
+    for(const e of this.enemies){
+      if(e.windup<=0 || e.group.position.distanceTo(this.player)>4.8)continue;
+      const eye=e.group.position.clone().add(new THREE.Vector3(0,1.3,0));
+      if(!this.hasLineOfSight(this.player,eye))continue;
+      e.windup=0; e.stagger=.8; e.cooldown=1.6; e.light.intensity=.3;
+      e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;
+      this.phaseInterrupts++; this.audio.tone(680,.22,'triangle',.15,160);
+      this.event('phaseInterrupt','PHASE BREAK · SHOT CANCELED', {enemyId:e.id});
+    }
+  }
+
   updateEnemies(dt) {
     let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt;
+      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
@@ -396,7 +419,7 @@ export class Game {
       } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && charging<maxCharging) {
         charging++; enemy.windup = enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
-        if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning();this.nextWarning=this.runTime+.45;}
+        if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
       }
       const move = new THREE.Vector3();
       if (distance > (enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
@@ -489,17 +512,24 @@ export class Game {
       if (effect.life <= 0) { this.scene.remove(effect.mesh); effect.mesh.geometry.dispose(); effect.mesh.material.dispose(); this.effects.splice(i, 1); }
     }
     this.recoil = THREE.MathUtils.damp(this.recoil, 0, 12, dt); this.kick = THREE.MathUtils.damp(this.kick, 0, 18, dt);
-    this.aimBlend = THREE.MathUtils.damp(this.aimBlend, this.aim ? 1 : 0, 12, dt);
+    this.aimBlend = THREE.MathUtils.damp(this.aimBlend, this.aim && !this.reloading ? 1 : 0, 12, dt);
     const moving = this.phase === 'playing' && this.moveDirection().lengthSq() > 0.1;
     const motion = this.options.reducedMotion ? 0 : 1;
     const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
     this.syncCamera();
-    const desiredFov = this.aim ? 56 : this.dashTime > 0 ? 86 : 75;
+    const desiredFov = this.aim && !this.reloading ? 56 : this.dashTime > 0 ? 86 : 75;
     this.camera.fov = THREE.MathUtils.damp(this.camera.fov, desiredFov, 12, dt); this.camera.updateProjectionMatrix();
     this.weapon.visible = !['ready', 'won', 'lost'].includes(this.phase);
     const ads = this.aimBlend;
-    this.weapon.position.set(0.3 * (1 - ads), -0.27 + ads * 0.115 - Math.abs(bob) - (this.reloading ? Math.sin((1.65 - this.reloadTimer) / 1.65 * Math.PI) * 0.23 : 0), -0.35 + this.kick * 0.065);
-    this.weapon.rotation.set(this.kick * 0.035 + (this.reloading ? -0.32 : 0), 0, this.reloading ? -0.28 : -bob * 0.8);
+    const progress=this.reloading?1-this.reloadTimer/1.65:0;
+    const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+    const reach=smooth(.08,.30,progress)*(1-smooth(.72,.97,progress));
+    const pull=smooth(.25,.46,progress)*(1-smooth(.58,.78,progress));
+    if(this.supportHand){this.supportHand.position.set(.045*reach,-.06*pull,.12*reach);this.supportHand.rotation.z=-.2*reach;}
+    if(this.reloadCell&&this.cellHome){this.reloadCell.position.copy(this.cellHome);this.reloadCell.position.y-=.16*pull;this.reloadCell.position.z+=.06*pull;}
+    const handling=Math.sin(progress*Math.PI);
+    this.weapon.position.set(0.3 * (1 - ads), -0.27 + ads * 0.115 - Math.abs(bob) + handling * 0.035, -0.35 + this.kick * 0.065);
+    this.weapon.rotation.set(this.kick * 0.035 - handling*.12, handling*.08, -handling*.16-bob*.8);
     if (this.flashTimer > 0) {
       // A shot generated during a slow frame must appear in at least one render.
       if (!this.flashJustTriggered) this.flashTimer -= dt;
@@ -539,7 +569,7 @@ export class Game {
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (this.extractionProgress>0?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < 2.8 ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
-      coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0,
+      coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, z: this.player.z, yaw: this.yaw }, coreMarkers,
       nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,

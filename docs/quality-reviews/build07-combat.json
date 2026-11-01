@@ -1,0 +1,172 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol combat reviewer; agent browser review, not human participant feedback",
+  "build": "Build07 pre-review-followup runtime held stable during two Chrome sessions",
+  "ratings": {
+    "prototypeGameplayOverall": 7,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "dimensions": {
+      "weaponAndMovementFeel": 7,
+      "combatTensionAndFairness": 7,
+      "enemyBehaviorAndReadability": 7,
+      "meaningfulChoices": 7.5,
+      "missionPacing": 7.5,
+      "replayAppeal": 5.5
+    },
+    "reason": "The close phase break now provides a real optional commitment: approach a charging threat, cancel its shot and earn a brief reload/reposition opportunity while spending the normal dash cooldown. That improves ability-specific choice. Original hands, segmented reload motion and better material response improve embodiment, although the visible sleeve/cuff shapes remain simple and reload exchange is mostly below the frame. The same small arena, one weapon and related drone archetypes still limit combat breadth and replay appeal. A passing route and arranged mechanic confirmation do not support a 10/10 or AAA-ready judgment."
+  },
+  "methods": [
+    "Read README, Build05 combat review, relevant game/viewmodel/audio source. Runtime not edited by reviewer.",
+    "Installed Chrome headless through Playwright with actual WebGL at1280x800 for normal-control active mission route; inspected ADS, midcombat and final extraction screenshots via image viewer.",
+    "Normal controls used mousemove events, WASD, firing, R and heldE. No teleport, enemy clearing, resource changes or simulation advance during the active route. Exact enemy positions and collision-map routing assist the controller and substantially advantage it over a blind human.",
+    "A separate1440x900 arranged encounter cleared initial enemies, placed one sentinel6m ahead in an open lane and set its initial cooldown. Actual W+Shift during its charge triggered the break. Subsequent Shift, firing and R were real controls. This is mechanic evidence, not proof of natural encounter prevalence or human discovery.",
+    "Reviewed rendered phase-break and reload screenshots. No perceptual audio listening performed; headless source/graph observations cannot establish sound quality. Both browsers closed before parent runtime followup."
+  ],
+  "observations": {
+    "normalControls": {
+      "steps": 380,
+      "phaseAtWallTimeCap": "playing",
+      "simulatedSeconds": 59.998299999994025,
+      "health": 100,
+      "shield": 60,
+      "kills": 19,
+      "cores": 3,
+      "extractionProgress": 0.772183333333336,
+      "accuracy": 39,
+      "dashes": 0,
+      "phaseInterrupts": 0,
+      "enemiesRemaining": 0,
+      "qualification": "Stopped at100-second controller wall-time cap with extraction77% complete; did not independently observe victory in this run. Screenshot/render scheduling under concurrent software-browser work contributed to slower wall time. This is not a target-hardware performance result."
+    },
+    "arrangedPhaseBreak": [
+      {
+        "label": "preDash",
+        "player": [
+          12,
+          1.7,
+          24
+        ],
+        "enemy": [
+          11.562874802344922,
+          0,
+          18.01547741051342
+        ],
+        "windup": 0.35833333333333345,
+        "health": 100
+      },
+      {
+        "label": "postBreak",
+        "player": [
+          12,
+          1.7,
+          17.605783333333303
+        ],
+        "enemy": [
+          11.524352168628596,
+          0,
+          18.01029850519559
+        ],
+        "windup": 0,
+        "stagger": 0.5666333333333299,
+        "enemyHealth": 100,
+        "playerHealth": 100,
+        "shield": 60,
+        "cooldown": 4.2166999999999835,
+        "projectiles": 0,
+        "breaks": 1,
+        "events": [
+          {
+            "time": 0.533400000000002,
+            "args": [
+              "dash",
+              "SOUL SHIFT"
+            ]
+          },
+          {
+            "time": 0.591666666666667,
+            "args": [
+              "phaseInterrupt",
+              "PHASE BREAK \u00b7 SHOT CANCELED",
+              {
+                "enemyId": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "oneSecondAfter",
+        "windup": 0.5166666666666672,
+        "stagger": 0,
+        "cooldown": 2.716699999999979,
+        "dashes": 1,
+        "enemyHealth": 100
+      },
+      {
+        "label": "reload",
+        "reloading": true,
+        "reloadProgress": 0.9595757575757575,
+        "handPosition": [
+          0.00022819140151264904,
+          0,
+          0.0014198576094120387
+        ],
+        "cell": [
+          0,
+          -0.27000001072883606,
+          0.18000000715255737
+        ],
+        "ammo": 29
+      }
+    ],
+    "browserExceptions": []
+  },
+  "verifiedImprovements": [
+    "Actual Shift during a visible charge canceled the sentinel shot, produced PHASE BREAK feedback and zero live projectiles at the observed break; enemy retained100health.",
+    "Observed0.5666s stagger remaining after input/screenshot latency; source defines0.8s. Second Shift did not create a second dash; cooldown remained active and sentinel later resumed charging.",
+    "The interaction creates an offensive interruption/reposition option beyond absorbing incoming damage. It does not kill, restore resources, or reset cooldown.",
+    "ADS screenshot retained a clear open aperture and visible central world target. Support fingers and sleeve are visible in hip-fire/ADS renders; weapon is no longer entirely unheld.",
+    "Active route recovered all three cores and fought19enemies through normal inputs, with defended extraction visibly underway and no uncaught page exceptions."
+  ],
+  "remainingFindings": [
+    {
+      "priority": 1,
+      "area": "Ability encounter relevance and learning",
+      "finding": "The active exact-position controller still reached extraction and eliminated all19enemies without using dash. Arranged close break works, but natural encounters do not yet establish that ordinary players discover or value closing to4.5m during a short charge. This is a scope/evidence gap, not justification to raise damage.",
+      "recommendation": "Test the interaction with non-exact-position players; consider an authored optional close-pressure encounter or clearer nearby break opportunity cue if observation supports it."
+    },
+    {
+      "priority": 2,
+      "area": "Reload/viewmodel framing",
+      "finding": "The support hand movement and cell exchange were largely below the lower frame in the inspected reload capture. Static hip-fire shows small beadlike fingers and a rounded cuff; this improves presence but remains visibly procedural.",
+      "recommendation": "Raise or rotate the exchange into view and align palm/cell contact through the animation; keep ADS aperture clear. Parent has been informed and plans a small followup."
+    },
+    {
+      "priority": 3,
+      "area": "Content and production depth",
+      "finding": "One open repeated courtyard, a single rifle, related drone roles, sparse authored staging and unvalidated perceptual audio/input feel remain larger limits.",
+      "recommendation": "Preserve candid prototype status; prioritize a distinct encounter/environment problem and actual human feedback before expanding numerical quality claims."
+    }
+  ],
+  "notFound": "No new blocking gameplay defect demonstrated in these sessions. Absence of a defect is not a perfection assessment.",
+  "limitations": [
+    "Independent agent assessment, not human fun/audience evidence.",
+    "The normal controller has exact-position aiming and collision data. Its health and zero-dash route do not represent fair human difficulty.",
+    "Normal run ended at wall-time cap before extraction completed; parent has separate completion evidence.",
+    "Arranged phase check changed encounter positions and enemy setup, explicitly separated from unmodified active combat.",
+    "No subjective sound-mix listening, target-hardware frame-time guarantee, accessibility audit or broad platform coverage.",
+    "Scores are provisional judgments for inspected pre-followup runtime, not a rating of changes made afterward."
+  ],
+  "rawReports": [
+    "build07-combat-normal-raw.json",
+    "build07-combat-phase-raw.json"
+  ],
+  "screenshots": [
+    "../media/build07-combat-ads.png",
+    "../media/build07-combat-mid.png",
+    "../media/build07-combat-final.png",
+    "../media/build07-combat-phase-break.png",
+    "../media/build07-combat-reload.png"
+  ]
+}

@@ -9,7 +9,7 @@ try {
  const page=await browser.newPage();
  // Control frame timestamps to reproduce low-frame-rate input without relying on CPU load.
  await page.addInitScript(()=>{window.requestAnimationFrame=callback=>(window.__nextFrame=callback,1);window.cancelAnimationFrame=()=>{}});
- await page.goto(`${base}?test=1`);await page.waitForFunction(()=>window.__SOULFALL__,null,{timeout:60000});await page.locator('#deploy').click({force:true});
+ await page.goto(`${base}?test=1`);await page.waitForFunction(()=>window.__SOULFALL__,null,{timeout:60000,polling:100});await page.locator('#deploy').click({force:true});
  const timing=await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.frame(1000);g.keys.add('KeyW');const z=g.player.z,t=g.runTime;g.frame(1100);g.keys.clear();return {simulationDelta:g.runTime-t,distance:z-g.player.z}});
  assert.ok(Math.abs(timing.simulationDelta-.1)<1e-8);assert.ok(Math.abs(timing.distance-.55)<1e-6);checks.push({name:'10 FPS movement and mission time follow elapsed time',observed:timing,status:'passed'});
  const shot=await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.clearInput();g.player.copy(g.world.playerSpawn);g.yaw=0;g.pitch=0;g.recoil=0;g.animate(0);const e=g.enemies[0];e.group.position.set(10,0,31);const before=e.health;document.dispatchEvent(new MouseEvent('mousemove',{movementX:Math.PI/2/.002,bubbles:true}));g.canvas.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));g.frame(1117);g.clearInput();return {before,after:e.health,ammo:g.ammo}});

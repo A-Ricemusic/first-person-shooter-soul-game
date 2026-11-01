@@ -33,6 +33,12 @@ Build 06 adds named objective and threat markers, held recovery, difficulty-base
 
 With the dev server running, `npm run test:mission` checks recovery cancellation, restored sites, extraction, archive, graphics and damage cues. New Blender materials can be reproduced with `blender --background --python tools/build_materials.py`; source is `public/assets/station-materials.blend`.
 
+## Build 07 handling and phase counter
+
+Dash close to a charging enemy with line of sight to interrupt its shot and stagger it for 0.8 seconds. No damage or cooldown reset; the 4.5-second dash cooldown remains. Original Blender gloves/sleeves and a separate reload cell add authored handling, with a synthesized wind/turbine bed and directional charge warnings.
+
+Reproduce the new assets with `blender --background --python tools/build_viewmodel.py`; original sources remain intact. `npm run test:phase` checks interrupt boundaries and audio lifecycle against the running dev server. Fresh agent reviews rated gameplay 7/10, presentation 7.5/10, usability/readability 8/10 and AAA readiness 2.5/10. Human play/audio validation and richer content remain outstanding. Full evidence and limitations: `docs/human.html` and `docs/quality-reviews/build07-*.json`.
+
 ## Build and verify
 
 ```sh

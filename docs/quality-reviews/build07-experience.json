@@ -1,0 +1,184 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol experience reviewer; automated browser assessment, not human audience feedback",
+  "build": "Build07 runtime held stable during this review, before any follow-up reload framing fix",
+  "ratings": {
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 8,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "Physically scaled concrete, wet industrial lighting and a visible supporting arm improve embodiment and surface coherence. The open sight remains usable and the recovered-memory result action works. The glove shapes are visibly basic segmented volumes, reload handling mostly leaves the frame, repeated slab geometry still dominates the arena, and no human listening, playability study or production character/animation work is established. These are credible prototype improvements, not top-tier production polish."
+  },
+  "methods": [
+    "Installed Chrome headless via Playwright with actual WebGL at1440x900; results/archive inspected at1280x800. Browser closed after run. Runtime source was read but not edited.",
+    "Normal active-enemy segment used deployment and four1.8-second W/A/D/W movement holds followed by RMB ADS and screenshot captures. It ended in defeat at12.2913 simulated seconds with0health,0shield,0kills and30ammo. Planned firing/reload/dash actions arrived after defeat and did not affect gameplay. This is NOT an active-combat mission completion or difficulty comparison; screenshots and concurrent software-rendering work add uncontrolled stationary exposure.",
+    "Separate safe presentation arrangements restarted, cleared enemies and reset view; RMB ADS, LMB firing and R reload used actual controls. An arranged screenshot shows26ammo and RELOADING. A read-only handling sample after the screenshot found reload already finished, so it does not measure the exact captured animation phase.",
+    "Paused with Escape, opened empty archive through UI, resumed, then separately arranged three core recoveries and extraction via debug to inspect results and full recovered archive. This is not an unassisted mission.",
+    "Inspected actual title, normal hip, normal ADS, arranged hip, arranged ADS, arranged reload, results and results archive screenshots using view_image.",
+    "Audio source and graph were inspected: two bed sources, running during play and suspended on pause. No sound was listened to. Headless graph state does not validate mix quality, spatial perception or human audibility."
+  ],
+  "verifiedImprovements": [
+    "Support sleeve, cuff and four small finger lobes visibly contact the rifle fore-end in the hip view; the rifle no longer looks entirely unsupported.",
+    "ADS retains a clear center aperture and reticle. No arm or opaque optic blocks the central aim point in inspected captures.",
+    "The reload visibly changes rifle pose and removes support hand from its fore-end location; runtime has separate cell and hand nodes with eased transitions rather than only whole-rifle tilt.",
+    "Floor/wall surfaces show coherent world-scale grain, roughness and wet lighting. Cyan objective lighting and warm side light provide readable color contrast.",
+    "The results screen at1280x800 fits Deploy Again, Read Recovered Memories and Return to Title. Read Recovered Memories actually opens all three full quotes, addressing the earlier results archive finding.",
+    "Routine reload completion appears in the side feed in source; arranged reload screenshot center still shows the mission message instead of a routine reload banner.",
+    "No uncaught browser exceptions were observed; pause suspended audio context and one wind/turbine source pair was present."
+  ],
+  "remainingFindings": [
+    {
+      "id": "reload-below-frame",
+      "severity": "low",
+      "status": "confirmed actual arranged render",
+      "problem": "During the arranged reload capture, the support hand and exchange cell are almost entirely below the900px frame; the weapon moves, but the authored exchange is difficult to see.",
+      "recommendation": "Reduce hand reach toward camera and downward pull or reduce weapon lowering so glove/cell manipulation remains in the lower visible frame. Reinspect final render. Parent notified and intends a small follow-up fix after reviewers finish."
+    },
+    {
+      "id": "hands-basic-volume",
+      "severity": "production gap",
+      "status": "actual hip and ADS screenshots plus source",
+      "problem": "Sleeves/cuffs are smooth ellipsoid segments and fingers are small rounded lobes. Support contact is readable, while right grip hand is largely occluded by rifle stock. There is no demonstrated skeletal finger articulation or convincing reload performance.",
+      "recommendation": "Further authored anatomy, fabric/glove surface detail, wrist deformation and contact-aware animation remain a larger specialist art pass."
+    },
+    {
+      "id": "ability-instruction-copy",
+      "severity": "cosmetic",
+      "status": "source inspection",
+      "problem": "Handbook says blue sparks confirm a phase break; implementation changes enemy emissive color and emits a center message but does not author spark particles in updatePhaseInterrupts.",
+      "recommendation": "Use wording such as blue flash or add a brief visible effect; avoid promising a specific effect not produced."
+    },
+    {
+      "id": "title-build-label",
+      "severity": "cosmetic",
+      "status": "actual title screenshot",
+      "problem": "Title still says BUILD06 while current review calls this Build07.",
+      "recommendation": "Update title build label with the documentation pass."
+    }
+  ],
+  "largerLimits": [
+    "One repeated open industrial courtyard, one weapon and related drone roles remain limited content and encounter variety.",
+    "No human target-player evidence, target-device performance certification, broad accessibility audit or perceptual audio validation.",
+    "HUD is clear but image remains dominated by repeated slab/box architecture and simple models; atmosphere does not establish AAA readiness.",
+    "This review is not a complete mechanics regression suite or assessment of natural phase-break use. Combat reviewer and parent own that evidence."
+  ],
+  "screenshots": {
+    "title": "docs/media/build07-experience-title.png",
+    "normal-hip": "docs/media/build07-experience-normal-hip.png",
+    "normal-ads": "docs/media/build07-experience-normal-ads.png",
+    "normal-reload": "docs/media/build07-experience-normal-reload.png",
+    "arranged-hip": "docs/media/build07-experience-arranged-hip.png",
+    "arranged-ads": "docs/media/build07-experience-arranged-ads.png",
+    "arranged-reload": "docs/media/build07-experience-arranged-reload.png",
+    "results": "docs/media/build07-experience-results.png",
+    "results-archive": "docs/media/build07-experience-results-archive.png"
+  },
+  "rawObservations": {
+    "observations": [
+      {
+        "normalControls": {
+          "phase": "lost",
+          "health": 0,
+          "maxHealth": 100,
+          "shield": 0,
+          "maxShield": 60,
+          "ammo": 30,
+          "reserve": 180,
+          "reloading": false,
+          "reloadProgress": 0,
+          "kills": 0,
+          "cores": 0,
+          "totalCores": 3,
+          "time": 12.291299999999964,
+          "dashCooldown": 0,
+          "objective": "RECOVER THE THREE MEMORIES",
+          "coreProgress": 0,
+          "extractionProgress": 0,
+          "extractionSeconds": 6,
+          "phaseDodges": 0,
+          "dashCount": 0,
+          "phaseInterrupts": 0,
+          "score": 0,
+          "enemiesAlive": 7,
+          "headshots": 0,
+          "accuracy": 0,
+          "difficulty": "standard",
+          "player": {
+            "x": 4.16900000000001,
+            "z": 12.208699999999768,
+            "yaw": 0
+          },
+          "coreMarkers": [
+            {
+              "x": -24,
+              "z": -15,
+              "id": 0,
+              "collected": false,
+              "distance": 39.163834295048126
+            },
+            {
+              "x": 24,
+              "z": -15,
+              "id": 1,
+              "collected": false,
+              "distance": 33.66870827177643
+            },
+            {
+              "x": 0,
+              "z": -33,
+              "id": 2,
+              "collected": false,
+              "distance": 45.40051890331188
+            }
+          ],
+          "nearestCoreDistance": 33.66870827177643,
+          "interaction": "",
+          "heading": 0,
+          "exitDistance": 19.24820814231831,
+          "exit": {
+            "x": 0,
+            "z": 31
+          },
+          "bounds": {
+            "minX": -37,
+            "maxX": 37,
+            "minZ": -42,
+            "maxZ": 42
+          },
+          "pointerFallback": false
+        }
+      },
+      {
+        "handling": {
+          "reload": false,
+          "progress": 1.0049898989898987,
+          "supportPosition": [
+            0,
+            0,
+            0
+          ],
+          "cellPosition": [
+            0,
+            -0.27000001072883606,
+            0.18000000715255737
+          ],
+          "bedSourceCount": 2,
+          "ctx": "running"
+        }
+      },
+      {
+        "pauseAudio": "suspended"
+      },
+      {
+        "archive": "MARA SOLBERG\nSTATION MEDIC\n\n\u201cIf someone finds this\u2026 the children made the last ferry. Tell them I kept the light on.\u201d\n\nELIAN VALE\nRELAY ENGINEER\n\n\u201cI could erase the station. I could not erase the people inside it. Bring them home.\u201d\n\nSERA NORD\nNIGHT OPERATOR\n\n\u201cEvery signal is a person. If you can hear me, we are still here.\u201d",
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "method": "Chrome real WebGL normal keyboard/mouse input then separately labeled arrangements; headless not human auditory or input-feel validation"
+  },
+  "reproductionScript": "docs/quality-reviews/build07-experience-run.mjs",
+  "browserClosed": true,
+  "sourceEdits": false
+}
