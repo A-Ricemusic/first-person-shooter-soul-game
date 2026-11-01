@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { attachWarden, animateWarden } from './warden.js';
 import { buildWorld } from './world.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
@@ -63,6 +64,12 @@ export class Game {
       asset.scene.position.y += 0.72 - normalized.min.y;
       this.sentinelAsset = asset.scene;
     } catch (_) { /* Procedural combat silhouette remains a robust loading fallback. */ }
+    try {
+      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/induction-warden.glb`);
+      const required = ['ArmorLeft','ArmorRight','Fan','Emitter','WeakpointAnchor','BodyAnchor'];
+      if (!required.every(name => asset.scene.getObjectByName(name))) throw new Error('Incomplete Warden rig');
+      this.wardenAsset = asset.scene;
+    } catch (_) { /* Original primitive Warden remains available if loading fails. */ }
     this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
     this.loaded = true; this.emit(); this.frameId = requestAnimationFrame(t => this.frame(t)); return this;
@@ -224,7 +231,7 @@ export class Game {
     const group = new THREE.Group(); group.position.copy(position); group.position.y = 0;
     const armor = new THREE.MeshStandardMaterial({ color: type === 'stalker' ? 0x3c3432 : 0x243640, metalness: 0.7, roughness: 0.35 });
     const black = new THREE.MeshStandardMaterial({ color: 0x0e171d, roughness: 0.75, metalness: 0.45 });
-    const red = new THREE.MeshStandardMaterial({ color: 0xff693c, emissive: 0xff341c, emissiveIntensity: 2 });
+    let red = new THREE.MeshStandardMaterial({ color: 0xff693c, emissive: 0xff341c, emissiveIntensity: 2 });
     const torso = mesh(new THREE.BoxGeometry(0.72, 0.65, 0.42), armor, 0, 1.13, 0); group.add(torso);
     const head = mesh(new THREE.BoxGeometry(0.37, 0.28, 0.33), armor, 0, 1.68, 0); group.add(head);
     group.add(mesh(new THREE.BoxGeometry(0.29, 0.055, 0.025), red, 0, 1.7, 0.18));
@@ -236,7 +243,7 @@ export class Game {
     const gun = mesh(new THREE.BoxGeometry(0.17, 0.15, 0.6), black, 0.43, 1.04, 0.32); group.add(gun);
     const light = new THREE.PointLight(0xff482b, 0.5, 3); light.position.set(0, 1.5, 0.3); group.add(light);
     group.traverse(m => { if (m.isMesh) m.castShadow = true; }); this.scene.add(group);
-    if (this.sentinelAsset) {
+    if (this.sentinelAsset && !(type==='warden' && this.wardenAsset)) {
       [...group.children].forEach(child => { if (child !== light) child.visible = false; });
       const authored = this.sentinelAsset.clone(true);
       authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); if(type === 'stalker' && node.material.metalness > .4 && node.material.emissiveIntensity < 2)node.material.color.lerp(new THREE.Color(0xc99749), .7); node.userData.sharedGeometry = true; node.castShadow = true; } });
@@ -244,7 +251,13 @@ export class Game {
       // A readable telegraph stays visible on both Blender variants and fallback silhouettes.
       const charge = mesh(new THREE.SphereGeometry(0.085, 8, 8), red, 0, 1.3, 0.43); group.add(charge);
     }
-    if(type==='warden') {
+    let wardenRig;
+    if(type==='warden' && this.wardenAsset) {
+      [...group.children].forEach(child => { if(child!==light)child.visible=false; });
+      wardenRig=attachWarden(this.wardenAsset,group);
+      red=wardenRig.emitters[0];
+      wardenEmission(red,false,false);
+    } else if(type==='warden') {
       wardenEmission(red,false,false);
       // Broad segmented induction shoulders remain distinct from the round drones.
       const shell=new THREE.MeshStandardMaterial({color:0xb38b51,metalness:.8,roughness:.4});
@@ -252,7 +265,7 @@ export class Game {
       group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
-    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -301,7 +314,16 @@ export class Game {
     for (const enemy of this.enemies) {
       const body = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.04, 0)), this.sentinelAsset ? 0.68 : 0.53);
       const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : this.sentinelAsset ? 1.3 : 1.68, enemy.type==='warden' ? .3 : this.sentinelAsset ? 0.43 : 0).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
-      const h = this.ray.intersectSphere(head, new THREE.Vector3()), b = this.ray.intersectSphere(body, new THREE.Vector3());
+      const h = this.ray.intersectSphere(head, new THREE.Vector3());
+      let b;
+      if (enemy.wardenRig) {
+        // Authored shoulders/skids are physical body targets; the old sphere both
+        // missed visible armor edges and admitted empty-space hits. Precision
+        // remains the same fixed 0.24m sphere, independent of shutter motion.
+        enemy.group.updateWorldMatrix(true, true);
+        this.raycaster.set(this.player, direction);
+        b = this.raycaster.intersectObject(enemy.wardenRig.model, true)[0]?.point;
+      } else b = this.ray.intersectSphere(body, new THREE.Vector3());
       const point = h || b;
       if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!h; }
     }
@@ -321,7 +343,8 @@ export class Game {
   killEnemy(enemy, headshot = false) {
     const index = this.enemies.indexOf(enemy); if (index === -1) return;
     this.enemies.splice(index, 1); this.kills++; this.score += headshot ? 180 : 100; if (headshot) this.headshots++;
-    this.audio.kill(); this.event('kill', headshot ? 'SENTINEL // CRITICAL +180' : 'SENTINEL // NEUTRALIZED +100', { headshot });
+    const identity = enemy.type === 'warden' ? 'WARDEN' : enemy.type === 'stalker' ? 'INTERCEPTOR' : 'SENTINEL';
+    this.audio.kill(); this.event('kill', `${identity} // ${headshot ? 'CRITICAL +180' : 'NEUTRALIZED +100'}`, { headshot });
     for (let i = 0; i < 12; i++) this.particle(enemy.group.position.clone().add(new THREE.Vector3(0, 0.9, 0)), i % 2 ? 0x73efff : 0xff9a57, 0.8, 0.08);
     // Every enemy leaves a guaranteed supply; aggressive play sustains the fight.
     const pickup = mesh(new THREE.OctahedronGeometry(0.18), new THREE.MeshStandardMaterial({ color: 0x80ffff, emissive: 0x21b7c5, emissiveIntensity: 2 }), enemy.group.position.x, 0.5, enemy.group.position.z);
@@ -440,6 +463,7 @@ export class Game {
     let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
+      animateWarden(enemy,dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
       if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;

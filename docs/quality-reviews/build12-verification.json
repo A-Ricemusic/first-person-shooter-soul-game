@@ -1,0 +1,55 @@
+{
+  "build": 12,
+  "baseline": "18a104e6c5334997b66e777ff49124388f60a909",
+  "method": "Installed Chrome headless/software WebGL and explicit test=1 instrumentation. Sources held stable during exactly two native reviews; documented bounded correctness followups then suites rerun. No human/audio/hardware certification.",
+  "passed": [
+    "npm test (14 checks)",
+    "npm run test:production (14 checks)",
+    "npm run test:combat",
+    "npm run test:phase",
+    "npm run test:phase-usability",
+    "npm run test:encounters",
+    "npm run test:mission",
+    "npm run test:playtest",
+    "npm run test:movement-browser (9 checks)",
+    "npm run test:movement",
+    "WARDEN_CAPTURE_PREFIX=build12-warden node tests/warden-art-regressions.mjs",
+    "npm run playtest:controls (final won)"
+  ],
+  "asset": {
+    "asset": "induction-warden.glb",
+    "author": "Original SOULFALL code-authored Blender geometry",
+    "source": "tools/build_warden.py",
+    "externalAssets": false,
+    "triangles": 15484,
+    "materialPrimitives": 7,
+    "materials": 6,
+    "coordinates": "meters, Blender Z-up/-Y forward exports Three Y-up/+Z",
+    "weakpoint": [
+      0,
+      2,
+      0.3
+    ],
+    "rig": "Fixed optic; paired sliding shutters; rear fan",
+    "textures": "No external textures or maps; restrained PBR material separation"
+  },
+  "artChecks": "quality-reviews/build12-art-regressions.json",
+  "reviews": [
+    "quality-reviews/build12-combat-review.json",
+    "quality-reviews/build12-visual-review.json"
+  ],
+  "finalControls": "quality-reviews/build12-controls-final.json",
+  "followups": [
+    "Body hits use actual authored mesh; fixed precision sphere and damage/health unchanged",
+    "Shutter trim moves with shutter without adding primitives",
+    "Kill feed names Warden/Interceptor",
+    "Reusable movement captures/reports use current filenames; Build10 historical artifacts preserved"
+  ],
+  "remaining": [
+    "No authored locomotion gait; grounded skids translate rigidly",
+    "Simplified forms/material surfaces and shared courtyard/limited encounters",
+    "Ground-navigation footprint is separate from upper visual silhouette",
+    "No blind human learning/enjoyment, audio listening or hardware performance evidence"
+  ],
+  "overallMissionComplete": false
+}

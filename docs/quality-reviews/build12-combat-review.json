@@ -1,0 +1,293 @@
+{
+  "reviewer": "Independent native GPT-6.1 Sol visible-cue combat reviewer; automated agent assessment, not human feedback",
+  "build": "Build12 original induction Warden with iris detail, grounded struts and sliding armor shutters; source held stable during play",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 8,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The original Warden now has a coherent steel machine chassis, guarded optic, split armor and readable amber/cyan states rather than an ornamented sphere. That improves the overall presentation of the opening enough for a provisional half-point rise. Both normal-input approaches retained a usable visible target and ended in critical kills. Whole-game gameplay depth, shared-courtyard structure, limited encounters, simple remaining sentinels and absent human validation still bound the same gameplay/readability/AAA scores. This rates the prototype overall, not just the new asset."
+  },
+  "methods": [
+    "Installed Chrome headless via Playwright, actual WebGL at1280x800 with software graphics. Used established browser fallback after earlier shared-preview failures.",
+    "Loaded ?test=1. Inputs were ordinary deploy/resume clicks, keyboard W and Shift, RMB/LMB and relative mousemove events through normal input listeners. captureState was sampled only after actions for reporting. No teleport, enemy arrangement/deletion, resource changes, exact enemy positions/windup reads, internal aiming API or simulation stepping.",
+    "Both attempts waited for the rendered exact CHARGING text. Automated DOM-cue reaction and prior knowledge of phase mechanics are advantages over blind human discovery.",
+    "Attempt1 held W and pressed Shift on the visible cue, released W after250ms, captured the real render and paused. The screenshot showed cyan opened armor and optic directly ahead. Used that screenshot to choose a50pixel upward normal mouse correction, resumed, held RMB180ms and LMB450ms; captured followup and paused.",
+    "Attempt2 navigated to a fresh normal deployment and reused the learned cue/approach/50pixel aiming correction/fire timing, without pausing between cue and kill. It held fire450ms. Driver property ordering released RMB before firing, so this second attempt was hip-fire, as the screenshot confirms; it is not evidence of continuous ADS.",
+    "Screenshot capture delays allow extra simulation time before post-action pause/state samples. HUD screenshot values can precede sampled values; neither establishes frame rate or human reaction time.",
+    "Inspected attempt1 break and both followup images with image viewer. Browser closed after actions; no gameplay source edited."
+  ],
+  "observations": [
+    {
+      "label": "attempt1-break",
+      "state": {
+        "phase": "paused",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 30,
+        "reserve": 180,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 0,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 3.7831999999999897,
+        "dashCooldown": 3.599999999999977,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 0,
+        "enemiesAlive": 1,
+        "headshots": 0,
+        "accuracy": 0,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "y": 1.7,
+          "z": 28.370833333333326,
+          "yaw": 0,
+          "grounded": true
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.568429307652835
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.568429307652835
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.37083333333332
+          }
+        ],
+        "nearestCoreDistance": 49.568429307652835,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.6291666666666735,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    },
+    {
+      "label": "attempt1-followup",
+      "state": {
+        "phase": "paused",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 25,
+        "reserve": 180,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 1,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 5.166600000000041,
+        "dashCooldown": 2.216599999999984,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 180,
+        "enemiesAlive": 0,
+        "headshots": 1,
+        "accuracy": 40,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "y": 1.7,
+          "z": 28.370833333333326,
+          "yaw": 0,
+          "grounded": true
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.568429307652835
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.568429307652835
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.37083333333332
+          }
+        ],
+        "nearestCoreDistance": 49.568429307652835,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.6291666666666735,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    },
+    {
+      "label": "attempt2-continuous-followup",
+      "state": {
+        "phase": "paused",
+        "health": 100,
+        "maxHealth": 100,
+        "shield": 60,
+        "maxShield": 60,
+        "ammo": 26,
+        "reserve": 204,
+        "reloading": false,
+        "reloadProgress": 0,
+        "kills": 1,
+        "cores": 0,
+        "totalCores": 3,
+        "time": 4.0998999999999945,
+        "dashCooldown": 2.9499999999999806,
+        "objective": "RECOVER THE THREE MEMORIES",
+        "coreProgress": 0,
+        "extractionProgress": 0,
+        "extractionSeconds": 6,
+        "phaseDodges": 0,
+        "dashCount": 1,
+        "phaseInterrupts": 1,
+        "score": 180,
+        "enemiesAlive": 0,
+        "headshots": 1,
+        "accuracy": 50,
+        "difficulty": "standard",
+        "player": {
+          "x": 0,
+          "y": 1.7,
+          "z": 28.281133333333315,
+          "yaw": 0,
+          "grounded": true
+        },
+        "coreMarkers": [
+          {
+            "x": -24,
+            "z": -15,
+            "id": 0,
+            "collected": false,
+            "distance": 49.48996365545015
+          },
+          {
+            "x": 24,
+            "z": -15,
+            "id": 1,
+            "collected": false,
+            "distance": 49.48996365545015
+          },
+          {
+            "x": 0,
+            "z": -33,
+            "id": 2,
+            "collected": false,
+            "distance": 61.281133333333315
+          }
+        ],
+        "nearestCoreDistance": 49.48996365545015,
+        "interaction": "",
+        "heading": 0,
+        "exitDistance": 2.7188666666666848,
+        "exit": {
+          "x": 0,
+          "z": 31
+        },
+        "bounds": {
+          "minX": -37,
+          "maxX": 37,
+          "minZ": -42,
+          "maxZ": 42
+        },
+        "pointerFallback": false
+      }
+    }
+  ],
+  "verifiedImprovements": [
+    "Attempt1 produced1dash/1phaseInterrupt and left the Warden directly ahead. Cyan iris and protected optic remained readable; no floating ornamental sphere or giant instruction board obscured it.",
+    "Attempt1 ADS followup produced1critical elimination,5rounds consumed,40%accuracy,100health/60shield at5.1666simulated seconds; the attempt paused after the break for screenshot-guided aiming.",
+    "Attempt2 continuous learned cue-to-break-to-hip-fire followup produced1critical elimination,4rounds consumed,50%accuracy,100health/60shield at4.0999simulated seconds. No pause between cue and kill.",
+    "No uncaught browser exceptions observed in these two opening attempts."
+  ],
+  "findings": [
+    {
+      "severity": "low",
+      "area": "Enemy identity feedback",
+      "finding": "Both Warden critical kills display SENTINEL // CRITICAL +180 in the feed. The new hero is named Warden elsewhere, so the kill feed is inconsistent.",
+      "recommendation": "Use the actual enemy type when formatting the kill feed; keep score/damage unchanged."
+    },
+    {
+      "severity": "remaining presentation limitation",
+      "area": "Machine motion and surface fidelity",
+      "finding": "The coherent new hero is still a sparse manufactured form with large clean armor slabs and long straight skids/struts. This is an authored prototype asset, not a photogrammetric or production AAA enemy. More believable locomotion/actuation and surface wear would help realism.",
+      "recommendation": "Build on the restrained industrial design with motivated movement and localized authored wear; avoid adding random neon or decorative primitives."
+    },
+    {
+      "severity": "evidence limit",
+      "area": "Whole-game quality",
+      "finding": "Two learned opening counters and critical kills establish usable followup, not full-mission balance, discovery, sustained enjoyment or broad encounter quality.",
+      "recommendation": "Keep alternate tactics and collect human/later-encounter evidence before rebalancing."
+    }
+  ],
+  "limitations": [
+    "Prior phase knowledge, visible DOM cue automation and screenshot-guided/learned aiming advantage these attempts.",
+    "No full mission, later Warden, normal-input armor recovery waiting, audio listening, hardware performance or broad accessibility assessment in this review.",
+    "No human enjoyment, blind discovery,10/10 or AAA-readiness claim.",
+    "Second attempt hip-fire due driver action ordering; first ADS shot sequence followed a paused inspection."
+  ],
+  "errors": [],
+  "screenshots": [
+    "docs/media/build12-combat-attempt1-break.png",
+    "docs/media/build12-combat-attempt1-followup.png",
+    "docs/media/build12-combat-attempt2-continuous-followup.png"
+  ],
+  "rawObservations": "docs/quality-reviews/build12-combat-observations.json",
+  "driver": "docs/quality-reviews/build12-combat-driver.mjs"
+}

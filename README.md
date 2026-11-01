@@ -75,3 +75,7 @@ One amber induction warden introduces the optional close phase counter. Pass it 
 Original perimeter memory dioramas (evacuation cot/medic case, dismantled induction bench, vacant relay consoles) are reproducible with `blender --background --python tools/build_memory_props.py`; source `public/assets/memory-stories.blend`. Paths remain flat. `npm run test:encounters` checks finite stages, armor/optic alternatives and route connectivity with a running dev server. Fresh review evidence and limitations are recorded in `docs/human.html`; passing automation is not human enjoyment or AAA readiness evidence.
 
 Build10 adds height-aware player collision, swept landing/ceiling support and optional jumps onto the existing service grates. Floor mission routes remain available. `npm run test:movement` checks the standalone movement solver; `node tests/movement-browser-regressions.mjs` checks labeled actual-world fixtures. See the dossier for dimensions, evidence and remaining limitations.
+
+## Build 12 induction Warden
+
+Original Blender induction machine with guided armor shutters, fixed protected optic and rear cooling hardware replaces the Warden drone assembly. Source: `tools/build_warden.py` and `public/assets/induction-warden.blend`; measured budget:15,484 triangles, seven material primitives, six materials. `npm run test:warden` checks runtime pose/anchor/emission/clone/fallback contracts against the running dev server and writes current captures. Combat values remain unchanged; see the dossier and raw fresh reviews for whole-game limits.

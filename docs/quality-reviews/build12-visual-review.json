@@ -1,0 +1,96 @@
+{
+  "reviewer": "Second native GPT-6.1 Sol reviewer; actual arranged WebGL art/state/layout review, not a human participant",
+  "build": "Build12 authored induction Warden before parent attachment and body-hit correctness followups",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The new Warden is a concrete asset/rig improvement over the layered drone: fixed protected optic, joined chassis, machined perimeter and rear cooling detail. Whole-game presentation still uses a simple box-and-circle enemy silhouette, clean uniform material surfaces, rigid sliding skids, basic handling and one shared courtyard. Readable amber/cyan state and an unobstructed ADS target preserve usability but do not establish a broader increase in enjoyment, fidelity, content depth or readiness. Keeping the same whole-game rubric and provisional scores is appropriate; asset budget/test success does not imply an overall perfect game."
+  },
+  "methods": [
+    "Read README, Build11/10/09/08 dossier context, Build10 normal/physics reports, reproducible Blender asset script, runtime rig and game combat/material code.",
+    "Inspected all14 actual parent-authored browser captures at1280x800 and1440x900: hip, ADS, close, charging, stagger, open and recovery. These use test=1, explicit enemy/player/state fixtures, controlled RAF and direct simulation, not normal play.",
+    "Independently ran installed Chrome headless/Playwright with actual Three/WebGL software rendering at both desktop sizes. Created and inspected10 additional actual screenshots: low charge, high open, high side, high rear, and high near-cover. Captures use explicitly arranged state/position and known simulation intervals. Browser closed after capture.",
+    "Low quality disables shadows; high enables them. This validates visual behavior on software-rendered fixtures, not target-hardware frame rate.",
+    "Measured actual GLB bounds and named precision anchor. Audited clone ownership and mesh budget using parent raw observations, not a claim of independent performance measurement.",
+    "Independently traced36 explicitly arranged local frontal rays against actual exported triangles and existing0.68m body sphere at four heights. This identifies visible armor outside logical damage volume; no game damage/health rules or source were changed.",
+    "Near-cover fixture positioned guard near ingress props atx2,z23 and sampled0.2s enemy update; no collider/AABB overlap found in that arrangement. This is adjacency evidence, not an exhaustive autonomous-navigation or stage-reachability review."
+  ],
+  "verifiedImprovements": [
+    "Visible runtime assembly contains authored model and point light; the duplicate drone/shoulder/ring/sphere additions are hidden when authored Warden loads.",
+    "Final asset measures15,484 triangles,7 mesh/material primitives and6 materials, with shared clone geometry and separate disposable material instances. No downloaded geometry or textures are referenced by the reproducible authoring script.",
+    "Fixed optic anchor exports to localThree(0,2,0.300000012); checked parent14-pose measurements and own10 fixtures agree. Upper iris remains ahead and visible through ADS aperture at both desktop sizes.",
+    "Optic has a readable manufactured bezel/iris rather than a floating sphere. Side/rear renders show supported neck, cooling fins and fan; lower struts meet skids within a0.015m floor offset.",
+    "Amber idle/charge and cyan stagger/open materials retain visible hue and iris/rib detail, without white emitter blowout. Measured emission0.7 idle,1.5 charge,1.1 open.",
+    "Paired shutters retract/roll slightly to show physical state; fixed optic stays unaffected. Source uses exponential easing and recovery captures show closed posture rather than a snapped target shift.",
+    "Base local width1.498m is narrower than prior1.74m primitive shoulders. No blocker was observed in labeled nearby-cover arrangement, and source keeps existing grounded navigation behavior."
+  ],
+  "findings": [
+    {
+      "severity": "medium correctness",
+      "finding": "Visible authored shoulder armor extends outside the existing spherical body damage volume. Actual triangle probes hit ArmorRight but the logical sphere misses atx0.65,y1.0; x0.65\u20130.72,y1.6; x0.60\u20130.68,y1.75. This creates unfair-looking misses when aiming at visible armor. Opening shutters widens the body further. The precision optic itself remains correctly centered and its0.24m sphere must not be enlarged.",
+      "recommendation": "Use authored Warden body surface intersections or another measured body-volume correction while preserving17/34 body damage,82 precision damage,150 Standard health and unchanged optic radius. Add an explicit regression on these previously missed visible points.",
+      "status": "reported to parent; source held stable during review",
+      "evidence": "docs/quality-reviews/build12-visual-hitprobe.json"
+    },
+    {
+      "severity": "low art attachment",
+      "finding": "Brass EdgeInset strips remain in the static Brass batch while ArmorLeft/Right translate and roll. In open-state captures the strips sit inward of the moving shutter edges instead of following the attached-looking surface.",
+      "recommendation": "Join these strips into the corresponding moving rigid shutter without increasing material primitives; a restrained armor-colored inset is acceptable.",
+      "status": "reported to parent; parent plans small post-review correction without rescoring"
+    },
+    {
+      "severity": "remaining presentation limitation",
+      "finding": "The authored legs/skids move rigidly with the group while fallback legs alone receive walking rotation. This still reads as sliding a toy-like machine across the floor. The face/chest is two bright concentric disks and the clean beveled box shoulders retain a simplified procedural aesthetic.",
+      "recommendation": "A later authored locomotion/actuation pass should make ground travel credible and add carefully designed surface variation, after preserving fixed optic alignment and combat timing. Do not label this realism/photogrammetry or AAA production art.",
+      "status": "remaining quality gap"
+    },
+    {
+      "severity": "remaining readability limitation",
+      "finding": "Charge physical movement is a small inward2.5cm shutter compression; the dominant charge cue remains HUD text and brighter amber. Open motion is visible at close range but modest at typical firing distance.",
+      "recommendation": "Human-visible timing tests should assess whether players can perceive physical charge/open changes without relying on the CHARGING label before increasing motion or brightness.",
+      "status": "remaining unvalidated perception gap"
+    }
+  ],
+  "rawObservations": "docs/quality-reviews/build12-visual-observations.json",
+  "precisionAndBodyProbe": "docs/quality-reviews/build12-visual-hitprobe.json",
+  "screenshots": [
+    "docs/media/build12-warden-1280-hip.png",
+    "docs/media/build12-warden-1280-ads.png",
+    "docs/media/build12-warden-1280-close.png",
+    "docs/media/build12-warden-1280-charge.png",
+    "docs/media/build12-warden-1280-stagger.png",
+    "docs/media/build12-warden-1280-open.png",
+    "docs/media/build12-warden-1280-recovered.png",
+    "docs/media/build12-warden-1440-hip.png",
+    "docs/media/build12-warden-1440-ads.png",
+    "docs/media/build12-warden-1440-close.png",
+    "docs/media/build12-warden-1440-charge.png",
+    "docs/media/build12-warden-1440-stagger.png",
+    "docs/media/build12-warden-1440-open.png",
+    "docs/media/build12-warden-1440-recovered.png",
+    "docs/media/build12-visual-1280-charge-low.png",
+    "docs/media/build12-visual-1280-open-high.png",
+    "docs/media/build12-visual-1280-side-high.png",
+    "docs/media/build12-visual-1280-rear-high.png",
+    "docs/media/build12-visual-1280-near-cover-high.png",
+    "docs/media/build12-visual-1440-charge-low.png",
+    "docs/media/build12-visual-1440-open-high.png",
+    "docs/media/build12-visual-1440-side-high.png",
+    "docs/media/build12-visual-1440-rear-high.png",
+    "docs/media/build12-visual-1440-near-cover-high.png"
+  ],
+  "errors": [],
+  "limitations": [
+    "No normal-input combat or complete mission in this reviewer; separate visible-cue combat reviewer covers that distinct scope.",
+    "All new visual captures and ray probes explicitly arrange state/positions through test=1. Knowledge of model structure, prior screenshots and source is a substantial advantage.",
+    "Still images plus state samples/source establish poses and easing implementation, not human perception of animation timing or enjoyment.",
+    "No human audio listening, blind learning, hardware performance certification, comprehensive accessibility study, exhaustive cover-seam search or commercial AAA-readiness claim.",
+    "Ratings cover the whole existing prototype and remain provisional; no10/10 claim, no asset-only rating relabeled as whole game.",
+    "Raw review precedes parent fixes. Any later fix/retest is parent evidence and does not silently replace these observations or imply another independent review."
+  ]
+}
