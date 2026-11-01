@@ -210,7 +210,7 @@ export class Game {
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
-    this.damageSource=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
+    this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
     this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
@@ -426,7 +426,8 @@ export class Game {
   damage(amount, from = null, attacker = null) {
     if (this.phase !== 'playing') return;
     if(this.invulnerable>0){if(from){this.phaseDodges++;this.score+=75;this.event('phaseDodge','PHASE EVADE +75');}return;}
-    this.damageSource=attacker&&this.enemies.includes(attacker)?attacker:null;
+    this.damageSource=attacker&&(this.enemies.includes(attacker)||(attacker===this.custodian&&attacker.active&&!attacker.dead))?attacker:null;
+    this.damageOrigin=this.damageSource&&from?from.clone():null;
     if(this.damageSource)attacker.lastAttack=this.runTime;
     amount *= this.difficulty.damage; const absorbed = Math.min(this.shield, amount); this.shield -= absorbed; this.health -= amount - absorbed;
     this.lastDamage = this.runTime; this.audio.hurt(); this.event('damage', '', { amount, direction: from ? Math.atan2(from.x-this.player.x,-(from.z-this.player.z))+this.yaw : null });
@@ -732,16 +733,23 @@ export class Game {
       if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
     }
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
-    if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18));if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:this.custodian.open>0?'CUSTODIAN / COILS EXPOSED':'CUSTODIAN / ARMORED SHUTTERS',health:this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:false,...p});}
+    if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18));if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:this.custodian.open>0?'CUSTODIAN / COILS EXPOSED':'CUSTODIAN / ARMORED SHUTTERS',health:this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:this.custodian.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
   }
+  damageCuePosition() {
+    if(this.damageSource&&this.damageSource===this.custodian){
+      return this.custodian.active&&!this.custodian.dead?this.damageOrigin:null;
+    }
+    return this.enemies.includes(this.damageSource)?this.enemyOpticPosition(this.damageSource):null;
+  }
   captureState() {
+    const damagePoint=this.damageCuePosition();
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
-      damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&this.damageSource&&this.enemies.includes(this.damageSource)&&this.hasLineOfSight(this.player,this.enemyOpticPosition(this.damageSource),0) ? Math.atan2(this.damageSource.group.position.x-this.player.x,-(this.damageSource.group.position.z-this.player.z))+this.yaw : null,
+      damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint&&this.hasLineOfSight(this.player,damagePoint,0) ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,

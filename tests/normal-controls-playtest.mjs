@@ -9,7 +9,9 @@ await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window
 mkdirSync(root+'/docs/media',{recursive:true});
 await p.mouse.down({button:'right'});await p.waitForTimeout(400);await p.screenshot({path:'/tmp/soulfall-ads.png'});await p.mouse.up({button:'right'});
 const world=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {boxes:g.debug.colliders(),bounds:g.world.bounds}});
-function walkable(x,z){const a=world.bounds;if(x<a.minX+.5||x>a.maxX-.5||z<a.minZ+.5||z>a.maxZ-.5)return false;return !world.boxes.some(b=>b.max[1]>=.32&&b.min[1]<=1.8&&Math.hypot(x-Math.max(b.min[0],Math.min(b.max[0],x)),z-Math.max(b.min[2],Math.min(b.max[2],z)))<.55)}
+function walkable(x,z){const a=world.bounds;if(x<a.minX+.5||x>a.maxX-.5||z<a.minZ+.5||z>a.maxZ-.5)return false;return !world.boxes.some(b=>b.max[1]>1e-6&&b.min[1]<1.9-1e-6&&Math.hypot(x-Math.max(b.min[0],Math.min(b.max[0],x)),z-Math.max(b.min[2],Math.min(b.max[2],z)))<.55)}
+// Match grounded player height, including low feet; do not cut blocked corners.
+function segmentWalkable(a,b){const steps=Math.max(1,Math.ceil(Math.hypot(a.x-b.x,a.z-b.z)/.12));for(let i=1;i<=steps;i++){const t=i/steps;if(!walkable(a.x+(b.x-a.x)*t,a.z+(b.z-a.z)*t))return false}return true}
 function path(pos,goal){const sx=Math.round(pos.x),sz=Math.round(pos.z),gx=Math.round(goal.x),gz=Math.round(goal.z),q=[[sx,sz]],prev=new Map([[`${sx},${sz}`,null]]);let end;
 for(let i=0;i<q.length;i++){const [x,z]=q[i];if(Math.hypot(x-gx,z-gz)<1.8){end=[x,z];break}for(const [dx,dz]of [[0,-1],[1,0],[0,1],[-1,0]]){const a=x+dx,c=z+dz,k=`${a},${c}`;if(!prev.has(k)&&walkable(a,c)){prev.set(k,[x,z]);q.push([a,c])}}}if(!end)return[];const out=[];for(let e=end;e;e=prev.get(`${e[0]},${e[1]}`))out.push({x:e[0],z:e[1]});return out.reverse()}
 let pathCache=[],routeGoal='',held='',shooting=false,steps=0;const start=Date.now();
@@ -21,7 +23,7 @@ const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.dista
 const recovering=s.nearestCoreDistance!=null&&s.nearestCoreDistance<2.7; if(recovering){await p.keyboard.down('KeyE');if(held){await p.keyboard.up(held);held='';}}else await p.keyboard.up('KeyE');
 const goalKey=`${goal.x},${goal.z}`;if(routeGoal!==goalKey||steps%10===0){pathCache=path(s.player,goal);routeGoal=goalKey}
 while(pathCache.length&&Math.hypot(pathCache[0].x-s.player.x,pathCache[0].z-s.player.z)<.85)pathCache.shift();
-const nav=pathCache[Math.min(1,pathCache.length-1)]||goal;const target=(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-16)<13?s.boss:[])[0]||s.targets.sort((a,b)=>Math.hypot(a.x-s.player.x,a.z-s.player.z)-Math.hypot(b.x-s.player.x,b.z-s.player.z))[0];
+const ahead=pathCache[Math.min(1,pathCache.length-1)];const nav=(ahead&&segmentWalkable(s.player,ahead)?ahead:pathCache[0])||goal;const target=(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8?s.boss:[])[0]||s.targets.sort((a,b)=>Math.hypot(a.x-s.player.x,a.z-s.player.z)-Math.hypot(b.x-s.player.x,b.z-s.player.z))[0];
 const aim=target||{...nav,y:1.7};let desired=Math.atan2(s.player.x-aim.x,s.player.z-aim.z),delta=desired-s.player.yaw;delta=Math.atan2(Math.sin(delta),Math.cos(delta));const pitch=Math.atan2(aim.y-1.7,Math.hypot(aim.x-s.player.x,aim.z-s.player.z));
 // Mouse movement and keyboard input only; all game observations above are read-only.
 await p.evaluate(({dx,dy})=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:dx,movementY:dy,bubbles:true})),{dx:-Math.max(-180,Math.min(180,delta/.002)),dy:-(pitch-s.pitch)/.002});
@@ -36,6 +38,6 @@ if(steps===50)await p.screenshot({path:'/tmp/soulfall-playtest-mid.png',timeout:
 await p.waitForTimeout(120);steps++;
 }
 if(held)await p.keyboard.up(held);if(shooting)await p.mouse.up();const final=await p.evaluate(()=>window.__SOULFALL__.game.captureState());console.log(JSON.stringify({method:'Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. Look uses mousemove events; movement/fire/reload/interact/dash use controls.',steps,log,final,errors},null,2));await p.screenshot({path:'/tmp/soulfall-playtest-final.png',timeout:15000});
-writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/current-normal-controls-playtest-latest.json',JSON.stringify({method:'Exact-information automated normal controls: reads colliders, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage; not independent discovery or human play.',steps,log,final,errors},null,2));
+writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/current-normal-controls-playtest-latest.json',JSON.stringify({method:'Exact-information automated normal controls: reads colliders, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage; not independent discovery or human play. Grounded-height planning includes low obstacles, lookahead requires a clear segment, and boss aiming waits for the known firing position.',steps,log,final,errors},null,2));
 assert.equal(final.phase,'won','Controller must actually finish extraction');assert.equal(final.cores,3);assert.equal(final.extractionProgress,1);assert.deepEqual(errors,[]);
 }finally{await b.close()}

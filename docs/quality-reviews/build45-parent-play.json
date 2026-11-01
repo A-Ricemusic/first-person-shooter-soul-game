@@ -1,0 +1,79 @@
+{
+  "playedCode": "e07588874460cfaec494df777e712f488e47db5f",
+  "method": "One source-informed, known-route, pause-assisted normal-URL attempt. Visible screenshots/HUD and ordinary keyboard/mouse only. Not independent or human enjoyment evidence.",
+  "actions": "../media/build45-parent-play/actions.jsonl",
+  "outcome": {
+    "terminal": "OPERATOR LOST",
+    "missionTime": "00:43",
+    "memories": 3,
+    "custodianDisabled": true,
+    "eliminations": 2,
+    "score": 3280,
+    "accuracyPercent": 83,
+    "criticalEliminations": 1,
+    "phaseEvades": 0
+  },
+  "observations": [
+    {
+      "finding": "All three memories actually recovered, then each coil disabled with rifle shots. First coil hit from west side; its spent body obscured remaining coils. Repositioned north to obtain broad-face shots.",
+      "evidence": [
+        "custodian-held-aim.jpg",
+        "custodian-first-burst.jpg",
+        "custodian-reposition.jpg",
+        "custodian-second-burst.jpg",
+        "custodian-third-burst.jpg"
+      ]
+    },
+    {
+      "finding": "Armored shutters, supports and energized targets are difficult to distinguish in the side view. Large global EXPOSED status cannot tell whether the aim has a clear coil shot. This is a readability finding, not evidence that walls should be penetrable."
+    },
+    {
+      "finding": "Returned to deck at37s, last captured83 health/10shield. Moved inward, turned toward yard and stood exposed waiting5900ms. Died at43s. No claim of protected stance, upload completion or final health beyond terminal loss.",
+      "evidence": [
+        "return-to-deck.jpg",
+        "mission-outcome.jpg"
+      ]
+    }
+  ],
+  "inputErrors": "No driver/page errors. Coarse static bursts and exposed wait are retained player decisions. No live hidden state, arrangements, source edits or test hooks during this attempt.",
+  "closure": {
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 41336,
+    "chromePid": 41337,
+    "exactOwnedPidsAbsent": true
+  },
+  "postPlayFix": {
+    "issue": "Custodian shots had attacker:null, while tracked directional cues required a recognized live enemy; boss recent-fire marker was permanently false.",
+    "change": "Retain mission-owned attacker identity and actual firing origin; use existing LOS, phase, expiry, death/reset rules; recent fire participates in the existing threat hierarchy. Damage, windows, aim, roster and upload unchanged.",
+    "validation": "build45-parent-feedback.json plus affected boss/legacy attacker checks. No independent rescore."
+  },
+  "nextDesign": "Substantive original Blender Custodian presentation and readable physical component/attack identity; ordinary gate/rifle/difficulty values remain unchanged. Requires exactly two fresh independent sequential Sol reviews.",
+  "controllerFailure": {
+    "report": "build45-parent-controls.json",
+    "terminal": "timeout while still playing",
+    "memories": 3,
+    "bossCoils": [
+      0,
+      0.4875,
+      1
+    ],
+    "ammo": 0,
+    "reserve": 0,
+    "errors": [],
+    "finding": "Known-information controller stranded at boss support corner and fired behind a spent coil. Its grounded planner skipped the 0.24m foot, used unverified corner lookahead, and aimed at coils before reaching its chosen firing position.",
+    "correction": "Planner matches full grounded body height, validates lookahead segments, and waits for the known boss firing position before aiming. No resources/teleport/kill hooks or game combat changes.",
+    "independentEvidence": false
+  },
+  "correctedController": {
+    "report": "build45-parent-controls-corrected.json",
+    "phase": "won",
+    "memories": 3,
+    "bossDisabled": true,
+    "extractionProgress": 1,
+    "kills": 11,
+    "time": 63.647299999997095,
+    "errors": [],
+    "method": "Privileged exact-information normal inputs; corrected planner tactics, no teleport/resource/kill hooks. Not independent discovery."
+  }
+}
