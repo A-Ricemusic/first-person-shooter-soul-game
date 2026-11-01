@@ -2,7 +2,7 @@ import { threatVisor } from './threat-visor.js';
 import { placeMarker } from './marker-layout.js';
 import './style.css';
 import { Game } from './game.js';
-import { CORE_SITES, serviceRouteAt } from './mission.js';
+import { CORE_SITES, EXTRACTION_RADIUS, serviceRouteAt } from './mission.js';
 
 const $ = (id) => document.getElementById(id);
 const saved = (()=>{try{return JSON.parse(localStorage.getItem('soulfall-settings')||'{}')}catch{return {}}})();
@@ -68,7 +68,7 @@ function onEvent(e){
 }
 function renderState(s){
  $('damage-direction').classList.toggle('visible',s.damageDirection!=null);if(s.damageDirection!=null)$('damage-direction').style.transform=`rotate(${s.damageDirection}rad)`;
- current=s;drawRadar(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player);hide('service-hint',!service);hide('field-controls',!(!service&&phase==='playing'&&s.time<18&&s.cores===0));hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;$('extraction-status').textContent=s.insideExtraction?`UPLINK ${Math.min(99,Math.floor((s.extractionProgress||0)*100))}% · MOVE WITHIN THE RING`:s.extractionProgress>0?'UPLINK DECAYING · REENTER THE ZONE':`REACH THE GREEN BEACON · HOLD ${s.extractionSeconds||6} SECONDS`;$('recovery-progress').style.width=`${(s.coreProgress||0)*100}%`;
+ current=s;drawRadar(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player);hide('service-hint',!service);hide('field-controls',!(!service&&phase==='playing'&&s.time<18&&s.cores===0));hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;const zoneEdge=s.insideExtraction&&EXTRACTION_RADIUS-s.exitDistance<.65;$('extraction-panel').classList.toggle('zone-edge',zoneEdge);$('extraction-status').textContent=s.insideExtraction?`UPLINK ${Math.min(99,Math.floor((s.extractionProgress||0)*100))}% · ${zoneEdge?'NEAR EDGE: MOVE INWARD':'MOVE WITHIN THE RING'}`:s.extractionProgress>0?'UPLINK DECAYING · REENTER THE ZONE':`REACH THE GREEN BEACON · HOLD ${s.extractionSeconds||6} SECONDS`;$('recovery-progress').style.width=`${(s.coreProgress||0)*100}%`;
  if(phase!==previousPhase){
   const playing=phase==='playing';hide('hud',!playing);hide('pause',phase!=='paused'||!$('menu').classList.contains('hidden'));hide('end',!['won','lost'].includes(phase));
   document.body.classList.toggle('in-game',playing); if(playing)hide('menu',true);
