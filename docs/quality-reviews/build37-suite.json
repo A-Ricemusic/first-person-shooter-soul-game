@@ -1,0 +1,142 @@
+[
+  {
+    "script": "test",
+    "command": "node tests/.build37-smoke.mjs",
+    "exit": 0,
+    "seconds": 6.35,
+    "log": "docs/quality-reviews/build37-suite-test.log"
+  },
+  {
+    "script": "test:production",
+    "command": "npm run build && SOULFALL_PRODUCTION=1 node tests/.build37-smoke.mjs",
+    "exit": 0,
+    "seconds": 11.18,
+    "log": "docs/quality-reviews/build37-suite-test-production.log"
+  },
+  {
+    "script": "test:playtest",
+    "command": "node tests/.build37-playtest-regressions.mjs",
+    "exit": 0,
+    "seconds": 2.91,
+    "log": "docs/quality-reviews/build37-suite-test-playtest.log"
+  },
+  {
+    "script": "test:mission",
+    "command": "node tests/.build37-mission-regressions.mjs",
+    "exit": 0,
+    "seconds": 11.09,
+    "log": "docs/quality-reviews/build37-suite-test-mission.log"
+  },
+  {
+    "script": "test:movement",
+    "command": "node tests/.build37-movement-regressions.mjs",
+    "exit": 0,
+    "seconds": 0.04,
+    "log": "docs/quality-reviews/build37-suite-test-movement.log"
+  },
+  {
+    "script": "test:movement-browser",
+    "command": "node tests/.build37-movement-browser-regressions.mjs",
+    "exit": 0,
+    "seconds": 2.25,
+    "log": "docs/quality-reviews/build37-suite-test-movement-browser.log"
+  },
+  {
+    "script": "test:medical",
+    "command": "node tests/.build37-medical-regressions.mjs",
+    "exit": 0,
+    "seconds": 3.01,
+    "log": "docs/quality-reviews/build37-suite-test-medical.log"
+  },
+  {
+    "script": "test:medical-exit",
+    "command": "node tests/.build37-medical-exit-regressions.mjs",
+    "exit": 0,
+    "seconds": 2.53,
+    "log": "docs/quality-reviews/build37-suite-test-medical-exit.log"
+  },
+  {
+    "script": "test:corner",
+    "command": "node tests/.build37-build33-structure.mjs && node tests/.build37-build33-corner.mjs",
+    "exit": 0,
+    "seconds": 5.96,
+    "log": "docs/quality-reviews/build37-suite-test-corner.log"
+  },
+  {
+    "script": "test:marker-composition",
+    "command": "node tests/.build37-marker-composition.mjs",
+    "exit": 0,
+    "seconds": 2.03,
+    "log": "docs/quality-reviews/build37-suite-test-marker-composition.log"
+  },
+  {
+    "script": "test:receiver",
+    "command": "node tests/.build37-receiver-regressions.mjs",
+    "exit": 0,
+    "seconds": 2.03,
+    "log": "docs/quality-reviews/build37-suite-test-receiver.log"
+  },
+  {
+    "script": "test:receiver-composition",
+    "command": "node tests/.build37-receiver-composition.mjs",
+    "exit": 0,
+    "seconds": 4.15,
+    "log": "docs/quality-reviews/build37-suite-test-receiver-composition.log"
+  },
+  {
+    "script": "test:visor",
+    "command": "node tests/.build37-threat-visor-regressions.mjs && node tests/.build37-build23-visor-motion.mjs && node tests/.build37-build30-visor-motion.mjs",
+    "exit": 0,
+    "seconds": 44.89,
+    "log": "docs/quality-reviews/build37-suite-test-visor.log"
+  },
+  {
+    "script": "test:compact-visor",
+    "command": "node tests/.build37-compact-visor-regressions.mjs",
+    "exit": 0,
+    "seconds": 3.6,
+    "log": "docs/quality-reviews/build37-suite-test-compact-visor.log"
+  },
+  {
+    "script": "test:rendering",
+    "command": "node tests/.build37-build23-batching.mjs && node tests/.build37-build23-render-idle.mjs",
+    "exit": 0,
+    "seconds": 5.05,
+    "log": "docs/quality-reviews/build37-suite-test-rendering.log"
+  },
+  {
+    "script": "test:roles",
+    "command": "node tests/.build37-build32-role-contracts.mjs && node tests/.build37-build32-roles.mjs",
+    "exit": 0,
+    "seconds": 3.76,
+    "log": "docs/quality-reviews/build37-suite-test-roles.log"
+  },
+  {
+    "script": "test:buffer",
+    "command": "node tests/.build37-build34-buffer.mjs",
+    "exit": 0,
+    "seconds": 2.12,
+    "log": "docs/quality-reviews/build37-suite-test-buffer.log"
+  },
+  {
+    "script": "test:handbook",
+    "command": "node tests/.build37-build34-handbook.mjs",
+    "exit": 0,
+    "seconds": 2.4,
+    "log": "docs/quality-reviews/build37-suite-test-handbook.log"
+  },
+  {
+    "script": "test:visible-driver",
+    "command": "node tests/.build37-visible-playtest-driver-regressions.mjs",
+    "exit": 0,
+    "seconds": 6.33,
+    "log": "docs/quality-reviews/build37-suite-test-visible-driver.log"
+  },
+  {
+    "script": "playtest:controls",
+    "command": "node tests/.build37-normal-controls-playtest.mjs",
+    "exit": 1,
+    "seconds": 39.89,
+    "log": "docs/quality-reviews/build37-suite-playtest-controls.log"
+  }
+]

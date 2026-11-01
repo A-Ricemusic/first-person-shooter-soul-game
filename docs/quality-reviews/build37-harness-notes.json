@@ -1,0 +1,20 @@
+{
+  "failures": [
+    {
+      "fixture": "map initial victory cleanup",
+      "error": "g.win is not a function",
+      "resolution": "Corrected fixture to existing g.finish(true); map final passed."
+    },
+    {
+      "fixture": "initial small viewport screenshot",
+      "error": "Compositor seam after resize in frozen RAF fixture",
+      "resolution": "Retained native RAF render-only loop; repeated map and collapsed scan captures clean."
+    },
+    {
+      "fixture": "first controller",
+      "error": "Source legend edit caused Vite reload and loss of debug handle",
+      "log": "build37-suite-playtest-controls.log",
+      "resolution": "Stopped edits and reran actual npm run playtest:controls; won/3/progress1/errors[]."
+    }
+  ]
+}

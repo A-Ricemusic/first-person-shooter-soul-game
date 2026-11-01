@@ -1,3 +1,4 @@
+import { facilityFootprints } from './facility-map.js';
 import * as THREE from 'three';
 import {attachLegs,animateLegs,fallbackDrone} from './drone-motion.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -74,6 +75,7 @@ export class Game {
       this.wardenAsset = asset.scene;
     } catch (_) { /* Original primitive Warden remains available if loading fails. */ }
     try { const scene=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/interceptor.glb`)).scene;if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Interceptor rig');this.interceptorAsset=scene; } catch (_) { /* Sentinel remains a loading fallback. */ }
+    this.facilityLayout = facilityFootprints(this.world.colliders);
     this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
     this.loaded = true; this.emit(); this.frameId = requestAnimationFrame(t => this.frame(t)); return this;
@@ -720,7 +722,7 @@ export class Game {
       exitDistance: this.world ? extractionDistance(this.player,this.world.playerSpawn) : 0,
       insideExtraction: this.world ? isInsideExtraction(this.player,this.world.playerSpawn) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
-      bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
+      facilityLayout:this.facilityLayout, bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
     };
   }
   emit() { this.onState(this.captureState()); }
