@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import MEDICAL from './medical-layout.json';
 import { SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -171,7 +172,7 @@ export async function buildWorld(scene) {
   ]);
   for(const a of [pylonAsset,barricadeAsset])a.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
   function prop(asset,x,z,rot=0){const obj=asset.scene.clone(true);obj.position.set(x,0,z);obj.rotation.y=rot;group.add(obj);return obj;}
-  for(const [x,z] of [[-24,-20],[24,-20],[0,-38]]){
+  for(const [x,z] of [[MEDICAL.core[0],-20],[24,-20],[0,-38]]){
     const pylon=prop(pylonAsset,x,z);pylon.userData.dynamic=true;
     const materials=[];pylon.traverse(o=>{if(o.isMesh){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
     const beacon=point(x,3,z,0x26c8eb,18,10);coreVisuals.push({pylon,materials,beacon});
@@ -181,14 +182,24 @@ export async function buildWorld(scene) {
     box(x,.018,z,7,.035,7,steel);
     for(const s of [-1,1]){box(x+s*3.5,.045,z,.08,.025,7,weakCyan);box(x,.045,z+s*3.5,7,.025,.08,weakCyan);}
   }
+  const triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage.glb`);
+  triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);
+  for(const p of MEDICAL.parts)if(p.solid){const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(half),c.clone().add(half)));}
+  sign('TRIAGE / EVACUATION','LAST FERRY · INTAKE → ARCHIVE',-25,5.1,-8.66,7,1.1,'#b5d2c2');
+  const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',-13.66,4.6,-16,4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
+  const exitSign=sign('EXIT / COURTYARD','SERVICE PASSAGE',-14.34,4.6,-16,4,.9,'#b5d2c2');exitSign.rotation.y=-Math.PI/2;
+  for(const z of [-12,-22]){box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
+  // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.
+  point(-18,3.5,-14,0xe3c69b,16,8);
   // Authored memory furniture lives in perimeter bays, outside the generous
   // archive approaches. Matching simple collision envelopes prevent ghost props.
   const stories=await Promise.all(['medical','engineering','relay'].map(n=>loader.loadAsync(`${import.meta.env.BASE_URL}assets/memory-${n}.glb`)));
-  for(const [i,x,z] of [[0,-33,-19],[1,33,-19],[2,7,-40]]){
+  for(const [i,x,z] of [[0,...MEDICAL.story],[1,33,-19],[2,7,-40]]){
     prop(stories[i],x,z);
     colliders.push(new THREE.Box3(new THREE.Vector3(x-1.7,0,z-1.6),new THREE.Vector3(x+1.7,2.4,z+1)));
     const colors=[0x76e4b0,0xffb347,0x6acbff], labels=['TRIAGE / LAST FERRY','REPAIR / MANUAL CUTOFF','RELAY / STILL HERE'];
-    sign(labels[i],['MARA · THE CHILDREN MADE IT','ELIAN · THE STATION CAN WAIT','SERA · EVERY SIGNAL IS A PERSON'][i],x,3.6,z-.9,7,1.5,['#94e4b9','#ffc078','#8edbff'][i]);
+    const storySign=sign(labels[i],['MARA · THE CHILDREN MADE IT','ELIAN · THE STATION CAN WAIT','SERA · EVERY SIGNAL IS A PERSON'][i],x,3.6,z-.9,7,1.5,['#94e4b9','#ffc078','#8edbff'][i]);
+    if(i===0){storySign.position.set(-36.18,3.6,-19);storySign.rotation.y=Math.PI/2;}
     point(x,3,z,colors[i],24,12);
     for(const dx of [-3,3])box(x+dx,.03,z,.1,.04,6,[weakCyan,amber,cyan][i]);
   }
@@ -255,15 +266,19 @@ export async function buildWorld(scene) {
   }
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
-    colliders,
+    colliders, medical:MEDICAL, rainPositions,
     setCoreState(id,restored){const v=coreVisuals[id];if(!v)return;v.pylon.userData.restored=restored;v.beacon.color.setHex(restored?0x65d6a0:0x26c8eb);v.beacon.intensity=restored?6:18;for(const m of v.materials){m.material.emissive.copy(restored&&m.intensity>1?new THREE.Color(0x47bd85):m.color);m.material.emissiveIntensity=restored&&m.intensity>1?.8:m.intensity;}},
     playerSpawn:new THREE.Vector3(0,1.7,31),
     spawnPoints:[new THREE.Vector3(-30,0,-28),new THREE.Vector3(30,0,-28),new THREE.Vector3(-22,0,-5),new THREE.Vector3(22,0,-5),new THREE.Vector3(-15,0,-35),new THREE.Vector3(15,0,-35),new THREE.Vector3(-31,0,20),new THREE.Vector3(31,0,20)],
-    corePositions:[new THREE.Vector3(-24,0,-15),new THREE.Vector3(24,0,-15),new THREE.Vector3(0,0,-33)],
+    corePositions:[new THREE.Vector3(MEDICAL.core[0],0,MEDICAL.core[1]),new THREE.Vector3(24,0,-15),new THREE.Vector3(0,0,-33)],
     bounds:{minX:-37,maxX:37,minZ:-42,maxZ:42},
     update(dt,time){
       for(const fn of animated)fn(time);
-      for(let i=0;i<rainN;i++){const p=i*6,dy=rainSpeeds[i]*dt;rainPositions[p+1]-=dy;rainPositions[p+4]-=dy;rainPositions[p]+=.8*dt;rainPositions[p+3]+=.8*dt;if(rainPositions[p+1]<0){rainPositions[p+1]=24;rainPositions[p+4]=23;}}
+      for(let i=0;i<rainN;i++){const p=i*6,dy=rainSpeeds[i]*dt;rainPositions[p+1]-=dy;rainPositions[p+4]-=dy;rainPositions[p]+=.8*dt;rainPositions[p+3]+=.8*dt;
+        const sh=MEDICAL.shelter;
+        // Reset an entire streak before its lower tip crosses the canopy underside.
+        if(rainPositions[p]>=sh.minX-.1&&rainPositions[p]<=sh.maxX+.1&&rainPositions[p+2]>=sh.minZ-.1&&rainPositions[p+2]<=sh.maxZ+.1&&rainPositions[p+4]<sh.ceiling){rainPositions[p+1]=24;rainPositions[p+4]=23;}
+        if(rainPositions[p+1]<0){rainPositions[p+1]=24;rainPositions[p+4]=23;}}
       rainGeometry.attributes.position.needsUpdate=true;
     }
   };

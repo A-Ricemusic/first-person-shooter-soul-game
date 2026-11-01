@@ -13,7 +13,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 09</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 15</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -62,7 +62,7 @@ function onEvent(e){
  if(e.type==='damage'){ $('damage-flash').classList.add('active');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('damage-flash').classList.remove('active'),240) }
  if(['hit','kill','headshot'].includes(e.type)){ $('hitmarker').classList.add('visible');$('hitmarker').classList.toggle('kill',e.type==='kill');clearTimeout(hitTimer);hitTimer=setTimeout(()=>$('hitmarker').classList.remove('visible'),e.type==='kill'?230:100) }
  if(e.type==='dash'){ $('shift-flash').classList.add('active');clearTimeout(shiftTimer);shiftTimer=setTimeout(()=>$('shift-flash').classList.remove('active'),250) }
- if(e.message && !['shot','hit','damage','footstep'].includes(e.type)){if(['phase','core','notice','win','lose','phaseDodge','phaseInterrupt'].includes(e.type))notify(e.message);const line=document.createElement('div');line.textContent=e.message;$('event-feed').prepend(line);while($('event-feed').children.length>3)$('event-feed').lastChild.remove();setTimeout(()=>line.remove(),5500)}
+ if(e.message && !['shot','hit','damage','footstep'].includes(e.type)){if(['phase','core','notice','win','lose','phaseDodge','phaseInterrupt'].includes(e.type))notify(e.message);if(['notice','phase'].includes(e.type))return;const line=document.createElement('div');line.textContent=e.message;$('event-feed').prepend(line);while($('event-feed').children.length>3)$('event-feed').lastChild.remove();setTimeout(()=>line.remove(),5500)}
 }
 function renderState(s){
  current=s;drawRadar(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player);hide('service-hint',!service);hide('field-controls',!(!service&&phase==='playing'&&s.time<18&&s.cores===0));hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;$('extraction-status').textContent=s.extractionProgress>0?`UPLINK ${Math.min(99,Math.floor(s.extractionProgress*100))}% · STAY IN THE ZONE`:`REACH THE GREEN BEACON · HOLD ${s.extractionSeconds||6} SECONDS`;$('recovery-progress').style.width=`${(s.coreProgress||0)*100}%`;
@@ -80,7 +80,7 @@ function renderState(s){
  const count=typeof s.cores==='number'?s.cores:0;[...$('core-slots').children].forEach((el,i)=>el.classList.toggle('recovered',s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count));
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
  if(s.heading!==undefined)$('heading').textContent=String(Math.round(s.heading)).padStart(3,'0');
- hide('interaction',!s.interaction);if(s.interaction)$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?s.interaction.replace(/^E · /,''):'RECOVER SOUL CORE';
+ hide('interaction',!s.interaction);if(s.interaction){$('interaction').querySelector('small').textContent=s.nearestCoreDistance>=2.8?'STEP CLOSER TO THE DIAMOND':'HOLD TO RECOVER';}if(s.interaction)$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?s.interaction.replace(/^E · /,''):'RECOVER SOUL CORE';
  document.body.classList.toggle('critical-health',s.health<30&&phase==='playing');
 }
 

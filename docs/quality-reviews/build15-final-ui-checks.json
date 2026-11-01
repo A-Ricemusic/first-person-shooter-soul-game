@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "node",
+      "tests/medical-review-fixes.mjs"
+    ],
+    "exit": 0,
+    "output": "[{\"width\":1280,\"notice\":{\"x\":332.5859375,\"y\":184,\"width\":614.828125,\"height\":52},\"radar\":{\"x\":1085,\"y\":105,\"width\":160,\"height\":200},\"perf\":{\"calls\":52,\"samples\":6932,\"end\":[-9.871596448657627,0,-15.86718132490824]},\"recovered\":true},{\"width\":1440,\"notice\":{\"x\":412.5859375,\"y\":207,\"width\":614.828125,\"height\":52},\"radar\":{\"x\":1245,\"y\":105,\"width\":160,\"height\":200},\"perf\":{\"calls\":52,\"samples\":6932,\"end\":[-9.871596448657627,0,-15.86718132490824]},\"recovered\":true}]\n"
+  },
+  {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "output": "\n> soulfall-the-last-signal@1.0.0 test\n> node tests/smoke.mjs\n\nPASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 98 draw calls in title frame.\nPASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.\nPASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.\nPASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.\nPASS Arena connectivity & cover: 5590 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.\nPASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.\nPASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.\nPASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.\nPASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.\nPASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.\nPASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.\nPASS Design dossier: docs/human.html serves with all actual rendered screenshots.\nPASS Normal-play isolation: No debug game handle exposed on normal URL.\nHTTP failures []\nPASS Browser health: No page exceptions, console errors, or HTTP failures in the suite.\n\n14 checks passed.\n"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "test:production"
+    ],
+    "exit": 0,
+    "output": "\n> soulfall-the-last-signal@1.0.0 test:production\n> npm run build && SOULFALL_PRODUCTION=1 node tests/smoke.mjs\n\n\n> soulfall-the-last-signal@1.0.0 build\n> vite build\n\nvite v7.3.7 building client environment for production...\ntransforming...\n\u2713 16 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.68 kB \u2502 gzip:   0.41 kB\ndist/assets/index-VtD4PSz-.css   22.22 kB \u2502 gzip:   5.71 kB\ndist/assets/index-DQEWPmsn.js   134.88 kB \u2502 gzip:  44.86 kB\ndist/assets/three-BqjDpVYy.js   550.12 kB \u2502 gzip: 139.38 kB\n\u2713 built in 1.09s\nPASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 98 draw calls in title frame.\nPASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.\nPASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.\nPASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.\nPASS Arena connectivity & cover: 5590 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.\nPASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.\nPASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.\nPASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.\nPASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.\nPASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.\nPASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.\nPASS Design dossier: docs/human.html serves with all actual rendered screenshots.\nPASS Normal-play isolation: No debug game handle exposed on normal URL.\nHTTP failures []\nPASS Browser health: No page exceptions, console errors, or HTTP failures in the suite.\n\n14 checks passed.\n"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "test:mission"
+    ],
+    "exit": 0,
+    "output": "\n> soulfall-the-last-signal@1.0.0 test:mission\n> node tests/mission-regressions.mjs\n\n[\n  {\n    \"name\": \"Spatial objective markers and contextual controls are visible on deployment\",\n    \"status\": \"passed\"\n  },\n  {\n    \"name\": \"Recovery requires a held input, cancels on release, restores the site and displays its memory\",\n    \"status\": \"passed\",\n    \"observed\": {\n      \"health\": 100,\n      \"shield\": 35,\n      \"restored\": 1\n    }\n  },\n  {\n    \"name\": \"Extraction is a contested timed hold, loses progress outside the zone, and completes after the six-second Operator uplink\",\n    \"status\": \"passed\"\n  },\n  {\n    \"name\": \"Victory can reopen all recovered memories with full quotes\",\n    \"status\": \"passed\"\n  },\n  {\n    \"name\": \"Performance graphics disables shadows and incoming damage produces a directional cue\",\n    \"status\": \"passed\"\n  }\n]\n"
+  }
+]

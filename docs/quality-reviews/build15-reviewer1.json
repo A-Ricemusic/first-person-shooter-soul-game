@@ -1,0 +1,150 @@
+{
+  "reviewer": "reviewer1",
+  "build": "Build15",
+  "scope": "Whole-game provisional ratings from two bounded ordinary-input attempts, deployment to west triage bay.",
+  "ratings": {
+    "gameplay": 5.5,
+    "presentation": 7,
+    "usability": 6,
+    "levelReadability": 6,
+    "aaaReadiness": 3
+  },
+  "method": {
+    "browser": "Installed Chrome headless via Playwright, SwiftShader software rendering, 1280x800, ?test=1",
+    "decisions": "Visible screenshots, UI text, briefing and handbook only. No gameplay coordinates or internal enemy/player data used for decisions.",
+    "inputs": "Timed ordinary WASD/R/E/Shift keys, mouse click/movement; second attempt used DOM mouse listener events to supply relative look and held fire. No teleport, resource edits or enemy edits.",
+    "priorKnowledge": "Task identified west medical bay and Mara memory, alternate-route goal. No prior gameplay source knowledge.",
+    "sourceDisclosure": "Read package.json for Playwright dependency before play. After initial mouse/nav trouble inspected src/game.js lines 145\u2013170 input listeners. After both attempts searched captureState hook in main.js; captured state only after all actions ended.",
+    "advantagesAndLimits": "Deterministic timed input durations and event injection; screenshots leave elapsed simulation time while inspecting, imposing combat disadvantage. Software renderer cannot certify audio, enjoyment or hardware FPS."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "Lost at 00:46, 0 eliminations, 0 cores. Reached triage doorway; mouse movement initially turned/pitched unexpectedly and cover blocked forward progress. No shots fired."
+    },
+    {
+      "attempt": 2,
+      "outcome": "Lost at 00:36, 1 elimination, 1 critical elimination, score 180, 18% accuracy, 0 cores. Fired at visible initial guard, reloaded, navigated around service cover into medical bay. Core visibly read 3m; held E but no memory recovered. Two bay sentinels were announced by UI but not successfully located/engaged on screen. Alternate departure not attempted after death."
+    }
+  ],
+  "findings": [
+    {
+      "type": "positive",
+      "detail": "Atmospheric rainy yard, reflections, cyan/amber palette, coherent typography and responsive outcome screens create a strong authored identity."
+    },
+    {
+      "type": "positive",
+      "detail": "Visible triage signage, west objective marker and a bay entrance made the destination discoverable without source lookup. Briefing and handbook explain recovery, extraction and dash timing."
+    },
+    {
+      "type": "blocker",
+      "detail": "Core marker and recovery radius were hard to reconcile: visibly at 3m and holding E produced no recovery before death. This session cannot establish whether the player was outside range, obstructed or killed before initiation; needs clearer nearby interaction affordance."
+    },
+    {
+      "type": "blocker",
+      "detail": "Bay incoming damage was difficult to attribute visually: health fell while camera faced core and UI announced two sentinels, but I did not acquire the attackers. A clearer readable approach/cover-to-threat composition would help."
+    },
+    {
+      "type": "blocker",
+      "detail": "Initial service cover stopped forward navigation; screenshot inspection and an unintended look adjustment consumed dangerous exposure. This limits fairness conclusions, but demonstrates limited tolerance for a new operator pausing to understand the space."
+    },
+    {
+      "type": "polish",
+      "detail": "Title screen visibly still says BUILD 09 while this review targets Build15; duplicated tutorial/event text competes with objective labels on right."
+    }
+  ],
+  "evidence": [
+    "docs/media/build15-review1-bay.png",
+    "docs/media/build15-review1-deploy.png",
+    "docs/media/build15-review1-encounter.png",
+    "docs/media/build15-review1-first-outcome.png",
+    "docs/media/build15-review1-medical-entry.png",
+    "docs/media/build15-review1-navigation.png",
+    "docs/media/build15-review1-retry.png",
+    "docs/media/build15-review1-title.png",
+    "docs/media/build15-review1-triage.png",
+    "docs/media/build15-review1-west-approach.png",
+    "docs/media/build15-review1-west-path.png"
+  ],
+  "rawFinalCapture": {
+    "phase": "lost",
+    "health": 0,
+    "maxHealth": 100,
+    "shield": 0,
+    "maxShield": 60,
+    "ammo": 30,
+    "reserve": 158,
+    "reloading": false,
+    "reloadProgress": 0,
+    "kills": 1,
+    "cores": 0,
+    "totalCores": 3,
+    "time": 36.757033333332174,
+    "dashCooldown": 0,
+    "objective": "RECOVER THE THREE MEMORIES",
+    "coreProgress": 0,
+    "extractionProgress": 0,
+    "extractionSeconds": 6,
+    "phaseDodges": 0,
+    "dashCount": 0,
+    "phaseInterrupts": 0,
+    "score": 180,
+    "enemiesAlive": 4,
+    "headshots": 1,
+    "accuracy": 18,
+    "difficulty": "standard",
+    "player": {
+      "x": -23.374450000000017,
+      "y": 1.7,
+      "z": -18.09740000000012,
+      "yaw": 0,
+      "grounded": true
+    },
+    "coreMarkers": [
+      {
+        "x": -24,
+        "z": -15,
+        "id": 0,
+        "collected": false,
+        "distance": 3.159936639000967
+      },
+      {
+        "x": 24,
+        "z": -15,
+        "id": 1,
+        "collected": false,
+        "distance": 47.47559793791441
+      },
+      {
+        "x": 0,
+        "z": -33,
+        "id": 2,
+        "collected": false,
+        "distance": 27.720974000970763
+      }
+    ],
+    "nearestCoreDistance": 3.159936639000967,
+    "interaction": "",
+    "heading": 0,
+    "exitDistance": 54.377565222824316,
+    "exit": {
+      "x": 0,
+      "z": 31
+    },
+    "bounds": {
+      "minX": -37,
+      "maxX": 37,
+      "minZ": -42,
+      "maxZ": 42
+    },
+    "pointerFallback": false
+  },
+  "completionClaims": {
+    "medicalBayEntered": true,
+    "bayEncounterWon": false,
+    "maraRecovered": false,
+    "alternateExitUsed": false,
+    "wholeMissionCompleted": false
+  },
+  "browserClosed": true
+}

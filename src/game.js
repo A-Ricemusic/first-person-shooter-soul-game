@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
+import MEDICAL from './medical-layout.json';
+import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
@@ -53,6 +55,7 @@ export class Game {
     this.scene = new THREE.Scene(); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
     this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
     this.world = await buildWorld(this.scene);
+    this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = -0.02;
     this.scene.add(new THREE.HemisphereLight(0x9cc6db, 0x1a1c20, 0.8));
@@ -436,7 +439,7 @@ export class Game {
     stage('ingress',this.player.z<13,'PERIMETER PATROL · Two contacts beyond the entry. Side lanes remain open.',[[-22,-5,'sentinel'],[22,-5,'sentinel']]);
     for(const c of this.coreNodes){
       const near=Math.hypot(this.player.x-c.position.x,this.player.z-c.position.z)<14;
-      if(c.id===0)stage('medical',near,'WEST / TRIAGE · Two sentinels guard the evacuation lights. Use the west cover.',[[-31,-25,'sentinel'],[-16,-25,'sentinel']]);
+      if(c.id===0)stage('medical',near,'WEST TRIAGE · South intake / east service. Storage blocks sightlines.',MEDICAL.spawns);
       if(c.id===1)stage('engineering',near,'EAST / MAINTENANCE · Interceptors track movement. Change direction after their charge.',[[31,-25,'stalker'],[16,-25,'stalker']]);
       if(c.id===2)stage('heart',near,'HEART / RELAY GUARD · Break the warden to open armor, or fire precisely at its optic.',[[0,-40,'warden'],[-16,-35,'sentinel']]);
     }
@@ -483,6 +486,8 @@ export class Game {
       if (distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
       else if (distance < 5) move.addScaledVector(dir, -0.7);
       if (enemy.visible && enemy.type!=='warden') move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
+      const waypoint=this.navigation.steer(enemy,this.player,this.runTime);
+      if(waypoint)move.set(waypoint.x-position.x,0,waypoint.z-position.z);
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
         move.normalize(); const speed = (enemy.type === 'stalker' ? 3.2 : 2.1) * this.difficulty.speed * (enemy.windup > 0 ? 0.25 : 1);
@@ -647,7 +652,7 @@ export class Game {
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
-      nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       exitDistance: this.world ? Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) : 0,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
       bounds: this.world?.bounds, pointerFallback: this.pointerFallback,

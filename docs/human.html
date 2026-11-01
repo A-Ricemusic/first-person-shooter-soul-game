@@ -3,7 +3,546 @@
 .rating-row{margin:28px 0}.rating-row>strong{display:block;margin-bottom:12px}.rating-track{height:26px;position:relative;background:#142b32;margin:7px 0;max-width:850px}.rating-track i{display:block;height:100%;background:#75d9cd}.rating-track span{position:absolute;left:12px;top:2px;color:#f1fffa;font:12px/22px monospace;text-shadow:0 1px 4px #000}
 </style></head><body><header><div class="eyebrow">VESPER INTERACTIVE / PROJECT DOSSIER / 01</div><h1>SOUL<span>FALL</span></h1><p class="subtitle">The Last Signal.<br>A complete web FPS mission. A distinctive foundation for a much bigger game.</p><div class="meta"><span>CREATIVE + TECHNICAL DECISIONS</span><span>ORIGINAL BLENDER ASSETS</span><span>DESKTOP / WEBGL 2</span><span>31 OCTOBER 2026</span></div></header><main>
 <figure class="hero"><img src="media/title.png" alt="Actual SOULFALL title screen over its real-time coastal industrial station"><figcaption>Actual browser render of this build. No concept render substituted for gameplay.</figcaption></figure>
-<nav><a href="#quality-build14">Current quality loop</a><a href="#independent-review">Independent review</a><a href="#playtest-review">Playtest review</a><a href="#pitch">The pitch</a><a href="#loop">The playable mission</a><a href="#decisions">Decision log</a><a href="#art">Blender & art direction</a><a href="#engineering">Engineering</a><a href="#verification">Verification</a><a href="#production">Production case</a><a href="#honesty">Limits & next steps</a></nav>
+<nav><a href="#quality-build15">Current quality loop</a><a href="#independent-review">Independent review</a><a href="#playtest-review">Playtest review</a><a href="#pitch">The pitch</a><a href="#loop">The playable mission</a><a href="#decisions">Decision log</a><a href="#art">Blender & art direction</a><a href="#engineering">Engineering</a><a href="#verification">Verification</a><a href="#production">Production case</a><a href="#honesty">Limits & next steps</a></nav>
+<section id="quality-build15"><span class="number">ONGOING QUALITY MISSION / BUILD 15</span><h2>A sheltered triage archive with two ways through.</h2>
+<p>West medical now occupies a high-canopied evacuation bay. Its broad south intake gives an immediate view of the archive; the east service passage offers an alternate entry and retreat. A tall storage spine conceals the medic side of the room, while the intake desk provides low cover. Empty cot, folded stretchers, evacuation lockers and ferry tags give Mara's last-ferry memory a physical setting. East engineering and the Heart retain open sky for contrast. The finite two-sentinel stage remains independent of recovery order; there is no mandatory kill, phase, jump or parkour gate.</p>
+<p>The original Blender shell and major furniture are generated from <code>src/medical-layout.json</code> by retained <code>tools/build_medical.py</code>, with .blend, GLB and provenance. Runtime shell collision, encounter spawns, recovery/story placement and weather shelter share that layout. Original station concrete PBR materials are reused. The 7.3m clear ceiling accommodates the pylon and its 6.8m sign top; neither recovery route requires a jump. Story signage is mounted on the west wall, and the east threshold has an interior exit cue.</p>
+<p>A static half-metre walkability cache supports bounded A* (maximum 2,400 expanded nodes/query, at most one query per enemy per .8s), with swept waypoint shortcuts and the existing local steering/separation. Direct combat, Interceptor prediction, bounded Warden steering, health, damage, precision and phase/attack timings are preserved. This is grounded navigation with an approximate axis collision solver, not a general navigation mesh or full visual-body physics.</p>
+<figure class="wide-shot"><img src="media/build15-south.png" alt="Actual arranged WebGL view of medical south"><figcaption>South intake: broad entry and direct archive sightline. Arranged correctness capture; not ordinary play.</figcaption></figure><figure class="wide-shot"><img src="media/build15-service.png" alt="Actual arranged WebGL view of medical service"><figcaption>East service opening: a second playable approach and exit. Arranged correctness capture; not ordinary play.</figcaption></figure><figure class="wide-shot"><img src="media/build15-interior.png" alt="Actual arranged WebGL view of medical interior"><figcaption>Sheltered recovery room: pylon, storage cover and evacuation furniture. Arranged correctness capture; not ordinary play.</figcaption></figure><h3>Parent fixes after the two reviews</h3><p>The reviews exposed a medical announcement obscured by the radar at1280, redundant notices, an unclear near-range recovery affordance and expensive repeated navigation sweeps. Parent corrections shorten the medical notice, keep coaching out of the duplicate right feed, update the title to Build15, and show MOVE CLOSER / STEP CLOSER TO THE DIAMOND within4.5m before the original2.8m held recovery range. Attack, recovery and phase timings are unchanged. Direct clearance and waypoint shortcuts now refresh every.15s; A* retains its.8s cadence and2400-node bound. An arranged eight-second pursuit measured52clear calls/6932actual occupancy samples, with a valid doorway crossing. This is a local cost check, not hardware profiling.</p><p><a href="quality-reviews/build15-parent-fixes.json">Parent fixtures at1280x800 and1440x900</a> verify the new nearby prompt, no recovery at3.2m, held recovery at2.5m, the notice/radar separation, duplicate-feed removal and reduced sweep cadence. Parent inspected actual frames and the reviewers' Warden motion0/5/9 plus interior captures. These fixes are not a third review and do not imply a rescore. Reviewer1's ordinary recovery failure and missed bay attackers remain evidence of unresolved onboarding/threat-acquisition problems.</p><figure class="wide-shot"><img src="media/build15-parent-nearby-1280.png" alt="Actual parent fixture showing step closer recovery cue"><figcaption>Arranged parent UI retest after review, not a successful ordinary recovery attempt.</figcaption></figure><h3>Independent reviews: source frozen, exactly two reviewers</h3><p>Both are native GPT-6.1 Sol agent judgments, provisional whole-game ratings out of ten. Raw reviews are preserved unchanged below. Reviewer1 used screenshot-guided normal controls; Reviewer2 used explicitly arranged renderer fixtures and ordinary controls. Neither is a blind human participant or a hardware/audio validation.</p><p>Whole-game scores (gameplay / presentation / usability / readability / AAA): Reviewer1 <strong>5.5 / 7 / 6 / 6 / 3</strong>; Reviewer2 <strong>6.5 / 6.5 / 6 / 7 / 3.5</strong>. Reviewer1 died in both ordinary attempts, reaching the medical bay but recovering no memory; alternate departure was untested. Reviewer2 confirmed local shots/LOS/shelter and moving Warden behavior using arrangements, while noting sparse surfaces and narrow crawler proportions.</p><details><summary>Raw independent reviewer 1</summary><pre style="white-space:pre-wrap">{
+  &quot;reviewer&quot;: &quot;reviewer1&quot;,
+  &quot;build&quot;: &quot;Build15&quot;,
+  &quot;scope&quot;: &quot;Whole-game provisional ratings from two bounded ordinary-input attempts, deployment to west triage bay.&quot;,
+  &quot;ratings&quot;: {
+    &quot;gameplay&quot;: 5.5,
+    &quot;presentation&quot;: 7,
+    &quot;usability&quot;: 6,
+    &quot;levelReadability&quot;: 6,
+    &quot;aaaReadiness&quot;: 3
+  },
+  &quot;method&quot;: {
+    &quot;browser&quot;: &quot;Installed Chrome headless via Playwright, SwiftShader software rendering, 1280x800, ?test=1&quot;,
+    &quot;decisions&quot;: &quot;Visible screenshots, UI text, briefing and handbook only. No gameplay coordinates or internal enemy/player data used for decisions.&quot;,
+    &quot;inputs&quot;: &quot;Timed ordinary WASD/R/E/Shift keys, mouse click/movement; second attempt used DOM mouse listener events to supply relative look and held fire. No teleport, resource edits or enemy edits.&quot;,
+    &quot;priorKnowledge&quot;: &quot;Task identified west medical bay and Mara memory, alternate-route goal. No prior gameplay source knowledge.&quot;,
+    &quot;sourceDisclosure&quot;: &quot;Read package.json for Playwright dependency before play. After initial mouse/nav trouble inspected src/game.js lines 145\u2013170 input listeners. After both attempts searched captureState hook in main.js; captured state only after all actions ended.&quot;,
+    &quot;advantagesAndLimits&quot;: &quot;Deterministic timed input durations and event injection; screenshots leave elapsed simulation time while inspecting, imposing combat disadvantage. Software renderer cannot certify audio, enjoyment or hardware FPS.&quot;
+  },
+  &quot;attempts&quot;: [
+    {
+      &quot;attempt&quot;: 1,
+      &quot;outcome&quot;: &quot;Lost at 00:46, 0 eliminations, 0 cores. Reached triage doorway; mouse movement initially turned/pitched unexpectedly and cover blocked forward progress. No shots fired.&quot;
+    },
+    {
+      &quot;attempt&quot;: 2,
+      &quot;outcome&quot;: &quot;Lost at 00:36, 1 elimination, 1 critical elimination, score 180, 18% accuracy, 0 cores. Fired at visible initial guard, reloaded, navigated around service cover into medical bay. Core visibly read 3m; held E but no memory recovered. Two bay sentinels were announced by UI but not successfully located/engaged on screen. Alternate departure not attempted after death.&quot;
+    }
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;type&quot;: &quot;positive&quot;,
+      &quot;detail&quot;: &quot;Atmospheric rainy yard, reflections, cyan/amber palette, coherent typography and responsive outcome screens create a strong authored identity.&quot;
+    },
+    {
+      &quot;type&quot;: &quot;positive&quot;,
+      &quot;detail&quot;: &quot;Visible triage signage, west objective marker and a bay entrance made the destination discoverable without source lookup. Briefing and handbook explain recovery, extraction and dash timing.&quot;
+    },
+    {
+      &quot;type&quot;: &quot;blocker&quot;,
+      &quot;detail&quot;: &quot;Core marker and recovery radius were hard to reconcile: visibly at 3m and holding E produced no recovery before death. This session cannot establish whether the player was outside range, obstructed or killed before initiation; needs clearer nearby interaction affordance.&quot;
+    },
+    {
+      &quot;type&quot;: &quot;blocker&quot;,
+      &quot;detail&quot;: &quot;Bay incoming damage was difficult to attribute visually: health fell while camera faced core and UI announced two sentinels, but I did not acquire the attackers. A clearer readable approach/cover-to-threat composition would help.&quot;
+    },
+    {
+      &quot;type&quot;: &quot;blocker&quot;,
+      &quot;detail&quot;: &quot;Initial service cover stopped forward navigation; screenshot inspection and an unintended look adjustment consumed dangerous exposure. This limits fairness conclusions, but demonstrates limited tolerance for a new operator pausing to understand the space.&quot;
+    },
+    {
+      &quot;type&quot;: &quot;polish&quot;,
+      &quot;detail&quot;: &quot;Title screen visibly still says BUILD 09 while this review targets Build15; duplicated tutorial/event text competes with objective labels on right.&quot;
+    }
+  ],
+  &quot;evidence&quot;: [
+    &quot;docs/media/build15-review1-bay.png&quot;,
+    &quot;docs/media/build15-review1-deploy.png&quot;,
+    &quot;docs/media/build15-review1-encounter.png&quot;,
+    &quot;docs/media/build15-review1-first-outcome.png&quot;,
+    &quot;docs/media/build15-review1-medical-entry.png&quot;,
+    &quot;docs/media/build15-review1-navigation.png&quot;,
+    &quot;docs/media/build15-review1-retry.png&quot;,
+    &quot;docs/media/build15-review1-title.png&quot;,
+    &quot;docs/media/build15-review1-triage.png&quot;,
+    &quot;docs/media/build15-review1-west-approach.png&quot;,
+    &quot;docs/media/build15-review1-west-path.png&quot;
+  ],
+  &quot;rawFinalCapture&quot;: {
+    &quot;phase&quot;: &quot;lost&quot;,
+    &quot;health&quot;: 0,
+    &quot;maxHealth&quot;: 100,
+    &quot;shield&quot;: 0,
+    &quot;maxShield&quot;: 60,
+    &quot;ammo&quot;: 30,
+    &quot;reserve&quot;: 158,
+    &quot;reloading&quot;: false,
+    &quot;reloadProgress&quot;: 0,
+    &quot;kills&quot;: 1,
+    &quot;cores&quot;: 0,
+    &quot;totalCores&quot;: 3,
+    &quot;time&quot;: 36.757033333332174,
+    &quot;dashCooldown&quot;: 0,
+    &quot;objective&quot;: &quot;RECOVER THE THREE MEMORIES&quot;,
+    &quot;coreProgress&quot;: 0,
+    &quot;extractionProgress&quot;: 0,
+    &quot;extractionSeconds&quot;: 6,
+    &quot;phaseDodges&quot;: 0,
+    &quot;dashCount&quot;: 0,
+    &quot;phaseInterrupts&quot;: 0,
+    &quot;score&quot;: 180,
+    &quot;enemiesAlive&quot;: 4,
+    &quot;headshots&quot;: 1,
+    &quot;accuracy&quot;: 18,
+    &quot;difficulty&quot;: &quot;standard&quot;,
+    &quot;player&quot;: {
+      &quot;x&quot;: -23.374450000000017,
+      &quot;y&quot;: 1.7,
+      &quot;z&quot;: -18.09740000000012,
+      &quot;yaw&quot;: 0,
+      &quot;grounded&quot;: true
+    },
+    &quot;coreMarkers&quot;: [
+      {
+        &quot;x&quot;: -24,
+        &quot;z&quot;: -15,
+        &quot;id&quot;: 0,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 3.159936639000967
+      },
+      {
+        &quot;x&quot;: 24,
+        &quot;z&quot;: -15,
+        &quot;id&quot;: 1,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 47.47559793791441
+      },
+      {
+        &quot;x&quot;: 0,
+        &quot;z&quot;: -33,
+        &quot;id&quot;: 2,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 27.720974000970763
+      }
+    ],
+    &quot;nearestCoreDistance&quot;: 3.159936639000967,
+    &quot;interaction&quot;: &quot;&quot;,
+    &quot;heading&quot;: 0,
+    &quot;exitDistance&quot;: 54.377565222824316,
+    &quot;exit&quot;: {
+      &quot;x&quot;: 0,
+      &quot;z&quot;: 31
+    },
+    &quot;bounds&quot;: {
+      &quot;minX&quot;: -37,
+      &quot;maxX&quot;: 37,
+      &quot;minZ&quot;: -42,
+      &quot;maxZ&quot;: 42
+    },
+    &quot;pointerFallback&quot;: false
+  },
+  &quot;completionClaims&quot;: {
+    &quot;medicalBayEntered&quot;: true,
+    &quot;bayEncounterWon&quot;: false,
+    &quot;maraRecovered&quot;: false,
+    &quot;alternateExitUsed&quot;: false,
+    &quot;wholeMissionCompleted&quot;: false
+  },
+  &quot;browserClosed&quot;: true
+}</pre></details><details><summary>Raw independent reviewer 2</summary><pre style="white-space:pre-wrap">{
+  &quot;method&quot;: &quot;Independent reviewer2. Source informed, explicitly arranged test=1 fixtures and separately labeled ordinary-control attempt. Actual WebGL screenshots on Chrome SwiftShader. No hardware FPS, audio, blind discovery or enjoyment certification.&quot;,
+  &quot;errors&quot;: [],
+  &quot;captures&quot;: [
+    &quot;docs/media/build15-review2-ordinary-control-retry.png&quot;,
+    &quot;docs/media/build15-review2-south-1280.png&quot;,
+    &quot;docs/media/build15-review2-east-1280.png&quot;,
+    &quot;docs/media/build15-review2-interior-1280.png&quot;,
+    &quot;docs/media/build15-review2-south-1440.png&quot;,
+    &quot;docs/media/build15-review2-east-1440.png&quot;,
+    &quot;docs/media/build15-review2-interior-1440.png&quot;,
+    &quot;docs/media/build15-review2-motion-0.png&quot;,
+    &quot;docs/media/build15-review2-motion-1.png&quot;,
+    &quot;docs/media/build15-review2-motion-2.png&quot;,
+    &quot;docs/media/build15-review2-motion-3.png&quot;,
+    &quot;docs/media/build15-review2-motion-4.png&quot;,
+    &quot;docs/media/build15-review2-motion-5.png&quot;,
+    &quot;docs/media/build15-review2-motion-6.png&quot;,
+    &quot;docs/media/build15-review2-motion-7.png&quot;,
+    &quot;docs/media/build15-review2-motion-8.png&quot;,
+    &quot;docs/media/build15-review2-motion-9.png&quot;,
+    &quot;docs/media/build15-review2-corner-0.png&quot;,
+    &quot;docs/media/build15-review2-corner-1.png&quot;,
+    &quot;docs/media/build15-review2-corner-2.png&quot;,
+    &quot;docs/media/build15-review2-corner-3.png&quot;,
+    &quot;docs/media/build15-review2-corner-4.png&quot;,
+    &quot;docs/media/build15-review2-corner-5.png&quot;,
+    &quot;docs/media/build15-review2-corner-6.png&quot;,
+    &quot;docs/media/build15-review2-corner-7.png&quot;,
+    &quot;docs/media/build15-review2-medical-notice-1280.png&quot;
+  ],
+  &quot;motion&quot;: [
+    {
+      &quot;position&quot;: [
+        0.037147524616356356,
+        0,
+        22.09269627046553
+      ],
+      &quot;heading&quot;: 0.5599999999999998,
+      &quot;upper&quot;: 0.7999999999999999,
+      &quot;travel&quot;: [
+        0.22959959133564456,
+        1.4459818281971955
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        0.2707053370551919,
+        0,
+        22.285653052103093
+      ],
+      &quot;heading&quot;: 1.1199999999999999,
+      &quot;upper&quot;: 1.5945172414359796,
+      &quot;travel&quot;: [
+        0.6651393588880206,
+        0.14993935888802046
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        0.673229386275908,
+        0,
+        22.379520798222963
+      ],
+      &quot;heading&quot;: 1.408116576875972,
+      &quot;upper&quot;: 1.6039898012825133,
+      &quot;travel&quot;: [
+        1.1463160065656708,
+        0.4985823812027246
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        1.0876840449086642,
+        0,
+        22.447545322753463
+      ],
+      &quot;heading&quot;: 1.408116576875967,
+      &quot;upper&quot;: 1.611462628214139,
+      &quot;travel&quot;: [
+        0.09233376970411289,
+        0.9185823812027181
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        1.5021387035414224,
+        0,
+        22.515569847283963
+      ],
+      &quot;heading&quot;: 1.408116576875961,
+      &quot;upper&quot;: 1.619519422154801,
+      &quot;travel&quot;: [
+        0.5123337697041088,
+        1.3385823812027198
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        1.916593362174178,
+        0,
+        22.583594371814463
+      ],
+      &quot;heading&quot;: 1.4081165768759543,
+      &quot;upper&quot;: 1.6282302376233224,
+      &quot;travel&quot;: [
+        0.9323337697040999,
+        0.284600144341165
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        2.331048020806931,
+        0,
+        22.651618896344992
+      ],
+      &quot;heading&quot;: 1.4081165768759512,
+      &quot;upper&quot;: 1.6376765814140342,
+      &quot;travel&quot;: [
+        1.3523337697040945,
+        0.7046001443411622
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        2.7455026794396837,
+        0,
+        22.719643420875535
+      ],
+      &quot;heading&quot;: 1.4081165768759512,
+      &quot;upper&quot;: 1.6479537988929576,
+      &quot;travel&quot;: [
+        0.29835153284254057,
+        1.124600144341164
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        3.1599573380724366,
+        0,
+        22.787667945406074
+      ],
+      &quot;heading&quot;: 1.4081165768759514,
+      &quot;upper&quot;: 1.6591740663777106,
+      &quot;travel&quot;: [
+        0.7183515328425365,
+        0.07061790747961316
+      ]
+    },
+    {
+      &quot;position&quot;: [
+        3.5744119967051895,
+        0,
+        22.855692469936617
+      ],
+      &quot;heading&quot;: 1.4081165768759514,
+      &quot;upper&quot;: 1.6714701708456452,
+      &quot;travel&quot;: [
+        1.1383515328425329,
+        0.49061790747960954
+      ]
+    }
+  ],
+  &quot;ordinary&quot;: {
+    &quot;phase&quot;: &quot;playing&quot;,
+    &quot;health&quot;: 100,
+    &quot;maxHealth&quot;: 100,
+    &quot;shield&quot;: 30,
+    &quot;maxShield&quot;: 60,
+    &quot;ammo&quot;: 23,
+    &quot;reserve&quot;: 180,
+    &quot;reloading&quot;: true,
+    &quot;reloadProgress&quot;: 0.31315151515151407,
+    &quot;kills&quot;: 0,
+    &quot;cores&quot;: 0,
+    &quot;totalCores&quot;: 3,
+    &quot;time&quot;: 3.533299999999991,
+    &quot;dashCooldown&quot;: 0,
+    &quot;objective&quot;: &quot;RECOVER THE THREE MEMORIES&quot;,
+    &quot;coreProgress&quot;: 0,
+    &quot;extractionProgress&quot;: 0,
+    &quot;extractionSeconds&quot;: 6,
+    &quot;phaseDodges&quot;: 0,
+    &quot;dashCount&quot;: 0,
+    &quot;phaseInterrupts&quot;: 0,
+    &quot;score&quot;: 0,
+    &quot;enemiesAlive&quot;: 1,
+    &quot;headshots&quot;: 0,
+    &quot;accuracy&quot;: 0,
+    &quot;difficulty&quot;: &quot;standard&quot;,
+    &quot;player&quot;: {
+      &quot;x&quot;: 0,
+      &quot;y&quot;: 1.7,
+      &quot;z&quot;: 19.817399999999807,
+      &quot;yaw&quot;: 0,
+      &quot;grounded&quot;: true
+    },
+    &quot;coreMarkers&quot;: [
+      {
+        &quot;x&quot;: -24,
+        &quot;z&quot;: -15,
+        &quot;id&quot;: 0,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 42.28772094544688
+      },
+      {
+        &quot;x&quot;: 24,
+        &quot;z&quot;: -15,
+        &quot;id&quot;: 1,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 42.28772094544688
+      },
+      {
+        &quot;x&quot;: 0,
+        &quot;z&quot;: -33,
+        &quot;id&quot;: 2,
+        &quot;collected&quot;: false,
+        &quot;distance&quot;: 52.81739999999981
+      }
+    ],
+    &quot;nearestCoreDistance&quot;: 42.28772094544688,
+    &quot;interaction&quot;: &quot;&quot;,
+    &quot;heading&quot;: 0,
+    &quot;exitDistance&quot;: 11.182600000000193,
+    &quot;exit&quot;: {
+      &quot;x&quot;: 0,
+      &quot;z&quot;: 31
+    },
+    &quot;bounds&quot;: {
+      &quot;minX&quot;: -37,
+      &quot;maxX&quot;: 37,
+      &quot;minZ&quot;: -42,
+      &quot;maxZ&quot;: 42
+    },
+    &quot;pointerFallback&quot;: false
+  },
+  &quot;cover&quot;: {
+    &quot;wall&quot;: false,
+    &quot;south&quot;: true,
+    &quot;east&quot;: true,
+    &quot;shotThroughWall&quot;: {
+      &quot;before&quot;: 100,
+      &quot;after&quot;: 100
+    },
+    &quot;rainLeaks&quot;: 0
+  },
+  &quot;corner&quot;: [
+    {
+      &quot;position&quot;: [
+        -8.428317264829587,
+        0,
+        -15.760021673771577
+      ],
+      &quot;heading&quot;: -1.5801805853188224,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 120,
+        &quot;samples&quot;: 16072
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -10.528224797984748,
+        0,
+        -15.779728327426627
+      ],
+      &quot;heading&quot;: -1.580180585318826,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 240,
+        &quot;samples&quot;: 30970
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -12.62813233113991,
+        0,
+        -15.799434981081676
+      ],
+      &quot;heading&quot;: -1.5801805853188304,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 360,
+        &quot;samples&quot;: 44611
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -14.72803986429507,
+        0,
+        -15.819141634736804
+      ],
+      &quot;heading&quot;: -1.5801805853188318,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 480,
+        &quot;samples&quot;: 56989
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -16.827947397450146,
+        0,
+        -15.83884828839196
+      ],
+      &quot;heading&quot;: -1.580180585318832,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 600,
+        &quot;samples&quot;: 68110
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -18.927854930605093,
+        0,
+        -15.858554942047114
+      ],
+      &quot;heading&quot;: -1.580180585318832,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 720,
+        &quot;samples&quot;: 77968
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -21.02776246376004,
+        0,
+        -15.878261595702268
+      ],
+      &quot;heading&quot;: -1.580180585318832,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 840,
+        &quot;samples&quot;: 86569
+      }
+    },
+    {
+      &quot;position&quot;: [
+        -23.12766999691499,
+        0,
+        -15.897968249357422
+      ],
+      &quot;heading&quot;: -1.580180585318832,
+      &quot;queries&quot;: 1,
+      &quot;maxExpanded&quot;: 139,
+      &quot;cost&quot;: {
+        &quot;calls&quot;: 960,
+        &quot;samples&quot;: 93907
+      }
+    }
+  ],
+  &quot;reviewer&quot;: &quot;independent reviewer2&quot;,
+  &quot;build&quot;: &quot;SOULFALL Build15 frozen&quot;,
+  &quot;scoresProvisionalOutOf10&quot;: {
+    &quot;gameplay&quot;: 6.5,
+    &quot;presentation&quot;: 6.5,
+    &quot;usability&quot;: 6,
+    &quot;levelReadability&quot;: 7,
+    &quot;aaaReadiness&quot;: 3.5
+  },
+  &quot;observations&quot;: [
+    &quot;Actual eye-height rendered south intake and east service entrances inspected at1280x800 and1440x900. Both entrances identify the medical space clearly and frame the cyan archive. Interior has identifiable medical table, partitions/cabinet storage and a roof; no visible interior rain in inspected frames, with zero sampled rain segments beneath shelter ceiling.&quot;,
+    &quot;Arranged wall shot left sentinel health100/100; wall LOSfalse, south/east opening LOStrue. This supports local cover behavior but is not a complete combat or collider certification.&quot;,
+    &quot;Ten sequential actual AI movement renders over2simulationseconds show bounded chassis turn and translation rather than a stationary animation pose. Upper assembly tracks separately; track elements visibly change. Tall heavy torso on very narrow small tracks remains toy-like and weakens mechanical weight.&quot;,
+    &quot;Eight-second straight east-entry Warden sequence crosses doorway without observed wall clipping. This is not a tight-corner test; circular .55m navigation clearance cannot certify all protruding art at corners.&quot;,
+    &quot;One-Warden navigation instrumentation counted960clear calls and93907 theoretical full-ray samples over8simseconds (early returns can reduce real samples). Query count1 includes prior run history; max139expansions. Static occupancy and bounded2400-node heap searches are positive; repeated per-substep swept checks remain scaling cost requiring hardware profiling.&quot;,
+    &quot;Ordinary3s forward/fire/reload attempt demonstrates controls and readable ammo feedback only; no extraction or sustained gameplay completion claim. Source and fixtures supplied strong spatial/encounter advantages. Brief attempt took shield damage before any kill.&quot;,
+    &quot;At1280 medical-notice capture, long top notice extends underneath radar and ends clipped/obscured there; right event feed also occupies a large mid-right area. Ordinary capture contains duplicated Warden coaching in top banner, event feed and bottom charge panel. This competes with scenery/targets and objective markers.&quot;,
+    &quot;Concrete AAA blockers: sparse broad interior planes with few authored props, repetitive wall finish, simplified weapon/glove and enemy material/form language, narrow crawler proportions, and simultaneous overlapping/coaching UI. Attractive cyan/amber wet-night lighting and clear objectives support a polished small prototype rather than AAA readiness.&quot;
+  ],
+  &quot;limitations&quot;: [
+    &quot;Chrome SwiftShader software rendering cannot certify hardware FPS, audio mix, human enjoyment or blind discovery.&quot;,
+    &quot;Most evidence uses frozen requestAnimationFrame plus explicit simulation/camera fixtures. HUD distance/compass may reflect original player where only camera was arranged; do not read fixture HUD distances as navigation defects.&quot;,
+    &quot;First harness stalled because its frozen RAF readiness poll used default RAF; corrected to50ms polling and reran. Both ordinary captures retained unchanged. No gameplay/source edits.&quot;,
+    &quot;No third reviewer or subagent was used.&quot;
+  ]
+}</pre></details><h3>Verification and evidence limits</h3><p><a href="quality-reviews/build15-medical-checks.json">Focused medical fixture</a> tests all three enemy types entering and leaving through both openings: 12 successful crossings with no grounded collision penetration. It also checks both opening sightlines, sealed-wall LOS and swept projectile blocking, three recovery/extraction routes, spawn clearance and zero rain streaks beneath the canopy. These arrangements are narrow correctness checks, not proof against every corner or multi-enemy deadlock. Warden visual overhangs still exceed its simplified grounded footprint.</p><p>Measured medical GLB: 42,476 bytes. Sampled whole-scene calls/triangles: 117/67,500, 91/55,844, 80/50,850. Software WebGL render counters depend on view/quality and are not hardware FPS measurements.</p><p><a href="quality-reviews/build15-checks.json">Sequential regression ledger</a> records development/production subpath smoke, combat, phase/usability, encounters, mission, playtest, standalone/browser movement, Warden art/locomotion/steering and normal-input controller. Controller final phase: <strong>won</strong>, 3 memories, 13 kills, health 100, shield 60. Exact enemy/collider information and routing/aim calculations are advantages; actions use normal listeners. Script exit status alone was not used as victory evidence. A final one-line cleanup also removed the duplicated opening phase briefing from the right feed; focused UI fixtures plus development smoke, production-subpath smoke and mission checks passed afterward (build15-final-ui-checks.json). <a href="quality-reviews/build15-normal-controls.json">Full controller result</a>.</p><p>Initial verification overlapped final asset/source refinement; Vite hot reload destroyed the steering/controller browser contexts. Those interrupted attempts are retained in the initial ledger. The final pass ran against frozen implementation. No audio work or listening was performed; software screenshots cannot certify hardware performance, enjoyment, accessibility coverage or blind discovery. Two routes add meaningful spatial contrast, but the small roster, compact mission, simplified manufactured surfaces and limited encounter variety still keep this far from AAA readiness. The quality mission remains open.</p></section>
 <section id="quality-build14"><span class="number">ONGOING QUALITY REVIEW / BUILD 14 PARENT FOLLOWUP</span><h2>A crawler that steers before travelling.</h2>
 <p>The two Build13 reviewers found that the new tracks still snapped to each requested travel direction. The parent corrected this concrete finding: the undercarriage now turns at up to 2.8 radians per second, slows translation during sharp pivots, and reverses its drive for retreats instead of instantly swivelling through 180 degrees. The upper assembly tracks the player at up to 4 radians per second while the base can remain planted. These are grounded machine motions; no camera shake or extra view motion was added.</p>
 <p>Steering changes the travel vector before the existing collision solver runs. Track links and rollers still advance from resolved displacement and differential pivot travel, so a blocked straight drive does not run a cosmetic treadmill. Fixed optic anchor, shot volumes, original authored shutter cant, material ownership, fallback, health, damage and combat timings are preserved. This is a bounded kinematic mechanism, with the existing axis-based collision response and no suspension/load simulation; it is not a production robotics model.</p>
