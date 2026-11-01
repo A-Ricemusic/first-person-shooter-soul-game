@@ -1,0 +1,147 @@
+{
+  "reviewer": "Fresh independent GPT-6.1 Sol combat reviewer",
+  "build": "Build04, source stable during browser review",
+  "ratings": {
+    "prototypeGameplayOverall": 6.5,
+    "aaaProductionReadiness": 2,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "dimensions": {
+      "weaponAndMovementFeel": 6.5,
+      "combatTensionAndFairness": 6,
+      "enemyBehaviorAndReadability": 6.5,
+      "meaningfulChoices": 7,
+      "missionPacing": 7,
+      "replayAppeal": 5.5
+    },
+    "reason": "Meaningful improvement: recovery is a legible commitment with partial rewards, extraction is a defended hold, directional damage feedback exists, and roles/objectives are more readable. The prototype still has one arena/one weapon, weak pressure against continuous movement, limited anticipatory feedback for offscreen charges, a short finale, and little reason to replay beyond score/difficulty. It is not a10/10 game or AAA-ready."
+  },
+  "methods": [
+    "35 seconds normal square movement with active enemies, no firing/dash; then up to5.6seconds stationary aim/fire using instrumented visible target positions.",
+    "Separate targeted test: RAF stopped, enemies cleared to isolate channel, arranged positions/resources, fixed-step debug advance; partial recovery/cancel/complete and extraction progress/leave/return. Not a normal mission."
+  ],
+  "observations": {
+    "survival": {
+      "simulatedSeconds": 36.13189999999882,
+      "health": 100,
+      "shield": 11,
+      "kills": 0,
+      "damageEvents": [
+        {
+          "type": "damage",
+          "amount": 19,
+          "direction": 0.6107233907141053,
+          "time": 3.6497666666666566
+        },
+        {
+          "type": "damage",
+          "amount": 13,
+          "direction": 1.782448962836243,
+          "time": 3.8914666666666555
+        },
+        {
+          "type": "damage",
+          "amount": 19,
+          "direction": 0.20868998519138715,
+          "time": 23.799099999999367
+        },
+        {
+          "type": "damage",
+          "amount": 15,
+          "direction": 1.4620815577279567,
+          "time": 34.6986333333322
+        },
+        {
+          "type": "damage",
+          "amount": 19,
+          "direction": 1.4176468849617638,
+          "time": 35.09859999999886
+        },
+        {
+          "type": "damage",
+          "amount": 15,
+          "direction": 1.1495218396235396,
+          "time": 35.21533333333218
+        }
+      ]
+    },
+    "stationaryAimFire": {
+      "simulatedSeconds": 42.023233333331895,
+      "phase": "lost",
+      "kills": 5,
+      "health": 0,
+      "secondsAfterSurvival": 5.891333333333073
+    },
+    "recovery": {
+      "partialProgress": 0.5185185185185185,
+      "afterRelease": 0,
+      "coresAfterCompletion": 1,
+      "healthAfterCompletion": 70,
+      "shieldAfterCompletion": 35,
+      "memoryText": "“Every signal is a person. If you can hear me, we are still here.”"
+    },
+    "extraction": {
+      "after1point5Seconds": 0.37916666666666654,
+      "enemiesSpawned": 2,
+      "afterLeaving0point5Seconds": 0.12083333333333285,
+      "afterReturn3point5Seconds": 0.9999999999999972,
+      "phaseAtLastStep": "playing",
+      "note": "At last controlled step progress was0.9999999999999972 and displayed100% while phase remainedplaying. This is at most one extra frame from threshold/rounding, not a demonstrated stuck extraction."
+    },
+    "browserExceptions": [],
+    "screenshots": [
+      "/tmp/soulfall04-survival.png",
+      "/tmp/soulfall04-targeted-end.png",
+      "/tmp/soulfall04-fire.png"
+    ]
+  },
+  "improvementsVerified": [
+    "Named archive markers/distance labels are visible in the actual normal-control screenshot.",
+    "Functional HUD text is larger and readable at1440x900.",
+    "Gold interceptor is visually distinct in the actual targeted extraction screenshot.",
+    "Hold-E recovery accumulates progress, cancels on release, completes, and awards the intended partial Standard recovery.",
+    "Memory fragment appears as readable content tied to a named person.",
+    "Extraction has progress, two spawned local enemies, and progress decay outside zone.",
+    "Directional damage arrow appeared in actual screenshots."
+  ],
+  "remainingPriorities": [
+    {
+      "priority": 1,
+      "area": "Anticipatory threat readability",
+      "finding": "Enemies outside the forward view can charge and fire without an on-screen pre-attack cue. Damage arrow helps only after being hit. Current enemy markers explicitly skip behind-camera targets.",
+      "recommendation": "Show restrained offscreen charging direction pips/arcs and/or distinct spatial charge warnings; cap or stagger concurrent charged attacks so the player can respond rather than absorb overlapping unseen fire."
+    },
+    {
+      "priority": 2,
+      "area": "Pressure while moving and exposed burst",
+      "finding": "Continuous simple square movement still preserved fullhealth for35seconds without any shooting/dash. Stopping after that led to death~5.9seconds later despite5kills. This is somewhat improved from baseline but remains binary.",
+      "recommendation": "Test moving/standing/dashing with role-specific pressure and coordinated attack cadence rather than blanket damage increases. Preserve cover and recovery opportunities."
+    },
+    {
+      "priority": 3,
+      "area": "Finale duration",
+      "finding": "Four-second extraction is now readable and has interceptors, but targeted sequence took little health pressure. It can end as the new enemies arrive.",
+      "recommendation": "Consider6–8seconds onOperator/Veteran, or an explicit second short uplinkstage with a new tactical angle; keepRecon shorter. Test an actual full mission before tuning."
+    },
+    {
+      "priority": 4,
+      "area": "Resource/replay decisions",
+      "finding": "Every kill still yields24rounds and cores60; resource pressure remains mostlyreloadtiming. One weapon/arena limits replayappeal.",
+      "recommendation": "Tune Standard supplyamount/frequency while preserving a recovery path; add a simple optional challenge/variant encounter only after corecombat feels fair."
+    },
+    {
+      "priority": 5,
+      "area": "Progress threshold polish",
+      "finding": "Controlled extraction could display100% while awaiting the next frame at a floating-point value just below1.",
+      "recommendation": "Use an epsilon completion threshold or floor displayedpercentage below100 until completed."
+    }
+  ],
+  "limitations": [
+    "Agent review through an automated Chrome browser, not independent human audiencefeedback.",
+    "Normal-control section used active enemies and no resource/position/enemy cheats; aiming used exact visible target positions.",
+    "Recovery and extraction tests deliberately cleared enemies/arranged positions/stepped simulation to isolate mechanics; they are not full normal-control mission completion.",
+    "Headless software rendering and screenshots do not establish targethardware performance or audioquality.",
+    "Ratings are provisional judgments and were not inflated toward the requested10."
+  ],
+  "rawObservations": "/tmp/soulfall-review04-observations.json"
+}

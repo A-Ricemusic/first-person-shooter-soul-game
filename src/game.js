@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { buildWorld } from './world.js';
 import { SoulAudio } from './audio.js';
+import { CORE_SITES, RECOVERY_SECONDS, EXTRACTION_SECONDS } from './mission.js';
 
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = THREE.MathUtils.clamp;
@@ -18,17 +19,18 @@ function mesh(geometry, material, x = 0, y = 0, z = 0) {
 
 /** A single, owned simulation loop. Rendering is separate from game state. */
 export class Game {
-  constructor({ canvas, onState = () => {}, onEvent = () => {} }) {
-    this.canvas = canvas; this.onState = onState; this.onEvent = onEvent;
-    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, volume: 0.65, reducedMotion: false };
+  constructor({ canvas, onState = () => {}, onEvent = () => {}, onMarkers = () => {} }) {
+    this.canvas = canvas; this.onState = onState; this.onEvent = onEvent; this.onMarkers = onMarkers;
+    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
     this.mouseDown = false; this.aim = false; this.dragging = false; this.pointerFallback = false;
     this.yaw = 0; this.pitch = 0; this.animTime = 0; this.runTime = 0; this.lastFrame = 0; this.emitTimer = 0;
     this.enemies = []; this.projectiles = []; this.effects = []; this.pickups = []; this.coreNodes = [];
+    this.playerVelocity = new THREE.Vector3(); this.nextEnemyId = 0;
     this.player = new THREE.Vector3(); this.velocityY = 0; this.grounded = true;
     this.dashVector = new THREE.Vector3(); this.dashTime = 0; this.dashCooldown = 0;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180;
-    this.kills = 0; this.cores = 0; this.score = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
+    this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.reloading = false; this.reloadTimer = 0; this.fireTimer = 0; this.lastDamage = -100;
     this.recoil = 0; this.kick = 0; this.aimBlend = 0; this.stepDistance = 0; this.footTimer = 0;
     this.ray = new THREE.Ray(); this.raycaster = new THREE.Raycaster(); this.wallPoint = new THREE.Vector3();
@@ -102,6 +104,8 @@ export class Game {
   buildExtraction() {
     this.exit = new THREE.Group(); this.exit.position.copy(this.world.playerSpawn); this.exit.position.y = 0.04;
     this.exitRing = mesh(new THREE.TorusGeometry(2.5, 0.06, 8, 80), new THREE.MeshBasicMaterial({ color: 0x637b83, transparent: true, opacity: 0.5 })); this.exitRing.rotation.x = Math.PI / 2; this.exit.add(this.exitRing);
+    this.exitBeam = mesh(new THREE.CylinderGeometry(.25, 2.3, 16, 24, 1, true), new THREE.MeshBasicMaterial({color:0x65ffb7,transparent:true,opacity:.14,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}),0,8,0); this.exitBeam.visible=false; this.exit.add(this.exitBeam);
+    const exitLight = new THREE.PointLight(0x65ffb7, 7, 13); exitLight.position.y=2; this.exitBeam.add(exitLight);
     this.scene.add(this.exit);
   }
 
@@ -157,21 +161,22 @@ export class Game {
 
   setSettings(options = {}) {
     this.options = { ...this.options, ...options }; this.audio.setVolume(this.options.volume);
-    if (this.renderer && options.quality) this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? 2 : 1.5));
+    if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? 2 : 1.5)); this.renderer.shadowMap.enabled = options.quality !== 'low'; }
     this.resize?.();
   }
   start(options = {}) {
     if (!this.loaded) return;
     this.setSettings(options); this.audio.wake(); this.clearRun(); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
-    this.difficulty = DIFFICULTIES[this.options.difficulty] || DIFFICULTIES.standard;
-    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
+    this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
+    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
+    this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
     this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
-    this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; });
-    this.exitRing.material.color.setHex(0x637b83);
+    this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
+    this.exitRing.material.color.setHex(0x637b83); this.exitBeam.visible = false;
     this.spawnWave(7); this.phase = 'playing'; this.animate(0); this.requestLock(); this.event('phase', 'The station is waking. Recover the three signal cores.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
@@ -217,12 +222,12 @@ export class Game {
     if (this.sentinelAsset) {
       [...group.children].forEach(child => { if (child !== light) child.visible = false; });
       const authored = this.sentinelAsset.clone(true);
-      authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); node.userData.sharedGeometry = true; node.castShadow = true; } });
+      authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); if(type === 'stalker' && node.material.metalness > .4 && node.material.emissiveIntensity < 2)node.material.color.lerp(new THREE.Color(0xc99749), .7); node.userData.sharedGeometry = true; node.castShadow = true; } });
       group.add(authored);
       // A readable telegraph stays visible on both Blender variants and fallback silhouettes.
       const charge = mesh(new THREE.SphereGeometry(0.085, 8, 8), red, 0, 1.3, 0.43); group.add(charge);
     }
-    this.enemies.push({ group, leftLeg, rightLeg, red, light, type, health: (type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, group, leftLeg, rightLeg, red, light, type, health: (type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -233,19 +238,27 @@ export class Game {
     if (this.phase !== 'playing' || this.dashCooldown > 0) return;
     this.dashVector.copy(this.moveDirection());
     if (this.dashVector.lengthSq() < 0.01) this.dashVector.set(-Math.sin(this.yaw), 0, -Math.cos(this.yaw));
-    this.dashTime = 0.22; this.invulnerable = 0.4; this.dashCooldown = 4.5; this.audio.dash();
+    this.dashCount++; this.dashTime = 0.22; this.invulnerable = 0.4; this.dashCooldown = 4.5; this.audio.dash();
     this.event('dash', 'SOUL SHIFT');
     for (let i = 0; i < 12; i++) this.particle(this.player.clone().add(new THREE.Vector3((Math.random() - 0.5) * 0.6, Math.random() - 1, (Math.random() - 0.5) * 0.6)), 0x62eeff, 0.8, 0.08);
   }
   interact() {
     if (this.phase !== 'playing') return;
-    const core = this.coreNodes.find(c => !c.collected && c.position.distanceTo(new THREE.Vector3(this.player.x, 0, this.player.z)) < 2.8);
-    if (!core) { this.event('notice', 'Move within 2.8 m of a signal core to recover it.'); return; }
-    core.collected = true; core.group.visible = false; this.cores++; this.score += 1000; this.health = Math.min(100, this.health + 30); this.shield = 60; this.reserve = Math.min(360, this.reserve + 60);
-    this.audio.core(); this.event('core', `Signal core ${this.cores}/3 recovered. Armor restored. +60 ammunition.`);
+    const core = this.coreNodes.find(c => !c.collected && Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
+    if (!core) { this.event('notice', 'Approach a cyan archive beacon. Hold E to recover its memory.'); return; }
+    this.channelCore = core;
+  }
+  recoverCore(core) {
+    if (this.phase !== 'playing' || core.collected) return;
+    core.collected = true; core.group.visible = false; this.cores++; this.score += 1000;
+    const heal = this.activeDifficulty === 'story' ? 30 : this.activeDifficulty === 'veteran' ? 10 : 20;
+    this.health = Math.min(100, this.health + heal); this.shield = Math.min(60,this.shield+(this.activeDifficulty==='story'?60:35)); this.reserve = Math.min(360, this.reserve + 60);
+    this.world.setCoreState?.(core.id,true); this.coreProgress=0; this.channelCore=null;
+    this.audio.core(); this.event('core', `${CORE_SITES[core.id].name} // MEMORY SECURED +1000`);
+    this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
     for (let i = 0; i < 28; i++) this.particle(core.position.clone().add(new THREE.Vector3(0, 1, 0)), 0x62eaff, 1.5, 0.1);
-    if (this.cores < this.coreNodes.length) { this.spawnWave(2 + this.cores); this.event('notice', 'Reinforcements inbound. Keep moving.'); }
-    else { this.exitRing.material.color.setHex(0x65ffb7); this.spawnWave(3); this.event('notice', 'All cores secured. Return to the green extraction ring at the insertion point.'); }
+    if (this.cores < this.coreNodes.length) this.spawnWave(2+this.cores);
+    else { this.exitRing.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(3); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
     this.emit();
   }
 
@@ -270,7 +283,7 @@ export class Game {
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
     if (hit) {
-      this.shotsHit++; this.audio.hit(headshot); hit.health -= headshot ? 82 : 34;
+      this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= headshot ? 82 : 34;
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
       for (let i = 0; i < 4; i++) this.particle(end, headshot ? 0xffffff : 0xff9a45, 0.35, 0.045);
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage: headshot ? 82 : 34 });
@@ -325,10 +338,11 @@ export class Game {
     return true;
   }
 
-  damage(amount) {
-    if (this.phase !== 'playing' || this.invulnerable > 0) return;
+  damage(amount, from = null) {
+    if (this.phase !== 'playing') return;
+    if(this.invulnerable>0){if(from){this.phaseDodges++;this.score+=75;this.event('phaseDodge','PHASE EVADE +75');}return;}
     amount *= this.difficulty.damage; const absorbed = Math.min(this.shield, amount); this.shield -= absorbed; this.health -= amount - absorbed;
-    this.lastDamage = this.runTime; this.audio.hurt(); this.event('damage', '', { amount });
+    this.lastDamage = this.runTime; this.audio.hurt(); this.event('damage', '', { amount, direction: from ? Math.atan2(from.x-this.player.x,-(from.z-this.player.z))+this.yaw : null });
     if (this.health <= 0) { this.health = 0; this.finish(false); } this.emit();
   }
   finish(won) {
@@ -341,20 +355,32 @@ export class Game {
   update(dt) {
     this.runTime += dt; this.fireTimer = Math.max(0, this.fireTimer - dt); this.dashCooldown = Math.max(0, this.dashCooldown - dt); this.invulnerable = Math.max(0, (this.invulnerable || 0) - dt);
     if (this.runTime - this.lastDamage > 5) this.shield = Math.min(60, this.shield + dt * 9);
-    if (this.reloading) { this.reloadTimer -= dt; if (this.reloadTimer <= 0) { const needed = Math.min(30 - this.ammo, this.reserve); this.ammo += needed; this.reserve -= needed; this.reloading = false; this.event('notice', 'Weapon ready.'); } }
+    if (this.reloading) { this.reloadTimer -= dt; if (this.reloadTimer <= 0) { const needed = Math.min(30 - this.ammo, this.reserve); this.ammo += needed; this.reserve -= needed; this.reloading = false; this.event('reloadComplete', 'Weapon ready.'); } }
+    const previousPlayer=this.player.clone();
     const direction = this.moveDirection(), sprint = this.keys.has('ControlLeft') || this.keys.has('ControlRight');
     const speed = this.aim ? 3.1 : sprint ? 8 : 5.5;
     if (this.dashTime > 0) { this.dashTime -= dt; this.moveEntity(this.player, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27); }
     else this.moveEntity(this.player, direction.x * speed * dt, direction.z * speed * dt);
     if (!this.grounded) { this.velocityY -= dt * 21; this.player.y += this.velocityY * dt; if (this.player.y <= 1.7) { this.player.y = 1.7; this.velocityY = 0; this.grounded = true; } }
     if (direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
+    if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
     this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
-    if (this.phase === 'playing' && this.cores === this.coreNodes.length && Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) < 2.7) this.finish(true);
+    if(this.phase !== 'playing')return;
+    const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
+    if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
+    else {this.channelCore=null;this.coreProgress=0;}
+    if(this.cores===this.coreNodes.length){
+      const distance=Math.hypot(this.player.x-this.world.playerSpawn.x,this.player.z-this.world.playerSpawn.z);
+      if(distance<12&&!this.extractionWave){this.extractionWave=true;for(const x of [-18,18])if(this.canOccupy(x,23,.5))this.spawnEnemy(new THREE.Vector3(x,0,23),'stalker',2);this.event('notice',`INTERCEPTORS INBOUND. Hold the green zone for ${this.extractionSeconds} seconds.`);}
+      this.extractionProgress=distance<2.7?this.extractionProgress+dt:Math.max(0,this.extractionProgress-dt*2);
+      if(this.extractionProgress+1e-8>=this.extractionSeconds)this.finish(true);
+    }
   }
 
   updateEnemies(dt) {
+    let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt;
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
@@ -363,13 +389,14 @@ export class Game {
       enemy.visible = this.hasLineOfSight(eye, this.player);
       if (enemy.hitFlash > 0) { enemy.hitFlash -= dt; if (enemy.hitFlash <= 0) enemy.red.emissive.setHex(0xff341c); }
       if (enemy.windup > 0) {
+        if(enemy.type==='stalker' && enemy.windup>.16) { const lead=Math.min(1.7,distance/18+.16); enemy.target.copy(this.player).addScaledVector(this.playerVelocity,lead); }
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
-        if (enemy.windup <= 0) { this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
-      } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible) {
-        enemy.windup = enemy.type === 'stalker' ? 0.42 : 0.65;
+        if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
+      } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && charging<maxCharging) {
+        charging++; enemy.windup = enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
-        if (distance < 14) this.audio.warning();
+        if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning();this.nextWarning=this.runTime+.45;}
       }
       const move = new THREE.Vector3();
       if (distance > (enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
@@ -388,7 +415,7 @@ export class Game {
         enemy.leftLeg.rotation.x = Math.sin(enemy.phase * 7) * 0.45; enemy.rightLeg.rotation.x = -enemy.leftLeg.rotation.x;
       }
       enemy.group.rotation.y = Math.atan2(delta.x, delta.z);
-      if (distance < 1.4 && (enemy.meleeCooldown || 0) <= 0) { this.damage(15); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
+      if (distance < 1.4 && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
   }
 
@@ -396,7 +423,7 @@ export class Game {
     const origin = enemy.group.position.clone().add(new THREE.Vector3(0, 1.2, 0));
     const velocity = enemy.target.clone().sub(origin).normalize().multiplyScalar(enemy.type === 'stalker' ? 18 : 15);
     const projectile = mesh(new THREE.SphereGeometry(0.09, 6, 6), new THREE.MeshBasicMaterial({ color: 0xff6a31 })); projectile.position.copy(origin); this.scene.add(projectile);
-    this.projectiles.push({ mesh: projectile, velocity, life: 4, damage: enemy.type === 'stalker' ? 13 : 19 });
+    this.projectiles.push({ mesh: projectile, origin: origin.clone(), velocity, life: 4, damage: enemy.type === 'stalker' ? 13 : 19 });
     this.tracer(origin, origin.clone().addScaledVector(velocity, 0.05), 0xff6033, 0.12);
   }
   updateProjectiles(dt) {
@@ -419,7 +446,7 @@ export class Game {
         if (hit) playerDistance = Math.min(playerDistance, previous.distanceTo(hit));
       }
       if (wallDistance <= travel && wallDistance <= playerDistance) p.life = 0;
-      else if (playerDistance <= travel) { this.damage(p.damage); p.life = 0; }
+      else if (playerDistance <= travel) { this.damage(p.damage,p.origin); p.life = 0; }
       if (p.life <= 0) { this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.projectiles.splice(i, 1); }
     }
   }
@@ -492,8 +519,17 @@ export class Game {
       const step = Math.min(1 / 120, remaining); this.update(step); remaining -= step;
     }
     this.animate(this.phase === 'paused' ? 0 : dt); this.renderer.render(this.scene, this.camera);
+    this.onMarkers(this.captureMarkers());
     this.emitTimer -= dt; if (this.emitTimer <= 0) { this.emit(); this.emitTimer = 0.1; }
     this.frameId = requestAnimationFrame(t => this.frame(t));
+  }
+  captureMarkers() {
+    if(this.phase!=='playing')return [];
+    const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
+    const markers=this.coreNodes.filter(c=>!c.collected).map(c=>({id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0)))}));
+    if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
+    for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
+    return markers;
   }
   captureState() {
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: Math.hypot(c.position.x - this.player.x, c.position.z - this.player.z) }));
@@ -502,10 +538,11 @@ export class Game {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
-      objective: this.cores === this.coreNodes.length ? 'Return to the extraction ring' : closest?.distance < 2.8 ? 'Press E to recover signal core' : 'Recover the three signal cores',
+      objective: this.cores === this.coreNodes.length ? (this.extractionProgress>0?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < 2.8 ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
+      coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
-      difficulty: this.options.difficulty, player: { x: this.player.x, z: this.player.z, yaw: this.yaw }, coreMarkers,
-      nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? 'E · RECOVER SIGNAL CORE' : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, z: this.player.z, yaw: this.yaw }, coreMarkers,
+      nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       exitDistance: this.world ? Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) : 0,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
       bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
@@ -517,8 +554,8 @@ export class Game {
   installDebug() {
     this.debug = {
       teleport: (x, z) => { if (!this.canOccupy(x, z)) throw new Error('Target is inside a collider'); this.player.set(x, 1.7, z); this.emit(); },
-      collectCore: i => { const c = this.coreNodes[i]; this.player.set(c.position.x, 1.7, c.position.z); this.interact(); },
-      extract: () => { this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.update(0.001); },
+      collectCore: i => { const c = this.coreNodes[i]; this.player.set(c.position.x, 1.7, c.position.z); this.recoverCore(c); },
+      extract: () => { this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.extractionProgress=this.extractionSeconds||EXTRACTION_SECONDS; this.update(0.001); },
       damage: n => this.damage(n),
       killAll: () => [...this.enemies].forEach(e => this.killEnemy(e)),
       advance: seconds => { for (let elapsed = 0; elapsed < seconds; elapsed += 1 / 60) if (this.phase === 'playing') this.update(1 / 60); this.emit(); },

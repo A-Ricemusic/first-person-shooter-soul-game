@@ -1,0 +1,349 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol experience reviewer",
+  "build": "Build 04 before any changes after this review",
+  "ratings": {
+    "presentation": 6.5,
+    "usability": 7,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "reason": "Clear improvements in wayfinding, functional text, recovery feedback, memory identity, and extraction staging. Art fidelity, authored performance/animation, encounter variety and narrative payoff remain well below AAA production readiness. These are limited agent judgments, not human-study scores or a perfection certification."
+  },
+  "methods": [
+    "Installed Chrome headless via Playwright at1440x900; inspected actual menu, graphics settings, spawn, nearby site, recovery progress, memory, extraction and result screenshots.",
+    "Normal controls with active enemies on Recon: W2s, A4.7s, W6.1s. The straight-line route met cover at x-24.29,z1.16,16.16m from West Archive; this was not a full blind objective completion.",
+    "Explicit debug teleport then positioned the player2m from West core for real hold-E interaction. Remaining cores were debug-collected and player moved to insertion to inspect active extraction; four-second hold completed with19 enemies active.",
+    "Read UI source to identify remaining small label sizes and message-routing/pause-memory behavior. No source files edited."
+  ],
+  "improvementsObserved": [
+    "At spawn all three named core markers and distances are immediately visible, reducing dependence on tiny radar.",
+    "Hold-E progress is visible; recovered core becomes a named person with a readable quote; corresponding pylon dims green and crystal disappears.",
+    "Functional health/ammunition/objective text is larger. Graphics selector is visible and dialog fits1440x900.",
+    "Extraction has a green beacon, explicit progress panel, hold instruction and a finite four-second stage rather than instant completion.",
+    "Directional damage cue appeared during extraction and victory panel rendered correctly."
+  ],
+  "findings": [
+    {
+      "id": "transient-memory-without-log",
+      "severity": "medium",
+      "problem": "A recovered memory is only visible in a7.5s transient card during active combat. Pause hides HUD while the timeout continues. A player cannot safely pause to read the new story payload.",
+      "evidence": "Actual memory card screenshot plus main.js event timeout and pause HUD visibility.",
+      "recommendation": "Persist recovered quotes in a pause/archive log; make them readable after the card disappears."
+    },
+    {
+      "id": "routine-center-banner-noise",
+      "severity": "medium",
+      "problem": "Current event handler routes all nonempty kill/supply messages to both center announcement and right feed. In combat this can repeatedly compete with targets and mission messages.",
+      "evidence": "Actual core recovery shows duplicate center/feed notification; source confirms kill and supply follow same path. Frequency was not measured in this experience run.",
+      "recommendation": "Use feed/hitmarker for routine kills and supply. Reserve center announcements for mission phase, core and extraction events."
+    },
+    {
+      "id": "remaining-small-spatial-labels",
+      "severity": "low",
+      "problem": "Spatial objective labels are10px and enemy labels9px, despite larger functional HUD elsewhere.",
+      "evidence": "Computed/source label sizes and actual spawn/near-core screenshots.",
+      "recommendation": "Use11\u201312px objective/enemy labels with restrained backgrounds; retain distance contrast."
+    },
+    {
+      "id": "generic-victory-payoff",
+      "severity": "medium",
+      "problem": "New named people disappear into a generic victory panel with only eliminations/time/score. The mission premise now has content but no recovered-person manifest.",
+      "evidence": "Actual result screenshot shows THE SIGNAL LIVES and generic text; no recovered names or memory recap.",
+      "recommendation": "List the three recovered people/roles and archive text or access to it on completion."
+    },
+    {
+      "id": "art-and-content-ceiling",
+      "severity": "production-scope",
+      "problem": "The level remains a repeated slab courtyard with highly simplified hovering drones and weapon/character presentation. A bright rectangular floor reflection still draws the eye. No authored character performance, cinematic extraction, bespoke soundscape or wider campaign has been demonstrated.",
+      "recommendation": "Continue bespoke environmental storytelling, material/animation/audio work and independent human playtesting. Correctness checks cannot establish AAA quality."
+    }
+  ],
+  "observations": {
+    "normalTraversal": {
+      "phase": "playing",
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 60,
+      "maxShield": 60,
+      "ammo": 30,
+      "reserve": 180,
+      "reloading": false,
+      "reloadProgress": 0,
+      "kills": 0,
+      "cores": 0,
+      "totalCores": 3,
+      "time": 13.932599999999876,
+      "dashCooldown": 0,
+      "objective": "RECOVER THE THREE MEMORIES",
+      "coreProgress": 0,
+      "extractionProgress": 0,
+      "score": 0,
+      "enemiesAlive": 7,
+      "headshots": 0,
+      "accuracy": 0,
+      "difficulty": "story",
+      "player": {
+        "x": -24.290750000000042,
+        "z": 1.1612166666665455,
+        "yaw": 0
+      },
+      "coreMarkers": [
+        {
+          "x": -24,
+          "z": -15,
+          "id": 0,
+          "collected": false,
+          "distance": 16.163831838689756
+        },
+        {
+          "x": 24,
+          "z": -15,
+          "id": 1,
+          "collected": false,
+          "distance": 50.92328995370826
+        },
+        {
+          "x": 0,
+          "z": -33,
+          "id": 2,
+          "collected": false,
+          "distance": 41.91693285188503
+        }
+      ],
+      "nearestCoreDistance": 16.163831838689756,
+      "interaction": "",
+      "heading": 0,
+      "exitDistance": 38.47588239892778,
+      "exit": {
+        "x": 0,
+        "z": 31
+      },
+      "bounds": {
+        "minX": -37,
+        "maxX": 37,
+        "minZ": -42,
+        "maxZ": 42
+      },
+      "pointerFallback": false
+    },
+    "recovery": {
+      "phase": "playing",
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 60,
+      "maxShield": 60,
+      "ammo": 30,
+      "reserve": 240,
+      "reloading": false,
+      "reloadProgress": 0,
+      "kills": 0,
+      "cores": 1,
+      "totalCores": 3,
+      "time": 16.81579999999972,
+      "dashCooldown": 0,
+      "objective": "RECOVER THE THREE MEMORIES",
+      "coreProgress": 0,
+      "extractionProgress": 0,
+      "score": 1000,
+      "enemiesAlive": 10,
+      "headshots": 0,
+      "accuracy": 0,
+      "difficulty": "story",
+      "player": {
+        "x": -24,
+        "z": -13,
+        "yaw": 0
+      },
+      "coreMarkers": [
+        {
+          "x": -24,
+          "z": -15,
+          "id": 0,
+          "collected": true,
+          "distance": 2
+        },
+        {
+          "x": 24,
+          "z": -15,
+          "id": 1,
+          "collected": false,
+          "distance": 48.041648597857254
+        },
+        {
+          "x": 0,
+          "z": -33,
+          "id": 2,
+          "collected": false,
+          "distance": 31.240998703626623
+        }
+      ],
+      "nearestCoreDistance": 31.240998703626623,
+      "interaction": "",
+      "heading": 0,
+      "exitDistance": 50.11985634456667,
+      "exit": {
+        "x": 0,
+        "z": 31
+      },
+      "bounds": {
+        "minX": -37,
+        "maxX": 37,
+        "minZ": -42,
+        "maxZ": 42
+      },
+      "pointerFallback": false
+    },
+    "extraction": {
+      "phase": "playing",
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 60,
+      "maxShield": 60,
+      "ammo": 30,
+      "reserve": 360,
+      "reloading": false,
+      "reloadProgress": 0,
+      "kills": 0,
+      "cores": 3,
+      "totalCores": 3,
+      "time": 19.69909999999956,
+      "dashCooldown": 0,
+      "objective": "HOLD THE EXTRACTION ZONE",
+      "coreProgress": 0,
+      "extractionProgress": 0.408325,
+      "score": 3000,
+      "enemiesAlive": 19,
+      "headshots": 0,
+      "accuracy": 0,
+      "difficulty": "story",
+      "player": {
+        "x": 0,
+        "z": 31,
+        "yaw": 0
+      },
+      "coreMarkers": [
+        {
+          "x": -24,
+          "z": -15,
+          "id": 0,
+          "collected": true,
+          "distance": 51.88448708429139
+        },
+        {
+          "x": 24,
+          "z": -15,
+          "id": 1,
+          "collected": true,
+          "distance": 51.88448708429139
+        },
+        {
+          "x": 0,
+          "z": -33,
+          "id": 2,
+          "collected": true,
+          "distance": 64
+        }
+      ],
+      "nearestCoreDistance": null,
+      "interaction": "",
+      "heading": 0,
+      "exitDistance": 0,
+      "exit": {
+        "x": 0,
+        "z": 31
+      },
+      "bounds": {
+        "minX": -37,
+        "maxX": 37,
+        "minZ": -42,
+        "maxZ": 42
+      },
+      "pointerFallback": false
+    },
+    "result": {
+      "phase": "won",
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 29,
+      "maxShield": 60,
+      "ammo": 30,
+      "reserve": 360,
+      "reloading": false,
+      "reloadProgress": 0,
+      "kills": 0,
+      "cores": 3,
+      "totalCores": 3,
+      "time": 22.07396666666609,
+      "dashCooldown": 0,
+      "objective": "HOLD THE EXTRACTION ZONE",
+      "coreProgress": 0,
+      "extractionProgress": 1,
+      "score": 6312,
+      "enemiesAlive": 19,
+      "headshots": 0,
+      "accuracy": 0,
+      "difficulty": "story",
+      "player": {
+        "x": 0,
+        "z": 31,
+        "yaw": 0
+      },
+      "coreMarkers": [
+        {
+          "x": -24,
+          "z": -15,
+          "id": 0,
+          "collected": true,
+          "distance": 51.88448708429139
+        },
+        {
+          "x": 24,
+          "z": -15,
+          "id": 1,
+          "collected": true,
+          "distance": 51.88448708429139
+        },
+        {
+          "x": 0,
+          "z": -33,
+          "id": 2,
+          "collected": true,
+          "distance": 64
+        }
+      ],
+      "nearestCoreDistance": null,
+      "interaction": "",
+      "heading": 0,
+      "exitDistance": 0,
+      "exit": {
+        "x": 0,
+        "z": 31
+      },
+      "bounds": {
+        "minX": -37,
+        "maxX": 37,
+        "minZ": -42,
+        "maxZ": 42
+      },
+      "pointerFallback": false
+    },
+    "errors": []
+  },
+  "screenshots": [
+    "/tmp/soulfall-review04-menu.png",
+    "/tmp/soulfall-review04-settings.png",
+    "/tmp/soulfall-review04-spawn.png",
+    "/tmp/soulfall-review04-near-core.png",
+    "/tmp/soulfall-review04-recovery.png",
+    "/tmp/soulfall-review04-memory.png",
+    "/tmp/soulfall-review04-extraction.png",
+    "/tmp/soulfall-review04-result.png"
+  ],
+  "limitations": [
+    "This is automated browser inspection, not an independent human playtest.",
+    "Recon difficulty was selected to inspect experience; this review does not assess Standard balance.",
+    "Debug arrangements were used for near-core and final-phase presentation after the normal route met cover.",
+    "No source files edited; browser is closed and root may safely change runtime.",
+    "A7/10 usability judgment is not a10/10 game or a guarantee of enjoyment."
+  ]
+}

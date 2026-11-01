@@ -1,0 +1,176 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol experience reviewer; automated browser assessment, not a human study",
+  "build": "Build 05 as served during this review",
+  "ratings": {
+    "presentation": 7,
+    "usability": 8,
+    "levelReadability": 8,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The added spatial guidance, persistent readable archive, cleaner combat messaging, and named victory manifest form a coherent usable prototype. The underlying repeated courtyard, simplified drone/weapon art, lack of authored character/weapon performance and limited content still prevent a top-tier production presentation. These UI improvements do not establish AAA readiness."
+  },
+  "methods": [
+    "Installed Chrome headless via Playwright with actual WebGL rendering; inspected screenshots at 1440\u00d7900 and 1280\u00d7800.",
+    "Normal controls with active enemies: deployment, four 2.2-second W/A/D/W movement segments, RMB aim and LMB fire for 1.4 seconds. No debug arrangements during that segment. Final state: 11.3829 simulated seconds, health 76, shield 0, ammo 17, kills 0.",
+    "Targeted presentation arrangements after the normal segment: debug enemy clearing and core recovery to inspect all memory records, pause archive and victory. This is not an unassisted mission completion.",
+    "Opened the archive through the actual pause button, inspected all three quotes, resized the viewport, closed and resumed, then arranged extraction to inspect the result manifest.",
+    "Read notification routing source to identify the remaining reload-completion center notice; this source finding was not separately exercised."
+  ],
+  "verifiedImprovements": [
+    "Named goal/distance markers and larger functional HUD remain readable in the actual combat screenshot.",
+    "Pause archive preserves all three full quotes and fits at 1440\u00d7900 and 1280\u00d7800 without horizontal overflow; archive height is 701.75 px at both sizes.",
+    "Victory manifest names Mara Solberg, Elian Vale and Sera Nord with their roles; the combat summary is visible.",
+    "Routine kill/supply center banners are excluded by the current onEvent routing.",
+    "No uncaught browser exceptions occurred during review."
+  ],
+  "remainingFindings": [
+    {
+      "id": "results-archive-access",
+      "severity": "low",
+      "status": "confirmed from rendered results and source",
+      "problem": "After victory, names are plain manifest text and result actions are only Deploy Again / Return to Title. Full recovered quotes cannot be reopened from results; archive access is only in pause.",
+      "recommendation": "Provide Read Memories on results, or make each manifest entry open the existing archive."
+    },
+    {
+      "id": "reload-center-notice",
+      "severity": "low",
+      "status": "source-level finding; not separately exercised",
+      "problem": "Reload completion still emits notice \u201cWeapon ready\u201d, and notice routing still replaces the center announcement.",
+      "recommendation": "Use a reloadComplete event/feed only, or suppress this routine notice at center."
+    },
+    {
+      "id": "results-tiny-overflow",
+      "severity": "cosmetic",
+      "status": "measured",
+      "problem": "At 1280\u00d7800, the max-height 736 px result panel has clientHeight 734 and scrollHeight 737, producing 3 px of internal overflow although both buttons remain visible.",
+      "recommendation": "Trim a small amount of result spacing at short desktop heights, or accept intentional scrolling. No functional blocker was observed."
+    }
+  ],
+  "largerLimits": [
+    "Environment remains an open repeated slab/prop courtyard; bespoke spaces, encounter staging and authored environmental storytelling are limited.",
+    "Weapon and drone are readable original assets but have simplified shapes/materials and no demonstrated production character/hands animation.",
+    "This review did not assess sound perceptually; audio/voice performance and cross-device hardware performance are not independently validated.",
+    "No human audience feedback, campaign content depth, broad accessibility or platform quality validation. A 10/10 or AAA-readiness claim is not supported."
+  ],
+  "screenshots": {
+    "menu": "/tmp/soulfall05-menu.png",
+    "normal": "/tmp/soulfall05-normal.png",
+    "memory": "/tmp/soulfall05-memory.png",
+    "archive1440": "/tmp/soulfall05-archive-1440.png",
+    "archive1280": "/tmp/soulfall05-archive-1280.png",
+    "victory1280": "/tmp/soulfall05-victory-1280.png",
+    "victory1440": "/tmp/soulfall05-victory-1440.png"
+  },
+  "rawObservations": {
+    "checks": [
+      {
+        "normalControls": {
+          "phase": "playing",
+          "health": 76,
+          "maxHealth": 100,
+          "shield": 0,
+          "maxShield": 60,
+          "ammo": 17,
+          "reserve": 180,
+          "reloading": false,
+          "reloadProgress": 0,
+          "kills": 0,
+          "cores": 0,
+          "totalCores": 3,
+          "time": 11.382900000000003,
+          "dashCooldown": 0,
+          "objective": "RECOVER THE THREE MEMORIES",
+          "coreProgress": 0,
+          "extractionProgress": 0,
+          "extractionSeconds": 6,
+          "phaseDodges": 0,
+          "dashCount": 0,
+          "score": 0,
+          "enemiesAlive": 7,
+          "headshots": 0,
+          "accuracy": 0,
+          "difficulty": "standard",
+          "player": {
+            "x": -0.9168499999999982,
+            "z": 7.809249999999833,
+            "yaw": 0
+          },
+          "coreMarkers": [
+            {
+              "x": -24,
+              "z": -15,
+              "id": 0,
+              "collected": false,
+              "distance": 32.45140520046847
+            },
+            {
+              "x": 24,
+              "z": -15,
+              "id": 1,
+              "collected": false,
+              "distance": 33.780338948639816
+            },
+            {
+              "x": 0,
+              "z": -33,
+              "id": 2,
+              "collected": false,
+              "distance": 40.81954800686782
+            }
+          ],
+          "nearestCoreDistance": 32.45140520046847,
+          "interaction": "",
+          "heading": 0,
+          "exitDistance": 23.2088668289731,
+          "exit": {
+            "x": 0,
+            "z": 31
+          },
+          "bounds": {
+            "minX": -37,
+            "maxX": 37,
+            "minZ": -42,
+            "maxZ": 42
+          },
+          "pointerFallback": false
+        }
+      },
+      {
+        "archiveText": "MARA SOLBERG\nSTATION MEDIC\n\n\u201cIf someone finds this\u2026 the children made the last ferry. Tell them I kept the light on.\u201d\n\nELIAN VALE\nRELAY ENGINEER\n\n\u201cI could erase the station. I could not erase the people inside it. Bring them home.\u201d\n\nSERA NORD\nNIGHT OPERATOR\n\n\u201cEvery signal is a person. If you can hear me, we are still here.\u201d",
+        "archiveBounds": {
+          "x": 460,
+          "y": 99.125,
+          "width": 520,
+          "height": 701.75
+        }
+      },
+      {
+        "archiveBounds1280": {
+          "x": 380,
+          "y": 49.125,
+          "width": 520,
+          "height": 701.75
+        },
+        "horizontalOverflow": false
+      },
+      {
+        "manifest": "MARA SOLBERGStation medic\nELIAN VALERelay engineer\nSERA NORDNight operator",
+        "details": "0% ACCURACY \u00b7 0 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES",
+        "endBounds": {
+          "x": 375,
+          "y": 32,
+          "width": 530,
+          "height": 736
+        },
+        "endScroll": {
+          "scroll": 737,
+          "client": 734
+        }
+      }
+    ],
+    "errors": []
+  },
+  "sourceEdits": false,
+  "browserClosed": true
+}

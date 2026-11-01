@@ -1,0 +1,82 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol combat quality agent",
+  "build": "e3aad59 before this turn's improvements",
+  "ratings": {
+    "prototypeGameplayOverall": 5.5,
+    "aaaProductionReadiness": 2,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "A functioning, coherent short FPS arena with usable controls and a complete mission framework. Combat pressure is binary, the signature dash is not needed in the movement sample, enemy roles are visually indistinguishable, and recoveries/extraction lack a meaningful commitment phase. This is not a10/10 prototype or a production-ready AAA game.",
+    "dimensions": {
+      "weaponAndMovementFeel": 6.5,
+      "combatTensionAndFairness": 5,
+      "enemyBehaviorAndReadability": 4.5,
+      "meaningfulChoices": 4.5,
+      "missionPacing": 5,
+      "replayAppeal": 4.5
+    }
+  },
+  "methods": [
+    "Real Chrome/Playwright WebGL browser at1440x900, normal deployment and movement controls, active enemies.",
+    "35-second movement-survival sample: repeat WASD square segments every2.5seconds, no firing and no Soul Shift. No teleport, enemy removal, resource modification or simulation stepping.",
+    "After movement, stand and aim/fire using mouse movement events toward instrumented visible target positions; normal LMB and R controls. No movement during this segment. The run ended on death.",
+    "Inspected actual survival and defeat screenshots, and read game/audio code to distinguish observed behavior from structural limitations.",
+    "Reviewed the existing normal-control full-mission run for mission-completion context; this agent did not complete a blind mission."
+  ],
+  "observed": {
+    "survivalSimulatedSeconds": 36.9148,
+    "survivalHealth": 100,
+    "survivalShield": 41,
+    "survivalAmmo": 30,
+    "survivalKills": 0,
+    "survivalEnemiesAlive": 7,
+    "survivalDamageEvents": [13,15,19],
+    "finalSimulatedSeconds": 41.3565,
+    "finalPhase": "lost",
+    "finalKills": 4,
+    "finalAccuracyPercent": 27,
+    "finalHealth": 0,
+    "finalShield": 0,
+    "browserExceptions": [],
+    "survivalScreenshot": "/tmp/soulfall-quality-survival.png",
+    "defeatScreenshot": "/tmp/soulfall-quality-fire.png",
+    "rawRun": "/tmp/soulfall-combat-quality-run.json"
+  },
+  "priorities": [
+    {
+      "priority": 1,
+      "area": "Fair combat pressure",
+      "finding": "Ordinary continuous movement preserved full health for35seconds without shooting or dashing, but stopping to aim led to defeat roughly4.4simulated seconds later. Pressure is binary rather than a readable series of decisions.",
+      "recommendation": "Add directional threat/damage feedback and stronger enemy charge cues; reduce synchronized burst spikes. Improve aim tracking/limited velocity lead during windup, then visibly lock the final aim briefly before firing. Tune from stationary/moving/dashing comparisons rather than simply increasing all damage.",
+      "verification": "Moving alone should not erase every threat; standing in exposed crossfire should remain dangerous, but there should be readable warnings and enough response time to use cover or dash."
+    },
+    {
+      "priority": 2,
+      "area": "Mission commitment and finale",
+      "finding": "Code makes recovery instantaneous at2.8m and extraction instantaneous on arrival. Final reinforcements can spawn far behind a faster player. That weakens the promised final act.",
+      "recommendation": "Add a short visible core recovery channel and an8-12second extraction hold with explicit progress, cancellation/resume rules and local flanking reinforcements. Keep Recon forgiving. Do not require killing an arbitrary last enemy that may be stuck.",
+      "verification": "A normal-control mission should contain at least one consequential defend-or-reposition choice during recovery and an understandable final extraction challenge."
+    },
+    {
+      "priority": 3,
+      "area": "Enemy role readability",
+      "finding": "Both behavior profiles clone the same Blender drone. The fallback armor color difference is hidden when the authored model loads. A player cannot visually read which target will rush closer or fire faster.",
+      "recommendation": "Give stalkers distinct silhouette/size, emissive accent, movement posture and charge cue. Use a more distant ranged role to create prioritization. Ensure the critical optic remains consistent with hit geometry.",
+      "verification": "At normal encounter distance, the player should distinguish a close-pressure stalker from a ranged sentinel before it attacks."
+    },
+    {
+      "priority": 4,
+      "area": "Resource and reward economy",
+      "finding": "Every kill grants24rounds while only2-3hits are needed, each core grants60rounds/fullshield/30health, and shields regenerate. Multiple generous systems reduce route/target/resource tradeoffs.",
+      "recommendation": "Reduce Standard recovery rewards or supply frequency and tie a clear reward to timed Soul Shift/critical streaks. Preserve a forgiving Recon option; do not make ammunition starvation a softlock.",
+      "verification": "The player should choose reload and recovery moments under pressure while retaining a reliable route back from a poor encounter."
+    }
+  ],
+  "limits": [
+    "Automated agent review with instrumented exact target positions is not human audience feedback.",
+    "No audio listening assessment was made; headless browser audio and source review do not establish sound quality.",
+    "Mission-pacing assessment combines structural code inspection and a prior full-run record; this agent's own normal-control run did not recover cores.",
+    "No hardware performance or broad accessibility certification is implied.",
+    "Ratings are candid provisional judgments, not an instruction to inflate the next score to10."
+  ]
+}

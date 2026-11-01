@@ -17,7 +17,7 @@ const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {...g.capt
 if(s.phase!=='playing'){log.push({at:Date.now()-start,state:s.phase,kills:s.kills,cores:s.cores,health:s.health});break}
 if(steps%10===0)log.push({at:Date.now()-start,time:s.time,x:s.player.x,z:s.player.z,health:s.health,shield:s.shield,kills:s.kills,cores:s.cores,ammo:s.ammo,targets:s.targets.length});
 const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]||s.exit;
-if(s.nearestCoreDistance<2.7)await p.keyboard.press('KeyE');
+const recovering=s.nearestCoreDistance!=null&&s.nearestCoreDistance<2.7; if(recovering){await p.keyboard.down('KeyE');if(held){await p.keyboard.up(held);held='';}}else await p.keyboard.up('KeyE');
 const goalKey=`${goal.x},${goal.z}`;if(routeGoal!==goalKey||steps%10===0){pathCache=path(s.player,goal);routeGoal=goalKey}
 while(pathCache.length&&Math.hypot(pathCache[0].x-s.player.x,pathCache[0].z-s.player.z)<.85)pathCache.shift();
 const nav=pathCache[Math.min(1,pathCache.length-1)]||goal;const target=s.targets.sort((a,b)=>Math.hypot(a.x-s.player.x,a.z-s.player.z)-Math.hypot(b.x-s.player.x,b.z-s.player.z))[0];
@@ -26,10 +26,11 @@ const aim=target||{...nav,y:1.7};let desired=Math.atan2(s.player.x-aim.x,s.playe
 await p.evaluate(({dx,dy})=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:dx,movementY:dy,bubbles:true})),{dx:-Math.max(-180,Math.min(180,delta/.002)),dy:-(pitch-s.pitch)/.002});
 const aligned=Math.abs(delta)<.18;
 if(target&&aligned&&!s.reloading){if(!shooting){await p.mouse.down();shooting=true}}else if(shooting){await p.mouse.up();shooting=false}
+if(s.cores===3&&s.exitDistance<2.2&&held){await p.keyboard.up(held);held='';}
 if(s.ammo<5&&!s.reloading)await p.keyboard.press('KeyR');
 const nd=Math.atan2(nav.x-s.player.x,-(nav.z-s.player.z));const forward={x:-Math.sin(s.player.yaw),z:-Math.cos(s.player.yaw)},right={x:Math.cos(s.player.yaw),z:-Math.sin(s.player.yaw)};const vx=nav.x-s.player.x,vz=nav.z-s.player.z;const f=vx*forward.x+vz*forward.z,r=vx*right.x+vz*right.z;
-const key=Math.abs(f)>Math.abs(r)?f>0?'KeyW':'KeyS':r>0?'KeyD':'KeyA';if(key!==held){if(held)await p.keyboard.up(held);await p.keyboard.down(key);held=key}
-if(s.shield<20&&s.dashCooldown===0)await p.keyboard.press('ShiftLeft');
+const key=Math.abs(f)>Math.abs(r)?f>0?'KeyW':'KeyS':r>0?'KeyD':'KeyA';if(!recovering&&!(s.cores===3&&s.exitDistance<2.2)&&key!==held){if(held)await p.keyboard.up(held);await p.keyboard.down(key);held=key}
+if(!recovering&&s.exitDistance>3&&s.shield<20&&s.dashCooldown===0)await p.keyboard.press('ShiftLeft');
 if(steps===50)await p.screenshot({path:'/tmp/soulfall-playtest-mid.png',timeout:15000});
 await p.waitForTimeout(120);steps++;
 }

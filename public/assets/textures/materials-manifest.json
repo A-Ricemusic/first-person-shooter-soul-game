@@ -1,0 +1,64 @@
+{
+  "authoring": "Original Blender shader graphs, Cycles CPU baking; no external textures.",
+  "tool": "5.2.1 LTS",
+  "resolution": [
+    1024,
+    1024
+  ],
+  "seamless": true,
+  "materials": [
+    {
+      "name": "floor-concrete",
+      "tileMeters": 4.0,
+      "normalConvention": "OpenGL +Y tangent space",
+      "recommendedNormalScale": 0.45,
+      "maps": [
+        {
+          "file": "floor-concrete-color.png",
+          "colorSpace": "sRGB",
+          "pass": "EMIT_COLOR",
+          "bytes": 1152695
+        },
+        {
+          "file": "floor-concrete-roughness.png",
+          "colorSpace": "Non-Color",
+          "pass": "EMIT_ROUGHNESS",
+          "bytes": 806019
+        },
+        {
+          "file": "floor-concrete-normal.png",
+          "colorSpace": "Non-Color",
+          "pass": "TANGENT_NORMAL",
+          "bytes": 2128042
+        }
+      ]
+    },
+    {
+      "name": "wall-concrete",
+      "tileMeters": 3.0,
+      "normalConvention": "OpenGL +Y tangent space",
+      "recommendedNormalScale": 0.5,
+      "maps": [
+        {
+          "file": "wall-concrete-color.png",
+          "colorSpace": "sRGB",
+          "pass": "EMIT_COLOR",
+          "bytes": 1169224
+        },
+        {
+          "file": "wall-concrete-roughness.png",
+          "colorSpace": "Non-Color",
+          "pass": "EMIT_ROUGHNESS",
+          "bytes": 805221
+        },
+        {
+          "file": "wall-concrete-normal.png",
+          "colorSpace": "Non-Color",
+          "pass": "TANGENT_NORMAL",
+          "bytes": 2117281
+        }
+      ]
+    }
+  ],
+  "seconds": 68.79
+}

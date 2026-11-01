@@ -15,7 +15,7 @@ npm run dev
 
 Open the printed localhost URL. In T3 Code, the project also has a **Play SOULFALL** script. Click **Enter the Storm** to capture the mouse. Escape pauses and releases it. If pointer lock is blocked, hold the left mouse button and drag to turn.
 
-WASD move · mouse look · left click fire · right click aim · R reload · Shift Soul Shift · Ctrl sprint · Space jump · E collect · Escape pause.
+WASD move · mouse look · left click fire · right click aim · R reload · Shift Soul Shift · Ctrl sprint · Space jump · hold E recover · Escape pause.
 
 Read **[docs/human.html](docs/human.html)** for creative decisions, implementation rationale, original-asset provenance, validation evidence, known limitations, and the production pitch.
 
@@ -26,6 +26,12 @@ No quality rating or claim of AAA readiness is made. An automated normal-control
 With the dev server running, `npm run test:playtest` checks these regressions; `npm run playtest:controls` runs an automated combat exercise without teleport/resource/enemy cheats.
 
 Build 03 adds an independent agent review and fixes projectile penetration through concrete, stale aim on turn/fire, low-frame-rate slow motion, and retained restart zoom/recoil. `npm run test:combat` reproduces these six targeted checks with a running dev server. Reports are retained in `docs/independent-playtest.json` and `docs/combat-regressions.json`.
+
+## Current improvement cycle
+
+Build 06 adds named objective and threat markers, held recovery, difficulty-based extraction defense, differentiated predictive interceptors with coordinated windups, persistent memory archive and results manifest, graphics settings, and Blender-baked physically scaled concrete materials. Independent reviewers have **not** rated it 10/10; raw ratings and shortcomings remain in `docs/quality-reviews/`. Improvement work continues.
+
+With the dev server running, `npm run test:mission` checks recovery cancellation, restored sites, extraction, archive, graphics and damage cues. New Blender materials can be reproduced with `blender --background --python tools/build_materials.py`; source is `public/assets/station-materials.blend`.
 
 ## Build and verify
 

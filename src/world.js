@@ -6,7 +6,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 // World coordinates: Y up, floor 0; front entrance at +Z.
 export async function buildWorld(scene) {
   const rng = (() => { let s = 51319; return () => ((s = Math.imul(s, 1664525) + 1013904223 >>> 0) / 4294967296); })();
-  const colliders = [], animated = [];
+  const colliders = [], animated = [], coreVisuals = [];
   const group = new THREE.Group(); group.name = 'BLACKWATER / tidal power station'; scene.add(group);
   scene.background = new THREE.Color('#192b38');
   scene.fog = new THREE.FogExp2('#243744', .0095);
@@ -28,12 +28,14 @@ export async function buildWorld(scene) {
     const t = new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=8;
     return t;
   }
-  const concreteMap=texture('wall'), floorMap=texture('floor'); floorMap.repeat.set(16,18);
-  const concrete=new THREE.MeshStandardMaterial({color:0x8a9394,map:concreteMap,roughness:.86,metalness:.08});
-  const darkConcrete=new THREE.MeshStandardMaterial({color:0x34434b,map:concreteMap,roughness:.8});
+  const textureLoader=new THREE.TextureLoader();
+  async function pbrSet(name){const files=await Promise.all(['color','roughness','normal'].map(k=>textureLoader.loadAsync(`${import.meta.env.BASE_URL}assets/textures/${name}-${k}.png`)));for(const t of files){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=8;}files[0].colorSpace=THREE.SRGBColorSpace;files[1].colorSpace=files[2].colorSpace=THREE.NoColorSpace;return files;}
+  const [wallPbr,floorPbr]=await Promise.all([pbrSet('wall-concrete'),pbrSet('floor-concrete')]);
+  const concrete=new THREE.MeshStandardMaterial({color:0xb8bfba,map:wallPbr[0],roughnessMap:wallPbr[1],normalMap:wallPbr[2],normalScale:new THREE.Vector2(.5,.5),roughness:1,metalness:0});
+  const darkConcrete=new THREE.MeshStandardMaterial({color:0x4b5a64,map:wallPbr[0],roughnessMap:wallPbr[1],normalMap:wallPbr[2],normalScale:new THREE.Vector2(.5,.5),roughness:1,metalness:0});
   const steel=new THREE.MeshStandardMaterial({color:0x25343b,metalness:.83,roughness:.35});
   const edge=new THREE.MeshStandardMaterial({color:0x75858b,metalness:.85,roughness:.3});
-  const floor=new THREE.MeshStandardMaterial({color:0x8599a3,map:floorMap,roughness:.27,metalness:.48});
+  const floor=new THREE.MeshStandardMaterial({color:0x7d898b,map:floorPbr[0],roughnessMap:floorPbr[1],normalMap:floorPbr[2],normalScale:new THREE.Vector2(.3,.3),roughness:1,metalness:0});
   const black=new THREE.MeshStandardMaterial({color:0x0b151c,roughness:.8});
   const amber=new THREE.MeshStandardMaterial({color:0xa45721,metalness:.4,roughness:.4});
   const cyan=new THREE.MeshStandardMaterial({color:0x24c9dc,emissive:0x18accc,emissiveIntensity:2.5,roughness:.3});
@@ -41,6 +43,7 @@ export async function buildWorld(scene) {
   const weakCyan=new THREE.MeshStandardMaterial({color:0x2d6675,emissive:0x2093aa,emissiveIntensity:1.2});
   function box(x,y,z,w,h,d,mat=concrete,solid=false) {
     const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat); m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);
+    if(mat===concrete||mat===darkConcrete||mat===floor){const pos=m.geometry.attributes.position,n=m.geometry.attributes.normal,uv=m.geometry.attributes.uv,tile=mat===floor?4:3;for(let i=0;i<pos.count;i++){const px=pos.getX(i)+x,py=pos.getY(i)+y,pz=pos.getZ(i)+z;if(Math.abs(n.getY(i))>.5)uv.setXY(i,px/tile,pz/tile);else if(Math.abs(n.getX(i))>.5)uv.setXY(i,pz/tile,py/tile);else uv.setXY(i,px/tile,py/tile);}uv.needsUpdate=true;}
     if(solid)colliders.push(new THREE.Box3(new THREE.Vector3(x-w/2,y-h/2,z-d/2),new THREE.Vector3(x+w/2,y+h/2,z+d/2)));
     return m;
   }
@@ -63,7 +66,7 @@ export async function buildWorld(scene) {
   const ec=envCanvas.getContext('2d'),eg=ec.createLinearGradient(0,0,0,512);
   eg.addColorStop(0,'#172c42');eg.addColorStop(.42,'#8098a8');eg.addColorStop(.51,'#a4a7a3');eg.addColorStop(.54,'#263340');eg.addColorStop(1,'#07121d');ec.fillStyle=eg;ec.fillRect(0,0,1024,512);
   ec.fillStyle='#bad6e0';ec.fillRect(340,128,110,50);ec.fillStyle='#bf7950';ec.fillRect(700,220,170,15);
-  const env=new THREE.CanvasTexture(envCanvas);env.mapping=THREE.EquirectangularReflectionMapping;env.colorSpace=THREE.SRGBColorSpace;scene.environment=env;scene.environmentIntensity=.65;
+  const env=new THREE.CanvasTexture(envCanvas);env.mapping=THREE.EquirectangularReflectionMapping;env.colorSpace=THREE.SRGBColorSpace;scene.environment=env;scene.environmentIntensity=.45;
   // A deterministic overcast panorama, authored here rather than fetched from
   // a stock HDRI. Clouds soften toward the humid, pale harbor horizon.
   const skyCanvas=document.createElement('canvas');skyCanvas.width=1024;skyCanvas.height=512;
@@ -161,8 +164,11 @@ export async function buildWorld(scene) {
   for(const a of [pylonAsset,barricadeAsset])a.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
   function prop(asset,x,z,rot=0){const obj=asset.scene.clone(true);obj.position.set(x,0,z);obj.rotation.y=rot;group.add(obj);return obj;}
   for(const [x,z] of [[-24,-20],[24,-20],[0,-38]]){
-    prop(pylonAsset,x,z);colliders.push(new THREE.Box3(new THREE.Vector3(x-1.5,0,z-1.5),new THREE.Vector3(x+1.5,5,z+1.5)));
-    point(x,3,z,0x26c8eb,18,10);
+    const pylon=prop(pylonAsset,x,z);pylon.userData.dynamic=true;
+    const materials=[];pylon.traverse(o=>{if(o.isMesh){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
+    const beacon=point(x,3,z,0x26c8eb,18,10);coreVisuals.push({pylon,materials,beacon});
+    sign(x<0?'WEST ARCHIVE':x>0?'EAST ARCHIVE':'THE HEART','MEMORY RECOVERY / AUTHORIZED PERSONNEL',x,6.15,z+.5,6,1.3);
+    colliders.push(new THREE.Box3(new THREE.Vector3(x-1.5,0,z-1.5),new THREE.Vector3(x+1.5,5,z+1.5)));
     // Technical floor pad makes each signal site recognizable.
     box(x,.018,z,7,.035,7,steel);
     for(const s of [-1,1]){box(x+s*3.5,.045,z,.08,.025,7,weakCyan);box(x,.045,z+s*3.5,7,.025,.08,weakCyan);}
@@ -170,7 +176,7 @@ export async function buildWorld(scene) {
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){prop(barricadeAsset,x,z,rot);const hw=1.95,hd=.95;colliders.push(new THREE.Box3(new THREE.Vector3(x-hw,0,z-hd),new THREE.Vector3(x+hw,1.6,z+hd)));}
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.
-  const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.75,roughness:.075,transparent:true,opacity:.68,clearcoat:1});
+  const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.55,roughness:.18,transparent:true,opacity:.68,clearcoat:1});
   for(let i=0;i<36;i++){
     const m=new THREE.Mesh(new THREE.CircleGeometry(1,24),puddle);m.rotation.x=-Math.PI/2;m.scale.set(1+rng()*3,.4+rng()*1.6,1);m.position.set((rng()-.5)*70,.012,(rng()-.5)*78);m.receiveShadow=true;group.add(m);
   }
@@ -227,6 +233,7 @@ export async function buildWorld(scene) {
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
     colliders,
+    setCoreState(id,restored){const v=coreVisuals[id];if(!v)return;v.pylon.userData.restored=restored;v.beacon.color.setHex(restored?0x65d6a0:0x26c8eb);v.beacon.intensity=restored?6:18;for(const m of v.materials){m.material.emissive.copy(restored&&m.intensity>1?new THREE.Color(0x47bd85):m.color);m.material.emissiveIntensity=restored&&m.intensity>1?.8:m.intensity;}},
     playerSpawn:new THREE.Vector3(0,1.7,31),
     spawnPoints:[new THREE.Vector3(-30,0,-28),new THREE.Vector3(30,0,-28),new THREE.Vector3(-22,0,-5),new THREE.Vector3(22,0,-5),new THREE.Vector3(-15,0,-35),new THREE.Vector3(15,0,-35),new THREE.Vector3(-31,0,20),new THREE.Vector3(31,0,20)],
     corePositions:[new THREE.Vector3(-24,0,-15),new THREE.Vector3(24,0,-15),new THREE.Vector3(0,0,-33)],

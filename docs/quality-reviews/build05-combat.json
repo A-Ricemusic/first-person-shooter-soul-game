@@ -1,0 +1,117 @@
+{
+  "reviewer": "Fresh independent GPT-6.1 Sol combat reviewer",
+  "build": "Build 05, runtime held stable through two browser runs",
+  "ratings": {
+    "prototypeGameplayOverall": 7,
+    "aaaProductionReadiness": 2,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "dimensions": {
+      "weaponAndMovementFeel": 6.5,
+      "combatTensionAndFairness": 7,
+      "enemyBehaviorAndReadability": 7,
+      "meaningfulChoices": 7,
+      "missionPacing": 7.5,
+      "replayAppeal": 5.5
+    },
+    "reason": "A coherent, complete short FPS mission with readable spatial objectives, commitment-based recovery, a defended extraction, role-specific pressure, anticipatory offscreen cues and a narrative payoff. Pressure now affects simple continual movement, and an active combat route remains viable. It still has one small arena, one weapon, limited encounter variety, simplified presentation/animation, and no human audience validation. Those are substantial quality limits even when no blocking defect is observed. This is not a10/10 or AAA-ready assessment."
+  },
+  "methods": [
+    "Installed Chrome headless via Playwright, real WebGL,1440x900 for movement comparison; inspected actual charging, survival and defeat screenshots.",
+    "Normal-controls comparison:35seconds square-pattern WASD movement with7active enemies, no firing/dash, no teleport, enemy deletion, resource changes or simulation stepping. Instrumented events and concurrent windups were read-only observations.",
+    "A follow-up stationary turn/aim segment began with only41health and no shield and ended before firing. It is recorded but is not used as a valid stationary time-to-kill comparison to earlier healthier starts.",
+    "Fresh deployment active-combat mission using repository normal-controls controller with1280x800 browser: normal movement/look/fire/reload/holdE/extraction controls only, no resource/position/enemy cheats. Controller reads exact enemy positions and collision geometry for aim/path planning, so this is not a blind human completion.",
+    "Inspected actual active-combat mid-mission and victory screenshots. Browser closed after each run. No source files edited."
+  ],
+  "observations": {
+    "movementOnly": {
+      "simulatedSecondsAtSample": 36.548799999998664,
+      "health": 41,
+      "shield": 0,
+      "kills": 0,
+      "damageEventCount": 12,
+      "maximumConcurrentWindupsObserved": 2,
+      "offscreenChargingCueCaptured": true
+    },
+    "stationaryFollowup": {
+      "startingHealth": 41,
+      "startingShield": 0,
+      "finalPhase": "lost",
+      "finalTime": 37.273699999998634,
+      "ammoUnchanged": true,
+      "qualification": "Died during the turn before the first aimed shot; cannot compare this to the prior healthier stationary starts as evidence of worse burst balance."
+    },
+    "activeCombatMission": {
+      "phase": "won",
+      "kills": 19,
+      "cores": 3,
+      "health": 100,
+      "shield": 60,
+      "accuracy": 67,
+      "criticalEliminations": 11,
+      "dashes": 0,
+      "phaseEvades": 0,
+      "simulatedSeconds": 54.489533333328495,
+      "extractionSeconds": 6,
+      "extractionProgress": 1,
+      "enemiesRemaining": 0,
+      "qualification": "A controller with exact target positions and route planning can kill threats quickly and complete without dashing. This does not establish that the mission is easy for normal human aim, nor that the dash is unusable."
+    },
+    "browserExceptions": [],
+    "screenshots": [
+      "/tmp/soulfall05-charge-cue.png",
+      "/tmp/soulfall05-survival.png",
+      "/tmp/soulfall05-fire.png",
+      "/tmp/soulfall05-active-mid.png",
+      "/tmp/soulfall05-active-final.png"
+    ]
+  },
+  "verifiedImprovements": [
+    "Offscreen charging enemies now produce clear orange role/direction widgets before damage, verified in actual gameplay capture.",
+    "Observed no more than two concurrent Standard windups during the movement sample.",
+    "Simple ongoing movement now incurs meaningful pressure:12damageevents and reducedhealth, rather than retaining fullhealth. This is a single sample, not a statistical difficulty study.",
+    "Active firing, movement, recovery holds and a six-second extraction form a complete viable normal-control mission.",
+    "Routine kill messages appear in the side feed instead of occupying the center during the active mission screenshot.",
+    "Victory displays all three recovered names/roles, combat accuracy, critical eliminations and phase evades; the result fits1280x800 in the inspected capture.",
+    "No uncaught JavaScript exceptions occurred in the two runs."
+  ],
+  "remainingPriorities": [
+    {
+      "priority": 1,
+      "area": "Signature-ability depth and replay appeal",
+      "finding": "The active controller completed the full mission with no Soul Shift. The dash is a useful optional defense/reward, but the current encounter set does not demonstrate much ability-specific decision depth beyond avoiding damage.",
+      "recommendation": "Prototype and test one clearly telegraphed encounter interaction that rewards phase timing or repositioning, or an optional phase-evade contract. Do not require arbitrary dash use or simply raise enemy damage to force it. Validate with players who do not have exact-position aiming."
+    },
+    {
+      "priority": 2,
+      "area": "Encounter/content variety",
+      "finding": "A single small flat arena, one rifle and two closely related drone roles remain a short repeatable demo rather than a broad game. Completing the current route does not reveal a second substantial combat problem.",
+      "recommendation": "Add an authored encounter variation or optional objective with a different tactical angle, retaining the now-readable core loop. Evaluate replay desire rather than treating extra feature count as a quality score."
+    },
+    {
+      "priority": 3,
+      "area": "Weapon/character presentation",
+      "finding": "Actual first-person screenshots show a floating rifle without visible player hands; reloading is a whole-viewmodel tilt. The simplified drone and environment animation/material set remains far from AAA asset/performance work.",
+      "recommendation": "Improve authored weapon handling and character/prop animation, bespoke environmental storytelling and art fidelity. A major production needs specialist art/animation/audio work, not just more smoke-test assertions."
+    },
+    {
+      "priority": 4,
+      "area": "HUD spatial collision",
+      "finding": "In the active mid-mission capture, the East Archive directional marker sits over the radar area. It remains readable but is visually crowded.",
+      "recommendation": "Reserve screen regions for radar/mission panels when placing edge markers, or shift side-facing objective markers lower while retaining clear bearing."
+    }
+  ],
+  "notFound": "No new blocking gameplay defect was demonstrated in these runs. Absence of observed bugs does not imply perfection.",
+  "limitations": [
+    "Automated agent review, not a human participant study or a perfection certification.",
+    "Exact-position targeting and collision-map navigation materially advantage the active controller. Its full-health win is not a fair basis for increasing human difficulty.",
+    "The movement comparison is one run per build with headless scheduling/screenshot variation; it supports a directional observation, not a statistically controlled performance claim.",
+    "Headless rendering does not establish target-hardware frame rate, end-to-end input feel, subjective enjoyment, or audio-mix quality.",
+    "This review did not independently retest every graphics/archive setting; those belong to the experience reviewer and root regressions.",
+    "Ratings are candid provisional judgments and are not inflated to the requested10."
+  ],
+  "rawObservations": [
+    "/tmp/soulfall-review05-observations.json",
+    "/tmp/soulfall05-active-mission.json"
+  ]
+}
