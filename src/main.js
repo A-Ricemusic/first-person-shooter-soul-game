@@ -1,3 +1,4 @@
+import { threatVisor } from './threat-visor.js';
 import { placeMarker } from './marker-layout.js';
 import './style.css';
 import { Game } from './game.js';
@@ -14,7 +15,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 21</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 23</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -104,13 +105,30 @@ function drawRadar(s){
 const markerPool=new Map();
 function drawMarkers(markers){
  const active=new Set(), placed=[];
+ const visor=threatVisor(markers);
+ let focus=$('threat-focus');if(!focus){focus=document.createElement('div');focus.id='threat-focus';$('waypoints').append(focus)}
+ focus.textContent=visor.focused?`${visor.focused.label} · ${Math.round(visor.focused.health*100)}%${visor.focused.charging?' · CHARGE':visor.focused.recent?' · FIRED':''}`:'';
+ focus.classList.toggle('charging',!!visor.focused?.charging);
+ markers=[...markers.filter(m=>m.kind!=='enemy'),...visor.cues];
  const memory=$('memory-card');if(!memory.classList.contains('hidden'))placed.push(memory.getBoundingClientRect());
  placed.push({left:innerWidth-205,right:innerWidth,top:90,bottom:315});
  markers.sort((a,b)=>(b.charging?4:b.recent?3:b.inRange?2:0)-(a.charging?4:a.recent?3:a.inRange?2:0));
  for(const m of markers){
-  if(m.kind==='enemy'&&!m.charging&&!m.recent&&(!m.front||Math.abs(m.x)>.95||Math.abs(m.y)>.9))continue;
   active.add(m.id);let el=markerPool.get(m.id);
   if(!el){el=document.createElement('div');el.className=`world-marker ${m.kind}`;el.dataset.markerId=m.id;el.innerHTML='<span class="marker-symbol">◇</span><b></b><small></small><div class="enemy-track"><i></i></div>';$('waypoints').append(el);markerPool.set(m.id,el)}
+  if(m.kind==='enemy'){
+   el.className=`world-marker enemy visor ${m.onscreen?'optic':'edge'} ${m.charging?'charging':m.recent?'recent':'hit'} ${m.type}`;
+   el.dataset.members=m.members.join(',');el.dataset.count=m.count;
+   const symbol=el.querySelector('.marker-symbol');symbol.textContent=m.type==='warden'?'□':m.type==='stalker'?'△':'◇';
+   symbol.style.transform='none';el.querySelector('b').textContent=m.onscreen?'':[m.charges?`!${m.charges}`:'',m.fires?`·${m.fires}`:'',m.hits?`+${m.hits}`:''].filter(Boolean).join(' ');
+   el.querySelector('small').textContent=m.onscreen?(m.charging?'!':m.recent?'·':'+'):'➤';
+   el.querySelector('small').style.transform=m.onscreen?'none':`rotate(${m.bearing-Math.PI/2}rad)`;
+   // Never move the optic cue to solve a text collision. Open brackets sit beside
+   // the actual optic; the single text readout has a fixed HUD location.
+   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(m.bearing)*({warden:.43,stalker:.38,sentinel:.33}[m.type]||.33))}px`;
+   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(m.bearing)*({warden:.36,stalker:.31,sentinel:.26}[m.type]||.26))}px`;
+   continue;
+  }
   const onscreen=m.front&&Math.abs(m.x)<.86&&Math.abs(m.y)<.68;
   const x=onscreen?(m.x+1)*50:50+Math.sin(m.bearing)*43,rawY=onscreen?(1-m.y)*50:50-Math.cos(m.bearing)*32;let y=rawY;if(x>82&&y<45)y=51;if(x<24&&y<23)y=28;
   // Keep cue text out of the aperture. Threats retain bearing and priority;
@@ -140,3 +158,5 @@ function renderArchive(s){
 function showEnd(s){const won=s.phase==='won';$('end-manifest').replaceChildren();const recovered=(s.coreMarkers||[]).filter(c=>c.collected);$('end-archive').disabled=recovered.length===0;for(const c of recovered){const row=document.createElement('div');row.innerHTML='<b></b><span></span>';row.querySelector('b').textContent=CORE_SITES[c.id].person;row.querySelector('span').textContent=CORE_SITES[c.id].role;$('end-manifest').append(row)}$('end-details').textContent=`${s.accuracy||0}% ACCURACY · ${s.headshots||0} CRITICAL ELIMINATIONS · ${s.phaseDodges||0} PHASE EVADES`;$('end-eyebrow').textContent=won?'OPERATION COMPLETE':'OPERATOR LOST';$('end-title').innerHTML=won?'THE SIGNAL<br>LIVES.':'THE STATION<br>REMEMBERS.';$('end-copy').textContent=won?'Some things deserve a second life. You brought them home.':'The relay is still calling. Take a breath. Find another way through.';$('end-kills').textContent=s.kills||0;$('end-time').textContent=clock(s.time);$('end-score').textContent=Math.round(s.score||0).toLocaleString();try{const k=`soulfall-best-${s.difficulty||settings.difficulty}`;let best=Number(localStorage.getItem(k)||0);if(won&&(s.score||0)>best){best=s.score;localStorage.setItem(k,best);$('personal-best').textContent='NEW PERSONAL BEST'}else $('personal-best').textContent=best?`PERSONAL BEST · ${best.toLocaleString()}`:''}catch{}}
 async function boot(){try{game=new Game({canvas:$('game-canvas'),onState:renderState,onEvent,onMarkers:drawMarkers});await game.init();game.setSettings(settings);loaded=true;$('deploy').disabled=false;$('deploy-label').textContent='ENTER THE STORM';$('load-status').textContent='SYSTEMS ONLINE · READY TO DEPLOY';$('load-status').classList.add('ready');if(new URLSearchParams(location.search).has('test'))window.__SOULFALL__={game,get state(){return current},deploy,settings};}catch(e){console.error(e);hide('fatal',false);$('fatal-message').textContent=`The 3D engine could not initialize. Use a desktop browser with WebGL 2 and hardware acceleration. ${e.message}`;}}
 boot();
+
+const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · ◇ Sentinel / △ Interceptor / □ Warden. ! charging, · recent fire, + recent hit. Small cues sit beside visible optics; edge arrows show bearings, with counts for nearby matching threats. The centered lower readout identifies one eligible target near your view center. Cues require a clear optic and expire; they do not mark every enemy.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);

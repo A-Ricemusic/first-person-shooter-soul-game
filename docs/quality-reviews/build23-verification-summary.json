@@ -1,0 +1,18 @@
+{
+  "suites": "All required npm scripts sequential, see build23-suite.txt; marker screenshot timeout retained with passing rerun",
+  "controller": {
+    "phase": "won",
+    "cores": 3,
+    "extractionProgress": 1,
+    "errors": []
+  },
+  "newChecks": [
+    "threat-visor-regressions",
+    "build23-visor-motion",
+    "build23-batching",
+    "build23-render-idle"
+  ],
+  "closure": "All checks/benchmarks completed before review; implementation driver PIDs55468/55469 absent after browserClosed=true and exit0.",
+  "benchmarkCaveat": "Early potentially overlapping after sample retained and excluded; isolated after rerun used. Fallback flags still report Metal, not software.",
+  "sourceFreeze": "c2df11412703a73326f5a4efe94ad157c68f8a89dd29b820fa5bed7ee45cba40  src/game.js\nba194e61005662490d3f60c23d5bcdc8e062971d5b01777bcc7939a0db147ced  src/main.js\nf26bf562c9be75a61c6503f74dac8193190f1c102e35be8ed4889b86b8dc20d0  src/style.css\n5d3ec32139d806c249705159aeda5fe00e4f38a4281c039a68f1871f050ba9d0  src/world.js\n53e0f7cb55c0a6c4e765f2adfc39ccb0e6924e02c397e7367ec6d57f10b4f213  src/threat-visor.js\n"
+}

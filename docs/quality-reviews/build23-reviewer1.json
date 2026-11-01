@@ -1,0 +1,154 @@
+{
+  "reviewer": "reviewer1",
+  "build": "build23",
+  "review_type": "independent ordinary-play whole-game review",
+  "url": "http://127.0.0.1:5173/",
+  "provisional": true,
+  "method": {
+    "attempt_limit": 2,
+    "attempts_played": 2,
+    "briefing_and_handbook_read_before_play": true,
+    "input": "Shared visible-playtest driver, normal menu clicks, movement, look, fire, aim, reload, sprint, dash and hold-E controls.",
+    "pause_assisted": true,
+    "pause_disclosure": "Live screenshots were captured and then ordinary Escape paused the game after almost every short action. I inspected screenshots and chose the next action while paused. This substantially aids aiming decisions, route interpretation and reaction time compared with continuous play.",
+    "allowed_observations": "Visible screenshots, visible UI text returned by the driver, and helper --help only. No game source, tests, prior reviews, hidden game state, custom browser scripts or alternate URLs were read or used.",
+    "graphics": "Driver reported Software-WebGL fallback enabled; renderer not certified.",
+    "limits": [
+      "No audio assessment or certification.",
+      "No native mouse, hardware rendering, performance or latency certification.",
+      "Two attempts by one reviewer, with learning carried from the first into the second.",
+      "This is a provisional whole-game opinion from actual play, not a difficulty balance benchmark or a score-target exercise.",
+      "I completed the mission but did not explore every possible route or fight every enemy."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "completed": false,
+      "deaths": 1,
+      "memories_recovered": 1,
+      "memory_names": ["Mara Solberg"],
+      "eliminations": 3,
+      "mission_time": "00:28",
+      "score": 1540,
+      "accuracy_percent": 13,
+      "critical_eliminations": 3,
+      "phase_evades": 0,
+      "progress": [
+        "Eliminated the central induction warden by firing at its optic without taking damage.",
+        "Navigated around the west intake wall and approached the waist-high receiver.",
+        "Recovered Mara Solberg, then remained exposed too long: health fell to 50 and shield to zero.",
+        "Used Soul Shift on a close sentinel; visible PHASE BREAK / SHOT CANCELED confirmed interruption. Eliminated that sentinel.",
+        "Lost more health while reloading and trying to leave west archive, eliminated another sentinel, and died before reaching another receiver."
+      ],
+      "ending_observation": "Failure screen retained Mara's name and displayed full mission statistics with deploy-again and recovered-memories options.",
+      "evidence": [
+        "docs/media/build23-review1/a1-deploy.jpg",
+        "docs/media/build23-review1/a1-west-recovery.jpg",
+        "docs/media/build23-review1/a1-west-fight.jpg",
+        "docs/media/build23-review1/a1-last-push.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATION COMPLETE / THE SIGNAL LIVES.",
+      "completed": true,
+      "deaths": 0,
+      "memories_recovered": 3,
+      "memory_names": ["Mara Solberg", "Elian Vale", "Sera Nord"],
+      "eliminations": 4,
+      "mission_time": "00:51",
+      "score": 6803,
+      "accuracy_percent": 16,
+      "critical_eliminations": 4,
+      "phase_evades": 0,
+      "last_observed_health_before_completion": 100,
+      "last_observed_shield_before_completion": 28,
+      "final_health_and_shield": null,
+      "progress": [
+        "Eliminated the initial warden with a short burst, then cleared two west sentinels before recovery.",
+        "Recovered Mara at approximately 00:18 with health 100 and shield 57. Successful recovery restored supplies.",
+        "Crossed the courtyard and recovered Elian at approximately 00:26 with health 100 and shield 47.",
+        "Moved along the north area to the Heart receiver and recovered Sera at approximately 00:33 with health 100 and shield 56.",
+        "Returned south, ran into the induction block, then moved sideways into an open return aisle. Reached the beacon with health and shield full.",
+        "Entered the extraction ring, faced the yard, observed uplink progress at roughly 31%, 50% and 62%, eliminated one interceptor, made small lateral movements within the ring and completed extraction."
+      ],
+      "ending_observation": "Success screen explicitly confirmed operation complete, showed all three names, statistics and NEW PERSONAL BEST. Opened READ RECOVERED MEMORIES and saw all three readable restored records.",
+      "evidence": [
+        "docs/media/build23-review1/a2-west-acquire.jpg",
+        "docs/media/build23-review1/a2-east-recover.jpg",
+        "docs/media/build23-review1/a2-heart-acquire.jpg",
+        "docs/media/build23-review1/a2-return-aisle.jpg",
+        "docs/media/build23-review1/a2-return-flank.jpg",
+        "docs/media/build23-review1/a2-extraction-hold.jpg",
+        "docs/media/build23-review1/a2-extraction-target.jpg",
+        "docs/media/build23-review1/a2-extraction-finish.jpg",
+        "docs/media/build23-review1/a2-recovered-memories.jpg"
+      ]
+    }
+  ],
+  "ratings_out_of_10": {
+    "scope": "Same provisional whole-game scope for every rating: briefing, combat and acquisition, all three memories, return, extraction, success/failure screens and restored records as personally observed.",
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6.5,
+    "AAA_readiness": 3.5,
+    "rationale": "A complete, coherent short mission with understandable goals, satisfying optic kills and a useful interrupt dash. The second attempt rewarded learning, but also let me recover two later memories and cross most of the arena while leaving many threats alive. Presentation has a strong restrained cyan/amber identity, rain, wet ground and consistent menus; repeated simple building and enemy forms, sparse environmental detail, tiny combat cues and the very compact mission keep it far from an AAA-ready whole game. These ratings do not certify audio, continuous mouse feel or rendering performance."
+  },
+  "findings": [
+    {
+      "area": "Combat acquisition",
+      "positive": true,
+      "observation": "The opening warden is centered, its optic is obvious, and the opening instruction gives several valid tactics. Aimed optic shots produced clear CRITICAL elimination feedback. The successful Phase Break also explicitly confirmed a canceled shot.",
+      "evidence": ["docs/media/build23-review1/a1-deploy.jpg", "docs/media/build23-review1/a1-guard-fire.jpg", "docs/media/build23-review1/a1-west-fight.jpg"]
+    },
+    {
+      "area": "Combat readability",
+      "positive": false,
+      "observation": "Several small amber edge boxes, symbols and counts competed for attention around the west receiver and during the return. I relied more on actual orange optics than those cues. Partly screened small enemies were difficult to acquire, and I used many paused aim adjustments with low resulting accuracy. This reflects both the visual challenge and the driver's noncontinuous control method.",
+      "evidence": ["docs/media/build23-review1/a2-west-threat.jpg", "docs/media/build23-review1/a2-first-sentinel.jpg", "docs/media/build23-review1/a2-return-aisle.jpg"]
+    },
+    {
+      "area": "Recovery usability and story",
+      "positive": true,
+      "observation": "MOVE CLOSER / STEP INSIDE THE FLOOR RING gave actionable feedback before recovery. The cyan marker, waist-high named receiver, numbered memory slots, named memory card and supply-restore message made each successful acquisition clear. Brief personal records gave the objective a human reason, and could be reread after completion.",
+      "evidence": ["docs/media/build23-review1/a1-receiver-close.jpg", "docs/media/build23-review1/a2-west-acquire.jpg", "docs/media/build23-review1/a2-recovered-memories.jpg"]
+    },
+    {
+      "area": "Navigation",
+      "positive": false,
+      "observation": "Objective labels remained clear even through walls, but that bearing did not identify the walkable route. I collided with a west wall and later the induction block on return. The briefing does explain side aisles, and moving sideways revealed one quickly, so this was recoverable rather than a blocker.",
+      "evidence": ["docs/media/build23-review1/a1-west-lane.jpg", "docs/media/build23-review1/a2-return-aisle.jpg", "docs/media/build23-review1/a2-return-flank.jpg"]
+    },
+    {
+      "area": "Mission pressure",
+      "positive": false,
+      "observation": "My first exposed recovery led to a fast death, but clearing the two west sentinels changed the second attempt substantially. I then recovered east and Heart, ran back and held extraction with only one further elimination. The full successful run took 51 in-game seconds. That offered a clear learning payoff but limited the sustained combat depth demonstrated by this playthrough.",
+      "evidence": ["docs/media/build23-review1/a1-last-push.jpg", "docs/media/build23-review1/a2-extraction-finish.jpg"]
+    },
+    {
+      "area": "Presentation and ending",
+      "positive": true,
+      "observation": "Typography, teal panels, amber hazards and wet rainy courtyard form a consistent identity. Failure and victory both provide clear closure and readable statistics. The restored-records dialog fits all three memories visibly without truncation at the observed screenshot size.",
+      "evidence": ["docs/media/build23-review1/briefing.jpg", "docs/media/build23-review1/a2-service-exit.jpg", "docs/media/build23-review1/a2-extraction-finish.jpg", "docs/media/build23-review1/a2-recovered-memories.jpg"]
+    }
+  ],
+  "progress_notes": [
+    "Read briefing and handbook before first deployment.",
+    "Attempt one: learned optic combat, west access and receiver positioning; recovered one memory, then died.",
+    "Attempt two: cleared west threats first, recovered all three, navigated around induction, completed extraction and inspected the restored records.",
+    "Closed owned browser before writing this report. No game files were edited."
+  ],
+  "closure": {
+    "driver_session": 70558,
+    "driver_pid": 56885,
+    "chrome_pid": 56886,
+    "close_command_sent": true,
+    "browserClosed": true,
+    "driver_exit_code": 0,
+    "owned_pids_verified_exited": true,
+    "verification": "ps -p 56885,56886 -o pid=,stat=,command= returned no process rows and exit code 1."
+  }
+}

@@ -195,7 +195,8 @@ export async function buildWorld(scene) {
     model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;
       // Each visible solid supplies its own matching bounds, including controls.
       if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));
-      if(o.material.emissiveIntensity>0)o.material=o.material.clone();
+      if(o.material.emissiveIntensity>0&&o.name==='Progress')o.material=o.material.clone();
+      if(receiverAsset&&o.name!=='Progress'&&o.name!=='MemoryCassette')o.userData.batchHousing=true;
     }});
     const progress=model.getObjectByName('Progress'),cassette=model.getObjectByName('MemoryCassette');
     receivers.push({model,progress,cassette});
@@ -240,7 +241,7 @@ export async function buildWorld(scene) {
     if(!uplinkAsset){const m=new THREE.Mesh(new THREE.BoxGeometry(...p.size),steel);m.position.copy(c);uplink.add(m);}
   }
   if(!uplinkAsset)for(let i=0;i<12;i++){const m=new THREE.Mesh(new THREE.BoxGeometry(.075,.025,.25),weakCyan.clone());m.name=`UplinkCell${String(i).padStart(2,'0')}`;m.position.set(-.55+i*.1,.92,34.2);uplink.add(m);}
-  uplink.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('UplinkCell')||o.name==='Beacon'){o.material=o.material.clone();cells.push(o);}}});
+  uplink.traverse(o=>{if(o.isMesh){if(uplinkAsset&&!o.name.startsWith('UplinkCell')&&o.name!=='Beacon')o.userData.batchHousing=true;o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('UplinkCell')||o.name==='Beacon'){o.material=o.material.clone();cells.push(o);}}});
   const routeLights=new THREE.Group();routeLights.userData.dynamic=true;group.add(routeLights);
   const routeMaterial=new THREE.MeshStandardMaterial({color:0x80bb99,emissive:0x65c791,emissiveIntensity:.7});
   for(const route of UPLINK.routes)for(let j=1;j<route.length;j++){
@@ -292,16 +293,16 @@ export async function buildWorld(scene) {
   const batches=new Map(),originals=[];
   group.traverse(o=>{
     if(!o.isMesh||Array.isArray(o.material))return;
-    for(let p=o;p&&p!==scene;p=p.parent)if(p.userData.dynamic)return;
+    for(let p=o;p&&p!==scene;p=p.parent)if(p.userData.dynamic&&!o.userData.batchHousing)return;
     const key=o.material.uuid;
     if(!batches.has(key))batches.set(key,{material:o.material,geometries:[]});
     const geometry=o.geometry.clone();geometry.applyMatrix4(o.matrixWorld);
     // Different source meshes may carry an unnecessary second UV channel.
     for(const attr of Object.keys(geometry.attributes))if(!['position','normal','uv'].includes(attr))geometry.deleteAttribute(attr);
     if(!geometry.getAttribute('uv'))geometry.setAttribute('uv',new THREE.BufferAttribute(new Float32Array(geometry.getAttribute('position').count*2),2));
-    batches.get(key).geometries.push(geometry.index?geometry.toNonIndexed():geometry);originals.push(o);
+    if(geometry.index){const expanded=geometry.toNonIndexed();geometry.dispose();batches.get(key).geometries.push(expanded);}else batches.get(key).geometries.push(geometry);originals.push(o);
   });
-  for(const o of originals)o.removeFromParent();
+  for(const o of originals){if(o.userData.batchHousing)o.visible=false;else o.removeFromParent();}
   for(const {material,geometries}of batches.values()){
     const merged=mergeGeometries(geometries,false);if(!merged)throw new Error('Static environment batching failed');
     const m=new THREE.Mesh(merged,material);m.castShadow=true;m.receiveShadow=true;group.add(m);
@@ -311,8 +312,8 @@ export async function buildWorld(scene) {
   return {
     colliders, medical:MEDICAL, rainPositions,
     receivers, uplink, routeLights,
-    setUplinkState(powered,progress){routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
-    setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;
+    setUplinkState(powered,progress){if(uplink.userData.powered===powered&&uplink.userData.progress===progress)return;routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
+    setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;if(r.model.userData.progress===progress&&r.model.userData.recovered===recovered)return;
       if(r.progress){r.progress.scale.x=recovered?1:.12+.88*progress;r.progress.material.emissiveIntensity=recovered?.18:.35+.55*progress;r.progress.material.color.setHex(recovered?0x548875:0x287d88);}
       // Cassette remains physically docked: no disappearing cover or changing bounds.
       if(r.cassette)r.cassette.visible=true;

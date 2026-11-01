@@ -1,0 +1,112 @@
+{
+  "build": 23,
+  "reviewer": "reviewer2",
+  "review_type": "Independent ordinary-play whole-game review",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "driver": "npm run playtest:visible -- --out docs/media/build23-review2",
+    "attempt_limit": 2,
+    "attempts_used": 2,
+    "briefing_and_handbook_read_before_play": true,
+    "pause_assisted": true,
+    "description": "Played through ordinary visible menu, movement, look, aiming, fire, reload, sprint, Soul Shift and hold-E inputs. Used live screenshots followed by ordinary Escape pauses to make decisions between short input sequences. Learned only from my own first attempt. Viewed screenshots using view_image. Opened restored records after successful extraction.",
+    "excluded": ["game source", "tests", "prior evidence or reviews", "hidden game observations", "test URLs", "arbitrary browser evaluation", "resource or coordinate arrangements", "audio certification", "native mouse certification", "hardware or performance certification"],
+    "limitations": "Screenshot-and-pause control materially changes reaction time and aim tracking; these results do not establish unpaused difficulty or native mouse feel. Software-WebGL fallback was reported by the driver. Only two attempts and one successful route were observed. No frame-rate or audio judgment is made."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "deaths": 1,
+      "memories_recovered": 1,
+      "memory_names": ["Mara Solberg"],
+      "eliminations": 1,
+      "mission_time": "00:20",
+      "score": 1255,
+      "accuracy_percent": 8,
+      "critical_eliminations": 1,
+      "phase_evades": 1,
+      "flow": "Advanced past the entry guard, took west lane, recovered West Archive, killed a nearby sentinel with a phase evade, then died while turning toward the courtyard exit with enemies on the flanks. Health fell from 100 with 2 shield to 4 with no shield during a 1.8-second input sequence; death followed immediately on resuming.",
+      "evidence": ["docs/media/build23-review2/a1-west-memory.jpg", "docs/media/build23-review2/a1-west-combat.jpg", "docs/media/build23-review2/a1-eastward.jpg", "docs/media/build23-review2/a1-crossing.jpg"]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATION COMPLETE / THE SIGNAL LIVES.",
+      "deaths": 0,
+      "memories_recovered": 3,
+      "memory_names_in_acquisition_order": ["Mara Solberg", "Sera Nord", "Elian Vale"],
+      "eliminations": 5,
+      "mission_time": "01:19",
+      "score": 6691,
+      "accuracy_percent": 17,
+      "critical_eliminations": 4,
+      "phase_evades": 1,
+      "new_personal_best_visible": true,
+      "flow": "Killed the entry warden by aiming at its optic. Took west intake, cleared a sentinel, recovered Mara, cleared another sentinel, then spent substantial mission time navigating around archive furniture and the east service opening. Cleared a courtyard sentinel, sprinted and dashed to The Heart, recovered Sera, killed its warden, sprinted to East Archive and recovered Elian. Followed extraction marker along the open return route, entered the green ring, turned back toward the yard and held the zone with small strafes and cover beside a baffle. Uplink progressed visibly through approximately 2%, 42% and 74%, then completed. Last pre-ending visible health was 85 with no shield.",
+      "ending_observations": "Success panel said Some things deserve a second life. You brought them home. It listed all three named people, mission statistics, New Personal Best, Deploy Again, Read Recovered Memories and Return to Title. The restored records dialog displayed all three complete short memory texts. No further playable mission or cinematic was observed.",
+      "evidence": ["docs/media/build23-review2/a2-entry-fire.jpg", "docs/media/build23-review2/a2-west-memory.jpg", "docs/media/build23-review2/a2-find-opening.jpg", "docs/media/build23-review2/a2-heart-recovery.jpg", "docs/media/build23-review2/a2-heart-finish.jpg", "docs/media/build23-review2/a2-east-recovery.jpg", "docs/media/build23-review2/a2-return-run.jpg", "docs/media/build23-review2/a2-beacon.jpg", "docs/media/build23-review2/a2-uplink-first.jpg", "docs/media/build23-review2/a2-uplink-combat.jpg", "docs/media/build23-review2/a2-extraction-end.jpg", "docs/media/build23-review2/a2-memory-archive.jpg"]
+    }
+  ],
+  "ratings": {
+    "scope": "Same provisional whole-game assessment after my own two attempts, including the successful ending; all ratings out of 10. These are subjective review judgments, not certification.",
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 6.5,
+    "readability": 6,
+    "aaa_readiness": 4,
+    "rationale": "A coherent compact mission with meaningful recovery, shield regeneration, critical fire, dash evasion, escalation and an extraction payoff. The menus, lighting palette and narrative typography are polished for a slice. The repeated yard geometry, block-like enemies and rifle, modest encounter variety, difficult archive exit navigation and dense small combat cues keep this well below a finished AAA release. Pause-assisted success does not establish comfortable real-time combat."
+  },
+  "findings": [
+    {
+      "kind": "positive",
+      "area": "complete mission flow",
+      "observation": "The mission has an understandable beginning, three recoveries, a return objective, timed defended extraction, success statistics and readable restored records. All these stages were reached without hidden information.",
+      "evidence": ["docs/media/build23-review2/briefing.jpg", "docs/media/build23-review2/a2-east-recovery.jpg", "docs/media/build23-review2/a2-extraction-end.jpg", "docs/media/build23-review2/a2-memory-archive.jpg"]
+    },
+    {
+      "kind": "positive",
+      "area": "acquisition and narrative",
+      "observation": "Cyan pylons, waypoint distances, floor rings and move-closer/hold-E prompts made recovery discoverable. The first memory card gave the task a human purpose, and all three names remained available in the ending records. Supplies restored on recovery visibly helped the next stage. The separate receiver in front of the pylon was usable once approached; the briefing explicitly explained it.",
+      "evidence": ["docs/media/build23-review2/a2-west-door.jpg", "docs/media/build23-review2/a2-west-memory.jpg", "docs/media/build23-review2/a2-heart-recovery.jpg", "docs/media/build23-review2/a2-east-recovery.jpg"]
+    },
+    {
+      "kind": "positive",
+      "area": "combat feedback",
+      "observation": "Aiming at the entry warden optic killed it promptly on the second attempt. Critical eliminations, enemy health/state readouts, phase evade points and recovered supplies gave clear feedback. Shield regeneration and moving between cover mattered. The second attempt was materially better after learning to clear enemies rather than simply pass them.",
+      "evidence": ["docs/media/build23-review2/a2-entry-fire.jpg", "docs/media/build23-review2/a2-west-clear.jpg", "docs/media/build23-review2/a2-west-response.jpg", "docs/media/build23-review2/a2-heart-warden.jpg", "docs/media/build23-review2/a2-heart-finish.jpg"]
+    },
+    {
+      "kind": "friction",
+      "area": "archive navigation",
+      "observation": "The visible Exit / Courtyard sign did not translate into an easy path for me. I repeatedly approached walls or furniture and spent roughly 25 mission seconds around the east service exit before getting through. Screens often became a close wall with waypoints beyond it. This is partly limited screenshot control and my navigation error, so I am not claiming broken collision, but the exit geometry was the clearest flow interruption in my successful run.",
+      "suggestion": "Make the walkable opening and route around archive furniture more legible from the receiver, using floor guidance or a clearer unobstructed sightline.",
+      "evidence": ["docs/media/build23-review2/a2-exit-west.jpg", "docs/media/build23-review2/a2-courtyard.jpg", "docs/media/build23-review2/a2-south-intake.jpg", "docs/media/build23-review2/a2-find-opening.jpg", "docs/media/build23-review2/a2-through-service.jpg"]
+    },
+    {
+      "kind": "friction",
+      "area": "threat readability and damage",
+      "observation": "Several small arrow-and-shape cue boxes can surround the lower view while the actual enemies are outside view or partly hidden by furniture. They convey danger but did not reliably tell me which flank to address first. In attempt 1, health went from 100 to 4 in a 1.8-second move/reload sequence after shield depletion. Attempt 2 confirmed that killing visible targets helps, but attacks from another bearing continued during the duel. I could not confidently identify every source from these screenshots.",
+      "suggestion": "Improve hierarchy of the most immediate charging threat and make the source of severe incoming damage easier to locate, while retaining the existing class symbols.",
+      "evidence": ["docs/media/build23-review2/controls.jpg", "docs/media/build23-review2/a1-west-combat.jpg", "docs/media/build23-review2/a1-eastward.jpg", "docs/media/build23-review2/a2-heart-recovery.jpg", "docs/media/build23-review2/a2-uplink-first.jpg"]
+    },
+    {
+      "kind": "mixed",
+      "area": "extraction",
+      "observation": "Return distance, a green ring, explicit six-second requirement, progress bar and inbound warning made extraction understandable. The return itself was fast and readable once outside the west archive. I survived the final hold by turning toward the yard and using small strafes beside a baffle, as instructed. The final hold was brief, and several distant enemies shared similar small silhouettes, so it did not create a strong separate final encounter identity for me.",
+      "evidence": ["docs/media/build23-review2/a2-return-run.jpg", "docs/media/build23-review2/a2-beacon.jpg", "docs/media/build23-review2/a2-uplink-first.jpg", "docs/media/build23-review2/a2-uplink-combat.jpg"]
+    },
+    {
+      "kind": "mixed",
+      "area": "visual presentation",
+      "observation": "The title, modal layout, cyan/amber palette, wet yard highlights, rain, signage and success panel establish a consistent atmosphere. In-world structures and enemies remain visibly simple and repetitive, with broad plain walls, sparse spaces, block-like body shapes and a basic rifle/hands presentation. The complete mission feels like a polished small slice rather than a visually finished AAA game.",
+      "evidence": ["docs/media/build23-review2/title.jpg", "docs/media/build23-review2/briefing.jpg", "docs/media/build23-review2/a2-west-approach.jpg", "docs/media/build23-review2/a2-heart-warden.jpg", "docs/media/build23-review2/a2-return-run.jpg", "docs/media/build23-review2/a2-extraction-end.jpg"]
+    }
+  ],
+  "session_closure": {
+    "driver_pid": 59540,
+    "chrome_pid": 59541,
+    "close_result": "browserClosed=true",
+    "driver_exit_code": 0,
+    "pid_verification": "ps -p 59540,59541 -o pid=,command= returned no rows and exit code 1 after closure; both owned PIDs exited."
+  }
+}

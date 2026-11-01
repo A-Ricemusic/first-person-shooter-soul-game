@@ -179,7 +179,7 @@ export class Game {
   }
   resize() {
     const w = this.canvas.clientWidth || window.innerWidth, h = this.canvas.clientHeight || window.innerHeight;
-    this.renderer.setSize(w, h, false); this.camera.aspect = w / Math.max(1, h); this.camera.updateProjectionMatrix();
+    this.renderer.setSize(w, h, false); this.camera.aspect = w / Math.max(1, h); this.camera.updateProjectionMatrix(); this.renderDirty=true;
   }
 
   setSettings(options = {}) {
@@ -652,7 +652,11 @@ export class Game {
     for (let remaining = dt; remaining > 1e-7 && this.phase === 'playing';) {
       const step = Math.min(1 / 120, remaining); this.update(step); remaining -= step;
     }
-    this.animate(this.phase === 'paused' ? 0 : dt); this.renderer.render(this.scene, this.camera);
+    const frozen=['paused','won','lost'].includes(this.phase);
+    if(!frozen||this.renderDirty||this.renderedPhase!==this.phase){
+      this.animate(frozen?0:dt);this.renderer.render(this.scene,this.camera);
+      this.renderDirty=false;this.renderedPhase=this.phase;
+    }
     this.onMarkers(this.captureMarkers());
     this.emitTimer -= dt; if (this.emitTimer <= 0) { this.emit(); this.emitTimer = 0.1; }
     this.frameId = requestAnimationFrame(t => this.frame(t));
@@ -668,7 +672,7 @@ export class Game {
       return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3)),distance:extractionDistance(this.player,this.world.playerSpawn),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
-    for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
+    for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
