@@ -1,0 +1,27 @@
+{
+  "build": "Build10",
+  "method": "Automated technical validation and two bounded native agent reviews; not human enjoyment evidence",
+  "passed": [
+    "npm test (14 checks)",
+    "npm run test:production (14 checks)",
+    "npm run test:combat",
+    "npm run test:phase",
+    "npm run test:phase-usability",
+    "npm run test:encounters",
+    "npm run test:playtest",
+    "npm run test:mission",
+    "npm run playtest:controls (final won, 3 cores, 13 kills)",
+    "npm run test:movement (9 behavior groups at multiple cadences)",
+    "npm run test:movement-browser (9 arranged actual-browser fixtures)"
+  ],
+  "reviewers": [
+    "build10-normal-review.json",
+    "build10-physics-review.json"
+  ],
+  "limits": [
+    "Normal reviewer needed second jump attempt and paused for screenshot assessment",
+    "Mission controller reads exact enemy/collision observations",
+    "Conservative rotated mesh AABBs, no exhaustive seam fuzz or human study",
+    "Prototype ratings unchanged; overall quality mission ongoing"
+  ]
+}

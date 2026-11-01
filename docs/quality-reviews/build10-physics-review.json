@@ -1,0 +1,74 @@
+{
+  "reviewer": "Second native GPT-6.1 Sol reviewer; arranged physics/browser assessment, not a human participant",
+  "build": "Build10 final movement followups: narrowed grate support, per-mesh barricades, torso melee/supply range and Space ribbon",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "Stable cover landing adds a concrete optional movement affordance. The fixed-frame fixtures establish support and collision behavior, not a broader increase in enjoyment, discovery, content depth or fidelity; the same provisional rubric scores remain appropriate. The actual elevated screenshots retain a readable target area and industrial scene, but simple character/weapon animation, a shared courtyard and limited authored encounters remain far below AAA production scope."
+  },
+  "methods": [
+    "Installed Google Chrome headless, Playwright, actual Three.js/WebGL at1280x800 with SwiftShader. All positions, enemy arrangements and synthetic ceiling are explicit fixtures.",
+    "Controlled requestAnimationFrame; normal canvas keydown Space plus movement key sets and direct game updates at known simulation intervals. These are deterministic physics fixtures, not continuous natural gameplay.",
+    "Actual vent approach used x14,z12.5, W for0.5seconds and Space, then released input. Final eye height3.015m means feet1.315m on visible grate. Five further simulated seconds retained support; walking right off the vent returned to floor.",
+    "Inspected both actual grate and raised phase screenshots using view_image. Browser closed after fixture execution. Screenshot HUD time can remain stale because these fixtures render directly rather than using natural RAF/HUD update timing.",
+    "Initial projectile fixture ran while asynchronously pointer-lock-paused and therefore correctly applied no damage; fixture now explicitly sets playing before its arranged damage check. This fixture correction is not a product defect.",
+    "Reran all nine browser checks against final parent followups and re-inspected both regenerated actual screenshots. All nine checks passed; no uncaught browser exceptions."
+  ],
+  "verifiedImprovements": [
+    "Actual grate supports landing and resting instead of forcing every jump back to floor.",
+    "Ground side approach does not pop onto vent; higher1.75m lip blocks current floor jump.",
+    "Repeated Space while airborne does not replenish vertical velocity.",
+    "Synthetic2.2m ceiling limits eye height to2.0m with1.9m body clearance and returns player to floor.",
+    "Pause retains raised position, resume preserves support and restart resets to1.7m eye/grounded/zero vertical velocity.",
+    "Raised player can be hit by an aimed ground projectile; a low shot is blocked by solid grate/base. Close raised phase break with valid LOS still succeeds.",
+    "Actual gantry pillar blocks full0.22s airborne dash atx33.98; airborne perimeter dash stops atx-36.584 within bounds.",
+    "A synthetic high support at an archive keeps channel progress0 when player eye4.7m exceeds vertical recovery range.",
+    "After integration followups, raised player takes no unreachable contact damage and cannot collect supply below solid vent; ground contact still damages shield60to45 and ground supply still collects.",
+    "Final screenshot visibly includes SPACE JUMP in bottom control ribbon."
+  ],
+  "findings": [
+    {
+      "severity": "low",
+      "finding": "New optional vent route is not taught in the bottom control ribbon: Space jump is absent although README documents it. This reduces in-play discovery of the movement affordance.",
+      "recommendation": "Add a concise Space/jump hint or platform approach cue without crowding target sightlines.",
+      "status": "fixed and visually verified",
+      "resolution": "Parent added SPACE JUMP; inspected final1280x800 screenshots show it without target overlap."
+    },
+    {
+      "severity": "low",
+      "finding": "Barricade actual top1.52000004m lies only3.8mm below jump apex1.52381m; ground mounting is possible only in a narrow interval.",
+      "recommendation": "Advertise the lower vent routes, retain barricades as cover, and avoid promising easy vaults over every prop.",
+      "status": "remaining bounded affordance limitation"
+    },
+    {
+      "severity": "integration followup reported to parent",
+      "finding": "Source audit found horizontal-only enemy melee range and pickup collection could interact through elevated cover. Parent is applying bounded torso range/LOS checks and fixtures are included for recheck.",
+      "status": "fixed and fixture verified",
+      "resolution": "Parent added torso3D reach and LOS; final contact/pickup regression passed both elevated rejection and ground preservation."
+    },
+    {
+      "severity": "geometry followup reported by parent",
+      "finding": "Parent identified continuous grate envelope wider than actual bars and radius epsilon mismatch with old grounded collision predicate; bounded followups are planned. Initial fixture screenshots were before these minor edge corrections.",
+      "status": "fixed, source and final fixture verified",
+      "resolution": "Parent narrowed continuous grate tox\u00b11.91, aligned strict radius predicate and used separate actual mesh bounds for barricade parts. Actual vent approach/rest/walkoff and pillar/bounds dash rechecks pass."
+    }
+  ],
+  "limitations": [
+    "No full mission or unarranged combat play in this reviewer; the separate normal-control reviewer covers that distinct evidence scope.",
+    "No blind human learning, enjoyment, auditory judgment, hardware performance certification, broad accessibility study or AAA readiness claim.",
+    "Ceiling and vertical recovery fixtures use synthetic boxes because reachable mission paths have no low ceilings or high platforms.",
+    "Bounding boxes remain conservative envelopes for rotated props, not full mesh collision; support edges and jump timing can still need further real play refinement.",
+    "No exhaustive fuzz search over all rotated prop seams or all landing angles; conservative Box3 mesh bounds remain for architecture and barricade parts."
+  ],
+  "screenshots": [
+    "docs/media/build10-physics-grate.png",
+    "docs/media/build10-physics-raised.png"
+  ],
+  "rawObservations": "docs/quality-reviews/build10-physics-regressions.json",
+  "driver": "tests/movement-browser-regressions.mjs"
+}

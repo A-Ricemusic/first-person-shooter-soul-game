@@ -146,9 +146,11 @@ export async function buildWorld(scene) {
   for(const x of [-3.5,3.5]){box(x,1.6,-5.46,.15,2.3,.05,amber);pipe([x,3.5,-8],[x,4.4,-8],.24,edge);}
   for(const x of [-14,14]){
     box(x,.55,9,4.8,1.1,3.8,darkConcrete,true);
-    box(x,1.15,9,5,.1,4,edge);
-    for(let i=0;i<9;i++)box(x-1.8+i*.45,1.24,9,.22,.15,3.4,steel);
-    box(x,1.4,7.05,4.8,.7,.15,steel);
+    box(x,1.15,9,5,.1,4,edge,true);
+    // Continuous grate support at the rendered bar tops (1.315 m).
+    colliders.push(new THREE.Box3(new THREE.Vector3(x-1.91,1.2,7.3),new THREE.Vector3(x+1.91,1.315,10.7)));
+    for(let i=0;i<9;i++)box(x-1.8+i*.45,1.24,9,.22,.15,3.4,steel,true);
+    box(x,1.4,7.05,4.8,.7,.15,steel,true);
   }
   for(const x of [-30,30]){
     box(x,2,9,5,4,6,darkConcrete,true);box(x,4.1,9,5.3,.2,6.3,steel);
@@ -189,7 +191,7 @@ export async function buildWorld(scene) {
   for(const x of [-9.3,-6.7])box(x,1.72,22.8,.09,.4,.1,edge);
   sign('INDUCTION GUARD','CAUTION / ACTIVE INDUCTION FIELD',-8,2.2,23.06,3.5,.75,'#ffc078');
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
-  for(const [x,z,rot]of cover){prop(barricadeAsset,x,z,rot);const hw=1.95,hd=.95;colliders.push(new THREE.Box3(new THREE.Vector3(x-hw,0,z-hd),new THREE.Vector3(x+hw,1.6,z+hd)));}
+  for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)colliders.push(new THREE.Box3().setFromObject(o));});}
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.
   const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.55,roughness:.18,transparent:true,opacity:.68,clearcoat:1});
   for(let i=0;i<36;i++){

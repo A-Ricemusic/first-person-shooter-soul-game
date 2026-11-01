@@ -1,0 +1,250 @@
+{
+  "reviewer": "Independent GPT-6.1 Sol normal-controls movement/cover reviewer; automated agent assessment, not human feedback",
+  "build": "Build10 implementation before final strict-radius/support-span/control-ribbon followups",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "Optional elevated cover now works through ordinary controls and supports combat and walking off. That is a meaningful mechanical gain but this short learned route does not support raising the overall rubric. The courtyard, simple hovering enemy forms, limited content and absent human enjoyment evidence remain. First mount failed; a close second jump succeeded."
+  },
+  "methods": [
+    "Installed Chrome headless/Playwright, actual WebGL at1280x800; inspected opening, route, failed mount, successful mount, combat and walkoff screenshots with image viewer.",
+    "No teleport, enemy arrangements, resource edits, exact-position navigation, simulation stepping or internal aim APIs. Actions used click, keyboard and relative mousemove events handled by ordinary listeners. Route decisions used screenshots and visible compass/markers.",
+    "Read-only captureState sampled after failed mount, after two combat actions and after walkoff for reporting. The first post-action sample established that the apparent mount had failed; the retry used a visibly close approach. State was not used to select target positions or enemy timings.",
+    "Prior brief disclosed vent location and jump rules. Several pauses for screenshot assessment; not blind discovery, real-time human reaction or an uninterrupted mission.",
+    "Initial launch left keyboard focus ineffective; its D attempt produced no movement, then browser closed. A fresh launch clicked the game canvas; click caused an incidental upward/rightward mouse turn, corrected by normal relative mouse events based on screenshot and compass. This setup failure is separate from the successful route."
+  ],
+  "actions": [
+    {
+      "click": "#game-canvas",
+      "keys": [
+        "KeyD"
+      ],
+      "wait": 2600,
+      "release": [
+        "KeyD"
+      ],
+      "shot": "east-bypass-actual",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "look": [
+        -384,
+        300
+      ],
+      "keys": [
+        "KeyW"
+      ],
+      "wait": 2600,
+      "release": [
+        "KeyW"
+      ],
+      "shot": "vent-approach",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "keys": [
+        "KeyD"
+      ],
+      "wait": 650,
+      "release": [
+        "KeyD"
+      ],
+      "shot": "vent-lane",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "keys": [
+        "KeyW"
+      ],
+      "wait": 2200,
+      "release": [
+        "KeyW"
+      ],
+      "shot": "vent-near",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "keys": [
+        "KeyW"
+      ],
+      "press": "Space",
+      "wait": 650,
+      "release": [
+        "KeyW"
+      ],
+      "shot": "jump-on-grate",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "wait": 1200,
+      "shot": "stable-cover",
+      "pause": true,
+      "state": true
+    },
+    {
+      "click": "#resume",
+      "keys": [
+        "KeyW"
+      ],
+      "press": "Space",
+      "wait": 500,
+      "release": [
+        "KeyW"
+      ],
+      "shot": "second-jump",
+      "pause": true
+    },
+    {
+      "click": "#resume",
+      "look": [
+        230,
+        14
+      ],
+      "mouse": "left",
+      "wait": 900,
+      "mouseup": "left",
+      "shot": "cover-combat",
+      "pause": true,
+      "state": true
+    },
+    {
+      "click": "#resume",
+      "look": [
+        -115,
+        -4
+      ],
+      "mouse": "left",
+      "wait": 450,
+      "mouseup": "left",
+      "shot": "cover-followup",
+      "pause": true,
+      "state": true
+    },
+    {
+      "click": "#resume",
+      "keys": [
+        "KeyD"
+      ],
+      "wait": 1000,
+      "release": [
+        "KeyD"
+      ],
+      "shot": "walk-off",
+      "pause": true,
+      "state": true,
+      "done": true
+    }
+  ],
+  "observations": [
+    {
+      "label": "stable-cover (filename describes intended action, not success)",
+      "time": 18.749199999999615,
+      "player": {
+        "x": 13.831431467718664,
+        "y": 1.7,
+        "z": 11.427089505362357,
+        "grounded": true
+      },
+      "ammo": 30,
+      "health": 100,
+      "shield": 60,
+      "interpretation": "First jump from the visible gap was too early and ended on ground against the rear edge; screenshot alone could be misread as support."
+    },
+    {
+      "label": "cover-combat",
+      "time": 21.33249999999947,
+      "player": {
+        "x": 13.81603376010531,
+        "y": 3.0149999999999997,
+        "z": 9.960265908583173,
+        "grounded": true
+      },
+      "ammo": 21,
+      "health": 100,
+      "shield": 60,
+      "kills": 0,
+      "accuracy": 0,
+      "interpretation": "Second closer W+Space mounted grate. Rested through normal firing action; shots missed moving sentinel."
+    },
+    {
+      "label": "cover-followup",
+      "time": 22.765799999999405,
+      "player": {
+        "x": 13.81603376010531,
+        "y": 3.0149999999999997,
+        "z": 9.960265908583173,
+        "grounded": true
+      },
+      "ammo": 16,
+      "health": 100,
+      "shield": 41,
+      "kills": 0,
+      "accuracy": 0,
+      "interpretation": "Support remained stable across another screenshot-guided firing correction. Projectile damage reached elevated player.14shots total, no registered hits; no offensive advantage established."
+    },
+    {
+      "label": "walk-off",
+      "time": 24.349099999999304,
+      "player": {
+        "x": 19.178625753088166,
+        "y": 1.7,
+        "z": 11.181988920070042,
+        "grounded": true
+      },
+      "ammo": 16,
+      "health": 100,
+      "shield": 41,
+      "interpretation": "Ordinary D walkoff returned to ground with gravity; no sticky elevated hover seen."
+    }
+  ],
+  "verifiedImprovements": [
+    "A close normal W+Space jump from rear mounted the actual grated low cover.",
+    "Eye height3.015 with grounded true persisted through two separate combat input samples; feet1.315 matches grate top.",
+    "Normal lateral walkoff returned to eye1.7 grounded.",
+    "Player remained vulnerable on raised cover:19shield damage observed."
+  ],
+  "findings": [
+    {
+      "severity": "medium usability limitation",
+      "finding": "First visually chosen jump began too early and failed to mount; successful retry required starting close to rear edge. No landing/vault affordance distinguishes this optional route clearly.",
+      "recommendation": "Keep Space visible in field controls and consider restrained service-route paint/affordances after human testing; do not enlarge jump blindly or require parkour."
+    },
+    {
+      "severity": "content/presentation limitation",
+      "finding": "The new height gives an alternative firing perch, but the visible fight still revolves around the same courtyard and simple hovering sentinel models. Two firing actions missed the moving target; this review does not prove improved combat utility or enjoyment.",
+      "recommendation": "Retain candid scoring and collect human learning/combat evidence before balancing damage around the perch."
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "docs/media/build10-normal-cover-combat.png",
+    "docs/media/build10-normal-cover-followup.png",
+    "docs/media/build10-normal-east-bypass-actual.png",
+    "docs/media/build10-normal-east-bypass.png",
+    "docs/media/build10-normal-jump-on-grate.png",
+    "docs/media/build10-normal-opening.png",
+    "docs/media/build10-normal-second-jump.png",
+    "docs/media/build10-normal-stable-cover.png",
+    "docs/media/build10-normal-vent-approach.png",
+    "docs/media/build10-normal-vent-lane.png",
+    "docs/media/build10-normal-vent-near.png",
+    "docs/media/build10-normal-walk-off.png"
+  ],
+  "limitations": [
+    "Short optional cover route, no core recovery/full mission.",
+    "Prior mechanic knowledge and paused screenshot decisions; no human participant or blind discovery.",
+    "No successful shot/hit while raised; targeted physics reviewer covers projectile geometry separately.",
+    "No audio listening, hardware performance or broad accessibility assessment.",
+    "Ratings unchanged and provisional; no10/10 or AAA-ready claim."
+  ]
+}

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { buildWorld } from './world.js';
+import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
 import { CORE_SITES, RECOVERY_SECONDS, EXTRACTION_SECONDS } from './mission.js';
 
@@ -136,7 +137,7 @@ export class Game {
         if (e.code === 'KeyR') this.reload();
         if (e.code === 'KeyE') this.interact();
         if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') this.dash();
-        if (e.code === 'Space' && this.grounded) { this.velocityY = 7; this.grounded = false; }
+        if (e.code === 'Space') jumpPlayer(this, this.world);
       }
       this.keys.add(e.code);
     });
@@ -268,7 +269,7 @@ export class Game {
   }
   interact() {
     if (this.phase !== 'playing') return;
-    const core = this.coreNodes.find(c => !c.collected && Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
+    const core = this.coreNodes.find(c => !c.collected && Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z,this.player.y-1.7)<2.8);
     if (!core) { this.event('notice', 'Approach a cyan archive beacon. Hold E to recover its memory.'); return; }
     this.channelCore = core;
   }
@@ -384,22 +385,21 @@ export class Game {
     const previousPlayer=this.player.clone();
     const direction = this.moveDirection(), sprint = this.keys.has('ControlLeft') || this.keys.has('ControlRight');
     const speed = this.aim ? 3.1 : sprint ? 8 : 5.5;
-    if (this.dashTime > 0) { this.dashTime -= dt; this.moveEntity(this.player, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27); }
-    else this.moveEntity(this.player, direction.x * speed * dt, direction.z * speed * dt);
-    if (!this.grounded) { this.velocityY -= dt * 21; this.player.y += this.velocityY * dt; if (this.player.y <= 1.7) { this.player.y = 1.7; this.velocityY = 0; this.grounded = true; } }
+    if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
+    else movePlayer(this, this.world, direction.x * speed * dt, direction.z * speed * dt, dt);
     if (direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
-    const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z)<2.8);
+    const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z,this.player.y-1.7)<2.8);
     if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
       const distance=Math.hypot(this.player.x-this.world.playerSpawn.x,this.player.z-this.world.playerSpawn.z);
       if(distance<12&&!this.extractionWave){this.extractionWave=true;for(const x of [-18,18])if(this.canOccupy(x,23,.5))this.spawnEnemy(new THREE.Vector3(x,0,23),'stalker',2);this.event('notice',`INTERCEPTORS INBOUND. Hold the green zone for ${this.extractionSeconds} seconds.`);}
-      this.extractionProgress=distance<2.7?this.extractionProgress+dt:Math.max(0,this.extractionProgress-dt*2);
+      this.extractionProgress=distance<2.7&&Math.abs(this.player.y-1.7)<.5?this.extractionProgress+dt:Math.max(0,this.extractionProgress-dt*2);
       if(this.extractionProgress+1e-8>=this.extractionSeconds)this.finish(true);
     }
   }
@@ -479,7 +479,8 @@ export class Game {
           this.phaseCueAt=this.runTime;this.event('notice','WARDEN CHARGING · W + Shift toward amber ring to break. Or strafe / shoot optic.');
         }
       }
-      if (distance < 1.4 && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
+      const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
+      if (distance < 1.4 && eye.distanceTo(torso) < 1.6 && this.hasLineOfSight(eye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
   }
 
@@ -517,9 +518,11 @@ export class Game {
   updatePickups(dt) {
     for (let i = this.pickups.length - 1; i >= 0; i--) {
       const p = this.pickups[i]; p.life -= dt; p.mesh.rotation.y += dt * 2; p.mesh.position.y = 0.6 + Math.sin(this.runTime * 3 + i) * 0.1;
-      const distance = Math.hypot(p.mesh.position.x - this.player.x, p.mesh.position.z - this.player.z);
-      if (distance < 4) { p.mesh.position.x = THREE.MathUtils.damp(p.mesh.position.x, this.player.x, 3, dt); p.mesh.position.z = THREE.MathUtils.damp(p.mesh.position.z, this.player.z, 3, dt); }
-      if (distance < 1.2) { this.reserve = Math.min(360, this.reserve + 24); this.health = Math.min(100, this.health + 6); this.shield = Math.min(60, this.shield + 10); p.life = 0; this.audio.tone(640, 0.15, 'sine', 0.07, 940); this.event('supply', '+24 rounds · +6 health · +10 armor'); }
+      const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
+      const distance = p.mesh.position.distanceTo(torso);
+      const reachable = this.hasLineOfSight(p.mesh.position, torso, 0);
+      if (reachable && distance < 4) { p.mesh.position.x = THREE.MathUtils.damp(p.mesh.position.x, this.player.x, 3, dt); p.mesh.position.z = THREE.MathUtils.damp(p.mesh.position.z, this.player.z, 3, dt); }
+      if (reachable && distance < 1.2) { this.reserve = Math.min(360, this.reserve + 24); this.health = Math.min(100, this.health + 6); this.shield = Math.min(60, this.shield + 10); p.life = 0; this.audio.tone(640, 0.15, 'sine', 0.07, 940); this.event('supply', '+24 rounds · +6 health · +10 armor'); }
       if (p.life <= 0) { this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.pickups.splice(i, 1); }
     }
   }
@@ -605,7 +608,7 @@ export class Game {
     return markers;
   }
   captureState() {
-    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: Math.hypot(c.position.x - this.player.x, c.position.z - this.player.z) }));
+    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: Math.hypot(c.position.x - this.player.x, c.position.z - this.player.z, this.player.y - 1.7) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
@@ -614,7 +617,7 @@ export class Game {
       objective: this.cores === this.coreNodes.length ? (this.extractionProgress>0?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < 2.8 ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
-      difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, z: this.player.z, yaw: this.yaw }, coreMarkers,
+      difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
       nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       exitDistance: this.world ? Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) : 0,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
