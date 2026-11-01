@@ -1,0 +1,174 @@
+{
+  "method": "Exactly two fresh native GPT-6.1 Sol reviewers sequentially, fork_turns:none; exactly two terminal attempts each; neutral normal-URL brief and visible instructions/driver help only. No source/old reports/coords/routes/desired scores. No builds/tests/edits during reviews.",
+  "freezeDigest": "23c9be5a7ec6a4a25454f6d4e5c90d7bb22c4e0667ef7b1f9d2871191ceaaa57",
+  "reviewers": [
+    {
+      "report": "docs/quality-reviews/build43-review1.json",
+      "ratings": {
+        "gameplay": 7.0,
+        "presentation": 7.5,
+        "usability": 7.0,
+        "readability": 6.5,
+        "aaaReadiness": 4.5,
+        "replayability": 5.5
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "win",
+          "missionTime": "00:55",
+          "eliminations": 5,
+          "score": 6968,
+          "accuracyPercent": 16,
+          "criticalEliminations": 5,
+          "phaseEvades": 0,
+          "deaths": 0,
+          "routeObserved": "Entry guard, central yard, west triage/archive, Heart relay approach, east maintenance/archive, Heart return, west return aisle, uplink deck",
+          "notes": [
+            "Entry optic burst eliminated guard quickly.",
+            "Initial west patrol burst missed; corrected down aim secured elimination.",
+            "Heart guard initial burst missed, corrected burst eliminated it.",
+            "Multiple Heart E holds were outside reach (3.3 m and 3.0 m); departed prematurely then returned and recovered.",
+            "All three cores restored supplies and kept health high.",
+            "Ran into central wall on extraction return, moved sideways around it.",
+            "Uplink incoming fire stripped shield and reduced health to 89; lateral Shift stayed in deck and operation completed."
+          ],
+          "terminalEvidence": "a1-terminal.jpg"
+        },
+        {
+          "attempt": 2,
+          "outcome": "win",
+          "missionTime": "01:02",
+          "eliminations": 2,
+          "score": 6002,
+          "accuracyPercent": 13,
+          "criticalEliminations": 1,
+          "phaseEvades": 2,
+          "deaths": 0,
+          "lastObservedHealth": 42,
+          "routeObserved": "Entry dash, east approach and maintenance, Heart, west service/triage, south return, uplink",
+          "notes": [
+            "Opening dash visibly awarded PHASE EVADE +75; guard filled foreground briefly.",
+            "Forward travel initially stuck against low cover; side correction allowed progress.",
+            "Shot toward engineering bank/isolator several times; first clearly missed, one burst killed nearby interceptor. Actual bank activation was not confidently visible.",
+            "Recovered east and Heart while bypassing most enemies.",
+            "West route hit walls/pillar; corrected via south/east service.",
+            "West hold at 3.4 m failed; mistakenly began return, noticed missing objective and returned.",
+            "Dash toward close sentinel awarded evade but followup missed because enemy moved out of aim.",
+            "Uplink approach movement was obstructed; nearby warden filled screen.",
+            "Lateral dash visibly caused PHASE BREAK, SHOT CANCELED, ARMOR OPEN 3s; subsequent corrected fire killed warden.",
+            "Extraction damage became urgent. Final sideways dash left deck with paused upload around 90%; reentered and completed."
+          ],
+          "terminalEvidence": "a2-final.jpg"
+        }
+      ],
+      "closure": {
+        "driverPid": 20836,
+        "chromePid": 20837,
+        "browserClosed": true,
+        "driverProcessExitCode": 0,
+        "verificationCommand": "ps -p 20836,20837 -o pid=,comm=",
+        "verificationExitCode": 1,
+        "verificationOutput": "",
+        "exactOwnedPidsAbsent": true,
+        "broadKillUsed": false
+      }
+    },
+    {
+      "report": "docs/quality-reviews/build43-review2.json",
+      "ratings": {
+        "gameplay": 6.5,
+        "presentation": 7.0,
+        "usability": 7.0,
+        "readability": 6.5,
+        "aaaReadiness": 4.0,
+        "replayability": 5.0
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "win",
+          "missionTime": "00:42",
+          "eliminations": 2,
+          "score": 6141,
+          "accuracyPercent": 30,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "coreOrder": [
+            "West Archive",
+            "East Archive",
+            "Heart"
+          ],
+          "observations": [
+            "Killed induction warden after moving close and aiming upward.",
+            "West and east recovery worked on first hold; supplies visibly restored.",
+            "Heart first moving burst missed, stationary correction killed warden.",
+            "Return ran into central solid cover; strafing cleared it.",
+            "Held extraction near edge; incoming fire reduced shield but mission completed."
+          ],
+          "evidence": [
+            "a1-fire.jpg",
+            "a1-core1.jpg",
+            "a1-core2.jpg",
+            "a1-heart-fire.jpg",
+            "a1-heart-recover.jpg",
+            "a1-return.jpg",
+            "a1-hold.jpg",
+            "a1-terminal.jpg"
+          ]
+        },
+        {
+          "attempt": 2,
+          "outcome": "win",
+          "missionTime": "00:58",
+          "eliminations": 4,
+          "score": 6415,
+          "accuracyPercent": 19,
+          "criticalEliminations": 3,
+          "phaseEvades": 1,
+          "coreOrder": [
+            "East Archive",
+            "Heart",
+            "West Archive"
+          ],
+          "observations": [
+            "Initial forward Shift yielded PHASE EVADE; induction warden survived and appeared again at extraction.",
+            "Multiple aiming bursts at east sentinel missed before successful correction.",
+            "First east recovery hold was too far: MOVE CLOSER / STEP INSIDE FLOOR RING appeared; a short advance solved it.",
+            "Shot toward a capacitor then dashed sideways; no discharge confirmation, so successful trigger not claimed.",
+            "North/west service detour hit walls repeatedly; health fell to 65 before west recovery restored it to 85.",
+            "Phase break canceled a sentinel shot and changed its face to white; follow-up shots missed.",
+            "Extraction baffles provided useful visual cover, though flanks continued to damage shield."
+          ],
+          "evidence": [
+            "a2-dash.jpg",
+            "a2-track.jpg",
+            "a2-core1.jpg",
+            "a2-core1-secured.jpg",
+            "a2-capacitor.jpg",
+            "a2-service-turn.jpg",
+            "a2-close-threat.jpg",
+            "a2-medical-entry.jpg",
+            "a2-west-core.jpg",
+            "a2-uplink-cover.jpg",
+            "a2-terminal.jpg"
+          ]
+        }
+      ],
+      "closure": {
+        "driverPid": 23476,
+        "chromePid": 23477,
+        "browserClosed": true,
+        "driverExitCode": 0,
+        "pidVerification": "ps -p 23476,23477 -o pid=,comm= returned no rows (exit 1); exact owned PIDs absent.",
+        "attemptCount": 2,
+        "deaths": 0,
+        "wins": 2
+      }
+    }
+  ],
+  "implementationOutcome": "Known-route source-informed normal-URL death 00:56, all3,2kills,6%accuracy; failed medical holds and extraction edge correction preserved.",
+  "privilegedController": "won/all3/upload1/12kills/errors[]; reads actual geometry/targets, not ordinary discovery.",
+  "limitations": "No unfamiliar human test, audio assessment, hardware FPS claim or causal balance comparison. New space naturally visited by both reviewers; no confirmed natural capacitor discharge or exhaustive rig-flank combat. Short mission remains limited production breadth.",
+  "postReview": "No game changes or rescoring. Fixed incidental output preservation and hardened runner output routing only."
+}

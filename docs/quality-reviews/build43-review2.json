@@ -1,0 +1,160 @@
+{
+  "reviewer": "fresh ordinary-play reviewer 2",
+  "build": 43,
+  "provisional": true,
+  "url": "http://127.0.0.1:5173/",
+  "method": "Exactly two ordinary terminal attempts through visible driver TTY JSON input; screenshots inspected. No source, tests, builds, hidden state, other reports, or other logs read.",
+  "ratings": {
+    "gameplay": 6.5,
+    "presentation": 7.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "aaaReadiness": 4.0,
+    "replayability": 5.0
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "win",
+      "missionTime": "00:42",
+      "eliminations": 2,
+      "score": 6141,
+      "accuracyPercent": 30,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "coreOrder": [
+        "West Archive",
+        "East Archive",
+        "Heart"
+      ],
+      "observations": [
+        "Killed induction warden after moving close and aiming upward.",
+        "West and east recovery worked on first hold; supplies visibly restored.",
+        "Heart first moving burst missed, stationary correction killed warden.",
+        "Return ran into central solid cover; strafing cleared it.",
+        "Held extraction near edge; incoming fire reduced shield but mission completed."
+      ],
+      "evidence": [
+        "a1-fire.jpg",
+        "a1-core1.jpg",
+        "a1-core2.jpg",
+        "a1-heart-fire.jpg",
+        "a1-heart-recover.jpg",
+        "a1-return.jpg",
+        "a1-hold.jpg",
+        "a1-terminal.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "win",
+      "missionTime": "00:58",
+      "eliminations": 4,
+      "score": 6415,
+      "accuracyPercent": 19,
+      "criticalEliminations": 3,
+      "phaseEvades": 1,
+      "coreOrder": [
+        "East Archive",
+        "Heart",
+        "West Archive"
+      ],
+      "observations": [
+        "Initial forward Shift yielded PHASE EVADE; induction warden survived and appeared again at extraction.",
+        "Multiple aiming bursts at east sentinel missed before successful correction.",
+        "First east recovery hold was too far: MOVE CLOSER / STEP INSIDE FLOOR RING appeared; a short advance solved it.",
+        "Shot toward a capacitor then dashed sideways; no discharge confirmation, so successful trigger not claimed.",
+        "North/west service detour hit walls repeatedly; health fell to 65 before west recovery restored it to 85.",
+        "Phase break canceled a sentinel shot and changed its face to white; follow-up shots missed.",
+        "Extraction baffles provided useful visual cover, though flanks continued to damage shield."
+      ],
+      "evidence": [
+        "a2-dash.jpg",
+        "a2-track.jpg",
+        "a2-core1.jpg",
+        "a2-core1-secured.jpg",
+        "a2-capacitor.jpg",
+        "a2-service-turn.jpg",
+        "a2-close-threat.jpg",
+        "a2-medical-entry.jpg",
+        "a2-west-core.jpg",
+        "a2-uplink-cover.jpg",
+        "a2-terminal.jpg"
+      ]
+    }
+  ],
+  "assessment": {
+    "gameplay": "A complete short recover-and-return loop with useful optic precision, shield recovery, phase timing and cover. Two wins despite low accuracy and very few eliminations suggest traversal/objective rushing is forgiving; longer western detour produced meaningful pressure. Combat choices exist but the tiny sample and short mission limit depth claims.",
+    "presentation": "Strong coherent teal/amber storm atmosphere, wet floor lighting, relay landmark, title layout and clean end screen. Close views reveal simple block geometry, sparse props, repeated robot forms and flat walls; visually polished prototype rather than AAA finish.",
+    "usability": "Menu, brief, map, objective beacons and recovery feedback supported completion. Paused map was understandable. West service labels did not prevent repeated wall detours; map could have helped more if reopened. CTRL sprint/Shift phase require attention but are documented.",
+    "readability": "Health/ammo/objective and core confirmation clear. Amber robot optics contrast well. Distant targets are small; muted chevrons and numeric direction cues were hard to act on among cover and announcements. Some beacon labels and nearest-distance text overlapped scene signs. Extraction near-edge and move-within-deck messages allowed successful adjustment.",
+    "aaaReadiness": "Functionally complete slice in this sample, with stable menu-to-win flow and no observed page errors. Geometry, animation/variety, scope and combat depth do not yet support an AAA readiness claim."
+  },
+  "coverage": {
+    "spacesNaturallyEncountered": [
+      "deployment/induction approach",
+      "central yard",
+      "west triage/medical bay with storage and medical table",
+      "west north exterior/service wall and east service approach",
+      "south intake",
+      "east works/engineering maintenance with capacitor cabinets and repair props",
+      "Heart relay with operator terminals",
+      "lit return aisles",
+      "uplink deck and split baffles"
+    ],
+    "systems": [
+      "brief and handbook",
+      "facility map",
+      "hip fire and ADS",
+      "reload",
+      "sprint",
+      "phase evade",
+      "phase break",
+      "shield regeneration",
+      "all three recoveries",
+      "supply restoration",
+      "extraction progress",
+      "end score",
+      "restored memories dialog"
+    ],
+    "notEstablished": [
+      "death flow",
+      "successful capacitor discharge",
+      "upload decay outside zone",
+      "jump usefulness",
+      "settings changes",
+      "audio quality",
+      "hardware GPU performance",
+      "extended replay variation"
+    ]
+  },
+  "rawEvidence": "docs/media/build43-review2/actions.jsonl",
+  "rawEvidencePolicy": "All raw actions, unsuccessful recovery, misses, wall detours and command errors preserved; no retries discarded.",
+  "errors": [
+    {
+      "kind": "reviewer input",
+      "detail": "Malformed JSON selector for archive Return failed parsing."
+    },
+    {
+      "kind": "reviewer selector",
+      "detail": "text=RETURN matched five elements; button[data-close] matched eight. Closed archive using its reported Close archive aria-label."
+    }
+  ],
+  "uncertainty": [
+    "Screenshot/TTY control with automatic pauses materially differs from continuous mouse play and can ease tactical decisions.",
+    "Screenshots can occur after visible UI snapshots; observed slight shield and percentage differences are not treated as bugs.",
+    "Software WebGL fallback was enabled; no GPU certification or performance benchmark.",
+    "Only two brief wins; balance impressions provisional.",
+    "Handbook visible screenshot showed introductory instructions and control grid, while returned dialog text also included further phase and visor explanation; no scrolling was tested."
+  ],
+  "closure": {
+    "driverPid": 23476,
+    "chromePid": 23477,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "pidVerification": "ps -p 23476,23477 -o pid=,comm= returned no rows (exit 1); exact owned PIDs absent.",
+    "attemptCount": 2,
+    "deaths": 0,
+    "wins": 2
+  }
+}

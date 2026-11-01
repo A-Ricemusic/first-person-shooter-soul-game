@@ -1,0 +1,155 @@
+{
+  "reviewer": "fresh ordinary-play reviewer 1",
+  "build": 43,
+  "provisional": true,
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "terminalAttempts": 2,
+    "sourceRead": false,
+    "testsOrBuildsRun": false,
+    "hiddenStateUsed": false,
+    "interface": "npm run playtest:visible, TTY JSON stdin",
+    "graphics": "Software-WebGL fallback; not GPU certification",
+    "evidenceDirectory": "docs/media/build43-review1",
+    "rawActions": "docs/media/build43-review1/actions.jsonl",
+    "rawPreservation": "All driver actions, results, misses, failed recovery holds and screenshots retained without pruning."
+  },
+  "ratings": {
+    "gameplay": 7.0,
+    "presentation": 7.5,
+    "usability": 7.0,
+    "readability": 6.5,
+    "aaaReadiness": 4.5,
+    "replayability": 5.5
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "win",
+      "missionTime": "00:55",
+      "eliminations": 5,
+      "score": 6968,
+      "accuracyPercent": 16,
+      "criticalEliminations": 5,
+      "phaseEvades": 0,
+      "deaths": 0,
+      "routeObserved": "Entry guard, central yard, west triage/archive, Heart relay approach, east maintenance/archive, Heart return, west return aisle, uplink deck",
+      "notes": [
+        "Entry optic burst eliminated guard quickly.",
+        "Initial west patrol burst missed; corrected down aim secured elimination.",
+        "Heart guard initial burst missed, corrected burst eliminated it.",
+        "Multiple Heart E holds were outside reach (3.3 m and 3.0 m); departed prematurely then returned and recovered.",
+        "All three cores restored supplies and kept health high.",
+        "Ran into central wall on extraction return, moved sideways around it.",
+        "Uplink incoming fire stripped shield and reduced health to 89; lateral Shift stayed in deck and operation completed."
+      ],
+      "terminalEvidence": "a1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "win",
+      "missionTime": "01:02",
+      "eliminations": 2,
+      "score": 6002,
+      "accuracyPercent": 13,
+      "criticalEliminations": 1,
+      "phaseEvades": 2,
+      "deaths": 0,
+      "lastObservedHealth": 42,
+      "routeObserved": "Entry dash, east approach and maintenance, Heart, west service/triage, south return, uplink",
+      "notes": [
+        "Opening dash visibly awarded PHASE EVADE +75; guard filled foreground briefly.",
+        "Forward travel initially stuck against low cover; side correction allowed progress.",
+        "Shot toward engineering bank/isolator several times; first clearly missed, one burst killed nearby interceptor. Actual bank activation was not confidently visible.",
+        "Recovered east and Heart while bypassing most enemies.",
+        "West route hit walls/pillar; corrected via south/east service.",
+        "West hold at 3.4 m failed; mistakenly began return, noticed missing objective and returned.",
+        "Dash toward close sentinel awarded evade but followup missed because enemy moved out of aim.",
+        "Uplink approach movement was obstructed; nearby warden filled screen.",
+        "Lateral dash visibly caused PHASE BREAK, SHOT CANCELED, ARMOR OPEN 3s; subsequent corrected fire killed warden.",
+        "Extraction damage became urgent. Final sideways dash left deck with paused upload around 90%; reentered and completed."
+      ],
+      "terminalEvidence": "a2-final.jpg"
+    }
+  ],
+  "observations": [
+    {
+      "area": "gameplay",
+      "finding": "Compact recovery-and-extraction loop works and supports choosing archive order, optic kills, bypassing enemies and phase movement. Extraction concentrates meaningful pressure after fairly forgiving travel. Two successful attempts even with low accuracy and missed holds suggest generous objective/supply balance.",
+      "evidence": [
+        "a1-west-recover.jpg",
+        "a1-defend.jpg",
+        "a2-deck-cover.jpg"
+      ]
+    },
+    {
+      "area": "presentation",
+      "finding": "Rain, cyan strips, amber engineering lights, reflective floor and large Heart ring create a cohesive industrial mood. Menu and completion typography are strong. Enemy bodies, rifle, room props and distant silhouettes remain visibly simple/blocky, with repeated cover shapes and limited environmental variety.",
+      "evidence": [
+        "menu.jpg",
+        "a1-heart-approach.jpg",
+        "a2-east-near.jpg",
+        "a2-final.jpg"
+      ]
+    },
+    {
+      "area": "usability",
+      "finding": "Brief and handbook clearly explain map, core recovery, extraction and controls. Map provides useful room layout. Actual receiver reach was stricter than my visual impression of the floor ring, causing repeated too-far holds and premature departures. Prompt did say MOVE CLOSER, so this was readable feedback plus player error.",
+      "evidence": [
+        "brief.jpg",
+        "howto.jpg",
+        "a1-map.jpg",
+        "a1-heart-recover2.jpg",
+        "a2-west-core.jpg"
+      ]
+    },
+    {
+      "area": "readability",
+      "finding": "Objective beacons and extraction percentage are easy to find; visible optic/charge colors and phase break announcement communicate useful state. Small peripheral text, several simultaneous chevrons, world labels and lower readouts take attention from tiny distant enemies. Brief damage snapshots sometimes precede slightly later screenshots (e.g. 68 UI health versus 55 screenshot), consistent with live capture timing.",
+      "evidence": [
+        "a1-uplink-half.jpg",
+        "a2-deck-evade.jpg",
+        "a2-deck-cover.jpg"
+      ]
+    },
+    {
+      "area": "level navigation",
+      "finding": "Natural route choices exposed entry, central yard, west triage/medical service, archives, east maintenance/engineering, Heart relay and extraction. Walls and low cover repeatedly blocked direct beacon travel; signage/map helped, but some obstacle correction happened only after seeing unchanged distance.",
+      "evidence": [
+        "a2-east-intake.jpg",
+        "a2-west-service.jpg",
+        "a1-return-yard.jpg"
+      ]
+    },
+    {
+      "area": "aaaReadiness",
+      "finding": "A coherent playable vertical slice with polished graphic direction, but observed geometry/animation detail, enemy variety, mission length and combat feedback do not yet establish full AAA production readiness. This rating concerns observed scope/finish, not project potential."
+    }
+  ],
+  "uncertainty": [
+    "Exactly two attempts, both wins; death flow was not encountered.",
+    "No source, hidden state, old reports, tests or builds inspected.",
+    "No audio evaluation through this screenshot-driven interface.",
+    "Software renderer and stepped/paused interaction prevent claims about native mouse feel, continuous frame pacing or GPU quality.",
+    "Engineering discharge activation and consequences were not confirmed; no claim of successful hazard coverage.",
+    "Did not read recovered memory archive, inspect settings or exhaust every lane.",
+    "No console pageErrors appeared in action responses; this is not a comprehensive bug audit."
+  ],
+  "errors": {
+    "driverErrors": [],
+    "pageErrorsObserved": [],
+    "playerMisses": "Preserved in actions.jsonl, including initial patrol/Heart bursts, bank shots, dash followup, too-distant E holds, blocked travel and deck overshoot.",
+    "deaths": 0
+  },
+  "closure": {
+    "driverPid": 20836,
+    "chromePid": 20837,
+    "browserClosed": true,
+    "driverProcessExitCode": 0,
+    "verificationCommand": "ps -p 20836,20837 -o pid=,comm=",
+    "verificationExitCode": 1,
+    "verificationOutput": "",
+    "exactOwnedPidsAbsent": true,
+    "broadKillUsed": false
+  }
+}
