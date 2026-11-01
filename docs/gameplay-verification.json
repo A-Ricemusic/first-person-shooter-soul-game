@@ -1,0 +1,69 @@
+{
+  "suite": "Gameplay agent targeted QA",
+  "date": "2026-11-01",
+  "environment": {
+    "browser": "Installed Google Chrome, Playwright headless",
+    "renderer": "ANGLE / SwiftShader software WebGL",
+    "url": "http://127.0.0.1:5173/?test=1",
+    "viewport": { "width": 1440, "height": 900 }
+  },
+  "results": [
+    {
+      "check": "Deployment and authored enemy asset initialization",
+      "status": "passed",
+      "observed": { "phase": "playing", "focusedElement": "game-canvas", "blenderSentinelLoaded": true }
+    },
+    {
+      "check": "Real W key event drives player movement",
+      "status": "passed",
+      "method": "Playwright keyboard.down('KeyW'), advance simulation 0.5 seconds, keyboard.up('KeyW')",
+      "observed": { "startZ": 31, "endZ": 28.158333333333385, "x": 0 }
+    },
+    {
+      "check": "Solid architecture blocks rifle damage",
+      "status": "passed",
+      "method": "Place player at (0,0) and sentinel at (0,-16), aim directly through the central concrete structure and shoot",
+      "observed": { "enemyHealthUnchanged": true }
+    },
+    {
+      "check": "Unobstructed weakpoint hits deal critical damage",
+      "status": "passed",
+      "method": "Place player and sentinel in unobstructed rear lane, aim at optic and shoot",
+      "observed": { "damage": 82, "roundsConsumed": 1 }
+    },
+    {
+      "check": "Enemy AI charges and fires damaging projectiles",
+      "status": "passed",
+      "method": "Keep player stationary in an unobstructed lane against one sentinel for eight simulated seconds",
+      "observed": { "initialShield": 60, "finalShield": 3, "finalHealth": 100 }
+    },
+    {
+      "check": "All three objectives and extraction are traversable with normal movement and collision",
+      "status": "passed",
+      "method": "Find cardinal routes on a one-metre collision grid; follow them using W movement and the normal fixed-step update, without teleporting. Claim each core through the normal interact method and return to insertion. Enemies are cleared between objectives to isolate traversal from combat.",
+      "observed": {
+        "core0RouteNodes": 71,
+        "core1RouteNodes": 49,
+        "core2RouteNodes": 43,
+        "extractionRouteNodes": 75,
+        "recoveredCores": 3,
+        "finalPhase": "won",
+        "simulatedMissionTimeSeconds": 42.19181818181638
+      }
+    },
+    { "check": "Uncaught browser JavaScript exceptions during targeted suite", "status": "passed", "observed": [] }
+  ],
+  "issuesFoundAndFixed": [
+    "Deployment button focus could suppress keyboard control; deployment and resume now focus the canvas, and in-game button focus does not suppress movement.",
+    "Blender rifle initially obscured too much of the frame; reduced authored viewmodel to half scale, moved its receiver forward, and aligned optic height for ADS.",
+    "Initial Blender sentinel scale and critical hit sphere did not match the hovering model; normalized its dimensions and matched the optic hit volume.",
+    "Enemy clone cleanup attempted to dispose shared Blender geometry; shared geometry is retained while per-enemy materials are disposed.",
+    "Fast restart during Soul Shift could retain brief invulnerability; deployment now resets it to zero."
+  ],
+  "limitations": [
+    "Traversal suite uses simulation stepping and removes enemies to isolate reachability; it is not an end-to-end unassisted human combat completion.",
+    "Debug hooks exist only when explicitly loading with ?test=1.",
+    "These checks establish functional behavior, not subjective perfection, AAA production quality, cross-device performance, or human playtest approval.",
+    "Root integration suite separately covers UI, full mission state transitions, reload, dash, settings, production build, and screenshots."
+  ]
+}
