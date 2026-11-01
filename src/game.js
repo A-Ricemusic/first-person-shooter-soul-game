@@ -12,7 +12,7 @@ import { buildWorld } from './world.js';
 import { advanceUpload } from './upload.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
-import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS, EXTRACTION_FOOTPRINT, extractionMargin, extractionDistance, isInsideExtraction } from './mission.js';
+import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS, EXTRACTION_FOOTPRINT, extractionMargin, extractionDistance, extractionCenter, isInsideExtraction } from './mission.js';
 
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = THREE.MathUtils.clamp;
@@ -711,7 +711,10 @@ export class Game {
       const distance=recoveryDistance(this.player,c.position);
       return {id:`core-${c.id}`,kind:'core',occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
-    if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,this.world.playerSpawn,0),label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3)),distance:extractionDistance(this.player,this.world.playerSpawn),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+    if(this.cores===this.coreNodes.length){
+      const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
+      markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+    }
     // A doorway is actionable only along a swept, walkable approach. This is
     // local aperture guidance, never a cached route through unseen architecture.
     const west=markers.find(m=>m.id==='core-0');
@@ -739,7 +742,7 @@ export class Game {
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
       nearestCoreDistance: closest?.distance ?? null, recoveryReady:closest?.distance < RECOVERY_RADIUS, interaction: closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       // Centre navigation distance only; extractionMargin owns all edge guidance.
-      exitDistance: this.world ? extractionDistance(this.player,this.world.playerSpawn) : 0,
+      exitDistance: this.world ? extractionDistance(this.player,extractionCenter(this.world.playerSpawn)) : 0,
       extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,
       insideExtraction: this.world ? isInsideExtraction(this.player,this.world.playerSpawn) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,

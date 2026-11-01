@@ -1,0 +1,149 @@
+{
+  "reviewer": "review2",
+  "build": 42,
+  "url": "http://127.0.0.1:5173/",
+  "provisional": true,
+  "method": {
+    "attempts": 2,
+    "ordinaryDeployments": true,
+    "discardedStarts": 0,
+    "sourceOrHiddenStateInspected": false,
+    "information": "Visible title, handbook, HUD, facility map, first-person screenshots, end screens and restored records only; driver --help.",
+    "controls": "Synthetic JSON keyboard/mouse inputs with automatic Escape pauses after captures. Relative look calibrated through visible misses. Frequent pauses materially assist planning and combat; this is not continuous human play.",
+    "browser": "Installed Chrome authorized fallback; software WebGL, renderer not certified. No claims about human audio enjoyment or hardware performance."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "win",
+      "missionTime": "00:57",
+      "memories": 3,
+      "memoryNames": [
+        "Mara Solberg",
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "kills": 5,
+      "accuracyPercent": 12,
+      "criticalEliminations": 5,
+      "phaseEvades": 0,
+      "score": 6269,
+      "lastObservedHealth": 20,
+      "route": "West archive, east archive, heart, extraction",
+      "coverage": [
+        "First-person movement",
+        "ADS and optic shooting",
+        "reload",
+        "sprint",
+        "map",
+        "memory recovery",
+        "damage/shield regeneration",
+        "dash",
+        "extraction upload",
+        "win screen"
+      ],
+      "errors": "Missed bursts while calibrating look; E held outside reach at east and heart; collided with central wall on return. All preserved."
+    },
+    {
+      "attempt": 2,
+      "outcome": "win",
+      "missionTime": "00:50",
+      "memories": 3,
+      "memoryNames": [
+        "Elian Vale",
+        "Sera Nord",
+        "Mara Solberg"
+      ],
+      "kills": 3,
+      "accuracyPercent": 9,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "score": 6149,
+      "lastObservedHealth": 74,
+      "route": "East archive, heart, west archive through service opening, extraction",
+      "coverage": [
+        "Alternative route",
+        "initial side dash",
+        "interceptor shooting",
+        "capacitor cabinet shot and spent appearance",
+        "jump over low cover",
+        "memory recovery",
+        "extraction panel cover",
+        "win screen"
+      ],
+      "errors": "Missed moving interceptor and optic bursts; heart E held outside reach; collided with cover/service wall. All preserved."
+    }
+  ],
+  "observations": [
+    "Title and ending have a coherent teal/amber industrial identity. Rain, wet lighting and the large relay create a recognizable setting; menus are substantially more polished than the simple block-shaped enemies and rifle.",
+    "Clear objective markers, distances, named world signs and paused map made both archive routes learnable. Walls and low cover still caused several navigation collisions, but visible service/south-intake guidance helped recover.",
+    "Optic targeting produced satisfying visible critical eliminations, while moving interceptors were harder to track with stepwise inputs. The HUD exposes useful health, shield, ammo, cooldown and charging-threat information.",
+    "Receiver interaction communicated MOVE CLOSER and STEP INSIDE THE FLOOR RING after failed E holds. The initial ring/approach was not precise enough for me to judge range consistently from screenshots; short corrections worked.",
+    "Extraction had clear edge distance, near-edge and upload percentage feedback. Standing exposed rapidly cost health in attempt 1; moving behind the deck panel helped complete the finale. Attempt 2 completed with fewer kills by prioritizing travel and cover.",
+    "Restored records gave the three recovered people a concise narrative payoff. Several small monospaced labels, side hints and threat readouts are hard to read against the busy scene at this screenshot size.",
+    "No page errors appeared in successful driver responses. Three menu adapter input errors occurred between attempts: ambiguous RETURN selector, ambiguous data-close selector, then Deploy Again blocked by the still-open records dialog. These were reviewer selector mistakes, preserved in logs; aria-label Close archive resolved them."
+  ],
+  "ratings": {
+    "gameplay": {
+      "score": 7,
+      "scale": 10,
+      "rationale": "Compact objective loop supports alternate routes, optic combat, movement and cover; the upload finale punished exposure. Both wins were possible with few kills, so pressure may be permissive. Pause-assisted inputs limit difficulty judgment.",
+      "coverage": "Two complete wins, all receivers and finale; no death or successful charge-break observed."
+    },
+    "presentation": {
+      "score": 7.5,
+      "scale": 10,
+      "rationale": "Strong title/end typography, wet industrial palette and relay landmark; simple geometric weapon, enemies and repeated structures keep the scene visibly at vertical-slice level.",
+      "coverage": "Title, handbook, records, first-person areas and victory screens; visual only."
+    },
+    "usability": {
+      "score": 7.5,
+      "scale": 10,
+      "rationale": "Controls, map, distances, recovery correction and extraction edge feedback supported completion. Reach/ring estimation and navigation around solid cover needed repeated correction.",
+      "coverage": "Handbook, map, pause/resume, recovery, reload and upload. Settings untouched."
+    },
+    "readability": {
+      "score": 7,
+      "scale": 10,
+      "rationale": "Major objectives, vitals and archive signs read clearly; small hints and threat cues compete with geometry, rain and multiple labels. Enemy optic precision required close observation.",
+      "coverage": "1280x800 captures through two missions; no accessibility settings inspection."
+    },
+    "aaaReadiness": {
+      "score": 4,
+      "scale": 10,
+      "rationale": "A coherent playable slice with a complete loop and polished framing, but observed environment/enemy/weapon detail, short mission scope and limited encountered interaction variety do not establish broad AAA readiness.",
+      "coverage": "Two complete ordinary attempts only; no audio, performance, extensive robustness or content-scale validation."
+    }
+  },
+  "uncertainties": [
+    "Audio was not assessed.",
+    "No hardware performance judgment from software-WebGL screenshots or capture timings.",
+    "Successful charge interruption, phase evade, death flow, extraction decay after leaving the deck, second capacitor and settings were not established.",
+    "Capacitor shot was followed by a spent cabinet and one elimination; precise damage attribution was not separately verified.",
+    "Synthetic frequent pauses and screenshot latency differ from continuous human input."
+  ],
+  "evidence": {
+    "rawLog": "docs/media/build42-review2/actions.jsonl",
+    "imagesDirectory": "docs/media/build42-review2",
+    "terminalImages": [
+      "docs/media/build42-review2/attempt1-terminal.jpg",
+      "docs/media/build42-review2/attempt2-terminal.jpg"
+    ],
+    "otherKeyImages": [
+      "docs/media/build42-review2/attempt1-map.jpg",
+      "docs/media/build42-review2/attempt1-last-cover.jpg",
+      "docs/media/build42-review2/attempt2-bank-fire.jpg",
+      "docs/media/build42-review2/records.jpg"
+    ]
+  },
+  "closure": {
+    "explicitCloseSent": true,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 13883,
+    "chromePid": 13884,
+    "pidVerification": "ps -p 13883,13884 -o pid=,ppid=,comm= returned no rows, exit 1 after close.",
+    "ownedPidsAbsent": true,
+    "broadKillUsed": false
+  }
+}

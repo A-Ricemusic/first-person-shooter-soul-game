@@ -1,0 +1,78 @@
+{
+  "reviewer": "review1",
+  "build": 42,
+  "scale": "Provisional ratings out of 10; higher is better",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "attempts": 2,
+    "inputs": "Pause-assisted synthetic keyboard, relative look and mouse inputs through existing playtest:visible driver; screenshots inspected between decisions. Not continuous human play.",
+    "information": "Visible menu, Operator Handbook, first-person screenshots, HUD, facility map and terminal screens only. No source, tests, assets, prior reports or hidden state inspected.",
+    "limitations": "Software WebGL fallback. No claims about hardware performance or human audio enjoyment. No successful finale, narrative records reading, dash, jump or capacitor discharge observed. No win/reset/discarded start."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "terminalLabel": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "00:55",
+      "memories": 3,
+      "memoryNames": ["Mara Solberg", "Elian Vale", "Sera Nord"],
+      "kills": 3,
+      "accuracyPercent": 13,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "score": 3460,
+      "coverage": "Entry guard, west approach and triage, West Archive recovery, Heart guard and recovery, East Archive recovery, sprint return, uplink entry, upload, outside pause/decay and reentry, death screen.",
+      "finale": "Reached uplink; screenshot showed 92% before terminal death. No completion behavior observed.",
+      "controlMistakes": ["Initial diagonal travel met low cover; sidestepped around it.", "Several aiming bursts missed; preserved.", "Held E while 4.0 m from West Archive and 3.4 m from Heart; MOVE CLOSER feedback prompted short adjustments.", "A 450 ms left strafe exited uplink and caused decay; returned with a right strafe.", "Final close-target fire missed; did not use available dash."]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "terminalLabel": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "00:25",
+      "memories": 1,
+      "memoryNames": ["Elian Vale"],
+      "kills": 2,
+      "accuracyPercent": 37,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "score": 1360,
+      "coverage": "Entry guard, east lane and East Archive recovery, Heart guard and attempted receiver recovery, death screen.",
+      "controlMistakes": ["Turn toward an interceptor did not center it; wasted burst preserved.", "First Heart burst missed to its left, then adjusted and eliminated guard.", "Attempted Heart recovery at 3.7 m while multiple enemies remained alive; short left adjustment and E hold ended in death.", "No dash used despite it remaining ready."]
+    }
+  ],
+  "observations": [
+    "Strong coherent rain-soaked cyan/amber art direction. Reflected warm lights, giant relay ring, bold title and readable terminal screen establish atmosphere.",
+    "Weapon, guards and cover have simple block-like geometry. The view is composed well, but asset and animation sophistication did not suggest a finished AAA presentation.",
+    "ADS visibly narrows view and centers the optic after a brief transition. Hit/critical elimination feedback and rapidly depleting magazine communicate firing consequences. Accurate optic adjustments could defeat guards quickly.",
+    "Facility map clearly separates walls and low cover and labels all three receivers and extraction. Markers, distances and signs enabled self-directed routing; the map freezes play as advertised.",
+    "Receiver prompts explained MOVE CLOSER and STEP INSIDE THE FLOOR RING when E was ineffective; all three recoveries worked after positioning adjustments in attempt 1.",
+    "Uplink UI clearly distinguished entry distance, near-edge warning, active upload, decay and reentry. Its narrow usable area punished my short strafe, making defense positioning demanding.",
+    "Multiple surrounding sources drained health rapidly while I stopped to aim or recover. Broad orange direction cues indicated danger but did not make exact attacker acquisition easy in these paused screenshots.",
+    "Small HUD text and numerous simultaneous markers/readouts compete with combat; the larger health, ammo, objectives and end-screen statistics remained easy to read.",
+    "Three recovered memories produced named cards and resource restoration. Their actual written stories were not opened, so narrative quality remains unassessed."
+  ],
+  "ratings": {
+    "gameplay": {"score": 6.5, "rationale": "Clear recover-and-extract loop, precise weakpoint opportunities and consequential positioning. Surrounding pressure was punishing and my stationary defense failed; control limitations and unused dash constrain difficulty judgment.", "coverage": "Two deaths, all receiver recoveries and partial extraction defense; no win."},
+    "presentation": {"score": 7, "rationale": "Cohesive atmospheric lighting, weather, typography and composition; simple geometry and restrained visual variety limit finish.", "coverage": "Menu, handbook, main facility routes, ADS, damage and death screens; audio unassessed."},
+    "usability": {"score": 7.5, "rationale": "Visible controls, paused map, objective distances and explicit interaction/uplink feedback let me progress independently. Tight receiver and deck positioning needed corrections.", "coverage": "Handbook, deploy/redeploy, pause, map, movement, fire/ADS, reload, sprint, recover and upload."},
+    "readability": {"score": 6.5, "rationale": "Large HUD numbers, labels and amber optics read well; small low-contrast helper text and concurrent directional/marker information made precise threat interpretation harder.", "coverage": "1280x800 screenshots during entry, yard, triage and extraction combat."},
+    "aaaReadiness": {"score": 4, "rationale": "A coherent playable slice with working loop and useful feedback, but observed geometry, enemy variety, visual feedback density and limited completed content do not support finished AAA readiness.", "coverage": "Provisional whole-slice impression from two ordinary attempts; successful finale, sound, hardware performance and long-term depth unassessed."}
+  },
+  "artifacts": {
+    "log": "docs/media/build42-review1/actions.jsonl",
+    "images": "docs/media/build42-review1/*.jpg",
+    "attempt1Terminal": "docs/media/build42-review1/a1-terminal.jpg",
+    "attempt2Terminal": "docs/media/build42-review1/a2-heart-memory.jpg"
+  },
+  "cleanup": {
+    "command": {"op": "close"},
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 12349,
+    "chromePid": 12350,
+    "pidVerification": "After close, ps -p 12349,12350 -o pid=,ppid=,command= returned no rows, exit 1.",
+    "reportWrittenAfterClose": true
+  }
+}

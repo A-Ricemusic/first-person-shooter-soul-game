@@ -1,0 +1,27 @@
+{
+  "method": "Offline local href/src and same-page anchors; Vite public directory correctly maps at source URL root. Production dist checked directly.",
+  "firstCheckCorrection": "First checker mistakenly treated Vite public/assets as repository assets and reported24 source-only misses; production had none. Retained first report for harness provenance.",
+  "rows": [
+    {
+      "root": "source",
+      "localResources": 464,
+      "vitePublicMappings": 24
+    },
+    {
+      "root": "production dist",
+      "localResources": 464,
+      "vitePublicMappings": 0
+    }
+  ],
+  "missing": [],
+  "health": [
+    {
+      "url": "http://127.0.0.1:5173/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:61467/",
+      "status": 200
+    }
+  ]
+}

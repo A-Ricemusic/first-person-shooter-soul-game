@@ -15,6 +15,11 @@ export function extractionBounds(position) {
  const f=EXTRACTION_FOOTPRINT;
  return {xMin:position.x+f.xMin,xMax:position.x+f.xMax,zMin:position.z+f.zMin,zMax:position.z+f.zMax};
 }
+// Navigation points at the usable deck centre; spawn remains the footprint anchor.
+export function extractionCenter(position) {
+ const b=extractionBounds(position);
+ return {x:(b.xMin+b.xMax)/2,z:(b.zMin+b.zMax)/2};
+}
 // Positive strictly inside; negative Euclidean approach distance outside (including corners).
 export function extractionMargin(player,position) {
  const b=extractionBounds(position);

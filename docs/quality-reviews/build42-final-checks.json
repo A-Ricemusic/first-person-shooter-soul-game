@@ -1,0 +1,34 @@
+{
+  "postReviewNoRescore": true,
+  "change": "Extraction waypoint/navigation metric/map label moved to rectangle geometric centre; footprint anchor and wave trigger remain original spawn.",
+  "checks": [
+    {
+      "name": "Extraction boundary, range/eligibility separation, translated centre, actual waypoint projection and centre walkability",
+      "passed": true,
+      "evidence": "build42-final-extraction.json"
+    },
+    {
+      "name": "Geometry-derived map and planning lifecycle",
+      "passed": true,
+      "evidence": "build42-final-map.json"
+    },
+    {
+      "name": "Deck boundary, actual lateral dashes, cover collision, no-outside-upload, corners and held times",
+      "passed": true,
+      "evidence": "build42-final-deck.json"
+    },
+    {
+      "name": "Final production WebGL smoke and dossier",
+      "passed": true,
+      "checks": 14,
+      "evidence": "build42-final-production.json"
+    },
+    {
+      "name": "Source and production dossier local resources",
+      "passed": true,
+      "localResourcesEach": 464,
+      "evidence": "build42-links-health.json"
+    }
+  ],
+  "limitations": "Arranged correctness, not a fresh independent gameplay rescore."
+}
