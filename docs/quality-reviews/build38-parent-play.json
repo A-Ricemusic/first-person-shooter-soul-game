@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "93258a907585a6afcd6c8c6b8aa0359babcb73a5",
+  "playedBuild": 37,
+  "label": "Parent follow-up before Build38; not a fresh independent review",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "input": "Existing visible driver, ordinary keyboard/mouse inputs and visible HUD/screenshots only",
+    "sourceAndLayoutKnowledge": true,
+    "pauseAssisted": true,
+    "hiddenLiveStateOrArrangements": false,
+    "attempts": 1
+  },
+  "outcome": {
+    "result": "won",
+    "missionTime": "00:46",
+    "memories": 3,
+    "eliminations": 1,
+    "criticalEliminations": 1,
+    "accuracyPercent": 9,
+    "phaseEvades": 0,
+    "score": 6152,
+    "pageErrors": []
+  },
+  "observations": [
+    "Repeated ordinary wall/cover collisions required lateral route corrections; these are not proof of invisible collision defects.",
+    "Parent mistakenly held fire through reload and travel after the opening kill, wasting ammunition. This input mistake is not an aiming defect.",
+    "After Mara recovery the visible HUD showed health100/shield60. Opening M and waiting2300ms left health100/shield22 while the expanded map covered the central combat view; mission timer advanced19s to22s.",
+    "Small scan and expanded geometry helped orientation around a large western obstacle.",
+    "Parent initially backed into the front of an extraction plate, then moved through the gap and behind it. Last live capture showed health100/shield34 and62% upload; final health is not inferred from victory."
+  ],
+  "evidence": {
+    "actions": "../media/build38-parent-play/actions.jsonl",
+    "mapBefore": "../media/build38-parent-play/mara-recovered.jpg",
+    "mapUnderThreat": "../media/build38-parent-play/map-under-threat.jpg",
+    "cover": "../media/build38-parent-play/uplink-cover.jpg",
+    "outcome": "../media/build38-parent-play/mission-outcome.jpg"
+  },
+  "closure": {
+    "explicitCloseReturnedBrowserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 69397,
+    "chromePid": 69398,
+    "exactOwnedPidsAbsentVerified": true
+  },
+  "decisionsPending": [
+    "Pause single-player simulation during expanded-map planning, retain live compact scan. Escape already permits pausing, so optional spatial planning should not conceal ongoing damage.",
+    "Unify the separate signal pylon and memory receiver into one physically coherent Blender-authored terminal at each existing recovery coordinate. Preserve actual interaction radius/hold and document cover/LOS changes."
+  ],
+  "limits": [
+    "Source-informed segmented controls and pause assistance, not blind continuous human play.",
+    "One success does not establish difficulty balance, enjoyment or AAA readiness.",
+    "No independent rating, audio enjoyment, hardware certification, or natural upload-buffer validation."
+  ]
+}
