@@ -7,7 +7,7 @@ try{
  await p.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});
  await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.handsAsset,null,{polling:50});await p.click('#deploy',{force:true});
  const result=await p.evaluate(async()=>{
-  const {animateWarden}=await import('/src/warden.js'), THREE=await import('/node_modules/three/build/three.module.js');
+  const {animateWarden,steerWarden}=await import('/src/warden.js'), THREE=await import('/node_modules/three/build/three.module.js');
   const g=window.__SOULFALL__.game;g.restart();const e=g.enemies[0],r=e.wardenRig; e.cooldown=100;
   const snapshot=()=>({travel:r.tracks.map(t=>t.travel),position:e.group.position.toArray(),anchor:r.model.getObjectByName('WeakpointAnchor').position.toArray()});
   const before=snapshot();for(let i=0;i<30;i++)g.updateEnemies(1/60);const moving=snapshot();
@@ -15,15 +15,15 @@ try{
   e.stagger=.8;for(let i=0;i<20;i++)g.updateEnemies(1/60);const stagger=snapshot();
   e.stagger=0;for(let i=0;i<10;i++)g.updateEnemies(1/60);const recovery=snapshot();
   // Arranged pure pivot, then settled stop; test actual transforms independent of intention.
-  e.group.rotation.y+=.4;animateWarden(e,1/60);const turn=snapshot();animateWarden(e,1/60);const stop=snapshot();
+  steerWarden(e,new THREE.Vector3(1,0,0),1/60);animateWarden(e,1/60);const turn=snapshot();animateWarden(e,1/60);const stop=snapshot();
   let minY=Infinity,maxRadius=0;const box=new THREE.Box3(),m=new THREE.Matrix4(),v=new THREE.Vector3();
   for(const t of r.tracks){t.belt.geometry.computeBoundingBox();for(let i=0;i<t.belt.count;i++){t.belt.getMatrixAt(i,m);box.copy(t.belt.geometry.boundingBox).applyMatrix4(m);minY=Math.min(minY,box.min.y);for(const x of [box.min.x,box.max.x])for(const z of [box.min.z,box.max.z])maxRadius=Math.max(maxRadius,Math.hypot(x,z));}}
   const geometry=r.tracks[0].belt.geometry===r.tracks[1].belt.geometry;
   // Equal distance sampled with different dt must yield the same belt phase.
-  function sample(n){r.previous.copy(e.group.position);r.yaw=0;e.group.rotation.y=0;r.tracks.forEach(t=>t.travel=0);for(let i=0;i<n;i++){e.group.position.z+=.6/n;animateWarden(e,.3/n)}return r.tracks.map(t=>t.travel)}
+  function sample(n){r.previous.copy(e.group.position);r.yaw=0;r.heading=0;e.group.rotation.y=0;r.tracks.forEach(t=>t.travel=0);for(let i=0;i<n;i++){e.group.position.z+=.6/n;animateWarden(e,.3/n)}return r.tracks.map(t=>t.travel)}
   const dt=[sample(1),sample(36)];
   // Cross a belt-loop wrap: wheel circumference has a different period.
-  r.tracks.forEach(t=>{t.travel=1.47;t.wheelPhase=1;});r.previous.copy(e.group.position);r.yaw=0;r.groupYaw=0;e.group.rotation.y=0;
+  r.tracks.forEach(t=>{t.travel=1.47;t.wheelPhase=1;});r.previous.copy(e.group.position);r.yaw=0;r.heading=0;e.group.rotation.y=0;
   e.group.position.z+=.01;animateWarden(e,1/60);const wrapWheel=r.tracks.map(t=>t.wheelPhase);
   let instanceDisposals=0,geometryDisposals=0;
   r.tracks.forEach(t=>t.belt.addEventListener('dispose',()=>instanceDisposals++));

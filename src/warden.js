@@ -26,9 +26,27 @@ export function attachWarden(template, group) {
     const node = model.getObjectByName(name);
     return { node, home: node.position.clone(), rotation: node.rotation.clone() };
   });
-  const rig = { model, shutters, emitters, carriage, fan: model.getObjectByName('Fan'), tracks, previous: group.position.clone(), yaw: group.rotation.y, groupYaw: group.rotation.y, open: 0, charge: 0 };
+  const rig = { model, shutters, emitters, carriage, fan: model.getObjectByName('Fan'), tracks, previous: group.position.clone(), heading: group.rotation.y, yaw: group.rotation.y, open: 0, charge: 0 };
   animateWarden({wardenRig:rig,group},0);
   return rig;
+}
+
+const angleDelta = (to, from) => Math.atan2(Math.sin(to-from), Math.cos(to-from));
+
+// A crawler steers before translating. Backing away uses reverse drive instead
+// of spinning the undercarriage through 180 degrees beneath a stationary turret.
+export function steerWarden(enemy, move, dt) {
+  const rig = enemy.wardenRig;
+  if (!rig || move.lengthSq() < 1e-10) return;
+  const amount = move.length();
+  let desired = Math.atan2(move.x, move.z);
+  const reverse = Math.abs(angleDelta(desired, rig.heading)) > Math.PI/2;
+  if (reverse) desired += Math.PI;
+  const step = THREE.MathUtils.clamp(angleDelta(desired, rig.heading), -2.8*dt, 2.8*dt);
+  rig.heading = angleDelta(rig.heading + step, 0);
+  const alignment = Math.max(0, Math.cos(angleDelta(desired, rig.heading)));
+  const drive = amount * alignment * alignment * (reverse ? -1 : 1);
+  move.set(Math.sin(rig.heading)*drive, 0, Math.cos(rig.heading)*drive);
 }
 
 export function animateWarden(enemy, dt) {
@@ -36,8 +54,9 @@ export function animateWarden(enemy, dt) {
   if (!rig) return;
   // Called after movement on every AI path. No elapsed-time treadmill or restart offset.
   const dx = enemy.group.position.x-rig.previous.x, dz = enemy.group.position.z-rig.previous.z;
-  // Steering carriage follows resolved travel rather than strafing a rigid crawler.
-  const yaw = Math.hypot(dx,dz)>1e-8 ? Math.atan2(dx,dz) : rig.yaw + Math.atan2(Math.sin(enemy.group.rotation.y-rig.groupYaw),Math.cos(enemy.group.rotation.y-rig.groupYaw));
+  // Steering sets a bounded heading before collision resolution. Belt advance
+  // uses only actual translation plus differential travel from the real pivot.
+  const yaw = rig.heading;
   rig.carriage.rotation.y = yaw-enemy.group.rotation.y;
   const turn = Math.atan2(Math.sin(yaw-rig.yaw), Math.cos(yaw-rig.yaw));
   const middle = rig.yaw + turn/2;
@@ -64,7 +83,7 @@ export function animateWarden(enemy, dt) {
     track.belt.instanceMatrix.needsUpdate=true;
     track.belt.computeBoundingSphere();
   }
-  rig.previous.copy(enemy.group.position); rig.yaw=yaw; rig.groupYaw=enemy.group.rotation.y;
+  rig.previous.copy(enemy.group.position); rig.yaw=yaw;
   const blend = 1 - Math.exp(-dt * 12);
   rig.open += ((enemy.armorOpen > 0 ? 1 : 0) - rig.open) * blend;
   rig.charge += ((enemy.windup > 0 && !(enemy.stagger > 0) ? 1 : 0) - rig.charge) * blend;

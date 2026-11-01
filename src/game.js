@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { attachWarden, animateWarden } from './warden.js';
+import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import { buildWorld } from './world.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
@@ -492,10 +492,15 @@ export class Game {
           move.copy(tangent);
         }
         for (const other of this.enemies) if (other !== enemy) { const separation = position.clone().sub(other.group.position); separation.y = 0; const d = separation.length(); if (d < 1.4 && d > 0.01) move.addScaledVector(separation.normalize(), (1.4 - d) * 1.5); }
-        move.clampLength(0, 1); this.moveEntity(position, move.x * speed * dt, move.z * speed * dt, 0.45);
+        move.clampLength(0, 1); steerWarden(enemy,move,dt);
+        this.moveEntity(position, move.x * speed * dt, move.z * speed * dt, 0.45);
         enemy.leftLeg.rotation.x = Math.sin(enemy.phase * 7) * 0.45; enemy.rightLeg.rotation.x = -enemy.leftLeg.rotation.x;
       }
-      enemy.group.rotation.y = Math.atan2(delta.x, delta.z);
+      const facing = Math.atan2(delta.x, delta.z);
+      if(enemy.wardenRig){
+        const turn=Math.atan2(Math.sin(facing-enemy.group.rotation.y),Math.cos(facing-enemy.group.rotation.y));
+        enemy.group.rotation.y+=clamp(turn,-4*dt,4*dt);
+      }else enemy.group.rotation.y=facing;
       if(enemy.type==='warden') {
         wardenEmission(enemy.red,enemy.armorOpen>0,enemy.windup>0,enemy.hitFlash>0);
         if(enemy.windup>0 && distance<11 && enemy.visible && this.dashCooldown<=0 && this.runTime-this.phaseCueAt>5){
