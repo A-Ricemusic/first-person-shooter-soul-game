@@ -105,7 +105,8 @@ function drawRadar(s){
 const markerPool=new Map();
 function drawMarkers(markers){
  const active=new Set(), placed=[];
- const blocked=markers.filter(m=>m.occluded).sort((a,b)=>a.distance-b.distance)[0];
+ const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
+ const blocked=nearest?.occluded?nearest:null;
  let note=$('blocked-signal');if(!note){note=document.createElement('div');note.id='blocked-signal';$('waypoints').append(note)}
  note.textContent=blocked?`${blocked.label} · SIGNAL BEHIND COVER · ${blocked.id==='core-0'?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH'}`:'';
  note.classList.toggle('hidden',!blocked);
