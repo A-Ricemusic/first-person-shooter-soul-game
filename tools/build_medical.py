@@ -25,7 +25,9 @@ def build():
     for x in [-23,-21]:
         box('Stowed stretcher canvas',(x,28.5,1.4),(.7,.23,2.4),enamel,0)
         for dx in [-.42,.42]:box('Stretcher carrying rail',(x+dx,28.5,1.4),(.08,.3,2.7),edge,0)
-    for x in [-19.7,-19.2,-18.7]:box('Blank ferry triage tag',(x,13,1.415),(.28,.32,.025),enamel,0)
+    desk=next(p for p in layout['parts'] if p['name']=='Intake desk')
+    dx,dy,dz=desk['center'];top=dy+desk['size'][1]/2+.015
+    for offset in [-.7,-.2,.3]:box('Blank ferry triage tag',(dx+offset,-dz,top),(.28,.32,.025),enamel,0)
 asset('west-triage',build)
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'west-triage.blend'))

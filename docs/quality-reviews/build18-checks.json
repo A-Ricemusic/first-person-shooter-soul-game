@@ -1,0 +1,31 @@
+{
+  "build": "Build18 parent medical exit followup",
+  "checks": [
+    {
+      "command": "EXIT_CAPTURE_PREFIX=build18-after-exit EXIT_OBSERVATIONS=docs/quality-reviews/build18-after-exit.json npm run test:medical-exit",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:medical",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:recovery",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:encounters",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:production",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run playtest:controls",
+      "exitCode": 0
+    }
+  ],
+  "beforeObservation": "OBSERVE_ONLY=1 diagnostic retained the original three blocked routes; it was not reported as a passing clearance check.",
+  "reviewLimit": "Parent correctness followup, no new independent reviewer or rescore. Browser workloads were sequential."
+}

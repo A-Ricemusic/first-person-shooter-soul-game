@@ -186,8 +186,9 @@ export async function buildWorld(scene) {
   triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);
   for(const p of MEDICAL.parts)if(p.solid){const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(half),c.clone().add(half)));}
   sign('TRIAGE / EVACUATION','LAST FERRY · INTAKE → ARCHIVE',-25,5.1,-8.66,7,1.1,'#b5d2c2');
-  const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',-13.66,4.6,-16,4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
-  const exitSign=sign('EXIT / COURTYARD','SERVICE PASSAGE',-14.34,4.6,-16,4,.9,'#b5d2c2');exitSign.rotation.y=-Math.PI/2;
+  const service=MEDICAL.openings.find(o=>o.name==='service');
+  const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',service.center[0]+.34,4.6,service.center[1],4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
+  const exitSign=sign('EXIT / COURTYARD','SERVICE PASSAGE',service.center[0]-.34,4.6,service.center[1],4,.9,'#b5d2c2');exitSign.rotation.y=-Math.PI/2;
   for(const z of [-12,-22]){box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
   // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.
   point(-18,3.5,-14,0xe3c69b,16,8);
