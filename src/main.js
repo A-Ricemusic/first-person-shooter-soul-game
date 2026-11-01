@@ -13,7 +13,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 15</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 16</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -80,7 +80,7 @@ function renderState(s){
  const count=typeof s.cores==='number'?s.cores:0;[...$('core-slots').children].forEach((el,i)=>el.classList.toggle('recovered',s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count));
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
  if(s.heading!==undefined)$('heading').textContent=String(Math.round(s.heading)).padStart(3,'0');
- hide('interaction',!s.interaction);if(s.interaction){$('interaction').querySelector('small').textContent=s.nearestCoreDistance>=2.8?'STEP CLOSER TO THE DIAMOND':'HOLD TO RECOVER';}if(s.interaction)$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?s.interaction.replace(/^E · /,''):'RECOVER SOUL CORE';
+ hide('interaction',!s.interaction);if(s.interaction){$('interaction').querySelector('kbd').textContent=s.recoveryReady?'E':'◇';$('interaction').querySelector('small').textContent=s.recoveryReady?'HOLD TO RECOVER':'STEP INSIDE THE FLOOR RING';$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?s.interaction.replace(/^E · /,''):'RECOVER SOUL CORE';}
  document.body.classList.toggle('critical-health',s.health<30&&phase==='playing');
 }
 
@@ -96,7 +96,7 @@ function drawRadar(s){
  for(const core of s.coreMarkers){if(core.collected)continue;const a=map(core.x,core.z);ctx.fillStyle='#8ee8e0';ctx.beginPath();ctx.moveTo(a[0],a[1]-5);ctx.lineTo(a[0]+5,a[1]);ctx.lineTo(a[0],a[1]+5);ctx.lineTo(a[0]-5,a[1]);ctx.closePath();ctx.fill();ctx.font='12px monospace';ctx.fillText(String(core.id+1),a[0]+9,a[1]+4)}
  ctx.translate(c,c);ctx.rotate(-p.yaw);ctx.fillStyle='#f0fff7';ctx.beginPath();ctx.moveTo(0,-9);ctx.lineTo(5,6);ctx.lineTo(0,3);ctx.lineTo(-5,6);ctx.closePath();ctx.fill();ctx.restore();
  ctx.beginPath();ctx.arc(c,c,129,0,Math.PI*2);ctx.strokeStyle='rgba(139,202,192,.32)';ctx.lineWidth=1;ctx.stroke();
- const distance=extraction?s.exitDistance:s.nearestCoreDistance;$('signal-distance').textContent=distance==null?'SIGNAL SECURED':`${extraction?'EXTRACTION':'NEAREST CORE'} · ${Math.round(distance)} M`;
+ const distance=extraction?s.exitDistance:s.nearestCoreDistance;$('signal-distance').textContent=distance==null?'SIGNAL SECURED':!extraction&&s.recoveryReady?'CORE IN REACH · HOLD E':`${extraction?'EXTRACTION':'NEAREST CORE'} · ${distance<6?distance.toFixed(1):Math.round(distance)} M`;
 }
 
 const markerPool=new Map();
@@ -110,7 +110,7 @@ function drawMarkers(markers){
   const x=onscreen?(m.x+1)*50:50+Math.sin(m.bearing)*43,rawY=onscreen?(1-m.y)*50:50-Math.cos(m.bearing)*32;let y=rawY;if(x>82&&y<45)y=51;if(x<24&&y<23)y=28;
   el.style.opacity=m.suppressed?'0':'';
   el.style.left=`${x}%`;el.style.top=`${Math.max(16,Math.min(80,y))}%`;el.classList.toggle('edge',!onscreen);el.classList.toggle('charging',!!m.charging);
-  el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;el.querySelector('b').textContent=m.label;el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':''):`${Math.round(m.distance)} M`;
+  el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;el.querySelector('b').textContent=m.label;el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':''):m.inRange?'HOLD E':`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
   if(m.kind==='enemy')el.querySelector('i').style.width=`${Math.max(0,m.health*100)}%`;
  }
  for(const [id,el]of markerPool)if(!active.has(id)){el.remove();markerPool.delete(id)}

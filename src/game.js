@@ -6,7 +6,7 @@ import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
-import { CORE_SITES, RECOVERY_SECONDS, EXTRACTION_SECONDS } from './mission.js';
+import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS } from './mission.js';
 
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = THREE.MathUtils.clamp;
@@ -123,7 +123,11 @@ export class Game {
       const ring = mesh(new THREE.TorusGeometry(0.64, 0.025, 8, 40), cyan.clone(), 0, 1.2, 0); ring.rotation.x = Math.PI / 2; group.add(ring);
       const pillar = mesh(new THREE.CylinderGeometry(0.07, 0.22, 11, 8, 1, true), new THREE.MeshBasicMaterial({ color: 0x25d6ed, transparent: true, opacity: 0.1, depthWrite: false, blending: THREE.AdditiveBlending }), 0, 5.5, 0); group.add(pillar);
       const light = new THREE.PointLight(0x29dced, 3, 8); light.position.y = 1.8; group.add(light);
-      this.scene.add(group); this.coreNodes.push({ group, crystal, ring, light, position: position.clone(), collected: false, id: i });
+      // A static projected boundary marks the actual grounded interaction reach.
+      // Depth testing keeps this cue behind physical cover rather than on top.
+      const reach = mesh(new THREE.RingGeometry(RECOVERY_RADIUS-.025,RECOVERY_RADIUS+.025,64),new THREE.MeshBasicMaterial({color:0x8ee8e0,transparent:true,opacity:.24,depthWrite:false}),0,.055,0);
+      reach.rotation.x=-Math.PI/2;reach.visible=false;group.add(reach);
+      this.scene.add(group); this.coreNodes.push({ group, crystal, ring, reach, light, position: position.clone(), collected: false, id: i });
     });
   }
 
@@ -285,7 +289,7 @@ export class Game {
   }
   interact() {
     if (this.phase !== 'playing') return;
-    const core = this.coreNodes.find(c => !c.collected && Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z,this.player.y-1.7)<2.8);
+    const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
     if (!core) { this.event('notice', 'Approach a cyan archive beacon. Hold E to recover its memory.'); return; }
     this.channelCore = core;
   }
@@ -419,7 +423,7 @@ export class Game {
     if (this.mouseDown) this.shoot();
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
-    const nearby=this.coreNodes.find(c=>!c.collected&&Math.hypot(c.position.x-this.player.x,c.position.z-this.player.z,this.player.y-1.7)<2.8);
+    const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
     if(nearby&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
@@ -580,7 +584,12 @@ export class Game {
 
   animate(dt) {
     this.animTime += dt; this.world.update?.(dt, this.animTime);
-    for (const c of this.coreNodes) if (!c.collected) { c.crystal.rotation.y += dt * 0.6; c.crystal.position.y = 1.35 + Math.sin(this.animTime * 1.8 + c.id) * 0.12; c.ring.rotation.z += dt * 0.6; }
+    for (const c of this.coreNodes) if (!c.collected) {
+      c.crystal.rotation.y += dt * 0.6; c.crystal.position.y = 1.35 + Math.sin(this.animTime * 1.8 + c.id) * 0.12; c.ring.rotation.z += dt * 0.6;
+      const distance=recoveryDistance(this.player,c.position);
+      c.reach.visible=distance<7.5;
+      c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
+    }
     this.exitRing.material.opacity = this.cores === this.coreNodes.length ? 0.7 + Math.sin(this.animTime * 3) * 0.2 : 0.35;
     this.exitRing.rotation.z += dt * 0.1;
     for (let i = this.effects.length - 1; i >= 0; i--) {
@@ -634,7 +643,10 @@ export class Game {
   captureMarkers() {
     if(this.phase!=='playing')return [];
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
-    const markers=this.coreNodes.filter(c=>!c.collected).map(c=>({id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0)))}));
+    const markers=this.coreNodes.filter(c=>!c.collected).map(c=>{
+      const distance=recoveryDistance(this.player,c.position);
+      return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0))),distance,inRange:distance<RECOVERY_RADIUS};
+    });
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
     for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
@@ -642,17 +654,17 @@ export class Game {
     return markers;
   }
   captureState() {
-    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: Math.hypot(c.position.x - this.player.x, c.position.z - this.player.z, this.player.y - 1.7) }));
+    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
-      objective: this.cores === this.coreNodes.length ? (this.extractionProgress>0?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < 2.8 ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
+      objective: this.cores === this.coreNodes.length ? (this.extractionProgress>0?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
-      nearestCoreDistance: closest?.distance ?? null, interaction: closest?.distance < 2.8 ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      nearestCoreDistance: closest?.distance ?? null, recoveryReady:closest?.distance < RECOVERY_RADIUS, interaction: closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       exitDistance: this.world ? Math.hypot(this.player.x - this.world.playerSpawn.x, this.player.z - this.world.playerSpawn.z) : 0,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
       bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
