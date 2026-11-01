@@ -13,7 +13,9 @@ export function blastReaches(bank,body,colliders){
 // A world solid wins ties; an owned envelope yields only to its actual target mesh.
 export function capacitorShot(ray,raycaster,banks,colliders,maxDistance=120){
   let distance=maxDistance,bank=null;
+  // The Custodian has its own exact mesh query in Game.shoot; movement bounds are not rifle surfaces.
   for(const box of colliders){
+    if(box.custodian)continue;
     const p=ray.intersectBox(box,new THREE.Vector3());if(!p)continue;
     let d=p.distanceTo(ray.origin),target=null;
     if(box.capacitor){

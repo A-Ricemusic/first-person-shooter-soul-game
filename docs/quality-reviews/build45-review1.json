@@ -1,0 +1,161 @@
+{
+  "review": "build45-review1",
+  "build": 45,
+  "reviewed_at": "2026-11-01",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "ordinary_visible_ui_only": true,
+    "terminal_attempts_required": 2,
+    "terminal_attempts_completed": 2,
+    "source_or_internal_state_read": false,
+    "code_or_assets_changed": false,
+    "tests_run": false,
+    "learning_sources": [
+      "Visible title UI",
+      "Visible Operator Handbook",
+      "Visible facility map",
+      "npm run playtest:visible -- --help"
+    ],
+    "input": "TTY JSON visible playtest driver with adaptive screenshot inspection"
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "mission_time": "00:49",
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "eliminations": 1,
+      "accuracy_percent": 7,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "score": 2180,
+      "terminal_sequence": 22,
+      "terminal_evidence": "docs/media/build45-review1/attempt1-death.jpg",
+      "notes": "Recovered west and Heart memories. Stayed exposed to Heart guard; escaped toward east but died before third recovery."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "mission_time": "01:28",
+      "memories": [
+        "Mara Solberg",
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "eliminations": 2,
+      "accuracy_percent": 20,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "score": 3360,
+      "terminal_sequence": 66,
+      "terminal_evidence": "docs/media/build45-review1/attempt2-death.jpg",
+      "custodian_last_observed": {
+        "coil1": "OFF",
+        "coil2": "OFF",
+        "coil3": "5%"
+      },
+      "notes": "Recovered all memories, observed successful phase-break announcement, disabled two coils, died before last coil or extraction."
+    }
+  ],
+  "raw_ratings_out_of_10": {
+    "gameplay": 6.5,
+    "presentation": 7.0,
+    "usability": 6.5,
+    "readability": 6.0,
+    "AAA_readiness": 3.0,
+    "replayability_optional": 5.5
+  },
+  "rating_reasons": {
+    "gameplay": "Combat has a useful cover, regenerating shield, aim, dash-break and boss-opening loop. Flanking and recovery routes offer choices. Small fast targets and pressure while positioning for recovery were demanding; the short encounter roster and simple arena did not feel deep enough for a high score.",
+    "presentation": "Cohesive rain-soaked teal/amber industrial atmosphere, convincing wet ground, strong typography and a memorable Heart landmark. Enemy geometry, broad sparse spaces, weapon animation and surface detail still read as a polished small prototype.",
+    "usability": "Deploy/retry/pause/map flows worked, controls were available, and recovery prompts explain hold E and moving closer. Tight recovery reach caused multiple failed holds while exposed. Some wall and low-cover collisions required map-based rerouting.",
+    "readability": "Objective markers, core distance, ammo, shield, coil percentages, numeral plates and dark disabled coils were useful. Tiny emitters, overlapping threat cues, small text and dark industrial surfaces made threat prioritization and precise aiming harder.",
+    "AAA_readiness": "Strong vertical-slice identity, but visible enemy/animation detail, environmental variety, encounter breadth and feedback polish remain far below a finished AAA FPS. This is a readiness impression, not a performance certification.",
+    "replayability_optional": "The death/retry loop and alternate archive order encouraged a second route and better progress. Only one small mission and limited encounter variety were visible."
+  },
+  "findings": [
+    {
+      "kind": "strength",
+      "text": "Clear map supports route planning and pauses danger. It helped recover from a wrong turn into a medical-bay corner.",
+      "evidence": [
+        "docs/media/build45-review1/attempt2-route-check.jpg"
+      ]
+    },
+    {
+      "kind": "strength",
+      "text": "Coil states and individual health communicate progress; flanking exposes copper faces, while disabled coils turn dark.",
+      "evidence": [
+        "docs/media/build45-review1/attempt2-coil1-fire.jpg",
+        "docs/media/build45-review1/attempt2-coil-hit.jpg",
+        "docs/media/build45-review1/attempt2-coil1-track.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "text": "Several receiver holds failed because the player was outside the small reach, including at 2.8 m in east archive. The prompt was accurate; positioning under fire remained awkward.",
+      "evidence": [
+        "docs/media/build45-review1/attempt2-east-secured.jpg",
+        "docs/media/build45-review1/attempt2-east-final-recovery.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "text": "Interceptors moved quickly across aim and offscreen, while multiple directions threatened the player. Remote input and my aiming contributed substantially; this is not a confirmed game defect.",
+      "evidence": [
+        "docs/media/build45-review1/attempt2-interceptor-fight.jpg",
+        "docs/media/build45-review1/attempt2-interceptor-adjust.jpg",
+        "docs/media/build45-review1/attempt2-flank.jpg"
+      ]
+    },
+    {
+      "kind": "friction",
+      "text": "Wrong-turn wall/low-cover contact could fill the view with an undifferentiated surface; facility map helped resolve it. No camera bug is inferred.",
+      "evidence": [
+        "docs/media/build45-review1/attempt2-heart-route.jpg",
+        "docs/media/build45-review1/attempt2-route-check.jpg"
+      ]
+    }
+  ],
+  "limitations": [
+    "Exactly two terminal attempts, both deaths; no successful extraction or win flow observed.",
+    "Discrete remote actions with automatic captures and pauses differ from continuous local mouse-and-keyboard play; aim difficulty and pacing are partly method-dependent.",
+    "Software-WebGL fallback enabled; renderer not certified. No GPU benchmark or native framerate judgment.",
+    "Audio was not independently assessed.",
+    "No hidden state, source, tests, prior reviews or solution consulted.",
+    "Screenshots and beforePause HUD are not frame-identical; immediate stale HUD heading was not treated as a camera defect."
+  ],
+  "errors": [
+    {
+      "sequence": 1,
+      "command": {
+        "op": "help"
+      },
+      "error": "Use click, capture, act, status or close. No arbitrary evaluation is accepted.",
+      "resolution": "Read the allowed CLI --help instead."
+    }
+  ],
+  "runtime_page_errors_observed": [],
+  "evidence": {
+    "raw_actions_and_results": "docs/media/build45-review1/actions.jsonl",
+    "screenshots_directory": "docs/media/build45-review1/",
+    "raw_log_rows": 135,
+    "closure_proof": "docs/media/build45-review1/closure-proof.json"
+  },
+  "closure": {
+    "command_sequence": 68,
+    "op": "close",
+    "driver_pid": 47455,
+    "chrome_pid": 47456,
+    "browserLaunched": true,
+    "browserClosed": true,
+    "driver_exit_code": 0,
+    "pid_check_command": "ps -p 47455,47456 -o pid=,ppid=,stat=,command=",
+    "pid_check_exit_code": 1,
+    "pid_check_stdout": "",
+    "both_exact_owned_pids_absent": true,
+    "broad_kill_used": false
+  }
+}

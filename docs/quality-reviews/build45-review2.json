@@ -1,0 +1,122 @@
+{
+  "review": "build45-review2",
+  "reviewer": "independent ordinary visible UI reviewer 2",
+  "build": "45",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "terminalMissionAttempts": 2,
+    "input": "npm run playtest:visible TTY JSON mode; visible UI, handbook, and facility map only",
+    "sourceOrInternalStateRead": false,
+    "codeOrAssetsEdited": false,
+    "testsRun": false,
+    "desiredScoreProvided": false,
+    "rawActionLog": "docs/media/build45-review2/actions.jsonl",
+    "rawLogRecords": 135,
+    "screenshots": 67
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "visibleTitle": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:02",
+      "memoriesRecovered": 3,
+      "eliminations": 4,
+      "score": 3720,
+      "accuracyPercent": 10,
+      "criticalEliminations": 4,
+      "phaseEvades": 0,
+      "custodianCoilsDisabled": 1,
+      "terminalEvidence": "docs/media/build45-review2/attempt1_terminal.jpg",
+      "notes": "Disabled coil I. Surviving enemies pressured the boss approach. Died after moving close and reloading."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "visibleTitle": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:05",
+      "memoriesRecovered": 3,
+      "eliminations": 7,
+      "score": 4180,
+      "accuracyPercent": 19,
+      "criticalEliminations": 6,
+      "phaseEvades": 0,
+      "custodianCoilsDisabled": 2,
+      "terminalEvidence": "docs/media/build45-review2/attempt2_terminal.jpg",
+      "notes": "Coil III visibly OFF; coil II was at 69% before final firing action. The final action announced BROADCAST COIL DISABLED immediately before death, supporting a second disabled coil; final end screen does not enumerate coils."
+    }
+  ],
+  "rawRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 7,
+    "readability": 6,
+    "aaaReadiness": 3.5,
+    "replayability": 5
+  },
+  "ratingReasons": {
+    "gameplay": "Useful optic precision, regenerating shield, clear close-range Shift interruption, alternate routes and a shuttered three-coil boss create a workable combat loop. Receiver pickups sustain momentum. Repeated small emitter targets and overlapping rear pressure made the boss less satisfying than ordinary enemy combat in these two attempts.",
+    "presentation": "Strong, consistent rain-soaked industrial mood; cyan/amber lighting, reflective ground, large signs, weapon silhouette and polished title/pause/end UI. Simple box-like enemies, repeated props and sparse character animation remain visibly modest.",
+    "usability": "Readable handbook controls, pausing map, explicit objectives, restart and supply restoration all worked. Floor-ring recovery sometimes required another step, and direct objective markers could point into walls or cover until I consulted the map.",
+    "readability": "Large location signs and numbered coil plates help. Small optic targets, small offscreen directional cues, dense HUD content and cover occlusion required several aim and route corrections. I could see target damage when shots reached a live coil.",
+    "aaaReadiness": "This feels like a coherent polished prototype/vertical slice, with visible limits in geometry, animation, enemy variety, encounter scope and combat clarity. I did not see enough breadth or production detail to rate it near AAA readiness.",
+    "replayability": "Route choices and improved enemy clearing gave a reason to retry; attempt two improved eliminations and boss progress. Only the single mission and rifle were experienced."
+  },
+  "observations": [
+    {
+      "finding": "Phase break communicated successfully",
+      "evidence": "docs/media/build45-review2/attempt1_heart_contact2.jpg",
+      "detail": "Visible PHASE BREAK / SHOT CANCELED, followed by a sentinel elimination."
+    },
+    {
+      "finding": "Map made the medical bay route understandable",
+      "evidence": "docs/media/build45-review2/attempt1_map2.jpg",
+      "detail": "A direct movement toward the Heart hit the medical bay wall. Map showed the wall and I exited through the south/east side."
+    },
+    {
+      "finding": "Foreground cover frequently hid live coil bodies",
+      "evidence": "docs/media/build45-review2/attempt2_coil1_corrected.jpg",
+      "detail": "My shots did not damage coils while they were screened. Repositioning to the other side exposed coil III and disabled it."
+    },
+    {
+      "finding": "Coil damage and disabled state were legible when correctly aimed",
+      "evidence": "docs/media/build45-review2/attempt2_coil3.jpg",
+      "detail": "Coil III became dark and HUD said 3 OFF; coil II later showed 90% then 69%."
+    }
+  ],
+  "errors": {
+    "driverErrors": [],
+    "pageErrors": [],
+    "reviewerPlayErrors": [
+      "Several bursts missed moving optics or struck cover.",
+      "I collided with low cover and a medical bay wall during navigation.",
+      "First attempt to recover west memory in attempt two was outside the ring; a small reposition succeeded.",
+      "I advanced into boss combat while distant enemies remained alive.",
+      "Shift was used too far from the Custodian to interrupt it."
+    ],
+    "rawActionsAndDeathsRetained": true
+  },
+  "limitations": [
+    "Exactly two deaths; no win or extraction upload experienced.",
+    "Screenshot-driven discrete inputs with automatic pauses do not reproduce continuous human mouse play.",
+    "Software-WebGL fallback was reported; this is not a GPU/performance benchmark.",
+    "Audio and continuous frame pacing were not assessed.",
+    "Immediate HUD values sometimes preceded screenshot rendering; camera judgments were based on screenshots.",
+    "No source, prior reviews, routes, solutions, tests, git history or internal game state consulted."
+  ],
+  "closure": {
+    "op": "close",
+    "driverPid": 49381,
+    "chromePid": 49382,
+    "browserLaunched": true,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "psVerification": {
+      "command": "ps -p 49381,49382 -o pid=,ppid=,comm=",
+      "exitCode": 1,
+      "stdout": "",
+      "conclusion": "Both exact owned PIDs absent."
+    },
+    "otherBrowsersKilled": false
+  }
+}

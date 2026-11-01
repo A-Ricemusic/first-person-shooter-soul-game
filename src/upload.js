@@ -7,7 +7,7 @@ export function advanceUpload(progress, buffer, inside, dt) {
   return {progress: Math.max(0, progress - (dt - held) * 2), buffer: Math.max(0, buffer - dt)};
 }
 export function uploadStatus(s) {
-  if(s.custodian?.active&&!s.custodian.dead)return `JAMMED · ${s.custodian.open?'EXPOSED — FIRE':'SHUTTERS ARMORED — CHIP / WAIT FOR OPENING'}`;
+  if(s.custodian?.active&&!s.custodian.dead)return `JAMMED · ${s.custodian.open?'OPEN WINDOW — FIND CLEAR COPPER':'SHUTTERS ARMORED — CHIP / WAIT FOR OPENING'}`;
   if (s.insideExtraction) return `UPLINK ${Math.min(99,Math.floor((s.extractionProgress||0)*100))}% · ${s.extractionMargin<.65?'NEAR EDGE: MOVE INWARD':'MOVE WITHIN THE DECK'}`;
   const instruction=s.extractionMargin>0?'LAND INSIDE THE DECK':'REENTER THE DECK';
   if (s.extractionProgress>0) return s.extractionBuffer>0
