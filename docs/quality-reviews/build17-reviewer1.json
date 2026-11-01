@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "build": "SOULFALL Build 17",
+  "reviewer": "reviewer1",
+  "reviewerModel": "GPT-6.1 Sol",
+  "createdAt": "2026-11-01T04:01:23.283471+00:00",
+  "status": "raw independent report; preserve without retrospective editing",
+  "scope": "Whole-game provisional review from two bounded normal-mode attempts. Requested deployment -> medical encounter -> Mara held recovery -> alternate exit sequence was completed on attempt 2. Full mission was not completed.",
+  "ratingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.0,
+    "usability": 6.5,
+    "levelReadability": 6.5,
+    "aaaReadiness": 4.0
+  },
+  "ratingRationale": {
+    "gameplay": "The visible optic kill, regenerative shield, recovery supply refill, and dash afford an understandable combat/recovery loop. Attempt 2 recovered two memories and escaped triage despite poor target tracking. Multiple mobile pursuers compressed the recovery window and made exposure punishing. Combat feel and balance remain uncertain under screenshot-driven input.",
+    "presentation": "Coherent rain-soaked cyan/amber industrial palette, wet ground lighting, restrained typography, a distinctive relay fan, strong title/briefing/death screens and readable memory cards. Repeated plain wall panels, cupboards/counters and floating box enemies show the slice scale; the environment does not yet offer the richness or character detail implied by AAA presentation.",
+    "usability": "Visible handbook and pause menu clearly explain ordinary controls. Recovery feedback distinguishes move closer, hold E and memory secured; ammo refill and lit objective indices confirm success. Through-cover enemy labels and overlapping alerts can clutter decisions. I initially mistook the central pylon for the exact interaction point until the floor-ring/diamond feedback corrected me. This is partly reviewer error and partly an opportunity for stronger spatial clarity.",
+    "levelReadability": "Triage/evacuation, last ferry, west archive, exit/courtyard, east archive and relay signs form a legible environmental sequence. South intake and east service were both visually usable. The east service counter obstructed my direct line; I used handbook jump and dash to clear it. Covers and door frames were meaningful but screenshot navigation repeatedly caught me against their edges. The large pylon and floating memory target have spatial separation that required a closer look.",
+    "aaaReadiness": "A coherent playable vertical slice with good UI finish is visible, but these two attempts do not demonstrate shipping-level mission depth, combat feel, content variety, audio, stability across real hardware, accessibility coverage or full extraction. Four is a provisional readiness judgment, not a claim that the slice failed to run."
+  },
+  "knowledgeAndIntegrity": {
+    "firstPlayKnowledge": "Fresh context consisted only of the parent review brief, desired sequence, URL, browser fallback permission, allowed controls and artifact locations. No gameplay source, old screenshots, exact coordinates or enemy internals were supplied or read.",
+    "sourceRead": false,
+    "testHandleUsed": false,
+    "normalUrl": "http://127.0.0.1:5173/",
+    "inPlayInformation": "Visible mission brief, visible operator handbook, screenshots, and rendered visible body innerText only. Later choices used my own earlier attempt screenshots and visible HUD/compass/minimap. Mouse sensitivity was inferred from visible compass changes.",
+    "externalMessages": "Parent advised that other software-WebGL browser regressions were running, screenshot latency could expose the player, and later confirmed the requested sequence was covered. Parent also mentioned 12 medical pursuit checks passed; I did not use this suite result for gameplay decisions or for success claims.",
+    "forbiddenActions": "No teleport, no simulation/resource/enemy changes, no exact enemy state or aiming access, no gameplay source changes, no historical artifact edits.",
+    "gameplaySourceEdited": false,
+    "controlsActuallyUsed": [
+      "visible UI mouse clicks",
+      "W/A/S/D key presses/holds",
+      "left mouse firing",
+      "R reload",
+      "held E recovery",
+      "Shift dash",
+      "Escape pause/resume",
+      "Space jump as visibly documented in handbook"
+    ],
+    "mouseLook": "Driver dispatched document MouseEvent mousemove with explicit movementX/movementY and bubbles=true. These were ordinary relative look deltas chosen from screenshots, not state-derived aim. Pointerlock-equivalent look was synthetic; it was not physical human mouse play.",
+    "pausePolicy": "Escape paused between screenshot-guided tactical decisions. Paused overlay obscures world, so action blocks captured a live screenshot first and queued Escape afterward. Capture latency therefore sometimes continued exposure; no UI hiding or simulation pausing outside ordinary Escape was used.",
+    "uninterruptedCombat": "Action log retains short uninterrupted live fire/action segments, notably first optic kill and attempted close sentinel exchanges. These are not human real-time combat performance samples."
+  },
+  "environment": {
+    "browser": "Installed Google Chrome 156.0.8078.76 via Playwright",
+    "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "headless": true,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "args": [
+      "--enable-unsafe-swiftshader",
+      "--ignore-gpu-blocklist"
+    ],
+    "graphics": "Software WebGL fallback; other browser workloads shared host",
+    "audioAssessed": false,
+    "pageErrors": [],
+    "browserClosed": true
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "visibleMissionTime": "00:48",
+      "eliminations": 1,
+      "score": 180,
+      "accuracyPercent": 10,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "memoriesRecovered": [],
+      "sequence": [
+        "Read mission brief and operator handbook",
+        "Deployed; shot entry warden optic and saw 1 elimination",
+        "Followed TRIAGE / EVACUATION toward west archive",
+        "Reached WEST TRIAGE south intake and HOLD E prompt",
+        "Tried firing and held recovery while pursued; died before recovery"
+      ],
+      "failure": "Rushed the archive while sentinels pursued; poor screenshot-driven tracking and long live capture exposure consumed shield/health. Capture12 visibly showed HP78 while immediately following rendered text had HP21. This is a substantial harness confound, not proof of a normal-human difficulty defect.",
+      "evidence": [
+        "docs/media/build17-review1-06-warden-combat.png",
+        "docs/media/build17-review1-12-triage-interior.png",
+        "docs/media/build17-review1-14-attempt1-outcome.png"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "visibleMissionTime": "00:59",
+      "eliminations": 1,
+      "score": 2255,
+      "accuracyPercent": 5,
+      "criticalEliminations": 1,
+      "phaseEvades": 1,
+      "memoriesRecovered": [
+        "MARA SOLBERG / STATION MEDIC",
+        "ELIAN VALE / RELAY ENGINEER"
+      ],
+      "sequence": [
+        "Deploy Again; eliminated frontal warden with optic fire",
+        "Reapproached triage; tried a close sentinel fire/dash exchange without a confirmed extra kill",
+        "Used visible floor-ring proximity feedback to enter recovery radius",
+        "Held E and visibly secured Mara; index01 lit and ammo replenished",
+        "Followed EXIT / COURTYARD service sign; jump and dash cleared counter near passage",
+        "Emerged through alternate east service exit into courtyard with HP59",
+        "Followed East Archive marker, held E, visibly secured Elian; index02 lit and ammo replenished",
+        "Approached Heart and attempted final recovery; died before Heart recovery"
+      ],
+      "requestedSequenceCompleted": true,
+      "fullMissionCompleted": false,
+      "evidence": [
+        "docs/media/build17-review1-21-attempt2-mara-start.png",
+        "docs/media/build17-review1-22-attempt2-east-service.png",
+        "docs/media/build17-review1-23-attempt2-alternate-exit.png",
+        "docs/media/build17-review1-25-east-recovery.png",
+        "docs/media/build17-review1-28-attempt2-final-outcome.png"
+      ]
+    }
+  ],
+  "concreteFindings": [
+    {
+      "type": "positive",
+      "finding": "The normal-mode requested medical route was discoverable from visible signage, and both held memory recovery and alternate service exit worked in attempt2."
+    },
+    {
+      "type": "positive",
+      "finding": "Recovery visibly restored supplies and showed a named human memory, giving mechanical and narrative reward in the same moment."
+    },
+    {
+      "type": "friction",
+      "finding": "Enemy tags remain visible through cupboards/walls and sometimes overlap recovery/mission markers; recent fire/charging labels did not always correspond to a visible body that I could shoot."
+    },
+    {
+      "type": "friction",
+      "finding": "My direct path repeatedly collided with entry cover, door frame and service counter. I could recover and exit after correcting route, but close geometry needs readable navigation silhouettes."
+    },
+    {
+      "type": "limit",
+      "finding": "I did not achieve a clean sentinel combat clear; both runs recorded one critical elimination only. The 5%/10% reported accuracy mostly reflects obsolete screenshot aiming and cannot establish weapon feel for humans."
+    },
+    {
+      "type": "limit",
+      "finding": "I did not observe third memory completion, extraction hold, victory, full enemy roster behavior, audio quality or hardware performance."
+    }
+  ],
+  "harnessIssues": [
+    "First driver launch omitted tty; stdin closed and could not accept interactive commands. No game attempt occurred there. Relaunched with tty before first deployment; the initial idle browser was subsequently terminated by its identified process IDs.",
+    "An early command had duplicate JSON click keys, causing only the last click to apply. Visible screenshots clarified the still-open modal. This was driver usage error, not a game bug.",
+    "Screenshots often took several to 20+ wall-clock seconds amid shared software graphics contention. Captured frame, post-capture text, and later Escape can refer to different simulation moments. The final stable defeat screenshots/text agree.",
+    "Driver executes click, key, down, move and wait in its documented code order; key presses in a single command occur before down holds. No failed action was counted as a successful mechanical effect unless confirmed visibly.",
+    "Playwright browser.close completed with no page errors. The first idle browser and remaining own driver processes were explicitly terminated; other reviewers browsers were not touched."
+  ],
+  "limits": "Provisional whole-game scores are subjective impressions of the visible slice, not certification of human enjoyment, audio quality, hardware readiness, balance, accessibility or full mission quality. Software graphics, pauses, synthetic look input, low temporal sampling and host contention materially limit combat conclusions.",
+  "artifacts": {
+    "driver": "docs/quality-reviews/build17-reviewer1-driver.mjs",
+    "actions": "docs/quality-reviews/build17-reviewer1-actions.json",
+    "screenshots": [
+      "docs/media/build17-review1-00-briefing.png",
+      "docs/media/build17-review1-01-mission-brief.png",
+      "docs/media/build17-review1-02-handbook.png",
+      "docs/media/build17-review1-03-deployed-paused.png",
+      "docs/media/build17-review1-04-deployed.png",
+      "docs/media/build17-review1-05-deployment-view.png",
+      "docs/media/build17-review1-06-warden-combat.png",
+      "docs/media/build17-review1-07-west-approach.png",
+      "docs/media/build17-review1-08-triage-door.png",
+      "docs/media/build17-review1-09-sentinel-exchange.png",
+      "docs/media/build17-review1-10-medical-threshold.png",
+      "docs/media/build17-review1-11-medical-entry.png",
+      "docs/media/build17-review1-12-triage-interior.png",
+      "docs/media/build17-review1-13-mara-recovery-attempt.png",
+      "docs/media/build17-review1-14-attempt1-outcome.png",
+      "docs/media/build17-review1-15-attempt2-approach.png",
+      "docs/media/build17-review1-16-attempt2-triage-approach.png",
+      "docs/media/build17-review1-17-attempt2-close-sentinel.png",
+      "docs/media/build17-review1-18-attempt2-recover.png",
+      "docs/media/build17-review1-19-attempt2-medical-fire.png",
+      "docs/media/build17-review1-20-attempt2-held-recovery.png",
+      "docs/media/build17-review1-21-attempt2-mara-start.png",
+      "docs/media/build17-review1-22-attempt2-east-service.png",
+      "docs/media/build17-review1-23-attempt2-alternate-exit.png",
+      "docs/media/build17-review1-24-east-archive-push.png",
+      "docs/media/build17-review1-25-east-recovery.png",
+      "docs/media/build17-review1-26-heart-approach.png",
+      "docs/media/build17-review1-27-heart-recovery.png",
+      "docs/media/build17-review1-28-attempt2-final-outcome.png"
+    ]
+  }
+}

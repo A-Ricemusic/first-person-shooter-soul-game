@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "name": "Close charge breaks without damage; stagger and dash cooldown persist",
+      "phase": {
+        "windup": 0,
+        "stagger": 0.8,
+        "health": 150,
+        "hp": 150,
+        "cooldown": 4.5,
+        "breaks": 1,
+        "dashes": 1,
+        "staggerAfter": 0.4
+      }
+    },
+    {
+      "name": "Distant and covered charges cannot be interrupted",
+      "negative": {
+        "far": 0.3,
+        "cover": 0.3
+      }
+    },
+    {
+      "name": "Audio graph suspends on pause, reuses one bed on restart, honors mute",
+      "audio": {
+        "paused": "suspended",
+        "resumed": "running",
+        "sameBed": true,
+        "sources": 2,
+        "volume": 0
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": "Arranged real-browser mechanics and audio graph tests. Screenshots inspect rendering; no human audio listening claim."
+}

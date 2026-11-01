@@ -1,0 +1,35 @@
+
+> soulfall-the-last-signal@1.0.0 test:production
+> npm run build && SOULFALL_PRODUCTION=1 node tests/smoke.mjs
+
+
+> soulfall-the-last-signal@1.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 16 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.68 kB │ gzip:   0.41 kB
+dist/assets/index-VtD4PSz-.css   22.22 kB │ gzip:   5.71 kB
+dist/assets/index-2Mfb3Wfa.js   136.78 kB │ gzip:  45.53 kB
+dist/assets/three-mMKk3tUG.js   551.07 kB │ gzip: 139.63 kB
+✓ built in 1.80s
+PASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 98 draw calls in title frame.
+PASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.
+PASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.
+PASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.
+PASS Arena connectivity & cover: 5590 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.
+PASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.
+PASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.
+PASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.
+PASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.
+PASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.
+PASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.
+PASS Design dossier: docs/human.html serves with all actual rendered screenshots.
+PASS Normal-play isolation: No debug game handle exposed on normal URL.
+HTTP failures []
+PASS Browser health: No page exceptions, console errors, or HTTP failures in the suite.
+
+14 checks passed.

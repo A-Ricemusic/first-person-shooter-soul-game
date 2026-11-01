@@ -61,10 +61,7 @@ export class Game {
     this.scene.add(new THREE.HemisphereLight(0x9cc6db, 0x1a1c20, 0.8));
     try {
       const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/sentinel.glb`);
-      const bounds = new THREE.Box3().setFromObject(asset.scene), size = bounds.getSize(new THREE.Vector3());
-      asset.scene.scale.setScalar(1.15 / Math.max(size.y, 0.1));
-      const normalized = new THREE.Box3().setFromObject(asset.scene);
-      asset.scene.position.y += 0.72 - normalized.min.y;
+      if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>asset.scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Sentinel rig');
       this.sentinelAsset = asset.scene;
     } catch (_) { /* Procedural combat silhouette remains a robust loading fallback. */ }
     try {
@@ -73,6 +70,7 @@ export class Game {
       if (!required.every(name => asset.scene.getObjectByName(name))) throw new Error('Incomplete Warden rig');
       this.wardenAsset = asset.scene;
     } catch (_) { /* Original primitive Warden remains available if loading fails. */ }
+    try { const scene=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/interceptor.glb`)).scene;if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Interceptor rig');this.interceptorAsset=scene; } catch (_) { /* Sentinel remains a loading fallback. */ }
     this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
     this.loaded = true; this.emit(); this.frameId = requestAnimationFrame(t => this.frame(t)); return this;
@@ -200,7 +198,7 @@ export class Game {
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
-    this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
+    this.damageSource=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
     this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
@@ -238,7 +236,8 @@ export class Game {
     const group = new THREE.Group(); group.position.copy(position); group.position.y = 0;
     const armor = new THREE.MeshStandardMaterial({ color: type === 'stalker' ? 0x3c3432 : 0x243640, metalness: 0.7, roughness: 0.35 });
     const black = new THREE.MeshStandardMaterial({ color: 0x0e171d, roughness: 0.75, metalness: 0.45 });
-    let red = new THREE.MeshStandardMaterial({ color: 0xff693c, emissive: 0xff341c, emissiveIntensity: 2 });
+    let red = new THREE.MeshStandardMaterial({ color: 0xff693c, emissive: 0xff341c, emissiveIntensity: .65 });
+    let droneRig;
     const torso = mesh(new THREE.BoxGeometry(0.72, 0.65, 0.42), armor, 0, 1.13, 0); group.add(torso);
     const head = mesh(new THREE.BoxGeometry(0.37, 0.28, 0.33), armor, 0, 1.68, 0); group.add(head);
     group.add(mesh(new THREE.BoxGeometry(0.29, 0.055, 0.025), red, 0, 1.7, 0.18));
@@ -252,11 +251,12 @@ export class Game {
     group.traverse(m => { if (m.isMesh) m.castShadow = true; }); this.scene.add(group);
     if (this.sentinelAsset && !(type==='warden' && this.wardenAsset)) {
       [...group.children].forEach(child => { if (child !== light) child.visible = false; });
-      const authored = this.sentinelAsset.clone(true);
-      authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); if(type === 'stalker' && node.material.metalness > .4 && node.material.emissiveIntensity < 2)node.material.color.lerp(new THREE.Color(0xc99749), .7); node.userData.sharedGeometry = true; node.castShadow = true; } });
+      const authored = (type==='stalker' ? this.interceptorAsset||this.sentinelAsset : this.sentinelAsset).clone(true);
+      authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); node.userData.sharedGeometry = true; node.castShadow = true; } });
       group.add(authored);
-      // A readable telegraph stays visible on both Blender variants and fallback silhouettes.
-      const charge = mesh(new THREE.SphereGeometry(0.085, 8, 8), red, 0, 1.3, 0.43); group.add(charge);
+      red=authored.getObjectByName('Optic').material;
+      droneRig={model:authored,top:authored.getObjectByName('ShutterTop'),bottom:authored.getObjectByName('ShutterBottom'),vanes:[authored.getObjectByName('VaneLeft'),authored.getObjectByName('VaneRight')],previous:position.clone(),speed:0};
+      droneRig.topY=droneRig.top.position.y;droneRig.bottomY=droneRig.bottom.position.y;
     }
     let wardenRig;
     if(type==='warden' && this.wardenAsset) {
@@ -272,7 +272,7 @@ export class Game {
       group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
-    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -323,16 +323,17 @@ export class Game {
       const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : this.sentinelAsset ? 1.3 : 1.68, enemy.type==='warden' ? .3 : this.sentinelAsset ? 0.43 : 0).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
       const h = this.ray.intersectSphere(head, new THREE.Vector3());
       let b;
-      if (enemy.wardenRig) {
+      if (enemy.wardenRig || enemy.droneRig) {
         // Authored shoulders/skids are physical body targets; the old sphere both
         // missed visible armor edges and admitted empty-space hits. Precision
         // remains the same fixed 0.24m sphere, independent of shutter motion.
         enemy.group.updateWorldMatrix(true, true);
         this.raycaster.set(this.player, direction);
-        b = this.raycaster.intersectObject(enemy.wardenRig.model, true)[0]?.point;
+        b = this.raycaster.intersectObject((enemy.wardenRig||enemy.droneRig).model, true)[0]?.point;
       } else b = this.ray.intersectSphere(body, new THREE.Vector3());
-      const point = h || b;
-      if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!h; }
+      const precision = h && h.distanceTo(this.player)<distance;
+      const point = precision ? h : b;
+      if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!precision; }
     }
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
@@ -394,9 +395,11 @@ export class Game {
     return true;
   }
 
-  damage(amount, from = null) {
+  damage(amount, from = null, attacker = null) {
     if (this.phase !== 'playing') return;
     if(this.invulnerable>0){if(from){this.phaseDodges++;this.score+=75;this.event('phaseDodge','PHASE EVADE +75');}return;}
+    this.damageSource=attacker&&this.enemies.includes(attacker)?attacker:null;
+    if(this.damageSource)attacker.lastAttack=this.runTime;
     amount *= this.difficulty.damage; const absorbed = Math.min(this.shield, amount); this.shield -= absorbed; this.health -= amount - absorbed;
     this.lastDamage = this.runTime; this.audio.hurt(); this.event('damage', '', { amount, direction: from ? Math.atan2(from.x-this.player.x,-(from.z-this.player.z))+this.yaw : null });
     if (this.health <= 0) { this.health = 0; this.finish(false); } this.emit();
@@ -471,7 +474,7 @@ export class Game {
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
-      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);continue;}
+      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);this.animateDrone(enemy,dt);continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
@@ -517,16 +520,32 @@ export class Game {
         }
       }
       animateWarden(enemy,dt);
+      this.animateDrone(enemy,dt);
       const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
-      if (distance < 1.4 && eye.distanceTo(torso) < 1.6 && this.hasLineOfSight(eye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
+      if (distance < 1.4 && eye.distanceTo(torso) < 1.6 && this.hasLineOfSight(eye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position,enemy); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
   }
 
+  animateDrone(enemy,dt) {
+    const r=enemy.droneRig;if(!r||dt<=0)return;
+    const speed=enemy.group.position.distanceTo(r.previous)/dt;r.previous.copy(enemy.group.position);
+    r.speed=THREE.MathUtils.damp(r.speed,enemy.stagger>0?0:speed,12,dt);
+    // Only shutters and vectoring vanes move; the precision optic stays rigid.
+    const charge=enemy.windup>0 ? 1-enemy.windup/(enemy.type==='stalker'?.42:.65) : 0;
+    const recoil=Math.max(0,1-(this.runTime-enemy.lastAttack)/.22);
+    r.top.position.y=r.topY+charge*.07+recoil*.045;
+    r.bottom.position.y=r.bottomY-charge*.07-recoil*.045;
+    r.vanes.forEach((v,i)=>v.rotation.x=(i?1:-1)*Math.min(.35,r.speed*.09));
+    if(!(enemy.hitFlash>0)&&!(enemy.stagger>0))enemy.red.emissiveIntensity=enemy.windup>0?.65+charge*.65:.65;
+    if(enemy.stagger>0 && !(enemy.hitFlash>0))enemy.red.emissiveIntensity=.8;
+    enemy.light.intensity=enemy.windup>0?.12:.03;
+  }
   enemyFire(enemy) {
-    const origin = enemy.group.position.clone().add(new THREE.Vector3(0, 1.2, 0));
+    enemy.lastAttack=this.runTime;
+    const origin = enemy.group.position.clone().add(new THREE.Vector3(0, enemy.droneRig?1.3:1.2, enemy.droneRig?.43:0).applyAxisAngle(UP,enemy.group.rotation?.y||0));
     const velocity = enemy.target.clone().sub(origin).normalize().multiplyScalar(enemy.type === 'stalker' ? 18 : 15);
     const projectile = mesh(new THREE.SphereGeometry(0.09, 6, 6), new THREE.MeshBasicMaterial({ color: 0xff6a31 })); projectile.position.copy(origin); this.scene.add(projectile);
-    this.projectiles.push({ mesh: projectile, origin: origin.clone(), velocity, life: 4, damage: enemy.type === 'stalker' ? 13 : 19 });
+    this.projectiles.push({ mesh: projectile, origin: origin.clone(), attacker:enemy, velocity, life: 4, damage: enemy.type === 'stalker' ? 13 : 19 });
     this.tracer(origin, origin.clone().addScaledVector(velocity, 0.05), 0xff6033, 0.12);
   }
   updateProjectiles(dt) {
@@ -549,7 +568,7 @@ export class Game {
         if (hit) playerDistance = Math.min(playerDistance, previous.distanceTo(hit));
       }
       if (wallDistance <= travel && wallDistance <= playerDistance) p.life = 0;
-      else if (playerDistance <= travel) { this.damage(p.damage,p.origin); p.life = 0; }
+      else if (playerDistance <= travel) { this.damage(p.damage,p.origin,p.attacker); p.life = 0; }
       if (p.life <= 0) { this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.projectiles.splice(i, 1); }
     }
   }
@@ -640,6 +659,9 @@ export class Game {
     this.emitTimer -= dt; if (this.emitTimer <= 0) { this.emit(); this.emitTimer = 0.1; }
     this.frameId = requestAnimationFrame(t => this.frame(t));
   }
+  enemyOpticPosition(enemy) {
+    return enemy.group.position.clone().add(new THREE.Vector3(0,enemy.type==='warden'?2:this.sentinelAsset?1.3:1.68,enemy.type==='warden'?.3:this.sentinelAsset?.43:0).applyAxisAngle(UP,enemy.group.rotation.y));
+  }
   captureMarkers() {
     if(this.phase!=='playing')return [];
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
@@ -648,7 +670,7 @@ export class Game {
       return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
-    for(const e of this.enemies)if(e.visible&&(e.lastHit>this.runTime-3||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,...p});}
+    for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
@@ -657,6 +679,7 @@ export class Game {
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
+      damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&this.damageSource&&this.enemies.includes(this.damageSource)&&this.hasLineOfSight(this.player,this.enemyOpticPosition(this.damageSource),0) ? Math.atan2(this.damageSource.group.position.x-this.player.x,-(this.damageSource.group.position.z-this.player.z))+this.yaw : null,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,

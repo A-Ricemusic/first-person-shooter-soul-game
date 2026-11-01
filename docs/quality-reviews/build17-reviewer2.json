@@ -1,0 +1,211 @@
+{
+  "reviewer": "reviewer2",
+  "model": "GPT-6.1 Sol",
+  "build": 17,
+  "createdAt": "2026-11-01T04:04:16.333612+00:00",
+  "status": "Immutable independent raw provisional whole-game review; no gameplay/art source edits",
+  "scope": "Ordinary combat/attacker reacquisition in yard and medical bay, then separately arranged moving art/LOS/target correctness. Not a completed whole-mission playthrough.",
+  "ratings": {
+    "scale": "out of 10; same whole-game rubric as reviewer1, not art-only",
+    "provisional": true,
+    "gameplay": 6.1,
+    "presentation": 6.4,
+    "usability": 6.3,
+    "levelReadability": 5.8,
+    "aaaReadiness": 3.5
+  },
+  "ratingReasons": {
+    "gameplay": "Usable fire/reload/ADS/strafe and real kills. Yard reacquisition failed under multi-attacker pressure; medical pursuit and reacquisition eventually succeeded. No personal full extraction result; timing judgments heavily limited by software capture.",
+    "presentation": "Coherent rain/industrial palette and clean type. Authored hovering housings have coherent square optics, shields/skids and type-specific fins, but both share a dominant box silhouette and orange face; motion is small in actual framing.",
+    "usability": "Visible handbook and briefing explain the main loop and controls. Clear ammo/reload, shield, core markers and enemy labels. Pause clears ADS/input, making resumed screenshot-driven aiming awkward; attacker text competes with core/signage in bay.",
+    "levelReadability": "South intake/east service, bay signage and core marker eventually guided entry. West approach repeatedly cost navigation time; central cover and storage hide small attackers while several labels compete. Distinct combat spaces exist but do not yet read instantly.",
+    "aaaReadiness": "A convincing functional vertical slice, with limited encounter/art breadth and incomplete validation of performance, audio and normal human play. This review does not support AAA certification."
+  },
+  "ordinaryMethod": {
+    "url": "http://127.0.0.1:5173/",
+    "viewport": [
+      1280,
+      800
+    ],
+    "readBeforePlay": [
+      "Visible OPERATOR HANDBOOK",
+      "Visible EYES ONLY / MISSION BRIEF"
+    ],
+    "inputs": "Menu clicks, WASD, R, Space/Shift attempted, left/right mouse, document MouseEvent movementX/Y ordinary look events. Aim corrections were estimated from visible pixels; no exact world/camera positions or internal aim helper.",
+    "notUsedForDecisions": [
+      "Source or tests",
+      "test=1",
+      "Enemy state/windup",
+      "Exact positions",
+      "Teleports",
+      "Resource/enemy edits",
+      "Prior build media"
+    ],
+    "pause": "Escape pause and menu resume used between screenshot decisions. Advantage: unlimited reasoning time and no combat progression while reasoning. Disadvantages: screenshot capture remained unpaused and added exposure; pause clears ADS/input; resumed controls were sometimes misjudged. This is assisted screenshot-driven play, not human real-time play.",
+    "rendering": "Installed Chrome headless with --enable-unsafe-swiftshader --ignore-gpu-blocklist; no hardware FPS/audio certification. Other browsers/suites overlapped early and increased latency. Playwright video ffmpeg was initially absent and installed. First browser screenshot/close stalled; own browser was SIGTERM terminated; video remains readable. CDP screenshots used for later attempts.",
+    "attempts": [
+      {
+        "id": 1,
+        "outcome": "Died",
+        "missionTime": "00:31",
+        "eliminations": 1,
+        "accuracy": "10%",
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "detail": "Centered fire killed opening induction Warden. Advanced to west/medical approach. Three Sentinel cues became visible; rotated toward bearings, over-rotated and failed to reacquire shootable actors around cover. Lost remaining health during capture/resume cycle. This was a real failure, not a pass."
+      },
+      {
+        "id": 2,
+        "outcome": "Died",
+        "missionTime": "00:39",
+        "eliminations": 0,
+        "detail": "Tried to reach medical bay via left diagonal, overshot to west exterior wall/corner and struggled to navigate inward. Repeated held movement appeared minimal while taking fire. Retained as navigation/capture failure; cause not isolated. No ordinary bay combat success on this attempt."
+      },
+      {
+        "id": 3,
+        "outcome": "Voluntarily stopped paused, alive",
+        "missionTimeAtLastCapture": "00:25",
+        "eliminations": 2,
+        "health": 27,
+        "cores": 0,
+        "detail": "Killed opening Warden. Used visible opening/signage/core beacon to enter shaded medical bay through south intake. Saw and fired at moving Sentinel, strafed through east service opening and lost target behind wall. Turned left, reacquired actual body and label, fired more bursts and neutralized Sentinel. Poor aim and multi-attacker pressure still caused heavy damage. Ordinary bay engagement and kill are directly captured."
+      }
+    ],
+    "uninterruptedSegments": [
+      {
+        "path": "docs/media/build17-review2-normal-yard-uninterrupted.mp4",
+        "type": "Actual continuous video excerpt, source video 63\u201369 seconds",
+        "label": "Ordinary yard sustained firing/advance, no Escape during this segment"
+      },
+      {
+        "paths": [
+          "docs/media/build17-review2-normal3-medical-ads-target.png",
+          "docs/media/build17-review2-normal3-medical-burst.png"
+        ],
+        "type": "Two actual temporal screenshots from one uninterrupted resumed combat interval; not continuous video",
+        "label": "Ordinary medical ADS reacquisition to burst/neutralization; no Escape between the two captures. Capture latency increases exposure."
+      }
+    ],
+    "evidence": [
+      "docs/media/build17-review2-normal-entry.png",
+      "docs/media/build17-review2-normal-west-advance-long.png",
+      "docs/media/build17-review2-normal-west-approach.png",
+      "docs/media/build17-review2-normal-yard-advance.png",
+      "docs/media/build17-review2-normal-yard-death.png",
+      "docs/media/build17-review2-normal-yard-reacquire-rear.png",
+      "docs/media/build17-review2-normal-yard-reacquire.png",
+      "docs/media/build17-review2-normal-yard-start.png",
+      "docs/media/build17-review2-normal2-corner-look.png",
+      "docs/media/build17-review2-normal2-entry.png",
+      "docs/media/build17-review2-normal2-intake-front.png",
+      "docs/media/build17-review2-normal2-medical-door.png",
+      "docs/media/build17-review2-normal2-north-return.png",
+      "docs/media/build17-review2-normal2-recaptured.png",
+      "docs/media/build17-review2-normal2-return-inward.png",
+      "docs/media/build17-review2-normal2-south-intake.png",
+      "docs/media/build17-review2-normal2-west-wall.png",
+      "docs/media/build17-review2-normal3-bay-alignment.png",
+      "docs/media/build17-review2-normal3-bay-approach.png",
+      "docs/media/build17-review2-normal3-medical-ads-target.png",
+      "docs/media/build17-review2-normal3-medical-burst.png",
+      "docs/media/build17-review2-normal3-medical-fight.png",
+      "docs/media/build17-review2-normal3-medical-inside.png",
+      "docs/media/build17-review2-normal3-medical-reacquire.png",
+      "docs/media/build17-review2-normal3-medical-return-fire.png",
+      "docs/media/build17-review2-normal3-yard-clear.png"
+    ],
+    "rawVideo": "docs/media/build17-review2-video/page@f9e2af678757ac6f9514c92f44c33c81.webm",
+    "driver": "docs/media/build17-review2-driver.mjs",
+    "actions": "docs/media/build17-review2-actions.jsonl",
+    "actionsLimitation": "Actions logging begins with second browser; first attempt commands are described here and retained in thread/video. Final driver uses CDP/no video after initial video path stalled."
+  },
+  "arrangedMethod": {
+    "separation": "Started only after all three ordinary attempts ended. Source, internal state, exact positioning, synthetic colliders and deterministic zero spread used only for arranged fixtures.",
+    "temporalRenderedEvidence": "Inspected all 56 existing actual WebGL rendered frames (seven per setup) generated by tests/attacker-readability-regressions.mjs for yard+shaded bay, hip+ADS, 1280x800+1440x900. Saved eight chronological crop filmstrips. These are actual temporal render sequences, not still-only art certification; cropping/thumbnailing does hide fine detail, so full frames were also inspected at representative starts.",
+    "filmstrips": [
+      "docs/media/build17-review2-arranged-1280-bay-ads-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1280-bay-hip-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1280-yard-ads-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1280-yard-hip-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1440-bay-ads-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1440-bay-hip-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1440-yard-ads-filmstrip.jpg",
+      "docs/media/build17-review2-arranged-1440-yard-hip-filmstrip.jpg"
+    ],
+    "sourceInspected": [
+      "tests/attacker-readability-regressions.mjs",
+      "tests/drone-alignment-regressions.mjs",
+      "tests/drone-lifecycle-edges.mjs",
+      "src/game.js spawnEnemy/shoot/updateEnemies/animateDrone/captureMarkers/hasLineOfSight/bindInput",
+      "src/world.js triage asset load"
+    ],
+    "independentTests": [
+      "DRONE_OBSERVATIONS=docs/quality-reviews/build17-review2-drone-alignment.json node tests/drone-alignment-regressions.mjs",
+      "node docs/media/build17-review2-target-checks.mjs"
+    ],
+    "testReports": [
+      "docs/quality-reviews/build17-review2-drone-alignment.json",
+      "docs/quality-reviews/build17-review2-target-checks.json"
+    ],
+    "testHarnessFailure": "First custom fixture timed out because waitForFunction used RAF polling after RAF was intentionally suppressed. Changed fixture to polling:50 and reran successfully. No game source change.",
+    "results": {
+      "silhouettes": "Sentinel has squat housing/skids; Interceptor has taller asymmetric fin profile. Both retain similar box housing and square orange optic, so at distance the label provides much of type identification.",
+      "chargeAndFire": "Chronological actual frames show charging text, small shutter separation, brighter top optic light and projectiles during fire. The charge-to-fire transition exists, but housing motion and vane angle are subtle at normal yard scale; bay core crystal/rifle overlap partly hides Interceptor.",
+      "motion": "Independent 240-step source fixture for each type records shutter travel about .069m, vane rotation from0 to~.189rad Sentinel /~.288rad Interceptor, one projectile each. These numerical checks support observed rendered movement and do not replace temporal visual inspection.",
+      "fixedOptic": "Both types optic remains rigid; maximum measured expected-vs-world error about4.93e-8m while translating/turning/charging. Precision sphere remains fixed .24m.",
+      "geometryAndPrecision": "Independent authored-geometry body shots34 and centered precision82 pass for both types; empty-air ray offset .55m misses both. Centered precision intentionally wins within an authored body intersection.",
+      "ordering": "Nearer off-axis body receives34; farther centered optic remains undamaged, with either enemy iteration order. Synthetic wall before enemy blocks damage; wall behind permits82.",
+      "coverProtrusions": "Every authored vertex of both moving types stays within measured horizontal radius .441026m during fixture, below .45m occupancy radius. No horizontal collision/visual protrusion found in sampled charge/turn/motion; does not certify all map arrangements.",
+      "materialsAndPause": "Cloned materials distinct, geometry shared, killing one does not dispose surviving shared geometry; paused runtime delta0."
+    }
+  },
+  "findings": [
+    {
+      "severity": "medium",
+      "finding": "Multi-attacker reacquisition remains difficult in ordinary west approach. Labels communicate type and charging/recent fire, but actual actors are small and cover interrupts visual tracking. First attempt died while turning between cues."
+    },
+    {
+      "severity": "medium",
+      "finding": "Sentinel/Interceptor dominant silhouettes remain similar. Interceptor fin and skids provide distinction in arranged close framing, but square orange face and same housing dominate at combat distance."
+    },
+    {
+      "severity": "medium",
+      "finding": "Medical beacon crystal/ring, hanging sign, rifle ADS and simultaneous enemy labels can overlap one another. Arranged bay sequences visibly obscure portions of Interceptor; ordinary bay target tracking required leaving/re-entering opening."
+    },
+    {
+      "severity": "unresolved",
+      "finding": "Center-LOS marker gate is not full pixel/body/optic coverage. Markers test center y1.3 with .2 endpoint margin and label is projected y2.2. I did not concretely reproduce a tag with completely unshootable optic/body. Actual ordinary medical captures show tag plus shootable body; source/fixture success cannot certify all cabinet/corner pixels."
+    }
+  ],
+  "knowledgeDisclosure": {
+    "priorKnowledge": "Parent brief supplied build identity, target concern categories, known Chrome fallback, fixture/media paths, two-reviewer scope. No prior review report or game source read before ordinary play. A file listing exposed older review filenames but their content was not opened.",
+    "parentDuringOrdinary": [
+      "Software browser/suite contention warning",
+      "Fixture suite near completion and suggestion to pause before captures (not used for control aiming)",
+      "Status that required suite finished"
+    ],
+    "postOrdinary": [
+      "Read arranged test source and existing build17-drone-alignment.json / freeze manifest",
+      "Parent reported reviewer1 perception of cover tags after my normal pass, requested bounded follow-up; no other reviewer scores were supplied/read",
+      "Parent reported exact-information controller completed mission, treated only as external evidence, not my ordinary result"
+    ],
+    "freeze": {
+      "matches": true,
+      "actual": {
+        "src/game.js": "ccd59e04d541d6838379621236f356f915f5351ead4c726e55e1f1594bde2709",
+        "src/main.js": "75b2bf2607b1f0c8f3fee5e3f71ad88b7f88b23eb87d8a06c5d2724b1c194884",
+        "public/assets/sentinel.glb": "9accd52c32a57e6bac5caa426ec8d09b3ba7a386b0b5f198a60fbe7faadcf37b",
+        "public/assets/interceptor.glb": "2519b173aeb9e1a079ed54c35b3ed8d2e59c692a8d92923e892d470ceec34c6b"
+      }
+    },
+    "unsupportedClaims": [
+      "Normal hardware FPS/performance",
+      "Audio quality (headless muted)",
+      "Human enjoyment",
+      "AAA readiness certification",
+      "Personal completed full mission",
+      "Universal visibility/cover correctness"
+    ]
+  },
+  "browsersClosed": true
+}

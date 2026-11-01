@@ -1,0 +1,29 @@
+{
+  "scope": "Implementation-stage failures, prior to final validation. Not independent play and not rescored.",
+  "failures": [
+    {
+      "check": "combat regression dummy enemy",
+      "failure": "Cannot read properties of undefined (reading 'y') in enemyFire",
+      "cause": "Existing cover test supplies a minimal group with no rotation.",
+      "correction": "Treat missing synthetic fixture rotation as zero; actual enemies retain their orientation."
+    },
+    {
+      "check": "early smoke and motion captures",
+      "failure": "Cannot read properties of undefined (reading 'game')",
+      "cause": "Vite full reload while implementation source was still changing.",
+      "correction": "Restart checks after gameplay source froze."
+    },
+    {
+      "check": "mission damage cue",
+      "failure": "Expected damage-direction visible for damage from unattached arbitrary position.",
+      "cause": "New indicator requires a live known attacker to avoid stale/dead-source bearings.",
+      "correction": "Fixture uses live enemy source; mechanics unchanged."
+    },
+    {
+      "check": "drone body-panel fixture",
+      "failure": "0 damage where34 expected",
+      "cause": "First aim target was empty beveled corner space.",
+      "correction": "Aim at actual lower hull panel; no body or precision geometry changes."
+    }
+  ]
+}

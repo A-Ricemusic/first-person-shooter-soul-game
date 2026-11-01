@@ -13,7 +13,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 16</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 17</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -57,7 +57,7 @@ function notify(text){$('announcement').textContent=text;$('announcement').class
 function onEvent(e){
  if(e.type==='phase'){clearTimeout(memoryTimer);hide('memory-card',true);$('event-feed').replaceChildren();$('damage-direction').classList.remove('visible');}
  if(e.type==='memory'){$('memory-person').textContent=e.person;$('memory-role').textContent=e.role;$('memory-text').textContent=`“${e.memory}”`;hide('memory-card',false);clearTimeout(memoryTimer);memoryTimer=setTimeout(()=>hide('memory-card',true),7500)}
- if(e.type==='damage'&&e.direction!=null){$('damage-direction').style.transform=`rotate(${e.direction}rad)`;$('damage-direction').classList.add('visible');clearTimeout(directionTimer);directionTimer=setTimeout(()=>$('damage-direction').classList.remove('visible'),1100)}
+
 
  if(e.type==='damage'){ $('damage-flash').classList.add('active');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('damage-flash').classList.remove('active'),240) }
  if(['hit','kill','headshot'].includes(e.type)){ $('hitmarker').classList.add('visible');$('hitmarker').classList.toggle('kill',e.type==='kill');clearTimeout(hitTimer);hitTimer=setTimeout(()=>$('hitmarker').classList.remove('visible'),e.type==='kill'?230:100) }
@@ -65,6 +65,7 @@ function onEvent(e){
  if(e.message && !['shot','hit','damage','footstep'].includes(e.type)){if(['phase','core','notice','win','lose','phaseDodge','phaseInterrupt'].includes(e.type))notify(e.message);if(['notice','phase'].includes(e.type))return;const line=document.createElement('div');line.textContent=e.message;$('event-feed').prepend(line);while($('event-feed').children.length>3)$('event-feed').lastChild.remove();setTimeout(()=>line.remove(),5500)}
 }
 function renderState(s){
+ $('damage-direction').classList.toggle('visible',s.damageDirection!=null);if(s.damageDirection!=null)$('damage-direction').style.transform=`rotate(${s.damageDirection}rad)`;
  current=s;drawRadar(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player);hide('service-hint',!service);hide('field-controls',!(!service&&phase==='playing'&&s.time<18&&s.cores===0));hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;$('extraction-status').textContent=s.extractionProgress>0?`UPLINK ${Math.min(99,Math.floor(s.extractionProgress*100))}% · STAY IN THE ZONE`:`REACH THE GREEN BEACON · HOLD ${s.extractionSeconds||6} SECONDS`;$('recovery-progress').style.width=`${(s.coreProgress||0)*100}%`;
  if(phase!==previousPhase){
   const playing=phase==='playing';hide('hud',!playing);hide('pause',phase!=='paused'||!$('menu').classList.contains('hidden'));hide('end',!['won','lost'].includes(phase));
@@ -103,14 +104,14 @@ const markerPool=new Map();
 function drawMarkers(markers){
  const active=new Set();
  for(const m of markers){
-  if(m.kind==='enemy'&&!m.charging&&(!m.front||Math.abs(m.x)>.95||Math.abs(m.y)>.9))continue;
+  if(m.kind==='enemy'&&!m.charging&&!m.recent&&(!m.front||Math.abs(m.x)>.95||Math.abs(m.y)>.9))continue;
   active.add(m.id);let el=markerPool.get(m.id);
   if(!el){el=document.createElement('div');el.className=`world-marker ${m.kind}`;el.dataset.markerId=m.id;el.innerHTML='<span class="marker-symbol">◇</span><b></b><small></small><div class="enemy-track"><i></i></div>';$('waypoints').append(el);markerPool.set(m.id,el)}
   const onscreen=m.front&&Math.abs(m.x)<.86&&Math.abs(m.y)<.68;
   const x=onscreen?(m.x+1)*50:50+Math.sin(m.bearing)*43,rawY=onscreen?(1-m.y)*50:50-Math.cos(m.bearing)*32;let y=rawY;if(x>82&&y<45)y=51;if(x<24&&y<23)y=28;
   el.style.opacity=m.suppressed?'0':'';
   el.style.left=`${x}%`;el.style.top=`${Math.max(16,Math.min(80,y))}%`;el.classList.toggle('edge',!onscreen);el.classList.toggle('charging',!!m.charging);
-  el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;el.querySelector('b').textContent=m.label;el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':''):m.inRange?'HOLD E':`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
+  el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;el.querySelector('b').textContent=m.label;el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':m.recent?'RECENT FIRE':''):m.inRange?'HOLD E':`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
   if(m.kind==='enemy')el.querySelector('i').style.width=`${Math.max(0,m.health*100)}%`;
  }
  for(const [id,el]of markerPool)if(!active.has(id)){el.remove();markerPool.delete(id)}

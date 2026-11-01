@@ -1,5 +1,6 @@
 import {chromium} from '@playwright/test';
 import {writeFileSync,mkdirSync} from 'node:fs';
+import assert from 'node:assert/strict';
 const root=process.cwd();
 const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist','--enable-unsafe-swiftshader']});
 const p=await b.newPage({viewport:{width:1280,height:800}});const errors=[],log=[];p.on('pageerror',e=>errors.push(e.message));
@@ -12,7 +13,7 @@ function walkable(x,z){const a=world.bounds;if(x<a.minX+.5||x>a.maxX-.5||z<a.min
 function path(pos,goal){const sx=Math.round(pos.x),sz=Math.round(pos.z),gx=Math.round(goal.x),gz=Math.round(goal.z),q=[[sx,sz]],prev=new Map([[`${sx},${sz}`,null]]);let end;
 for(let i=0;i<q.length;i++){const [x,z]=q[i];if(Math.hypot(x-gx,z-gz)<1.8){end=[x,z];break}for(const [dx,dz]of [[0,-1],[1,0],[0,1],[-1,0]]){const a=x+dx,c=z+dz,k=`${a},${c}`;if(!prev.has(k)&&walkable(a,c)){prev.set(k,[x,z]);q.push([a,c])}}}if(!end)return[];const out=[];for(let e=end;e;e=prev.get(`${e[0]},${e[1]}`))out.push({x:e[0],z:e[1]});return out.reverse()}
 let pathCache=[],routeGoal='',held='',shooting=false,steps=0;const start=Date.now();
-while(Date.now()-start<100000){
+while(Date.now()-start<Number(process.env.CONTROL_TIMEOUT_MS||240000)){
 const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {...g.captureState(),pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),inv:g.invulnerable}});
 if(s.phase!=='playing'){log.push({at:Date.now()-start,state:s.phase,kills:s.kills,cores:s.cores,health:s.health});break}
 if(steps%10===0)log.push({at:Date.now()-start,time:s.time,x:s.player.x,z:s.player.z,health:s.health,shield:s.shield,kills:s.kills,cores:s.cores,ammo:s.ammo,targets:s.targets.length});
@@ -35,5 +36,6 @@ if(steps===50)await p.screenshot({path:'/tmp/soulfall-playtest-mid.png',timeout:
 await p.waitForTimeout(120);steps++;
 }
 if(held)await p.keyboard.up(held);if(shooting)await p.mouse.up();const final=await p.evaluate(()=>window.__SOULFALL__.game.captureState());console.log(JSON.stringify({method:'Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. Look uses mousemove events; movement/fire/reload/interact/dash use controls.',steps,log,final,errors},null,2));await p.screenshot({path:'/tmp/soulfall-playtest-final.png',timeout:15000});
-writeFileSync(root+'/docs/current-normal-controls-playtest-latest.json',JSON.stringify({method:'Automated normal-control combat exercise',steps,log,final,errors},null,2));
+writeFileSync(root+'/docs/current-normal-controls-playtest-latest.json',JSON.stringify({method:'Exact-information automated normal controls: reads colliders, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage; not independent discovery or human play.',steps,log,final,errors},null,2));
+assert.equal(final.phase,'won','Controller must actually finish extraction');assert.equal(final.cores,3);assert.equal(final.extractionProgress,1);assert.deepEqual(errors,[]);
 }finally{await b.close()}

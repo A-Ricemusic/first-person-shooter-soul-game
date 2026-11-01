@@ -22,7 +22,8 @@
     "test:warden-motion": "node tests/warden-locomotion-regressions.mjs",
     "test:medical": "node tests/medical-regressions.mjs",
     "test:warden-steering": "node tests/warden-steering-regressions.mjs",
-    "test:recovery": "node tests/recovery-readability-regressions.mjs"
+    "test:recovery": "node tests/recovery-readability-regressions.mjs",
+    "test:attackers": "node tests/attacker-readability-regressions.mjs && node tests/drone-alignment-regressions.mjs && node tests/drone-lifecycle-edges.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"
