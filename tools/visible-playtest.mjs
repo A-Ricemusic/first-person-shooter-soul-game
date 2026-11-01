@@ -25,6 +25,9 @@ Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
 then uses ordinary Escape unless pauseAfter:false. resume:true uses the visible
 Resume button. Capture defaults to pausing only when the playing view is visible.
+Escape closes the map as it pauses, including the automatic post-capture pause.
+After resume the map starts closed; M opens it again. To capture a close toggle,
+press M twice within one uninterrupted act.
 No test URL, arbitrary evaluation or hidden game observations are accepted.
 EOF closes the owned browser. A project lock rejects a second driver before launch.
 --headed opens a window; software-WebGL fallback remains allowed, not a GPU benchmark.

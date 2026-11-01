@@ -1,0 +1,117 @@
+{
+  "reviewer": "build37-reviewer1",
+  "method": "Source-independent ordinary visible play. Existing visible driver only at normal root URL; help read first, Mission Brief and How to Play read before deployment. Every captured JPEG inspected before next decision. Exactly two attempts, both terminal deaths; no third attempt or rescoring.",
+  "provisionalRatingsOutOf10": {
+    "wholeGame": 6,
+    "gameplay": 6,
+    "presentation": 8,
+    "usability": 5,
+    "readability": 6,
+    "AAAReadiness": 3
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:25",
+      "memoriesRecovered": 0,
+      "eliminations": 0,
+      "score": 0,
+      "actions": "Advanced straight past induction guard, fired while strafing left without tracking target, reloaded and sprinted toward west archive. Misread receiver location and moved into storage/wall. Opened map to orient. Repeated M presses did not visibly close map across resume boundaries. Turned and moved while threatened, attempted E outside reach. Used Shift; visible PHASE BREAK / SHOT CANCELED occurred at 00:21. Died trying another sideways dash/recovery.",
+      "screenshots": [
+        "attempt1-start.jpg",
+        "a1-advance.jpg",
+        "a1-fight.jpg",
+        "a1-west.jpg",
+        "a1-receiver-approach.jpg",
+        "a1-west-recover.jpg",
+        "a1-map.jpg",
+        "a1-west-search.jpg",
+        "a1-recover2.jpg",
+        "a1-last.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "00:39",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracy": "11%",
+      "actions": "Aimed slightly above starting crosshair and fired ADS at induction optic; critical elimination confirmed. Reloaded, sprinted diagonally east, got blocked by low cover and spent another forward interval without progress. Went around right edge; moved a little left into receiver reach and held E, recovering Elian. Dashed/strafe-sprinted west, approached Heart, corrected sideways and recovered Sera. Moved diagonally southwest then left, recovered Mara. Turned approximately 180 degrees and sprint/dashed toward extraction; died during that return before reaching extraction.",
+      "screenshots": [
+        "attempt2-start.jpg",
+        "a2-guard.jpg",
+        "a2-east-route.jpg",
+        "a2-east-near.jpg",
+        "a2-around-cover.jpg",
+        "a2-east-recover.jpg",
+        "a2-cross.jpg",
+        "a2-heart.jpg",
+        "a2-heart-recover.jpg",
+        "a2-west-return.jpg",
+        "a2-west-try.jpg",
+        "a2-extract-route.jpg"
+      ]
+    }
+  ],
+  "strengths": [
+    "Rain, wet reflected light, cyan industrial accents, large station signs and strong title typography create a coherent stormy science-fiction setting (menu.jpg, a2-east-route.jpg).",
+    "Objective sequence and nearest-distance markers made the second attempt materially easier. Receiver proximity explicitly changes to MOVE CLOSER / STEP INSIDE THE FLOOR RING; recovery confirms character name and replenishes supplies (a2-around-cover.jpg, a2-east-recover.jpg).",
+    "Optic aiming produced a clear critical elimination; dash gave an explicit phase-break confirmation. Health, shield, ammo and recovery state remained readable.",
+    "Branching side lanes and physical cover offered navigation choices; all three recoveries could be completed without clearing the arena."
+  ],
+  "problems": [
+    "In attempt one the pylon attracted me while the actual receiver was elsewhere. I repeatedly held E from 7\u201313 m away and lost health while searching; brief explains this, but spatial affordance still required learning.",
+    "Low cover stopped forward movement for a full 3.4-second action in attempt two with no nearest-distance change; its apparent height and visual ribs made the obstruction less obvious from close range (a2-east-route.jpg, a2-east-near.jpg).",
+    "The live map remained visible despite subsequent M presses in resumed actions. This may involve the pause/resume driver cadence; I cannot attribute cause from visible play. It obscured the central view while threats remained active (a1-west-search.jpg, a1-recover2.jpg).",
+    "Offscreen threat cues conveyed danger but did not let me quickly identify exact shooters. A 100-health/60-shield return attempt ended in death within five seconds; I had not mastered facing/flank management. This felt abrupt through the sampled action cadence.",
+    "How to Play screenshot showed the core control/dash paragraph but not the threat-visor paragraph that appeared in visible dialog text returned by the driver; long help content visibility deserves checking (controls.jpg).",
+    "Environment and enemies remain visibly simple geometric constructions at close range. Strong art direction alone does not establish AAA production breadth or finish."
+  ],
+  "map": {
+    "observed": true,
+    "used": true,
+    "evidence": "a1-map.jpg shows named Medical Bay, West/East Archive, Heart, Central Yard, East Works, South Intake and Extraction; legend differentiates walls, low cover, receiver reach and player arrow. Used to understand my west archive position and intended receiver direction. Did not reopen in attempt two. No enjoyment conclusion inferred."
+  },
+  "controlsUsed": [
+    "WASD",
+    "mouse relative look",
+    "LMB fire",
+    "RMB ADS",
+    "R reload",
+    "Control sprint",
+    "Shift Soul Shift",
+    "hold E recovery",
+    "M live map",
+    "Escape pause via driver",
+    "visible Resume/Deploy Again buttons"
+  ],
+  "coverageLimits": [
+    "No victory or extraction upload experienced. No extraction ring hold/decay tested.",
+    "No jump, settings, recovered-memory reading, alternate difficulty or accessibility exploration.",
+    "Combat mastery limited; first attempt shots missed while target was behind me. These failures are retained.",
+    "Driver snapshot/pause interaction limits continuous embodied control; no hardware FPS, audio enjoyment or perfection certification. Software-WebGL fallback explicitly reported.",
+    "No game source, tests, old reviews/screenshots, hidden state, eval, debug route, or other browser used."
+  ],
+  "evidenceDirectory": "docs/media/build37-review1",
+  "briefEvidence": [
+    "menu.jpg",
+    "brief.jpg",
+    "controls.jpg"
+  ],
+  "closure": {
+    "explicitCloseSent": true,
+    "browserClosed": true,
+    "driverPid": 65687,
+    "chromePid": 65688,
+    "driverExitCode": 0,
+    "ownedPidVerification": {
+      "command": "ps -p 65687,65688 -o pid=,comm=",
+      "exitCode": 1,
+      "output": "",
+      "bothAbsent": true
+    }
+  }
+}
