@@ -25,7 +25,8 @@ try {
  await page.goto('http://127.0.0.1:5173/?test=1');
  await page.waitForFunction(()=>window.__SOULFALL__?.game.handsAsset && window.__SOULFALL__.game.wardenAsset,null,{polling:50});
  await page.click('#deploy',{force:true});
- await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.restart();g.player.set(12,1.7,22);g.enemies[0].cooldown=100;});
+ await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.restart();// Build32: the authored induction guard acquires strictly inside 12m.
+ g.player.set(11,1.7,22);g.enemies[0].cooldown=100;});
  for(let frame=0;frame<8;frame++){
   const row=await page.evaluate(async()=>{
    const THREE=await import('/node_modules/three/build/three.module.js');

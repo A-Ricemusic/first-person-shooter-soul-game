@@ -1,0 +1,61 @@
+{
+  "build": 32,
+  "reviewer": "ordinary-visible-reviewer-2",
+  "method": "Existing visible-playtest.mjs only, normal http://127.0.0.1:5173/, live JPEG inspection and visible UI. Read Mission Brief and How to Play before deployment. No source, test, prior review, route, fixture or hidden-state inspection; no implementation changes.",
+  "evidenceDirectory": "docs/media/build32-review2",
+  "actionLog": "docs/media/build32-review2/actions.jsonl",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "endScreen": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "00:50",
+      "eliminations": 1,
+      "score": 3100,
+      "accuracyPercent": 16,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "memoriesRecovered": ["Elian Vale", "Sera Nord", "Mara Solberg"],
+      "progress": "Defeated the induction guard with ADS fire; recovered East Archive, Heart and West Archive; returned to the green beacon and began uplink; died before extraction completed.",
+      "evidence": ["attempt1-start.jpg", "a1-combat.jpg", "a1-east-held.jpg", "a1-heart-recovery.jpg", "a1-west-held.jpg", "a1-uplink.jpg", "a1-extraction-result.jpg"],
+      "lastCapturedUplinkPercent": 16,
+      "deathRetained": true
+    }
+  ],
+  "observations": [
+    {"area": "presentation", "finding": "Strong coherent rain-soaked industrial setting, cyan and amber palette, clear large title typography, reflective ground and an attractive central relay landmark.", "evidence": ["initial.jpg", "a1-east-approach.jpg", "a1-heart-route.jpg"]},
+    {"area": "onboarding", "finding": "Briefing explains receiver placement, holding E, escalation and extraction cover; handbook clearly lists ADS, reload, sprint and Soul Shift. The visor explanation is dense for a first read.", "evidence": ["brief.jpg", "controls.jpg"]},
+    {"area": "combat", "finding": "Opening guard is immediately tangible and firing while backing away defeated it. I walked into very close contact first, where the enemy filled almost the whole view. ADS, reload, shield changes and ammo rewards were visible. I did not establish successful charge breaks or critical eliminations.", "evidence": ["a1-approach.jpg", "a1-combat.jpg"]},
+    {"area": "mission", "finding": "Three receiver recoveries and the return-to-extraction transition worked in this attempt. Supplies made collecting cores forgiving; rushing past remaining threats left a dangerous return. West structure blocked my first direct approach, and service signs helped find entry.", "evidence": ["a1-west-route.jpg", "a1-west-intake.jpg", "a1-west-held.jpg"]},
+    {"area": "usability", "finding": "Move-closer and floor-ring prompts helped correct receiver positioning. A 2.9 m approach was outside recovery range; a small strafe allowed recovery. Extraction edge distance and near-edge warnings also gave useful feedback.", "evidence": ["a1-east-recovery.jpg", "a1-east-held.jpg", "a1-beacon-run.jpg", "a1-uplink.jpg"]},
+    {"area": "readability", "finding": "Multiple recent-fire and charge labels crowded the lower center and weapon area. Threat feedback was abundant, but it did not always make the immediate shooter location obvious to me. I became caught against west service geometry during the return and lost 94 health before escaping it.", "evidence": ["a1-heart-recovery.jpg", "a1-return-exit.jpg", "a1-return-lane.jpg"]},
+    {"area": "narrative", "finding": "The death screen preserves recovered characters and provides a readable restored-records archive, giving the recovery objective a human payoff even after failure.", "evidence": ["a1-extraction-result.jpg", "recovered-archive.jpg"]}
+  ],
+  "provisionalScoresOutOf10": {
+    "wholeGameGameplay": 6.5,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "scoreRationale": "A cohesive playable mission with appealing visual direction and functional recovery progression. My experience supports a promising vertical slice, with navigation friction and crowded threat communication under pressure. One short failed run does not establish sustained combat depth, balance, polish or AAA readiness.",
+  "limitations": [
+    "One actual attempt, ending in death; no second attempt was started. No extraction win observed.",
+    "Chunked visible actions with Escape pauses constrain timing and aim compared with continuous human mouse play.",
+    "Software-WebGL fallback was reported; hardware renderer, FPS and audio enjoyment were not established.",
+    "No performance benchmark, settings sweep, accessibility audit or long-session stability claim.",
+    "No page errors were reported by the visible driver during the captured commands."
+  ],
+  "closure": {
+    "explicitClose": true,
+    "browserClosed": true,
+    "driverPid": 29392,
+    "chromePid": 29393,
+    "sessionExitCode": 0,
+    "processVerificationCommand": "ps -p 29392,29393 -o pid=,comm=",
+    "processVerificationOutput": "",
+    "processVerificationExitCode": 1,
+    "ownedProcessesAbsent": true,
+    "otherServersUntouched": true
+  }
+}

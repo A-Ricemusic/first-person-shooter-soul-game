@@ -1,0 +1,41 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+try {
+ const p=await b.newPage();await p.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__,null,{polling:50});await p.click('#deploy');
+ const rows=await p.evaluate(()=>{
+ const g=window.__SOULFALL__.game;g.pause();const out={};const isolate=e=>{for(const other of g.enemies)if(other!==e)g.scene.remove(other.group);g.enemies=[e];};
+ g.player.set(0,1.7,12);g.updateEncounters();for(const c of g.coreNodes){g.player.copy(c.position);g.updateEncounters();}g.updateEncounters();
+ out.assignments=g.enemies.map(e=>({type:e.type,role:e.role,home:e.home.toArray()}));
+ const guard=g.enemies.find(e=>e.role==='guard');isolate(guard);g.player.set(0,1.7,17);guard.cooldown=0;
+ const tick=(n)=>{for(let i=0;i<n;i++){g.runTime+=1/120;g.updateEnemies(1/120);}};
+ tick(1);out.local={duty:guard.duty,windup:guard.windup};
+ guard.group.position.set(0,0,19);g.player.set(0,1.7,-10);tick(1);out.leave={duty:guard.duty,windup:guard.windup};tick(380);out.afterLoss=guard.duty;out.shots=g.projectiles.length;tick(600);out.homeDistance=guard.group.position.distanceTo(guard.home);
+ g.player.set(0,1.7,17);tick(120);out.reacquired=guard.duty;
+ // Actual medical geometry: displace a real assigned guard to the service exit,
+ // then require cached navigation back to its immutable home through walls.
+ g.start();g.pause();g.player.set(-24,1.7,-15);g.updateEncounters();const med=g.enemies.find(e=>e.role==='guard'&&e.home.x< -10);isolate(med);out.medicalHome=med.home.toArray();med.group.position.set(-15,0,-11);med.duty='return';g.player.set(24,5,25);med.cooldown=100;
+ const before=g.navigation.queries;let max=0;for(let i=0;i<120*35;i++){tick(1);max=Math.max(max,med.group.position.distanceTo(med.home));}
+ out.medicalReturn={distance:med.group.position.distanceTo(med.home),duty:med.duty,queries:g.navigation.queries-before,maxExpanded:g.navigation.maxExpanded,max};
+ g.player.copy(med.home).add({x:0,y:5,z:4});tick(120);out.elevated=med.duty;
+ // Sustained chase cannot drag an assigned guard across the courtyard.
+ g.player.set(med.home.x+11,1.7,med.home.z);tick(120*30);out.bounded={distance:Math.hypot(med.group.position.x-med.home.x,med.group.position.z-med.home.z),home:med.home.toArray()};
+ med.windup=1;g.player.copy(med.group.position).add({x:0,y:1.7,z:2});g.dashTime=.1;g.dashVector.set(0,0,-1);g.updatePhaseInterrupts();out.phase={windup:med.windup,stagger:med.stagger};
+ g.start();g.pause();g.player.set(0,1.7,12);g.updateEncounters();for(const c of g.coreNodes){g.player.copy(c.position);g.updateEncounters();}g.phase='playing';for(const c of g.coreNodes)g.recoverCore(c);g.player.set(0,1.7,31);g.update(.01);const nav=g.navigation,seed=nav.cell(g.world.playerSpawn),seen=new Set([seed]),queue=[seed];for(let k=0;k<queue.length;k++){const cell=queue[k],x=cell%nav.w,z=Math.floor(cell/nav.w);for(const [dx,dz]of [[1,0],[-1,0],[0,1],[0,-1]]){const nx=x+dx,nz=z+dz,j=nz*nav.w+nx;if(nx>=0&&nx<nav.w&&nz>=0&&nz<nav.h&&nav.open[j]&&!seen.has(j)){seen.add(j);queue.push(j);}}}out.reachableCells=seen.size;out.fullRoster=g.enemies.map(e=>({role:e.role,type:e.type,walkable:g.canOccupy(e.group.position.x,e.group.position.z,.449),position:e.group.position.toArray(),reachable:seen.has(nav.cell(e.group.position))}));out.damageKills=[];g.phase='playing';
+ for(const e of [...g.enemies]){
+  let spot;for(let r=3;r<=9&&!spot;r+=2)for(let i=0;i<16;i++){const x=e.group.position.x+Math.sin(i*Math.PI/8)*r,z=e.group.position.z+Math.cos(i*Math.PI/8)*r;const eye=e.group.position.clone().set(x,1.7,z);if(g.canOccupy(x,z)&&g.hasLineOfSight(eye,e.group.position.clone().add({x:0,y:1.3,z:0}),0)){spot=eye;break;}}
+  if(!spot)throw Error('No grounded firing approach '+e.id);g.player.copy(spot);g.ammo=30;g.reloading=false;g.recoil=0;let shots=0;
+  while(g.enemies.includes(e)&&shots<15){g.debug.aimAtEnemy(g.enemies.indexOf(e),true);g.debug.shoot();shots++;}
+  out.damageKills.push({type:e.type,role:e.role,shots,killed:!g.enemies.includes(e)});
+ }out.eliminations=g.kills;
+ g.start();g.pause();g.player.set(0,1.7,12);g.updateEncounters();const hunter=g.enemies.find(e=>e.role==='hunter');isolate(hunter);g.player.set(0,1.7,31);const startDistance=hunter.group.position.distanceTo(g.player);tick(120*20);out.hunterReturn={startDistance,endDistance:hunter.group.position.distanceTo(g.player),shots:g.projectiles.length};
+ g.start();g.pause();g.player.set(0,1.7,-33);g.updateEncounters();const relay=g.enemies.find(e=>e.type==='warden'&&e.home.z< -30);isolate(relay);relay.group.position.set(-4,0,-36);relay.duty='return';relay.cooldown=100;g.player.set(24,5,25);tick(120*25);out.relayReturn={distance:relay.group.position.distanceTo(relay.home),home:relay.home.toArray(),duty:relay.duty};
+ g.start();g.pause();out.restart={count:g.enemies.length,duty:g.enemies[0].duty,role:g.enemies[0].role,projectiles:g.projectiles.length};
+ return out;});
+ assert.equal(rows.assignments.length,9);assert.equal(rows.assignments.filter(e=>e.role==='guard').length,5);assert.equal(rows.local.duty,'chase');assert.ok(rows.local.windup>0);assert.equal(rows.leave.duty,'chase');assert.ok(['return','hold'].includes(rows.afterLoss));assert.ok(rows.leave.windup>0);assert.ok(rows.shots>0);assert.equal(rows.reacquired,'chase');assert.ok(rows.medicalReturn.distance<1.1,JSON.stringify(rows.medicalReturn));assert.ok(rows.medicalReturn.queries<=45);assert.ok(rows.medicalReturn.maxExpanded<=2400);assert.ok(rows.bounded.distance<17);assert.equal(rows.phase.windup,0);assert.ok(rows.phase.stagger>0);assert.equal(rows.fullRoster.length,13);assert.ok(rows.fullRoster.every(e=>e.walkable&&e.reachable),JSON.stringify({cells:rows.reachableCells,roster:rows.fullRoster}));assert.ok(rows.damageKills.every(e=>e.killed),JSON.stringify(rows.damageKills));assert.equal(rows.eliminations,13);assert.ok(rows.hunterReturn.endDistance<rows.hunterReturn.startDistance-10);assert.ok(rows.hunterReturn.shots>0);assert.ok(rows.relayReturn.distance<1.1,JSON.stringify(rows.relayReturn));assert.equal(rows.restart.count,1);assert.equal(rows.restart.projectiles,0);assert.deepEqual(errors,[]);
+ const motion=[];await p.evaluate(()=>{const g=window.__SOULFALL__.game;g.phase='playing';g.emit();g.player.set(20,1.7,30);const e=g.enemies[0];e.group.position.set(7,0,19);e.duty='return';e.cooldown=100;});
+ for(let frame=0;frame<6;frame++){const state=await p.evaluate(()=>{const g=window.__SOULFALL__.game,e=g.enemies[0];for(let i=0;i<24;i++){g.runTime+=1/120;g.updateEnemies(1/120)}g.animate(0);g.camera.position.set(10,4,27);g.camera.lookAt(e.group.position.x,1,e.group.position.z);g.renderer.render(g.scene,g.camera);return{position:e.group.position.toArray(),duty:e.duty,heading:e.wardenRig.heading,tracks:e.wardenRig.tracks.map(t=>t.travel)};});const path=`docs/media/build32-return-motion-${frame}.png`;await p.screenshot({path});motion.push({...state,path});}
+ rows.returnMotion=motion;assert.ok(motion.at(-1).position[0]<motion[0].position[0]);
+ await p.evaluate(()=>{const g=window.__SOULFALL__.game;g.animate(0);g.emit();g.renderer.render(g.scene,g.camera)});await p.screenshot({path:'docs/media/build32-role-render.png'});writeFileSync('docs/quality-reviews/build32-roles.json',JSON.stringify({method:'Arranged actual game simulation, not ordinary discovery or enjoyment.',limitations:'Isolated actors for transitions; medical return starts displaced outside its territory. Rifle checks sample walkable LOS player positions and restore ammo per actor, without changing enemy health. Return camera is arranged. Not a normal-input mission route or matched baseline benchmark.',rows,errors},null,2));console.log(JSON.stringify(rows));
+}finally{await b.close();}

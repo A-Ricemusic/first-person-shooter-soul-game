@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import MEDICAL from './medical-layout.json';
+import { createRole, dutyGoal } from './enemy-roles.js';
 import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
 import { movePlayer, jumpPlayer } from './movement.js';
@@ -201,7 +202,7 @@ export class Game {
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitRing.material.color.setHex(0x637b83); this.exitBeam.visible = false;
     this.encounters = new Set(); this.phaseCueAt = -100;
-    this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
+    this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
   pause() {
@@ -224,10 +225,10 @@ export class Game {
       const points = this.world.spawnPoints.filter(p => p.distanceTo(this.player) > 10);
       const position = (points.length ? points : this.world.spawnPoints)[(this.kills + i * 3 + this.cores) % (points.length || this.world.spawnPoints.length)];
       if (!position) continue;
-      this.spawnEnemy(position.clone(), i % 3 === 2 ? 'stalker' : 'sentinel', i);
+      this.spawnEnemy(position.clone(), i % 3 === 2 ? 'stalker' : 'sentinel', i,'hunter');
     }
   }
-  spawnEnemy(position, type = 'sentinel', offset = 0) {
+  spawnEnemy(position, type = 'sentinel', offset = 0, role = 'hunter') {
     const group = new THREE.Group(); group.position.copy(position); group.position.y = 0;
     const armor = new THREE.MeshStandardMaterial({ color: type === 'stalker' ? 0x3c3432 : 0x243640, metalness: 0.7, roughness: 0.35 });
     const black = new THREE.MeshStandardMaterial({ color: 0x0e171d, roughness: 0.75, metalness: 0.45 });
@@ -267,7 +268,7 @@ export class Game {
       group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
-    this.enemies.push({ id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   reload() {
@@ -427,7 +428,7 @@ export class Game {
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
       const distance=extractionDistance(this.player,this.world.playerSpawn);
-      if(distance<12&&!this.extractionWave){this.extractionWave=true;for(const x of [-18,18])if(this.canOccupy(x,23,.5))this.spawnEnemy(new THREE.Vector3(x,0,23),'stalker',2);this.event('notice',`INTERCEPTORS INBOUND. Hold the green zone for ${this.extractionSeconds} seconds.`);}
+      if(distance<12&&!this.extractionWave){this.extractionWave=true;for(const x of [-18,18])if(this.canOccupy(x,23,.5))this.spawnEnemy(new THREE.Vector3(x,0,23),'stalker',2,'hunter');this.event('notice',`INTERCEPTORS INBOUND. Hold the green zone for ${this.extractionSeconds} seconds.`);}
       this.extractionProgress=isInsideExtraction(this.player,this.world.playerSpawn)?this.extractionProgress+dt:Math.max(0,this.extractionProgress-dt*2);
       if(this.extractionProgress+1e-8>=this.extractionSeconds)this.finish(true);
     }
@@ -437,14 +438,14 @@ export class Game {
     const stage=(id,condition,message,units)=>{
       if(!condition||this.encounters.has(id))return;
       this.encounters.add(id); this.event('notice',message);
-      for(const [x,z,type] of units)this.spawnEnemy(new THREE.Vector3(x,0,z),type,5);
+      for(const [x,z,type] of units)this.spawnEnemy(new THREE.Vector3(x,0,z),type,5,['medical','heart'].includes(id)?'guard':'hunter');
     };
     stage('ingress',this.player.z<13,'PERIMETER PATROL · Two contacts beyond the entry. Side lanes remain open.',[[-22,-5,'sentinel'],[22,-5,'sentinel']]);
     for(const c of this.coreNodes){
       const near=Math.hypot(this.player.x-c.position.x,this.player.z-c.position.z)<14;
       if(c.id===0)stage('medical',near,'WEST TRIAGE · South intake / east service. Storage blocks sightlines.',MEDICAL.spawns);
       if(c.id===1)stage('engineering',near,'EAST / MAINTENANCE · Interceptors track movement. Change direction after their charge.',[[31,-25,'stalker'],[16,-25,'stalker']]);
-      if(c.id===2)stage('heart',near,'HEART / RELAY GUARD · Break the warden to open armor, or fire precisely at its optic.',[[0,-40,'warden'],[-16,-35,'sentinel']]);
+      if(c.id===2)stage('heart',near,'HEART / RELAY GUARD · Break the warden to open armor, or fire precisely at its optic.',[[0,-40.5,'warden'],[-16,-35,'sentinel']]);
     }
   }
 
@@ -485,11 +486,15 @@ export class Game {
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
       }
+      const goal = dutyGoal(enemy,this.player,enemy.visible,dt);
+      const guarding = enemy.role==='guard' && enemy.duty!=='chase';
       const move = new THREE.Vector3();
       if (distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
       else if (distance < 5) move.addScaledVector(dir, -0.7);
       if (enemy.visible && enemy.type!=='warden') move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
-      const waypoint=this.navigation.steer(enemy,this.player,this.runTime);
+      if(enemy.role==='guard' && !enemy.visible && !guarding)move.copy(goal).sub(position).setY(0);
+      if(guarding) { move.copy(goal).sub(position);move.y=0;if(move.length()<.7)move.set(0,0,0); }
+      const waypoint=(!guarding || move.lengthSq()>.001)?this.navigation.steer(enemy,goal,this.runTime):null;
       if(waypoint)move.set(waypoint.x-position.x,0,waypoint.z-position.z);
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
@@ -504,7 +509,10 @@ export class Game {
         this.moveEntity(position, move.x * speed * dt, move.z * speed * dt, 0.45);
         enemy.leftLeg.rotation.x = Math.sin(enemy.phase * 7) * 0.45; enemy.rightLeg.rotation.x = -enemy.leftLeg.rotation.x;
       }
-      const facing = Math.atan2(delta.x, delta.z);
+      // A returning rig faces its travel unless visibly engaging or committed.
+      const facingDelta=enemy.role==='guard' && !enemy.visible && enemy.windup<=0
+        ? (move.lengthSq()>.001 ? move : new THREE.Vector3(Math.sin(enemy.group.rotation.y),0,Math.cos(enemy.group.rotation.y))) : delta;
+      const facing = Math.atan2(facingDelta.x, facingDelta.z);
       if(enemy.wardenRig){
         const turn=Math.atan2(Math.sin(facing-enemy.group.rotation.y),Math.cos(facing-enemy.group.rotation.y));
         enemy.group.rotation.y+=clamp(turn,-4*dt,4*dt);
