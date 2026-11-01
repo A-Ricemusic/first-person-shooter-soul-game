@@ -569,7 +569,10 @@ export class Game {
       animateWarden(enemy,dt);
       this.animateDrone(enemy,dt);
       const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
-      if (distance < 1.4 && eye.distanceTo(torso) < 1.6 && this.hasLineOfSight(eye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position,enemy); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
+      // Resolve contact from the actual post-movement pose, including retreats.
+      const contactEye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
+      const contactDistance = Math.hypot(position.x-this.player.x, position.z-this.player.z);
+      if (contactDistance < 1.4 && contactEye.distanceTo(torso) < 1.6 && this.hasLineOfSight(contactEye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position,enemy); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
   }
 

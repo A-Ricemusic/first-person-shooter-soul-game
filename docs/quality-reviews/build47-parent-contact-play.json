@@ -1,0 +1,49 @@
+{
+  "playedCode": "02f6e14e441d5d5de519f0eb4a86498143e4ff59",
+  "method": "Deliberate short normal-URL contact probe, source-informed and pause-assisted. Walked toward opening guard without firing, then backed away. No hidden live state/test hooks. Not a full mission attempt, terminal outcome, independent review or human enjoyment evidence.",
+  "actions": "../media/build47-parent-contact-play/actions.jsonl",
+  "observations": [
+    {
+      "image": "opening-close-approach.jpg",
+      "time": "00:01",
+      "health": 100,
+      "shield": 60
+    },
+    {
+      "image": "contact-first-damage.jpg",
+      "time": "00:01",
+      "health": 100,
+      "shield": 60,
+      "qualification": "Intended capture label; no damage is present, despite filename."
+    },
+    {
+      "image": "contact-approach-hit.jpg",
+      "time": "00:02",
+      "health": 100,
+      "shield": 45,
+      "qualification": "15-point loss while approaching the single guard. Exact damage cause isolated separately in arranged test."
+    },
+    {
+      "image": "contact-backoff.jpg",
+      "time": "00:03",
+      "health": 100,
+      "shield": 45
+    }
+  ],
+  "closure": {
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 97973,
+    "chromePid": 97974,
+    "exactOwnedPidsAbsent": true
+  },
+  "arrangedFindings": {
+    "baseline": "build47-parent-contact.json",
+    "extendedBaseline": "build47-parent-contact-extended.json",
+    "fixedRange": "build47-parent-contact-range-fixed.json",
+    "instantContact": "Each actor type applies15 at dt0, cooldown100 prevents ranged fire. Separate committed-shot setup creates projectile and contact damage in same update.",
+    "staleRangeBug": "Starting1.39m away, actors retreat to1.60\u20131.71m but still deal15 using pre-movement range. Recompute current position/range/LOS to prevent this.",
+    "attributionLimit": "Does not attribute the reviewer86-to3 health loss to melee; offscreen hazards and exact review state are not reconstructed."
+  },
+  "plannedFeature": "Replace instantaneous contact ticks with a visible0.55s proximity-discharge windup, escapable/revalidated at resolution and interruptible by existing phase. Original Blender contact assembly/animation, no new player button. This intentionally changes close attack pacing."
+}

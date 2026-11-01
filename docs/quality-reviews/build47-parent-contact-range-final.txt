@@ -1,0 +1,92 @@
+
+> soulfall-the-last-signal@1.0.0 test:contact-range
+> CONTACT_VERIFY_RANGE=1 node tools/build47-parent-contact.mjs
+
+{
+  "isolated": [
+    {
+      "type": "warden",
+      "dt": 0,
+      "eyeHeight": 1.7,
+      "before": {
+        "shield": 60,
+        "weaponWindup": 0,
+        "contactCooldown": 0
+      },
+      "after": {
+        "shield": 45,
+        "weaponWindup": 0,
+        "contactCooldown": 1,
+        "projectiles": 0,
+        "sourceRecognized": true
+      }
+    },
+    {
+      "type": "sentinel",
+      "dt": 0,
+      "eyeHeight": 1.7,
+      "before": {
+        "shield": 60,
+        "weaponWindup": 0,
+        "contactCooldown": 0
+      },
+      "after": {
+        "shield": 45,
+        "weaponWindup": 0,
+        "contactCooldown": 1,
+        "projectiles": 0,
+        "sourceRecognized": true
+      }
+    },
+    {
+      "type": "stalker",
+      "dt": 0,
+      "eyeHeight": 1.7,
+      "before": {
+        "shield": 60,
+        "weaponWindup": 0,
+        "contactCooldown": 0
+      },
+      "after": {
+        "shield": 45,
+        "weaponWindup": 0,
+        "contactCooldown": 1,
+        "projectiles": 0,
+        "sourceRecognized": true
+      }
+    }
+  ],
+  "rangedAndContactSameUpdate": {
+    "dt": 0.01,
+    "shield": 45,
+    "projectiles": 1,
+    "remainingWeaponWindup": -0.009000000000000001,
+    "contactCooldown": 0.99
+  },
+  "retreatBoundary": [
+    {
+      "type": "warden",
+      "startDistance": 1.39,
+      "dt": 0.1,
+      "resolvedDistance": 1.6000000000000014,
+      "shield": 60,
+      "projectiles": 0
+    },
+    {
+      "type": "sentinel",
+      "startDistance": 1.39,
+      "dt": 0.1,
+      "resolvedDistance": 1.5996690276513907,
+      "shield": 60,
+      "projectiles": 0
+    },
+    {
+      "type": "stalker",
+      "startDistance": 1.39,
+      "dt": 0.1,
+      "resolvedDistance": 1.7095280877213,
+      "shield": 60,
+      "projectiles": 0
+    }
+  ]
+}

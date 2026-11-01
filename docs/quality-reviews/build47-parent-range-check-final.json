@@ -1,0 +1,95 @@
+{
+  "baseCommit": "02f6e14e441d5d5de519f0eb4a86498143e4ff59",
+  "gameSourceSha256": "4f3e27e6f597a92142ada6fea04b1d051499f99665450859f255b91bd0ceb972",
+  "gameWorktreeStatus": "M src/game.js",
+  "method": "Arranged real Game.updateEnemies at grounded clear centre gap. Ranged cooldown100 isolates each type; then a separate already-committed sentinel shot is allowed to finish at point-blank range. No ordinary-play or reviewer damage-attribution claim.",
+  "observations": {
+    "isolated": [
+      {
+        "type": "warden",
+        "dt": 0,
+        "eyeHeight": 1.7,
+        "before": {
+          "shield": 60,
+          "weaponWindup": 0,
+          "contactCooldown": 0
+        },
+        "after": {
+          "shield": 45,
+          "weaponWindup": 0,
+          "contactCooldown": 1,
+          "projectiles": 0,
+          "sourceRecognized": true
+        }
+      },
+      {
+        "type": "sentinel",
+        "dt": 0,
+        "eyeHeight": 1.7,
+        "before": {
+          "shield": 60,
+          "weaponWindup": 0,
+          "contactCooldown": 0
+        },
+        "after": {
+          "shield": 45,
+          "weaponWindup": 0,
+          "contactCooldown": 1,
+          "projectiles": 0,
+          "sourceRecognized": true
+        }
+      },
+      {
+        "type": "stalker",
+        "dt": 0,
+        "eyeHeight": 1.7,
+        "before": {
+          "shield": 60,
+          "weaponWindup": 0,
+          "contactCooldown": 0
+        },
+        "after": {
+          "shield": 45,
+          "weaponWindup": 0,
+          "contactCooldown": 1,
+          "projectiles": 0,
+          "sourceRecognized": true
+        }
+      }
+    ],
+    "rangedAndContactSameUpdate": {
+      "dt": 0.01,
+      "shield": 45,
+      "projectiles": 1,
+      "remainingWeaponWindup": -0.009000000000000001,
+      "contactCooldown": 0.99
+    },
+    "retreatBoundary": [
+      {
+        "type": "warden",
+        "startDistance": 1.39,
+        "dt": 0.1,
+        "resolvedDistance": 1.6000000000000014,
+        "shield": 60,
+        "projectiles": 0
+      },
+      {
+        "type": "sentinel",
+        "startDistance": 1.39,
+        "dt": 0.1,
+        "resolvedDistance": 1.5996690276513907,
+        "shield": 60,
+        "projectiles": 0
+      },
+      {
+        "type": "stalker",
+        "startDistance": 1.39,
+        "dt": 0.1,
+        "resolvedDistance": 1.7095280877213,
+        "shield": 60,
+        "projectiles": 0
+      }
+    ]
+  },
+  "errors": []
+}
