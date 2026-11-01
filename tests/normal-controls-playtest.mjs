@@ -35,5 +35,5 @@ if(steps===50)await p.screenshot({path:'/tmp/soulfall-playtest-mid.png',timeout:
 await p.waitForTimeout(120);steps++;
 }
 if(held)await p.keyboard.up(held);if(shooting)await p.mouse.up();const final=await p.evaluate(()=>window.__SOULFALL__.game.captureState());console.log(JSON.stringify({method:'Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. Look uses mousemove events; movement/fire/reload/interact/dash use controls.',steps,log,final,errors},null,2));await p.screenshot({path:'/tmp/soulfall-playtest-final.png',timeout:15000});
-writeFileSync(root+'/docs/normal-controls-playtest-latest.json',JSON.stringify({method:'Automated normal-control combat exercise',steps,log,final,errors},null,2));
+writeFileSync(root+'/docs/current-normal-controls-playtest-latest.json',JSON.stringify({method:'Automated normal-control combat exercise',steps,log,final,errors},null,2));
 }finally{await b.close()}

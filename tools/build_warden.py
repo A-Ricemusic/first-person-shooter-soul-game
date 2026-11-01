@@ -1,5 +1,5 @@
 """SOULFALL original induction Warden. Meter scale, Blender Z-up/-Y forward.
-All geometry authored here; no imported assets. Seven material primitives, rigid nodes.
+All geometry authored here; no imported assets. Distance-driven twin-track undercarriage; rigid upper chassis.
 Run from repository root with Blender --background --python tools/build_warden.py.
 """
 import bpy, math, json
@@ -45,10 +45,22 @@ def ring(name,p,r,t,key):
 # Weight-bearing central frame and skids: broadest old shoulder span was 1.74m.
 box('InductionBlock',(0,1.27,-.04),(.78,.82,.58),'Frame',.09)
 box('RearHeatSink',(0,1.38,-.37),(.67,.68,.12),'Frame')
-for x in [-.26,.26]:
- box('LowerStrut',(x,.5,-.03),(.13,.75,.16),'Steel')
- box('LandingShoe',(x,.08,.02),(.24,.13,.59),'Frame',.04)
- cyl('LowerActuator',(x,.76,.06),.09,.27,'Brass',(0,1,0))
+# Compact crawler: 0.64m length, .62m width, ground contact at y=0.
+box('TrackBridge',(0,.43,0),(.62,.18,.48),'Frame',.035)
+for x in [-.27,.27]:
+ box('LoadColumn',(x,.67,-.03),(.13,.45,.16),'Steel')
+ cyl('SuspensionCollar',(x,.63,0),.09,.18,'Brass',(0,1,0))
+# A single authored shoe becomes two instanced closed belts at runtime.
+mats['TrackShoe']=mats['Frame'];groups['TrackShoe']=[]
+box('TreadShoe',(0,0,0),(.16,.035,.047),'TrackShoe',.006)
+box('ContactGrouser',(0,-.023,0),(.14,.014,.018),'TrackShoe',.003)
+for side,x in [('Left',-.23),('Right',.23)]:
+ for end,z in [('Front',.18),('Rear',-.18)]:
+  key='Roller'+side+end;mats[key]=mats['Steel'];groups[key]=[]
+  cyl(key,(x,.14,z),.11,.12,key,(1,0,0),24)
+  # Asymmetric spokes make axle rotation legible without glowing markings.
+  for a in [0,math.tau/3,math.tau*2/3]:
+   box('HubSpoke',(x+(-.067 if x<0 else .067),.14+math.cos(a)*.055,z+math.sin(a)*.055),(.018,.085,.025),key,.004,a)
 for y in [.99,1.11,1.23,1.35,1.47,1.59]:box('CoolingFin',(0,y,-.47),(.66,.035,.14),'Steel',.006)
 # Paired guided armor shutters leave optic and frontal induction core clear.
 for sign,key in [(-1,'ArmorLeft'),(1,'ArmorRight')]:
@@ -79,12 +91,17 @@ for i in range(8):
  a=i*math.tau/8
  box('FanBlade',(math.cos(a)*.145,1.38+math.sin(a)*.145,-.57),(.18,.05,.025),'Fan',.012,-a)
 ring('FanGuard',(0,1.38,-.59),.25,.025,'Steel')
-# Join by rigid node/material: 7 draw primitives per cloned asset.
+# Shared bearing rails connect the suspension bridge to the four roller axles.
+# Static upper support overlaps these swivel rails; no unsupported floating crawler.
+mats['TrackSupport']=mats['Frame'];groups['TrackSupport']=[]
+for x in [-.23,.23]:
+ box('BearingRail',(x,.29,0),(.07,.28,.44),'TrackSupport',.012)
+# Join by rigid node/material; runtime instancing keeps 64 links to two draws.
 for key,objects in groups.items():
  bpy.ops.object.select_all(action='DESELECT')
  for o in objects:o.select_set(True)
  bpy.context.view_layer.objects.active=objects[0];bpy.ops.object.join();o=bpy.context.object;o.name=key
- pivot=pos(((-.49 if key=='ArmorLeft' else .49),1.32,.02)) if key in ['ArmorLeft','ArmorRight'] else pos((0,1.38,-.57)) if key=='Fan' else (0,0,0)
+ pivot=pos(((-.49 if key=='ArmorLeft' else .49),1.32,.02)) if key in ['ArmorLeft','ArmorRight'] else pos((0,1.38,-.57)) if key=='Fan' else pos(((-.23 if 'Left' in key else .23),.14,(.18 if 'Front' in key else -.18))) if key.startswith('Roller') else (0,0,0)
  bpy.context.scene.cursor.location=pivot;bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 for name,p in [('WeakpointAnchor',(0,2,.3)),('BodyAnchor',(0,1.3,0)),('FeetAnchor',(0,0,0))]:
  o=bpy.data.objects.new(name,None);bpy.context.collection.objects.link(o);o.location=pos(p)
@@ -95,5 +112,5 @@ bpy.ops.export_scene.gltf(filepath=str(path/'induction-warden.glb'),export_forma
 triangles=0
 for o in bpy.context.scene.objects:
  if o.type=='MESH':o.data.calc_loop_triangles();triangles+=len(o.data.loop_triangles)
-report={'asset':'induction-warden.glb','author':'Original SOULFALL code-authored Blender geometry','source':'tools/build_warden.py','externalAssets':False,'triangles':triangles,'materialPrimitives':len(groups),'materials':len(set(mats.values())),'coordinates':'meters, Blender Z-up/-Y forward exports Three Y-up/+Z','weakpoint':[0,2,.3],'rig':'Fixed optic; paired sliding shutters; rear fan','textures':'No external textures or maps; restrained PBR material separation'}
+report={'asset':'induction-warden.glb','author':'Original SOULFALL code-authored Blender geometry','source':'tools/build_warden.py','externalAssets':False,'triangles':triangles,'materialPrimitives':len(groups),'materials':len(set(mats.values())),'coordinates':'meters, Blender Z-up/-Y forward exports Three Y-up/+Z','weakpoint':[0,2,.3],'rig':'Fixed optic; guided shutters; fan; four rollers and instanced distance-driven tread shoes', 'track':{'halfGauge':.23,'radius':.12,'halfStraight':.18,'shoesPerSide':32,'width':.16,'ground':.0025},'textures':'No external textures or maps; restrained PBR material separation'}
 (path/'induction-warden-provenance.json').write_text(json.dumps(report,indent=2)+'\n');print(report)

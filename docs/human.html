@@ -3,8 +3,414 @@
 .rating-row{margin:28px 0}.rating-row>strong{display:block;margin-bottom:12px}.rating-track{height:26px;position:relative;background:#142b32;margin:7px 0;max-width:850px}.rating-track i{display:block;height:100%;background:#75d9cd}.rating-track span{position:absolute;left:12px;top:2px;color:#f1fffa;font:12px/22px monospace;text-shadow:0 1px 4px #000}
 </style></head><body><header><div class="eyebrow">VESPER INTERACTIVE / PROJECT DOSSIER / 01</div><h1>SOUL<span>FALL</span></h1><p class="subtitle">The Last Signal.<br>A complete web FPS mission. A distinctive foundation for a much bigger game.</p><div class="meta"><span>CREATIVE + TECHNICAL DECISIONS</span><span>ORIGINAL BLENDER ASSETS</span><span>DESKTOP / WEBGL 2</span><span>31 OCTOBER 2026</span></div></header><main>
 <figure class="hero"><img src="media/title.png" alt="Actual SOULFALL title screen over its real-time coastal industrial station"><figcaption>Actual browser render of this build. No concept render substituted for gameplay.</figcaption></figure>
-<nav><a href="#quality-build12">Current quality loop</a><a href="#independent-review">Independent review</a><a href="#playtest-review">Playtest review</a><a href="#pitch">The pitch</a><a href="#loop">The playable mission</a><a href="#decisions">Decision log</a><a href="#art">Blender & art direction</a><a href="#engineering">Engineering</a><a href="#verification">Verification</a><a href="#production">Production case</a><a href="#honesty">Limits & next steps</a></nav>
-<section id="quality-build12"><span class="number">ONGOING QUALITY REVIEW / BUILD 12</span><h2>An authored induction Warden.</h2>
+<nav><a href="#quality-build13">Current quality loop</a><a href="#independent-review">Independent review</a><a href="#playtest-review">Playtest review</a><a href="#pitch">The pitch</a><a href="#loop">The playable mission</a><a href="#decisions">Decision log</a><a href="#art">Blender & art direction</a><a href="#engineering">Engineering</a><a href="#verification">Verification</a><a href="#production">Production case</a><a href="#honesty">Limits & next steps</a></nav>
+<section id="quality-build13"><span class="number">ONGOING QUALITY REVIEW / BUILD 13</span><h2>A grounded crawler for the induction Warden.</h2>
+<p>The previous Warden slid on rigid skids. This pass replaces them with an original Blender-authored twin-track carriage: 64 circulating shoes, four rotating rollers, suspension columns and bearing rails. A swivel beneath the fixed induction chassis lets the crawler follow the resolved travel direction while the guarded optic faces the player. This is mechanical ground locomotion, not a decorative chassis bob. No downloaded or branded assets were used. The reproducible source remains <code>tools/build_warden.py</code>, with the authored .blend, GLB and provenance in <code>public/assets</code>.</p>
+<p>Animation now runs after collision-resolved enemy movement and on the stagger return path. Actual horizontal displacement advances the belt; actual angular change contributes opposite left/right travel. The belt phase wraps by belt perimeter, while wheel phase wraps independently by wheel circumference. Stopped, blocked and staggered travel produces no treadmill motion; restart creates fresh phases. Charge slows travel through the existing movement logic, without adding unmotivated recoil. Functional treads, shutters and fan remain with reduced motion; no new camera motion or body bob was added. Pause freezes simulation. Equal straight travel at different simulation steps produces the same phase; abrupt AI steering still changes carriage heading immediately and remains a prototype limitation, especially on reversal. It is not a physically simulated tracked drivetrain.</p>
+<p>The fixed optic stays at local (0,2,.3), with .24m precision radius. Standard health150, damage82 precision/17 armored/34 open, cooldowns, charge, phase protection, stagger and opening windows remain unchanged. The authored shutter cant and attached insets are preserved. Body shots still raycast authored surfaces including instanced links; fallback loads if the GLB fails. Upper geometry is unchanged, both bypass lanes and finite encounters remain. Track envelope measures .44516m radius inside the existing .45m navigation radius; low contact is .00069m above ground in the sampled pose. Existing upper shoulders still overhang the navigation footprint, as before; this is not an exhaustive cover-seam certification.</p>
+<p><strong>Measured cost:</strong> final source asset19,440 triangles/13 mesh primitives and6 materials; runtime14 draws/primitives and43,128 triangles per Warden after the single authored shoe becomes64 instances in two belt draws. Mesh geometries remain shared across enemy clones; materials and instance buffers belong to each enemy. Kill, restart and disposal now release instance buffers without deleting shared geometry. The new budget ceiling checks rendered instance triangle cost, not just unique geometry. This is a deliberate increase over seven primitives; no hardware frame-rate claim follows from software WebGL.</p>
+<h3>Two independent reviews and explicit followups</h3>
+<p>Exactly two native GPT-6.1 Sol agents reviewed frozen source. <a href="quality-reviews/build13-combat-review.json">Combat review</a>: visible CHARGING cue, normal W+Shift break and paused screenshot-guided ADS followup gave one critical kill,4rounds,50%accuracy and full health/shield. The correct WARDEN feed remained. An attempted orbit had a camera-sign error; only its first two oblique motion views were useful. Prior phase knowledge, automated visible-cue reaction and paused aiming advantage the result. No teleport, placement or resource edits were used for that control review.</p>
+<p><a href="quality-reviews/build13-visual-review.json">Motion review</a>: independently inspected actual changing close side renders, turning, blocked movement, stagger and recovery, with explicit arranged test=1 fixtures. Treads and rollers visibly advance and stop. This reviewer found a floating support gap, a roller phase jump at belt wrap, and missing instance-buffer disposal. Both reviewers retained their provisional whole-game scores: combat gameplay7.5/presentation8/usability8/readability7.5/AAA readiness2.5; motion7.5/7.5/8/7.5/2.5, each out of10. No rescore was requested or inferred.</p>
+<p><strong>Parent fixes after raw review:</strong> added authored bearing rails joining the bridge to roller supports; separated wheel phase from wrapped belt phase; disposed per-instance buffers on cleanup. Also fixed the pre-existing shutter animation overwriting its authored ±.12rad cant: motion now adds to the authored rotation, retaining silhouette and the original .7m shoulder shot fixture. The initial .6m diagnostic fixture was restored to .7m. Focused final checks verify the wheel seam, two instance-dispose events with zero shared geometry disposal, all movement-state anchors and the original17/34/82/0 shot outcomes plus17 armored damage on the visible crawler. These fixes are parent validation, not a third review or an implied new rating.</p>
+<p>The parent reran the close side sequence after fixes: <a href="quality-reviews/build13-final-visual-observations.json">final arranged motion observations</a>. Advancing move0/3/5, turning and stagger captures were inspected. Bearing rails now bridge the former gap and spokes advance continuously across the belt seam. The sampled high-quality close view reports93 renderer calls/93,432 triangles for the entire scene, not a hardware performance benchmark.</p><figure class="wide-shot"><img src="media/build13-final-visual-move3.png" alt="Close side view of authored connected crawler, rollers and tread links"><figcaption>Parent post-review arranged side render showing load supports and moving tread mechanism.</figcaption></figure><h3>Evidence and remaining limits</h3>
+<p><a href="quality-reviews/build13-checks.json">Sequential check ledger</a> covers development and production-subpath smoke, combat, phase, phase-usability, encounters, mission, playtest, standalone/browser movement, art and locomotion checks, followed by the exact-information normal-input controller. <a href="quality-reviews/build13-final-art-regressions.json">Final art checks</a> include14 poses at two sizes, fallback, clone ownership and visible damage. <a href="quality-reviews/build13-warden-locomotion.json">Final locomotion checks</a> cover move/blocked/stagger/recovery/turn/stop/restart, dt subdivision, fixed target, ground clearance and geometry sharing. Reusable checks write current-* artifacts; retained Build12 and raw Build13 reviews are unchanged.</p>
+<p>The parent initial arranged sequence reached the6m stop distance after two advancing frames; it was insufficient as a sustained motion sample. The final rerun uses a farther fixture, captures eight advancing frames and retains the first sequence separately. Reviewers also supplied independent normal and arranged moving renders. Installed Chrome/Playwright actual Three/WebGL is the established fallback after earlier shared-preview snapshot failures. Arranged captures and exact-information automation are correctness evidence, not natural human play or enjoyment.</p>
+<p id="build13-controller-result">The advantaged exact-information controller finished in phase won with 3 memories, 13 kills, 100 health/60 shield and 70% accuracy at 52.03 simulated seconds. It observes exact enemy/collider information but acts through normal input listeners. This demonstrates automated completion, not natural play or enjoyment. <a href="quality-reviews/build13-normal-controls-playtest-latest.json">Controller evidence</a>.</p>
+<figure class="wide-shot"><img src="media/build13-final-warden-motion-7.png" alt="Final arranged WebGL moving Warden crawler"><figcaption>Final arranged moving sequence frame7; fixed optic and upper chassis, distance-driven undercarriage.</figcaption></figure>
+<p><strong>Quality limits:</strong> instantaneous steering, clean simple manufactured surfaces, simplified remaining enemies, one shared courtyard and limited content still bound presentation and depth. Normal human discovery, sustained enjoyment, audio listening, accessibility coverage and target-hardware performance remain unvalidated. This advances the ongoing mission; it does not establish perfect,10/10 or AAA-ready quality.</p>
+<details><summary>Raw independent combat review (before parent fixes)</summary><pre style="white-space:pre-wrap">{
+  &quot;reviewer&quot;: &quot;Independent native GPT-6.1 Sol visible-cue combat reviewer; agent assessment, not a human participant&quot;,
+  &quot;build&quot;: &quot;Build13 source frozen during review: original twin-track Warden&quot;,
+  &quot;ratings&quot;: {
+    &quot;prototypeGameplayOverall&quot;: 7.5,
+    &quot;presentation&quot;: 8,
+    &quot;usability&quot;: 8,
+    &quot;levelReadability&quot;: 7.5,
+    &quot;aaaProductionReadiness&quot;: 2.5,
+    &quot;scaleMaximum&quot;: 10,
+    &quot;provisional&quot;: true,
+    &quot;reason&quot;: &quot;The mechanism fixes a concrete sliding-skid defect without changing the established readable induction identity. This is a credible local improvement, but the normal-control sequence offers no new evidence of broader mission enjoyment, richer content, human discovery or production readiness. Same whole-game scores as prior combat review remain appropriate.&quot;
+  },
+  &quot;methods&quot;: [
+    &quot;Installed Chrome/Playwright actual Three/WebGL at1280x800, software rendering; established fallback after earlier shared-preview failures. Gameplay source remained frozen. No code changes by reviewer.&quot;,
+    &quot;Used ?test=1 solely to sample captureState after actions for reporting. No teleport, placement, enemy deletion, resource edits, internal aim, exact positions or windup reads for decisions; keyboard/mouse listeners and deploy/resume clicks only.&quot;,
+    &quot;Opening attempt waited for exact visible CHARGING DOM text; automated reaction and previous Build12 mechanic knowledge are advantages. W+Shift, release W after250ms, screenshot then pause. Inspected cyan opened armor/optic image and reused learned50pixel upward mouse correction, resumed, RMB180ms then LMB450ms, captured and paused.&quot;,
+    &quot;Separate fresh normal deployment held W350ms then three D250ms strafes with90pixel horizontal mouse movements. Four live-render screenshots were captured and inspected. The mouse sign moved the camera away from the Warden: useful first two oblique ground-motion views, partial third and off-screen fourth. This is a failed full orbit, not evidence of a completed walk-around or side/rear validation.&quot;,
+    &quot;Screenshot capture delays advance simulation; screenshots and later state sample time may differ. Browser closed after evidence collection. No hardware frame-rate, audio listening, human comfort or enjoyment assessment.&quot;
+  ],
+  &quot;observations&quot;: [
+    {
+      &quot;label&quot;: &quot;attempt1-break&quot;,
+      &quot;state&quot;: {
+        &quot;phase&quot;: &quot;paused&quot;,
+        &quot;health&quot;: 100,
+        &quot;maxHealth&quot;: 100,
+        &quot;shield&quot;: 60,
+        &quot;maxShield&quot;: 60,
+        &quot;ammo&quot;: 30,
+        &quot;reserve&quot;: 180,
+        &quot;reloading&quot;: false,
+        &quot;reloadProgress&quot;: 0,
+        &quot;kills&quot;: 0,
+        &quot;cores&quot;: 0,
+        &quot;totalCores&quot;: 3,
+        &quot;time&quot;: 3.3499999999999908,
+        &quot;dashCooldown&quot;: 3.6999999999999784,
+        &quot;objective&quot;: &quot;RECOVER THE THREE MEMORIES&quot;,
+        &quot;coreProgress&quot;: 0,
+        &quot;extractionProgress&quot;: 0,
+        &quot;extractionSeconds&quot;: 6,
+        &quot;phaseDodges&quot;: 0,
+        &quot;dashCount&quot;: 1,
+        &quot;phaseInterrupts&quot;: 1,
+        &quot;score&quot;: 0,
+        &quot;enemiesAlive&quot;: 1,
+        &quot;headshots&quot;: 0,
+        &quot;accuracy&quot;: 0,
+        &quot;difficulty&quot;: &quot;standard&quot;,
+        &quot;player&quot;: {
+          &quot;x&quot;: 0,
+          &quot;y&quot;: 1.7,
+          &quot;z&quot;: 28.463399999999996,
+          &quot;yaw&quot;: 0,
+          &quot;grounded&quot;: true
+        },
+        &quot;coreMarkers&quot;: [
+          {
+            &quot;x&quot;: -24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 0,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 49.64944248992127
+          },
+          {
+            &quot;x&quot;: 24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 1,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 49.64944248992127
+          },
+          {
+            &quot;x&quot;: 0,
+            &quot;z&quot;: -33,
+            &quot;id&quot;: 2,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 61.46339999999999
+          }
+        ],
+        &quot;nearestCoreDistance&quot;: 49.64944248992127,
+        &quot;interaction&quot;: &quot;&quot;,
+        &quot;heading&quot;: 0,
+        &quot;exitDistance&quot;: 2.5366000000000035,
+        &quot;exit&quot;: {
+          &quot;x&quot;: 0,
+          &quot;z&quot;: 31
+        },
+        &quot;bounds&quot;: {
+          &quot;minX&quot;: -37,
+          &quot;maxX&quot;: 37,
+          &quot;minZ&quot;: -42,
+          &quot;maxZ&quot;: 42
+        },
+        &quot;pointerFallback&quot;: false
+      }
+    },
+    {
+      &quot;label&quot;: &quot;attempt1-followup&quot;,
+      &quot;state&quot;: {
+        &quot;phase&quot;: &quot;paused&quot;,
+        &quot;health&quot;: 100,
+        &quot;maxHealth&quot;: 100,
+        &quot;shield&quot;: 60,
+        &quot;maxShield&quot;: 60,
+        &quot;ammo&quot;: 26,
+        &quot;reserve&quot;: 180,
+        &quot;reloading&quot;: false,
+        &quot;reloadProgress&quot;: 0,
+        &quot;kills&quot;: 1,
+        &quot;cores&quot;: 0,
+        &quot;totalCores&quot;: 3,
+        &quot;time&quot;: 4.649800000000016,
+        &quot;dashCooldown&quot;: 2.4001999999999835,
+        &quot;objective&quot;: &quot;RECOVER THE THREE MEMORIES&quot;,
+        &quot;coreProgress&quot;: 0,
+        &quot;extractionProgress&quot;: 0,
+        &quot;extractionSeconds&quot;: 6,
+        &quot;phaseDodges&quot;: 0,
+        &quot;dashCount&quot;: 1,
+        &quot;phaseInterrupts&quot;: 1,
+        &quot;score&quot;: 180,
+        &quot;enemiesAlive&quot;: 0,
+        &quot;headshots&quot;: 1,
+        &quot;accuracy&quot;: 50,
+        &quot;difficulty&quot;: &quot;standard&quot;,
+        &quot;player&quot;: {
+          &quot;x&quot;: 0,
+          &quot;y&quot;: 1.7,
+          &quot;z&quot;: 28.463399999999996,
+          &quot;yaw&quot;: 0,
+          &quot;grounded&quot;: true
+        },
+        &quot;coreMarkers&quot;: [
+          {
+            &quot;x&quot;: -24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 0,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 49.64944248992127
+          },
+          {
+            &quot;x&quot;: 24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 1,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 49.64944248992127
+          },
+          {
+            &quot;x&quot;: 0,
+            &quot;z&quot;: -33,
+            &quot;id&quot;: 2,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 61.46339999999999
+          }
+        ],
+        &quot;nearestCoreDistance&quot;: 49.64944248992127,
+        &quot;interaction&quot;: &quot;&quot;,
+        &quot;heading&quot;: 0,
+        &quot;exitDistance&quot;: 2.5366000000000035,
+        &quot;exit&quot;: {
+          &quot;x&quot;: 0,
+          &quot;z&quot;: 31
+        },
+        &quot;bounds&quot;: {
+          &quot;minX&quot;: -37,
+          &quot;maxX&quot;: 37,
+          &quot;minZ&quot;: -42,
+          &quot;maxZ&quot;: 42
+        },
+        &quot;pointerFallback&quot;: false
+      }
+    },
+    {
+      &quot;label&quot;: &quot;motion-turn3&quot;,
+      &quot;state&quot;: {
+        &quot;phase&quot;: &quot;paused&quot;,
+        &quot;health&quot;: 100,
+        &quot;maxHealth&quot;: 100,
+        &quot;shield&quot;: 60,
+        &quot;maxShield&quot;: 60,
+        &quot;ammo&quot;: 30,
+        &quot;reserve&quot;: 180,
+        &quot;reloading&quot;: false,
+        &quot;reloadProgress&quot;: 0,
+        &quot;kills&quot;: 0,
+        &quot;cores&quot;: 0,
+        &quot;totalCores&quot;: 3,
+        &quot;time&quot;: 3.6831999999999896,
+        &quot;dashCooldown&quot;: 0,
+        &quot;objective&quot;: &quot;RECOVER THE THREE MEMORIES&quot;,
+        &quot;coreProgress&quot;: 0,
+        &quot;extractionProgress&quot;: 0,
+        &quot;extractionSeconds&quot;: 6,
+        &quot;phaseDodges&quot;: 0,
+        &quot;dashCount&quot;: 0,
+        &quot;phaseInterrupts&quot;: 0,
+        &quot;score&quot;: 0,
+        &quot;enemiesAlive&quot;: 1,
+        &quot;headshots&quot;: 0,
+        &quot;accuracy&quot;: 0,
+        &quot;difficulty&quot;: &quot;standard&quot;,
+        &quot;player&quot;: {
+          &quot;x&quot;: 4.253777584917883,
+          &quot;y&quot;: 1.7,
+          &quot;z&quot;: 30.457398883760217,
+          &quot;yaw&quot;: -0.54,
+          &quot;grounded&quot;: true
+        },
+        &quot;coreMarkers&quot;: [
+          {
+            &quot;x&quot;: -24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 0,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 53.522435119259036
+          },
+          {
+            &quot;x&quot;: 24,
+            &quot;z&quot;: -15,
+            &quot;id&quot;: 1,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 49.56095653781488
+          },
+          {
+            &quot;x&quot;: 0,
+            &quot;z&quot;: -33,
+            &quot;id&quot;: 2,
+            &quot;collected&quot;: false,
+            &quot;distance&quot;: 63.59981208175542
+          }
+        ],
+        &quot;nearestCoreDistance&quot;: 49.56095653781488,
+        &quot;interaction&quot;: &quot;&quot;,
+        &quot;heading&quot;: 30.939720937064465,
+        &quot;exitDistance&quot;: 4.288244362591115,
+        &quot;exit&quot;: {
+          &quot;x&quot;: 0,
+          &quot;z&quot;: 31
+        },
+        &quot;bounds&quot;: {
+          &quot;minX&quot;: -37,
+          &quot;maxX&quot;: 37,
+          &quot;minZ&quot;: -42,
+          &quot;maxZ&quot;: 42
+        },
+        &quot;pointerFallback&quot;: false
+      }
+    }
+  ],
+  &quot;verifiedImprovements&quot;: [
+    &quot;Visible-cue opening produced1dash/1phaseInterrupt, cyan open state and fixed guarded optic in front of the rifle. Followup ADS fire yielded1critical elimination,4rounds consumed,50%accuracy,100health/60shield. It used a paused screenshot-guided aim correction and cannot establish blind learnability.&quot;,
+    &quot;Kill feed correctly says WARDEN // CRITICAL +180, preserving the Build12 identity repair.&quot;,
+    &quot;Normal movement images show two compact segmented crawlers replacing long rigid skids; the first oblique turn view reveals changed track aspect while the torso/optic face the player. Target remained readable until my camera error lost it. No visible detached shutter or drifting optic in inspected images.&quot;,
+    &quot;Source inspection confirms belt phase derives from final displacement/turn and updateEnemies calls animation after resolved movement and also on stagger early-return. No elapsed-time belt treadmill or decorative chassis bob was added.&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;severity&quot;: &quot;remaining presentation limitation&quot;,
+      &quot;area&quot;: &quot;Crawler turn actuation&quot;,
+      &quot;finding&quot;: &quot;Carriage heading is assigned immediately from atan2 of resolved displacement; upper AI heading is immediate as well. The design still lacks steering acceleration, loaded suspension or an authored pivot transition, so abrupt obstacle turns can mechanically snap. The normal strafe views do not prove severe snapping, but source establishes the missing inertia.&quot;,
+      &quot;recommendation&quot;: &quot;Treat smooth motivated steering/pivot transitions as a future quality improvement, with side-view hard-turn evidence; do not claim production locomotion fidelity.&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;evidence limit&quot;,
+      &quot;area&quot;: &quot;Normal-motion review coverage&quot;,
+      &quot;finding&quot;: &quot;My attempted normal orbit used the wrong mouse sign and lost the Warden. First two frames show motion/turn readability; this run does not independently certify close side/rear contact or roller motion.&quot;,
+      &quot;recommendation&quot;: &quot;Use the second arranged motion reviewer for close side ground-contact and roller inspection, explicitly preserving the distinction.&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;remaining whole-game blocker&quot;,
+      &quot;area&quot;: &quot;Scope and validation&quot;,
+      &quot;finding&quot;: &quot;One arena, clean simplified surfaces, small enemy roster and existing HUD density remain. No independent human full mission, audio or hardware performance validation occurred.&quot;,
+      &quot;recommendation&quot;: &quot;Collect target-player and hardware evidence before claiming broader gameplay or AAA readiness gains.&quot;
+    }
+  ],
+  &quot;limitations&quot;: [
+    &quot;Opening used visible DOM cue timing, prior knowledge and paused screenshot-guided aim.&quot;,
+    &quot;No full mission or alternate-tactic balance pass in this independent review.&quot;,
+    &quot;Four motion captures are temporal sparse samples of real running simulation, not a frame-rate/video quality assessment.&quot;,
+    &quot;No forced10/10 or perfect/AAA claim.&quot;
+  ],
+  &quot;errors&quot;: [],
+  &quot;screenshots&quot;: [
+    &quot;docs/media/build13-combat-attempt1-break.png&quot;,
+    &quot;docs/media/build13-combat-attempt1-followup.png&quot;,
+    &quot;docs/media/build13-combat-motion-front.png&quot;,
+    &quot;docs/media/build13-combat-motion-turn1.png&quot;,
+    &quot;docs/media/build13-combat-motion-turn2.png&quot;,
+    &quot;docs/media/build13-combat-motion-turn3.png&quot;
+  ],
+  &quot;rawObservations&quot;: &quot;docs/quality-reviews/build13-combat-observations.json&quot;,
+  &quot;driver&quot;: &quot;docs/quality-reviews/build13-combat-driver.mjs&quot;
+}
+</pre></details><details><summary>Raw independent visual review (before parent fixes)</summary><pre style="white-space:pre-wrap">{
+  &quot;reviewer&quot;: &quot;Second independent native GPT-6.1 Sol reviewer; arranged moving WebGL inspection and source ownership audit, not human feedback&quot;,
+  &quot;build&quot;: &quot;Build13 source-frozen crawler before parent followup fixes; no gameplay/source changes by reviewer&quot;,
+  &quot;ratings&quot;: {
+    &quot;prototypeGameplayOverall&quot;: 7.5,
+    &quot;presentation&quot;: 7.5,
+    &quot;usability&quot;: 8,
+    &quot;levelReadability&quot;: 7.5,
+    &quot;aaaProductionReadiness&quot;: 2.5,
+    &quot;scaleMaximum&quot;: 10,
+    &quot;provisional&quot;: true,
+    &quot;reason&quot;: &quot;The crawler replaces rigid sliding skids with visibly circulating tread links and turning rollers. This is a concrete motion improvement. Floating support gap, roller phase discontinuity and instantaneous heading changes still limit mechanical credibility, while whole-game depth/content/readability and human validation remain bounded by the same prototype. Keeping the whole-game ratings is appropriate; a motion improvement alone does not establish a stronger whole-game enjoyment or production readiness claim.&quot;
+  },
+  &quot;methods&quot;: [
+    &quot;Read src/warden.js, game update/shot/material/disposal code, tools/build_warden.py and immutable Build12 visual review. Source held fixed; reviewer wrote only new review driver/evidence.&quot;,
+    &quot;Used installed Chrome headless/Playwright with actual Three/WebGL SwiftShader, the established fallback after earlier shared-preview snapshot failures. Waited until separate normal-control reviewer closed its browser; browser closed after this sequence.&quot;,
+    &quot;All own captures use explicit test=1 arrangements, controlled RAF, direct simulation of six 1/60s AI steps between frames, player placement, high-quality setting and a close following camera. This is assisted correctness/art inspection, not normal controls or player skill.&quot;,
+    &quot;Inspected rendered move0, move1, move3, move5, turn, blocked, stagger and recovery images. Moving frames include changing ground landmarks and roller spokes/treads, rather than one static pose. Captured ten screenshots total.&quot;,
+    &quot;Blocked fixture deliberately replaces moveEntity with a no-op for six steps; stagger fixture sets .8s stagger/3s armor-open and recovery clears stagger. These distinguish actual displacement from requested motion but are not exhaustive real-cover navigation tests.&quot;,
+    &quot;Additional arranged pure-transform .01m advances cross a belt loop seam and record roller angular discontinuity. Source ownership finding checked against installed Three WebGLObjects.js/InstancedMesh.js disposal implementation.&quot;,
+    &quot;Precision anchor measured in all ten own poses; game combat numbers and fallback path audited in source. No independent full mission or new damage/fallback suite performed by this reviewer.&quot;
+  ],
+  &quot;verifiedImprovements&quot;: [
+    &quot;Six advancing close-side frames move enemy z from22.21 to23.26m while belt phase rises .21m per frame. Tread links and roller spokes visibly change; prior rigid skid sliding is materially improved.&quot;,
+    &quot;At turn, the carriage follows resolved travel direction and left/right track phases diverge. Blocked and stagger snapshots preserve both position and phases; recovery resumes travel. This agrees with postcollision animation placement and explicit stagger-path update.&quot;,
+    &quot;All ten measured local precision anchors remain (0,2,0.300000012). Upper optic stays outside the crawler swivel; source keeps .24m precision radius,150 Standard health and82/17/34 precision/closed/open damage.&quot;,
+    &quot;Ground-aligned first measured tread AABB minimum is approximately .000506m; no deep ground penetration was visible in these arranged flat-floor frames. This does not exhaust all phases, rotations or cover seams.&quot;,
+    &quot;Instanced shoes share authored geometry across both belts and template clones; per-enemy materials remain distinct. Motion adds two belt draw primitives plus four rollers rather than64 individual shoe draw calls.&quot;,
+    &quot;Own whole-scene close captures recorded92 render calls and93056 triangles; these are scene-specific renderer counters under software graphics, not a hardware-performance benchmark or an isolated asset triangle budget.&quot;,
+    &quot;No uncaught page exceptions in this reviewer run. Amber/cyan state remains readable; stagger opening retains target position. Main pause path does not advance simulation; reduced-motion setting receives no new decorative chassis bob.&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;severity&quot;: &quot;medium mechanical attachment&quot;,
+      &quot;finding&quot;: &quot;Close side and front turn renders show the upper TrackBridge floating above the crawler belts with no visible axle/load support. Authored bridge bottom is .34m and tread envelope top approximately .2775m, leaving roughly .0625m open air. The two columns end in the bridge and do not support roller axles.&quot;,
+      &quot;recommendation&quot;: &quot;Author a compact shared bogie/axle/load carrier joining the swivel track mechanism to the bridge; retain .45m ground footprint and shared clone geometry.&quot;,
+      &quot;evidence&quot;: [
+        &quot;docs/media/build13-visual-move1.png&quot;,
+        &quot;docs/media/build13-visual-turn.png&quot;
+      ],
+      &quot;status&quot;: &quot;reported to parent; raw review precedes followup&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;medium motion continuity&quot;,
+      &quot;finding&quot;: &quot;Roller angle derives from belt phase modulo the1.473982m belt perimeter. Crossing the seam with .01m advance changes recorded roller angle12.25 to .050148rad; modulo2pi this is about .3665rad forward instead of .08333rad, a ~.2832rad (16.2degree) discontinuity. Belt position itself loops correctly.&quot;,
+      &quot;recommendation&quot;: &quot;Integrate roller angle independently by distance/radius and wrap it modulo2pi; add a seam-crossing angular-continuity check.&quot;,
+      &quot;evidence&quot;: &quot;docs/quality-reviews/build13-visual-observations.json:wrap&quot;,
+      &quot;status&quot;: &quot;reported to parent; raw review precedes followup&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;medium resource ownership&quot;,
+      &quot;finding&quot;: &quot;New InstancedMesh belts allocate per-instance GPU attribute buffers. kill/restart cleanup traverses geometry/material only and skips shared geometry, but does not dispatch InstancedMesh.dispose(). Installed Three WebGLObjects releases instanceMatrix/instanceColor attributes specifically on that event, so repeated encounters/restarts can retain instance buffers.&quot;,
+      &quot;recommendation&quot;: &quot;Dispose each enemy-owned InstancedMesh on kill/restart and game disposal while preserving shared shoe geometry. Add a meaningful lifecycle-dispatch/shared-geometry check.&quot;,
+      &quot;status&quot;: &quot;reported to parent; source audit, not measured GPU-memory growth&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;remaining motion limitation&quot;,
+      &quot;finding&quot;: &quot;Carriage heading is assigned directly from final displacement atan2, with no steering angular-speed bound. The arranged turn changes base heading about1.128rad in one update when the travel direction changes. This avoids persistent sideways crawling but still produces abrupt mechanical yaw rather than an eased maneuver; retreat can request a180degree carriage reversal.&quot;,
+      &quot;recommendation&quot;: &quot;Retain as an explicit prototype limitation or implement bounded steering with movement that respects heading. Do not hide the discontinuity with unrelated bobbing.&quot;,
+      &quot;status&quot;: &quot;remaining quality gap&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;parent-discovered authored pose issue&quot;,
+      &quot;finding&quot;: &quot;Parent independently identified that animateWarden overwrites authored shutter cant with rotation.z=0 at closed pose. Reviewer source confirms assignment lacks a stored home rotation; this was not independently diagnosed from own frames. Parent plans restoring base rotation plus actuation and restoring the .7m shoulder hit regression.&quot;,
+      &quot;recommendation&quot;: &quot;Preserve authored home orientation when adding shutter actuation; rerun visible armor shots after correction.&quot;,
+      &quot;status&quot;: &quot;parent finding disclosed, not claimed as independent discovery&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;remaining whole-game limits&quot;,
+      &quot;finding&quot;: &quot;Large clean armor slabs, small chassis beneath broad upper mass, two bright circular facial/chest motifs and a single shared courtyard retain a stylized prototype character. Physical charge compression remains modest and relies on color/HUD cues. Human perception, sustained enjoyment, audio and hardware performance remain unvalidated.&quot;,
+      &quot;recommendation&quot;: &quot;Prioritize human-visible cue/handling feedback and broader authored content before any AAA-readiness or perfect-game claim.&quot;,
+      &quot;status&quot;: &quot;remaining quality gap&quot;
+    }
+  ],
+  &quot;rawObservations&quot;: &quot;docs/quality-reviews/build13-visual-observations.json&quot;,
+  &quot;driver&quot;: &quot;docs/quality-reviews/build13-visual-driver.mjs&quot;,
+  &quot;screenshots&quot;: [
+    &quot;docs/media/build13-visual-move0.png&quot;,
+    &quot;docs/media/build13-visual-move1.png&quot;,
+    &quot;docs/media/build13-visual-move2.png&quot;,
+    &quot;docs/media/build13-visual-move3.png&quot;,
+    &quot;docs/media/build13-visual-move4.png&quot;,
+    &quot;docs/media/build13-visual-move5.png&quot;,
+    &quot;docs/media/build13-visual-turn.png&quot;,
+    &quot;docs/media/build13-visual-blocked.png&quot;,
+    &quot;docs/media/build13-visual-stagger.png&quot;,
+    &quot;docs/media/build13-visual-recovery.png&quot;
+  ],
+  &quot;errors&quot;: [],
+  &quot;limitations&quot;: [
+    &quot;All own new evidence is explicitly arranged; separate reviewer covers normal-control visible-cue opening. No human/blind-discovery, enjoyment, full-mission balance or accessibility validation.&quot;,
+    &quot;Sequence samples actual rendered motion in .1s increments. It is not a frame-rate video or hardware performance measurement; intervening exact temporal perception is not human-tested.&quot;,
+    &quot;Mesh AABB ground observation is the initial computed bounding box; not a sweep of every shoe phase. Parent locomotion audit covers its distinct focused fixtures.&quot;,
+    &quot;Own close camera crops the upper optic in several side frames; invariance is measured numerically there, and prior/full-body captures provide the broader silhouette.&quot;,
+    &quot;Raw review describes frozen implementation before fixes. Parent postreview fixes/retests must be identified separately, with no implied independent rescore.&quot;
+  ]
+}
+</pre></details></section><section id="quality-build12"><span class="number">ONGOING QUALITY REVIEW / BUILD 12</span><h2>An authored induction Warden.</h2>
 <p>The ingress and relay Warden now load an original Blender machine instead of a sentinel sphere with added slabs, torus and floating upper sphere. A chamfered gunmetal chassis, guided armor shutters, steel gimbal/bezel, recessed iris, lower actuators, grounded skids and rear heat-sink/fan form one industrial assembly. Brass is reserved for winding, actuator and small mechanical details. This is procedural original art, not photogrammetry or AAA production art. First close inspections caught a flat optic and unsupported floating skids; iris depth and full lower struts corrected those before review.</p>
 <p>Reproduce with <code>/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/build_warden.py</code> from the repository root. <a href="../assets/induction-warden.blend">Blender source</a> · <a href="../assets/induction-warden.glb">GLB</a> · <a href="../assets/induction-warden-provenance.json">measured provenance</a>. All geometry is authored in the retained script; no downloaded models, borrowed branded designs, textures or sound samples. Previous Blender sources are preserved; no backup .blend1 ships. Export: 15,484 triangles, seven mesh/material primitives, six materials, about 912 KiB GLB. No surface maps were required for this bounded PBR pass. Geometry is shared between runtime clones; materials are independently owned for state and disposal.</p>
 <p>Coordinates remain meters: Blender Z-up and -Y forward export to Three Y-up and +Z forward. Group origin stays at feet/ground zero, main body around y1.3 and named WeakpointAnchor at (0,2,+0.3). The optic is fixed while shutters compress slightly during charge, slide outward/back and relax during the three-second armor opening, then ease closed. A small rear fan accelerates under charge. Authored emitter material receives existing bounded amber/cyan and hit flash; the duplicate shoulders/ring/upper sphere are never added on the authored path. Loading failure retains the earlier combat fallback.</p>

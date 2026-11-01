@@ -8,8 +8,8 @@ try {
  const page=await browser.newPage({viewport:{width:1280,height:800}});page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});
  await page.goto('http://127.0.0.1:5173/?test=1');await page.waitForFunction(()=>window.__SOULFALL__?.game.handsAsset,null,{polling:50,timeout:60000});await page.click('#deploy',{force:true});
- const budget=await page.evaluate(()=>{const g=window.__SOULFALL__.game,e=g.enemies[0],r=e.wardenRig;let triangles=0,primitives=0;const names=[];r.model.traverse(n=>{if(n.isMesh){triangles+=(n.geometry.index?.count||n.geometry.attributes.position.count)/3;primitives++;names.push(n.material.name)}});g.scene.updateMatrixWorld(true);const anchor=r.model.getObjectByName('WeakpointAnchor').getWorldPosition(e.group.position.clone());e.group.worldToLocal(anchor);return{triangles,primitives,names,anchor:anchor.toArray(),health:e.health,children:e.group.children.filter(n=>n.visible).map(n=>n.name||n.type)}});
- assert.ok(budget.triangles<30000);assert.equal(budget.primitives,7);assert.equal(budget.health,150);budget.anchor.forEach((v,i)=>assert.ok(Math.abs(v-[0,2,.3][i])<1e-5));assert.equal(budget.children.length,2,'Only authored model and light visible');
+ const budget=await page.evaluate(()=>{const g=window.__SOULFALL__.game,e=g.enemies[0],r=e.wardenRig;let triangles=0,primitives=0;const names=[];r.model.traverse(n=>{if(n.isMesh){triangles+=(n.geometry.index?.count||n.geometry.attributes.position.count)/3*(n.isInstancedMesh?n.count:1);primitives++;names.push(n.material.name)}});g.scene.updateMatrixWorld(true);const anchor=r.model.getObjectByName('WeakpointAnchor').getWorldPosition(e.group.position.clone());e.group.worldToLocal(anchor);return{triangles,primitives,names,anchor:anchor.toArray(),health:e.health,children:e.group.children.filter(n=>n.visible).map(n=>n.name||n.type)}});
+ assert.ok(budget.triangles<60000);assert.ok(budget.primitives<=14);assert.equal(budget.health,150);budget.anchor.forEach((v,i)=>assert.ok(Math.abs(v-[0,2,.3][i])<1e-5));assert.equal(budget.children.length,2,'Only authored model and light visible');
  for(const viewport of [{width:1280,height:800},{width:1440,height:900}]){
   await page.setViewportSize(viewport);
   for(const state of ['hip','ads','close','charge','stagger','open','recovered']){
@@ -23,11 +23,11 @@ try {
  }
  // Explicit exact-aim targeting arrangements, zero spread: correctness, not player skill.
  const hits=await page.evaluate(()=>{const g=window.__SOULFALL__.game,rows=[];const random=Math.random;Math.random=()=>.5;
- try {for(const [label,x,y,z,opened] of [['shoulder',.7,1.6,22.2,false],['open-shoulder',.7,1.6,22.2,true],['optic',0,2,22.3,false],['empty-between-struts',0,.75,22.4,false]]) {
+ try {for(const [label,x,y,z,opened] of [['shoulder',.7,1.6,22.2,false],['open-shoulder',.7,1.6,22.2,true],['optic',0,2,22.3,false],['empty-below-chassis',0,.75,22.4,false],['crawler',.23,.14,22.30,false]]) {
   g.restart();g.phase='playing';const e=g.enemies[0];e.cooldown=100;e.armorOpen=opened?3:0;g.player.set(0,1.7,28);g.aim=true;
   const dx=x-g.player.x,dy=y-g.player.y,dz=z-g.player.z;g.yaw=Math.atan2(-dx,-dz);g.pitch=Math.atan2(dy,Math.hypot(dx,dz));g.animate(0);g.scene.updateMatrixWorld(true);g.debug.shoot();rows.push({label,damage:150-e.health,headshots:g.headshots});
  }} finally {Math.random=random}return rows;});
- assert.deepEqual(hits.map(h=>h.damage),[17,34,82,0]);
+ assert.deepEqual(hits.map(h=>h.damage),[17,34,82,0,17]);
  // Clone ownership: no duplicate geometry allocations, separate state materials.
  const clones=await page.evaluate(()=>{const g=window.__SOULFALL__.game;const a=g.enemies[0];g.spawnEnemy(a.group.position.clone(),'warden',0);const b=g.enemies.at(-1);return{geometry:a.wardenRig.model.getObjectByName('Frame').geometry===b.wardenRig.model.getObjectByName('Frame').geometry,material:a.red!==b.red}});assert.deepEqual(clones,{geometry:true,material:true});assert.deepEqual(errors,[]);
  const fallbackPage=await browser.newPage();
@@ -38,5 +38,5 @@ try {
  const fallback=await fallbackPage.evaluate(()=>{const g=window.__SOULFALL__.game,e=g.enemies[0];return{loaded:g.loaded,authored:!!e.wardenRig,health:e.health,visibleMeshes:e.group.children.filter(n=>n.isMesh&&n.visible).length}});
  assert.equal(fallback.loaded,true);assert.equal(fallback.authored,false);assert.equal(fallback.health,150);assert.ok(fallback.visibleMeshes>=3);
  await fallbackPage.close();
- writeFileSync('docs/warden-art-regressions.json',JSON.stringify({method:'Explicitly arranged test=1 fixed-frame actual WebGL/installed Chrome renders. No human/performance/audio claims.',budget,clones,fallback,hits,observations,errors},null,2)+'\n');console.log('Warden budget, nodes, fixed precision anchor through 14 poses, bounded emission, clone ownership: passed');
+ writeFileSync('docs/current-warden-art-regressions.json',JSON.stringify({method:'Explicitly arranged test=1 fixed-frame actual WebGL/installed Chrome renders. No human/performance/audio claims.',budget,clones,fallback,hits,observations,errors},null,2)+'\n');console.log('Warden budget, nodes, fixed precision anchor through 14 poses, bounded emission, clone ownership: passed');
 }finally{await browser.close()}

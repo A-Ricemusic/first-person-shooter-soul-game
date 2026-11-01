@@ -214,7 +214,7 @@ export class Game {
     this.clearInput();
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
       const object = item.mesh || item.group;
-      if (object) { this.scene.remove(object); object.traverse(node => { if (!node.userData.sharedGeometry) node.geometry?.dispose(); if (Array.isArray(node.material)) node.material.forEach(m => m.dispose()); else node.material?.dispose(); }); }
+      if (object) { this.scene.remove(object); object.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); if (Array.isArray(node.material)) node.material.forEach(m => m.dispose()); else node.material?.dispose(); }); }
     });
     this.enemies = []; this.projectiles = []; this.effects = []; this.pickups = [];
   }
@@ -349,7 +349,7 @@ export class Game {
     // Every enemy leaves a guaranteed supply; aggressive play sustains the fight.
     const pickup = mesh(new THREE.OctahedronGeometry(0.18), new THREE.MeshStandardMaterial({ color: 0x80ffff, emissive: 0x21b7c5, emissiveIntensity: 2 }), enemy.group.position.x, 0.5, enemy.group.position.z);
     this.scene.add(pickup); this.pickups.push({ mesh: pickup, life: 90 });
-    this.scene.remove(enemy.group); enemy.group.traverse(node => { if (!node.userData.sharedGeometry) node.geometry?.dispose(); node.material?.dispose(); });
+    this.scene.remove(enemy.group); enemy.group.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); node.material?.dispose(); });
     this.emit();
   }
 
@@ -463,9 +463,8 @@ export class Game {
     let charging=this.enemies.filter(e=>e.windup>0).length; const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
-      animateWarden(enemy,dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
-      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}continue;}
+      if(enemy.stagger>0){enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);continue;}
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
@@ -503,6 +502,7 @@ export class Game {
           this.phaseCueAt=this.runTime;this.event('notice','WARDEN CHARGING · W + Shift toward amber ring to break. Or strafe / shoot optic.');
         }
       }
+      animateWarden(enemy,dt);
       const torso = this.player.clone().add(new THREE.Vector3(0, -.5, 0));
       if (distance < 1.4 && eye.distanceTo(torso) < 1.6 && this.hasLineOfSight(eye, torso, 0) && (enemy.meleeCooldown || 0) <= 0) { this.damage(15,position); enemy.meleeCooldown = 1; } enemy.meleeCooldown = (enemy.meleeCooldown || 0) - dt;
     }
@@ -670,6 +670,6 @@ export class Game {
   }
   dispose() {
     this.disposed = true; cancelAnimationFrame(this.frameId); this.cleanups.forEach(fn => fn());
-    this.audio.dispose(); this.scene?.traverse(o => { o.geometry?.dispose(); if (Array.isArray(o.material)) o.material.forEach(m => m.dispose()); else o.material?.dispose(); }); this.renderer?.dispose();
+    this.audio.dispose(); this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); o.geometry?.dispose(); if (Array.isArray(o.material)) o.material.forEach(m => m.dispose()); else o.material?.dispose(); }); this.renderer?.dispose();
   }
 }

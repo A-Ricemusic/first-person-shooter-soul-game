@@ -1,0 +1,97 @@
+{
+  "reviewer": "Second independent native GPT-6.1 Sol reviewer; arranged moving WebGL inspection and source ownership audit, not human feedback",
+  "build": "Build13 source-frozen crawler before parent followup fixes; no gameplay/source changes by reviewer",
+  "ratings": {
+    "prototypeGameplayOverall": 7.5,
+    "presentation": 7.5,
+    "usability": 8,
+    "levelReadability": 7.5,
+    "aaaProductionReadiness": 2.5,
+    "scaleMaximum": 10,
+    "provisional": true,
+    "reason": "The crawler replaces rigid sliding skids with visibly circulating tread links and turning rollers. This is a concrete motion improvement. Floating support gap, roller phase discontinuity and instantaneous heading changes still limit mechanical credibility, while whole-game depth/content/readability and human validation remain bounded by the same prototype. Keeping the whole-game ratings is appropriate; a motion improvement alone does not establish a stronger whole-game enjoyment or production readiness claim."
+  },
+  "methods": [
+    "Read src/warden.js, game update/shot/material/disposal code, tools/build_warden.py and immutable Build12 visual review. Source held fixed; reviewer wrote only new review driver/evidence.",
+    "Used installed Chrome headless/Playwright with actual Three/WebGL SwiftShader, the established fallback after earlier shared-preview snapshot failures. Waited until separate normal-control reviewer closed its browser; browser closed after this sequence.",
+    "All own captures use explicit test=1 arrangements, controlled RAF, direct simulation of six 1/60s AI steps between frames, player placement, high-quality setting and a close following camera. This is assisted correctness/art inspection, not normal controls or player skill.",
+    "Inspected rendered move0, move1, move3, move5, turn, blocked, stagger and recovery images. Moving frames include changing ground landmarks and roller spokes/treads, rather than one static pose. Captured ten screenshots total.",
+    "Blocked fixture deliberately replaces moveEntity with a no-op for six steps; stagger fixture sets .8s stagger/3s armor-open and recovery clears stagger. These distinguish actual displacement from requested motion but are not exhaustive real-cover navigation tests.",
+    "Additional arranged pure-transform .01m advances cross a belt loop seam and record roller angular discontinuity. Source ownership finding checked against installed Three WebGLObjects.js/InstancedMesh.js disposal implementation.",
+    "Precision anchor measured in all ten own poses; game combat numbers and fallback path audited in source. No independent full mission or new damage/fallback suite performed by this reviewer."
+  ],
+  "verifiedImprovements": [
+    "Six advancing close-side frames move enemy z from22.21 to23.26m while belt phase rises .21m per frame. Tread links and roller spokes visibly change; prior rigid skid sliding is materially improved.",
+    "At turn, the carriage follows resolved travel direction and left/right track phases diverge. Blocked and stagger snapshots preserve both position and phases; recovery resumes travel. This agrees with postcollision animation placement and explicit stagger-path update.",
+    "All ten measured local precision anchors remain (0,2,0.300000012). Upper optic stays outside the crawler swivel; source keeps .24m precision radius,150 Standard health and82/17/34 precision/closed/open damage.",
+    "Ground-aligned first measured tread AABB minimum is approximately .000506m; no deep ground penetration was visible in these arranged flat-floor frames. This does not exhaust all phases, rotations or cover seams.",
+    "Instanced shoes share authored geometry across both belts and template clones; per-enemy materials remain distinct. Motion adds two belt draw primitives plus four rollers rather than64 individual shoe draw calls.",
+    "Own whole-scene close captures recorded92 render calls and93056 triangles; these are scene-specific renderer counters under software graphics, not a hardware-performance benchmark or an isolated asset triangle budget.",
+    "No uncaught page exceptions in this reviewer run. Amber/cyan state remains readable; stagger opening retains target position. Main pause path does not advance simulation; reduced-motion setting receives no new decorative chassis bob."
+  ],
+  "findings": [
+    {
+      "severity": "medium mechanical attachment",
+      "finding": "Close side and front turn renders show the upper TrackBridge floating above the crawler belts with no visible axle/load support. Authored bridge bottom is .34m and tread envelope top approximately .2775m, leaving roughly .0625m open air. The two columns end in the bridge and do not support roller axles.",
+      "recommendation": "Author a compact shared bogie/axle/load carrier joining the swivel track mechanism to the bridge; retain .45m ground footprint and shared clone geometry.",
+      "evidence": [
+        "docs/media/build13-visual-move1.png",
+        "docs/media/build13-visual-turn.png"
+      ],
+      "status": "reported to parent; raw review precedes followup"
+    },
+    {
+      "severity": "medium motion continuity",
+      "finding": "Roller angle derives from belt phase modulo the1.473982m belt perimeter. Crossing the seam with .01m advance changes recorded roller angle12.25 to .050148rad; modulo2pi this is about .3665rad forward instead of .08333rad, a ~.2832rad (16.2degree) discontinuity. Belt position itself loops correctly.",
+      "recommendation": "Integrate roller angle independently by distance/radius and wrap it modulo2pi; add a seam-crossing angular-continuity check.",
+      "evidence": "docs/quality-reviews/build13-visual-observations.json:wrap",
+      "status": "reported to parent; raw review precedes followup"
+    },
+    {
+      "severity": "medium resource ownership",
+      "finding": "New InstancedMesh belts allocate per-instance GPU attribute buffers. kill/restart cleanup traverses geometry/material only and skips shared geometry, but does not dispatch InstancedMesh.dispose(). Installed Three WebGLObjects releases instanceMatrix/instanceColor attributes specifically on that event, so repeated encounters/restarts can retain instance buffers.",
+      "recommendation": "Dispose each enemy-owned InstancedMesh on kill/restart and game disposal while preserving shared shoe geometry. Add a meaningful lifecycle-dispatch/shared-geometry check.",
+      "status": "reported to parent; source audit, not measured GPU-memory growth"
+    },
+    {
+      "severity": "remaining motion limitation",
+      "finding": "Carriage heading is assigned directly from final displacement atan2, with no steering angular-speed bound. The arranged turn changes base heading about1.128rad in one update when the travel direction changes. This avoids persistent sideways crawling but still produces abrupt mechanical yaw rather than an eased maneuver; retreat can request a180degree carriage reversal.",
+      "recommendation": "Retain as an explicit prototype limitation or implement bounded steering with movement that respects heading. Do not hide the discontinuity with unrelated bobbing.",
+      "status": "remaining quality gap"
+    },
+    {
+      "severity": "parent-discovered authored pose issue",
+      "finding": "Parent independently identified that animateWarden overwrites authored shutter cant with rotation.z=0 at closed pose. Reviewer source confirms assignment lacks a stored home rotation; this was not independently diagnosed from own frames. Parent plans restoring base rotation plus actuation and restoring the .7m shoulder hit regression.",
+      "recommendation": "Preserve authored home orientation when adding shutter actuation; rerun visible armor shots after correction.",
+      "status": "parent finding disclosed, not claimed as independent discovery"
+    },
+    {
+      "severity": "remaining whole-game limits",
+      "finding": "Large clean armor slabs, small chassis beneath broad upper mass, two bright circular facial/chest motifs and a single shared courtyard retain a stylized prototype character. Physical charge compression remains modest and relies on color/HUD cues. Human perception, sustained enjoyment, audio and hardware performance remain unvalidated.",
+      "recommendation": "Prioritize human-visible cue/handling feedback and broader authored content before any AAA-readiness or perfect-game claim.",
+      "status": "remaining quality gap"
+    }
+  ],
+  "rawObservations": "docs/quality-reviews/build13-visual-observations.json",
+  "driver": "docs/quality-reviews/build13-visual-driver.mjs",
+  "screenshots": [
+    "docs/media/build13-visual-move0.png",
+    "docs/media/build13-visual-move1.png",
+    "docs/media/build13-visual-move2.png",
+    "docs/media/build13-visual-move3.png",
+    "docs/media/build13-visual-move4.png",
+    "docs/media/build13-visual-move5.png",
+    "docs/media/build13-visual-turn.png",
+    "docs/media/build13-visual-blocked.png",
+    "docs/media/build13-visual-stagger.png",
+    "docs/media/build13-visual-recovery.png"
+  ],
+  "errors": [],
+  "limitations": [
+    "All own new evidence is explicitly arranged; separate reviewer covers normal-control visible-cue opening. No human/blind-discovery, enjoyment, full-mission balance or accessibility validation.",
+    "Sequence samples actual rendered motion in .1s increments. It is not a frame-rate video or hardware performance measurement; intervening exact temporal perception is not human-tested.",
+    "Mesh AABB ground observation is the initial computed bounding box; not a sweep of every shoe phase. Parent locomotion audit covers its distinct focused fixtures.",
+    "Own close camera crops the upper optic in several side frames; invariance is measured numerically there, and prior/full-body captures provide the broader silhouette.",
+    "Raw review describes frozen implementation before fixes. Parent postreview fixes/retests must be identified separately, with no implied independent rescore."
+  ]
+}
