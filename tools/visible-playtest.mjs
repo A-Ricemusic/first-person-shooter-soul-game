@@ -23,7 +23,11 @@ Game keys: WASD, R reload, E recover, M toggle paused facility map, arrows, Spac
 ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
-then uses ordinary Escape unless pauseAfter:false. resume:true uses the visible
+then uses ordinary Escape unless pauseAfter:false. Set captureHeld:true on an act
+to photograph held ADS before input release. Held movement/fire continue during
+capture; release those explicitly when only aiming is wanted. Inputs still release
+on success or failure. The response includes visible afterRelease UI for this mode.
+resume:true uses the visible
 Resume button. Capture defaults to Escape pause from playing or planning.
 Escape closes the map as it pauses, including the automatic post-capture pause.
 After resume the map starts closed; M opens it again. To capture a close toggle,
@@ -134,9 +138,12 @@ try{
    else if(command.op==='act'){
     if(command.resume){const state=await ui();if(state.phase==='paused')await page.locator('#resume').click();else if(!['playing','planning'].includes(state.phase))throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
     if(!['playing','planning'].includes((await ui()).phase))throw new Error('Action requires the playing or planning view.');
-    const timings=[];
-    try{for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}}finally{await release();}
-    result={...await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false),timings};
+    const timings=[];let heldCapture;
+    try{
+     for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}
+     if(command.captureHeld===true)heldCapture=await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false);
+    }finally{await release();}
+    result={...(heldCapture||await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false)),timings,...(heldCapture?{captureHeld:true,afterRelease:await ui()}:{} )};
    }else throw new Error('Use click, capture, act, status or close. No arbitrary evaluation is accepted.');
    const response={type:'result',sequence,...result,clientMs:performance.now()-started,pageErrors:[...pageErrors]};await log(response);emit(response);
   }catch(error){await release();try{if(page&&['playing','planning'].includes((await ui()).phase))await page.keyboard.press('Escape');}catch{}const response={type:'command-error',sequence,error:error.message};await log(response);emit(response);}

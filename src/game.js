@@ -520,12 +520,16 @@ export class Game {
       const goal = dutyGoal(enemy,this.player,enemy.visible,dt);
       const guarding = enemy.role==='guard' && enemy.duty!=='chase';
       const move = new THREE.Vector3();
-      if (distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible) move.add(dir);
+      const approaching = distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible;
+      if (approaching) move.add(dir);
       else if (distance < 5) move.addScaledVector(dir, -0.7);
       if (enemy.visible && enemy.type!=='warden') move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
       if(enemy.role==='guard' && !enemy.visible && !guarding)move.copy(goal).sub(position).setY(0);
       if(guarding) { move.copy(goal).sub(position);move.y=0;if(move.length()<.7)move.set(0,0,0); }
-      const waypoint=(!guarding || move.lengthSq()>.001)?this.navigation.steer(enemy,goal,this.runTime):null;
+      // A route to the target must not turn a visible retreat/strafe into a rush.
+      // Returning guards still navigate home, including while engaging a target.
+      const routing = guarding ? move.lengthSq()>.001 : approaching;
+      const waypoint=routing?this.navigation.steer(enemy,goal,this.runTime):null;
       if(waypoint)move.set(waypoint.x-position.x,0,waypoint.z-position.z);
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
