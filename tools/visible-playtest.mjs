@@ -20,7 +20,7 @@ Use a TTY for an interactive session. Commands are JSON lines:
 {"op":"status"}
 {"op":"close"}
 Game keys: WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
-Shift, Control, Escape, Tab. Map freezes the mission; press M again to close and resume.
+ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
 then uses ordinary Escape unless pauseAfter:false. resume:true uses the visible

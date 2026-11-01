@@ -1,3 +1,4 @@
+import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
 import * as THREE from 'three';
@@ -200,7 +201,7 @@ export class Game {
   }
   start(options = {}) {
     if (!this.loaded) return;
-    this.setSettings(options); this.audio.wake(); this.clearRun(); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
+    this.setSettings(options); this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
@@ -333,9 +334,9 @@ export class Game {
     const direction = new THREE.Vector3(); this.camera.getWorldDirection(direction);
     const spread = this.aim ? 0.0014 : 0.006; direction.x += (Math.random() - 0.5) * spread; direction.y += (Math.random() - 0.5) * spread; direction.normalize();
     this.ray.set(this.player, direction); let distance = 120, hit = null, headshot = false;
-    for (const box of this.world.colliders) {
-      const p = this.ray.intersectBox(box, this.wallPoint); if (p) distance = Math.min(distance, p.distanceTo(this.player));
-    }
+    this.raycaster.set(this.player,direction);
+    const propHit=capacitorShot(this.ray,this.raycaster,this.world.capacitors,this.world.colliders);
+    distance=propHit.distance;
     for (const enemy of this.enemies) {
       const body = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.04, 0)), this.sentinelAsset ? 0.68 : 0.53);
       const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : 1.3, enemy.type==='warden' ? .3 : .43).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
@@ -362,7 +363,7 @@ export class Game {
       for (let i = 0; i < 4; i++) this.particle(end, headshot ? 0xffffff : 0xff9a45, 0.35, 0.045);
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
       if (hit.health <= 0) this.killEnemy(hit, headshot);
-    } else for (let i = 0; i < 3; i++) this.particle(end, 0xffbf75, 0.3, 0.03);
+    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); for (let i = 0; i < 3; i++) this.particle(end, 0xffbf75, 0.3, 0.03); }
     this.event('shot', '', { ammo: this.ammo });
   }
 
@@ -424,6 +425,7 @@ export class Game {
     if (this.health <= 0) { this.health = 0; this.finish(false); } this.emit();
   }
   finish(won) {
+    cancelCapacitors(this.world.capacitors);
     this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
     if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
@@ -444,6 +446,7 @@ export class Game {
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
+    updateCapacitors(this,dt); if(this.phase!=='playing')return;
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
     const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);

@@ -1,3 +1,4 @@
+import {createCapacitors} from './capacitors.js';
 import terminalParts from './terminal-parts.json';
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
@@ -271,6 +272,7 @@ export async function buildWorld(scene) {
   routeLights.visible=false;
   sign('UPLINK / FACE THE YARD','SPLIT BAFFLES · KEEP MOVING · WATCH BOTH FLANKS',0,1.18,34.57,3.1,.65,'#94d4aa').rotation.y=Math.PI;
   sign('RETURN / EITHER AISLE','UPLINK THROUGH THE CENTRAL GATE',0,3.7,-10.6,5,.65,'#94d4aa').rotation.y=Math.PI;
+  const capacitors=await createCapacitors(group,colliders,sign);
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.
   const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.55,roughness:.18,transparent:true,opacity:.68,clearcoat:1});
   for(let i=0;i<36;i++){
@@ -328,7 +330,7 @@ export async function buildWorld(scene) {
   }
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
-    colliders, medical:MEDICAL, rainPositions,
+    capacitors, colliders, medical:MEDICAL, rainPositions,
     receivers, uplink, routeLights,
     setUplinkState(powered,progress){if(uplink.userData.powered===powered&&uplink.userData.progress===progress)return;routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
     setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;if(r.model.userData.progress===progress&&r.model.userData.recovered===recovered)return;
