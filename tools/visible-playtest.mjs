@@ -1,0 +1,140 @@
+// Ordinary controls only. JSON lines on stdin; EOF always closes the owned Chrome.
+import {chromium} from '@playwright/test';
+import {parseArgs} from 'node:util';
+import {createInterface} from 'node:readline';
+import {createHash,randomUUID} from 'node:crypto';
+import {mkdir,writeFile,readFile,appendFile,rm} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {tmpdir} from 'node:os';
+import {setTimeout as delay} from 'node:timers/promises';
+
+const {values}=parseArgs({options:{url:{type:'string',default:'http://127.0.0.1:5173/'},out:{type:'string',default:'docs/media/current-visible-playtest'},headed:{type:'boolean',default:false},help:{type:'boolean',short:'h',default:false}}});
+if(values.help){
+ process.stdout.write(`Usage: npm run playtest:visible -- --out docs/media/unique-review-name
+Use a TTY for an interactive session. Commands are JSON lines:
+{"op":"click","selector":"#deploy","capture":"deploy","pauseAfter":true}
+{"op":"act","resume":true,"steps":[{"type":"down","key":"KeyW"},{"type":"wait","ms":500}],"capture":"advance"}
+{"op":"act","resume":true,"steps":[{"type":"look","x":20,"y":0},{"type":"mouseDown","button":"left"},{"type":"wait","ms":300}],"capture":"fire"}
+{"op":"capture","label":"view"}
+{"op":"status"}
+{"op":"close"}
+Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
+look with relative x/y; wait with ms. Act releases held inputs, captures live,
+then uses ordinary Escape unless pauseAfter:false. resume:true uses the visible
+Resume button. Capture defaults to pausing only when the playing view is visible.
+No test URL, arbitrary evaluation or hidden game observations are accepted.
+EOF closes the owned browser. A project lock rejects a second driver before launch.
+--headed opens a window; software-WebGL fallback remains allowed, not a GPU benchmark.
+`);
+ process.exit(0);
+}
+const root=fileURLToPath(new URL('../',import.meta.url));
+const url=new URL(values.url);
+if(url.searchParams.has('test'))throw new Error('Ordinary play uses the normal URL. Remove the test parameter.');
+const output=resolve(root,values.out),token=randomUUID();
+const lock=join(tmpdir(),`soulfall-visible-${createHash('sha256').update(root).digest('hex').slice(0,16)}.lock`);
+const rl=createInterface({input:process.stdin,crlfDelay:Infinity});
+// Subscribe before async startup: piped input/EOF must not be lost during launch.
+const commands=rl[Symbol.asyncIterator]();
+const emit=value=>process.stdout.write(JSON.stringify(value)+'\n');
+let server,browser,page,cdp,owned=false,closing,sequence=0;
+const keys=new Set(),buttons=new Set(),pageErrors=[];
+const metadata={token,driverPid:process.pid,root,chromePid:null,started:new Date().toISOString()};
+const validKey=key=>/^(Key[A-Z]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(key);
+
+async function log(entry){await appendFile(join(output,'actions.jsonl'),JSON.stringify({at:new Date().toISOString(),...entry})+'\n');}
+async function release(){
+ for(const key of keys){try{await page.keyboard.up(key);}catch{}}keys.clear();
+ for(const button of buttons){try{await page.mouse.up({button});}catch{}}buttons.clear();
+}
+async function ui(){
+ return page.evaluate(()=>{
+  const visibility=new Map();
+  const visible=el=>{
+   if(!el)return false;if(visibility.has(el))return visibility.get(el);
+   const style=getComputedStyle(el),shown=!!el.getClientRects().length&&style.visibility!=='hidden'&&Number(style.opacity)!==0&&(!el.parentElement||visible(el.parentElement));
+   visibility.set(el,shown);return shown;
+  };
+  const text=id=>visible(document.getElementById(id))?document.getElementById(id).innerText:null;
+  const dialog=document.querySelector('dialog[open]');
+  const phase=visible(dialog)?'dialog':visible(document.getElementById('end'))?'end':visible(document.getElementById('pause'))?'paused':visible(document.getElementById('menu'))?'menu':visible(document.getElementById('hud'))?'playing':'loading';
+  const result={phase};
+  if(phase==='playing')for(const id of ['objective','health','shield','ammo','reserve','kills','timer','heading','interaction','signal-distance','extraction-status','memory-card','announcement','event-feed','dash-status'])result[id]=text(id);
+  if(phase==='end')result.outcome=text('end');
+  if(phase==='dialog')result.dialog=dialog.innerText;
+  return result;
+ });
+}
+async function capture(label,pauseAfter){
+ if(!/^[a-zA-Z0-9_-]{1,80}$/.test(label))throw new Error('Capture label must use letters, digits, underscore or hyphen.');
+ const beforePause=await ui(),started=performance.now();
+ const result=await cdp.send('Page.captureScreenshot',{format:'jpeg',quality:75});
+ const path=join(output,`${label}.jpg`);await writeFile(path,Buffer.from(result.data,'base64'));
+ const captureMs=performance.now()-started;
+ if(pauseAfter&&beforePause.phase==='playing')await page.keyboard.press('Escape');
+ return{path,captureMs,beforePause,after:await ui()};
+}
+async function step(action){
+ if(['down','up','press'].includes(action.type)){
+  if(!validKey(action.key))throw new Error('Unsupported game key.');
+  if(action.type==='down'){await page.keyboard.down(action.key);keys.add(action.key);}
+  if(action.type==='up'){await page.keyboard.up(action.key);keys.delete(action.key);}
+  if(action.type==='press')await page.keyboard.press(action.key);
+ }else if(action.type==='mouseDown'||action.type==='mouseUp'){
+  const button=action.button||'left';if(!['left','right'].includes(button))throw new Error('Unsupported mouse button.');
+  if(action.type==='mouseDown'){await page.mouse.down({button});buttons.add(button);}
+  else{await page.mouse.up({button});buttons.delete(button);}
+ }else if(action.type==='look'){
+  const x=action.x||0,y=action.y||0;
+  if(!Number.isFinite(x)||!Number.isFinite(y)||Math.abs(x)>2400||Math.abs(y)>2400)throw new Error('Invalid relative mouse delta.');
+  await page.evaluate(({x,y})=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:x,movementY:y,bubbles:true})),{x,y});
+ }else if(action.type==='wait'){
+  if(!Number.isFinite(action.ms)||action.ms<0||action.ms>12000)throw new Error('Wait must be between0 and12000ms.');
+  await delay(action.ms);
+ }else throw new Error('Unsupported input step.');
+}
+async function shutdown(reason){
+ if(closing)return closing;
+ closing=(async()=>{
+  rl.close();await release();
+  if(server){let timer;try{await Promise.race([server.close(),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Close timed out')),5000);})]);}catch{await server.kill();}finally{clearTimeout(timer);}}
+  if(owned){const current=JSON.parse(await readFile(join(lock,'owner.json'),'utf8').catch(()=>'{}'));if(current.token===token)await rm(lock,{recursive:true,force:true});}
+  emit({type:'closed',reason,driverPid:process.pid,chromePid:metadata.chromePid,browserLaunched:!!server,browserClosed:!server||server.process().exitCode!==null||server.process().signalCode!==null});
+ })();return closing;
+}
+for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>{shutdown(signal).then(()=>process.exit(signal==='SIGINT'?130:143)).catch(()=>process.exit(1));});
+
+try{
+ try{await mkdir(lock);owned=true;}catch(error){if(error.code!=='EEXIST')throw error;const owner=await readFile(join(lock,'owner.json'),'utf8').catch(()=>'metadata unavailable');throw new Error(`Another visible-playtest driver owns ${lock}: ${owner}. Close that owned session first; no second browser was launched.`);}
+ await writeFile(join(lock,'owner.json'),JSON.stringify(metadata));await mkdir(output,{recursive:true});
+ server=await chromium.launchServer({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:!values.headed,args:['--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+ metadata.chromePid=server.process().pid;await writeFile(join(lock,'owner.json'),JSON.stringify(metadata));
+ browser=await chromium.connect(server.wsEndpoint());browser.once('disconnected',()=>rl.close());
+ page=await browser.newPage({viewport:{width:1280,height:800}});page.setDefaultTimeout(4000);page.on('pageerror',e=>pageErrors.push(e.message));cdp=await page.context().newCDPSession(page);
+ await page.goto(url.href,{timeout:30000});await page.waitForFunction(()=>{const b=document.querySelector('#deploy');return b&&!b.disabled;},null,{timeout:30000});
+ emit({type:'ready',...metadata,lock,output,ui:await ui(),graphics:'Software-WebGL fallback enabled; renderer not certified'});
+ for await(const line of commands){
+  if(!line.trim())continue;
+  let command;const started=performance.now();
+  try{
+   command=JSON.parse(line);await log({type:'command',sequence:++sequence,command});
+   if(command.op==='close')break;
+   let result;
+   if(command.op==='status')result={ui:await ui()};
+   else if(command.op==='click'){
+    await page.locator(command.selector).click();
+    result=command.capture?await capture(command.capture,command.pauseAfter===true):{ui:await ui()};
+   }else if(command.op==='capture')result=await capture(command.label||`${sequence}-capture`,command.pauseAfter!==false);
+   else if(command.op==='act'){
+    if(command.resume){const state=await ui();if(state.phase==='paused')await page.locator('#resume').click();else if(state.phase!=='playing')throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
+    if((await ui()).phase!=='playing')throw new Error('Action requires the playing view.');
+    const timings=[];
+    try{for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}}finally{await release();}
+    result={...await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false),timings};
+   }else throw new Error('Use click, capture, act, status or close. No arbitrary evaluation is accepted.');
+   const response={type:'result',sequence,...result,clientMs:performance.now()-started,pageErrors:[...pageErrors]};await log(response);emit(response);
+  }catch(error){await release();try{if(page&&(await ui()).phase==='playing')await page.keyboard.press('Escape');}catch{}const response={type:'command-error',sequence,error:error.message};await log(response);emit(response);}
+ }
+}catch(error){emit({type:'fatal',error:error.message});process.exitCode=1;}
+finally{await shutdown('input ended or close requested');}
