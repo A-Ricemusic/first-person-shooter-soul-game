@@ -7,7 +7,8 @@ export function threatVisor(markers) {
  for(const m of enemies){
   if(visible(m)){cues.push({...m,onscreen:true,count:1,members:[m.id]});continue;}
   const angle=Math.atan2(Math.sin(m.bearing),Math.cos(m.bearing));
-  const sector=Math.round(angle/(Math.PI/6));
+  // Both sides of the rear angle seam belong to the same physical sector.
+  const sector=(Math.round(angle/(Math.PI/6))+12)%12;
   const key=`${sector}:${m.type}`;
   if(!groups.has(key))groups.set(key,[]);groups.get(key).push(m);
  }
