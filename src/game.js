@@ -127,7 +127,7 @@ export class Game {
   buildExtraction() {
     this.exit = new THREE.Group(); this.exit.position.copy(this.world.playerSpawn); this.exit.position.y = 0.04;
     this.exitRing = mesh(new THREE.TorusGeometry(EXTRACTION_RADIUS, 0.06, 8, 80), new THREE.MeshBasicMaterial({ color: 0x637b83, transparent: true, opacity: 0.5 })); this.exitRing.rotation.x = Math.PI / 2; this.exit.add(this.exitRing);
-    this.exitBeam = mesh(new THREE.CylinderGeometry(.25, 2.3, 16, 24, 1, true), new THREE.MeshBasicMaterial({color:0x65ffb7,transparent:true,opacity:.14,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}),0,8,0); this.exitBeam.visible=false; this.exit.add(this.exitBeam);
+    this.exitBeam = mesh(new THREE.CylinderGeometry(.12, .12, 3, 12, 1, true), new THREE.MeshBasicMaterial({color:0x65ffb7,transparent:true,opacity:.22,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}),0,4,3.2); this.exitBeam.visible=false; this.exit.add(this.exitBeam);
     const exitLight = new THREE.PointLight(0x65ffb7, 7, 13); exitLight.position.y=2; this.exitBeam.add(exitLight);
     this.scene.add(this.exit);
   }
@@ -369,7 +369,8 @@ export class Game {
       // Feet remain grounded; low decorative slabs may be stepped over.
       if (box.max.y < 0.32 || box.min.y > 1.8) continue;
       const nearestX = clamp(x, box.min.x, box.max.x), nearestZ = clamp(z, box.min.z, box.max.z);
-      if ((x - nearestX) ** 2 + (z - nearestZ) ** 2 < radius * radius) return false;
+      const clearance=box.uplink&&radius>=.45?Math.max(radius,1.02):radius;
+      if ((x - nearestX) ** 2 + (z - nearestZ) ** 2 < clearance * clearance) return false;
     }
     return true;
   }
@@ -605,6 +606,7 @@ export class Game {
       c.reach.visible=!c.collected&&distance<7.5;
       c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
     }
+    this.world.setUplinkState(this.cores===this.coreNodes.length,Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS)));
     this.exitRing.material.opacity = this.cores === this.coreNodes.length ? 0.7 + Math.sin(this.animTime * 3) * 0.2 : 0.35;
     this.exitRing.rotation.z += dt * 0.1;
     for (let i = this.effects.length - 1; i >= 0; i--) {

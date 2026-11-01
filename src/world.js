@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
+import UPLINK from './uplink-layout.json';
 import { CORE_SITES, SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -228,6 +229,29 @@ export async function buildWorld(scene) {
   sign('INDUCTION GUARD','CAUTION / ACTIVE INDUCTION FIELD',-8,2.2,23.06,3.5,.75,'#ffc078');
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));});}
+  // Split defense: fixed physical cover, open 2.8m center and exposed flanks.
+  let uplinkAsset;
+  try{uplinkAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/uplink-defense.glb`)).scene;}catch(_){}
+  const uplink=uplinkAsset||new THREE.Group();uplink.userData.dynamic=true;group.add(uplink);
+  const cells=[];
+  for(const p of UPLINK.parts){
+    const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);
+    const bounds=new THREE.Box3(c.clone().sub(half),c.clone().add(half));bounds.uplink=true;colliders.push(bounds);
+    if(!uplinkAsset){const m=new THREE.Mesh(new THREE.BoxGeometry(...p.size),steel);m.position.copy(c);uplink.add(m);}
+  }
+  if(!uplinkAsset)for(let i=0;i<12;i++){const m=new THREE.Mesh(new THREE.BoxGeometry(.075,.025,.25),weakCyan.clone());m.name=`UplinkCell${String(i).padStart(2,'0')}`;m.position.set(-.55+i*.1,.92,34.2);uplink.add(m);}
+  uplink.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('UplinkCell')||o.name==='Beacon'){o.material=o.material.clone();cells.push(o);}}});
+  const routeLights=new THREE.Group();routeLights.userData.dynamic=true;group.add(routeLights);
+  const routeMaterial=new THREE.MeshStandardMaterial({color:0x80bb99,emissive:0x65c791,emissiveIntensity:.7});
+  for(const route of UPLINK.routes)for(let j=1;j<route.length;j++){
+    const a=route[j-1],b=route[j],length=Math.hypot(b[0]-a[0],b[1]-a[1]);
+    for(let d=0;d<length;d+=2){const t=d/length,x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t;
+      const m=new THREE.Mesh(new THREE.BoxGeometry(.12,.025,.65),routeMaterial);m.position.set(x,.065,z);m.rotation.y=Math.atan2(b[0]-a[0],b[1]-a[1]);routeLights.add(m);
+    }
+  }
+  routeLights.visible=false;
+  sign('UPLINK / FACE THE YARD','SPLIT BAFFLES · KEEP MOVING · WATCH BOTH FLANKS',0,1.18,34.57,3.1,.65,'#94d4aa').rotation.y=Math.PI;
+  sign('RETURN / EITHER AISLE','UPLINK THROUGH THE CENTRAL GATE',0,3.7,-10.6,5,.65,'#94d4aa').rotation.y=Math.PI;
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.
   const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.55,roughness:.18,transparent:true,opacity:.68,clearcoat:1});
   for(let i=0;i<36;i++){
@@ -286,7 +310,8 @@ export async function buildWorld(scene) {
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
     colliders, medical:MEDICAL, rainPositions,
-    receivers,
+    receivers, uplink, routeLights,
+    setUplinkState(powered,progress){routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
     setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;
       if(r.progress){r.progress.scale.x=recovered?1:.12+.88*progress;r.progress.material.emissiveIntensity=recovered?.18:.35+.55*progress;r.progress.material.color.setHex(recovered?0x548875:0x287d88);}
       // Cassette remains physically docked: no disappearing cover or changing bounds.
