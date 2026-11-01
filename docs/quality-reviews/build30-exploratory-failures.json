@@ -1,0 +1,15 @@
+{
+  "failures": [
+    {
+      "check": "New angular equivalence unit test",
+      "observed": "AssertionError: 2 !== 1 at exact sector boundary",
+      "resolution": "Added deterministic rounding epsilon; all equivalent-angle cases now pass."
+    },
+    {
+      "check": "Initial expanded motion fixture while editing source",
+      "observed": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'game')",
+      "resolution": "Source edits during exploratory run invalidated test handle, consistent with Vite reload. Reran fixed-source fixture successfully."
+    }
+  ],
+  "postReview": "No independent rescore. Both raw review reports and all deaths retained."
+}

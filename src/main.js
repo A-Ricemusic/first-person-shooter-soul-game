@@ -15,7 +15,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 28</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 30</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -57,6 +57,9 @@ $('return-menu').onclick=title;$('end-menu').onclick=title;
 let messageTimer,hitTimer,flashTimer,shiftTimer,memoryTimer,directionTimer;
 function notify(text){$('announcement').textContent=text;$('announcement').classList.add('visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>$('announcement').classList.remove('visible'),2800)}
 function onEvent(e){
+ // The live optic/bearing state owns charge warnings; a timed tutorial notice
+ // would keep claiming CHARGING after the shot or a successful interrupt.
+ if(e.type==='notice'&&e.message?.startsWith('WARDEN CHARGING'))return;
  if(e.type==='phase'){clearTimeout(memoryTimer);hide('memory-card',true);$('event-feed').replaceChildren();$('damage-direction').classList.remove('visible');}
  if(e.type==='memory'){$('memory-person').textContent=e.person;$('memory-role').textContent=e.role;$('memory-text').textContent=`“${e.memory}”`;hide('memory-card',false);clearTimeout(memoryTimer);memoryTimer=setTimeout(()=>hide('memory-card',true),7500)}
 
@@ -103,6 +106,7 @@ function drawRadar(s){
 }
 
 const markerPool=new Map();
+let visorFocus;
 function drawMarkers(markers){
  const active=new Set(), placed=[];
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
@@ -111,9 +115,12 @@ function drawMarkers(markers){
  note.textContent=blocked?`${blocked.label} · SIGNAL BEHIND COVER · ${blocked.id==='core-0'?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH'}`:'';
  note.classList.toggle('hidden',!blocked);
  markers=markers.filter(m=>!m.occluded);
- const visor=threatVisor(markers);
+ const visor=threatVisor(markers,visorFocus);
+ visorFocus=visor.focused?.id;
+ document.body.classList.toggle('combat-priority',visor.cues.some(m=>m.charging||m.recent));
  let focus=$('threat-focus');if(!focus){focus=document.createElement('div');focus.id='threat-focus';$('waypoints').append(focus)}
- focus.textContent=visor.focused?`${visor.focused.label} · ${Math.round(visor.focused.health*100)}%${visor.focused.charging?' · CHARGE':visor.focused.recent?' · FIRED':''}`:'';
+ focus.textContent=visor.focused?`${visor.focused.label} · ${visor.focused.charging?'CHARGING':visor.focused.recent?'RECENT FIRE':visor.focused.health<.35?'DAMAGED':'TRACKING'}`:'';
+ focus.dataset.target=visor.focused?.id||'';
  focus.classList.toggle('charging',!!visor.focused?.charging);
  markers=[...markers.filter(m=>m.kind!=='enemy'),...visor.cues];
  const memory=$('memory-card');if(!memory.classList.contains('hidden'))placed.push(memory.getBoundingClientRect());
@@ -125,14 +132,17 @@ function drawMarkers(markers){
   if(m.kind==='enemy'){
    el.className=`world-marker enemy visor ${m.onscreen?'optic':'edge'} ${m.charging?'charging':m.recent?'recent':'hit'} ${m.type}`;
    el.dataset.members=m.members.join(',');el.dataset.count=m.count;
-   const symbol=el.querySelector('.marker-symbol');symbol.textContent=m.type==='warden'?'□':m.type==='stalker'?'△':'◇';
-   symbol.style.transform='none';el.querySelector('b').textContent=m.onscreen?'':[m.charges?`!${m.charges}`:'',m.fires?`·${m.fires}`:'',m.hits?`+${m.hits}`:''].filter(Boolean).join(' ');
-   el.querySelector('small').textContent=m.onscreen?(m.charging?'!':m.recent?'·':'+'):'➤';
-   el.querySelector('small').style.transform=m.onscreen?'none':`rotate(${m.bearing-Math.PI/2}rad)`;
-   // Never move the optic cue to solve a text collision. Open brackets sit beside
-   // the actual optic; the single text readout has a fixed HUD location.
-   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(m.bearing)*({warden:.43,stalker:.38,sentinel:.33}[m.type]||.33))}px`;
-   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(m.bearing)*({warden:.36,stalker:.31,sentinel:.26}[m.type]||.26))}px`;
+   const symbol=el.querySelector('.marker-symbol');symbol.textContent='';
+   symbol.style.transform=m.onscreen?'none':`rotate(${m.bearing+Math.PI/4}rad)`;
+   el.querySelector('b').textContent=m.onscreen?'':m.charges?`${m.charges} CHARGE${m.charges===1?'':'S'}`:m.fires?'RECENT FIRE':'RECENT HIT';
+   el.querySelector('small').textContent=m.onscreen?'':`${m.count} SOURCE${m.count===1?'':'S'}`;
+   el.querySelector('small').style.transform='none';
+   el.dataset.charges=m.charges;el.dataset.fires=m.fires;el.dataset.hits=m.hits;
+   // Optic brackets stay beside the physical emitter. Directional groups use
+   // one shared ellipse across enemy types; circular mean preserves bearing.
+   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(m.bearing)*.32)}px`;
+   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(m.bearing)*.23)}px`;
+   if(!m.onscreen)placed.push(el.getBoundingClientRect());
    continue;
   }
   const onscreen=m.front&&Math.abs(m.x)<.86&&Math.abs(m.y)<.68;
@@ -165,4 +175,4 @@ function showEnd(s){const won=s.phase==='won';$('end-manifest').replaceChildren(
 async function boot(){try{game=new Game({canvas:$('game-canvas'),onState:renderState,onEvent,onMarkers:drawMarkers});await game.init();game.setSettings(settings);loaded=true;$('deploy').disabled=false;$('deploy-label').textContent='ENTER THE STORM';$('load-status').textContent='SYSTEMS ONLINE · READY TO DEPLOY';$('load-status').classList.add('ready');if(new URLSearchParams(location.search).has('test'))window.__SOULFALL__={game,get state(){return current},deploy,settings};}catch(e){console.error(e);hide('fatal',false);$('fatal-message').textContent=`The 3D engine could not initialize. Use a desktop browser with WebGL 2 and hardware acceleration. ${e.message}`;}}
 boot();
 
-const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · ◇ Sentinel / △ Interceptor / □ Warden. ! charging, · recent fire, + recent hit. Small cues sit beside visible optics; edge arrows show bearings, with counts for nearby matching threats. The centered lower readout identifies one eligible target near your view center. Cues require a clear optic and expire; they do not mark every enemy.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);
+const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · Orange optic bracket: charging. Muted: recent fire/hit. Lower readout follows one target near aim. Bearing chevrons merge enemy types: CHARGES counts charging enemies; SOURCES counts all eligible enemies there. Individual types/histories are omitted in groups. Clear optic line of sight required; cues expire. Full memories remain in the archive.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);

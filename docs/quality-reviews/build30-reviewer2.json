@@ -1,0 +1,181 @@
+{
+  "build": "SOULFALL Build30",
+  "reviewer": 2,
+  "rawEvidence": {
+    "actionLog": "docs/media/build30-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build30-review2/a1-advance.jpg",
+      "docs/media/build30-review2/a1-coretry.jpg",
+      "docs/media/build30-review2/a1-duel.jpg",
+      "docs/media/build30-review2/a1-east.jpg",
+      "docs/media/build30-review2/a1-engage.jpg",
+      "docs/media/build30-review2/a1-lane.jpg",
+      "docs/media/build30-review2/a1-lastfight.jpg",
+      "docs/media/build30-review2/a1-optic.jpg",
+      "docs/media/build30-review2/a1-receiver.jpg",
+      "docs/media/build30-review2/a1-recover.jpg",
+      "docs/media/build30-review2/a1-reorient.jpg",
+      "docs/media/build30-review2/a1-start.jpg",
+      "docs/media/build30-review2/a1-turn.jpg",
+      "docs/media/build30-review2/a2-adjust.jpg",
+      "docs/media/build30-review2/a2-approach.jpg",
+      "docs/media/build30-review2/a2-beaconapproach.jpg",
+      "docs/media/build30-review2/a2-death.jpg",
+      "docs/media/build30-review2/a2-eastclose.jpg",
+      "docs/media/build30-review2/a2-fire.jpg",
+      "docs/media/build30-review2/a2-heartapproach.jpg",
+      "docs/media/build30-review2/a2-heartrecover.jpg",
+      "docs/media/build30-review2/a2-heartsecured.jpg",
+      "docs/media/build30-review2/a2-hold.jpg",
+      "docs/media/build30-review2/a2-intake.jpg",
+      "docs/media/build30-review2/a2-recovereast.jpg",
+      "docs/media/build30-review2/a2-returnaisle.jpg",
+      "docs/media/build30-review2/a2-returnflank.jpg",
+      "docs/media/build30-review2/a2-ring.jpg",
+      "docs/media/build30-review2/a2-service.jpg",
+      "docs/media/build30-review2/a2-southintake.jpg",
+      "docs/media/build30-review2/a2-start.jpg",
+      "docs/media/build30-review2/a2-uplink.jpg",
+      "docs/media/build30-review2/a2-uplinkfight.jpg",
+      "docs/media/build30-review2/a2-westlane.jpg",
+      "docs/media/build30-review2/a2-westsecured.jpg",
+      "docs/media/build30-review2/accepted.jpg",
+      "docs/media/build30-review2/archive.jpg",
+      "docs/media/build30-review2/brief.jpg",
+      "docs/media/build30-review2/controls.jpg",
+      "docs/media/build30-review2/menu.jpg",
+      "docs/media/build30-review2/ready.jpg"
+    ],
+    "keyEvidence": {
+      "brief": "brief.jpg",
+      "controls": "controls.jpg",
+      "firstDeath": "a1-coretry.jpg",
+      "criticalElimination": "a2-fire.jpg",
+      "allMemories": "a2-westsecured.jpg",
+      "extraction85Percent": "a2-hold.jpg",
+      "secondDeath": "a2-death.jpg",
+      "restoredStories": "archive.jpg"
+    }
+  },
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "browser": "existing tools/visible-playtest.mjs only; interactive TTY; bounded ordinary input acts and live JPEG inspection",
+    "restrictions": "No source, tests, fixtures, prior reviews, routes, coordinates or hidden state inspected. No edits to implementation. No other browser or server changes.",
+    "graphics": "Established software-WebGL fallback; no hardware performance or audio enjoyment assessment"
+  },
+  "coverage": [
+    "Read Mission Brief and How to Play through visible UI",
+    "WASD movement, mouse look, ADS, rifle fire, reload, sprint, jump, Soul Shift",
+    "Observed phase-break confirmation and critical optic elimination",
+    "Recovered East Archive, Heart, West Archive on attempt 2",
+    "Returned via yard to green beacon; extraction reached 85% before death",
+    "Read all three restored records after death"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:25",
+      "eliminations": 0,
+      "score": 0,
+      "accuracy": "0%",
+      "cores": 0,
+      "notes": "Passed opening guard, lost orientation, fired unsuccessfully, attempted receiver recovery under fire. Failure retained."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "00:57",
+      "eliminations": 1,
+      "score": 3180,
+      "accuracy": "18%",
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "cores": 3,
+      "extractionMaximumObserved": "85%",
+      "notes": "Opening optic kill; all memories recovered; died during extraction. Failure retained; no win asserted."
+    }
+  ],
+  "strengths": [
+    {
+      "observation": "Strong coherent rain-soaked cyan/amber industrial presentation with polished title, briefing, end screen and restored-record archive.",
+      "evidence": [
+        "menu.jpg",
+        "brief.jpg",
+        "archive.jpg"
+      ]
+    },
+    {
+      "observation": "Precise opening optic fire yielded an immediate named critical reward and visible elimination count.",
+      "evidence": [
+        "a2-fire.jpg"
+      ]
+    },
+    {
+      "observation": "Recovery, supplies restored, objective change, extraction edge warning and uplink percentage communicated progress clearly.",
+      "evidence": [
+        "a2-ring.jpg",
+        "a2-westsecured.jpg",
+        "a2-uplinkfight.jpg"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "observation": "Tall pylon and small receiver require careful distinction; first attempt repeatedly missed receiver approach while taking damage. Brief explains offset, and move-closer prompt helped second attempt.",
+      "evidence": [
+        "a1-recover.jpg",
+        "a1-receiver.jpg",
+        "a2-recovereast.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "observation": "Close cover repeatedly filled the camera and stopped forward travel; finding return path took correction while exposed. This is observed navigation friction, not a collision defect claim.",
+      "evidence": [
+        "a2-intake.jpg",
+        "a2-beaconapproach.jpg",
+        "a2-returnflank.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "observation": "Multiple small threat history/charge boxes compete with scene and objective cues; nearest-aim target readout helps, but interpreting threats while turning was demanding.",
+      "evidence": [
+        "a1-lastfight.jpg",
+        "a2-service.jpg",
+        "a2-hold.jpg"
+      ]
+    },
+    {
+      "severity": "low",
+      "observation": "Controls dialog has dense threat-visor explanation and the Understood button is below captured viewport; driver text click reached it. Scroll interaction was not assessed.",
+      "evidence": [
+        "controls.jpg"
+      ]
+    }
+  ],
+  "provisionalWholeGameRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 8,
+    "usability": 6.5,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "ratingRationale": "Playable mission arc with distinctive presentation, clear progression and meaningful optic/phase mechanics; navigation under pressure, HUD density and limited observed combat variety keep readiness provisional.",
+  "caveats": [
+    "Two attempts only, both deaths; victory screen unobserved.",
+    "Paused screenshot-driven input is less fluid than continuous human mouse play; low accuracy and route mistakes are reviewer limitations as well as usability evidence.",
+    "No frame-rate benchmark, hardware renderer certification, audio assessment, accessibility sweep or settings review.",
+    "Ratings are independent provisional whole-game impressions from observed coverage, not perfect or AAA certification."
+  ],
+  "closure": {
+    "explicitClose": true,
+    "browserClosed": true,
+    "driverPid": 21657,
+    "chromePid": 21658,
+    "driverExitCode": 0,
+    "ownedPidVerification": "ps -p 21657,21658 -o pid=,comm= returned no rows, exit 1; both exact PIDs absent."
+  }
+}

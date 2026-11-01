@@ -1,0 +1,59 @@
+
+> soulfall-the-last-signal@1.0.0 test:encounters
+> node tests/encounter-regressions.mjs
+
+[
+  {
+    "name": "Finite location stages fire once, independent of recovery order; no timed passive flood",
+    "stages": {
+      "initial": [
+        "warden"
+      ],
+      "passive": 1,
+      "ingress": 3,
+      "repeated": 3,
+      "total": 9,
+      "stages": [
+        "ingress",
+        "medical",
+        "engineering",
+        "heart"
+      ],
+      "wardens": 2
+    }
+  },
+  {
+    "name": "Warden body armor reduces rather than blocks damage; phase cancels and opens three-second vulnerability without free damage",
+    "armor": {
+      "body": 17,
+      "openDamage": 34,
+      "opened": 3,
+      "breaks": 1,
+      "cooldown": 4.5,
+      "health": 99
+    }
+  },
+  {
+    "name": "Precision optic bypass remains viable without phase",
+    "damage": 82
+  },
+  {
+    "name": "All cores, both ingress bypasses reachable; story props reject entry",
+    "route": {
+      "cores": [
+        true,
+        true,
+        true
+      ],
+      "bypasses": [
+        true,
+        true
+      ],
+      "propsBlocked": [
+        true,
+        true,
+        true
+      ]
+    }
+  }
+]

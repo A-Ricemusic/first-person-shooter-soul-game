@@ -1,0 +1,180 @@
+{
+  "build": "SOULFALL Build30",
+  "reviewer": "independent reviewer 1",
+  "rawEvidence": {
+    "actionLog": "docs/media/build30-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build30-review1/a1-all-memories.jpg",
+      "docs/media/build30-review1/a1-beacon-entry.jpg",
+      "docs/media/build30-review1/a1-east-receiver.jpg",
+      "docs/media/build30-review1/a1-east-run.jpg",
+      "docs/media/build30-review1/a1-exit-west.jpg",
+      "docs/media/build30-review1/a1-final-stand.jpg",
+      "docs/media/build30-review1/a1-find-ring.jpg",
+      "docs/media/build30-review1/a1-guard-fire.jpg",
+      "docs/media/build30-review1/a1-heart-approach.jpg",
+      "docs/media/build30-review1/a1-heart-defense.jpg",
+      "docs/media/build30-review1/a1-heart-recover.jpg",
+      "docs/media/build30-review1/a1-return-east-aisle.jpg",
+      "docs/media/build30-review1/a1-ring-defense.jpg",
+      "docs/media/build30-review1/a1-uplink-hold.jpg",
+      "docs/media/build30-review1/a1-uplink.jpg",
+      "docs/media/build30-review1/a1-west-advance.jpg",
+      "docs/media/build30-review1/a1-west-door.jpg",
+      "docs/media/build30-review1/a1-west-lane.jpg",
+      "docs/media/build30-review1/a1-west-receiver-approach.jpg",
+      "docs/media/build30-review1/a1-west-recovered.jpg",
+      "docs/media/build30-review1/attempt1-start.jpg",
+      "docs/media/build30-review1/brief-accepted.jpg",
+      "docs/media/build30-review1/controls-accepted.jpg",
+      "docs/media/build30-review1/how-to-play.jpg",
+      "docs/media/build30-review1/memory-archive.jpg",
+      "docs/media/build30-review1/menu.jpg",
+      "docs/media/build30-review1/mission-brief.jpg"
+    ],
+    "keyEvidence": [
+      "a1-guard-fire.jpg",
+      "a1-west-recovered.jpg",
+      "a1-heart-recover.jpg",
+      "a1-all-memories.jpg",
+      "a1-beacon-entry.jpg",
+      "a1-uplink-hold.jpg",
+      "a1-ring-defense.jpg",
+      "a1-final-stand.jpg",
+      "memory-archive.jpg"
+    ]
+  },
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "browser": "existing tools/visible-playtest.mjs only; interactive TTY JSON commands; live JPEG inspection via view_image",
+    "instructionsRead": "Mission Brief and How to Play through visible UI",
+    "restrictions": "No source, tests, prior reviews, hidden state, routes, coordinates, or alternative browser inspected. No source edits.",
+    "coverage": [
+      "title/menu",
+      "mission briefing",
+      "operator handbook",
+      "movement and mouse look",
+      "ADS and rifle fire",
+      "reload",
+      "sprint",
+      "jump input",
+      "Soul Shift input and cooldown",
+      "three memory recoveries",
+      "return aisles",
+      "extraction approach and defense",
+      "death result",
+      "recovered memory archive"
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:56",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracy": "5%",
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "description": "Killed initial guard with ADS fire, advanced west, recovered West Archive then Heart then East Archive, returned by east aisle, reached beacon vicinity, failed to establish successful uplink while taking fire. Actual failure retained.",
+      "endingScreenshot": "docs/media/build30-review1/a1-final-stand.jpg"
+    }
+  ],
+  "observedStrengths": [
+    {
+      "finding": "Cohesive stormy industrial art direction, cyan/amber palette, reflected light and strong title/result typography.",
+      "evidence": [
+        "menu.jpg",
+        "attempt1-start.jpg",
+        "a1-final-stand.jpg"
+      ]
+    },
+    {
+      "finding": "Core labels, distances, floor rings and hold-E prompt supported all three recoveries without external guidance; recovery replenishment sustained movement.",
+      "evidence": [
+        "a1-west-receiver-approach.jpg",
+        "a1-heart-recover.jpg",
+        "a1-all-memories.jpg"
+      ]
+    },
+    {
+      "finding": "Initial optic shot produced visible critical elimination feedback; reload and dash cooldown were legible.",
+      "evidence": [
+        "a1-guard-fire.jpg",
+        "a1-west-advance.jpg",
+        "a1-exit-west.jpg"
+      ]
+    },
+    {
+      "finding": "Recovered stories remained accessible after death, giving objectives narrative meaning.",
+      "evidence": [
+        "memory-archive.jpg"
+      ]
+    }
+  ],
+  "observedIssues": [
+    {
+      "severity": "medium",
+      "finding": "Extraction proximity did not translate into clear action feedback for me: at displayed 3.7 m then 2.9 m the HUD still said reach the green beacon and no hold progress appeared. Searching and turning under fire ended in death. This may be positioning error; it is a close-range usability observation, not a confirmed trigger bug.",
+      "evidence": [
+        "a1-uplink.jpg",
+        "a1-uplink-hold.jpg",
+        "a1-ring-defense.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Several recent-fire/charge boxes occupied the lower combat view at once, including over the weapon/objective structure. They indicated danger bearings but required reading while navigating; identification and precise retargeting remained difficult.",
+      "evidence": [
+        "a1-heart-defense.jpg",
+        "a1-all-memories.jpg",
+        "a1-find-ring.jpg"
+      ]
+    },
+    {
+      "severity": "low",
+      "finding": "Handbook threat-visor explanation is dense and small; its final Understood control was outside the captured panel view although the UI click was available.",
+      "evidence": [
+        "how-to-play.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Most recovery traversal could be completed with only one elimination; pressure concentrated at the exposed extraction approach. This attempt suggests an uneven combat/navigation cadence, though one run cannot establish balance.",
+      "evidence": [
+        "a1-all-memories.jpg",
+        "a1-final-stand.jpg"
+      ]
+    }
+  ],
+  "provisionalWholeGameRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 6.5,
+    "readability": 6,
+    "AAAReadiness": 4
+  },
+  "ratingBasis": "Strongly presented small mission with functional combat, objectives and aftermath; crowded combat cues and extraction friction limited this run. AAAReadiness reflects limited observed scope, fidelity and validation, not certification.",
+  "caveats": [
+    "One attempt only; no victory observed.",
+    "Bounded input batches and screenshot retargeting differ from continuous human mouse play; poor accuracy is partly reviewer/control limitation.",
+    "Software-WebGL fallback; no hardware performance conclusions.",
+    "No audio enjoyment assessment.",
+    "Jump input exercised but successful jump traversal not established. Phase evades not achieved, so charge-break effectiveness remains unverified.",
+    "No settings, accessibility breadth, replay balance or long-session stability assessment."
+  ],
+  "closure": {
+    "explicitClose": true,
+    "browserClosed": true,
+    "driverPid": 18173,
+    "chromePid": 18174,
+    "driverProcessExitCode": 0,
+    "pidVerification": {
+      "command": "ps -p 18173,18174 -o pid=,comm=",
+      "exitCode": 1,
+      "output": "",
+      "interpretation": "Both exact owned PIDs absent"
+    }
+  }
+}
