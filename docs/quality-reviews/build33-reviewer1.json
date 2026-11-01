@@ -1,0 +1,170 @@
+{
+  "reviewer": "build33-reviewer1",
+  "role": "fresh independent ordinary visible player",
+  "build": 33,
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "driver": "existing tools/visible-playtest.mjs via npm run playtest:visible; help read first; live TTY",
+    "sourceRead": false,
+    "implementationEdited": false,
+    "hiddenStateOrEvalUsed": false,
+    "assistedOrForcedOutcome": false,
+    "screenshotsInspected": true,
+    "graphics": "Authorized Chrome/Playwright software-WebGL fallback; no hardware performance conclusion"
+  },
+  "evidence": {
+    "actionLog": "../media/build33-review1/actions.jsonl",
+    "screenshots": "../media/build33-review1/",
+    "brief": "../media/build33-review1/brief.jpg",
+    "controls": "../media/build33-review1/controls.jpg"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "actual death",
+      "missionTime": "00:34",
+      "coresRecovered": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "eliminations": 0,
+      "accuracyPercent": 0,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "score": 2000,
+      "summary": "Advanced past entry guard, sprinted and dashed toward west; recovered west and Heart under fire, attempted east approach and died. Fired and used ADS/reload but missed targets.",
+      "deathEvidence": "../media/build33-review1/a1-east-recovery.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "actual death",
+      "missionTime": "00:55",
+      "coresRecovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "eliminations": 1,
+      "accuracyPercent": 4,
+      "criticalEliminations": 1,
+      "phaseEvades": 2,
+      "score": 3330,
+      "summary": "Learned to kill the entry guard with aimed optic fire. Recovered all cores; navigated around cover after a blocked approach, returned to green beacon, reached roughly 47% uplink on screenshot. At 17 health, movement and dash escaped the ring, uplink decayed and death followed.",
+      "deathEvidence": "../media/build33-review1/a2-death.jpg",
+      "holdEvidence": "../media/build33-review1/a2-uplink.jpg",
+      "lastLiveEvidence": "../media/build33-review1/a2-hold-fight.jpg"
+    }
+  ],
+  "coverage": {
+    "observed": [
+      "Title",
+      "Mission Brief",
+      "How to Play",
+      "entry guard",
+      "central yard",
+      "west triage/archive",
+      "Heart",
+      "east maintenance/archive",
+      "all three memory recoveries",
+      "extraction return",
+      "extraction hold and decay",
+      "death/retry",
+      "recovered-memory archive"
+    ],
+    "controlsUsed": [
+      "WASD movement",
+      "mouse look",
+      "ADS",
+      "fire",
+      "reload",
+      "Ctrl sprint",
+      "Shift dash",
+      "Space jump",
+      "hold E recovery",
+      "Escape pause/resume via driver"
+    ],
+    "notObserved": [
+      "successful extraction and victory presentation",
+      "all alternate paths",
+      "successful close-range charge break/stagger confirmed visually",
+      "settings changes"
+    ],
+    "limits": "Two actual deaths, no win. Screenshot-and-command play with automatic pauses constrains continuous aim and reaction assessment. Whole-game ratings are provisional judgments with incomplete completion coverage. No audio enjoyment, hardware FPS, or AAA certification claims."
+  },
+  "findings": [
+    {
+      "type": "strength",
+      "finding": "Strong cohesive stormy industrial presentation, cyan/orange language, readable large objective typography, distinctive Heart landmark and polished title/death/archive layouts.",
+      "evidence": [
+        "../media/build33-review1/menu.jpg",
+        "../media/build33-review1/a2-heart-ring.jpg",
+        "../media/build33-review1/memory-archive.jpg"
+      ]
+    },
+    {
+      "type": "strength",
+      "finding": "Brief, cyan markers, receiver distance and floor rings made all three memories discoverable. Extraction explicitly reported distance to edge, progress, and decay. Learning the optic weak point produced an immediate critical kill on attempt two.",
+      "evidence": [
+        "../media/build33-review1/a2-guard-fire.jpg",
+        "../media/build33-review1/a2-beacon.jpg",
+        "../media/build33-review1/a2-uplink.jpg"
+      ]
+    },
+    {
+      "type": "concern",
+      "finding": "Extraction asks the player to move within a small ring while the primary defensive dash can leave it. My emergency dash left the zone, decayed progress and was followed by death. Feedback is clear, but margin for learning at low health is harsh. This is observed difficulty/friction, not a proven impossibility.",
+      "evidence": [
+        "../media/build33-review1/a2-uplink.jpg",
+        "../media/build33-review1/a2-hold-fight.jpg"
+      ]
+    },
+    {
+      "type": "concern",
+      "finding": "Threat labels and recent-fire/charge boxes are numerous around the lower central view. They communicate pressure but often made it hard to identify the actual firing body and choose a precise next target during movement.",
+      "evidence": [
+        "../media/build33-review1/a1-heart-recover.jpg",
+        "../media/build33-review1/a2-east-near.jpg"
+      ]
+    },
+    {
+      "type": "concern",
+      "finding": "Cover and building edges can consume an attempted diagonal route with a near-featureless wall filling the view. Backing out solved this; the nearest-core cue could not itself explain how to get around the obstruction.",
+      "evidence": [
+        "../media/build33-review1/a2-heart-route.jpg",
+        "../media/build33-review1/a2-clear-cover.jpg",
+        "../media/build33-review1/a2-back-out.jpg"
+      ]
+    },
+    {
+      "type": "concern",
+      "finding": "Geometric enemies and scenery, flat distant surfaces, and largely repeated recovery interactions support a polished small slice but do not reach the asset, animation and encounter richness implied by AAA readiness.",
+      "evidence": [
+        "../media/build33-review1/a2-sentinel-fire.jpg",
+        "../media/build33-review1/a2-return.jpg"
+      ]
+    }
+  ],
+  "provisionalWholeGameRatingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 7,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "ratingRationale": "A coherent playable mission with meaningful optic aim, cover, resource recovery, dash and escalation. Second-attempt progress demonstrates learning. Two deaths, limited successful combat beyond the entry, small extraction movement margin, dense cues, and modest content/asset sophistication limit confidence and readiness.",
+  "closure": {
+    "command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 39442,
+    "chromePid": 39443,
+    "sessionId": 87609,
+    "sessionExitCode": 0,
+    "pidVerificationCommand": "ps -p 39442,39443 -o pid=,ppid=,command=",
+    "pidVerificationExitCode": 1,
+    "pidVerificationOutput": "",
+    "verifiedExactOwnedPidsAbsent": true,
+    "browserRemains": false
+  }
+}

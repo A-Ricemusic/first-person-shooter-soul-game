@@ -215,12 +215,12 @@ export async function buildWorld(scene) {
   for(const p of MEDICAL.parts)if(p.solid){const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(half),c.clone().add(half)));}
   sign('TRIAGE / EVACUATION','LAST FERRY · INTAKE → ARCHIVE',-25,5.1,-8.66,7,1.1,'#b5d2c2');
   const service=MEDICAL.openings.find(o=>o.name==='service');
-  const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',service.center[0]+.34,4.6,service.center[1],4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
+  const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',service.center[0]+.34,5.2,service.center[1],4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
   const wayfinding=MEDICAL.wayfinding;
   const exitSign=sign('EXIT','COURTYARD',...wayfinding.serviceSign,3.7,.7,'#c0d9ad');exitSign.rotation.y=-Math.PI/2;
   const wallExit=sign('EXIT →','COURTYARD / LAST FERRY',...wayfinding.wallSign,3.6,.78,'#c0d9ad');wallExit.rotation.y=-Math.PI/2;
   const intakeExit=sign('EXIT / INTAKE','LAST FERRY',...wayfinding.intakeSign,3.9,.7,'#c0d9ad');intakeExit.rotation.y=Math.PI;
-  for(const z of [-12,-22]){box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
+  for(const z of [-12,-22]){for(const x of [-27,-23])box(x,7.02,z,.05,.34,.05,steel);box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
   // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.
   point(-18,3.5,-14,0xe3c69b,16,8);
   // Authored memory furniture lives in perimeter bays, outside the generous

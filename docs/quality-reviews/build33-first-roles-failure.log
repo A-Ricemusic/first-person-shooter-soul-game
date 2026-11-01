@@ -1,0 +1,22 @@
+
+> soulfall-the-last-signal@1.0.0 test:roles
+> node tests/build32-role-contracts.mjs && node tests/build32-roles.mjs
+
+Role contracts: hysteresis, sticky return, immutable home, 3s sight memory, weapon/health independence, unassigned hunter passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"cells":21461,"roster":[{"role":"guard","type":"warden","walkable":true,"position":[0,0,22.021],"reachable":true},{"role":"hunter","type":"sentinel","walkable":true,"position":[-21.979162164589013,0,-4.997395270573627],"reachable":true},{"role":"hunter","type":"sentinel","walkable":true,"position":[21.979162164589013,0,-4.997395270573627],"reachable":true},{"role":"guard","type":"sentinel","walkable":true,"position":[-31,0,-25],"reachable":true},{"role":"guard","type":"sentinel","walkable":true,"position":[-17,0,-25],"reachable":false},{"role":"hunter","type":"stalker","walkable":true,"position":[30.991208923907283,0,-24.969231233675494],"reachable":true},{"role":"hunter","type":"stalker","walkable":true,"position":[15.991208923907283,0,-24.969231233675494],"reachable":true},{"role":"guard","type":"warden","walkable":true,"position":[0,0,-40.5],"reachable":true},{"role":"guard","type":"sentinel","walkable":true,"position":[-16,0,-35],"reachable":true},{"role":"hunter","type":"sentinel","walkable":true,"position":[22.020837835410987,0,-5.002604729426373],"reachable":true},{"role":"hunter","type":"sentinel","walkable":true,"position":[-30.97980799709954,0,20.005769143685846],"reachable":true},{"role":"hunter","type":"stalker","walkable":true,"position":[-18,0,23],"reachable":true},{"role":"hunter","type":"stalker","walkable":true,"position":[18,0,23],"reachable":true}]}
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/build32-roles.mjs:36:681
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

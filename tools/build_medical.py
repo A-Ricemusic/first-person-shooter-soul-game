@@ -49,17 +49,18 @@ def build():
         box('Green jamb identity',(-14.305,-z,2.85),(.014,.15,5.6),green,0)
         for h in [.4,2.8,5.3]:box('Jamb captive anchor',(-14.317,-z,h),(.01,.07,.07),edge,0)
     # Sign hangs directly from the existing lintel; short rods do not enter headroom.
-    for z in [-16.7,-13.8]:box('Lintel sign hanger',(-14.34,-z,5.57),(.06,.06,.26),steel,0)
-    box('Service sign steel tray',(-14.31,15.25,5.2),(.035,3.8,.78),steel,0)
+    for z in [-15.45,-12.55]:box('Lintel sign hanger',(-14.34,-z,5.57),(.06,.06,.26),steel,0)
+    box('Service sign steel tray',(-14,14,5.2),(.68,4.1,.9),steel,0)
     box('Return wall sign tray',(-14.31,21.2,2.3),(.035,3.7,.85),steel,0)
-    box('Intake sign tray',(-25,9.31,5.2),(4,.035,.75),steel,0)
+    box('Intake sign tray',(-25,9,5.2),(7,.68,1.1),steel,0)
+    for x in [-27.5,-22.5]:box('Intake sign hanger',(x,9,5.57),(.06,.06,.26),steel,0)
     # Replace featureless wall planes with purpose: washable crash rail, drainage
     # band, modular liner joints and local tide marks, all on existing wall faces.
     for x in [-35,-32,-29,-26,-23,-20,-17]:
         box('Rear washable liner',(x,28.684,1.05),(2.86,.018,1.8),enamel,0)
         box('Rear sediment tide', (x,28.67,.36),(2.86,.014,.15),stain,0)
         box('Rear crash rail',(x,28.65,1.42),(2.86,.05,.12),steel,0)
-    for z in [-26,-23,-20.5,-10.4]:
+    for z in [-26,-23,-20.5]:
         box('Service wall washable liner',(-14.313,-z,1.05),(.02,1.6,1.8),enamel,0)
         box('Service wall crash rail',(-14.34,-z,1.4),(.04,1.6,.12),steel,0)
         box('Service wall tide mark',(-14.33,-z,.38),(.02,1.6,.12),stain,0)
@@ -68,4 +69,4 @@ bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'west-triage.blend'))
 
 tri=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH')
-json.dump({'asset':'west-triage','author':'SOULFALL original procedural Blender authorship','source':'tools/build_medical.py','layout':'src/medical-layout.json','units':'metres; layout Y up / Blender Z up / GLB Y up','triangles':tri,'glbBytes':os.path.getsize(os.path.join(OUT,'west-triage.glb')),'collision':'Original authoritative solid shell/furniture bounds unchanged. Embedded wall liners and jambs are surface fittings. Paint films .006m thick are nonblocking. No independent navigation blockers.','dependencies':'Original local helpers; no downloaded or branded assets'},open(os.path.join(OUT,'west-triage-provenance.json'),'w'),indent=2)
+json.dump({'asset':'west-triage','author':'SOULFALL original procedural Blender authorship','source':'tools/build_medical.py','layout':'src/medical-layout.json','units':'metres; layout Y up / Blender Z up / GLB Y up','triangles':tri,'glbBytes':os.path.getsize(os.path.join(OUT,'west-triage.glb')),'collision':'Build33 authoritative open southeast bay, solid column and connected header beams; rear relocated intake desk. Embedded wall liners and jambs are surface fittings. Paint films .006m thick are nonblocking. No independent navigation blockers.','dependencies':'Original local helpers; no downloaded or branded assets'},open(os.path.join(OUT,'west-triage-provenance.json'),'w'),indent=2)

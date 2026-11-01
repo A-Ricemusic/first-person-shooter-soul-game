@@ -1,0 +1,175 @@
+{
+  "build": 33,
+  "reviewer": "reviewer2",
+  "mode": "fresh independent ordinary visible review",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "driver": "npm run playtest:visible -- --out docs/media/build33-review2",
+    "help_read_first": true,
+    "normal_ui_only": true,
+    "screenshots_visually_inspected": true,
+    "source_tests_prior_reviews_hidden_state_read": false,
+    "implementation_modified": false,
+    "attempt_limit": 2,
+    "graphics": "Software-WebGL fallback; no hardware FPS or audio enjoyment claim",
+    "interaction_limit": "Discrete driver actions with Escape pauses; precision and reaction differ from continuous human mouse play."
+  },
+  "evidence": {
+    "raw_actions": "../media/build33-review2/actions.jsonl",
+    "screenshots": "../media/build33-review2/",
+    "attempt1_death": "../media/build33-review2/a1-heart-fight.jpg",
+    "attempt2_death": "../media/build33-review2/a2-return-aisle.jpg",
+    "all_cores": "../media/build33-review2/a2-third-core.jpg",
+    "archive": "../media/build33-review2/a2-archive.jpg"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "actual death",
+      "mission_time": "00:29",
+      "memories": [
+        "Mara Solberg"
+      ],
+      "eliminations": 0,
+      "accuracy_percent": 0,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "score": 1000,
+      "account": "Rushed past induction, found west receiver and recovered it. Reached Heart but held E at 3.3m outside activation range; died under crossfire before recovery."
+    },
+    {
+      "attempt": 2,
+      "outcome": "actual death",
+      "mission_time": "00:55",
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "eliminations": 1,
+      "accuracy_percent": 5,
+      "critical_eliminations": 1,
+      "phase_evades": 1,
+      "score": 3255,
+      "account": "Killed induction guard by aiming at optic, recovered west, learned cover and Heart receiver placement, recovered Heart and east. Reached return objective with 70 health/60 shield. Died during attempted sprint/dash return before reaching extraction zone."
+    }
+  ],
+  "coverage": {
+    "observed": [
+      "Title menu",
+      "Mission Brief",
+      "How to Play",
+      "WASD movement",
+      "mouse look",
+      "ADS",
+      "fire",
+      "reload",
+      "sprint",
+      "jump",
+      "Soul Shift",
+      "confirmed phase break announcement",
+      "shield regeneration",
+      "west triage",
+      "Heart relay",
+      "east maintenance",
+      "all three memory interactions",
+      "supply restoration",
+      "return objective and extraction guidance",
+      "death summary",
+      "recovered records"
+    ],
+    "unobserved": [
+      "Extraction zone hold combat",
+      "victory screen",
+      "successful full mission completion",
+      "settings changes",
+      "audio assessment",
+      "sustained hardware performance"
+    ]
+  },
+  "provisional_whole_game_ratings_out_of_10": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 6.5,
+    "readability": 6.0,
+    "AAA_readiness": 4.0
+  },
+  "ratings_scope": "Whole-game impressions from two actual terminal attempts, not a certification. All cores reached; extraction finale and victory remain unverified. Ratings reflect witnessed experience and the coverage limits.",
+  "findings": [
+    {
+      "severity": "strength",
+      "finding": "Cohesive rain-soaked industrial art direction, cyan objective lighting, bold title/end typography and concise memory archive create a clear identity.",
+      "evidence": [
+        "menu.jpg",
+        "a2-heart-core.jpg",
+        "a2-archive.jpg"
+      ]
+    },
+    {
+      "severity": "strength",
+      "finding": "Learning changed the run materially: precise induction optic fire earned a critical kill and preserved initial resources; second attempt collected all cores. Shield regeneration and recovery supplies made a damaged run recoverable.",
+      "evidence": [
+        "a2-guard-fire.jpg",
+        "a2-heart-core.jpg",
+        "a2-third-core.jpg"
+      ]
+    },
+    {
+      "severity": "moderate",
+      "finding": "Receiver interaction is easy to misjudge: at Heart, 3.3m and 3.2m distances showed MOVE CLOSER despite standing beside the large illuminated pylon and apparent floor ring. I spent exposed time holding E with no recovery. Brief does distinguish receiver from pylon, but geometry dominates the immediate view.",
+      "evidence": [
+        "a1-heart-recover.jpg",
+        "a2-heart-combat-recover.jpg",
+        "a2-heart-core.jpg"
+      ]
+    },
+    {
+      "severity": "moderate",
+      "finding": "Threat readability competes with scenery and UI: small orange square enemies resembled mounted equipment to this new player; several RECENT FIRE/CHARGE panels and receiver labels accumulated near the weapon. I wasted shots and time identifying threats. This is an experience observation, not a damage or aim-system defect claim.",
+      "evidence": [
+        "a2-sentinel-fight.jpg",
+        "a2-sentinel-aim.jpg",
+        "a2-around-block.jpg"
+      ]
+    },
+    {
+      "severity": "moderate",
+      "finding": "Return escalation was abrupt in this run: after all cores, a 4.5 second sprint/dash attempt from 70 health/60 shield ended in death. The guidance named beacon and cover aisles, but I did not resolve a safe return before dying. Cannot attribute cause to balance versus route/aim error without further attempts.",
+      "evidence": [
+        "a2-third-core.jpg",
+        "a2-return-aisle.jpg"
+      ]
+    },
+    {
+      "severity": "minor",
+      "finding": "How to Play clearly lists controls but its long Threat Visor paragraph places substantial terminology into onboarding. In combat, interpreting merged sources and charges still required effort.",
+      "evidence": [
+        "controls.jpg",
+        "a2-heart-hold.jpg"
+      ]
+    },
+    {
+      "severity": "limitation",
+      "finding": "Presentation is polished for a browser slice; simple repeated architecture and enemy silhouettes, short observed mission arc, and unverified finale do not support AAA readiness certification.",
+      "evidence": [
+        "a2-east-receiver.jpg",
+        "a2-return-aisle.jpg"
+      ]
+    }
+  ],
+  "driver_errors": "One malformed JSON click and two selector errors while closing archive; corrected through visible UI. No gameplay state was forced.",
+  "closure": {
+    "command": {
+      "op": "close"
+    },
+    "driverPid": 40403,
+    "chromePid": 40404,
+    "browserClosed": true,
+    "session_exit_code": 0,
+    "ps_verification_command": "ps -p 40403,40404 -o pid=,ppid=,command=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "owned_pids_absent": true,
+    "evidence": "Driver closed result reported both exact PIDs and browserClosed:true; subsequent ps returned no rows."
+  }
+}
