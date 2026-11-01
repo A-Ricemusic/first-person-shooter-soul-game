@@ -35,7 +35,7 @@ try {
  const graph=await page.evaluate(()=>{
   const g=window.__SOULFALL__.game, minX=-36,maxX=36,minZ=-41,maxZ=41,queue=[[0,31]],seen=new Set(['0,31']);
   for(let i=0;i<queue.length;i++){const [x,z]=queue[i];for(const [dx,dz]of [[1,0],[-1,0],[0,1],[0,-1]]){const a=x+dx,b=z+dz,k=`${a},${b}`;if(a>=minX&&a<=maxX&&b>=minZ&&b<=maxZ&&!seen.has(k)&&g.debug.canOccupy(a,b)){seen.add(k);queue.push([a,b])}}}
-  return {reachable:queue.length,cores:g.coreNodes.map(c=>seen.has(`${c.position.x},${c.position.z}`)),blocked:!g.debug.canOccupy(0,-8),outside:!g.debug.canOccupy(38,0)};
+  return {reachable:queue.length,cores:g.coreNodes.map(c=>seen.has(`${c.position.x},${c.position.z+2}`)),blocked:!g.debug.canOccupy(0,-8),outside:!g.debug.canOccupy(38,0)};
  });assert.ok(graph.cores.every(Boolean));assert.ok(graph.blocked&&graph.outside);record('Arena connectivity & cover',`${graph.reachable} traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.`);
  // Freeze threats for focused mechanics checks without changing the player's resource implementation.
  await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.debug.killAll();g.debug.teleport(0,12);g.yaw=0;g.pitch=0;g.animate(0)});

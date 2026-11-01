@@ -1,0 +1,40 @@
+{
+  "reviewer": "reviewer2",
+  "build": 19,
+  "provisional": true,
+  "ratingsOutOf10": {"wholeGame": 7.1, "gameplay": 7.0, "presentation": 8.2, "usability": 7.4, "readability": 6.7, "aaa": 5.8},
+  "attempts": [
+    {"attempt":1,"memories":3,"eliminations":1,"extracted":false,"outcome":"Death during extraction hold","missionTime":"00:49","score":3180,"accuracyPercent":9,"criticalEliminations":1,"phaseEvades":0,"lastLiveEvidence":"docs/media/build19-review2-20.jpg","lastLiveUplinkPercent":6,"finalEvidence":"docs/media/build19-review2-21.jpg"},
+    {"attempt":2,"memories":3,"eliminations":1,"extracted":false,"outcome":"Death on return to extraction; exact final position not observed","missionTime":"00:36","score":3330,"accuracyPercent":6,"criticalEliminations":1,"phaseEvades":2,"finalEvidence":"docs/media/build19-review2-26.jpg"}
+  ],
+  "method": {
+    "url":"http://127.0.0.1:5173/",
+    "browser":"Installed Google Chrome, headless Playwright, --enable-unsafe-swiftshader --ignore-gpu-blocklist",
+    "viewport":"1280x800",
+    "fallbackAuthorization":"Historical Preview automation snapshot timed out after15000ms; browser fallback explicitly authorized",
+    "ordinaryControls": "Normal menu, briefing and handbook; WASD, Control sprint, Shift dash, E recovery, R reload, left mouse fire; synthetic relative MouseEvent movement for looking",
+    "pauseAdvantage":"Live screenshots followed immediately by ordinary Escape. Resume button clicked between decisions. Reasoning occurred paused, providing a planning advantage. Escape alone did not resume; an early attempted action remained paused and is retained in log.",
+    "decisionSources":"Visible screenshots and normal visible body text only. No source, tests, dossier, other reviews, internals, test URL, fixtures or freeze manifest inspected before or during ordinary attempts.",
+    "scope":"Two bounded attempts, both pursued all objectives; no third attempt or arranged fixture checks.",
+    "capture":"CDP Page.captureScreenshot JPEG quality70, then normal Escape; simulation remained live during captures and command overhead.",
+    "browsersClosed":true,
+    "controllerClosed":true
+  },
+  "captureDurationsMs":[64,128,301,184,110,177,172,264,190,233,360,254,285,390,260,199,242,186,107,211,270,208,272,286,187,192],
+  "captureLatencySummary":"64–390 ms; captures include normal live exposure until following Escape completes. Log shot duration also includes Escape overhead; listed values are capture/file-write elapsed timings printed by driver.",
+  "actionLatency":"Requested and actual durations retained per action in docs/media/build19-review2-actions.json. Most actual actions were within 134 ms of requested duration, but one requested 1800 ms action took 4349 ms, adding 2549 ms of potential ordinary live exposure. Some capture/control delays and synthetic input constrain difficulty conclusions.",
+  "evidence": [
+    {"file":"docs/media/build19-review2-02.jpg","finding":"Cohesive title composition, rain and wet concrete, strong teal/amber palette; readable mission invitation."},
+    {"file":"docs/media/build19-review2-05.jpg","finding":"Opening critical elimination registered, full health/shield. Obvious archive markers and radar make the route legible."},
+    {"file":"docs/media/build19-review2-08.jpg","finding":"West recovery presents a distinct named memory and replenishes supplies. Enemy status labels remain visible through scenery."},
+    {"file":"docs/media/build19-review2-11.jpg","finding":"Heart pylon is obvious but nearby receiver needs precise approach; move-closer prompt and distance expose the distinction."},
+    {"file":"docs/media/build19-review2-14.jpg","finding":"Heart recovered. Multiple sentinel/warden labels overlap world objects and the memory panel; effects further crowd the combat view."},
+    {"file":"docs/media/build19-review2-17.jpg","finding":"All memories secured, clear extraction handoff with six-second hold requirement. Only opening guard eliminated; routing can bypass much combat."},
+    {"file":"docs/media/build19-review2-20.jpg","finding":"Reached extraction and observed 6% uplink, 100 health and 47 shield. Incoming interceptor labels provide warning but combat direction is difficult to parse in clutter."},
+    {"file":"docs/media/build19-review2-21.jpg","finding":"First death preserves all three memory names and transparent mission statistics."},
+    {"file":"docs/media/build19-review2-25.jpg","finding":"Second all-three recovery confirmed with full health/shield; recovery reward is clear and generous."},
+    {"file":"docs/media/build19-review2-26.jpg","finding":"Second death, three memories retained in recap; 2 phase evades registered."}
+  ],
+  "blockersAndRisks": ["Extraction not completed in either ordinary attempt; successful ending remains unverified.","Enemy status labels can overlap each other, memory prose, gun and scenery, reducing target/direction clarity.","Large pylon and small receiver distinction caused several repositioning steps at Heart; prompt eventually resolved it.","A small roster of simple hovering/box-like opponents and repeated concrete architecture limit AAA presentation relative to the strong graphic design.","Stationary extraction was lethal after bypassing most guards. This is observed outcome, not a verified balance defect: poor combat preparation, synthetic input and latency all contributed."],
+  "limitations": ["Not a human realtime, hardware performance, audio quality or enjoyment proof.","Headless SwiftShader rendering and tool control differ from native mouse play.","Paused reasoning and synthetic relative look provide planning advantages while live capture/command latency can disadvantage survival.","No hidden-state inspection, fixture testing or source-freeze hash verification was performed. No game/assets modified."]
+}

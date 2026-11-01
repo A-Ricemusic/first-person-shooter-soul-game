@@ -9,7 +9,7 @@ try{
  const THREE=await import('/node_modules/three/build/three.module.js'),g=window.__SOULFALL__.game,m=g.world.medical,checks=[];
  const v=(x,y,z)=>new THREE.Vector3(x,y,z);
  for(const [x,z]of m.spawns)if(!g.canOccupy(x,z,.55))throw Error('Blocked medical spawn');
- for(const [a,c] of [[[-25,-3],[-32,-25]],[[-7,-16],[-34,-16]],[[-24,-15],[0,31]]]){const path=g.navigation.path({x:a[0],z:a[1]},{x:c[0],z:c[1]});if(!path.length)throw Error('Unreachable approach');checks.push({route:[a,c],nodes:path.length});}
+ for(const [a,c] of [[[-25,-3],[-32,-25]],[[-7,-16],[-34,-16]],[[-24,-13.5],[0,31]]]){const path=g.navigation.path({x:a[0],z:a[1]},{x:c[0],z:c[1]});if(!path.length)throw Error('Unreachable approach');checks.push({route:[a,c],nodes:path.length});}
  const los={wall:g.hasLineOfSight(v(-18,1.3,-5),v(-18,1.3,-13),0),south:g.hasLineOfSight(v(-25,1.3,-5),v(-25,1.3,-13),0),east:g.hasLineOfSight(v(-9,1.3,-16),v(-20,1.3,-16),0)};
  for(let i=0;i<120;i++)g.world.update(1/60,i/60);
  const sh=m.shelter,r=g.world.rainPositions;let rainLeaks=0;

@@ -1,0 +1,118 @@
+{
+  "build": 19,
+  "reviewer": "reviewer1",
+  "provisional": true,
+  "ratingsOutOf10": {
+    "wholeGame": 7.0,
+    "gameplay": 6.8,
+    "presentation": 8.1,
+    "usability": 7.6,
+    "readability": 6.8,
+    "AAA": 5.5
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "memories": 3,
+      "eliminations": 1,
+      "extracted": false,
+      "outcome": "death returning to extraction",
+      "missionTime": "00:53",
+      "score": 3180,
+      "accuracyPercent": 7,
+      "criticalEliminations": 1,
+      "phaseEvades": 0
+    },
+    {
+      "attempt": 2,
+      "memories": 3,
+      "eliminations": 1,
+      "extracted": false,
+      "outcome": "death shortly after final recovery while running south along east lane",
+      "missionTime": "00:45",
+      "score": 3180,
+      "accuracyPercent": 18,
+      "criticalEliminations": 1,
+      "phaseEvades": 0
+    }
+  ],
+  "evidence": [
+    "menu and handbook have strong hierarchy and coherent cyan/amber palette",
+    "Briefing explains receiver offset, one-second E hold, escalation, and return beacon; all three recoveries achieved twice",
+    "Opening optic kill gives CRITICAL +180 and clear enemy removal",
+    "Mara, Elian, Sera cards provide specific human stakes and remain represented on death screen",
+    "Rain, wet reflective ground, cyan architecture and relay turbine make a cohesive station scene",
+    "Offscreen SENTINEL and INTERCEPTOR charge/recent-fire labels pile up and overlap near lower screen; relative threat priority becomes hard to read",
+    "World objective diamonds remain visible through walls but do not communicate traversable route; first return ran into central concrete obstruction",
+    "Second attempt health100/shield60 immediately after third recovery became death within a 3.3-second south sprint; many threats were left alive, so this does not prove unfair damage",
+    "Receiver proximity needs care: second attempt passed pylon, reached 3.5m MOVE CLOSER, then recovered after lateral adjustment"
+  ],
+  "blockers": [
+    "No extraction reached; hold-zone ending unreviewed",
+    "Automated stepwise movement and poor sustained combat leave full combat balance uncertain",
+    "Enemy silhouettes, gun/hands and architecture retain a visibly simple geometric quality relative to AAA reference",
+    "Dense labels and recovery particles obscure combat context during escalation"
+  ],
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "browser": "installed Google Chrome via Playwright, headless, SwiftShader flags",
+    "viewport": "1280x800",
+    "sourceOrInternalStateReadBeforePlay": false,
+    "sourceReadAfterPlay": false,
+    "testMode": false,
+    "syntheticRelativeMouseEvents": true,
+    "visibleDOMText": true,
+    "ordinaryKeysMouse": true,
+    "pausedReasoningAdvantage": true,
+    "capture": "Live CDP JPEG quality70 followed by ordinary Escape; no simulation freezing or hidden UI",
+    "captureExposure": "Simulation ran during screenshot capture and action calls. Screenshots include UI. One mistakenly attempted Escape resume remained paused; corrected by visible Resume button. Action logs preserve this.",
+    "captureMs": {
+      "count": 28,
+      "min": 98,
+      "median": 196.0,
+      "max": 596
+    },
+    "actionLatency": "Most holds close to requested duration; one requested1300ms E hold returned4621ms, increasing uncontrolled live exposure."
+  },
+  "limitations": [
+    "Not human realtime play",
+    "Software-rendered environment is not representative hardware performance",
+    "Audio not assessed",
+    "No direct human enjoyment proof",
+    "Two ordinary attempts only; deaths retained",
+    "AAA score is provisional visual/product scope assessment, not certification"
+  ],
+  "browsersClosed": true,
+  "actions": "docs/media/build19-review1-actions.json",
+  "helper": "docs/media/build19-review1-driver.cjs",
+  "screenshots": [
+    "docs/media/build19-review1-advance.jpg",
+    "docs/media/build19-review1-attempt2all.jpg",
+    "docs/media/build19-review1-attempt2east.jpg",
+    "docs/media/build19-review1-attempt2eastnear.jpg",
+    "docs/media/build19-review1-attempt2eastreturn.jpg",
+    "docs/media/build19-review1-attempt2heart.jpg",
+    "docs/media/build19-review1-attempt2receiver.jpg",
+    "docs/media/build19-review1-attempt2south.jpg",
+    "docs/media/build19-review1-attempt2three.jpg",
+    "docs/media/build19-review1-attempt2west.jpg",
+    "docs/media/build19-review1-brief.jpg",
+    "docs/media/build19-review1-controls.jpg",
+    "docs/media/build19-review1-crossyard.jpg",
+    "docs/media/build19-review1-eastapproach.jpg",
+    "docs/media/build19-review1-guard.jpg",
+    "docs/media/build19-review1-guard2.jpg",
+    "docs/media/build19-review1-heartapproach.jpg",
+    "docs/media/build19-review1-heartrecover.jpg",
+    "docs/media/build19-review1-memory1.jpg",
+    "docs/media/build19-review1-menu.jpg",
+    "docs/media/build19-review1-returnescape.jpg",
+    "docs/media/build19-review1-returnrun.jpg",
+    "docs/media/build19-review1-start.jpg",
+    "docs/media/build19-review1-westentry.jpg",
+    "docs/media/build19-review1-westlane.jpg",
+    "docs/media/build19-review1-westnear.jpg",
+    "docs/media/build19-review1-westorient.jpg",
+    "docs/media/build19-review1-westreceiver.jpg"
+  ]
+}

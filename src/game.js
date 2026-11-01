@@ -113,19 +113,14 @@ export class Game {
   }
 
   buildCores() {
-    const cyan = new THREE.MeshStandardMaterial({ color: 0x80f6ff, emissive: 0x13d6ef, emissiveIntensity: 3.5, metalness: 0.7, roughness: 0.25 });
     this.world.corePositions.forEach((position, i) => {
+      // Recoverable cue only. Physical receiver belongs to world and persists.
       const group = new THREE.Group(); group.position.copy(position); group.position.y = 0;
-      const base = mesh(new THREE.CylinderGeometry(0.7, 0.85, 0.23, 12), new THREE.MeshStandardMaterial({ color: 0x202c33, metalness: 0.8, roughness: 0.4 }), 0, 0.15, 0); group.add(base);
-      const crystal = mesh(new THREE.OctahedronGeometry(0.36), cyan.clone(), 0, 1.2, 0); group.add(crystal);
-      const ring = mesh(new THREE.TorusGeometry(0.64, 0.025, 8, 40), cyan.clone(), 0, 1.2, 0); ring.rotation.x = Math.PI / 2; group.add(ring);
-      const pillar = mesh(new THREE.CylinderGeometry(0.07, 0.22, 11, 8, 1, true), new THREE.MeshBasicMaterial({ color: 0x25d6ed, transparent: true, opacity: 0.1, depthWrite: false, blending: THREE.AdditiveBlending }), 0, 5.5, 0); group.add(pillar);
-      const light = new THREE.PointLight(0x29dced, 3, 8); light.position.y = 1.8; group.add(light);
       // A static projected boundary marks the actual grounded interaction reach.
       // Depth testing keeps this cue behind physical cover rather than on top.
       const reach = mesh(new THREE.RingGeometry(RECOVERY_RADIUS-.025,RECOVERY_RADIUS+.025,64),new THREE.MeshBasicMaterial({color:0x8ee8e0,transparent:true,opacity:.24,depthWrite:false}),0,.055,0);
       reach.rotation.x=-Math.PI/2;reach.visible=false;group.add(reach);
-      this.scene.add(group); this.coreNodes.push({ group, crystal, ring, reach, light, position: position.clone(), collected: false, id: i });
+      this.scene.add(group); this.coreNodes.push({ group, reach, position: position.clone(), collected: false, id: i });
     });
   }
 
@@ -290,7 +285,7 @@ export class Game {
   interact() {
     if (this.phase !== 'playing') return;
     const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
-    if (!core) { this.event('notice', 'Approach a cyan archive beacon. Hold E to recover its memory.'); return; }
+    if (!core) { this.event('notice', 'Approach a memory receiver. Hold E to recover its memory.'); return; }
     this.channelCore = core;
   }
   recoverCore(core) {
@@ -301,7 +296,7 @@ export class Game {
     this.world.setCoreState?.(core.id,true); this.coreProgress=0; this.channelCore=null;
     this.audio.core(); this.event('core', `${CORE_SITES[core.id].name} // MEMORY SECURED +1000`);
     this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
-    for (let i = 0; i < 28; i++) this.particle(core.position.clone().add(new THREE.Vector3(0, 1, 0)), 0x62eaff, 1.5, 0.1);
+    for (let i = 0; i < (this.options.reducedMotion?0:6); i++) this.particle(core.position.clone().add(new THREE.Vector3(0, .85, 0)), 0x4297a6, .35, .025);
     if (this.cores < this.coreNodes.length) this.event('notice','Memory secured. Supplies restored. Choose your next archive.');
     else { this.exitRing.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(2); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
     this.emit();
@@ -603,10 +598,11 @@ export class Game {
 
   animate(dt) {
     this.animTime += dt; this.world.update?.(dt, this.animTime);
-    for (const c of this.coreNodes) if (!c.collected) {
-      c.crystal.rotation.y += dt * 0.6; c.crystal.position.y = 1.35 + Math.sin(this.animTime * 1.8 + c.id) * 0.12; c.ring.rotation.z += dt * 0.6;
+    for (const c of this.coreNodes) {
+      const progress=this.channelCore===c?Math.min(1,this.coreProgress/RECOVERY_SECONDS):0;
+      this.world.setReceiverState(c.id,progress,c.collected);
       const distance=recoveryDistance(this.player,c.position);
-      c.reach.visible=distance<7.5;
+      c.reach.visible=!c.collected&&distance<7.5;
       c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
     }
     this.exitRing.material.opacity = this.cores === this.coreNodes.length ? 0.7 + Math.sin(this.animTime * 3) * 0.2 : 0.35;
@@ -667,7 +663,7 @@ export class Game {
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
     const markers=this.coreNodes.filter(c=>!c.collected).map(c=>{
       const distance=recoveryDistance(this.player,c.position);
-      return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,2.5,0))),distance,inRange:distance<RECOVERY_RADIUS};
+      return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3))});
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(e.group.position.clone().add(new THREE.Vector3(0,2.2,0)));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
@@ -699,7 +695,7 @@ export class Game {
   installDebug() {
     this.debug = {
       teleport: (x, z) => { if (!this.canOccupy(x, z)) throw new Error('Target is inside a collider'); this.player.set(x, 1.7, z); this.emit(); },
-      collectCore: i => { const c = this.coreNodes[i]; this.player.set(c.position.x, 1.7, c.position.z); this.recoverCore(c); },
+      collectCore: i => { const c = this.coreNodes[i]; this.player.set(c.position.x, 1.7, c.position.z+1.5); this.recoverCore(c); },
       extract: () => { this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.extractionProgress=this.extractionSeconds||EXTRACTION_SECONDS; this.update(0.001); },
       damage: n => this.damage(n),
       killAll: () => [...this.enemies].forEach(e => this.killEnemy(e)),

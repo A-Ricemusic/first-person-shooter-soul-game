@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
-import { SERVICE_ROUTES } from './mission.js';
+import { CORE_SITES, SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
@@ -8,7 +8,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 // World coordinates: Y up, floor 0; front entrance at +Z.
 export async function buildWorld(scene) {
   const rng = (() => { let s = 51319; return () => ((s = Math.imul(s, 1664525) + 1013904223 >>> 0) / 4294967296); })();
-  const colliders = [], animated = [], coreVisuals = [];
+  const colliders = [], animated = [], coreVisuals = [], receivers = [];
   const group = new THREE.Group(); group.name = 'BLACKWATER / tidal power station'; scene.add(group);
   scene.background = new THREE.Color('#192b38');
   scene.fog = new THREE.FogExp2('#243744', .0095);
@@ -182,6 +182,24 @@ export async function buildWorld(scene) {
     box(x,.018,z,7,.035,7,steel);
     for(const s of [-1,1]){box(x+s*3.5,.045,z,.08,.025,7,weakCyan);box(x,.045,z+s*3.5,7,.025,.08,weakCyan);}
   }
+  // One authored asset, shared geometry; per-terminal mutable display materials.
+  let receiverAsset;
+  try { receiverAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/memory-receiver.glb`)).scene; }
+  catch (_) { /* Honest cabinet fallback uses exactly the same solid envelope. */ }
+  for(const [i,x,z] of [[0,MEDICAL.core[0],MEDICAL.core[1]],[1,24,-15],[2,0,-33]]) {
+    const model=receiverAsset?receiverAsset.clone(true):new THREE.Group();
+    model.position.set(x,0,z);model.rotation.y=0;model.userData.dynamic=true;group.add(model);
+    if(!receiverAsset){const body=new THREE.Mesh(new THREE.BoxGeometry(1.2,.96,.8),steel);body.position.y=.48;model.add(body);const display=new THREE.Mesh(new THREE.BoxGeometry(.26,.035,.006),weakCyan.clone());display.name='Progress';display.position.set(.25,.79,.423);model.add(display);}
+    model.updateMatrixWorld(true);
+    model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;
+      // Each visible solid supplies its own matching bounds, including controls.
+      if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));
+      if(o.material.emissiveIntensity>0)o.material=o.material.clone();
+    }});
+    const progress=model.getObjectByName('Progress'),cassette=model.getObjectByName('MemoryCassette');
+    receivers.push({model,progress,cassette});
+    sign(CORE_SITES[i].person,`MEMORY RECEIVER / ${CORE_SITES[i].role.toUpperCase()}`,x,.53,z+.415,1.03,.24);
+  }
   const triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage.glb`);
   triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);
   for(const p of MEDICAL.parts)if(p.solid){const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(half),c.clone().add(half)));}
@@ -209,7 +227,7 @@ export async function buildWorld(scene) {
   for(const x of [-9.3,-6.7])box(x,1.72,22.8,.09,.4,.1,edge);
   sign('INDUCTION GUARD','CAUTION / ACTIVE INDUCTION FIELD',-8,2.2,23.06,3.5,.75,'#ffc078');
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
-  for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)colliders.push(new THREE.Box3().setFromObject(o));});}
+  for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));});}
   // Industrial surface detail: drainage, puddles, service paint and hazard markings.
   const puddle=new THREE.MeshPhysicalMaterial({color:0x293c47,metalness:.55,roughness:.18,transparent:true,opacity:.68,clearcoat:1});
   for(let i=0;i<36;i++){
@@ -268,6 +286,13 @@ export async function buildWorld(scene) {
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
     colliders, medical:MEDICAL, rainPositions,
+    receivers,
+    setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;
+      if(r.progress){r.progress.scale.x=recovered?1:.12+.88*progress;r.progress.material.emissiveIntensity=recovered?.18:.35+.55*progress;r.progress.material.color.setHex(recovered?0x548875:0x287d88);}
+      // Cassette remains physically docked: no disappearing cover or changing bounds.
+      if(r.cassette)r.cassette.visible=true;
+      r.model.userData.recovered=recovered;r.model.userData.progress=progress;
+    },
     setCoreState(id,restored){const v=coreVisuals[id];if(!v)return;v.pylon.userData.restored=restored;v.beacon.color.setHex(restored?0x65d6a0:0x26c8eb);v.beacon.intensity=restored?6:18;for(const m of v.materials){m.material.emissive.copy(restored&&m.intensity>1?new THREE.Color(0x47bd85):m.color);m.material.emissiveIntensity=restored&&m.intensity>1?.8:m.intensity;}},
     playerSpawn:new THREE.Vector3(0,1.7,31),
     spawnPoints:[new THREE.Vector3(-30,0,-28),new THREE.Vector3(30,0,-28),new THREE.Vector3(-22,0,-5),new THREE.Vector3(22,0,-5),new THREE.Vector3(-15,0,-35),new THREE.Vector3(15,0,-35),new THREE.Vector3(-31,0,20),new THREE.Vector3(31,0,20)],

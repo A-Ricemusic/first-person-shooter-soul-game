@@ -3,9 +3,9 @@ const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/C
 const observations=[];
 try{for(const width of [1280,1440]){
  const p=await b.newPage({viewport:{width,height:width===1280?800:900}});await p.addInitScript(()=>{window.requestAnimationFrame=cb=>(window.__frame=cb,1);window.cancelAnimationFrame=()=>{}});
- await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__,null,{polling:50});assert.ok((await p.locator('.build-label').innerText()).includes('BUILD 15'));await p.click('#deploy',{force:true});
+ await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__,null,{polling:50});assert.match(await p.locator('.build-label').innerText(),/BUILD \d+/);await p.click('#deploy',{force:true});
  await p.evaluate(()=>{const g=window.__SOULFALL__.game;g.clearRun();g.encounters=new Set(['ingress','medical','engineering','heart']);g.player.set(-24,1.7,-11.8);g.yaw=0;g.pitch=0;g.event('notice','WEST TRIAGE · South intake / east service. Storage blocks sightlines.');g.animate(0);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);});
- assert.ok((await p.locator('#interaction').innerText()).includes('STEP CLOSER'));assert.ok(!(await p.locator('#event-feed').innerText()).includes('WEST TRIAGE'));assert.ok(!(await p.locator('#event-feed').innerText()).includes('Induction guard ahead'));
+ assert.ok((await p.locator('#interaction').innerText()).includes('MOVE CLOSER'));assert.ok(!(await p.locator('#event-feed').innerText()).includes('WEST TRIAGE'));assert.ok(!(await p.locator('#event-feed').innerText()).includes('Induction guard ahead'));
  const notice=await p.locator('#announcement').boundingBox(),radar=await p.locator('.signal-scan').boundingBox();assert.ok(notice.x+notice.width<radar.x||notice.y+notice.height<radar.y||notice.y>radar.y+radar.height,'Medical notice avoids radar');
  await p.keyboard.down('KeyE');await p.evaluate(()=>window.__SOULFALL__.game.debug.advance(.2));assert.equal(await p.evaluate(()=>window.__SOULFALL__.game.cores),0);
  await p.screenshot({path:`docs/media/current-parent-nearby-${width}.png`});

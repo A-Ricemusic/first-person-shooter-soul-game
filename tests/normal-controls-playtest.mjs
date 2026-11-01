@@ -17,7 +17,7 @@ while(Date.now()-start<Number(process.env.CONTROL_TIMEOUT_MS||240000)){
 const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return {...g.captureState(),pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),inv:g.invulnerable}});
 if(s.phase!=='playing'){log.push({at:Date.now()-start,state:s.phase,kills:s.kills,cores:s.cores,health:s.health});break}
 if(steps%10===0)log.push({at:Date.now()-start,time:s.time,x:s.player.x,z:s.player.z,health:s.health,shield:s.shield,kills:s.kills,cores:s.cores,ammo:s.ammo,targets:s.targets.length});
-const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]||s.exit;
+const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]?{...goals[0],z:goals[0].z+1.5}:s.exit;
 const recovering=s.nearestCoreDistance!=null&&s.nearestCoreDistance<2.7; if(recovering){await p.keyboard.down('KeyE');if(held){await p.keyboard.up(held);held='';}}else await p.keyboard.up('KeyE');
 const goalKey=`${goal.x},${goal.z}`;if(routeGoal!==goalKey||steps%10===0){pathCache=path(s.player,goal);routeGoal=goalKey}
 while(pathCache.length&&Math.hypot(pathCache[0].x-s.player.x,pathCache[0].z-s.player.z)<.85)pathCache.shift();
