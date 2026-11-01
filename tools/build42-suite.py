@@ -14,14 +14,14 @@ try:
  for name,_ in SPECS:
   if name=='production':
    start=time.monotonic();r=subprocess.run(['npm','run','build'],cwd=ROOT,text=True,capture_output=True)
-   (ROOT/'docs/quality-reviews/build42-build.log').write_text(r.stdout+r.stderr)
+   (ROOT/'docs/quality-reviews/build42-build.txt').write_text(r.stdout+r.stderr)
    report['rows'].append({'name':'production-build','exit':r.returncode,'seconds':time.monotonic()-start})
    if r.returncode:break
   env=os.environ.copy();prefix='build42-'+name
   env.update({'MEDICAL_OUTPUT':'docs/quality-reviews/'+prefix+'.json','MEDICAL_CAPTURE_PREFIX':prefix,'WARDEN_OBSERVATIONS':'docs/quality-reviews/'+prefix+'.json','WARDEN_CAPTURE_PREFIX':prefix,'ROLE_OUTPUT':'docs/quality-reviews/'+prefix+'.json','ROLE_CAPTURE_PREFIX':prefix,'CONTROLS_OUTPUT':str(ROOT/'docs/quality-reviews/build42-controls.json')})
   if name=='production':env['SOULFALL_PRODUCTION']='1'
   start=time.monotonic();r=subprocess.run(['node',str(copies[name].relative_to(ROOT))],cwd=ROOT,env=env,text=True,capture_output=True)
-  log='docs/quality-reviews/'+prefix+'.log';(ROOT/log).write_text(r.stdout+r.stderr)
+  log='docs/quality-reviews/'+prefix+'.txt';(ROOT/log).write_text(r.stdout+r.stderr)
   report['rows'].append({'name':name,'exit':r.returncode,'seconds':round(time.monotonic()-start,2),'log':log})
   (ROOT/'docs/quality-reviews/build42-suite.json').write_text(json.dumps(report,indent=2)+'\n')
   print(name,'PASS' if not r.returncode else 'FAIL',flush=True)
