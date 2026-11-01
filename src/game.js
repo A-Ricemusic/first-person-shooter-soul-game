@@ -669,9 +669,17 @@ export class Game {
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
     const markers=this.coreNodes.filter(c=>!c.collected).map(c=>{
       const distance=recoveryDistance(this.player,c.position);
-      return {id:`core-${c.id}`,kind:'core',label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
+      return {id:`core-${c.id}`,kind:'core',occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
-    if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3)),distance:extractionDistance(this.player,this.world.playerSpawn),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+    if(this.cores===this.coreNodes.length)markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,this.world.playerSpawn,0),label:'EXTRACTION',...project(this.world.playerSpawn.clone().setY(3)),distance:extractionDistance(this.player,this.world.playerSpawn),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+    // A doorway is actionable only along a swept, walkable approach. This is
+    // local aperture guidance, never a cached route through unseen architecture.
+    const west=markers.find(m=>m.id==='core-0');
+    if(west?.occluded&&!(this.player.x<-14&&this.player.z<-9)){
+      const doors=[{x:-25,z:-7,label:'WEST / SOUTH INTAKE'},{x:-12,z:-15.25,label:'WEST / EAST SERVICE'}];
+      const door=doors.filter(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)<25&&this.navigation.clear(this.player,p)&&this.hasLineOfSight(this.player,new THREE.Vector3(p.x,1.7,p.z),0)).sort((a,b)=>Math.hypot(a.x-this.player.x,a.z-this.player.z)-Math.hypot(b.x-this.player.x,b.z-this.player.z))[0];
+      if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
+    }
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||e.windup>0)){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
     for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));

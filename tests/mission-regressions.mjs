@@ -7,8 +7,8 @@ const checks=[];
 try{
  const page=await browser.newPage({viewport:{width:1440,height:900}});
  await page.goto(`${process.env.PLAYTEST_URL||'http://127.0.0.1:5173/'}?test=1`);await page.waitForFunction(()=>window.__SOULFALL__,null,{timeout:60000});await page.click('#deploy');
- await page.waitForFunction(()=>document.querySelectorAll('.world-marker.core').length===3);
- assert.ok(await page.locator('#field-controls').isVisible());assert.ok((await page.locator('#waypoints').innerText()).includes('WEST ARCHIVE'));checks.push({name:'Spatial objective markers and contextual controls are visible on deployment',status:'passed'});
+ await page.waitForFunction(()=>{const marks=window.__SOULFALL__.game.captureMarkers().filter(m=>m.kind==='core'&&!m.doorway);return marks.length===3&&marks.every(m=>m.occluded?!document.querySelector(`[data-marker-id="${m.id}"]`):!!document.querySelector(`[data-marker-id="${m.id}"]`))});
+ assert.ok(await page.locator('#field-controls').isVisible());assert.ok((await page.locator('#waypoints').innerText()).includes('WEST ARCHIVE'));checks.push({name:'Clear objective markers, blocked-signal notice and contextual controls are visible on deployment',status:'passed'});
  await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.debug.killAll();g.debug.teleport(-24,-13.1);g.health=80;g.shield=0;g.lastDamage=g.runTime});
  await page.keyboard.press('KeyE');assert.equal(await page.evaluate(()=>window.__SOULFALL__.game.cores),0);
  await page.keyboard.down('KeyE');await page.waitForFunction(()=>window.__SOULFALL__.game.coreProgress>.15);assert.equal(await page.evaluate(()=>window.__SOULFALL__.game.cores),0);await page.keyboard.up('KeyE');await page.waitForFunction(()=>window.__SOULFALL__.game.coreProgress===0);

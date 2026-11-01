@@ -1,0 +1,1184 @@
+
+RUN test
+
+> soulfall-the-last-signal@1.0.0 test
+> node tests/smoke.mjs
+
+PASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 109 draw calls in title frame.
+PASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.
+PASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.
+PASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.
+PASS Arena connectivity & cover: 5574 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.
+PASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.
+PASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.
+PASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.
+PASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.
+PASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.
+PASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.
+PASS Design dossier: docs/human.html serves with all actual rendered screenshots.
+PASS Normal-play isolation: No debug game handle exposed on normal URL.
+HTTP failures []
+PASS Browser health: No page exceptions, console errors, or HTTP failures in the suite.
+
+14 checks passed.
+
+RUN test:production
+
+> soulfall-the-last-signal@1.0.0 test:production
+> npm run build && SOULFALL_PRODUCTION=1 node tests/smoke.mjs
+
+
+> soulfall-the-last-signal@1.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 19 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.68 kB │ gzip:   0.41 kB
+dist/assets/index-DV-yQf3I.css   24.28 kB │ gzip:   6.13 kB
+dist/assets/index-e_andCPW.js   147.37 kB │ gzip:  49.34 kB
+dist/assets/three-D9g0LN1w.js   551.07 kB │ gzip: 139.63 kB
+✓ built in 982ms
+PASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 109 draw calls in title frame.
+PASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.
+PASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.
+PASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.
+PASS Arena connectivity & cover: 5574 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.
+PASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.
+PASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.
+PASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.
+PASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.
+PASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.
+PASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.
+PASS Design dossier: docs/human.html serves with all actual rendered screenshots.
+PASS Normal-play isolation: No debug game handle exposed on normal URL.
+HTTP failures []
+PASS Browser health: No page exceptions, console errors, or HTTP failures in the suite.
+
+14 checks passed.
+
+RUN test:combat
+
+> soulfall-the-last-signal@1.0.0 test:combat
+> node tests/combat-regressions.mjs
+
+[
+  {
+    "name": "10 FPS movement and mission time follow elapsed time",
+    "observed": {
+      "simulationDelta": 0.09999999999999999,
+      "distance": 0.5500000000000114
+    },
+    "status": "passed"
+  },
+  {
+    "name": "Turn and fire in the same frame uses current aim",
+    "observed": {
+      "before": 150,
+      "after": 133,
+      "ammo": 29
+    },
+    "status": "passed"
+  },
+  {
+    "name": "A shot on a 100 ms frame retains a visible muzzle flash",
+    "observed": {
+      "ammo": 28,
+      "visible": true
+    },
+    "status": "passed"
+  },
+  {
+    "name": "All five origin offsets blocked by real central concrete",
+    "observed": [
+      {
+        "originZ": -16,
+        "shield": 60
+      },
+      {
+        "originZ": -16.05,
+        "shield": 60
+      },
+      {
+        "originZ": -16.1,
+        "shield": 60
+      },
+      {
+        "originZ": -16.15,
+        "shield": 60
+      },
+      {
+        "originZ": -16.2,
+        "shield": 60
+      }
+    ],
+    "status": "passed"
+  },
+  {
+    "name": "Unobstructed enemy projectile still damages player",
+    "observed": {
+      "shield": 41
+    },
+    "status": "passed"
+  },
+  {
+    "name": "Restart clears ADS, recoil and muzzle flash immediately",
+    "observed": {
+      "aim": false,
+      "blend": 0,
+      "fov": 75,
+      "recoil": 0,
+      "kick": 0,
+      "muzzle": false,
+      "flash": 0,
+      "light": 0
+    },
+    "status": "passed"
+  }
+]
+
+RUN test:phase
+
+> soulfall-the-last-signal@1.0.0 test:phase
+> node tests/phase-handling-regressions.mjs
+
+[
+  {
+    "name": "Close charge breaks without damage; stagger and dash cooldown persist",
+    "phase": {
+      "windup": 0,
+      "stagger": 0.8,
+      "health": 150,
+      "hp": 150,
+      "cooldown": 4.5,
+      "breaks": 1,
+      "dashes": 1,
+      "staggerAfter": 0.4
+    }
+  },
+  {
+    "name": "Distant and covered charges cannot be interrupted",
+    "negative": {
+      "far": 0.3,
+      "cover": 0.3
+    }
+  },
+  {
+    "name": "Audio graph suspends on pause, reuses one bed on restart, honors mute",
+    "audio": {
+      "paused": "suspended",
+      "resumed": "running",
+      "sameBed": true,
+      "sources": 2,
+      "volume": 0
+    }
+  }
+]
+
+RUN test:phase-usability
+
+> soulfall-the-last-signal@1.0.0 test:phase-usability
+> node tests/phase-usability-regressions.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'getBoundingClientRect')
+    at eval (eval at evaluate (:370:30), <anonymous>:1:494)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/phase-usability-regressions.mjs:15:26 {
+  log: []
+}
+
+Node.js v24.16.0
+
+RUN test:encounters
+
+> soulfall-the-last-signal@1.0.0 test:encounters
+> node tests/encounter-regressions.mjs
+
+[
+  {
+    "name": "Finite location stages fire once, independent of recovery order; no timed passive flood",
+    "stages": {
+      "initial": [
+        "warden"
+      ],
+      "passive": 1,
+      "ingress": 3,
+      "repeated": 3,
+      "total": 9,
+      "stages": [
+        "ingress",
+        "medical",
+        "engineering",
+        "heart"
+      ],
+      "wardens": 2
+    }
+  },
+  {
+    "name": "Warden body armor reduces rather than blocks damage; phase cancels and opens three-second vulnerability without free damage",
+    "armor": {
+      "body": 17,
+      "openDamage": 34,
+      "opened": 3,
+      "breaks": 1,
+      "cooldown": 4.5,
+      "health": 99
+    }
+  },
+  {
+    "name": "Precision optic bypass remains viable without phase",
+    "damage": 82
+  },
+  {
+    "name": "All cores, both ingress bypasses reachable; story props reject entry",
+    "route": {
+      "cores": [
+        true,
+        true,
+        true
+      ],
+      "bypasses": [
+        true,
+        true
+      ],
+      "propsBlocked": [
+        true,
+        true,
+        true
+      ]
+    }
+  }
+]
+
+RUN test:mission
+
+> soulfall-the-last-signal@1.0.0 test:mission
+> node tests/mission-regressions.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mission-regressions.mjs:10:13 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.16.0
+
+RUN test:playtest
+
+> soulfall-the-last-signal@1.0.0 test:playtest
+> node tests/playtest-regressions.mjs
+
+[
+  {
+    "name": "Actual Blender optic leaves center sightline clear while aiming",
+    "status": "passed"
+  },
+  {
+    "name": "Recovering core 03 lights 03 rather than 01",
+    "status": "passed"
+  },
+  {
+    "name": "Sprint movement suppresses browser Ctrl+W shortcut",
+    "status": "passed"
+  }
+]
+
+RUN test:movement
+
+> soulfall-the-last-signal@1.0.0 test:movement
+> node tests/movement-regressions.mjs
+
+{"checks":["jump, stable grate landing, walk off and floor at 20 Hz","jump, stable grate landing, walk off and floor at 30 Hz","jump, stable grate landing, walk off and floor at 60 Hz","jump, stable grate landing, walk off and floor at 144 Hz","No side-entry pop","Swept ceiling stops head and returns to floor","Air dash cannot tunnel high wall or perimeter","Jump clears low obstacle and lands on far floor","Stale grounded flag cannot grant an unsupported jump"]}
+
+RUN test:movement-browser
+
+> soulfall-the-last-signal@1.0.0 test:movement-browser
+> node tests/movement-browser-regressions.mjs
+
+{
+  "checks": [
+    {
+      "name": "Arranged normal W+Space lands on actual vent grate",
+      "observed": {
+        "player": [
+          14,
+          3.0149999999999997,
+          9.75000000000005
+        ],
+        "grounded": true,
+        "velocity": 0
+      }
+    },
+    {
+      "name": "Five-second stable support and walking off returns to gravity",
+      "observed": {
+        "y": 3.0149999999999997,
+        "stable": 3.0149999999999997,
+        "walkoff": [
+          19.500000000000036,
+          1.7,
+          9.75000000000005
+        ],
+        "grounded": true
+      }
+    },
+    {
+      "name": "No side-entry pop, no midair jump, front lip remains too high",
+      "observed": {
+        "side": [
+          14,
+          1.7,
+          11.40000000000002
+        ],
+        "v": 5.900000000000002,
+        "repeated": 5.900000000000002,
+        "front": [
+          14,
+          1.7,
+          6.554166666666668
+        ]
+      }
+    },
+    {
+      "name": "Synthetic explicitly arranged ceiling blocks head",
+      "observed": {
+        "max": 2,
+        "end": 1.7
+      }
+    },
+    {
+      "name": "Airborne full-dt dash cannot tunnel actual gantry pillar or perimeter",
+      "observed": {
+        "pillar": [
+          33.980000000000004,
+          2.4918000000000022,
+          20
+        ],
+        "bounds": [
+          -36.584,
+          5.491799999999993,
+          30
+        ]
+      }
+    },
+    {
+      "name": "Pause preserves height, resume support stable, restart resets jump",
+      "observed": {
+        "before": [
+          14,
+          3.015,
+          9
+        ],
+        "after": [
+          14,
+          3.015,
+          9
+        ],
+        "resumed": 3.015,
+        "restart": [
+          0,
+          1.7,
+          31
+        ],
+        "velocity": 0,
+        "grounded": true
+      }
+    },
+    {
+      "name": "Raised aimed projectile hits, grate blocks low projectile, nearby raised phase retains LOS",
+      "observed": {
+        "aimedShield": 41,
+        "lowShield": 60,
+        "phase": 1,
+        "state": "playing",
+        "invulnerable": 0
+      }
+    },
+    {
+      "name": "High above archive cannot channel recovery through vertical range",
+      "observed": {
+        "eye": 4.7,
+        "progress": 0,
+        "cores": 0
+      }
+    },
+    {
+      "name": "Raised cover blocks unreachable melee and low supply collection; ground contact and supply remain",
+      "observed": {
+        "above": 60,
+        "belowPickup": 1,
+        "ground": 45,
+        "groundPickup": 0
+      }
+    }
+  ],
+  "errors": []
+}
+
+RUN test:medical
+
+> soulfall-the-last-signal@1.0.0 test:medical
+> node tests/medical-regressions.mjs
+
+{"checks":[{"route":[[-25,-3],[-32,-25]],"nodes":58},{"route":[[-7,-16],[-34,-16]],"nodes":54},{"route":[[-24,-13.5],[0,31]],"nodes":137}],"los":{"wall":false,"south":true,"east":true},"rainLeaks":0,"pursuit":[{"type":"sentinel","name":"south-enter","crossed":true,"penetrations":0,"seconds":3.5499999999999923,"end":[-26.99621304685756,0,-10.008519101669458]},{"type":"sentinel","name":"south-leave","crossed":true,"penetrations":0,"seconds":8.85000000000002,"end":[-25.8627585044647,0,-7.984592834349732]},{"type":"sentinel","name":"east-enter","crossed":true,"penetrations":0,"seconds":4.049999999999991,"end":[-15.00881783450451,0,-17.8963520911754]},{"type":"sentinel","name":"east-leave","crossed":true,"penetrations":0,"seconds":11.466666666666816,"end":[-12.990919452143677,0,-18.097293162954163]},{"type":"stalker","name":"south-enter","crossed":true,"penetrations":0,"seconds":2.33333333333333,"end":[-27.032524133275693,0,-10.007734400185736]},{"type":"stalker","name":"south-leave","crossed":true,"penetrations":0,"seconds":7.04999999999998,"end":[-27.567807484347714,0,-7.995387770433611]},{"type":"stalker","name":"east-enter","crossed":true,"penetrations":0,"seconds":2.5666666666666624,"end":[-15.041619944768808,0,-17.006188249935487]},{"type":"stalker","name":"east-leave","crossed":true,"penetrations":0,"seconds":6.5333333333333155,"end":[-12.971432888303967,0,-13.610141881974167]},{"type":"warden","name":"south-enter","crossed":true,"penetrations":0,"seconds":3.483333333333326,"end":[-27.20698717883996,0,-10.002053046704548]},{"type":"warden","name":"south-leave","crossed":true,"penetrations":0,"seconds":8.666666666666677,"end":[-28.171533040325357,0,-7.984714780128918]},{"type":"warden","name":"east-enter","crossed":true,"penetrations":0,"seconds":4.133333333333324,"end":[-15.009917942137037,0,-15.920383723175826]},{"type":"warden","name":"east-leave","crossed":true,"penetrations":0,"seconds":9.366666666666712,"end":[-12.974773374845507,0,-15.969645122700435]}],"blocked":true,"queries":53,"maxExpanded":2005}
+
+RUN test:medical-exit
+
+> soulfall-the-last-signal@1.0.0 test:medical-exit
+> node tests/medical-exit-regressions.mjs
+
+[
+  {
+    "label": "arc-0",
+    "exited": true,
+    "end": [
+      -7.49999999999998,
+      1.7,
+      -12.4
+    ]
+  },
+  {
+    "label": "arc-1",
+    "exited": true,
+    "end": [
+      -5.661522368914991,
+      1.7,
+      -13.161522368914977
+    ]
+  },
+  {
+    "label": "arc-2",
+    "exited": true,
+    "end": [
+      -4.900000000000029,
+      1.7,
+      -15
+    ]
+  },
+  {
+    "label": "arc-3",
+    "exited": true,
+    "end": [
+      -5.661522368914991,
+      1.7,
+      -16.838477631085023
+    ]
+  },
+  {
+    "label": "arc-4",
+    "exited": true,
+    "end": [
+      -7.49999999999998,
+      1.7,
+      -17.6
+    ]
+  },
+  {
+    "label": "arc-5",
+    "exited": true,
+    "end": [
+      -9.338477631084942,
+      1.7,
+      -16.838477631085023
+    ]
+  },
+  {
+    "label": "arc-6",
+    "exited": true,
+    "end": [
+      -10.09999999999989,
+      1.7,
+      -13.625000000000025
+    ]
+  },
+  {
+    "label": "arc-7",
+    "exited": true,
+    "end": [
+      -9.338477631084942,
+      1.7,
+      -13.161522368914977
+    ]
+  },
+  {
+    "label": "front-service",
+    "exited": true,
+    "end": [
+      -7.49999999999998,
+      1.7,
+      -13.5
+    ]
+  }
+]
+
+RUN test:warden
+
+> soulfall-the-last-signal@1.0.0 test:warden
+> node tests/warden-art-regressions.mjs
+
+Warden budget, nodes, fixed precision anchor through 14 poses, bounded emission, clone ownership: passed
+
+RUN test:warden-motion
+
+> soulfall-the-last-signal@1.0.0 test:warden-motion
+> node tests/warden-locomotion-regressions.mjs
+
+Crawler moving/blocked/stagger/recovery/turn/stop/restart/dt/ground/radius/geometry: passed
+
+RUN test:warden-steering
+
+> soulfall-the-last-signal@1.0.0 test:warden-steering
+> node tests/warden-steering-regressions.mjs
+
+Crawler sharp turn, reverse, angular seam, real AI travel, fixed optic and stationary turret: passed
+
+RUN test:recovery
+
+> soulfall-the-last-signal@1.0.0 test:recovery
+> node tests/recovery-readability-regressions.mjs
+
+Recovery marker, radar, prompt, ground boundary, held-input threshold, airborne range and restart: passed
+
+RUN test:attackers
+
+> soulfall-the-last-signal@1.0.0 test:attackers
+> node tests/attacker-readability-regressions.mjs && node tests/drone-alignment-regressions.mjs && node tests/drone-lifecycle-edges.mjs
+
+Attacker lifecycle, rotation, pause, expiry, dead, cover, restart and 56 rendered motion frames passed
+{"shots":[{"type":"sentinel","precision":false,"before":100,"after":66,"damage":34},{"type":"sentinel","precision":true,"before":100,"after":18,"damage":82},{"type":"stalker","precision":false,"before":70,"after":36,"damage":34},{"type":"stalker","precision":true,"before":70,"after":-12,"damage":82}],"wall":{"before":100,"after":100},"materialsDistinct":true,"geometryShared":true,"afterKill":{"geometryDisposals":0,"survivor":true},"radius":0.44102608817900724,"opticError":4.9329605334273905e-8,"frames":[{"speed":0,"top":1.5499999523162842,"windup":0},{"speed":2.029916133083316,"top":1.5499999523162842,"windup":0},{"speed":2.0987163692016275,"top":1.5499999523162842,"windup":0},{"speed":1.5807305619879626,"top":1.5517948241111559,"windup":0.6333333333333333},{"speed":0.5443363797371716,"top":1.5876922600085919,"windup":0.29999999999999966},{"speed":1.2359758313005895,"top":1.5881817704981023,"windup":-2.8449465006019636e-16}],"pauseDelta":0}
+{"shots":[{"type":"sentinel","precision":false,"before":100,"after":66,"damage":34},{"type":"sentinel","precision":true,"before":100,"after":18,"damage":82},{"type":"stalker","precision":false,"before":70,"after":36,"damage":34},{"type":"stalker","precision":true,"before":70,"after":-12,"damage":82}],"wall":{"before":100,"after":100},"materialsDistinct":true,"geometryShared":true,"afterKill":{"geometryDisposals":0,"survivor":true},"radius":0.44102608817900724,"opticError":4.9329605334273905e-8,"frames":[{"speed":0,"top":1.5499999523162842,"windup":0},{"speed":2.029916133083316,"top":1.5499999523162842,"windup":0},{"speed":2.0987163692016275,"top":1.5499999523162842,"windup":0},{"speed":1.5807305619879626,"top":1.5517948241111559,"windup":0.6333333333333333},{"speed":0.5443363797371716,"top":1.5876922600085919,"windup":0.29999999999999966},{"speed":1.2359758313005895,"top":1.5881817704981023,"windup":-2.8449465006019636e-16}],"pauseDelta":0}
+Dead-source projectile, unattributed damage, bounded stagger and malformed/missing asset fallbacks passed
+
+RUN test:receiver
+
+> soulfall-the-last-signal@1.0.0 test:receiver
+> node tests/receiver-regressions.mjs
+
+
+RUN test:receiver-composition
+
+> soulfall-the-last-signal@1.0.0 test:receiver-composition
+> node tests/receiver-composition.mjs
+
+
+RUN test:marker-composition
+
+> soulfall-the-last-signal@1.0.0 test:marker-composition
+> node tests/marker-composition.mjs
+
+
+RUN test:extraction
+
+> soulfall-the-last-signal@1.0.0 test:extraction
+> node tests/extraction-readability-regressions.mjs
+
+Extraction ring, planar marker, live zone/decay text, airborne boundary, movement and restart: passed
+
+RUN test:ending
+
+> soulfall-the-last-signal@1.0.0 test:ending
+> node tests/ending-regressions.mjs
+
+Ending geometry, mixed-angle LOS, route footprints, pursuit paths, measured Warden, state, fallback: passed
+
+RUN test:visor
+
+> soulfall-the-last-signal@1.0.0 test:visor
+> node tests/threat-visor-regressions.mjs && node tests/build23-visor-motion.mjs
+
+Visor preserves all sources, charge counts, type groups, bearings and optic anchors; focus only selects a readout.
+
+RUN test:rendering
+
+> soulfall-the-last-signal@1.0.0 test:rendering
+> node tests/build23-batching.mjs && node tests/build23-render-idle.mjs
+
+
+RUN test:archive-route
+
+> soulfall-the-last-signal@1.0.0 test:archive-route
+> node tests/build24-route-regressions.mjs
+
+{"starts":242,"routes":484,"aisleClear":true,"sightlines":242}
+
+RUN test:visible-driver
+
+> soulfall-the-last-signal@1.0.0 test:visible-driver
+> node tests/visible-playtest-driver-regressions.mjs
+
+Visible playtest driver ownership, normal input, close, EOF, startup failure and SIGTERM: passed
+
+RUN playtest:controls
+
+> soulfall-the-last-signal@1.0.0 playtest:controls
+> node tests/normal-controls-playtest.mjs
+
+{
+  "method": "Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. Look uses mousemove events; movement/fire/reload/interact/dash use controls.",
+  "steps": 381,
+  "log": [
+    {
+      "at": 2,
+      "time": 1.2000999999999982,
+      "x": 0,
+      "z": 31,
+      "health": 100,
+      "shield": 60,
+      "kills": 0,
+      "cores": 0,
+      "ammo": 30,
+      "targets": 1
+    },
+    {
+      "at": 1500,
+      "time": 2.6833999999999936,
+      "x": 0,
+      "z": 23.11684999999985,
+      "health": 100,
+      "shield": 60,
+      "kills": 1,
+      "cores": 0,
+      "ammo": 21,
+      "targets": 0
+    },
+    {
+      "at": 2768,
+      "time": 3.966599999999989,
+      "x": 0,
+      "z": 16.059249999999725,
+      "health": 100,
+      "shield": 60,
+      "kills": 1,
+      "cores": 0,
+      "ammo": 21,
+      "targets": 0
+    },
+    {
+      "at": 4081,
+      "time": 5.283200000000046,
+      "x": 0.6741241927938932,
+      "z": 9.506162716203228,
+      "health": 100,
+      "shield": 60,
+      "kills": 1,
+      "cores": 0,
+      "ammo": 18,
+      "targets": 2
+    },
+    {
+      "at": 5428,
+      "time": 6.599800000000103,
+      "x": 0.4306419600667495,
+      "z": 3.2718708329913637,
+      "health": 100,
+      "shield": 60,
+      "kills": 2,
+      "cores": 0,
+      "ammo": 12,
+      "targets": 1
+    },
+    {
+      "at": 6733,
+      "time": 7.9165000000001635,
+      "x": 0.2751452789979669,
+      "z": -2.340627586025081,
+      "health": 100,
+      "shield": 60,
+      "kills": 3,
+      "cores": 0,
+      "ammo": 10,
+      "targets": 0
+    },
+    {
+      "at": 8452,
+      "time": 9.633100000000118,
+      "x": 1.309516731281164,
+      "z": -3.3100313118572737,
+      "health": 100,
+      "shield": 60,
+      "kills": 3,
+      "cores": 0,
+      "ammo": 10,
+      "targets": 0
+    },
+    {
+      "at": 9710,
+      "time": 10.89970000000007,
+      "x": 5.762937960392012,
+      "z": -6.3875839146898175,
+      "health": 100,
+      "shield": 60,
+      "kills": 3,
+      "cores": 0,
+      "ammo": 10,
+      "targets": 0
+    },
+    {
+      "at": 10963,
+      "time": 12.166300000000026,
+      "x": 8.048497731784058,
+      "z": -12.119181467823948,
+      "health": 100,
+      "shield": 60,
+      "kills": 3,
+      "cores": 0,
+      "ammo": 10,
+      "targets": 0
+    },
+    {
+      "at": 12218,
+      "time": 13.416199999999986,
+      "x": 14.469631050382379,
+      "z": -11.523991069602703,
+      "health": 100,
+      "shield": 60,
+      "kills": 4,
+      "cores": 0,
+      "ammo": 8,
+      "targets": 0
+    },
+    {
+      "at": 13619,
+      "time": 14.799499999999936,
+      "x": 20.670817025298096,
+      "z": -11.443013889691441,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 0,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 14871,
+      "time": 16.04949999999989,
+      "x": 23.580739956216668,
+      "z": -12.863988372394164,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 0,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 16131,
+      "time": 17.316099999999825,
+      "x": 22.044836727095923,
+      "z": -15.260723513510278,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 1,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 17389,
+      "time": 18.58279999999975,
+      "x": 21.043335273037965,
+      "z": -22.088214803246878,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 1,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 18645,
+      "time": 19.84939999999968,
+      "x": 20.739145495054043,
+      "z": -29.00665502841897,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 1,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 19892,
+      "time": 21.099299999999605,
+      "x": 14.24311218197529,
+      "z": -30.000700793466944,
+      "health": 100,
+      "shield": 60,
+      "kills": 5,
+      "cores": 1,
+      "ammo": 5,
+      "targets": 0
+    },
+    {
+      "at": 21222,
+      "time": 22.39929999999953,
+      "x": 8.062129158491626,
+      "z": -30.04777831411627,
+      "health": 100,
+      "shield": 60,
+      "kills": 6,
+      "cores": 1,
+      "ammo": 3,
+      "targets": 1
+    },
+    {
+      "at": 22638,
+      "time": 23.74919999999946,
+      "x": 2.124684707535495,
+      "z": -29.508442557096,
+      "health": 100,
+      "shield": 60,
+      "kills": 6,
+      "cores": 1,
+      "ammo": 25,
+      "targets": 1
+    },
+    {
+      "at": 24033,
+      "time": 25.232499999999373,
+      "x": 0.8275925587990254,
+      "z": -29.98326320122598,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 16,
+      "targets": 0
+    },
+    {
+      "at": 25291,
+      "time": 26.499099999999306,
+      "x": 1.0331039713285677,
+      "z": -23.323316936300742,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 16,
+      "targets": 0
+    },
+    {
+      "at": 26673,
+      "time": 27.74899999999923,
+      "x": 0.9986897013305072,
+      "z": -16.449030729835073,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 16,
+      "targets": 0
+    },
+    {
+      "at": 27924,
+      "time": 28.998899999999175,
+      "x": -4.273403455731799,
+      "z": -13.99988194360253,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 16,
+      "targets": 0
+    },
+    {
+      "at": 29171,
+      "time": 30.24899999999911,
+      "x": -11.148950155511386,
+      "z": -13.999857128749305,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 16,
+      "targets": 0
+    },
+    {
+      "at": 30676,
+      "time": 31.66549999999904,
+      "x": -18.60742161448898,
+      "z": -14.239268764204201,
+      "health": 100,
+      "shield": 60,
+      "kills": 7,
+      "cores": 2,
+      "ammo": 9,
+      "targets": 1
+    },
+    {
+      "at": 31931,
+      "time": 32.99889999999895,
+      "x": -21.695463813405695,
+      "z": -14.258969717165167,
+      "health": 100,
+      "shield": 60,
+      "kills": 8,
+      "cores": 2,
+      "ammo": 6,
+      "targets": 1
+    },
+    {
+      "at": 33244,
+      "time": 34.332099999998896,
+      "x": -17.071136735510716,
+      "z": -13.527349040036684,
+      "health": 100,
+      "shield": 60,
+      "kills": 9,
+      "cores": 3,
+      "ammo": 4,
+      "targets": 0
+    },
+    {
+      "at": 34649,
+      "time": 35.73199999999879,
+      "x": -9.645729824367168,
+      "z": -13.84041572217585,
+      "health": 100,
+      "shield": 60,
+      "kills": 10,
+      "cores": 3,
+      "ammo": 26,
+      "targets": 1
+    },
+    {
+      "at": 35962,
+      "time": 37.0319999999986,
+      "x": -6.052368268908017,
+      "z": -10.792207759421482,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 37232,
+      "time": 38.29859999999841,
+      "x": -4.39955559027345,
+      "z": -4.410692054808988,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 38489,
+      "time": 39.565199999998235,
+      "x": 0.04634180620429458,
+      "z": -0.748476976477994,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 39747,
+      "time": 40.815199999998036,
+      "x": -0.00027772053334445906,
+      "z": 6.126219846146664,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 41002,
+      "time": 42.081799999997806,
+      "x": -0.003115417752296289,
+      "z": 13.092519268183777,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 42255,
+      "time": 43.33169999999761,
+      "x": -0.00041570208707758565,
+      "z": 19.966965438247136,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 0
+    },
+    {
+      "at": 43511,
+      "time": 44.581699999997404,
+      "x": -0.32584259627159035,
+      "z": 26.537553609190493,
+      "health": 100,
+      "shield": 60,
+      "kills": 11,
+      "cores": 3,
+      "ammo": 24,
+      "targets": 2
+    },
+    {
+      "at": 44799,
+      "time": 45.84829999999729,
+      "x": -0.8201151242763146,
+      "z": 28.99593001355979,
+      "health": 100,
+      "shield": 60,
+      "kills": 13,
+      "cores": 3,
+      "ammo": 20,
+      "targets": 0
+    },
+    {
+      "at": 46047,
+      "time": 47.13159999999707,
+      "x": -0.8201151242763146,
+      "z": 28.99593001355979,
+      "health": 100,
+      "shield": 60,
+      "kills": 13,
+      "cores": 3,
+      "ammo": 20,
+      "targets": 0
+    },
+    {
+      "at": 47293,
+      "time": 48.38149999999685,
+      "x": -0.8201151242763146,
+      "z": 28.99593001355979,
+      "health": 100,
+      "shield": 60,
+      "kills": 13,
+      "cores": 3,
+      "ammo": 20,
+      "targets": 0
+    },
+    {
+      "at": 48544,
+      "time": 49.63149999999661,
+      "x": -0.8201151242763146,
+      "z": 28.99593001355979,
+      "health": 100,
+      "shield": 60,
+      "kills": 13,
+      "cores": 3,
+      "ammo": 20,
+      "targets": 0
+    },
+    {
+      "at": 49791,
+      "time": 50.86479999999639,
+      "x": -0.8201151242763146,
+      "z": 28.99593001355979,
+      "health": 100,
+      "shield": 60,
+      "kills": 13,
+      "cores": 3,
+      "ammo": 20,
+      "targets": 0
+    },
+    {
+      "at": 49921,
+      "state": "won",
+      "kills": 13,
+      "cores": 3,
+      "health": 100
+    }
+  ],
+  "final": {
+    "damageDirection": null,
+    "phase": "won",
+    "health": 100,
+    "maxHealth": 100,
+    "shield": 60,
+    "maxShield": 60,
+    "ammo": 20,
+    "reserve": 331,
+    "reloading": false,
+    "reloadProgress": 0,
+    "kills": 13,
+    "cores": 3,
+    "totalCores": 3,
+    "time": 50.989833333329706,
+    "dashCooldown": 0,
+    "objective": "HOLD THE EXTRACTION ZONE",
+    "coreProgress": 0,
+    "extractionProgress": 1,
+    "extractionSeconds": 6,
+    "phaseDodges": 0,
+    "dashCount": 0,
+    "phaseInterrupts": 0,
+    "score": 8376,
+    "enemiesAlive": 0,
+    "headshots": 11,
+    "accuracy": 57,
+    "difficulty": "standard",
+    "player": {
+      "x": -0.8201151242763146,
+      "y": 1.7,
+      "z": 28.99593001355979,
+      "yaw": -8.738000000000003,
+      "grounded": true
+    },
+    "coreMarkers": [
+      {
+        "x": -24,
+        "z": -15,
+        "id": 0,
+        "collected": true,
+        "distance": 49.728753459239805
+      },
+      {
+        "x": 24,
+        "z": -15,
+        "id": 1,
+        "collected": true,
+        "distance": 50.51415615983682
+      },
+      {
+        "x": 0,
+        "z": -33,
+        "id": 2,
+        "collected": true,
+        "distance": 62.001354235720285
+      }
+    ],
+    "nearestCoreDistance": null,
+    "recoveryReady": false,
+    "interaction": "",
+    "heading": 140.65052138531354,
+    "exitDistance": 2.1653834135360928,
+    "insideExtraction": true,
+    "exit": {
+      "x": 0,
+      "z": 31
+    },
+    "bounds": {
+      "minX": -37,
+      "maxX": 37,
+      "minZ": -42,
+      "maxZ": 42
+    },
+    "pointerFallback": false
+  },
+  "errors": []
+}

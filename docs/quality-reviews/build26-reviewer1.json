@@ -1,0 +1,132 @@
+{
+  "reviewer": "build26-reviewer1",
+  "build": 26,
+  "provisional": true,
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "npm run playtest:visible",
+    "ordinaryPlay": true,
+    "attempts": 1,
+    "sourceReadOrEdited": false,
+    "evidenceBasis": "Visible briefing, handbook, HUD, inspected JPEG captures, ordinary bounded synthetic inputs. Escape pauses between batches. No arranged tests or hidden state.",
+    "limits": [
+      "Paused synthetic input constrains timing, aiming, pressure and enjoyment judgments.",
+      "No audio enjoyment or hardware/renderer certification assessed.",
+      "Only one successful mission observed; replay depth and failure behavior unassessed."
+    ]
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "outcome": "successful extraction",
+      "memories": 3,
+      "missionTime": "00:56",
+      "eliminations": 2,
+      "score": 5614,
+      "displayedAccuracy": "4%",
+      "criticalEliminations": 2,
+      "displayedPhaseEvades": 0,
+      "deaths": 0,
+      "evidence": "docs/media/build26-review1/a1-uplink-defense.jpg"
+    }
+  ],
+  "ratingsOutOf10": {
+    "gameplay": 7,
+    "presentation": 7.5,
+    "usability": 7.5,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "findings": [
+    {
+      "type": "positive",
+      "observation": "Briefing explains cyan pylons, receiver offset, hold E and return beacon. Successful completion used those cues without source knowledge.",
+      "evidence": [
+        "mission.jpg",
+        "a1-west-hold.jpg",
+        "a1-all-memories.jpg"
+      ]
+    },
+    {
+      "type": "positive",
+      "observation": "Rain, wet courtyard, cyan strips and consistent typography establish a coherent industrial atmosphere. The central relay is a strong landmark.",
+      "evidence": [
+        "briefing.jpg",
+        "a1-cross-yard.jpg",
+        "a1-heart-memory.jpg"
+      ]
+    },
+    {
+      "type": "positive",
+      "observation": "Opening and relay guards had obvious amber optics; aimed fire produced readable critical-elimination feedback. Dash produced shot-canceled feed during the return.",
+      "evidence": [
+        "a1-guard-fire.jpg",
+        "a1-heart-combat.jpg",
+        "a1-return.jpg"
+      ]
+    },
+    {
+      "type": "friction",
+      "observation": "West receiver approach was obscured by wall/storage furniture; I circled before finding its ring. MOVE CLOSER and STEP INSIDE THE FLOOR RING ultimately helped.",
+      "evidence": [
+        "a1-west-approach.jpg",
+        "a1-west-receiver.jpg",
+        "a1-west-room.jpg"
+      ]
+    },
+    {
+      "type": "friction",
+      "observation": "At the relay, 3.1 m still showed MOVE CLOSER; a short forward correction enabled recovery. Receiver proximity is functional but exact reach takes trial movement.",
+      "evidence": [
+        "a1-heart-secure.jpg",
+        "a1-heart-memory.jpg"
+      ]
+    },
+    {
+      "type": "friction",
+      "observation": "Small threat badges, world markers, lower target text, announcements and interaction panels compete for attention. Distant enemies remain small against dark geometry.",
+      "evidence": [
+        "a1-heart-hold.jpg",
+        "a1-outcome.jpg"
+      ]
+    },
+    {
+      "type": "scope",
+      "observation": "The entire mission completed with two kills while largely sprinting between objectives. This supports a playable recovery loop, but offers limited evidence of sustained tactical combat depth. Simple repeated block forms and sparse enemy animation visible in still captures leave presentation below an AAA release bar.",
+      "evidence": [
+        "a1-uplink-defense.jpg",
+        "a1-left-lane.jpg",
+        "a1-outcome.jpg"
+      ]
+    }
+  ],
+  "evidence": {
+    "directory": "docs/media/build26-review1",
+    "actionLog": "docs/media/build26-review1/actions.jsonl",
+    "allActionsRetained": true,
+    "uniqueCapturesRetained": true,
+    "deathCaptures": []
+  },
+  "closure": {
+    "driverPid": 98809,
+    "ownedChromePID": 98821,
+    "explicitCommand": {
+      "op": "close"
+    },
+    "driverResponse": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 98809,
+      "chromePid": 98821,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "sessionExitCode": 0,
+    "pidVerification": {
+      "command": "ps -p 98821 -o pid=,comm=",
+      "exitCode": 1,
+      "stdout": "",
+      "ownedChromePIDAbsent": true
+    }
+  }
+}

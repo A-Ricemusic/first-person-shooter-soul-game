@@ -1,0 +1,126 @@
+{
+  "reviewer": "build26-reviewer2",
+  "build": 26,
+  "method": "Independent ordinary play from inspected JPEG captures, visible briefing, controls and HUD only; existing visible-playtest driver with bounded normal synthetic inputs and Escape pauses. No source, tests, prior reviews, hidden state or arranged evidence inspected. Two attempts completed; no further attempts.",
+  "ratings": {
+    "provisional": true,
+    "scale": 10,
+    "gameplay": 6,
+    "presentation": 7.5,
+    "usability": 6.5,
+    "readability": 6,
+    "AAAReadiness": 4
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:42",
+      "memories": [
+        "East Archive / Elian Vale",
+        "The Heart / Sera Nord"
+      ],
+      "memoryCount": 2,
+      "extracted": false,
+      "eliminations": 3,
+      "score": 2540,
+      "accuracyPercent": 7,
+      "criticalEliminations": 3,
+      "phaseEvades": 0,
+      "evidence": "docs/media/build26-review2/a1-turn.jpg",
+      "summary": "Killed entry guard, recovered East then Heart, lost time seeking West approach behind cover; died before reaching it."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "00:51",
+      "memories": [
+        "West Archive / Mara Solberg",
+        "The Heart / Sera Nord",
+        "East Archive / Elian Vale"
+      ],
+      "memoryCount": 3,
+      "extracted": false,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 5,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "evidence": "docs/media/build26-review2/a2-extraction-outcome.jpg",
+      "summary": "Recovered all three, returned via east aisle, entered extraction ring. HUD showed uplink 35% (JPEG 37%) and near-edge warning; died during next batch after moving slightly inward and waiting."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "strength",
+      "text": "Cohesive teal and amber storm station, restrained typography and attractive title/briefing/death screens provide a strong identity. Cyan archive structures and green extraction beacon are visually recognizable.",
+      "evidence": [
+        "briefing.jpg",
+        "mission.jpg",
+        "a2-west-secured.jpg"
+      ]
+    },
+    {
+      "kind": "strength",
+      "text": "Hold-E floor-ring guidance and recovered-person cards make objective progress clear; second run successfully recovered all memories after learning receiver placement. Supply restoration supports continued movement.",
+      "evidence": [
+        "a2-west-core.jpg",
+        "a2-west-secured.jpg",
+        "a2-east-memory.jpg"
+      ]
+    },
+    {
+      "kind": "issue",
+      "text": "Pylons draw attention but the actual receiver is offset in front. Several 3\u20135 m approaches produced MOVE CLOSER or generic Approach a memory receiver while the large pylon dominated view. Floor ring helps once seen.",
+      "evidence": [
+        "a1-east-receiver.jpg",
+        "a2-east-secure.jpg",
+        "a2-three-memories.jpg"
+      ]
+    },
+    {
+      "kind": "issue",
+      "text": "Navigation around cover consumed much of first run. West signal behind cover and south intake/east service text gave direction but did not expose a route from that approach; second run found the clearly signed front entrance. Cover also halted forward travel until jumping.",
+      "evidence": [
+        "a1-west-side.jpg",
+        "a1-intake-search.jpg",
+        "a2-west-intake.jpg",
+        "a2-west-core.jpg"
+      ]
+    },
+    {
+      "kind": "issue",
+      "text": "Combat readout, multiple bearing boxes, objective guidance, memory card and extraction panels can compete for attention. Small visor glyphs and compact target text were harder to parse than large health/ammo numbers.",
+      "evidence": [
+        "a1-heart-secure.jpg",
+        "a2-east-memory.jpg",
+        "a2-hold-zone.jpg"
+      ]
+    },
+    {
+      "kind": "issue",
+      "text": "Second run reached extraction with 100 health / 60 shield but took heavy damage near the edge and died within roughly five mission seconds. Inward warning was useful; stationary hold was unsuccessful, and I did not establish safe use of split baffles. This does not prove unavoidable damage.",
+      "evidence": [
+        "a2-uplink.jpg",
+        "a2-hold-zone.jpg",
+        "a2-extraction-outcome.jpg"
+      ]
+    },
+    {
+      "kind": "limitation",
+      "text": "Discrete paused synthetic mouse inputs made precise optic tracking and reactive charge breaks difficult; low accuracy and zero phase evades limit combat balance conclusions. Audio enjoyment and hardware performance were not assessed. No renderer claims made."
+    }
+  ],
+  "evidenceRoot": "docs/media/build26-review2",
+  "actionLog": "docs/media/build26-review2/actions.jsonl",
+  "allActionsAndDeathsRetained": true,
+  "arrangedObservations": [],
+  "closure": {
+    "operation": "close",
+    "driverPid": 2389,
+    "ownedChromePID": 2390,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "verification": "ps -p 2389,2390 -o pid=,comm= returned no rows, exit 1; both exact PIDs absent."
+  }
+}
