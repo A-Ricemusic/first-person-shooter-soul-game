@@ -1,4 +1,4 @@
-import {custodianAim,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
+import {prepareCustodianTurn,custodianAim,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
 import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
@@ -238,7 +238,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
-    this.clearInput(); if(this.custodian)clearCustodianLines(this.custodian);
+    this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
       const object = item.mesh || item.group;
       if (object) { this.scene.remove(object); object.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); if (Array.isArray(node.material)) node.material.forEach(m => m.dispose()); else node.material?.dispose(); }); }
@@ -505,6 +505,7 @@ export class Game {
   }
 
   updateEnemies(dt) {
+    const patrolBlocked=prepareCustodianTurn(this,dt);
     let charging=this.enemies.filter(e=>e.windup>0).length+(this.custodian.windup>0?1:0); const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       enemy.phase += dt; enemy.cooldown -= dt; enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
@@ -519,7 +520,7 @@ export class Game {
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
-      } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && charging<maxCharging) {
+      } else if (enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && charging<maxCharging) {
         charging++; enemy.windup = enemy.type === 'warden' ? 1.6 : enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}

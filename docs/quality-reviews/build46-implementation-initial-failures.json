@@ -1,0 +1,25 @@
+{
+  "failures": [
+    {
+      "command": "python /tmp/soul46-edit.py",
+      "error": "python: command not found",
+      "resolution": "Ran the prepared edit with python3; first build still contained unchanged startup payload."
+    },
+    {
+      "command": "node tests/build46-coordination.mjs",
+      "error": "AssertionError: next ready request allowed",
+      "resolution": "Reset the unit fixture before testing resolution; the previous lease-expiry retry was still correctly active."
+    },
+    {
+      "command": "node tests/build46-coordination.mjs",
+      "error": "page.waitForFunction timeout 30000ms",
+      "resolution": "Use polling:50 with the fixture requestAnimationFrame stub; browser closed in finally."
+    },
+    {
+      "command": "Final dossier copytree to dist/docs",
+      "error": "Permission denied overwriting two existing read-only Build17 review files",
+      "resolution": "Historical files already contain matching bytes and were left untouched; all new dossier files copied. Revalidated source and dist references afterward."
+    }
+  ],
+  "scope": "Implementation/fixture failures retained; no claim these were ordinary mission outcomes."
+}

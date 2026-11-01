@@ -1,0 +1,98 @@
+{
+  "reviewer": "build46-review1",
+  "url": "http://127.0.0.1:5173/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "mission_time": "01:20",
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "eliminations": 2,
+      "score": 2280,
+      "accuracy": "10%",
+      "terminal_evidence": "docs/media/build46-review1/a1-east-flank.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "mission_time": "00:43",
+      "memories": [
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "eliminations": 2,
+      "score": 2360,
+      "accuracy": "29%",
+      "terminal_evidence": "docs/media/build46-review1/a2-west-flank.jpg"
+    }
+  ],
+  "ratings_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "AAA_readiness": 3,
+    "replayability": 5
+  },
+  "reasons": {
+    "gameplay": "Recovering memories under pressure creates a clear short mission. Optic kills are satisfying and supplies on recovery encourage movement. I repeatedly absorbed fire while navigating or interacting; enemies felt persistent rather than tactically varied in these two attempts. Both attempts ended before extraction.",
+    "presentation": "Rain, wet reflective surfaces, cyan industrial lights and the large circular relay make a cohesive atmosphere. Weapon silhouette and end-screen typography are strong. Boxy robots, spare geometry and repeated crates and wall treatments still look like a polished prototype.",
+    "usability": "Controls remain visible, E prompts specify proximity, and the paused facility map is helpful. Distances and floating markers sometimes took extra repositioning to interpret, especially when close to receivers. West archive walls caused route friction.",
+    "readability": "Main health/ammo and amber optics are clear. Small all-caps labels, multiple corner messages and overlapping objective markers compete with combat. Damage direction is visible but did not always let me promptly locate the shooter while near cover.",
+    "AAA_readiness": "A coherent playable small mission with clear UI, but visual asset complexity, encounter variety and navigation/combat readability remain below a finished major commercial FPS. No performance certification or audio assessment is claimed.",
+    "replayability": "Second attempt let me change archive order and improve accuracy, but the compact fixed space and narrow observed loop suggest limited repeat depth."
+  },
+  "method_limits": [
+    "Exactly two terminal attempts through ordinary visible UI and driver inputs. No source, assets, hidden state, hooks, previous reviews or route coaching consulted.",
+    "Used visible HUD, screenshot images and paused facility map. Driver --help consulted.",
+    "Software WebGL fallback; discrete action batches and screenshot pauses constrain fine aiming and reaction speed. These results should not be interpreted as direct mouse play difficulty or GPU performance measurement.",
+    "Did not reach extraction, so final objective encounter and win presentation were not evaluated.",
+    "No audio evaluation; no unsupported camera heading bug claim."
+  ],
+  "concrete_findings": [
+    {
+      "finding": "West receiver access requires navigating walls/storage; twice I hit walls while following the general marker. The paused map clarified the wall shape.",
+      "evidence": [
+        "docs/media/build46-review1/a1-west-entry.jpg",
+        "docs/media/build46-review1/a2-map.jpg"
+      ]
+    },
+    {
+      "finding": "Close receiver positioning was harder to judge at level view; looking down made the east floor ring legible and the next forward approach recovered it.",
+      "evidence": [
+        "docs/media/build46-review1/a2-east-ring.jpg",
+        "docs/media/build46-review1/a2-floor.jpg",
+        "docs/media/build46-review1/a2-east-secure.jpg"
+      ]
+    },
+    {
+      "finding": "First induction optic kill was straightforward; later optic aim improved on attempt two.",
+      "evidence": [
+        "docs/media/build46-review1/a1-guard.jpg",
+        "docs/media/build46-review1/a2-west-route.jpg"
+      ]
+    },
+    {
+      "finding": "One unsuccessful guessed restart selector timed out; then visible DEPLOY AGAIN text selector successfully began attempt two. This is a driver selector error, not a game UI defect.",
+      "sequence": 21
+    }
+  ],
+  "raw_actions": "docs/media/build46-review1/actions.jsonl",
+  "screenshots_directory": "docs/media/build46-review1",
+  "closure": {
+    "explicit_command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 92924,
+    "chromePid": 92925,
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 92924,92925 -o pid=,comm=",
+    "verification_stdout": "",
+    "verification_exit_code": 1,
+    "conclusion": "Both exact owned PIDs absent. No processes killed."
+  }
+}

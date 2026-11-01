@@ -49,7 +49,10 @@ for i,x in enumerate([-1.65,0,1.65]):
 for j in range(9):part(f'Heat_sink_{j}',[-1.6+j*.4,.95,1.2],[.06,.7,.25],'dark')
 manifest=dict(version=45,origin=[11,0,16],parts=parts,coils=[dict(id=i,x=x,z=[-.2,.2,-.2][i],pivot=[x,2.85,[.35,.75,.35][i]],muzzle=[0,0,.61],target=[x,2.18,[-.2,.2,-.2][i]]) for i,x in enumerate([-1.65,0,1.65])],provenance='Original procedural Blender mesh construction by Codex; no external meshes, textures or fonts.',ownership='Static mission-owned shared resources; persistent spent cover')
 assert len({p['name'] for p in parts})==len(parts)
-(R/'src/custodian-layout.json').write_text(json.dumps(manifest,separators=(',',':'))+'\n')
+surfaces={p['name']:{k:p[k] for k in ('positions','normals')} for p in parts}
+light={**manifest,'parts':[{k:v for k,v in p.items() if k not in ('positions','normals')} for p in parts]}
+(R/'src/custodian-layout.json').write_text(json.dumps(light,separators=(',',':'))+'\n')
+(R/'src/custodian-surfaces.json').write_text(json.dumps(surfaces,separators=(',',':'))+'\n')
 bpy.ops.wm.save_as_mainfile(filepath=str(R/'public/assets/custodian.blend'))
 bpy.ops.export_scene.gltf(filepath=str(R/'public/assets/custodian.glb'),export_format='GLB',export_yup=True)
 cost=dict(version=45,provenance=manifest['provenance'],generator='tools/build45-custodian.py',triangles=sum(len(p['positions'])//9 for p in parts),meshCount=len(parts),materialCount=len(mats),textureCount=0,estimatedDrawCalls=len(parts),glbBytes=(R/'public/assets/custodian.glb').stat().st_size,limits='Measured asset counts only; no hardware performance certification. Flat machined surfaces and simple procedural material colors; world and player remain stylized.')

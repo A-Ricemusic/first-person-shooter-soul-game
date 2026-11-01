@@ -1,0 +1,98 @@
+{
+  "reviewer": "build46-review2",
+  "url": "http://127.0.0.1:5173/",
+  "attemptCount": 2,
+  "outcomes": [
+    {
+      "attempt": 1,
+      "terminal": "death",
+      "missionTime": "00:40",
+      "memories": 3,
+      "eliminations": 2,
+      "score": 3360,
+      "accuracy": "15%",
+      "lastObjective": "DISABLE UPLINK CUSTODIAN",
+      "terminalImage": "../media/build46-review2/a1-custodian-approach.jpg"
+    },
+    {
+      "attempt": 2,
+      "terminal": "death",
+      "missionTime": "00:43",
+      "memories": 3,
+      "eliminations": 3,
+      "score": 3540,
+      "accuracy": "11%",
+      "lastObjective": "DISABLE UPLINK CUSTODIAN",
+      "terminalImage": "../media/build46-review2/a2-custodian-run.jpg"
+    }
+  ],
+  "ratings": {
+    "gameplay": {
+      "score": 6,
+      "reason": "Recovering memories and flanking through a compact readable arena made progress satisfying. The optic targets rewarded accurate opening shots. Taking fire from several directions quickly overwhelmed stationary aiming; both attempts died before engaging the Custodian. My poor aim contributed substantially."
+    },
+    "presentation": {
+      "score": 7,
+      "reason": "Cohesive wet industrial courtyard, cyan and amber lights, rain, strong relay centerpiece and clean end screen. Blocklike robots, gun and repetitive cover make this feel like an appealing small prototype rather than a finished large production."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Onscreen controls, explicit hold-E guidance, distances, supply restoration and paused facility map helped me learn without outside guidance. Move-closer feedback corrected my first unsuccessful recovery. Relative mouse actions through a terminal made aiming awkward; this is a method limitation."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Large objective, vitals, ammo and memory slots are clear. Map labels and routes were useful. Tiny distant enemies and pale small world text are harder to parse, while combat directions and instruction banners compete for attention."
+    },
+    "AAA_readiness": {
+      "score": 3,
+      "reason": "Coherent art direction and functional mission progression, but visible geometry, enemy animation/detail and arena scale do not meet a polished AAA presentation standard. I did not reach the boss fight or extraction and cannot assess their finish."
+    },
+    "replayability": {
+      "score": 5,
+      "reason": "Second run encouraged better aiming and enemy clearance, but the same small arena and three recovery stops suggest limited variety from these two attempts."
+    }
+  },
+  "findings": [
+    "Recovered all three memories in both attempts using visible objectives, floor rings and map.",
+    "Entry guard optic kill was easy to understand; clearing later moving contacts was much harder with terminal-controlled aim.",
+    "Health dropped 86 to 3 during one 2-second stationary firefight, making threats from multiple directions feel punishing.",
+    "Recovered-memory reward restored supplies, but incoming damage could immediately consume the benefit.",
+    "No pageErrors were reported in successful driver results."
+  ],
+  "methodLimits": [
+    "Only ordinary visible UI and screenshots; no source, hidden state, test hooks, prior reports, solutions or game edits.",
+    "Exactly two terminal mission attempts; no third attempt or rescore.",
+    "Software-WebGL fallback announced by driver; no GPU performance conclusion.",
+    "Frequent screenshot pauses and terminal input prevent a normal continuous mouse/keyboard feel.",
+    "Did not reach Custodian combat, extraction or victory; no claim about those experiences.",
+    "No audio assessment."
+  ],
+  "rawActionLinks": [
+    "../media/build46-review2/actions.jsonl"
+  ],
+  "errors": [
+    {
+      "sequence": 2,
+      "error": "Unsupported input step. Used op instead of type; then read driver --help and corrected syntax."
+    },
+    {
+      "error": "Attempted screenshot read before long second-attempt action finished; file absent, then successfully viewed after result."
+    }
+  ],
+  "closure": {
+    "command": {
+      "op": "close"
+    },
+    "driverPid": 94173,
+    "chromePid": 94174,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "pidVerification": {
+      "command": "ps -p 94173,94174 -o pid=,command=",
+      "exitCode": 1,
+      "output": "",
+      "meaning": "Both exact owned PIDs absent"
+    },
+    "unrelatedProcessesTouched": false
+  }
+}
