@@ -1,0 +1,66 @@
+{
+  "reviewer": "build41-review2",
+  "artifactDigest": "2a9acb063d6a8c1b50f9f3545118f1b5f808ff85da6b6736492d7fc72dcf9288",
+  "method": "Exactly two ordinary terminal attempts on http://127.0.0.1:5173/ through existing visible driver, visible briefing/HUD and JPEG inspection only. No source, tests, arranged positions or hidden state. Installed Chrome software WebGL fallback; not hardware certification.",
+  "provisionalRatings": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "aaaReadiness": 3,
+    "replayability": 5
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "lost",
+      "missionTime": "00:54",
+      "score": 1180,
+      "eliminations": 1,
+      "accuracyPercent": 3,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "memories": ["Mara Solberg"],
+      "coverage": "Killed induction guard by firing at optic; sprinted west lane, negotiated low cover and recovered west archive. Attempted route out through medical bay and central yard, repeatedly met walls/cover and took substantial damage. Reached east side but died before second recovery.",
+      "terminalEvidence": "docs/media/build41-review2/a1-east-recovery.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "lost",
+      "missionTime": "00:27",
+      "score": 2585,
+      "eliminations": 2,
+      "accuracyPercent": 14,
+      "criticalEliminations": 2,
+      "phaseEvades": 3,
+      "memories": ["Elian Vale", "Sera Nord"],
+      "coverage": "Killed induction guard, sprinted east lane and recovered east archive. Dashed northwest toward heart and recovered it after correcting receiver position. Tried southwest departure; view stayed near relay while warden filled foreground, health fell from 100/shield60 to 4/shield0 in about three mission seconds. Tried sideways phase and optic fire, killed second enemy, then died.",
+      "terminalEvidence": "docs/media/build41-review2/a2-escape.jpg"
+    }
+  ],
+  "observations": [
+    "Title composition, rain, reflective ground, cyan lighting, giant relay and consistent typography establish an attractive cohesive mood. Enemies and furnishings remain visibly simple geometric forms, limiting premium production impression.",
+    "Clear mission brief, handbook, paused facility map, numbered recovery boxes, receiver distance and recovered-memory cards make the mission understandable. Death screen preserves score and collected character identities; restored records provide a small narrative reward.",
+    "Optic shooting produced an immediately legible critical elimination and score event. Recovery restores supplies and gives a satisfying visible beat. Second attempt improved route efficiency substantially.",
+    "Traversal was harder to read than the map suggested. I repeatedly ran against low cover or a wall, with near-identical views after movement. Broad cyan objective markers did not always make the attached receiver location clear; I first approached the visible three-screen console at the heart and moved farther from its receiver.",
+    "Threat chevrons and charging labels communicated danger, but multiple directions plus foreground enemies made prioritization difficult. The second attempt's rapid health collapse after heart recovery felt severe; whether blocked movement was enemy collision, geometry, or my input execution is uncertain.",
+    "Dash produced visible PHASE EVADE +75 and three recorded evades in attempt two. No confirmed charge-break stagger was observed. Captures occur after driver input release, so sight appearance is not evidence that held ADS failed."
+  ],
+  "coverageLimits": {
+    "extraction": "Not reached; no upload, outside-deck decay, return defense or victory assessment is supported.",
+    "movement": "Walk, sprint, strafe, backward movement and phase used; jump not used.",
+    "combat": "Rifle, reload, optic aiming, induction warden, sentinels and interceptors encountered. No deliberate capacitor discharge or confirmed charge cancel.",
+    "phases": "Menu, handbook, brief, playing, planning map, pause, recovery, death and restored records. No successful full mission.",
+    "performance": "No pageErrors in returned actions; JPEG/action latency does not certify frame rate, audio quality or hardware performance. No automation failures occurred in this session."
+  },
+  "evidence": "docs/media/build41-review2/actions.jsonl and 32 driver JPEG captures; raw actions, HUD states, deaths and scores preserved",
+  "closure": {
+    "opCloseRequested": true,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "driverPid": 5670,
+    "chromePid": 5671,
+    "ownedPidsAbsent": true,
+    "verification": "ps -p 5670,5671 -o pid=,comm= returned no rows and exit 1 after driver close"
+  }
+}

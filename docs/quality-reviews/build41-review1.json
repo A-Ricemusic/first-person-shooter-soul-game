@@ -1,0 +1,86 @@
+{
+  "review": "build41-review1",
+  "artifactDigest": "2a9acb063d6a8c1b50f9f3545118f1b5f808ff85da6b6736492d7fc72dcf9288",
+  "provisional": true,
+  "ratings": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "aaaReadiness": 4
+  },
+  "method": "Exactly two ordinary terminal attempts on normal http://127.0.0.1:5173/ through existing visible driver, visible handbook/brief and HUD/JPEG evidence only. No source, tests, hidden state, arranged positions, or other browser tools. Software-WebGL fallback; no hardware certification.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "lost",
+      "missionTime": "01:02",
+      "score": 3360,
+      "eliminations": 2,
+      "accuracyPercent": 6,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "cores": [
+        "Mara Solberg",
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "coverage": "Reached return-to-extraction phase, died near north area before uplink. West then east then Heart.",
+      "evidence": "docs/media/build41-review1/a1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "lost",
+      "missionTime": "01:00",
+      "score": 3360,
+      "eliminations": 2,
+      "accuracyPercent": 13,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "cores": [
+        "Sera Nord",
+        "Elian Vale",
+        "Mara Solberg"
+      ],
+      "coverage": "Reached uplink deck and HOLD THE EXTRACTION ZONE. HUD response before capture was 65%, JPEG visibly 67%; died before automatic pause, terminal confirmed. No successful extraction.",
+      "evidence": [
+        "docs/media/build41-review1/a2-upload.jpg",
+        "docs/media/build41-review1/a2-terminal.jpg"
+      ]
+    }
+  ],
+  "observations": [
+    "Strong rain-soaked cyan/amber visual identity, polished title and outcome typography, clear rifle silhouette and strong Heart landmark. Repeated simple robot forms and broad flat concrete/storage geometry still read as a vertical slice rather than AAA production.",
+    "Core recovery supplies visibly restored health, armor and reserve ammunition; changing route on replay was useful. Objective shift and green uplink progress were clear.",
+    "Brief and handbook explain console proximity, pausing map, charge cancel, shield regeneration and capacitor hazards thoroughly. Onscreen control strip omits sprint, though handbook includes it.",
+    "Paused facility map was legible and useful for route planning. Storage and low-cover collisions caused repeated route corrections and consumed health; a jump over east low cover visibly worked.",
+    "Thin small HUD text, overlapping world signage/markers and signal-behind-cover notes became busy. Charging/recent-fire cues exposed threats but several simultaneous directions were difficult to act on through intermittent captures.",
+    "Shooting the entry optic produced critical elimination feedback. Second run also eliminated Heart warden by firing while recovering. Most guards remained alive, creating substantial return/extraction pressure; my low accuracy and route errors contributed to both deaths.",
+    "Uplink deck asks movement within deck and has split baffles. Second run entered at low health, remained relatively exposed and died at roughly two-thirds upload. This does not establish extraction balance or a defect."
+  ],
+  "movementCoverage": [
+    "WASD movement",
+    "ControlLeft sprint",
+    "Space jump successfully crossed low cover",
+    "ShiftLeft dash used on both attempts; no credited phase evades",
+    "R reload",
+    "RMB aim used during first entry fight; released before JPEG",
+    "M paused map",
+    "Hold E recovered all three cores twice"
+  ],
+  "uncertainties": [
+    "No victory or completed extraction coverage; no upload decay/reentry coverage.",
+    "No deliberate close-range charge cancellation or capacitor discharge coverage.",
+    "Driver action-and-capture control limits continuous aim/navigation assessment. No audio or hardware performance conclusions.",
+    "No pageErrors reported in observed driver results; this is not broad stability certification."
+  ],
+  "rawEvidence": "docs/media/build41-review1/actions.jsonl",
+  "closure": {
+    "requestedOp": "close",
+    "browserClosed": true,
+    "driverPid": 4675,
+    "chromePid": 4676,
+    "driverExitCode": 0,
+    "ownedPidCheck": "ps -p 4675,4676 -o pid=,comm= returned empty output and exit 1; both exact owned PIDs absent"
+  }
+}

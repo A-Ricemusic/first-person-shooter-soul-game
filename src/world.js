@@ -2,7 +2,7 @@ import {createCapacitors} from './capacitors.js';
 import terminalParts from './terminal-parts.json';
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
-import UPLINK from './uplink-layout.json';
+import UPLINK from './uplink-layout.json' with {type:'json'};
 import { CORE_SITES, SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -243,6 +243,15 @@ export async function buildWorld(scene) {
     const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);
     const bounds=new THREE.Box3(c.clone().sub(half),c.clone().add(half));bounds.uplink=true;colliders.push(bounds);
     if(!uplinkAsset){const m=new THREE.Mesh(new THREE.BoxGeometry(...p.size),steel);m.position.copy(c);uplink.add(m);}
+  }
+  // Fallback uses the same authored footprint, flush and non-blocking.
+  if(!uplinkAsset){const f=UPLINK.footprint,[cx,cz]=UPLINK.center;
+    const deckMat=new THREE.MeshStandardMaterial({color:0x253d40,metalness:.7,roughness:.65});
+    for(let x=0;x<10;x++)for(let z=0;z<6;z++){
+      const w=(f.xMax-f.xMin)/10,d=(f.zMax-f.zMin)/6;
+      const panel=new THREE.Mesh(new THREE.BoxGeometry(w-.025,.02,d-.025),deckMat);
+      panel.position.set(cx+f.xMin+(x+.5)*w,-.008,cz+f.zMin+(z+.5)*d);uplink.add(panel);
+    }
   }
   if(!uplinkAsset)for(let i=0;i<12;i++){const m=new THREE.Mesh(new THREE.BoxGeometry(.075,.025,.25),weakCyan.clone());m.name=`UplinkCell${String(i).padStart(2,'0')}`;m.position.set(-.55+i*.1,.92,34.2);uplink.add(m);}
   uplink.traverse(o=>{if(o.isMesh){if(uplinkAsset&&!o.name.startsWith('UplinkCell')&&o.name!=='Beacon')o.userData.batchHousing=true;o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('UplinkCell')||o.name==='Beacon'){o.material=o.material.clone();cells.push(o);}}});

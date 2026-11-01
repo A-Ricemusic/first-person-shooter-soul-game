@@ -1,0 +1,6 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});const rows=[],errors=[];
+try{const p=await b.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:5173/');await p.locator('#deploy:not([disabled])').waitFor();await p.click('#deploy');
+for(const [width,height] of [[960,640],[1280,720],[1440,900]]){await p.setViewportSize({width,height});const r=await p.locator('#field-controls').evaluate(el=>({text:el.textContent,rect:el.getBoundingClientRect().toJSON(),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));assert.match(r.text,/CTRL SPRINT/);assert.ok(r.rect.x>=0&&r.rect.right<=width);assert.ok(r.scrollWidth<=r.clientWidth);rows.push({width,height,...r});await p.screenshot({path:`docs/media/build41-post-review-hint-${width}.jpg`});}assert.equal(await p.evaluate(()=>typeof window.__SOULFALL__),'undefined');assert.deepEqual(errors,[]);writeFileSync('docs/quality-reviews/build41-post-review-hint.json',JSON.stringify({method:'Post-review no-rescore normal-URL responsive DOM and actual WebGL capture, no hidden reads',rows,errors},null,2));}finally{await b.close()}

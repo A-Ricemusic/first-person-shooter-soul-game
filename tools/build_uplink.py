@@ -32,8 +32,26 @@ for x in [-2.05,2.05]:
   part('Lower impact abrasion',(x-.43+j*.103,.18+(j%3)*.035,29.692),(.05+(j%2)*.025,.014,.004),scuff)
 part('Console face',(0,.89,34.2),(1.3,.01,.54),dark)
 for i in range(12):part('UplinkCell%02d'%i,(-.55+i*.1,.92,34.2),(.075,.025,.25),green)
+# Flush inlay: all tops <= 0.004m; no new collision or raised dash obstacles.
+f=layout['footprint'];cx,cz=layout['center']
+x0,x1=cx+f['xMin'],cx+f['xMax'];z0,z1=cz+f['zMin'],cz+f['zMax']
+deck=material('Uplink deck brushed steel',(.115,.17,.18),.7,.65)
+seam=material('Recessed cable channel',(.025,.045,.05),.6,.8)
+mark=material('Deck inward enamel',(.48,.53,.39),.2,.8)
+for ix in range(10):
+ for iz in range(6):
+  x=x0+(ix+.5)*(x1-x0)/10;z=z0+(iz+.5)*(z1-z0)/6
+  part('Flush deck cassette',(x,-.008,z),((x1-x0)/10-.025,.02,(z1-z0)/6-.025),deck)
+  for dx in [-.62,.62]:
+   for dz in [-.61,.61]:part('Countersunk deck fastener',(x+dx,.003,z+dz),(.045,.002,.045),edge)
+  for j in [-.32,0,.32]:part('Inset traction slat',(x+j,.002,z),(.035,.002,.75),seam)
+for x in [x0+.12,x1-.12]:
+ part('Perimeter cable channel',(x,.001,(z0+z1)/2),(.10,.002,z1-z0-.2),seam)
+ for z in [z0+.5,z0+2.5,z0+4.5,z0+6.5,z1-.5]:
+  part('Inward deck marker',(x+(.18 if x<cx else -.18),.004,z),(.27,.002,.09),mark)
+for z in [z0+.12,z1-.12]:part('Transverse cable channel',((x0+x1)/2,.001,z),(x1-x0-.2,.002,.10),seam)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT,'uplink-defense.glb'),export_format='GLB',use_selection=True)
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'uplink-defense.blend'))
-json.dump({'author':'SOULFALL original Blender authorship','source':'tools/build_uplink.py','layout':'src/uplink-layout.json','triangles':sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH'),'objects':len(bpy.context.scene.objects),'glbBytes':os.path.getsize(os.path.join(OUT,'uplink-defense.glb')),'collision':'Shared exact solid envelopes; inset trim; fixed geometry in every power state'},open(os.path.join(ROOT,os.environ.get('UPLINK_PROVENANCE','docs/current-uplink-provenance.json')),'w'),indent=2)
+json.dump({'author':'SOULFALL original Blender authorship','source':'tools/build_uplink.py','layout':'src/uplink-layout.json','triangles':sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH'),'objects':len(bpy.context.scene.objects),'glbBytes':os.path.getsize(os.path.join(OUT,'uplink-defense.glb')),'footprint':layout['footprint'],'deck':'Flush metal inlay, no added colliders','collision':'Shared exact solid envelopes; inset trim; fixed geometry in every power state'},open(os.path.join(ROOT,os.environ.get('UPLINK_PROVENANCE','docs/current-uplink-provenance.json')),'w'),indent=2)

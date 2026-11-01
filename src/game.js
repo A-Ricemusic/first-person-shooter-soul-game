@@ -12,7 +12,7 @@ import { buildWorld } from './world.js';
 import { advanceUpload } from './upload.js';
 import { movePlayer, jumpPlayer } from './movement.js';
 import { SoulAudio } from './audio.js';
-import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS, EXTRACTION_RADIUS, extractionDistance, isInsideExtraction } from './mission.js';
+import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS, EXTRACTION_FOOTPRINT, extractionMargin, extractionDistance, isInsideExtraction } from './mission.js';
 
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = THREE.MathUtils.clamp;
@@ -137,7 +137,10 @@ export class Game {
 
   buildExtraction() {
     this.exit = new THREE.Group(); this.exit.position.copy(this.world.playerSpawn); this.exit.position.y = 0.04;
-    this.exitRing = mesh(new THREE.TorusGeometry(EXTRACTION_RADIUS, 0.06, 8, 80), new THREE.MeshBasicMaterial({ color: 0x637b83, transparent: true, opacity: 0.5 })); this.exitRing.rotation.x = Math.PI / 2; this.exit.add(this.exitRing);
+    const f=EXTRACTION_FOOTPRINT;
+    const shape=new THREE.Shape();shape.moveTo(f.xMin,-f.zMin);shape.lineTo(f.xMax,-f.zMin);shape.lineTo(f.xMax,-f.zMax);shape.lineTo(f.xMin,-f.zMax);shape.closePath();
+    const hole=new THREE.Path();hole.moveTo(f.xMin+.06,-f.zMin-.06);hole.lineTo(f.xMin+.06,-f.zMax+.06);hole.lineTo(f.xMax-.06,-f.zMax+.06);hole.lineTo(f.xMax-.06,-f.zMin-.06);hole.closePath();shape.holes.push(hole);
+    this.exitBoundary=mesh(new THREE.ShapeGeometry(shape),new THREE.MeshBasicMaterial({color:0x637b83,transparent:true,opacity:.5,side:THREE.DoubleSide}));this.exitBoundary.rotation.x=-Math.PI/2;this.exitBoundary.position.y=-.034;this.exit.add(this.exitBoundary);
     this.exitBeam = mesh(new THREE.CylinderGeometry(.12, .12, 3, 12, 1, true), new THREE.MeshBasicMaterial({color:0x65ffb7,transparent:true,opacity:.22,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}),0,4,3.2); this.exitBeam.visible=false; this.exit.add(this.exitBeam);
     const exitLight = new THREE.PointLight(0x65ffb7, 7, 13); exitLight.position.y=2; this.exitBeam.add(exitLight);
     this.scene.add(this.exit);
@@ -211,7 +214,7 @@ export class Game {
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
-    this.exitRing.material.color.setHex(0x637b83); this.exitBeam.visible = false;
+    this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
     this.encounters = new Set(); this.phaseCueAt = -100;
     this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
@@ -322,7 +325,7 @@ export class Game {
     this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
     for (let i = 0; i < (this.options.reducedMotion?0:6); i++) this.particle(core.position.clone().add(new THREE.Vector3(0, .85, 0)), 0x4297a6, .35, .025);
     if (this.cores < this.coreNodes.length) this.event('notice','Memory secured. Supplies restored. Choose your next archive.');
-    else { this.exitRing.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(2); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
+    else { this.exitBoundary.material.color.setHex(0x65ffb7); this.exitBeam.visible=true; this.spawnWave(2); this.event('notice','ALL MEMORIES SECURED. Reach the green beacon and hold the extraction zone.'); }
     this.emit();
   }
 
@@ -647,8 +650,8 @@ export class Game {
       c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
     }
     this.world.setUplinkState(this.cores===this.coreNodes.length,Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS)));
-    this.exitRing.material.opacity = this.cores === this.coreNodes.length ? 0.7 + Math.sin(this.animTime * 3) * 0.2 : 0.35;
-    this.exitRing.rotation.z += dt * 0.1;
+    this.exitBoundary.material.opacity = this.cores === this.coreNodes.length ? 0.8 : 0.35;
+
     for (let i = this.effects.length - 1; i >= 0; i--) {
       const effect = this.effects[i]; effect.life -= dt;
       if (effect.velocity) { effect.mesh.position.addScaledVector(effect.velocity, dt); effect.velocity.y -= (effect.gravity || 0) * dt; }
@@ -731,7 +734,9 @@ export class Game {
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
       nearestCoreDistance: closest?.distance ?? null, recoveryReady:closest?.distance < RECOVERY_RADIUS, interaction: closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : '', heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      // Centre navigation distance only; extractionMargin owns all edge guidance.
       exitDistance: this.world ? extractionDistance(this.player,this.world.playerSpawn) : 0,
+      extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,
       insideExtraction: this.world ? isInsideExtraction(this.player,this.world.playerSpawn) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
       facilityLayout:this.facilityLayout, bounds: this.world?.bounds, pointerFallback: this.pointerFallback,

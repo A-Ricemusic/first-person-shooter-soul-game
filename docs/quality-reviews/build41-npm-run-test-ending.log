@@ -1,0 +1,26 @@
+
+> soulfall-the-last-signal@1.0.0 test:ending
+> node tests/ending-regressions.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 1.1999999999999988
+- 0.9999999999999989
+
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/ending-regressions.mjs:19:791
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1.1999999999999988,
+  expected: 0.9999999999999989,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

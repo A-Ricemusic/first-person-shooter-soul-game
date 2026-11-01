@@ -1,3 +1,4 @@
+import UPLINK from './uplink-layout.json' with {type:'json'};
 export const CORE_SITES = [
   {name:'WEST ARCHIVE',person:'MARA SOLBERG',role:'Station medic',memory:'If someone finds this… the children made the last ferry. Tell them I kept the light on.'},
   {name:'EAST ARCHIVE',person:'ELIAN VALE',role:'Relay engineer',memory:'I could erase the station. I could not erase the people inside it. Bring them home.'},
@@ -9,12 +10,22 @@ export function recoveryDistance(player, position) {
   return Math.hypot(position.x-player.x,position.z-player.z,player.y-1.7);
 }
 export const EXTRACTION_SECONDS = 6;
-export const EXTRACTION_RADIUS = 2.7;
+export const EXTRACTION_FOOTPRINT = Object.freeze(UPLINK.footprint);
+export function extractionBounds(position) {
+ const f=EXTRACTION_FOOTPRINT;
+ return {xMin:position.x+f.xMin,xMax:position.x+f.xMax,zMin:position.z+f.zMin,zMax:position.z+f.zMax};
+}
+// Positive strictly inside; negative Euclidean approach distance outside (including corners).
+export function extractionMargin(player,position) {
+ const b=extractionBounds(position);
+ const dx=Math.max(b.xMin-player.x,0,player.x-b.xMax),dz=Math.max(b.zMin-player.z,0,player.z-b.zMax);
+ return dx||dz ? -Math.hypot(dx,dz) : Math.min(player.x-b.xMin,b.xMax-player.x,player.z-b.zMin,b.zMax-player.z);
+}
 export function extractionDistance(player, position) {
   return Math.hypot(player.x-position.x,player.z-position.z);
 }
 export function isInsideExtraction(player, position) {
-  return extractionDistance(player,position)<EXTRACTION_RADIUS && Math.abs(player.y-1.7)<.5;
+  return extractionMargin(player,position)>0 && Math.abs(player.y-1.7)<.5;
 }
 
 // These optional platforms share their world placement with the approach cue.
