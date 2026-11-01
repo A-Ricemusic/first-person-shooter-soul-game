@@ -1,0 +1,276 @@
+{
+  "reviewer": "Independent ordinary visible reviewer 1",
+  "build": "34",
+  "reviewedAtUtc": "2026-11-01T10:51:33.762154+00:00",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "tools/visible-playtest.mjs",
+    "launch": "npm run playtest:visible -- --out docs/media/build34-review1",
+    "interactiveTty": true,
+    "helpReadBeforeBrowserLaunch": true,
+    "inputs": "Visible menus and documented mouse look, ADS, fire, WASD, Ctrl sprint, Shift dash, R reload, hold E. Driver automatically released inputs, captured actual JPEGs, and paused with Escape between batches. Each gameplay screenshot was inspected with view_image.",
+    "independence": "No source, tests, prior reviews, hidden game state, debug URL, arranged actors, arbitrary evaluate, or DIY driver used. Gameplay source unchanged. Routes discovered from the visible briefing, signs, markers and play.",
+    "renderer": "Software-WebGL fallback reported by driver; no hardware performance inference."
+  },
+  "evidence": {
+    "rawActions": "docs/media/build34-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build34-review1/attempt1-advance.jpg",
+      "docs/media/build34-review1/attempt1-back-to-intake.jpg",
+      "docs/media/build34-review1/attempt1-beacon-approach.jpg",
+      "docs/media/build34-review1/attempt1-death.jpg",
+      "docs/media/build34-review1/attempt1-deploy.jpg",
+      "docs/media/build34-review1/attempt1-east-core-route.jpg",
+      "docs/media/build34-review1/attempt1-east-core-secured.jpg",
+      "docs/media/build34-review1/attempt1-east-receiver.jpg",
+      "docs/media/build34-review1/attempt1-east-service-exit.jpg",
+      "docs/media/build34-review1/attempt1-find-receiver.jpg",
+      "docs/media/build34-review1/attempt1-guard-fire.jpg",
+      "docs/media/build34-review1/attempt1-heart-approach.jpg",
+      "docs/media/build34-review1/attempt1-heart-receiver-correct.jpg",
+      "docs/media/build34-review1/attempt1-heart-recover-try.jpg",
+      "docs/media/build34-review1/attempt1-heart-recovered.jpg",
+      "docs/media/build34-review1/attempt1-heart-sentinel-fire.jpg",
+      "docs/media/build34-review1/attempt1-heart-yard.jpg",
+      "docs/media/build34-review1/attempt1-in-ring-defense.jpg",
+      "docs/media/build34-review1/attempt1-lit-return.jpg",
+      "docs/media/build34-review1/attempt1-next-core-route.jpg",
+      "docs/media/build34-review1/attempt1-receiver-position.jpg",
+      "docs/media/build34-review1/attempt1-return-cover-escape.jpg",
+      "docs/media/build34-review1/attempt1-return-extraction.jpg",
+      "docs/media/build34-review1/attempt1-ring-correction.jpg",
+      "docs/media/build34-review1/attempt1-south-intake.jpg",
+      "docs/media/build34-review1/attempt1-upload-start.jpg",
+      "docs/media/build34-review1/attempt1-west-approach.jpg",
+      "docs/media/build34-review1/attempt1-west-recover.jpg",
+      "docs/media/build34-review1/attempt1-west-route.jpg",
+      "docs/media/build34-review1/attempt1-yard-east.jpg",
+      "docs/media/build34-review1/attempt2-death.jpg",
+      "docs/media/build34-review1/attempt2-deploy.jpg",
+      "docs/media/build34-review1/attempt2-east-approach.jpg",
+      "docs/media/build34-review1/attempt2-east-lane.jpg",
+      "docs/media/build34-review1/attempt2-east-recovery.jpg",
+      "docs/media/build34-review1/attempt2-first-guard-engage.jpg",
+      "docs/media/build34-review1/attempt2-heart-correct.jpg",
+      "docs/media/build34-review1/attempt2-heart-recovery.jpg",
+      "docs/media/build34-review1/attempt2-heart-route.jpg",
+      "docs/media/build34-review1/attempt2-open-yard-route.jpg",
+      "docs/media/build34-review1/attempt2-round-west-wall.jpg",
+      "docs/media/build34-review1/attempt2-service-lane-turn.jpg",
+      "docs/media/build34-review1/attempt2-west-route.jpg",
+      "docs/media/build34-review1/attempt2-west-south-intake.jpg",
+      "docs/media/build34-review1/brief-accepted.jpg",
+      "docs/media/build34-review1/handbook-accepted.jpg",
+      "docs/media/build34-review1/how-to-play.jpg",
+      "docs/media/build34-review1/menu.jpg",
+      "docs/media/build34-review1/mission-brief.jpg",
+      "docs/media/build34-review1/recovered-memories.jpg"
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminalOutcome": "death",
+      "terminalScreen": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:11",
+      "memoriesRecovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "eliminations": 0,
+      "accuracyPercent": 0,
+      "criticalEliminations": 0,
+      "phaseEvades": 1,
+      "score": 3075,
+      "route": "Passed the initial guard while advancing; sprinted toward west archive, initially approached the pylon and navigated around nearby cover before recovering Mara via south intake. Returned into yard, reached heart and recovered Sera, then crossed to east for Elian. Returned toward extraction, collided with cover while sprinting, escaped sideways with dash, reached the ring perimeter and died 0.5 m outside its edge while trying to enter and defend.",
+      "interpretation": "Navigation and aim mistakes are reviewer execution, especially under command batching; the death is retained without blaming difficulty alone. No successful upload was observed.",
+      "evidence": [
+        "docs/media/build34-review1/attempt1-receiver-position.jpg",
+        "docs/media/build34-review1/attempt1-heart-receiver-correct.jpg",
+        "docs/media/build34-review1/attempt1-east-core-secured.jpg",
+        "docs/media/build34-review1/attempt1-lit-return.jpg",
+        "docs/media/build34-review1/attempt1-in-ring-defense.jpg",
+        "docs/media/build34-review1/attempt1-death.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "terminalOutcome": "death",
+      "terminalScreen": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "00:32",
+      "memoriesRecovered": [
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "eliminations": 1,
+      "accuracyPercent": 22,
+      "criticalEliminations": 1,
+      "phaseEvades": 1,
+      "score": 2255,
+      "route": "ADS fire at the starting guard optic produced a critical elimination. Took east route, recovered Elian, dashed across to heart, corrected approach and recovered Sera. Tried to reach west through the service side, repeatedly encountered walls/cover, tried backing around the obstruction, and died before reaching west.",
+      "interpretation": "The successful optic kill gives limited positive combat evidence. Repeated poor orientation and collisions limit any judgment of combat difficulty or typical completion time. No desired outcome was forced.",
+      "evidence": [
+        "docs/media/build34-review1/attempt2-first-guard-engage.jpg",
+        "docs/media/build34-review1/attempt2-east-approach.jpg",
+        "docs/media/build34-review1/attempt2-east-recovery.jpg",
+        "docs/media/build34-review1/attempt2-heart-correct.jpg",
+        "docs/media/build34-review1/attempt2-west-route.jpg",
+        "docs/media/build34-review1/attempt2-service-lane-turn.jpg",
+        "docs/media/build34-review1/attempt2-death.jpg"
+      ]
+    }
+  ],
+  "coverage": {
+    "observed": [
+      "Title/menu",
+      "Mission Brief and How to Play",
+      "Initial induction guard",
+      "ADS firing and one critical elimination",
+      "Reload",
+      "Sprint and dash with cooldown",
+      "One reported phase evade in each run",
+      "Shield damage and regeneration",
+      "All three receiver locations and recoveries across attempt1",
+      "Two different collection orders",
+      "Supply restoration on recovery",
+      "West south intake and attempts at east service",
+      "Extraction approach and floor-ring distance guidance",
+      "Both actual death screens",
+      "Recovered memory archive after second death"
+    ],
+    "notObserved": [
+      "Successful extraction/upload progression, pause grace or decay",
+      "Victory screen",
+      "Successful charge break/stagger confirmation",
+      "Jump",
+      "Settings",
+      "Full first-run Mara archive text",
+      "Audio output or enjoyment",
+      "Hardware frame rate or responsiveness benchmark",
+      "Continuous human mouse/keyboard play"
+    ]
+  },
+  "findings": [
+    {
+      "id": "R1-01",
+      "kind": "strength",
+      "severity": "positive",
+      "title": "Cohesive visual identity",
+      "observation": "Title typography, cyan/amber palette, wet yard reflections, readable main objective, large ammo/vital numbers, named archive signs and consistent end/record panels form a coherent small slice.",
+      "evidence": [
+        "docs/media/build34-review1/menu.jpg",
+        "docs/media/build34-review1/attempt2-east-lane.jpg",
+        "docs/media/build34-review1/attempt1-death.jpg",
+        "docs/media/build34-review1/recovered-memories.jpg"
+      ]
+    },
+    {
+      "id": "R1-02",
+      "kind": "usability",
+      "severity": "medium",
+      "title": "Route guidance did not prevent repeated dead-end approaches",
+      "observation": "The briefing explains pylons versus waist-high receivers and side lanes. Despite that, my first run approached the large pylon and bounced off adjacent cover; later both runs stalled against broad walls while trying west/service routes. The bottom-left text named south intake/east service, but did not visually reveal the opening from those positions. A small route arrow at the actual opening or clearer contrasting portal geometry could help. This is an observed friction point with a substantial command-play confound, not proof that normal players cannot navigate.",
+      "evidence": [
+        "docs/media/build34-review1/mission-brief.jpg",
+        "docs/media/build34-review1/attempt1-west-recover.jpg",
+        "docs/media/build34-review1/attempt1-heart-approach.jpg",
+        "docs/media/build34-review1/attempt2-west-south-intake.jpg",
+        "docs/media/build34-review1/attempt2-open-yard-route.jpg",
+        "docs/media/build34-review1/attempt2-service-lane-turn.jpg"
+      ]
+    },
+    {
+      "id": "R1-03",
+      "kind": "readability",
+      "severity": "medium",
+      "title": "Threat-history labels compete with navigation",
+      "observation": "Several RECENT FIRE / SOURCES and CHARGES boxes appeared across the lower/middle view, including while facing a wall. They convey useful bearings, and the handbook explains their historical nature, but reading multiple small blocks while also finding an opening is demanding. Labels sometimes visually overlap each other or weapon/world details. Consider prioritizing the most urgent cue and reducing the rest. No claim of incorrect hidden enemy detection is made.",
+      "evidence": [
+        "docs/media/build34-review1/how-to-play.jpg",
+        "docs/media/build34-review1/attempt1-heart-approach.jpg",
+        "docs/media/build34-review1/attempt1-heart-receiver-correct.jpg",
+        "docs/media/build34-review1/attempt2-service-lane-turn.jpg"
+      ]
+    },
+    {
+      "id": "R1-04",
+      "kind": "strength",
+      "severity": "positive",
+      "title": "Core interactions and failure state communicate clearly",
+      "observation": "Recoveries visibly mark numbered core boxes and show a named memory. Extraction gives a specific floor-ring edge distance, which correctly remained outside in my final attempt1 screenshot. Death preserves recovered names, accuracy, eliminations and a retry action. The restored-records view gives the objective a concise human context.",
+      "evidence": [
+        "docs/media/build34-review1/attempt2-east-recovery.jpg",
+        "docs/media/build34-review1/attempt1-beacon-approach.jpg",
+        "docs/media/build34-review1/attempt1-in-ring-defense.jpg",
+        "docs/media/build34-review1/attempt2-death.jpg",
+        "docs/media/build34-review1/recovered-memories.jpg"
+      ]
+    },
+    {
+      "id": "R1-05",
+      "kind": "presentation",
+      "severity": "low",
+      "title": "Handbook is dense at the review viewport",
+      "observation": "At 1280x800 the handbook fills a tall dialog and its UNDERSTOOD action is only a sliver at the bottom of the captured initial view. Its threat-visor prose is dense compared with the clear key grid. Scrolling is likely the intended interaction; the action was reachable by the normal visible-text click tool. A shorter primary handbook with optional details would read more easily.",
+      "evidence": [
+        "docs/media/build34-review1/how-to-play.jpg"
+      ]
+    },
+    {
+      "id": "R1-06",
+      "kind": "gameplay",
+      "severity": "medium",
+      "title": "Combat evidence is promising but too narrow for a high score",
+      "observation": "A short ADS burst aimed at the starting optic produced a visible WARDEN // CRITICAL +180 and one elimination in attempt2. Most other fire in attempt1 was poorly aimed or into cover, and enemies remained active while I collected all three cores without eliminations. That supports multiple movement approaches, but does not establish satisfying sustained combat or balance. The strongest observed pressure came during the return and navigation stalls.",
+      "evidence": [
+        "docs/media/build34-review1/attempt2-first-guard-engage.jpg",
+        "docs/media/build34-review1/attempt1-east-core-secured.jpg",
+        "docs/media/build34-review1/attempt1-lit-return.jpg"
+      ]
+    }
+  ],
+  "provisionalRatingsOutOf10": {
+    "gameplay": {
+      "score": 6.5,
+      "reason": "Functional collection/return loop, sprint/dash and optic reward; both runs had real stakes. Combat and extraction coverage remain narrow."
+    },
+    "presentation": {
+      "score": 7.5,
+      "reason": "Strong coherent art direction and front-end panels; repeated modular block geometry, simple actors and limited environmental animation/detail remain visibly below a finished large production."
+    },
+    "usability": {
+      "score": 6.0,
+      "reason": "Clear controls, recovery prompts and result screens; route openings were difficult to identify from several natural approaches."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Main objective, vitals, ammo and archive signs read well; multiple small threat-history boxes and dense handbook demand more attention."
+    },
+    "aaaReadiness": {
+      "score": 3.5,
+      "reason": "A coherent playable vertical slice with an identifiable loop. Two deaths, untested successful extraction, limited content/actor detail, and no audio/performance/platform evidence do not support finished AAA readiness. This is a provisional readiness opinion, not certification."
+    }
+  },
+  "limitations": [
+    "Two attempts only; both actual deaths retained. No win or in-ring upload observed.",
+    "Screenshot-and-command play with auto-pause after batches differs materially from continuous human play. Aim errors and navigation overshoot were significant; do not treat the deaths or completion times as a representative difficulty study.",
+    "JPEG screenshots support visual judgment only; software rendering and tool latency cannot establish hardware FPS or normal input feel.",
+    "No claim about audio enjoyment, human fun, accessibility compliance, broad platform stability or AAA certification.",
+    "Visible driver reported no pageErrors in returned results; that is narrow session evidence, not a full bug audit."
+  ],
+  "closure": {
+    "explicitCommand": {
+      "op": "close"
+    },
+    "driverPid": 45955,
+    "chromePid": 45956,
+    "browserClosed": true,
+    "driverSessionExitCode": 0,
+    "pidVerificationCommand": "ps -p 45955,45956 -o pid=,comm=",
+    "pidVerificationExitCode": 1,
+    "pidVerificationOutput": "",
+    "ownedPidsAbsent": true,
+    "browserLeftOpen": false
+  }
+}

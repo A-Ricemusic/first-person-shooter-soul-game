@@ -75,3 +75,6 @@ body:not(.in-game) #waypoints{visibility:hidden}
    interpolate from the former centered transform through the viewport edge. */
 .world-marker.enemy.visor.edge .marker-symbol{transform-origin:5px 5px}
 .combat-priority #announcement{transition:opacity .2s}
+
+/* Keep dismissal visible while the long handbook remains scrollable. */
+#controls-dialog > .primary-button{position:sticky;bottom:0;z-index:1;box-shadow:0 -10px 16px #0c1c21}

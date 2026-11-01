@@ -1,0 +1,265 @@
+{
+  "build": 34,
+  "reviewer": "independent ordinary visible reviewer 2",
+  "review_date": "2026-11-01",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "driver": "tools/visible-playtest.mjs",
+    "help_read_before_launch": true,
+    "launch": "npm run playtest:visible -- --out docs/media/build34-review2",
+    "live_tty": true,
+    "ordinary_visible_play": true,
+    "screenshots_actually_inspected": true,
+    "source_tests_prior_reviews_read": false,
+    "gameplay_source_modified": false,
+    "hidden_state_debug_urls_arranged_actors_or_arbitrary_evaluate": false,
+    "attempt_limit": 2,
+    "attempts_completed": 2,
+    "raw_action_log": "docs/media/build34-review2/actions.jsonl",
+    "input_model": "Documented keyboard and relative mouse commands; actual JPEG captures inspected between actions. The driver releases inputs and normally pauses using Escape after captures; resume uses the visible Resume button."
+  },
+  "summary": "Both independently navigated attempts reached the actual operation-complete screen. The mission loop, recovery feedback, and extraction ring are coherent and finishable. Combat targeting became clearer on the second attempt, but neither mission required much fighting: the first completed with no eliminations. Presentation is cohesive for a small browser vertical slice; arena geometry, enemy animation/detail, and the very short repeatable mission fall well below a polished AAA release. Ratings are provisional judgments of the observed whole slice, not certification or human enjoyment measurements.",
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "win",
+      "terminal_ui": "OPERATION COMPLETE / THE SIGNAL LIVES.",
+      "mission_time": "00:44",
+      "score": 5332,
+      "eliminations": 0,
+      "accuracy_percent": 3,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "deaths": 0,
+      "route": "Entry through central yard, west south intake, west archive, Heart, east archive, return through east/central yard, enter and hold extraction floor ring.",
+      "observations": [
+        "Walked past the entry guard, then fired at the empty forward view before recognizing its behind-bearing cue. Those misses and the unused forward dash remain in the log.",
+        "West core recovered around 00:12; Heart around 00:21; east around 00:29. Each recovery visibly changed the objective/core boxes and restored supplies. All three were recovered at 100 health and 60 shield.",
+        "Had to find an opening around west enclosure walls and distinguish the nearby receiver from the large pylon. The floor ring and MOVE CLOSER prompt helped.",
+        "Reached extraction at about 00:38 with 100 health and 15 shield, turned to face the yard, fired at the warden, and strafed slightly while uploading. Health was 63 at 61% uplink; actual terminal screen arrived before death."
+      ],
+      "evidence": [
+        "docs/media/build34-review2/attempt1-deploy.jpg",
+        "docs/media/build34-review2/attempt1-advance.jpg",
+        "docs/media/build34-review2/attempt1-guard-fire.jpg",
+        "docs/media/build34-review2/attempt1-west-route.jpg",
+        "docs/media/build34-review2/attempt1-west-intake.jpg",
+        "docs/media/build34-review2/attempt1-west-recover.jpg",
+        "docs/media/build34-review2/attempt1-west-east-service.jpg",
+        "docs/media/build34-review2/attempt1-service-south.jpg",
+        "docs/media/build34-review2/attempt1-heart-approach.jpg",
+        "docs/media/build34-review2/attempt1-heart-recover.jpg",
+        "docs/media/build34-review2/attempt1-east-approach.jpg",
+        "docs/media/build34-review2/attempt1-east-receiver-search.jpg",
+        "docs/media/build34-review2/attempt1-east-recover.jpg",
+        "docs/media/build34-review2/attempt1-return-aisle.jpg",
+        "docs/media/build34-review2/attempt1-return-warden-fire.jpg",
+        "docs/media/build34-review2/attempt1-extraction-approach.jpg",
+        "docs/media/build34-review2/attempt1-extraction-hold.jpg",
+        "docs/media/build34-review2/attempt1-extraction-defense.jpg",
+        "docs/media/build34-review2/attempt1-terminal.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "outcome": "win",
+      "terminal_ui": "OPERATION COMPLETE / THE SIGNAL LIVES.",
+      "mission_time": "00:45",
+      "score": 6578,
+      "eliminations": 3,
+      "accuracy_percent": 10,
+      "critical_eliminations": 3,
+      "phase_evades": 0,
+      "deaths": 0,
+      "route": "Killed entry guard by optic fire, sprinted right toward east archive, recovered east first, moved to Heart, entered west via its east/south opening, returned along the west side and around yard cover, entered and held extraction.",
+      "observations": [
+        "A small upward aim adjustment and ADS fire eliminated the induction guard; WARDEN // CRITICAL +180 appeared. This supports that optic targeting works.",
+        "First moving burst at an interceptor missed; a later stationary aim adjustment eliminated it. No aim assistance or actor arrangement was used.",
+        "West approach hit a wall and needed an opening search. On return, cover blocked the direct path; a jump did not clear the next block, so I strafed around it.",
+        "Recovered all three memories by 00:27. Returned with full health and shield before the final defense. Extraction showed ENTER FLOOR RING, then yellow NEAR EDGE: MOVE INWARD, and visible uplink progress.",
+        "Counterfire during extraction produced the third elimination. The mission ended at 00:45 before health exhaustion."
+      ],
+      "evidence": [
+        "docs/media/build34-review2/attempt2-deploy.jpg",
+        "docs/media/build34-review2/attempt2-induction-optic.jpg",
+        "docs/media/build34-review2/attempt2-east-route.jpg",
+        "docs/media/build34-review2/attempt2-interceptor-fire.jpg",
+        "docs/media/build34-review2/attempt2-east-receiver.jpg",
+        "docs/media/build34-review2/attempt2-east-first-recovery.jpg",
+        "docs/media/build34-review2/attempt2-interceptor-close-fire.jpg",
+        "docs/media/build34-review2/attempt2-heart-flank.jpg",
+        "docs/media/build34-review2/attempt2-heart-second-recovery.jpg",
+        "docs/media/build34-review2/attempt2-west-service.jpg",
+        "docs/media/build34-review2/attempt2-west-opening-search.jpg",
+        "docs/media/build34-review2/attempt2-west-third-recovery.jpg",
+        "docs/media/build34-review2/attempt2-west-return-aisle.jpg",
+        "docs/media/build34-review2/attempt2-cover-jump.jpg",
+        "docs/media/build34-review2/attempt2-cover-flank.jpg",
+        "docs/media/build34-review2/attempt2-extraction-enter.jpg",
+        "docs/media/build34-review2/attempt2-uplink-defense.jpg",
+        "docs/media/build34-review2/attempt2-ring-counterfire.jpg",
+        "docs/media/build34-review2/attempt2-terminal.jpg"
+      ]
+    }
+  ],
+  "coverage": {
+    "observed": [
+      "Title/menu",
+      "Mission Brief read",
+      "How to Play read",
+      "Deployment and restart",
+      "Both archive orders, west south intake and east-side opening, Heart, east maintenance",
+      "Walking, sprint, relative mouse look, ADS, held fire, reload, jump, an unsuccessful early dash",
+      "Core proximity prompts, hold-E recovery, supply restoration, recovered-memory cards",
+      "Threat charge/recent-fire bearing groups and single-target lower readout",
+      "Warden optic critical kill and interceptor kill",
+      "Extraction approach, near-edge warning, ring upload, damage/shield loss, two win screens",
+      "Recovered memories archive"
+    ],
+    "not_covered": [
+      "Death screen or recovery from death: no deaths occurred",
+      "Successful close-range charge break, confirmed phase evade, or dash cooldown tactics",
+      "Leaving the extraction ring long enough to assess pause/decay and reentry",
+      "Exhaustive routes, collisions, AI behavior or difficulty tuning",
+      "Settings, remapping, accessibility settings, alternate viewport/device input",
+      "Audio/music/voice enjoyment or hardware FPS performance",
+      "Long-session stability and repeated play beyond two attempts"
+    ],
+    "onboarding_evidence": [
+      "docs/media/build34-review2/menu.jpg",
+      "docs/media/build34-review2/mission-brief.jpg",
+      "docs/media/build34-review2/how-to-play.jpg",
+      "docs/media/build34-review2/memories-archive.jpg"
+    ],
+    "terminal_outcomes": {
+      "wins": 2,
+      "deaths": 0,
+      "abandoned_attempts": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "R2-01",
+      "severity": "medium",
+      "category": "gameplay/balance",
+      "finding": "Objective completion permits near-total combat bypass in these runs. The first ordinary attempt won in 44 seconds with zero eliminations, 3% accuracy, and no phase evades; the second won in 45 seconds with only three kills. Enemy pressure rose at extraction but arrived too late to require deeper combat decisions.",
+      "qualification": "A single route pair under screenshot-pause play is limited evidence; this is a pacing concern, not proof that real-time human play is universally easy.",
+      "evidence": [
+        "docs/media/build34-review2/attempt1-east-recover.jpg",
+        "docs/media/build34-review2/attempt1-terminal.jpg",
+        "docs/media/build34-review2/attempt2-west-third-recovery.jpg",
+        "docs/media/build34-review2/attempt2-terminal.jpg"
+      ]
+    },
+    {
+      "id": "R2-02",
+      "severity": "medium",
+      "category": "presentation",
+      "finding": "The rain, wet ground, cyan/amber palette, bold title typography, clean completion screen, and readable landmark signs create a consistent atmosphere. Close views still expose simple flat block cover, plain wall surfaces, repeated structures, and stiff geometric robots/projectile orbs. The overall scene reads as a polished prototype rather than AAA environment and character production.",
+      "evidence": [
+        "docs/media/build34-review2/menu.jpg",
+        "docs/media/build34-review2/attempt1-return-aisle.jpg",
+        "docs/media/build34-review2/attempt1-extraction-defense.jpg",
+        "docs/media/build34-review2/attempt2-interceptor-close-fire.jpg",
+        "docs/media/build34-review2/attempt2-cover-flank.jpg"
+      ]
+    },
+    {
+      "id": "R2-03",
+      "severity": "medium",
+      "category": "usability/navigation",
+      "finding": "The large pylon is a useful landmark, but recovery occurs at a separate waist-high receiver; I needed several small positioning corrections. At the west archive, the signal-behind-cover message identifies the obstacle while the actual opening still required trial movement around large walls. Ring outlines, distances, core boxes, and MOVE CLOSER feedback made recovery discoverable.",
+      "evidence": [
+        "docs/media/build34-review2/attempt1-west-intake.jpg",
+        "docs/media/build34-review2/attempt1-west-recover.jpg",
+        "docs/media/build34-review2/attempt1-west-east-service.jpg",
+        "docs/media/build34-review2/attempt2-west-service.jpg",
+        "docs/media/build34-review2/attempt2-west-opening-search.jpg"
+      ]
+    },
+    {
+      "id": "R2-04",
+      "severity": "medium",
+      "category": "readability",
+      "finding": "The HUD communicates core state, health, shield, ammo, and extraction well, but many small recent-fire/charge boxes can occupy the lower-middle view at once, alongside target text, announcements, interaction prompts, and the weapon. The handbook requires dense prose to explain what grouped threat cues mean. Important combat distinctions require attention among several similarly styled labels.",
+      "evidence": [
+        "docs/media/build34-review2/how-to-play.jpg",
+        "docs/media/build34-review2/attempt1-heart-approach.jpg",
+        "docs/media/build34-review2/attempt1-extraction-hold.jpg",
+        "docs/media/build34-review2/attempt2-west-opening-search.jpg",
+        "docs/media/build34-review2/attempt2-ring-counterfire.jpg"
+      ]
+    },
+    {
+      "id": "R2-05",
+      "severity": "low",
+      "category": "usability/onboarding",
+      "finding": "At the observed 1280x800 view, the How to Play panel shows a long dense block of control and visor explanation; the UNDERSTOOD button falls below the initial captured area. The normal driver click scrolls it into view. Breaking this material into shorter sections or showing the primary action within the first view would reduce friction.",
+      "evidence": [
+        "docs/media/build34-review2/how-to-play.jpg"
+      ]
+    },
+    {
+      "id": "R2-06",
+      "severity": "positive",
+      "category": "gameplay/feedback",
+      "finding": "Optic targeting works visibly: the second entry-guard burst registered a critical kill, and later interceptor counterfire produced further eliminations. Recovery acknowledgments, green/cyan objective changes, ring-edge wording and upload percentage provided useful feedback. The recovered-memory archive gives the brief mission a personal payoff.",
+      "evidence": [
+        "docs/media/build34-review2/attempt2-induction-optic.jpg",
+        "docs/media/build34-review2/attempt2-interceptor-close-fire.jpg",
+        "docs/media/build34-review2/attempt2-extraction-enter.jpg",
+        "docs/media/build34-review2/attempt2-uplink-defense.jpg",
+        "docs/media/build34-review2/memories-archive.jpg"
+      ]
+    }
+  ],
+  "provisional_ratings_out_of_10": {
+    "whole_game": {
+      "score": 6.7,
+      "reason": "A coherent, finishable short slice with clear atmosphere and objective feedback; limited encounter depth, scene richness and replay breadth in the observed mission."
+    },
+    "gameplay": {
+      "score": 6.5,
+      "reason": "Movement, shooting, recovery and extraction form a working loop. Precision optic kills have legible visible feedback, but most combat could be bypassed and the mission ended in under a minute of game time twice."
+    },
+    "presentation": {
+      "score": 7.5,
+      "reason": "Strong restrained typography, palette, title treatment, weather and wet-ground atmosphere. Simple repeating geometry, blocky enemies and large plain projectile orbs limit production richness."
+    },
+    "usability": {
+      "score": 7.0,
+      "reason": "Useful brief, controls, proximity feedback, objective transitions, restart and archive. Some wall-opening/receiver-location trial movement and a lengthy scrolling handbook."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Major objective and resource HUD is clear; small clustered visor text and simultaneous combat messages add parsing load."
+    },
+    "aaa_readiness": {
+      "score": 3.0,
+      "reason": "The observed single compact vertical slice is functional and stylistically consistent, but provides insufficient content, encounter depth, animation/environment detail, accessibility and platform validation evidence for AAA readiness. This is a provisional comparative opinion, not certification."
+    }
+  },
+  "limitations": [
+    "This is command-driven browser play with inspected JPEG screenshots, not continuous human hand-eye play. Automatic pauses between captures grant planning time and can materially affect perceived difficulty and responsiveness.",
+    "Only 89 seconds of total displayed mission time across two completed runs; neither resulted in death. No third attempt or selectively discarded death exists.",
+    "Mouse aim commands were chosen from the current screenshots and sometimes missed moving targets; low accuracy is partly a constraint of this interaction model.",
+    "No audio enjoyment, hardware FPS, human-fun rating, or AAA certification is claimed. Software-WebGL fallback was enabled according to driver startup.",
+    "No source, tests, hidden game state, debug URL, arranged actors, prior report or another reviewer evidence was read. No gameplay implementation was changed.",
+    "Three archive-return selector command errors are retained in the raw log: ambiguous RETURN, DEPLOY AGAIN intercepted by the still-open archive, and an ambiguous data-close selector. The archive was then closed normally with its scoped visible primary action; these are driver-selector issues, not claimed gameplay defects."
+  ],
+  "closure": {
+    "explicit_command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 47485,
+    "chromePid": 47486,
+    "session_id": 76436,
+    "session_exit_code": 0,
+    "exact_pid_verification_command": "ps -p 47485,47486 -o pid=,comm=",
+    "exact_pid_verification_exit_code": 1,
+    "exact_pid_verification_stdout": "",
+    "both_exact_owned_pids_absent": true,
+    "browser_left_open": false
+  }
+}
