@@ -25,7 +25,7 @@ try {
   if(label==='east'){
    assert.equal(row.objectives.find(m=>m.id==='core-1').occluded,false);
    assert.equal(row.objectives.find(m=>m.id==='core-0').occluded,true);
-   await page.screenshot({path:'docs/media/build27-nearby-clear-objective.jpg',type:'jpeg',quality:80});
+   await page.screenshot({path:process.env.OBJECTIVE_NOTICE_CAPTURE||'docs/media/current-nearby-clear-objective.jpg',type:'jpeg',quality:80});
   }
   rows.push(row);
  }

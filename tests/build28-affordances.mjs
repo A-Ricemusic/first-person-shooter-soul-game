@@ -1,0 +1,14 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+const rows=[],errors=[],prefix=process.env.AFFORDANCE_PREFIX||'current-affordance';
+try{const p=await browser.newPage({viewport:{width:1280,height:800}});p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(()=>window.requestAnimationFrame=()=>1);
+async function load(){await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50});await p.click('#deploy',{force:true});}
+await load();
+for(const quality of ['low','balanced','high'])for(const ads of [false,true])for(const [label,x,z,yaw,pitch] of [['approach',0,26,Math.PI,-.15],['inside',0,31,0,-.2],['cover',-1.85,31.1,0,-.3],['stance',-1.85,31.65,0,-1.05],...[-24,24,0].flatMap((x,i)=>{const z=i===2?-33:-15;return [[`receiver${i}-front`,x,z+2.5,0,-.35],[`receiver${i}-rear`,x,z-2.5,Math.PI,-.35]]})]){
+ const row=await p.evaluate(async({quality,ads,label,x,z,yaw,pitch})=>{const g=window.__SOULFALL__.game;g.restart();g.setSettings({quality});g.player.set(x,1.7,z);g.yaw=yaw;g.pitch=pitch;g.aim=ads;if(['approach','inside','cover'].includes(label)){for(let i=0;i<3;i++)g.debug.collectCore(i);g.player.set(x,1.7,z);}g.animate(.2);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);const {Box3}=await import('/node_modules/three/build/three.module.js');return{inside:g.captureState().insideExtraction,occupy:g.canOccupy(x,z),receivers:g.world.receivers.map(r=>({progress:!!r.progress,cassette:!!r.cassette})),renderer:g.renderer.getContext().getParameter(g.renderer.getContext().RENDERER)}},{quality,ads,label,x,z,yaw,pitch});assert.ok(row.occupy);if(label==='cover')assert.ok(row.inside);assert.ok(row.receivers.every(r=>r.progress&&r.cassette));const path=`docs/media/${prefix}-${label}-${quality}-${ads?'ads':'hip'}.jpg`;await p.screenshot({path,type:'jpeg',quality:80});rows.push({quality,ads,label,path,...row});
+}
+// Existing fallback envelope must remain available with both authored assets absent.
+await p.route('**/memory-receiver.glb',r=>r.abort());await p.route('**/uplink-defense.glb',r=>r.abort());await load();const fallback=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return{receiver:!g.canOccupy(-24,-15),plate:!g.canOccupy(-2.05,29.85),gap:g.canOccupy(0,29.85),stance:g.canOccupy(-1.85,31.1)}});assert.ok(Object.values(fallback).every(Boolean));assert.deepEqual(errors,[]);writeFileSync(process.env.AFFORDANCE_OUTPUT||'docs/quality-reviews/current-affordances.json',JSON.stringify({method:'Arranged WebGL compositions, not ordinary play. Renderer string is descriptive, not hardware certification.',rows,fallback,errors},null,2));
+}finally{await browser.close()}

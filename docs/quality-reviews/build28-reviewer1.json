@@ -1,0 +1,176 @@
+{
+  "reviewer": "build28-reviewer1",
+  "build": 28,
+  "reviewType": "Independent provisional whole-game ordinary UI play",
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "driver": "npm run playtest:visible -- --out docs/media/build28-review1",
+    "helpRead": true,
+    "briefingAndHandbookReadThroughUI": true,
+    "sourceInspected": false,
+    "testsInspected": false,
+    "hiddenStateUsed": false,
+    "attemptLimit": 2,
+    "inputs": "All input commands, action timings and visible UI responses retained in actions.jsonl. Every act released inputs and Escape-paused. No look inputs were used.",
+    "evidenceRoot": "docs/media/build28-review1",
+    "actionLog": "docs/media/build28-review1/actions.jsonl",
+    "captures": [
+      "docs/media/build28-review1/a1-around-cover.jpg",
+      "docs/media/build28-review1/a1-beacon-near.jpg",
+      "docs/media/build28-review1/a1-cross-yard.jpg",
+      "docs/media/build28-review1/a1-east-approach.jpg",
+      "docs/media/build28-review1/a1-east-receiver.jpg",
+      "docs/media/build28-review1/a1-fire-guard.jpg",
+      "docs/media/build28-review1/a1-heart-approach.jpg",
+      "docs/media/build28-review1/a1-heart-recovery.jpg",
+      "docs/media/build28-review1/a1-intake.jpg",
+      "docs/media/build28-review1/a1-left-advance.jpg",
+      "docs/media/build28-review1/a1-return-east.jpg",
+      "docs/media/build28-review1/a1-uplink-progress.jpg",
+      "docs/media/build28-review1/a1-uplink.jpg",
+      "docs/media/build28-review1/a1-west-lane.jpg",
+      "docs/media/build28-review1/a1-west-receiver.jpg",
+      "docs/media/build28-review1/a2-deploy.jpg",
+      "docs/media/build28-review1/a2-east-cross.jpg",
+      "docs/media/build28-review1/a2-east-recover.jpg",
+      "docs/media/build28-review1/a2-east-secured.jpg",
+      "docs/media/build28-review1/a2-guard.jpg",
+      "docs/media/build28-review1/a2-heart-dash.jpg",
+      "docs/media/build28-review1/a2-heart-near.jpg",
+      "docs/media/build28-review1/a2-return-west.jpg",
+      "docs/media/build28-review1/a2-west-entry.jpg",
+      "docs/media/build28-review1/a2-west-intake.jpg",
+      "docs/media/build28-review1/a2-west-recover.jpg",
+      "docs/media/build28-review1/a2-west-secured.jpg",
+      "docs/media/build28-review1/brief-accepted.jpg",
+      "docs/media/build28-review1/brief.jpg",
+      "docs/media/build28-review1/controls.jpg",
+      "docs/media/build28-review1/deploy.jpg",
+      "docs/media/build28-review1/menu.jpg",
+      "docs/media/build28-review1/recovered-memories.jpg",
+      "docs/media/build28-review1/understood.jpg"
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "01:05",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 20,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "outcomeEvidence": "docs/media/build28-review1/a1-uplink-progress.jpg",
+      "description": "Killed induction guard, reloaded, navigated west intake and recovered west, east and heart. Used forward Soul Shift at heart, sprinted back through east aisle. Reached 2.7m extraction distance, remained exposed, moved backward and died before seeing uplink progress."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "00:48",
+      "memoriesRecovered": 3,
+      "eliminations": 1,
+      "score": 3100,
+      "accuracyPercent": 25,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "outcomeEvidence": "docs/media/build28-review1/a2-return-west.jpg",
+      "description": "Killed initial guard, reloaded, recovered west and east. Took severe damage crossing toward heart, used forward Soul Shift and recovered heart. Tried sprinting toward west return aisle; died before return."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "strength",
+      "area": "presentation",
+      "finding": "Cohesive rainy industrial yard, wet highlights, cyan archive pylons and strong title/death screen typography establish a convincing visual identity.",
+      "evidence": [
+        "menu.jpg",
+        "deploy.jpg",
+        "a1-east-approach.jpg",
+        "a2-return-west.jpg"
+      ]
+    },
+    {
+      "severity": "strength",
+      "area": "usability",
+      "finding": "Briefing explains cover, receiver interaction, escalating response and extraction. Handbook explains controls and the precise charge-break rules. Core pickups visibly restore supplies and show short character memories. End screen preserves the recovered records.",
+      "evidence": [
+        "brief.jpg",
+        "controls.jpg",
+        "a1-west-receiver.jpg",
+        "recovered-memories.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "area": "readability",
+      "finding": "Combat accumulates many small orange edge boxes, symbols, lower target text and orange projectiles. At heart/extraction this creates a busy HUD; identifying which threat is about to deliver lethal damage was difficult in the paused captures.",
+      "evidence": [
+        "a1-heart-recovery.jpg",
+        "a1-uplink.jpg",
+        "a2-heart-near.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "area": "navigation",
+      "finding": "Several forward moves ended against foreground cover or walls, requiring lateral correction. Signage and receiver distances helped recovery, but direct core bearings do not describe an unobstructed path.",
+      "evidence": [
+        "a1-left-advance.jpg",
+        "a1-west-lane.jpg",
+        "a1-around-cover.jpg",
+        "a2-west-intake.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "area": "gameplay",
+      "finding": "Objective collection was possible while leaving almost all defenders alive, but those accumulated threats made the return sharply more dangerous. Both attempts recovered all cores with only the initial guard killed and ended in death. This suggests a stronger cue to clear threats or choose cover deliberately could help first-time play; it is not proof of unfair balance.",
+      "evidence": [
+        "a1-heart-recovery.jpg",
+        "a1-uplink-progress.jpg",
+        "a2-heart-dash.jpg",
+        "a2-return-west.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "area": "presentation",
+      "finding": "Enemy bodies, cover and rifle are visibly simple geometric forms compared with the polished graphic treatment. Repeated cabinet-like enemies and similar archive props limit the sense of authored variety.",
+      "evidence": [
+        "deploy.jpg",
+        "a1-east-approach.jpg",
+        "a2-heart-dash.jpg"
+      ]
+    }
+  ],
+  "ratingsOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 7,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "ratingBasis": "Provisional whole-game judgment from title, briefing, handbook, two complete deaths, all three archives, return approach and recovered records. Strong slice identity and coherent objective loop; combat clarity, geometric production values and unverified victory experience limit readiness.",
+  "limitations": [
+    "Synthetic bounded inputs with frequent pauses are not human enjoyment or continuous mouse play.",
+    "No successful extraction or victory screen observed.",
+    "Aiming variety, sustained gunfights, successful charge breaks and airborne movement were not exercised.",
+    "Settings were not explored. No audio or hardware performance claims; software WebGL fallback was reported.",
+    "No page errors were reported by the visible driver in these actions."
+  ],
+  "closure": {
+    "explicitCloseSent": true,
+    "browserClosed": true,
+    "browserLaunched": true,
+    "driverPid": 8976,
+    "chromePid": 8977,
+    "sessionExitCode": 0,
+    "pidVerificationCommand": "ps -p 8976,8977 -o pid=,comm=",
+    "pidVerificationExitCode": 1,
+    "pidVerificationOutput": "",
+    "ownedPidsAbsent": true,
+    "serverProcessesTouched": false
+  }
+}

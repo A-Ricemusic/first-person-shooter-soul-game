@@ -190,7 +190,15 @@ export async function buildWorld(scene) {
   for(const [i,x,z] of [[0,MEDICAL.core[0],MEDICAL.core[1]],[1,24,-15],[2,0,-33]]) {
     const model=receiverAsset?receiverAsset.clone(true):new THREE.Group();
     model.position.set(x,0,z);model.rotation.y=0;model.userData.dynamic=true;group.add(model);
-    if(!receiverAsset){const body=new THREE.Mesh(new THREE.BoxGeometry(1.2,.96,.8),steel);body.position.y=.48;model.add(body);const display=new THREE.Mesh(new THREE.BoxGeometry(.26,.035,.006),weakCyan.clone());display.name='Progress';display.position.set(.25,.79,.423);model.add(display);}
+    if(!receiverAsset){
+      const fallbackPart=(name,size,position,material)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(...size),material);m.name=name;m.position.set(...position);model.add(m);};
+      const ivory=new THREE.MeshStandardMaterial({color:0xadb5a5,roughness:.7});
+      fallbackPart('Cabinet',[1.2,.88,.8],[0,.44,0],steel);
+      fallbackPart('Top docking rim',[1.18,.10,.78],[0,.91,0],ivory);
+      fallbackPart('MemoryCassette',[.52,.008,.32],[0,.968,0],steel);
+      for(const x of [-.4,.4])for(const z of [-.414,.414])fallbackPart('Grasp rail',[.10,.20,.018],[x,.79,z],ivory);
+      fallbackPart('Progress',[.28,.035,.006],[0,.79,.423],weakCyan.clone());
+    }
     model.updateMatrixWorld(true);
     model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;
       // Each visible solid supplies its own matching bounds, including controls.
@@ -245,6 +253,21 @@ export async function buildWorld(scene) {
   }
   if(!uplinkAsset)for(let i=0;i<12;i++){const m=new THREE.Mesh(new THREE.BoxGeometry(.075,.025,.25),weakCyan.clone());m.name=`UplinkCell${String(i).padStart(2,'0')}`;m.position.set(-.55+i*.1,.92,34.2);uplink.add(m);}
   uplink.traverse(o=>{if(o.isMesh){if(uplinkAsset&&!o.name.startsWith('UplinkCell')&&o.name!=='Beacon')o.userData.batchHousing=true;o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('UplinkCell')||o.name==='Beacon'){o.material=o.material.clone();cells.push(o);}}});
+  // Flush stance inlays are paint, not extra collision or a promise of flank safety.
+  const stancePaint=new THREE.MeshStandardMaterial({color:0x9ca995,roughness:.93});
+  const stanceDark=new THREE.MeshStandardMaterial({color:0x263f39,roughness:.95});
+  for(const x of [-1.85,1.85]){
+    const patch=new THREE.Mesh(new THREE.PlaneGeometry(.82,1.0),stanceDark);
+    patch.rotation.x=-Math.PI/2;patch.position.set(x,.073,31.02);group.add(patch);
+    for(const dx of [-.23,.23]){
+      const foot=new THREE.Mesh(new THREE.PlaneGeometry(.14,.36),stancePaint);
+      foot.rotation.x=-Math.PI/2;foot.position.set(x+dx,.075,31.06);group.add(foot);
+    }
+    for(const dz of [-.49,.49]){
+      const border=new THREE.Mesh(new THREE.PlaneGeometry(.82,.035),stancePaint);
+      border.rotation.x=-Math.PI/2;border.position.set(x,.075,31.02+dz);group.add(border);
+    }
+  }
   const routeLights=new THREE.Group();routeLights.userData.dynamic=true;group.add(routeLights);
   const routeMaterial=new THREE.MeshStandardMaterial({color:0x80bb99,emissive:0x65c791,emissiveIntensity:.7});
   for(const route of UPLINK.routes)for(let j=1;j<route.length;j++){

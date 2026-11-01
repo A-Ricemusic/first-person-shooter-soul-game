@@ -1,6 +1,7 @@
 """Original SOULFALL receiver, meters/Z-up. No external assets.
 Run Blender -b --python tools/build_receiver.py; glTF exports Y-up.
-All controls sit within a continuous 1.2 x .8 x .96 cabinet envelope.
+The 1.2 x .8 x .88 cabinet supports a .96m deck; cassette contacts reach .974m.
+Per-mesh controls retain exact physical bounds, including front/rear grasp rails.
 """
 import bpy, os, json
 exec(open(os.path.join(os.path.dirname(__file__),'build_assets.py')).read().split("asset('signal-pylon'")[0])
@@ -8,18 +9,29 @@ bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=Fals
 enamel=material('Receiver sea-grey enamel',(.20,.31,.32),.48,.52)
 insert=material('Bounded cyan phosphor',(.025,.32,.36),.25,.48,.65)
 def part(n,p,s,m):return box(n,p,s,m,0)
-part('Cabinet',(0,0,.48),(1.2,.8,.96),enamel)
-part('Inset front service panel',(0,-.402,.43),(1.02,.008,.62),steel)
-for x in [-.48,.48]:
- for z in [.16,.70]:part('Captive fastener',(x,-.409,z),(.025,.008,.025),edge)
-for z in [.29,.34,.39]:part('Cooling slit',( .30,-.410,z),(.25,.006,.012),dark)
-part('Cassette dock',(-.25,-.413,.79),(.44,.015,.20),dark)
-part('MemoryCassette',(-.25,-.425,.79),(.33,.025,.13),edge)
-for x in [-.36,-.29,-.22,-.15]:part('Lattice contact',(x,-.440,.79),(.018,.006,.085),insert)
-part('Screen',( .25,-.414,.79),(.30,.012,.16),dark)
-part('Progress',( .25,-.423,.79),(.26,.006,.035),insert)
-for x in [.15,.25,.35]:part('Sealed key',(x,-.416,.64),(.055,.014,.04),edge)
-for x in [-.57,.57]:part('Corner wear',(x,-.406,.48),(.015,.008,.73),edge)
+ivory=material('Human archive ivory enamel',(.58,.62,.55),.15,.63)
+label=material('Archive index paper',(.72,.68,.51),0,.9)
+# Narrow plinth, recessed middle, broad pale dock: a human-use object, not a pylon.
+part('Cabinet',(0,0,.44),(1.2,.8,.88),enamel)
+part('Rubber plinth',(0,0,.06),(1.18,.78,.12),dark)
+part('Top docking rim',(0,0,.91),(1.18,.78,.10),ivory)
+for side in [-1,1]:
+ y=side*.402
+ part('Inset service panel',(0,y,.43),(1.02,.008,.60),steel)
+ for x in [-.48,.48]:
+  for z in [.17,.69]:part('Captive fastener',(x,y+side*.007,z),(.03,.008,.03),edge)
+ part('Hand recess',(0,side*.409,.78),(.70,.012,.12),dark)
+ for x in [-.40,.40]:part('Grasp rail',(x,side*.414,.79),(.10,.018,.20),ivory)
+ for z in [.24,.29,.34]:part('Cooling slit',(.32,side*.410,z),(.20,.006,.012),dark)
+ part('Index card',(-.26,side*.414,.64),(.31,.008,.11),label)
+ for i in range(3):part('Printed index',(-.27,side*.420,.66-i*.025),(.23-i*.035,.003,.007),dark)
+part('Cassette socket',(0,0,.962),(.72,.48,.004),dark)
+part('MemoryCassette',(0,0,.968),(.52,.32,.008),edge)
+for x in [-.17,-.06,.06,.17]:part('Recessed contact',(x,0,.973),(.035,.21,.002),insert)
+part('Progress',(.0,-.423,.79),(.28,.006,.035),insert)
+for x in [-.574,.574]:
+ part('Folded side armor',(x,0,.48),(.04,.75,.72),ivory)
+ for j in range(5):part('Edge abrasion',(x,-.28+j*.12,.17),(.043,.035,.014),edge)
 # Grounded cable in flush protective raceway, exactly five metres to rear landmark.
 part('Cable raceway',(0,2.7,-.026),(.12,4.6,.05),dark)
 part('Cable spine',(0,2.7,-.004),(.035,4.6,.008),edge)

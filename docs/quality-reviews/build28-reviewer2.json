@@ -1,0 +1,119 @@
+{
+  "reviewer": "build28-reviewer2",
+  "method": "Independent provisional ordinary UI play at http://127.0.0.1:5173/ using existing visible driver only. No source, tests, prior reviews, hidden state, fixtures, or other browser inspected.",
+  "evidenceRoot": "docs/media/build28-review2",
+  "inputsAndResults": "docs/media/build28-review2/actions.jsonl",
+  "briefingAndHandbookRead": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "00:39",
+      "memories": [
+        "Mara Solberg / West Archive"
+      ],
+      "eliminations": 2,
+      "score": 1280,
+      "accuracyPercent": 11,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "terminalCapture": "attempt1-core3.jpg",
+      "summary": "Killed induction guard, approached west via side lane, recovered medic memory, triggered visible phase break while strafing, navigated out of archive, killed heart warden with optic fire, died attempting heart recovery."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "00:26",
+      "memories": [
+        "Elian Vale / East Archive"
+      ],
+      "eliminations": 1,
+      "score": 1180,
+      "accuracyPercent": 13,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "terminalCapture": "attempt2-heart-run.jpg",
+      "summary": "Killed induction guard; took east lane, unsuccessfully tracked moving interceptor with rifle, recovered engineer memory after adjusting into receiver ring; died moving toward heart."
+    }
+  ],
+  "ratingsOutOf10": {
+    "gameplay": 6,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6,
+    "AAAReadiness": 4
+  },
+  "findings": [
+    {
+      "severity": "strength",
+      "finding": "Title, atmospheric rain courtyard, restrained cyan/amber palette, typography, weapon model and outcome screen make a cohesive polished first impression.",
+      "evidence": [
+        "briefing.jpg",
+        "attempt1-start.jpg",
+        "attempt2-heart-run.jpg"
+      ]
+    },
+    {
+      "severity": "strength",
+      "finding": "Mission briefing explains receiver offset and extraction strategy; handbook documents dash protection, charge break, cooldown and visor limitations clearly. Recovery yields a distinct human voice and usable post-death archive.",
+      "evidence": [
+        "mission-brief.jpg",
+        "handbook.jpg",
+        "attempt1-core1.jpg",
+        "recovered-memories.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Under active threat, the HUD is dense: offscreen threat boxes, objective arrows, range labels, target readout, event feed and control strip compete with small enemy optics. Identifying the damaging attacker while recovering was difficult in these attempts.",
+      "evidence": [
+        "attempt1-core1.jpg",
+        "attempt1-heart-guard.jpg",
+        "attempt2-recover.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Recovery positioning is finicky at the edge: 3.2m still showed MOVE CLOSER after dash; a short backward adjustment enabled recovery. The floor ring and receiver do provide useful correction cues.",
+      "evidence": [
+        "attempt2-core2.jpg",
+        "attempt2-recover.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Both first-time routes became lethal soon after committing to stationary recovery. First recovery reduced health to 65 west and 26 east; escalation and flank pressure were challenging to resolve using paused bounded inputs. This is evidence of demanding onboarding, not a verified balance defect.",
+      "evidence": [
+        "attempt1-core1.jpg",
+        "attempt2-recover.jpg",
+        "attempt1-core3.jpg",
+        "attempt2-heart-run.jpg"
+      ]
+    },
+    {
+      "severity": "strength",
+      "finding": "Optic precision visibly rewards critical eliminations and the dash produced an explicit PHASE BREAK / SHOT CANCELED confirmation.",
+      "evidence": [
+        "attempt1-fight.jpg",
+        "attempt1-heart-guard.jpg",
+        "attempt2-guard.jpg"
+      ]
+    }
+  ],
+  "limitations": [
+    "Two completed deaths; no victory, complete three-core route or extraction observed. Whole-game scores are provisional and constrained by this coverage.",
+    "Synthetic paused screenshot-driven input is not continuous human play or a human enjoyment measurement. Aim tracking and quick reactive defense are materially limited.",
+    "Software-WebGL fallback reported by driver; no hardware performance, frame pacing or audio claims.",
+    "Settings and recovered memory archive inspected through UI; settings were not changed.",
+    "Four post-outcome selector errors were retained in the action log; resolved by using visible accessibility labels. They are driver selection mistakes, not game defects."
+  ],
+  "closure": {
+    "explicitClose": true,
+    "browserClosed": true,
+    "driverPid": 10157,
+    "chromePid": 10158,
+    "sessionExitCode": 0,
+    "psVerification": "ps -p 10157,10158 -o pid=,comm= returned no rows and exit code 1 after close; both owned processes absent.",
+    "serversPreserved": true
+  }
+}
