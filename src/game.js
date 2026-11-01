@@ -552,7 +552,9 @@ export class Game {
     enemy.lastAttack=this.runTime;
     const origin = enemy.group.position.clone().add(new THREE.Vector3(0, enemy.droneRig?1.3:1.2, enemy.droneRig?.43:0).applyAxisAngle(UP,enemy.group.rotation?.y||0));
     const velocity = enemy.target.clone().sub(origin).normalize().multiplyScalar(enemy.type === 'stalker' ? 18 : 15);
-    const projectile = mesh(new THREE.SphereGeometry(0.09, 6, 6), new THREE.MeshBasicMaterial({ color: 0xff6a31 })); projectile.position.copy(origin); this.scene.add(projectile);
+    const projectile = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.16, 8), new THREE.MeshBasicMaterial({ color: 0xff6a31 }));
+    projectile.quaternion.setFromUnitVectors(UP, velocity.clone().normalize());
+    projectile.position.copy(origin); this.scene.add(projectile);
     this.projectiles.push({ mesh: projectile, origin: origin.clone(), attacker:enemy, velocity, life: 4, damage: enemy.type === 'stalker' ? 13 : 19 });
     this.tracer(origin, origin.clone().addScaledVector(velocity, 0.05), 0xff6033, 0.12);
   }
