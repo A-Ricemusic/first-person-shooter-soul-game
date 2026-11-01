@@ -76,5 +76,10 @@ body:not(.in-game) #waypoints{visibility:hidden}
 .world-marker.enemy.visor.edge .marker-symbol{transform-origin:5px 5px}
 .combat-priority #announcement{transition:opacity .2s}
 
-/* Keep dismissal visible while the long handbook remains scrollable. */
-#controls-dialog > .primary-button{position:sticky;bottom:0;z-index:1;box-shadow:0 -10px 16px #0c1c21}
+/* Scroll prose inside its own region; dismissal never covers the text. */
+#controls-dialog[open]{display:flex;flex-direction:column;gap:16px;height:min(800px,90dvh);overflow:hidden}
+#controls-dialog .dialog-header{flex-shrink:0}
+.handbook-content{min-height:0;overflow-y:scroll;scrollbar-gutter:stable;padding-right:12px}
+.handbook-content::-webkit-scrollbar{width:6px}
+.handbook-content::-webkit-scrollbar-thumb{background:#527470;border-radius:3px}
+#controls-dialog > .primary-button{position:static;flex-shrink:0;width:100%;box-shadow:none}

@@ -1,0 +1,54 @@
+{
+  "reviewFreeze": "build35-source-freeze.json",
+  "decisions": [
+    "Sentinel articulated walker; Interceptor paired ducted impellers; Warden unchanged tracked unit",
+    "Fixed optic centre (0,1.3,.418), precision/fire anchor (0,1.3,.43), precision radius .24",
+    "Runtime body raycasts include articulated meshes, no untargetable visual limbs",
+    "Resolved displacement drives gait distance and lateral stride; stopping/stagger bounded, paused dt zero",
+    "Static mesh joining by material; named animated meshes independent; loaded geometry shared; instance materials isolated"
+  ],
+  "budgets": {
+    "sentinel": {
+      "triangles": 1840,
+      "meshes": 17,
+      "materials": 5
+    },
+    "interceptor": {
+      "triangles": 2452,
+      "meshes": 10,
+      "materials": 6
+    },
+    "sceneSubmissionsTwoActors": 171,
+    "backend": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "fpsMeasured": false
+  },
+  "retainedFailures": [
+    "Initial movement-browser and Warden-motion navigation contexts destroyed by implementation HMR; stable reruns pass",
+    "Dedicated initial waitForFunction used RAF polling while fixture disabled RAF; changed to 50ms polling",
+    "Fallback shot fixture first retained fireTimer, then recoil across shots; explicit resets restored expected 34/82, without gameplay changes",
+    "5000-pose browser-free GLB sweep found FootLeft .458214m radius, beyond .45 movement envelope; correction pending until both reviews"
+  ],
+  "limits": [
+    "Small flat-floor gait, no general terrain IK; bounded replant during pivots and direction changes",
+    "Shared sight cradle remains a similar upper silhouette",
+    "Compact optional-combat mission depth, environment detail, dense HUD and platform/accessibility coverage remain mission gaps",
+    "No score target, human-fun certification, audio enjoyment or FPS claim"
+  ],
+  "protectedPlay": {
+    "build": 23,
+    "pid": 63172,
+    "snapshot": "/tmp/soulfall-play-build23-_4s5lus4",
+    "untouched": true
+  },
+  "remainingReviewFindings": [
+    "Threat-bearing panels can overlap; larger HUD hierarchy/readability work remains outside this art pass",
+    "Small block-like sight cradles remain visually repetitive at range despite distinct leg/propulsion silhouettes"
+  ],
+  "postReviewCorrectionsApplied": [
+    "Bound ankle radial reach to .30m, leaving foot half-diagonal .1373m inside .45m; preserve first failing envelope report",
+    "Lengthen Sentinel hip crossmember from .24m to .42m so bearing assemblies overlap their support shaft",
+    "Reviewer1 handbook screenshot shows sticky Understood button covering prose: isolate scrolling content from fixed dismissal, preserve full text and test reachability at three viewports"
+  ],
+  "postReviewRescore": false,
+  "ordinaryReviewsComplete": 2
+}

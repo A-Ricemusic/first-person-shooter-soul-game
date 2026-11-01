@@ -1,0 +1,199 @@
+{
+  "build": "SOULFALL Build35",
+  "reviewer": "independent ordinary reviewer 2",
+  "method": "Only existing visible-playtest.mjs through npm run playtest:visible; help read before launch; live TTY JSON commands; actual JPEGs inspected. No gameplay source, tests, old reviews, hidden state or arbitrary evaluation accessed.",
+  "url": "http://127.0.0.1:5173/",
+  "evidenceDirectory": "docs/media/build35-review2",
+  "backend": "Unverified. Driver said Software-WebGL fallback enabled; renderer not certified.",
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "death",
+      "endScreen": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:16",
+      "eliminations": 1,
+      "score": 3405,
+      "accuracy": "7%",
+      "criticalEliminations": 1,
+      "phaseEvades": 3,
+      "memoriesRecovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "summary": "Walked forward past induction guard; fired down the yard before recognizing guard behind. Turned and tried ADS optic fire, reloaded and dashed; no induction elimination. Navigated around central cover to west lane, eliminated a sentinel, approached receiver and held E. Crossed to Heart and recovered its memory while taking damage. Sprinted toward East and held E at receiver. Returned through cover toward green beacon with dash; reached 0.2 m outside floor-ring edge, moved left and fired toward yard, then died. No attempts discarded; no second deployment."
+    }
+  ],
+  "actionsAndScreenshots": [
+    {
+      "screenshots": [
+        "mission-menu.jpg",
+        "brief.jpg",
+        "controls.jpg"
+      ],
+      "actions": "Read visible Mission Brief and How to Play.",
+      "observations": "Brief clearly explains three memories and extraction ring. Controls list movement, ADS, reload, dash, sprint and recovery. Final threat-visor paragraph extends underneath Understood button at 1280x800."
+    },
+    {
+      "screenshots": [
+        "deployment.jpg",
+        "yard-approach.jpg",
+        "guard-fire.jpg",
+        "turn-to-guard.jpg",
+        "guard-engagement.jpg",
+        "optic-followup.jpg"
+      ],
+      "actions": "W advance; RMB/LMB fire; look around; R reload; Shift dash.",
+      "observations": "Amber optic provides clear target. Guard was behind after forward movement; bearing cue helped reveal this. Initial firing missed; no elimination claimed. Shield fell and later visibly regenerated."
+    },
+    {
+      "screenshots": [
+        "west-approach.jpg",
+        "west-lane.jpg",
+        "west-sentinel.jpg",
+        "west-recovery.jpg"
+      ],
+      "actions": "Sprint forward; strafe around central obstruction; ADS fire on sentinel; move closer and hold E.",
+      "observations": "Central cover stopped forward movement; side route worked. Sentinel elimination registered. Receiver proximity prompt and floor-ring instruction guided recovery. First memory card and 01 completion shown."
+    },
+    {
+      "screenshots": [
+        "leave-west.jpg",
+        "heart-approach.jpg",
+        "heart-recovery.jpg",
+        "east-traverse.jpg",
+        "east-recovery.jpg"
+      ],
+      "actions": "Look and walk toward Heart; strafe and hold E; sprint toward East receiver and hold E.",
+      "observations": "Named markers and distances guided both recoveries. Health fell to 84 at Heart and 57 after East. Objective changed to Return to Extraction and all three slots lit."
+    },
+    {
+      "screenshots": [
+        "return-east-aisle.jpg",
+        "return-cover.jpg",
+        "return-final-push.jpg",
+        "beacon-approach.jpg",
+        "upload-entry.jpg",
+        "upload-defense.jpg"
+      ],
+      "actions": "Move around obstacles, sprint and dash toward beacon; turn to face yard, strafe toward ring and fire.",
+      "observations": "Health dropped to 18. Extraction UI gave 1.2 m then 0.2 m to edge. Several charge/recent-fire panels coexisted near center. Death occurred before upload completion; no confirmed upload percentage captured."
+    },
+    {
+      "screenshots": [
+        "memories.jpg"
+      ],
+      "actions": "Read recovered memories after death.",
+      "observations": "All three named records were accessible with short personal narratives."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "area": "usability",
+      "finding": "How to Play threat-visor text is clipped under the Understood button at the tested 1280x800 view. The bottom lines cannot all be read in the screenshot.",
+      "evidence": "controls.jpg",
+      "suggestion": "Make handbook body scrollable or reduce its vertical footprint so every instruction remains accessible."
+    },
+    {
+      "severity": "low",
+      "area": "readability",
+      "finding": "Several charge/recent-fire boxes cluster below aim during return, competing with the rifle, hit-direction arrow and extraction guidance. I could read the counts in paused images, but rapid target attribution was difficult.",
+      "evidence": [
+        "return-cover.jpg",
+        "upload-entry.jpg"
+      ],
+      "suggestion": "Reduce overlapping central information or provide more spatial separation. This is a provisional paused-driver observation."
+    },
+    {
+      "severity": "positive",
+      "area": "navigation",
+      "finding": "Named cyan markers, distance readouts and move-closer/floor-ring prompts supported discovering all three receivers without route knowledge.",
+      "evidence": [
+        "west-sentinel.jpg",
+        "heart-approach.jpg",
+        "east-recovery.jpg"
+      ]
+    },
+    {
+      "severity": "positive",
+      "area": "presentation",
+      "finding": "Rain, reflective yard, cyan/amber color language and consistent typography give menus and mission a coherent visual identity.",
+      "evidence": [
+        "mission-menu.jpg",
+        "deployment.jpg",
+        "memories.jpg"
+      ]
+    },
+    {
+      "severity": "observation",
+      "area": "gameplay",
+      "finding": "Recoveries completed while enemies remained active, and returning with low health created visible pressure. This single attempt does not establish difficulty balance; screenshot pauses interrupt combat."
+    }
+  ],
+  "ratingsProvisionalOutOf10": {
+    "wholeGame": {
+      "score": 6.8,
+      "reason": "Coherent short mission with readable objective progression and complete death/archive flow; extraction success unobserved and handbook clipping limits polish."
+    },
+    "gameplay": {
+      "score": 6.5,
+      "reason": "Movement, ADS, reload, dash, damage, shield regeneration and recovery all responded visibly. Limited accurate combat and no successful upload prevent confident depth or balance judgment."
+    },
+    "presentation": {
+      "score": 7.5,
+      "reason": "Strong consistent storm-station identity and menu treatment; basic geometric enemies and repeated structural forms remain evident."
+    },
+    "usability": {
+      "score": 6.5,
+      "reason": "Markers and proximity instructions made objectives discoverable. Handbook clipping and dense combat cueing need improvement."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Health/ammo/objectives and cyan markers were legible; central threat panels and small spaced technical text add reading effort."
+    },
+    "AAA-readiness": {
+      "score": 4.5,
+      "reason": "A promising visible vertical slice, but one mission attempt, clipped instructions and visibly simple asset variety do not support production-completeness confidence. This is not certification."
+    }
+  },
+  "coverage": [
+    "title",
+    "Mission Brief",
+    "How to Play",
+    "ordinary movement and look",
+    "sprint",
+    "ADS/fire",
+    "reload",
+    "Soul Shift dash",
+    "shield regeneration",
+    "one sentinel elimination",
+    "all three memory recoveries",
+    "return navigation",
+    "extraction approach",
+    "death summary",
+    "recovered-memory archive"
+  ],
+  "gapsAndLimits": [
+    "Only one attempt; one death retained.",
+    "No victory or completed extraction upload observed.",
+    "No confirmed extraction pause/decay behavior observed.",
+    "No settings, alternate return lane, jump or successful charge-break stagger confirmation.",
+    "Screenshot capture automatically pauses; difficulty and real-time responsiveness judgments are limited.",
+    "No hardware FPS benchmark, audio enjoyment, human-fun claim or certification.",
+    "Graphics backend unverified.",
+    "No pageErrors reported in driver results; this is not source-level correctness coverage."
+  ],
+  "closure": {
+    "command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 56130,
+    "chromePid": 56131,
+    "sessionId": 24349,
+    "sessionExitCode": 0,
+    "pidVerification": "ps -p 56130,56131 -o pid=,comm= returned no rows, exit 1: both exact owned PIDs absent.",
+    "serversOrPortsModified": false
+  }
+}

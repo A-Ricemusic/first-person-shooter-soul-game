@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {attachLegs,animateLegs,fallbackDrone} from './drone-motion.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import MEDICAL from './medical-layout.json';
@@ -246,13 +247,15 @@ export class Game {
     const gun = mesh(new THREE.BoxGeometry(0.17, 0.15, 0.6), black, 0.43, 1.04, 0.32); group.add(gun);
     const light = new THREE.PointLight(0xff482b, 0.5, 3); light.position.set(0, 1.5, 0.3); group.add(light);
     group.traverse(m => { if (m.isMesh) m.castShadow = true; }); this.scene.add(group);
-    if (this.sentinelAsset && !(type==='warden' && this.wardenAsset)) {
+    if (type!=='warden') {
       [...group.children].forEach(child => { if (child !== light) child.visible = false; });
-      const authored = (type==='stalker' ? this.interceptorAsset||this.sentinelAsset : this.sentinelAsset).clone(true);
-      authored.traverse(node => { if (node.isMesh) { node.material = node.material.clone(); node.userData.sharedGeometry = true; node.castShadow = true; } });
+      const source=type==='stalker'?this.interceptorAsset:this.sentinelAsset;
+      const authored=source?source.clone(true):fallbackDrone(type==='stalker');
+      authored.traverse(node => { if (node.isMesh) { if(source)node.material = node.material.clone(); node.userData.sharedGeometry = !!(type==='stalker'?this.interceptorAsset:this.sentinelAsset); node.castShadow = true; } });
       group.add(authored);
       red=authored.getObjectByName('Optic').material;
       droneRig={model:authored,top:authored.getObjectByName('ShutterTop'),bottom:authored.getObjectByName('ShutterBottom'),vanes:[authored.getObjectByName('VaneLeft'),authored.getObjectByName('VaneRight')],previous:position.clone(),speed:0};
+      droneRig.legs=attachLegs(authored,group);
       droneRig.topY=droneRig.top.position.y;droneRig.bottomY=droneRig.bottom.position.y;
     }
     let wardenRig;
@@ -317,7 +320,7 @@ export class Game {
     }
     for (const enemy of this.enemies) {
       const body = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.04, 0)), this.sentinelAsset ? 0.68 : 0.53);
-      const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : this.sentinelAsset ? 1.3 : 1.68, enemy.type==='warden' ? .3 : this.sentinelAsset ? 0.43 : 0).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
+      const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : 1.3, enemy.type==='warden' ? .3 : .43).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
       const h = this.ray.intersectSphere(head, new THREE.Vector3());
       let b;
       if (enemy.wardenRig || enemy.droneRig) {
@@ -536,14 +539,16 @@ export class Game {
 
   animateDrone(enemy,dt) {
     const r=enemy.droneRig;if(!r||dt<=0)return;
-    const speed=enemy.group.position.distanceTo(r.previous)/dt;r.previous.copy(enemy.group.position);
+    const displacement=enemy.group.position.clone().sub(r.previous);
+    const speed=displacement.length()/dt;r.previous.copy(enemy.group.position);
+    animateLegs(r,enemy.group,displacement,dt);
     r.speed=THREE.MathUtils.damp(r.speed,enemy.stagger>0?0:speed,12,dt);
-    // Only shutters and vectoring vanes move; the precision optic stays rigid.
+    // Linkages and propulsion move independently of the stabilized precision optic.
     const charge=enemy.windup>0 ? 1-enemy.windup/(enemy.type==='stalker'?.42:.65) : 0;
     const recoil=Math.max(0,1-(this.runTime-enemy.lastAttack)/.22);
     r.top.position.y=r.topY+charge*.07+recoil*.045;
     r.bottom.position.y=r.bottomY-charge*.07-recoil*.045;
-    r.vanes.forEach((v,i)=>v.rotation.x=(i?1:-1)*Math.min(.35,r.speed*.09));
+    r.vanes.forEach((v,i)=>{if(r.legs)v.rotation.x=(i?1:-1)*Math.min(.35,r.speed*.09);else {v.rotation.y+=(enemy.stagger>0?4:18+Math.min(20,r.speed*5))*dt;}});
     if(!(enemy.hitFlash>0)&&!(enemy.stagger>0))enemy.red.emissiveIntensity=enemy.windup>0?.65+charge*.65:.65;
     if(enemy.stagger>0 && !(enemy.hitFlash>0))enemy.red.emissiveIntensity=.8;
     enemy.light.intensity=enemy.windup>0?.12:.03;
@@ -676,7 +681,7 @@ export class Game {
     this.frameId = requestAnimationFrame(t => this.frame(t));
   }
   enemyOpticPosition(enemy) {
-    return enemy.group.position.clone().add(new THREE.Vector3(0,enemy.type==='warden'?2:this.sentinelAsset?1.3:1.68,enemy.type==='warden'?.3:this.sentinelAsset?.43:0).applyAxisAngle(UP,enemy.group.rotation.y));
+    return enemy.group.position.clone().add(new THREE.Vector3(0,enemy.type==='warden'?2:1.3,enemy.type==='warden'?.3:.43).applyAxisAngle(UP,enemy.group.rotation.y));
   }
   captureMarkers() {
     if(this.phase!=='playing')return [];

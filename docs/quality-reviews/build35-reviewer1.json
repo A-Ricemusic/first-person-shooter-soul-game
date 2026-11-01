@@ -1,0 +1,188 @@
+{
+  "build": "SOULFALL Build35",
+  "reviewer": "independent ordinary reviewer 1",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "Existing tools/visible-playtest.mjs via npm run playtest:visible, interactive TTY JSON commands only",
+    "evidence_directory": "docs/media/build35-review1",
+    "read": [
+      "Visible Mission Brief",
+      "Visible How to Play"
+    ],
+    "observations": "Actual JPEG captures inspected with view_image and visible UI status only. No gameplay/source/tests/other reviews read; no game edits. Navigation discovered through signage, markers and minimap.",
+    "graphics": "Driver reported Software-WebGL fallback enabled; renderer not certified. Actual renderer backend unverified.",
+    "limits": [
+      "Discrete screenshots and automatic Escape pauses substantially limit difficulty and aiming judgments.",
+      "No hardware FPS, audio enjoyment, human-fun or certification claims.",
+      "Two attempts only; no victory, extraction completion, upload decay/reentry or successful charge-break coverage.",
+      "Settings and jump not exercised; full enemy behavior variety not established."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "retained": true,
+      "mission_time": "00:35",
+      "score": 2180,
+      "eliminations": 1,
+      "accuracy": "5%",
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "actions": "Walked central yard past induction guard; sprinted toward west signage; strafed and approached waist-high receiver; held E; used ADS and fire; reloaded; dashed and sprinted to heart; held E; aimed and fired at sentinel, earning one elimination; moved toward east and died. Read recovered memory archive after death.",
+      "screenshots": [
+        "attempt1-start.jpg",
+        "attempt1-yard.jpg",
+        "attempt1-west.jpg",
+        "attempt1-receiver-search.jpg",
+        "attempt1-recovery-combat.jpg",
+        "attempt1-cross.jpg",
+        "attempt1-heart-approach.jpg",
+        "attempt1-heart-combat.jpg",
+        "attempt1-east-travel.jpg",
+        "attempt1-east-approach.jpg",
+        "attempt1-memories.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death during extraction upload",
+      "retained": true,
+      "mission_time": "00:52",
+      "score": 3360,
+      "eliminations": 2,
+      "accuracy": "4%",
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "actions": "Deployed again; ADS fired at induction optic and eliminated warden; reloaded and sprinted west; fired at visible enemies and earned second elimination; approached receiver and held E while firing; reloaded; dashed/sprinted to heart and recovered it; dashed/sprinted east; adjusted into floor ring after move-closer prompt and recovered third memory; followed green extraction marker, sprinted/dashed toward it; entered ring, turned toward yard; upload advanced (JPEG showed 46%); ADS fired at nearby enemy and died before completion.",
+      "screenshots": [
+        "attempt2-start.jpg",
+        "attempt2-guard.jpg",
+        "attempt2-west.jpg",
+        "attempt2-west-enemy.jpg",
+        "attempt2-west-push.jpg",
+        "attempt2-west-recover.jpg",
+        "attempt2-heart-travel.jpg",
+        "attempt2-heart-recovery.jpg",
+        "attempt2-east.jpg",
+        "attempt2-east-recovery.jpg",
+        "attempt2-east-recovered.jpg",
+        "attempt2-return.jpg",
+        "attempt2-upload.jpg",
+        "attempt2-outcome.jpg"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "type": "positive",
+      "observation": "Cohesive cyan/amber rain-soaked station presentation, strong title hierarchy, wet ground reflections and legible major area signs establish a consistent setting.",
+      "evidence": [
+        "menu.jpg",
+        "attempt1-yard.jpg",
+        "attempt2-return.jpg"
+      ]
+    },
+    {
+      "type": "issue",
+      "severity": "medium",
+      "observation": "At 1280x800 the How to Play threat-visor paragraph runs beneath the Understood button; its lower lines are visibly clipped/covered. The status text supplies more than the screenshot comfortably presents.",
+      "suggestion": "Make handbook content scroll clearly or size the dialog so the full explanation remains above its action.",
+      "evidence": [
+        "controls.jpg"
+      ]
+    },
+    {
+      "type": "positive",
+      "observation": "Objective markers, nearest-core distances, recovered-core counters and explicit move-closer/hold-E prompts enabled discovery of all three receivers without route instructions. All memories switched the objective to a green extraction marker and a six-second hold instruction.",
+      "evidence": [
+        "attempt1-heart-approach.jpg",
+        "attempt2-west-push.jpg",
+        "attempt2-east-recovered.jpg"
+      ]
+    },
+    {
+      "type": "issue",
+      "severity": "low",
+      "observation": "Multiple recent-fire/source panels overlap around the lower center during return and recovery, increasing visual clutter while enemies remain small or outside the view.",
+      "suggestion": "Separate stacked cue panels or reduce nearby label overlap.",
+      "evidence": [
+        "attempt2-return.jpg",
+        "attempt2-east-recovery.jpg"
+      ]
+    },
+    {
+      "type": "positive",
+      "observation": "Death screen preserved recovered names, mission statistics and an accessible archive. Short character memories add concrete narrative purpose to recovery.",
+      "evidence": [
+        "attempt1-east-approach.jpg",
+        "attempt1-memories.jpg",
+        "attempt2-outcome.jpg"
+      ]
+    },
+    {
+      "type": "observation",
+      "observation": "Precision optic fire visibly rewarded critical eliminations; sustained inaccurate fire spent ammunition quickly. Recovery restored supplies and shield in visible readouts. Two deaths occurred while exposed, but screenshot-driven input prevents attributing these to unfair balance.",
+      "evidence": [
+        "attempt2-guard.jpg",
+        "attempt2-west-recover.jpg",
+        "attempt2-outcome.jpg"
+      ]
+    }
+  ],
+  "ratings": {
+    "whole_game": {
+      "score": 6.5,
+      "out_of": 10,
+      "reason": "Coherent playable recovery/combat/extraction loop and polished interface identity; two complete death outcomes, but no win and limited continuous combat evidence."
+    },
+    "gameplay": {
+      "score": 6.5,
+      "out_of": 10,
+      "reason": "Recoveries, reloads, critical hits, dash cooldown, shield and final hold create several decisions; only one rifle and a compact mission observed, with charge-break depth unproven."
+    },
+    "presentation": {
+      "score": 7.5,
+      "out_of": 10,
+      "reason": "Strong art direction, typography, rain and reflected light; repeated simple geometry and small block-like enemies limit visual richness."
+    },
+    "usability": {
+      "score": 7,
+      "out_of": 10,
+      "reason": "Clear objective progression, restart and archive flows; handbook clipping and exact ring eligibility require improvement."
+    },
+    "readability": {
+      "score": 6.5,
+      "out_of": 10,
+      "reason": "Major objectives and cyan destinations read well; small technical text, overlapping threat labels and tiny distant enemies make combat parsing denser."
+    },
+    "AAA_readiness": {
+      "score": 4,
+      "out_of": 10,
+      "reason": "Promising vertical slice with coherent polish, but observed scope, geometry/enemy detail, handbook clipping and limited validation do not establish production breadth or AAA readiness."
+    }
+  },
+  "driver_errors": "Three UI selector attempts failed while closing the archive/redeploying: ambiguous RETURN, blocked deploy while dialog remained open, ambiguous data-close. Corrected using visible Close archive label. These were automation locator errors, not game faults. No page errors reported in successful commands.",
+  "closure": {
+    "explicit_command": {
+      "op": "close"
+    },
+    "browserClosed": true,
+    "driverPid": 54774,
+    "chromePid": 54775,
+    "interactive_session": 80715,
+    "session_exit_code": 0,
+    "verification": "ps -p 54774,54775 -o pid=,comm= returned empty output and exit 1, verifying both exact owned PIDs absent.",
+    "all_attempt_outcomes_retained": true
+  },
+  "changes": "Only this report and driver evidence artifacts; no gameplay edits, commits or pushes."
+}
