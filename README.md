@@ -41,6 +41,8 @@ Reproduce the new assets with `blender --background --python tools/build_viewmod
 
 Build09 fixes forward phase-break overshoot and target-marker obstruction. A successful approach break brakes the burst, preserving the target ahead; escape/sideways travel stays intact. Final visual followups remove the giant floating sign and bound warden emission. `npm run test:phase-usability` verifies this behavior with a running dev server. Raw fresh reviews remain candid in `docs/quality-reviews/build09-*`. Overall quality work continues.
 
+Build11 adds optional rear-edge service-grate markings and a contextual Space cue. It is grounded, nearby and facing-sensitive; no jump/landing physics was changed. Manual display observations are in `docs/service-cue-observations.json`; blind human learning remains unvalidated.
+
 ## Build and verify
 
 ```sh

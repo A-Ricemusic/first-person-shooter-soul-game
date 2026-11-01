@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
@@ -144,13 +145,18 @@ export async function buildWorld(scene) {
   box(0,1.65,-8,9,3.3,5,concrete,true);box(0,3.35,-8,9.3,.12,5.3,steel);
   box(0,2.2,-5.46,5.5,.15,.08,cyan);sign('09 / INDUCTION','HIGH VOLTAGE · KEEP CLEAR',0,1.4,-5.45,5,1);
   for(const x of [-3.5,3.5]){box(x,1.6,-5.46,.15,2.3,.05,amber);pipe([x,3.5,-8],[x,4.4,-8],.24,edge);}
-  for(const x of [-14,14]){
+  for(const {x} of SERVICE_ROUTES){
     box(x,.55,9,4.8,1.1,3.8,darkConcrete,true);
     box(x,1.15,9,5,.1,4,edge,true);
     // Continuous grate support at the rendered bar tops (1.315 m).
     colliders.push(new THREE.Box3(new THREE.Vector3(x-1.91,1.2,7.3),new THREE.Vector3(x+1.91,1.315,10.7)));
     for(let i=0;i<9;i++)box(x-1.8+i*.45,1.24,9,.22,.15,3.4,steel,true);
     box(x,1.4,7.05,4.8,.7,.15,steel,true);
+    // Rear service access: a small physical placard and close-approach paint.
+    sign('SERVICE','REAR ACCESS',x+.9,.65,10.925,1.25,.28,'#b8ccc8');
+    box(x,.03,12.3,1.25,.025,.09,amber);
+    for(const side of [-1,1]){const arrow=box(x+side*.2,.03,11.85,.55,.025,.07,amber);arrow.rotation.y=side*.7;}
+
   }
   for(const x of [-30,30]){
     box(x,2,9,5,4,6,darkConcrete,true);box(x,4.1,9,5.3,.2,6.3,steel);
