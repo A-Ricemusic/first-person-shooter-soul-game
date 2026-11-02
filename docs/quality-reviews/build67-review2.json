@@ -1,0 +1,3522 @@
+{
+  "review": "build67-review2",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Independent visible play only, default settings, browser synthetic inputs with automatic Escape pauses. Read driver help, own screenshots and own action evidence only. No implementation/source or other reports read. Exactly two terminal attempts.",
+  "scope": "Menu, map, induction guard, west receiver, Heart receiver and nearby combat, east machinery detour. No completed jammer/uplink/extraction; no audio assessment or hardware performance certification. Software WebGL fallback.",
+  "attempts": [
+    {
+      "number": 1,
+      "start": "Fresh initial Enter the Storm deployment, visible 00:00, 100 health/60 shield, zero cores and kills.",
+      "outcome": "OPERATOR LOST",
+      "time": "01:07",
+      "timeInterpretation": "End screen says cumulative play time; this fresh run began at 00:00. Paused screenshot analysis is excluded from mission clock; first unpaused inspection contributed about six seconds. Not a speedrun.",
+      "eliminations": 2,
+      "accuracy": "3%",
+      "score": 2360,
+      "cores": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "evidence": [
+        "deploy.jpg",
+        "mara-correction.jpg",
+        "heart-correction.jpg",
+        "heart-optic-correction.jpg"
+      ],
+      "narrative": "Killed induction guard by optic fire. Went west using map, collided with central cover (5.5 seconds W gained only 6m), moved left then forward. First E hold failed outside reach at 3.1m; moved right and recovered Mara. Two aimed patrol bursts and correction/reload mostly missed while stationary, shield fell to zero and health 46. Dash/right strafe plus more missed fire left 14 health. Ran/dashed toward Heart; right strafe worsened distance and E hold failed at 8m. Back-left correction recovered Sera and health rose to 34. Phase break canceled a warden shot, but burst aimed to its right missed. Reload/optic correction finally registered second elimination as incoming damage killed me."
+    },
+    {
+      "number": 2,
+      "start": "Clicked visibly labeled START FRESH; HUD reset to 00:00, 100/60, zero kills and no cores. Not a continuation.",
+      "outcome": "OPERATOR LOST",
+      "time": "01:32",
+      "timeInterpretation": "Fresh run reset verified. End screen again says cumulative play time, but this is the second run clock, not 02:39 combined. Long failed movement batches visibly consumed time.",
+      "eliminations": 1,
+      "accuracy": "7%",
+      "score": 180,
+      "cores": [],
+      "evidence": [
+        "attempt2-start.jpg",
+        "east-side-lane.jpg",
+        "east-detour.jpg",
+        "attempt2-heart.jpg",
+        "attempt2-last-fight.jpg"
+      ],
+      "narrative": "Short optic burst killed induction guard; chose east approach to explore. Machinery/cover stopped diagonal movement. D then W failed, repeated D/W failed, Space vault advanced a few metres but machinery stopped W again. Another D/W detour failed. Backtracking south/left moved partly but still reached machinery. Longer south/left finally returned to yard; sprint W was blocked by pillar, left detour succeeded. Approached Heart instead of west objective. E hold failed 0.6m outside reach. Small forward correction plus dash overshot to 5.4m; held E failed and stationary fire struck wall as warden was offscreen. Backward correction/hold failed, attempted switch to breacher and turn/fire; died with no memories. All misses and failed movement remain in raw actions."
+    }
+  ],
+  "ratings": {
+    "Gameplay": {
+      "score": 5.5,
+      "reason": "Receiver choice, optic weakpoints and phase-break mechanic offer decisions; recovering supplies made partial success rewarding. Most combat here became stationary misses and incoming damage. Two deaths and no full objective loop limit assessment; poor aim is mine, not proof of hit detection failure."
+    },
+    "Presentation": {
+      "score": 6.5,
+      "reason": "Cohesive cyan/amber rain-soaked station, striking relay centerpiece and polished menu/end typography. Blocky repeating enemies, flat bright monitor faces and broad simple architecture remain visibly prototype quality."
+    },
+    "Usability": {
+      "score": 5,
+      "reason": "Map pauses safely; controls, target distance and explicit outside-reach prompts help. I repeatedly failed receiver positioning and spent much of run two colliding with machinery despite apparently open side paths. Dash is easy to overshoot; synthetic paused controls add friction."
+    },
+    "Readability": {
+      "score": 6,
+      "reason": "Large health/ammo, cyan objectives and amber optics are legible. Small monospaced labels and tiny minimap need scrutiny; interaction/route notices occupy center while threats can remain offscreen. Surface appearance did not reliably communicate collision extent in my east detour."
+    },
+    "AAA readiness": {
+      "score": 3,
+      "reason": "A coherent playable prototype slice, but observed geometry, enemy models, combat animation and encounter navigation lack AAA finish. Neither run reached the ending systems, and software fallback plus paused automation cannot establish release performance, audio or production completeness."
+    }
+  },
+  "closure": {
+    "explicitCloseSequence": 32,
+    "closedResponse": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 8370,
+      "chromePid": 8380,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "pidVerification": {
+      "command": "ps -p 8370,8380 -o pid=,comm=",
+      "exitCode": 1,
+      "stdout": "",
+      "meaning": "Both exact recorded driver and Chrome PIDs absent after awaited exit. No unrelated browsers killed."
+    }
+  },
+  "rawEvidence": "docs/media/build67-review2/actions.jsonl",
+  "screenshotsDirectory": "docs/media/build67-review2",
+  "rawActionsAndVisibleResults": [
+    {
+      "at": "2026-11-02T17:24:31.722Z",
+      "type": "command",
+      "sequence": 1,
+      "command": {
+        "op": "capture",
+        "label": "menu"
+      }
+    },
+    {
+      "at": "2026-11-02T17:24:31.886Z",
+      "type": "result",
+      "sequence": 1,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/menu.jpg",
+      "captureMs": 157.6420419999995,
+      "beforePause": {
+        "phase": "menu"
+      },
+      "after": {
+        "phase": "menu"
+      },
+      "clientMs": 164.95691599999918,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:24:37.555Z",
+      "type": "command",
+      "sequence": 2,
+      "command": {
+        "op": "click",
+        "selector": "#deploy",
+        "capture": "deploy"
+      }
+    },
+    {
+      "at": "2026-11-02T17:24:38.245Z",
+      "type": "result",
+      "sequence": 2,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/deploy.jpg",
+      "captureMs": 153.98399999999674,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "0 ELIMINATED",
+        "timer": "00:00",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "0 ELIMINATED",
+        "timer": "00:00",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "clientMs": 689.458499999997,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:24:45.154Z",
+      "type": "command",
+      "sequence": 3,
+      "command": {
+        "op": "act",
+        "steps": [
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": 0,
+            "y": -20
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 2400
+          }
+        ],
+        "capture": "first-fire"
+      }
+    },
+    {
+      "at": "2026-11-02T17:24:47.896Z",
+      "type": "result",
+      "sequence": 3,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/first-fire.jpg",
+      "captureMs": 136.50437500000044,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "45",
+        "ammo": "06",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:09",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "WARDEN // CRITICAL +180",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 0,
+          "browserMs": 0.19999998807907104
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": 0,
+            "y": -20
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 0.30000001192092896,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2400
+          },
+          "startedMs": 0.30000001192092896,
+          "browserMs": 2499.099999964237
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 2499.399999976158,
+      "clientMs": 2742.065125000001,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:24:56.647Z",
+      "type": "command",
+      "sequence": 4,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "press",
+            "key": "KeyR"
+          },
+          {
+            "type": "press",
+            "key": "KeyM"
+          }
+        ],
+        "capture": "map"
+      }
+    },
+    {
+      "at": "2026-11-02T17:24:56.795Z",
+      "type": "result",
+      "sequence": 4,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/map.jpg",
+      "captureMs": 66.63812499999767,
+      "beforePause": {
+        "phase": "planning",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "46",
+        "ammo": "06",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:10",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "Reloading",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": "THE DROWNED RELAY\nN \u2191 \u00b7 KNOWN FACILITY\nCLOSE \u00b7 M\nAuto \u00b7 nearest reachable\nMARA \u00b7 WEST ARCHIVE\nELIAN \u00b7 EAST ARCHIVE\nSERA \u00b7 THE HEART\nSelected: MARA SOLBERG\n WALL\n LOW COVER \u00b7 BLOCKS MOVEMENT\n\u25a0 RECEIVER / REACH\n\u25b2 YOU\n\nMISSION PAUSED \u00b7 Select an approach \u00b7 Hold Tab in play for trace \u00b7 M resumes \u00b7 Esc pauses",
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyR"
+          },
+          "startedMs": 0,
+          "browserMs": 1.7999999523162842
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyM"
+          },
+          "startedMs": 1.7999999523162842,
+          "browserMs": 14.300000011920929
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 16.099999964237213,
+      "clientMs": 148.43091599999752,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:25:03.197Z",
+      "type": "command",
+      "sequence": 5,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "wait",
+            "ms": 4200
+          }
+        ],
+        "capture": "west-approach"
+      }
+    },
+    {
+      "at": "2026-11-02T17:25:07.683Z",
+      "type": "result",
+      "sequence": 5,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/west-approach.jpg",
+      "captureMs": 166.9956250000032,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "156",
+        "kills": "1 ELIMINATED",
+        "timer": "00:14",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 34 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "Weapon ready.",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 4200
+          },
+          "startedMs": 0,
+          "browserMs": 4201.100000023842
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 4201.100000023842,
+      "clientMs": 4485.995209000001,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:25:16.943Z",
+      "type": "command",
+      "sequence": 6,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 5500
+          }
+        ],
+        "capture": "archive-lane"
+      }
+    },
+    {
+      "at": "2026-11-02T17:25:22.668Z",
+      "type": "result",
+      "sequence": 6,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/archive-lane.jpg",
+      "captureMs": 172.66829199999484,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:19",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 28 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 5500
+          },
+          "startedMs": 0,
+          "browserMs": 5501.299999952316
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5501.299999952316,
+      "clientMs": 5725.4829580000005,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:25:29.610Z",
+      "type": "command",
+      "sequence": 7,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "wait",
+            "ms": 2600
+          },
+          {
+            "type": "up",
+            "key": "KeyA"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 4500
+          }
+        ],
+        "capture": "west-cover"
+      }
+    },
+    {
+      "at": "2026-11-02T17:25:37.117Z",
+      "type": "result",
+      "sequence": 7,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/west-cover.jpg",
+      "captureMs": 247.5419580000016,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:27",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "\u25c7\nMOVE CLOSER // WEST ARCHIVE\n1.0 M OUTSIDE REACH \u00b7 STEP INSIDE THE FLOOR RING",
+        "signal-distance": "NEARBY / WEST ARCHIVE \u00b7 3.7 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "WEST TRIAGE \u00b7 South intake / east service. Storage blocks sightlines.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2600
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 2600.399999976158
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyA"
+          },
+          "startedMs": 2600.5,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 2600.600000023842,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 4500
+          },
+          "startedMs": 2600.600000023842,
+          "browserMs": 4501.5
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7102.100000023842,
+      "clientMs": 7507.99004199999,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:25:41.303Z",
+      "type": "command",
+      "sequence": 8,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 400
+          },
+          {
+            "type": "up",
+            "key": "KeyW"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2500
+          }
+        ],
+        "capture": "recover-mara"
+      }
+    },
+    {
+      "at": "2026-11-02T17:25:44.462Z",
+      "type": "result",
+      "sequence": 8,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/recover-mara.jpg",
+      "captureMs": 209.80241699999897,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:30",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "\u25c7\nMOVE CLOSER // WEST ARCHIVE\n0.3 M OUTSIDE REACH \u00b7 STEP INSIDE THE FLOOR RING",
+        "signal-distance": "NEARBY / WEST ARCHIVE \u00b7 3.1 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Approach a memory receiver. Hold E to recover its memory.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 400
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 401.19999998807907
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyW"
+          },
+          "startedMs": 401.30000001192093,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 401.4000000357628,
+          "browserMs": 0.19999998807907104
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2500
+          },
+          "startedMs": 401.60000002384186,
+          "browserMs": 2502.899999976158
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 2904.5,
+      "clientMs": 3158.7430409999943,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:25:52.600Z",
+      "type": "command",
+      "sequence": 9,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 650
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2800
+          }
+        ],
+        "capture": "mara-correction"
+      }
+    },
+    {
+      "at": "2026-11-02T17:25:56.395Z",
+      "type": "result",
+      "sequence": 9,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/mara-correction.jpg",
+      "captureMs": 202.75487499999872,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER SERA NORD",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "240",
+        "kills": "1 ELIMINATED",
+        "timer": "00:33",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "SPACE\nSpace \u00b7 Vault\nCLEAR LANDING",
+        "signal-distance": "THE HEART \u00b7 31 M",
+        "extraction-status": null,
+        "memory-card": "MEMORY RECOVERED\nMARA SOLBERG",
+        "announcement": "Memory secured. Supplies restored. Choose your next archive.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 650
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 651.2999999523163
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 651.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 651.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2800
+          },
+          "startedMs": 651.3999999761581,
+          "browserMs": 2800.800000011921
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 3452.199999988079,
+      "clientMs": 3795.2585839999956,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:26:05.340Z",
+      "type": "command",
+      "sequence": 10,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": 330,
+            "y": 0
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 2400
+          }
+        ],
+        "capture": "west-patrol-fire"
+      }
+    },
+    {
+      "at": "2026-11-02T17:26:08.097Z",
+      "type": "result",
+      "sequence": 10,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/west-patrol-fire.jpg",
+      "captureMs": 199.61583399999654,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER SERA NORD",
+        "health": "100",
+        "shield": "22",
+        "ammo": "08",
+        "reserve": "240",
+        "kills": "1 ELIMINATED",
+        "timer": "00:36",
+        "heading": "024",
+        "compass-direction": "NE",
+        "interaction": "SPACE\nSpace \u00b7 Vault\nCLEAR LANDING",
+        "signal-distance": "THE HEART \u00b7 31 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": "SENTINEL \u00b7 RECENT FIRE"
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 0,
+          "browserMs": 0.19999998807907104
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": 330,
+            "y": 0
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2400
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 2402.899999976158
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 2403.099999964237,
+      "clientMs": 2757.729667000007,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:26:19.589Z",
+      "type": "command",
+      "sequence": 11,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": 145,
+            "y": 35
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 1200
+          },
+          {
+            "type": "mouseUp",
+            "button": "left"
+          },
+          {
+            "type": "press",
+            "key": "KeyR"
+          },
+          {
+            "type": "wait",
+            "ms": 1800
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 3200
+          }
+        ],
+        "capture": "west-patrol-correction"
+      }
+    },
+    {
+      "at": "2026-11-02T17:26:26.085Z",
+      "type": "result",
+      "sequence": 11,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/west-patrol-correction.jpg",
+      "captureMs": 155.96037500000966,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER SERA NORD",
+        "health": "46",
+        "shield": "0",
+        "ammo": "00",
+        "reserve": "210",
+        "kills": "1 ELIMINATED",
+        "timer": "00:42",
+        "heading": "034",
+        "compass-direction": "NE",
+        "interaction": "SPACE\nSpace \u00b7 Vault\nCLEAR LANDING",
+        "signal-distance": "THE HEART \u00b7 31 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": "SENTINEL \u00b7 RECENT FIRE"
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 0,
+          "browserMs": 0.19999998807907104
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": 145,
+            "y": 35
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1200
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 1202.1000000238419
+        },
+        {
+          "action": {
+            "type": "mouseUp",
+            "button": "left"
+          },
+          "startedMs": 1202.300000011921,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyR"
+          },
+          "startedMs": 1202.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1800
+          },
+          "startedMs": 1202.3999999761581,
+          "browserMs": 1800.699999988079
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 3003.099999964237,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 3200
+          },
+          "startedMs": 3003.199999988079,
+          "browserMs": 3201.5
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 6204.699999988079,
+      "clientMs": 6495.809708000001,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:26:32.277Z",
+      "type": "command",
+      "sequence": 12,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "press",
+            "key": "KeyR"
+          },
+          {
+            "type": "wait",
+            "ms": 1900
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": -70,
+            "y": 0
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 3000
+          }
+        ],
+        "capture": "west-dash-fight"
+      }
+    },
+    {
+      "at": "2026-11-02T17:26:37.432Z",
+      "type": "result",
+      "sequence": 12,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/west-dash-fight.jpg",
+      "captureMs": 186.41541700001108,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER SERA NORD",
+        "health": "14",
+        "shield": "0",
+        "ammo": "02",
+        "reserve": "180",
+        "kills": "1 ELIMINATED",
+        "timer": "00:47",
+        "heading": "029",
+        "compass-direction": "NE",
+        "interaction": null,
+        "signal-distance": "THE HEART \u00b7 23 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          "startedMs": 0,
+          "browserMs": 1.399999976158142
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 1.399999976158142,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyR"
+          },
+          "startedMs": 1.399999976158142,
+          "browserMs": 2.300000011920929
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1900
+          },
+          "startedMs": 3.699999988079071,
+          "browserMs": 1902.199999988079
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 1905.8999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 1905.8999999761581,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": -70,
+            "y": 0
+          },
+          "startedMs": 1906,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 1906,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 3000
+          },
+          "startedMs": 1906,
+          "browserMs": 3004.399999976158
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 4910.399999976158,
+      "clientMs": 5155.587708999985,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:26:44.223Z",
+      "type": "command",
+      "sequence": 13,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "press",
+            "key": "KeyR"
+          },
+          {
+            "type": "wait",
+            "ms": 2400
+          },
+          {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          {
+            "type": "wait",
+            "ms": 2500
+          }
+        ],
+        "capture": "heart-run"
+      }
+    },
+    {
+      "at": "2026-11-02T17:26:49.728Z",
+      "type": "result",
+      "sequence": 13,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/heart-run.jpg",
+      "captureMs": 250.4055839999928,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / SERA NORD",
+        "health": "14",
+        "shield": "8",
+        "ammo": "30",
+        "reserve": "152",
+        "kills": "1 ELIMINATED",
+        "timer": "00:53",
+        "heading": "029",
+        "compass-direction": "NE",
+        "interaction": null,
+        "signal-distance": "NEARBY / THE HEART \u00b7 6 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "HEART / RELAY GUARD \u00b7 Break the warden to open armor, or fire precisely at its optic.",
+        "event-feed": null,
+        "dash-status": "RECHARGING 2.0s",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyR"
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 1.600000023841858
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2400
+          },
+          "startedMs": 1.7000000476837158,
+          "browserMs": 2599.099999964237
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          "startedMs": 2600.800000011921,
+          "browserMs": 1.100000023841858
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2500
+          },
+          "startedMs": 2601.900000035763,
+          "browserMs": 2506.599999964237
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5108.5,
+      "clientMs": 5505.145833999995,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:26:55.831Z",
+      "type": "command",
+      "sequence": 14,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 1200
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2500
+          }
+        ],
+        "capture": "heart-hold"
+      }
+    },
+    {
+      "at": "2026-11-02T17:26:59.817Z",
+      "type": "result",
+      "sequence": 14,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/heart-hold.jpg",
+      "captureMs": 233.50970799999777,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / SERA NORD",
+        "health": "14",
+        "shield": "43",
+        "ammo": "30",
+        "reserve": "152",
+        "kills": "1 ELIMINATED",
+        "timer": "00:57",
+        "heading": "029",
+        "compass-direction": "NE",
+        "interaction": null,
+        "signal-distance": "NEARBY / THE HEART \u00b7 8 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Approach a memory receiver. Hold E to recover its memory.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1200
+          },
+          "startedMs": 0,
+          "browserMs": 1203.1000000238419
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 1203.1000000238419,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 1203.1000000238419,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2500
+          },
+          "startedMs": 1203.199999988079,
+          "browserMs": 2501.2000000476837
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 3704.400000035763,
+      "clientMs": 3985.6295830000017,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:27:07.543Z",
+      "type": "command",
+      "sequence": 15,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "down",
+            "key": "KeyS"
+          },
+          {
+            "type": "wait",
+            "ms": 1300
+          },
+          {
+            "type": "up",
+            "key": "KeyA"
+          },
+          {
+            "type": "up",
+            "key": "KeyS"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2600
+          }
+        ],
+        "capture": "heart-correction"
+      }
+    },
+    {
+      "at": "2026-11-02T17:27:11.922Z",
+      "type": "result",
+      "sequence": 15,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/heart-correction.jpg",
+      "captureMs": 262.3463749999937,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER ELIAN VALE",
+        "health": "34",
+        "shield": "41",
+        "ammo": "30",
+        "reserve": "212",
+        "kills": "1 ELIMINATED",
+        "timer": "01:01",
+        "heading": "029",
+        "compass-direction": "NE",
+        "interaction": null,
+        "signal-distance": "EAST ARCHIVE \u00b7 30 M",
+        "extraction-status": null,
+        "memory-card": "MEMORY RECOVERED\nSERA NORD",
+        "announcement": "Memory secured. Supplies restored. Choose your next archive.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": "WARDEN / SHIFT OR OPTIC \u00b7 CHARGING"
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyS"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1300
+          },
+          "startedMs": 0,
+          "browserMs": 1301.1000000238419
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyA"
+          },
+          "startedMs": 1301.1000000238419,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyS"
+          },
+          "startedMs": 1301.1000000238419,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 1301.1000000238419,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2600
+          },
+          "startedMs": 1301.199999988079,
+          "browserMs": 2601.400000035763
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 3902.600000023842,
+      "clientMs": 4378.891666999989,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:27:19.301Z",
+      "type": "command",
+      "sequence": 16,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": -110,
+            "y": -35
+          },
+          {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 2800
+          }
+        ],
+        "capture": "heart-warden"
+      }
+    },
+    {
+      "at": "2026-11-02T17:27:22.561Z",
+      "type": "result",
+      "sequence": 16,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/heart-warden.jpg",
+      "captureMs": 333.04274999999325,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER ELIAN VALE",
+        "health": "34",
+        "shield": "22",
+        "ammo": "03",
+        "reserve": "212",
+        "kills": "1 ELIMINATED",
+        "timer": "01:04",
+        "heading": "021",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "EAST ARCHIVE \u00b7 30 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "PHASE BREAK \u00b7 SHOT CANCELED \u00b7 ARMOR OPEN 3s",
+        "event-feed": null,
+        "dash-status": "RECHARGING 1.7s",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": "WARDEN / ARMOR OPEN \u00b7 CHARGING"
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": -110,
+            "y": -35
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          "startedMs": 0,
+          "browserMs": 0.5999999642372131
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 0.5999999642372131,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2800
+          },
+          "startedMs": 0.5999999642372131,
+          "browserMs": 2883.100000023842
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 2883.699999988079,
+      "clientMs": 3259.884208000003,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:27:36.326Z",
+      "type": "command",
+      "sequence": 17,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "press",
+            "key": "KeyR"
+          },
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": -65,
+            "y": -15
+          },
+          {
+            "type": "wait",
+            "ms": 1800
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 3500
+          }
+        ],
+        "capture": "heart-optic-correction"
+      }
+    },
+    {
+      "at": "2026-11-02T17:27:41.726Z",
+      "type": "result",
+      "sequence": 17,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/heart-optic-correction.jpg",
+      "captureMs": 25.63795800000662,
+      "beforePause": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nSERA NORDNight operator\nELIMINATIONS\n2\nMISSION TIME\n01:07\nSCORE\n2,360\n3% ACCURACY \u00b7 2 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME\nSTART FRESH \u2197READ RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "after": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nSERA NORDNight operator\nELIMINATIONS\n2\nMISSION TIME\n01:07\nSCORE\n2,360\n3% ACCURACY \u00b7 2 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME\nSTART FRESH \u2197READ RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyR"
+          },
+          "startedMs": 0,
+          "browserMs": 1.699999988079071
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 1.699999988079071,
+          "browserMs": 0.40000003576278687
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": -65,
+            "y": -15
+          },
+          "startedMs": 2.100000023841858,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1800
+          },
+          "startedMs": 2.100000023841858,
+          "browserMs": 1802.800000011921
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 1804.9000000357628,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 3500
+          },
+          "startedMs": 1805,
+          "browserMs": 3502.400000035763
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5307.400000035763,
+      "clientMs": 5399.573208999995,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:27:52.739Z",
+      "type": "command",
+      "sequence": 18,
+      "command": {
+        "op": "click",
+        "selector": "text=START FRESH",
+        "capture": "attempt2-start"
+      }
+    },
+    {
+      "at": "2026-11-02T17:27:53.001Z",
+      "type": "result",
+      "sequence": 18,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-start.jpg",
+      "captureMs": 212.47179099998903,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "0 ELIMINATED",
+        "timer": "00:00",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "30",
+        "reserve": "180",
+        "kills": "0 ELIMINATED",
+        "timer": "00:00",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 52 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.",
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "clientMs": 262.08291699999245,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:27:56.934Z",
+      "type": "command",
+      "sequence": 19,
+      "command": {
+        "op": "act",
+        "steps": [
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": 0,
+            "y": -20
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 1000
+          },
+          {
+            "type": "mouseUp",
+            "button": "left"
+          },
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 4200
+          }
+        ],
+        "capture": "attempt2-east"
+      }
+    },
+    {
+      "at": "2026-11-02T17:28:02.543Z",
+      "type": "result",
+      "sequence": 19,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-east.jpg",
+      "captureMs": 229.53649999998743,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "51",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:09",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 50 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "+24 rounds \u00b7 +6 health \u00b7 +10 armor\nWARDEN // CRITICAL +180",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "C CROUCH BY LOW COVER\nLower profile \u00b7 watch high ground and flanks",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": 0,
+            "y": -20
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1000
+          },
+          "startedMs": 0,
+          "browserMs": 1000.3999999761581
+        },
+        {
+          "action": {
+            "type": "mouseUp",
+            "button": "left"
+          },
+          "startedMs": 1000.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 1000.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 1000.3999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 4200
+          },
+          "startedMs": 1000.3999999761581,
+          "browserMs": 4200.300000011921
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5200.699999988079,
+      "clientMs": 5609.4956250000105,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:28:10.495Z",
+      "type": "command",
+      "sequence": 20,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "press",
+            "key": "KeyM"
+          }
+        ],
+        "capture": "attempt2-map"
+      }
+    },
+    {
+      "at": "2026-11-02T17:28:10.618Z",
+      "type": "result",
+      "sequence": 20,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-map.jpg",
+      "captureMs": 68.56929200000013,
+      "beforePause": {
+        "phase": "planning",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "53",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:09",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 50 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": "THE DROWNED RELAY\nN \u2191 \u00b7 KNOWN FACILITY\nCLOSE \u00b7 M\nAuto \u00b7 nearest reachable\nMARA \u00b7 WEST ARCHIVE\nELIAN \u00b7 EAST ARCHIVE\nSERA \u00b7 THE HEART\nSelected: MARA SOLBERG\n WALL\n LOW COVER \u00b7 BLOCKS MOVEMENT\n\u25a0 RECEIVER / REACH\n\u25b2 YOU\n\nMISSION PAUSED \u00b7 Select an approach \u00b7 Hold Tab in play for trace \u00b7 M resumes \u00b7 Esc pauses",
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "press",
+            "key": "KeyM"
+          },
+          "startedMs": 0,
+          "browserMs": 13.5
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 13.5,
+      "clientMs": 123.15770799998427,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:28:15.600Z",
+      "type": "command",
+      "sequence": 21,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 2300
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 5500
+          }
+        ],
+        "capture": "east-approach"
+      }
+    },
+    {
+      "at": "2026-11-02T17:28:23.753Z",
+      "type": "result",
+      "sequence": 21,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/east-approach.jpg",
+      "captureMs": 210.6891670000041,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:17",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "SPACE\nSpace \u00b7 Vault\nCLEAR LANDING",
+        "signal-distance": "WEST ARCHIVE \u00b7 53 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2300
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 2301.199999988079
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 2301.300000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 2301.300000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 5500
+          },
+          "startedMs": 2301.300000011921,
+          "browserMs": 5500.800000011921
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7802.100000023842,
+      "clientMs": 8153.374584000005,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:28:30.620Z",
+      "type": "command",
+      "sequence": 22,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 1800
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 6000
+          }
+        ],
+        "capture": "east-side-lane"
+      }
+    },
+    {
+      "at": "2026-11-02T17:28:38.712Z",
+      "type": "result",
+      "sequence": 22,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/east-side-lane.jpg",
+      "captureMs": 226.73187499999767,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:25",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "SPACE\nSpace \u00b7 Vault\nCLEAR LANDING",
+        "signal-distance": "WEST ARCHIVE \u00b7 53 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1800
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 1802.5999999642372
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 1802.699999988079,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 1802.800000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 6000
+          },
+          "startedMs": 1802.800000011921,
+          "browserMs": 6001.399999976158
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7804.199999988079,
+      "clientMs": 8092.862583000009,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:28:44.914Z",
+      "type": "command",
+      "sequence": 23,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "press",
+            "key": "Space"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 5000
+          }
+        ],
+        "capture": "east-vault"
+      }
+    },
+    {
+      "at": "2026-11-02T17:28:50.287Z",
+      "type": "result",
+      "sequence": 23,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/east-vault.jpg",
+      "captureMs": 232.79791699995985,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:30",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 50 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "press",
+            "key": "Space"
+          },
+          "startedMs": 0,
+          "browserMs": 6.100000023841858
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 6.100000023841858,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 5000
+          },
+          "startedMs": 6.100000023841858,
+          "browserMs": 5002.799999952316
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5008.899999976158,
+      "clientMs": 5372.98083299998,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:28:57.714Z",
+      "type": "command",
+      "sequence": 24,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 1200
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 6000
+          }
+        ],
+        "capture": "east-detour"
+      }
+    },
+    {
+      "at": "2026-11-02T17:29:05.210Z",
+      "type": "result",
+      "sequence": 24,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/east-detour.jpg",
+      "captureMs": 248.83675000001676,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:38",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 50 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1200
+          },
+          "startedMs": 0,
+          "browserMs": 1202.7000000476837
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 1202.7000000476837,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 1202.7000000476837,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 6000
+          },
+          "startedMs": 1202.7000000476837,
+          "browserMs": 6002.299999952316
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7205,
+      "clientMs": 7496.388167000026,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:29:10.584Z",
+      "type": "command",
+      "sequence": 25,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyS"
+          },
+          {
+            "type": "wait",
+            "ms": 1500
+          },
+          {
+            "type": "up",
+            "key": "KeyS"
+          },
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "wait",
+            "ms": 4500
+          },
+          {
+            "type": "up",
+            "key": "KeyA"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 5000
+          }
+        ],
+        "capture": "east-backtrack"
+      }
+    },
+    {
+      "at": "2026-11-02T17:29:21.925Z",
+      "type": "result",
+      "sequence": 25,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/east-backtrack.jpg",
+      "captureMs": 212.0421249999781,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "00:49",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 47 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyS"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1500
+          },
+          "startedMs": 0,
+          "browserMs": 1501.8999999761581
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyS"
+          },
+          "startedMs": 1501.8999999761581,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 1501.8999999761581,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 4500
+          },
+          "startedMs": 1502,
+          "browserMs": 4502
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyA"
+          },
+          "startedMs": 6004,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 6004.100000023842,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 5000
+          },
+          "startedMs": 6004.100000023842,
+          "browserMs": 5001
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 11005.100000023842,
+      "clientMs": 11341.419707999972,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:29:31.248Z",
+      "type": "command",
+      "sequence": 26,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyS"
+          },
+          {
+            "type": "wait",
+            "ms": 2200
+          },
+          {
+            "type": "up",
+            "key": "KeyS"
+          },
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "wait",
+            "ms": 6000
+          },
+          {
+            "type": "up",
+            "key": "KeyA"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 4500
+          }
+        ],
+        "capture": "leave-machinery"
+      }
+    },
+    {
+      "at": "2026-11-02T17:29:44.177Z",
+      "type": "result",
+      "sequence": 26,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/leave-machinery.jpg",
+      "captureMs": 169.19833400001517,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "01:02",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 43 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyS"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2200
+          },
+          "startedMs": 0,
+          "browserMs": 2201.900000035763
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyS"
+          },
+          "startedMs": 2201.900000035763,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 2201.900000035763,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 6000
+          },
+          "startedMs": 2201.900000035763,
+          "browserMs": 6002.399999976158
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyA"
+          },
+          "startedMs": 8204.300000011921,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 8204.400000035763,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 4500
+          },
+          "startedMs": 8204.400000035763,
+          "browserMs": 4500.899999976158
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 12705.300000011921,
+      "clientMs": 12929.669208999956,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:29:53.794Z",
+      "type": "command",
+      "sequence": 27,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "down",
+            "key": "ControlLeft"
+          },
+          {
+            "type": "wait",
+            "ms": 5000
+          }
+        ],
+        "capture": "yard-sprint"
+      }
+    },
+    {
+      "at": "2026-11-02T17:29:59.093Z",
+      "type": "result",
+      "sequence": 27,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/yard-sprint.jpg",
+      "captureMs": 158.57062499999302,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "01:07",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 43 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": "",
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter",
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "ControlLeft"
+          },
+          "startedMs": 0.09999996423721313,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 5000
+          },
+          "startedMs": 0.19999998807907104,
+          "browserMs": 5000.699999988079
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 5000.899999976158,
+      "clientMs": 5299.969291999994,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:30:07.297Z",
+      "type": "command",
+      "sequence": 28,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyA"
+          },
+          {
+            "type": "wait",
+            "ms": 2000
+          },
+          {
+            "type": "up",
+            "key": "KeyA"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 6000
+          }
+        ],
+        "capture": "yard-detour"
+      }
+    },
+    {
+      "at": "2026-11-02T17:30:15.567Z",
+      "type": "result",
+      "sequence": 28,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/yard-detour.jpg",
+      "captureMs": 215.1576669999631,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "RECOVER MARA SOLBERG",
+        "health": "100",
+        "shield": "60",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "01:15",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "WEST ARCHIVE \u00b7 16 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyA"
+          },
+          "startedMs": 0,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2000
+          },
+          "startedMs": 0.09999996423721313,
+          "browserMs": 2002
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyA"
+          },
+          "startedMs": 2002.0999999642372,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 2002.199999988079,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 6000
+          },
+          "startedMs": 2002.199999988079,
+          "browserMs": 6001.800000011921
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 8004,
+      "clientMs": 8270.41745800001,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:30:21.776Z",
+      "type": "command",
+      "sequence": 29,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyD"
+          },
+          {
+            "type": "wait",
+            "ms": 1800
+          },
+          {
+            "type": "up",
+            "key": "KeyD"
+          },
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 2800
+          },
+          {
+            "type": "up",
+            "key": "KeyW"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2500
+          }
+        ],
+        "capture": "attempt2-heart"
+      }
+    },
+    {
+      "at": "2026-11-02T17:30:29.317Z",
+      "type": "result",
+      "sequence": 29,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-heart.jpg",
+      "captureMs": 250.41062500001863,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / SERA NORD",
+        "health": "100",
+        "shield": "41",
+        "ammo": "20",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "01:22",
+        "heading": "000",
+        "compass-direction": "N",
+        "interaction": "\u25c7\nMOVE CLOSER // THE HEART\n0.6 M OUTSIDE REACH \u00b7 STEP INSIDE THE FLOOR RING",
+        "signal-distance": "NEARBY / THE HEART \u00b7 3.4 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": "Approach a memory receiver. Hold E to recover its memory.",
+        "event-feed": null,
+        "dash-status": "SOUL SHIFT READY",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": "WARDEN / SHIFT OR OPTIC \u00b7 RECENT FIRE"
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyD"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1800
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 1801.699999988079
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyD"
+          },
+          "startedMs": 1801.800000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 1801.800000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2800
+          },
+          "startedMs": 1801.800000011921,
+          "browserMs": 2802.100000023842
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyW"
+          },
+          "startedMs": 4603.900000035763,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 4604,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2500
+          },
+          "startedMs": 4604.100000023842,
+          "browserMs": 2501.100000023842
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7105.200000047684,
+      "clientMs": 7541.507291000045,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:30:35.545Z",
+      "type": "command",
+      "sequence": 30,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyW"
+          },
+          {
+            "type": "wait",
+            "ms": 350
+          },
+          {
+            "type": "up",
+            "key": "KeyW"
+          },
+          {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2400
+          },
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": -100,
+            "y": -10
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 1800
+          }
+        ],
+        "capture": "attempt2-heart-correct"
+      }
+    },
+    {
+      "at": "2026-11-02T17:30:40.370Z",
+      "type": "result",
+      "sequence": 30,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-heart-correct.jpg",
+      "captureMs": 167.13241699995706,
+      "beforePause": {
+        "phase": "playing",
+        "objective": "NEARBY / SERA NORD",
+        "health": "46",
+        "shield": "0",
+        "ammo": "02",
+        "reserve": "204",
+        "kills": "1 ELIMINATED",
+        "timer": "01:27",
+        "heading": "353",
+        "compass-direction": "N",
+        "interaction": null,
+        "signal-distance": "NEARBY / THE HEART \u00b7 5.4 M",
+        "extraction-status": null,
+        "memory-card": null,
+        "announcement": null,
+        "event-feed": null,
+        "dash-status": "RECHARGING 0.2s",
+        "facility-map": null,
+        "field-controls": null,
+        "service-hint": null,
+        "threat-focus": null
+      },
+      "after": {
+        "phase": "paused"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyW"
+          },
+          "startedMs": 0,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 350
+          },
+          "startedMs": 0.10000002384185791,
+          "browserMs": 352.10000002384186
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyW"
+          },
+          "startedMs": 352.2000000476837,
+          "browserMs": 0.09999996423721313
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "ShiftLeft"
+          },
+          "startedMs": 352.30000001192093,
+          "browserMs": 0.9000000357627869
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 353.2000000476837,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2400
+          },
+          "startedMs": 353.2000000476837,
+          "browserMs": 2400.599999964237
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 2753.800000011921,
+          "browserMs": 0.10000002384185791
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": -100,
+            "y": -10
+          },
+          "startedMs": 2753.900000035763,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 2753.900000035763,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 1800
+          },
+          "startedMs": 2753.900000035763,
+          "browserMs": 1848.8999999761581
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 4602.800000011921,
+      "clientMs": 4825.434458000003,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:30:51.730Z",
+      "type": "command",
+      "sequence": 31,
+      "command": {
+        "op": "act",
+        "resume": true,
+        "steps": [
+          {
+            "type": "down",
+            "key": "KeyS"
+          },
+          {
+            "type": "wait",
+            "ms": 900
+          },
+          {
+            "type": "up",
+            "key": "KeyS"
+          },
+          {
+            "type": "down",
+            "key": "KeyE"
+          },
+          {
+            "type": "wait",
+            "ms": 2600
+          },
+          {
+            "type": "press",
+            "key": "Digit2"
+          },
+          {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          {
+            "type": "look",
+            "x": -350,
+            "y": 15
+          },
+          {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          {
+            "type": "wait",
+            "ms": 3500
+          }
+        ],
+        "capture": "attempt2-last-fight"
+      }
+    },
+    {
+      "at": "2026-11-02T17:30:58.873Z",
+      "type": "result",
+      "sequence": 31,
+      "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build67-review2/attempt2-last-fight.jpg",
+      "captureMs": 29.69129200000316,
+      "beforePause": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nELIMINATIONS\n1\nMISSION TIME\n01:32\nSCORE\n180\n7% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME\nSTART FRESH \u2197READ RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "after": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nELIMINATIONS\n1\nMISSION TIME\n01:32\nSCORE\n180\n7% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME\nSTART FRESH \u2197READ RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "timings": [
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyS"
+          },
+          "startedMs": 0,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 900
+          },
+          "startedMs": 0,
+          "browserMs": 954.3000000119209
+        },
+        {
+          "action": {
+            "type": "up",
+            "key": "KeyS"
+          },
+          "startedMs": 954.3000000119209,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "down",
+            "key": "KeyE"
+          },
+          "startedMs": 954.3000000119209,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 2600
+          },
+          "startedMs": 954.3000000119209,
+          "browserMs": 2600.399999976158
+        },
+        {
+          "action": {
+            "type": "press",
+            "key": "Digit2"
+          },
+          "startedMs": 3554.699999988079,
+          "browserMs": 0.6000000238418579
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "right"
+          },
+          "startedMs": 3555.300000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "look",
+            "x": -350,
+            "y": 15
+          },
+          "startedMs": 3555.300000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "mouseDown",
+            "button": "left"
+          },
+          "startedMs": 3555.300000011921,
+          "browserMs": 0
+        },
+        {
+          "action": {
+            "type": "wait",
+            "ms": 3500
+          },
+          "startedMs": 3555.300000011921,
+          "browserMs": 3502.199999988079
+        }
+      ],
+      "inputMode": "browser",
+      "inputBatchMs": 7057.5,
+      "clientMs": 7143.19433300005,
+      "pageErrors": []
+    },
+    {
+      "at": "2026-11-02T17:31:08.442Z",
+      "type": "command",
+      "sequence": 32,
+      "command": {
+        "op": "close"
+      }
+    }
+  ]
+}
