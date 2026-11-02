@@ -239,7 +239,7 @@ export class Game {
       this.dragging = true;
       if (!document.pointerLockElement && !this.pointerFallback) this.requestLock();
     });
-    listen(document, 'mouseup', e => { if (e.button === 0) this.mouseDown = false; if (e.button === 2) this.aim = false; this.dragging = false; });
+    listen(document, 'mouseup', e => { if (e.button === 0) this.mouseDown = false; if (e.button === 2) this.aim = false; this.dragging = e.buttons !== 0; });
     listen(document, 'mousemove', e => {
       if (this.phase !== 'playing' || (document.pointerLockElement !== this.canvas && !(this.pointerFallback && this.dragging))) return;
       const sensitivity = clamp(Number(this.options.sensitivity) || 1, 0.2, 3) * (this.aim ? 0.00125 : 0.002);

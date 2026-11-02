@@ -1,0 +1,112 @@
+{
+  "method": "Arranged fallback mode with actual game DOM mouse events, real modifiers and pause/resume lifecycle. No hidden state drives an ordinary playthrough; this is a regression, not human play.",
+  "rows": [
+    {
+      "label": "no button in fallback",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    },
+    {
+      "label": "aim held",
+      "delta": -0.125,
+      "expectedDelta": -0.125,
+      "dragging": true,
+      "aim": true,
+      "fire": false
+    },
+    {
+      "label": "aim and fire held",
+      "delta": -0.125,
+      "expectedDelta": -0.125,
+      "dragging": true,
+      "aim": true,
+      "fire": true
+    },
+    {
+      "label": "fire released, aim still held",
+      "delta": 0,
+      "expectedDelta": -0.125,
+      "dragging": false,
+      "aim": true,
+      "fire": false
+    },
+    {
+      "label": "both released",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    },
+    {
+      "label": "aim released, fire still held",
+      "delta": 0,
+      "expectedDelta": -0.2,
+      "dragging": false,
+      "aim": false,
+      "fire": true
+    },
+    {
+      "label": "last button released",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    },
+    {
+      "label": "pause rejects look",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    },
+    {
+      "label": "resume requires fresh drag",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    },
+    {
+      "label": "fresh drag after resume",
+      "delta": -0.125,
+      "expectedDelta": -0.125,
+      "dragging": true,
+      "aim": true,
+      "fire": false
+    },
+    {
+      "label": "clear input ends drag",
+      "delta": 0,
+      "expectedDelta": 0,
+      "dragging": false,
+      "aim": false,
+      "fire": false
+    }
+  ],
+  "failed": [
+    {
+      "label": "fire released, aim still held",
+      "delta": 0,
+      "expectedDelta": -0.125,
+      "dragging": false,
+      "aim": true,
+      "fire": false
+    },
+    {
+      "label": "aim released, fire still held",
+      "delta": 0,
+      "expectedDelta": -0.2,
+      "dragging": false,
+      "aim": false,
+      "fire": true
+    }
+  ],
+  "errors": []
+}

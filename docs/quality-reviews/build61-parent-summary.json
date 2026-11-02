@@ -1,0 +1,49 @@
+{
+  "pass": "Build61 parent: preserve fallback look across mouse-button releases",
+  "baseline": "44e81a5e8d141f8120ff09b74f56b4c90982147f",
+  "finding": "Document mouseup always set dragging=false, even when the other mouse button remained held. In fallback mode, release-fire/keep-aim and release-aim/keep-fire then ignored look.",
+  "baselineReproduction": "build61-parent-mouse-look-before.json",
+  "baselineFailedCases": 2,
+  "decision": "Derive dragging from the actual mouse event remaining buttons. Preserve existing aim/fire flags, pointer capture, sensitivity, combat and assets. Correct visible title from stale BUILD59 to61.",
+  "driverDecision": "Help example now holds right before look. Browser and CDP helper reject look when canvas is uncaptured and helper holds no mouse button; no hidden game observations, angle calculation or autoaim. Error releases prior batch controls. RMB keeps existing ADS sensitivity.",
+  "verification": {
+    "gameRegression": "build61-parent-mouse-look.json",
+    "gameCases": 13,
+    "coverage": "Both button-release orders, native Playwright mouse events as well as actual game DOM events, no-button rejection, fresh drag, clear input and pause/resume. Fallback forced only in arranged regression.",
+    "browserInput": "build61-parent-input-timing.json",
+    "driverLifecycle": "build61-parent-driver.json"
+  },
+  "normalTrial": {
+    "method": "Source-informed normal URL from spawn, synthetic ordinary inputs and screenshot pauses. No testURL/state hooks/teleport/resource or actor arrangement. Internal pointer-capture/fallback mode not inspected, so ordinary trial does not isolate the fallback branch.",
+    "outcome": "Nonterminal targeted control trial deliberately closed, not a mission win/loss.",
+    "sequence": "Initial visible heading000. Held right aim, adjusted slightly upward, fired6 rounds and visibly eliminated opening Warden critically. Released left fire while keeping right held, then looked right300 relative units and waited300ms: visible heading021 and rotated ADS scene. A fresh held-right inverse turn returned heading000 without additional shots; ammo remained24.",
+    "lastVisible": "00:01,100health60shield,1kill,0memories.",
+    "evidence": "../media/build61-parent-play/actions.jsonl",
+    "limits": "No recoveries, boss, service, upload or full mission coverage. Ordinary pointer capture mode not isolated; arranged regression proves specific fallback fix."
+  },
+  "cleanup": {
+    "driverPid": 80440,
+    "chromePid": 80450,
+    "explicitClose": true,
+    "exitCode": 0,
+    "exactPidsAbsent": true
+  },
+  "reviews": "Exactly two fresh independent Build61 reviews pending. Historical scores retained unchanged; no retrospective rating uplift or claimed attribution of past losses.",
+  "limits": "Synthetic paused input/screenshot timing and approximate aim remain limitations. Service usefulness, human enjoyment, audio, hardware, encounter/content depth and AAA readiness remain unproven. Overall quality mission unfinished.",
+  "privilegedController": {
+    "report": "build61-parent-privileged.json",
+    "phase": "won",
+    "cores": 3,
+    "kills": 11,
+    "extractionProgress": 1,
+    "bossDead": true,
+    "errors": [],
+    "method": "Exact-information normal-input controller reads internal player/target positions and colliders; not independent discovery, fallback isolation or human play."
+  },
+  "production": {
+    "report": "build61-parent-production.json",
+    "checks": 14,
+    "errors": [],
+    "failedRequests": []
+  }
+}

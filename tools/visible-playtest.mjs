@@ -17,12 +17,13 @@ if(values.help){
 Use a TTY for an interactive session. Commands are JSON lines:
 {"op":"click","selector":"#deploy","capture":"deploy","pauseAfter":true}
 {"op":"act","resume":true,"steps":[{"type":"down","key":"KeyW"},{"type":"wait","ms":500}],"capture":"advance"}
-{"op":"act","resume":true,"steps":[{"type":"look","x":20,"y":0},{"type":"mouseDown","button":"left"},{"type":"wait","ms":300}],"capture":"fire"}
+{"op":"act","resume":true,"steps":[{"type":"mouseDown","button":"right"},{"type":"look","x":20,"y":0},{"type":"mouseDown","button":"left"},{"type":"wait","ms":300}],"capture":"fire"}
 {"op":"capture","label":"view"}
 {"op":"status"}
 {"op":"close"}
 Game keys: Digit1 rifle, Digit2 pump breacher; WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
 KeyC (toggle crouch), ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
+When mouse capture is unavailable, hold a mouse button BEFORE look. Right-button drag uses the game ADS sensitivity; a look without capture or a held button is rejected. Release left fire while keeping right aim held to turn without shooting.
 For held-control photographs (Tab trace or ADS), set captureHeld:true on act: capture occurs BEFORE releasing held controls. Default capture releases first; automatic pause clears Tab.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
@@ -107,6 +108,7 @@ async function step(action){
  }else if(action.type==='look'){
   const x=action.x||0,y=action.y||0;
   if(!Number.isFinite(x)||!Number.isFinite(y)||Math.abs(x)>2400||Math.abs(y)>2400)throw new Error('Invalid relative mouse delta.');
+  if(!buttons.size&&!await page.evaluate(()=>document.pointerLockElement===document.querySelector('#game-canvas')))throw Error('Look requires mouse capture or a held mouse button. Hold right before fallback look.');
   await page.evaluate(({x,y})=>document.dispatchEvent(new MouseEvent('mousemove',{movementX:x,movementY:y,bubbles:true})),{x,y});
  }else if(action.type==='wait'){
   if(!Number.isFinite(action.ms)||action.ms<0||action.ms>12000)throw new Error('Wait must be between0 and12000ms.');

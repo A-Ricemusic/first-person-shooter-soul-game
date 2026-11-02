@@ -17,8 +17,11 @@ try{
  await delay(950);const batch=await pending;const timed=(await events()).slice(start),browserHold=timed.find(e=>e.kind==='keyup').at-timed.find(e=>e.kind==='keydown').at;
  assert.ok(nativeHold>=900,`Injected legacy delay missing: ${nativeHold}`);assert.ok(browserHold<500&&nativeHold-browserHold>400,`Browser timing did not avoid Node delay: ${nativeHold}/${browserHold}`);
  assert.deepEqual(await input.evaluate(c=>c.held()),{keys:[],buttons:[]});
+ const beforeIgnored=(await events()).length;
+ await assert.rejects(input.evaluate(c=>c.run({steps:[{type:'down',key:'KeyW'},{type:'look',x:90,y:0}]})),/Look requires/);
+ const ignored=(await events()).slice(beforeIgnored);assert.ok(!ignored.some(e=>e.kind==='mousemove'));assert.deepEqual(await input.evaluate(c=>c.held()),{keys:[],buttons:[]});
  const at=(await events()).length;
- await input.evaluate((c,steps)=>c.run({steps}),[{type:'down',key:'ControlLeft'},{type:'down',key:'KeyW'},{type:'look',x:12,y:-8},{type:'mouseDown',button:'right'},{type:'mouseDown',button:'left'},{type:'wait',ms:40}]);
+ await input.evaluate((c,steps)=>c.run({steps}),[{type:'down',key:'ControlLeft'},{type:'down',key:'KeyW'},{type:'mouseDown',button:'right'},{type:'look',x:12,y:-8},{type:'mouseDown',button:'left'},{type:'wait',ms:40}]);
  const chords=(await events()).slice(at);
  assert.ok(chords.some(e=>e.kind==='keydown'&&e.code==='KeyW'&&e.ctrl));assert.ok(chords.some(e=>e.kind==='mousemove'&&e.x===12&&e.y===-8));assert.equal(chords.filter(e=>e.kind==='mouseup').length,2);assert.deepEqual(await input.evaluate(c=>c.held()),{keys:[],buttons:[]});
  await input.evaluate(c=>c.run({steps:[{type:'down',key:'Tab'},{type:'mouseDown',button:'right'}],retainHeld:true}));
@@ -30,6 +33,6 @@ try{
  await input.evaluate(c=>c.run({steps:[{type:'press',key:'Digit1'},{type:'press',key:'Digit2'}]}));
  const digits=(await events()).filter(e=>e.code?.startsWith('Digit'));assert.deepEqual(digits.map(e=>e.key),['1','1','2','2']);validateSteps([{type:'press',key:'Digit2'}]);
  const prior=(await events()).length;assert.throws(()=>validateSteps([{type:'down',key:'KeyW'},{type:'wait',ms:-1}]),/Wait must/);assert.equal((await events()).length,prior);
- writeFileSync(process.env.INPUT_TIMING_OUTPUT||'docs/quality-reviews/current-input-timing.json',JSON.stringify({method:'Actual Chrome DOM-event fixture. Artificial Node handover delay, not a measurement of game FPS or historical reviewer latency. Browser controls are synthetic events; no game state/clock is read.',nativeHoldMs:nativeHold,browserHoldMs:browserHold,batch,chordEvents:chords,canceled,checks:['Default release before browser batch returns','Node handover gap cannot extend completed browser hold','Ctrl/game key/relative look/button event semantics','Opt-in held controls and explicit release','Cancel wakes long wait and clears input; controller reusable','Invalid batch rejected before any event']},null,2)+'\n');
- console.log({nativeHoldMs:nativeHold,browserHoldMs:browserHold,checks:6});
+ writeFileSync(process.env.INPUT_TIMING_OUTPUT||'docs/quality-reviews/current-input-timing.json',JSON.stringify({method:'Actual Chrome DOM-event fixture. Artificial Node handover delay, not a measurement of game FPS or historical reviewer latency. Browser controls are synthetic events; no game state/clock is read.',nativeHoldMs:nativeHold,browserHoldMs:browserHold,batch,chordEvents:chords,canceled,checks:['Uncaptured unheld look rejected without emitting movement; prior input released','Default release before browser batch returns','Node handover gap cannot extend completed browser hold','Ctrl/game key/relative look/button event semantics','Opt-in held controls and explicit release','Cancel wakes long wait and clears input; controller reusable','Invalid batch rejected before any event']},null,2)+'\n');
+ console.log({nativeHoldMs:nativeHold,browserHoldMs:browserHold,checks:7});
 }finally{await browser.close()}

@@ -54,7 +54,10 @@ export function createBrowserInput(){
      else if(action.type==='press'){key(action.key,true);key(action.key,false);if(action.key==='KeyM'||action.key==='Escape')await settleUI();}
      else if(action.type==='mouseDown')mouse(action.button||'left',true);
      else if(action.type==='mouseUp')mouse(action.button||'left',false);
-     else if(action.type==='look')document.dispatchEvent(new MouseEvent('mousemove',{movementX:action.x||0,movementY:action.y||0,bubbles:true}));
+     else if(action.type==='look'){
+      if(document.pointerLockElement!==canvas&&!buttons.size)throw Error('Look requires mouse capture or a held mouse button. For fallback look, mouseDown right before look; release afterward. RMB uses the game aim sensitivity.');
+      document.dispatchEvent(new MouseEvent('mousemove',{movementX:action.x||0,movementY:action.y||0,bubbles:true}));
+     }
      else throw Error('Unsupported input step.');
      timings.push({action,startedMs:before-start,browserMs:performance.now()-before});
     }
