@@ -15,7 +15,7 @@ try {
  // should not compete with a notice about a different, distant blocked archive.
  for(const [label,x,z,expectNotice] of [['east',22,2,false],['west-wall',-12,-22,true],['east-return',22,2,false]]) {
   const row=await page.evaluate(({label,x,z})=>{
-   const g=window.__SOULFALL__.game;g.player.set(x,1.7,z);g.yaw=0;g.animate(0);g.emit();
+   const g=window.__SOULFALL__.game;g.player.set(x,1.7,z);g.openPlanning();g.selectRoute(label==='west-wall'?'core-0':'core-1');g.closePlanning();g.yaw=0;g.animate(0);g.emit();
    const markers=g.captureMarkers();g.onMarkers(markers);g.renderer.render(g.scene,g.camera);
    const notice=document.querySelector('#blocked-signal');
    return {label,visible:!notice.classList.contains('hidden'),text:notice.textContent,objectives:markers.filter(m=>m.kind==='core').map(m=>({id:m.id,distance:m.distance,occluded:m.occluded})),hiddenBlockedBearings:markers.filter(m=>m.occluded).every(m=>!document.querySelector(`[data-marker-id="${m.id}"]`))};
@@ -24,13 +24,13 @@ try {
   assert.ok(row.hiddenBlockedBearings);
   if(label==='east'){
    assert.equal(row.objectives.find(m=>m.id==='core-1').occluded,false);
-   assert.equal(row.objectives.find(m=>m.id==='core-0').occluded,true);
+   assert.ok(!row.objectives.some(m=>m.id==='core-0'),'unselected west guidance does not compete with selected east');
    await page.screenshot({path:process.env.OBJECTIVE_NOTICE_CAPTURE||'docs/media/current-nearby-clear-objective.jpg',type:'jpeg',quality:80});
   }
   rows.push(row);
  }
  const paused=await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.phase='paused';g.onMarkers(g.captureMarkers());return document.querySelector('#blocked-signal').classList.contains('hidden');});
  assert.ok(paused);assert.deepEqual(errors,[]);
- writeFileSync(process.env.OBJECTIVE_NOTICE_OUTPUT||'docs/quality-reviews/current-objective-notice.json',JSON.stringify({method:'Arranged browser states reproduce unrelated blocked-archive guidance during a clear nearby receiver approach, then verify wall guidance and stale-notice cleanup. Not ordinary discovery.',rows,paused,errors},null,2)+'\n');
+ writeFileSync(process.env.OBJECTIVE_NOTICE_OUTPUT||'docs/quality-reviews/current-objective-notice.json',JSON.stringify({method:'Arranged map selections focus East at its clear approach and West at its wall; verify no competing unselected notice, wall guidance, transition and pause cleanup. Not ordinary discovery.',rows,paused,errors},null,2)+'\n');
  console.log('Objective notice: nearby clear receiver, blocked nearer archive, transition and pause passed');
 } finally {await browser.close();}

@@ -21,6 +21,7 @@ Use a TTY for an interactive session. Commands are JSON lines:
 {"op":"close"}
 Game keys: WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
 ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
+For held-control photographs (Tab trace or ADS), set captureHeld:true on act: capture occurs BEFORE releasing held controls. Default capture releases first; automatic pause clears Tab.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
 then uses ordinary Escape unless pauseAfter:false. Set captureHeld:true on an act

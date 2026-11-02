@@ -9,6 +9,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import MEDICAL from './medical-layout.json';
 import { createRole, dutyGoal } from './enemy-roles.js';
+import { PlayerRoute } from './player-route.js';
 import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
 import { advanceUpload } from './upload.js';
@@ -86,7 +87,7 @@ export class Game {
       this.contactAsset=asset;
     } catch (_) { this.contactAsset=fallbackContact(); }
     this.facilityLayout = facilityFootprints(this.world.colliders);
-    this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.bindInput(); this.resize();
+    this.buildWeapon(); this.buildHands(); this.buildCores(); this.buildExtraction(); this.buildPlayerRoute(); this.bindInput(); this.resize();
     if (new URLSearchParams(location.search).get('test') === '1') this.installDebug();
     this.loaded = true; this.emit(); this.frameId = requestAnimationFrame(t => this.frame(t)); return this;
   }
@@ -154,6 +155,44 @@ export class Game {
     this.scene.add(this.exit);
   }
 
+  buildPlayerRoute() {
+    this.playerRoute=new PlayerRoute(this.world,this.coreNodes);
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(24*12),3));geometry.setDrawRange(0,0);
+    this.routeTrace=new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color:0x8ee8e0,transparent:true,opacity:.72,depthTest:true,depthWrite:false}));
+    this.routeTrace.frustumCulled=false;this.routeTrace.visible=false;this.scene.add(this.routeTrace);
+    this.routeGoal=null;this.routeNext=0;
+  }
+  selectRoute(key='auto') {
+    if(this.phase!=='planning')return;
+    if(key!=='auto'&&!this.coreNodes.some(c=>`core-${c.id}`===key&&!c.collected))return;
+    this.routeGoal=key==='auto'?null:key;this.routeManual=key!=='auto';this.routeNext=0;this.updateRouteGoal();this.emit();
+  }
+  updateRouteGoal() {
+    const available=this.coreNodes.filter(c=>!c.collected);
+    if(!available.length){const key=this.custodian.dead?'extraction':'custodian';if(this.routeGoal!==key){this.routeGoal=key;this.routeNext=0;}return;}
+    if(available.some(c=>`core-${c.id}`===this.routeGoal))return;
+    const sorted=available.map(c=>({key:`core-${c.id}`,d:this.playerRoute.distance(this.player,`core-${c.id}`)})).sort((a,b)=>a.d-b.d);
+    this.routeGoal=sorted[0].key;this.routeManual=false;this.routeNext=0;
+  }
+  updateRouteTrace() {
+    this.updateRouteGoal();this.routeTrace.visible=false;
+    if(this.phase!=='playing'||!this.keys.has('Tab'))return;
+    if(!this.grounded||Math.abs(this.player.y-1.7)>.025){this.routeStatus='Return to floor for ground trace';return;}
+    if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,this.routeGoal,this.grounded);this.routeNext=this.runTime+.35;}
+    const path=this.routePath||[];let join=-1;
+    for(let i=Math.min(path.length-1,12);i>=0;i--)if(Math.hypot(path[i].x-this.player.x,path[i].z-this.player.z)<3&&this.playerRoute.clear(this.player,path[i])){join=i;break;}
+    if(join<0){this.routeStatus='No ground route from this position';this.routeNext=0;return;}
+    this.routeStatus='';const a=this.routeTrace.geometry.attributes.position;let count=0,remaining=12,spacing=.8,from=this.player;
+    for(let i=join;i<path.length&&remaining>0;i++){
+      const to=path[i],dx=to.x-from.x,dz=to.z-from.z,len=Math.hypot(dx,dz);if(len<.001)continue;
+      const limit=Math.min(len,remaining),ux=dx/len,uz=dz/len;
+      for(let d=spacing;d<limit&&count<96;d+=1.15){const x=from.x+ux*d,z=from.z+uz*d;
+        for(const sign of [-1,1]){a.setXYZ(count++,x-ux*.22+uz*.16*sign,.065,z-uz*.22-ux*.16*sign);a.setXYZ(count++,x,.065,z);}}
+      spacing=.45;remaining-=limit;from=to;
+    }
+    a.needsUpdate=true;this.routeTrace.geometry.setDrawRange(0,count);this.routeTrace.visible=count>0;
+  }
+
   bindInput() {
     const listen = (target, event, callback, opts) => { target.addEventListener(event, callback, opts); this.cleanups.push(() => target.removeEventListener(event, callback, opts)); };
     listen(window, 'resize', () => this.resize());
@@ -171,7 +210,7 @@ export class Game {
       }
       this.keys.add(e.code);
     });
-    listen(document, 'keyup', e => this.keys.delete(e.code));
+    listen(document, 'keyup', e => {this.keys.delete(e.code);if(e.code==='Tab'){this.routeTrace.visible=false;this.routeStatus='';}});
     listen(this.canvas, 'contextmenu', e => e.preventDefault());
     listen(this.canvas, 'mousedown', e => {
       if (this.phase !== 'playing') return;
@@ -185,7 +224,13 @@ export class Game {
       const sensitivity = clamp(Number(this.options.sensitivity) || 1, 0.2, 3) * (this.aim ? 0.00125 : 0.002);
       this.yaw -= e.movementX * sensitivity; this.pitch = clamp(this.pitch - e.movementY * sensitivity, -1.44, 1.44);
     });
-    listen(document, 'pointerlockchange', () => { if (document.pointerLockElement !== this.canvas && this.phase === 'playing' && !this.pointerFallback) this.pause(); });
+    listen(document, 'pointerlockchange', () => {
+      // Map close can precede the queued unlock event. Consume that known
+      // release without interpreting it as a fresh loss of gameplay focus.
+      if(this.planningUnlock && document.pointerLockElement!==this.canvas){this.planningUnlock=false;if(this.phase==='playing')this.requestLock();return;}
+      if(document.pointerLockElement===this.canvas)this.planningUnlock=false;
+      if(document.pointerLockElement!==this.canvas&&this.phase==='playing'&&!this.pointerFallback)this.pause();
+    });
     listen(document, 'pointerlockerror', () => this.enableFallback());
     listen(window, 'blur', () => { if (['playing','planning'].includes(this.phase)) this.pause(); });
     listen(document, 'visibilitychange', () => { if (document.hidden && ['playing','planning'].includes(this.phase)) this.pause(); });
@@ -212,7 +257,7 @@ export class Game {
   }
   start(options = {}) {
     if (!this.loaded) return;
-    this.setSettings(options); this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
+    this.routeGoal=null;this.routeManual=false;this.routePath=[];this.routeNext=0; this.setSettings(options); this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
@@ -229,6 +274,7 @@ export class Game {
   restart(options = {}) { this.start(options); }
   openPlanning() {
     if (this.phase !== 'playing') return;
+    this.planningUnlock=document.pointerLockElement===this.canvas;
     this.phase = 'planning'; this.lastFrame = 0; this.clearInput(); this.audio.setActive(false);
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
     this.emit();
@@ -242,7 +288,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
@@ -730,7 +776,7 @@ export class Game {
     }
     const frozen=['planning','paused','won','lost'].includes(this.phase);
     if(!frozen||this.renderDirty||this.renderedPhase!==this.phase){
-      this.animate(frozen?0:dt);this.renderer.render(this.scene,this.camera);
+      this.updateRouteTrace();this.animate(frozen?0:dt);this.renderer.render(this.scene,this.camera);
       this.renderDirty=false;this.renderedPhase=this.phase;
     }
     this.onMarkers(this.captureMarkers());
@@ -745,7 +791,7 @@ export class Game {
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
     const shelter=MEDICAL.shelter;
     const inMedicalBay=this.player.x>=shelter.minX&&this.player.x<=shelter.maxX&&this.player.z>=shelter.minZ&&this.player.z<=shelter.maxZ&&this.player.y<shelter.ceiling;
-    const markers=this.coreNodes.filter(c=>!c.collected).map(c=>{
+    const markers=this.coreNodes.filter(c=>!c.collected&&(!this.routeGoal||`core-${c.id}`===this.routeGoal)).map(c=>{
       const distance=recoveryDistance(this.player,c.position);
       const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
       return {id:`core-${c.id}`,kind:'core',approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
@@ -776,11 +822,13 @@ export class Game {
     return this.enemies.includes(this.damageSource)?this.enemyOpticPosition(this.damageSource):null;
   }
   captureState() {
+    if(this.playerRoute&&['playing','planning'].includes(this.phase))this.updateRouteGoal();
     const damagePoint=this.damageCuePosition();
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint&&this.hasLineOfSight(this.player,damagePoint,0) ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
+      routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / 1.65 : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,

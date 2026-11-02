@@ -1,0 +1,147 @@
+{
+  "reviewer": "review2",
+  "build": 48,
+  "url": "http://127.0.0.1:5173/",
+  "attemptCount": 2,
+  "method": "Independent ordinary play through visible-driver CLI only; handbook and visible screenshots/HUD. No source, repository documentation, hidden state, tests, hooks, route lookup or autoaim. Runtime untouched.",
+  "ratings": {
+    "gameplay": {
+      "score": 6,
+      "outOf": 10,
+      "reason": "Optic kills and Shift breaks produce a useful skill loop; second attempt improved to two critical eliminations and one disabled coil. Dense overlapping fire punished standing still severely. My misses and choice to bypass patrols contributed to both losses."
+    },
+    "presentation": {
+      "score": 7,
+      "outOf": 10,
+      "reason": "Strong coherent cyan/amber rainy industrial atmosphere, striking relay ring and polished title/end typography. Boxy repeated architecture, simple enemies and sparse spaces remain visibly modest in scope."
+    },
+    "usability": {
+      "score": 6,
+      "outOf": 10,
+      "reason": "Persistent controls, objective distance, recovery ring prompts and paused facility map helped. Handbook is lengthy; I repeatedly misjudged receiver reach and became stuck navigating the west room corner before using the map."
+    },
+    "readability": {
+      "score": 6,
+      "outOf": 10,
+      "reason": "Critical optic shapes, roman coil plates and offscreen charge warnings are legible. Small world labels and crowded overlapping HUD warnings compete during firefights; a selected objective behind cover still required deliberate map interpretation."
+    },
+    "aaaReadiness": {
+      "score": 4,
+      "outOf": 10,
+      "reason": "A coherent playable slice with a complete loss/retry flow, but observed geometry/enemy variety and combat communication do not meet a broad AAA polish expectation. No extraction victory, audio, performance benchmark or full content breadth validated."
+    },
+    "replayability": {
+      "score": 5,
+      "outOf": 10,
+      "reason": "Second run supported learning routes and optic/Shift timing; the small fixed three-memory mission offers limited observed variety. Two attempts cannot establish lasting replay value."
+    }
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "terminal": "OPERATOR LOST",
+      "missionTime": "01:27",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracyPercent": 3,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "memoriesRecovered": [
+        "Mara",
+        "Sera",
+        "Elian"
+      ],
+      "lastObservedCoils": "all 100%",
+      "evidence": "../media/build48-review2/a1-final-fight.jpg",
+      "notes": "Multiple aiming misses, premature E presses, low-cover collisions and navigation reversals retained. Reached Custodian without destroying coils."
+    },
+    {
+      "attempt": 2,
+      "terminal": "OPERATOR LOST",
+      "missionTime": "01:12",
+      "score": 3510,
+      "eliminations": 2,
+      "accuracyPercent": 32,
+      "criticalEliminations": 2,
+      "phaseEvades": 2,
+      "memoriesRecovered": [
+        "Mara",
+        "Sera",
+        "Elian"
+      ],
+      "lastObservedCoils": "I OFF; II 100%; III 100% at sequence 52; died during next firing action, final remaining coil health unobserved",
+      "evidence": "../media/build48-review2/a2-coil2-fire.jpg",
+      "notes": "Killed Heart Warden after Shift and optic adjustment. Sprint approached Custodian; destroyed coil I, then died while reloading/aiming at another. No arranged deaths or outcomes."
+    }
+  ],
+  "controlsAndNavigation": {
+    "used": [
+      "WASD",
+      "relative mouse look",
+      "LMB fire",
+      "R reload",
+      "Shift",
+      "Ctrl sprint",
+      "E recovery",
+      "M paused map",
+      "Tab trace",
+      "RMB ADS attempt 1"
+    ],
+    "notExercised": [
+      "Space jump",
+      "settings"
+    ],
+    "objectiveSelection": {
+      "actuallyUsed": true,
+      "evidence": [
+        "../media/build48-review2/a1-select.jpg",
+        "../media/build48-review2/a1-select-sera.jpg"
+      ],
+      "detail": "Clicked visible Mara and Sera buttons; both already matched current selected objective, so no evidence of selecting an alternate-order target."
+    },
+    "optionalTrace": {
+      "actuallyUsed": true,
+      "evidence": [
+        "../media/build48-review2/a1-west-approach.jpg",
+        "../media/build48-review2/a1-east-entry.jpg",
+        "../media/build48-review2/a2-east-trace.jpg"
+      ],
+      "detail": "Held Tab while moving; ground chevrons visibly shown in first two evidence images. Not every held capture visibly showed chevrons; no inference of absence of feature from those."
+    }
+  },
+  "findings": [
+    {
+      "observation": "Map pauses mission and clearly identifies room walls and recovery points. It resolved my west-room corner snag.",
+      "evidence": "../media/build48-review2/a2-nav-map.jpg"
+    },
+    {
+      "observation": "Low cover blocked straightforward movement; near receiver still needed a smaller adjustment inside floor ring. Clear MOVE CLOSER prompt helped.",
+      "evidence": "../media/build48-review2/a1-memory.jpg"
+    },
+    {
+      "observation": "Custodian plates and three health cells made one disabled coil easy to confirm; dark spent coil contrasted copper live coils.",
+      "evidence": "../media/build48-review2/a2-coil-close.jpg"
+    },
+    {
+      "observation": "Loss flow preserved recovered identities and provided concise accuracy/critical/evade results and immediate retry.",
+      "evidence": "../media/build48-review2/a2-coil2-fire.jpg"
+    }
+  ],
+  "rawActions": "../media/build48-review2/actions.jsonl",
+  "preservation": "All 53 capture commands, controls, misses and both deaths remain in raw driver actions and JPEGs; no commands/errors removed. CLI help and process verification are recorded in this review summary. No driver pageErrors reported; no CLI command errors during play. ps exit 1 with empty output intentionally establishes absence.",
+  "limits": {
+    "graphics": "Driver reported Software-WebGL fallback enabled; renderer not certified. Screenshots show appearance only, not native-GPU quality or smoothness. Some command releases took seconds; HUD can precede screenshot and heading updates, so not treated as a camera defect.",
+    "audio": "No audible output available through this screenshot/text workflow; audio unassessed.",
+    "human": "Agent using sequential JSON actions and still screenshots, not continuous human mouse/keyboard play. Aiming overshoots and poor accuracy materially limited combat. No extraction or victory observed; cannot rate upload execution.",
+    "performance": "No benchmark or tests run."
+  },
+  "cleanup": {
+    "explicitClose": true,
+    "browserClosed": true,
+    "driverPid": 60889,
+    "chromePid": 60891,
+    "driverExitCode": 0,
+    "pidVerification": "ps -p 60889,60891 -o pid=,comm= returned exit 1, empty output after close; exact reported processes absent",
+    "closedReason": "input ended or close requested"
+  }
+}

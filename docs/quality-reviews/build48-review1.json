@@ -1,0 +1,123 @@
+{
+  "reviewer": "independent ordinary-play reviewer 1",
+  "build": 48,
+  "url": "http://127.0.0.1:5173/",
+  "attempt_count": 2,
+  "method": "Visible UI, operator handbook, screenshots and visible driver CLI help only. No source, hidden state, tests, lookup or code/assets edits.",
+  "ratings": {
+    "gameplay": {
+      "score": 6,
+      "out_of": 10,
+      "reason": "Entry optic shooting produced a clear elimination and recovery supplied meaningful progression. Patrol pressure punished exposed movement rapidly. My weak aim and failure to use cover effectively limited combat depth; did not reach jammer or extraction."
+    },
+    "presentation": {
+      "score": 7,
+      "out_of": 10,
+      "reason": "Strong cohesive teal/amber rain-soaked station, reflected light and monumental relay silhouette. Rifle, enemies and room props remain visibly simple geometric forms with repetitive surfaces."
+    },
+    "usability": {
+      "score": 6,
+      "out_of": 10,
+      "reason": "Persistent key legend, distance markers, handbook and paused map help. Recovery floor ring requirement was explicit, but several failed E holds near the receiver and repeated wall collisions slowed play; handbook is dense."
+    },
+    "readability": {
+      "score": 7,
+      "out_of": 10,
+      "reason": "Large health/ammo/objective text, colored archive marker and directional threat chevrons were legible. Small pale environmental/secondary text and multiple offscreen threat sectors were harder to parse during damage."
+    },
+    "AAA_readiness": {
+      "score": 4,
+      "out_of": 10,
+      "reason": "Cohesive visual slice with functioning mission UI, but observed geometric enemies/props, limited visual variety and modest combat presentation fall below a polished large-budget release. Two short failed runs cannot establish completeness or stability."
+    },
+    "replayability": {
+      "score": 5,
+      "out_of": 10,
+      "reason": "Second attempt improved archive progression and suggests route/cover learning; only one visible mission tested, with no basis to judge long-term variety."
+    }
+  },
+  "outcomes": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "00:34",
+      "memories": [
+        "Mara Solberg"
+      ],
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy_percent": 18,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "evidence": "docs/media/build48-review1/attempt1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "00:52",
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "eliminations": 1,
+      "score": 2100,
+      "accuracy_percent": 17,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "evidence": "docs/media/build48-review1/attempt2-terminal.jpg"
+    }
+  ],
+  "observed_controls_navigation": {
+    "used": [
+      "WASD",
+      "relative mouse look",
+      "LMB fire",
+      "RMB ADS on attempt 2",
+      "R reload",
+      "hold E recovery",
+      "M paused map",
+      "Tab held trace",
+      "ControlLeft sprint",
+      "ShiftLeft dash on attempt 2"
+    ],
+    "optional_trace": {
+      "actually_used": true,
+      "evidence": [
+        "docs/media/build48-review1/attempt1-trace.jpg",
+        "docs/media/build48-review1/attempt1-west-approach.jpg",
+        "docs/media/build48-review1/attempt2-heart-run.jpg"
+      ],
+      "observation": "Ground chevrons visible on first two held-Tab photographs; later wall-facing photograph does not itself show a useful route."
+    },
+    "objective_selection": {
+      "actually_used": false,
+      "evidence": "Raw actions contain M map inspection but no clicks on objective selectors. Selected Mara was displayed by default; subsequent objective changes followed recoveries. This statement describes my inputs, not feature discoverability."
+    },
+    "mission": "Recovered west archive twice and Heart once. Never reached third recovery, armed jammer combat or extraction. Map useful for broad orientation; tried direct diagonal travel and hit walls/cover. Trace did not remove need to interpret openings."
+  },
+  "findings": [
+    "Attempt 1 lost shield from 60 to 3 during attempted diagonal move from west archive; screenshot showed a wall/cover ahead and patrol to right. Subsequent movement ended in death.",
+    "Attempt 2 fired 16 rounds at a patrol after a relative look adjustment without an elimination; end accuracy 17%. Preserve as aiming failure, not evidence of hit registration defect.",
+    "Attempt 2 recovery attempts at 7 m, 3.2 m and 4.0 m failed; UI explicitly requested stepping inside floor ring. A short forward/right correction recovered Mara.",
+    "Attempt 2 sprint toward Heart initially hit a wall at 28 m. Moving farther right then forward reached Heart, and left movement plus E recovered Sera.",
+    "Attempt 2 attempted diagonal sprint toward east archive advanced poorly while under fire; health fell 71 to 1 and terminal death followed. No intentional death or outcome arrangement.",
+    "No driver command errors or reported pageErrors in returned results. All raw commands, timing and result observations retained in actions.jsonl."
+  ],
+  "raw_actions": "docs/media/build48-review1/actions.jsonl",
+  "limits": {
+    "graphics": "Driver reported software-WebGL fallback enabled, renderer not certified. Screenshots support visual critique, not GPU performance benchmarking. No reliable frame-rate assessment.",
+    "audio": "No audio audition available through this screenshot/terminal review; audio unscored.",
+    "human": "Screenshot-driven batched controls with frequent automatic pauses differ from continuous human mouse/keyboard play. Relative aim was imprecise. Two deaths limit assessment of later mission, balance and content. No success/completeness/AAA certification claimed."
+  },
+  "cleanup": {
+    "explicit_close": true,
+    "browserClosed": true,
+    "driverPid": 57938,
+    "chromePid": 57939,
+    "driver_exit_code": 0,
+    "pid_verification_command": "ps -p 57938,57939 -o pid=,comm=",
+    "pid_verification_exit_code": 1,
+    "pid_verification_output": "",
+    "both_exact_pids_absent": true
+  }
+}
