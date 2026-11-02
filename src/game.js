@@ -1,5 +1,6 @@
 import {serviceStatus,resetService,updateService} from './suit-service.js';
 import {nearbyReceiver} from './recovery-feedback.js';
+import {receiverSight} from './receiver-sight.js';
 import {focusedCustodianTarget} from './custodian-targets.js';
 import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
 import {nearLowCover} from './control-hints.js';
@@ -924,8 +925,10 @@ export class Game {
     const local=nearbyReceiver(this.coreNodes.map(c=>({id:c.id,collected:c.collected,distance:recoveryDistance(this.player,c.position,profileOf(this))})));
     const markers=this.coreNodes.filter(c=>!c.collected&&(local?c.id===local.id:!this.routeGoal||`core-${c.id}`===this.routeGoal)).map(c=>{
       const distance=recoveryDistance(this.player,c.position,profileOf(this));
+      const ready=distance<RECOVERY_RADIUS&&this.grounded&&!this.vault;
+      const sight=receiverSight(this.world,this.player,c.id);
       const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
-      return {id:`core-${c.id}`,kind:'core',suppressed:c.id===local?.id&&distance<4.5,approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
+      return {id:`core-${c.id}`,kind:'core',suppressed:c.id===local?.id&&ready,approach:c.id===local?.id&&distance<4.5&&!ready,approachHint,occluded:!sight,label:CORE_SITES[c.id].name,...project(sight||c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:ready};
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);

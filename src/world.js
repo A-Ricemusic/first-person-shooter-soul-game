@@ -190,7 +190,8 @@ export async function buildWorld(scene) {
     }
     for(const p of terminalParts)if(p.name!=='Progress'){
       const c=new THREE.Vector3(...p.position).add(model.position),h=new THREE.Vector3(...p.size).multiplyScalar(.5);
-      colliders.push(new THREE.Box3(c.clone().sub(h),c.clone().add(h)));
+      const bounds=new THREE.Box3(c.clone().sub(h),c.clone().add(h));
+      bounds.receiverId=i;colliders.push(bounds);
     }
     const beacon=point(x,3.5,z,0x26c8eb,18,10),materials=[];
     model.traverse(o=>{if(o.isMesh&&o.name==='Beacon'){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});

@@ -1,0 +1,125 @@
+{
+  "base": "b4300bb5d1c5800ff8eb7d179ac8dbfdcdcde078",
+  "stage": "Build71 parent correctness implementation; two independent reviews pending",
+  "findings": [
+    "At all three legal north approaches3.8m, the nominal1.7m centre visibility ray hit the target receiver Mast. Actual receiver was visible; the marker reported foreign cover and was removed.",
+    "Every tested3.8m approach suppressed its marker because distance<4.5 although recovery remains unavailable until distance<2.8. Thus the last approach lost direction precisely when the prompt said MOVE CLOSER.",
+    "Offscreen objective triangle spans were inline elements; CSS transforms did not rotate their rendered inline boxes. Make core/exit arrow elements transformable.",
+    "Interaction panel was absent from marker placement exclusions. Reserve its actual rectangle; include near-approach mode in measured-size cache so a compact glyph does not inherit full-label bounds."
+  ],
+  "changes": [
+    "receiverSight casts toward real Cabinet/Mast/Beacon geometry and finds an actual target-surface hit. Target-owned bounds are identified by receiverId solely for this visibility query; foreign cover still rejects the hit. Physical shot/movement colliders and dimensions remain unchanged.",
+    "Marker projection follows the actual visible target surface; full-height foreign cover yields no target bearing and retains blocked guidance. Partial cover can leave a genuinely visible upper terminal.",
+    "An unavailable nearby recovery retains one compact direction glyph, without repeated name/range text; the existing interaction prompt owns the text. A grounded ready interaction suppresses the duplicate cue. Existing combat priority still applies.",
+    "Source assets, gameplay positions,2.8m reach,.9s hold, movement/AI/weapon/phase/service/anchor/boss/upload rules remain unchanged.",
+    "Updated historical recovery-feedback test expectation from hidden out-of-range marker to visible compact glyph; it keeps reach/hold and all other correctness checks. Temporary regression copies replace output paths only."
+  ],
+  "why": "Give truthful visibility and direction during final approach instead of enlarging reach, adding another instruction panel or claiming every failed hold is broken input.",
+  "like": "The single glyph preserves the direction while allowing the existing reach prompt and combat to remain legible. Natural usefulness is still unproven.",
+  "validation": {
+    "glb": {
+      "poses": 48,
+      "legalPoses": 48,
+      "additionalContracts": 37,
+      "errors": []
+    },
+    "fallback": {
+      "poses": 48,
+      "legalPoses": 48,
+      "additionalContracts": 37,
+      "errors": []
+    }
+  },
+  "regressions": {
+    "method": "Sequential actual-browser regressions. Temporary sibling copies replace output paths only. No ordinary driver running. Privileged exact-information controls are separate from ordinary play.",
+    "rows": [
+      {
+        "name": "recovery-feedback",
+        "exit": 0,
+        "source": "tests/build59-recovery-feedback.mjs",
+        "sourceSHA256": "da4832350a61e86417579db7293fd02f07278425538d1e71e04ca3ccec4656b4",
+        "outputOnlyReplacements": {
+          "build59-parent-recovery": "build71-parent-recovery-feedback"
+        }
+      },
+      {
+        "name": "recovery-readability",
+        "exit": 0,
+        "source": "tests/recovery-readability-regressions.mjs",
+        "sourceSHA256": "eaa949e6cca068be1c7fd3c4f8394504439066fe7e68d92e02fe2ddef49ff104",
+        "outputOnlyReplacements": {}
+      },
+      {
+        "name": "objective-notice",
+        "exit": 0,
+        "source": "tests/objective-notice-regressions.mjs",
+        "sourceSHA256": "afe80964b29af34ca3df43b5f967dbefe94810775638e07a95b13d379b80a9fe",
+        "outputOnlyReplacements": {}
+      },
+      {
+        "name": "marker-composition",
+        "exit": 0,
+        "source": "tests/marker-composition.mjs",
+        "sourceSHA256": "12e6757a2c03be28aa5c28aac0051862347cabae6bf12b45903d5ed05b883385",
+        "outputOnlyReplacements": {}
+      },
+      {
+        "name": "receiver-composition",
+        "exit": 0,
+        "source": "tests/receiver-composition.mjs",
+        "sourceSHA256": "3eb7bd9f4bdb990d023a9f09a9c17dd1f1c698bf50aed89ba24a7ce3e7370580",
+        "outputOnlyReplacements": {}
+      },
+      {
+        "name": "access",
+        "exit": 0,
+        "source": "tests/build70-access.mjs",
+        "sourceSHA256": "873a7fc46e6fa059e6415be303db6287ff2ffb9b4b31c0e1a013e6e943b505bb",
+        "outputOnlyReplacements": {
+          "docs/quality-reviews/build70-access-fixtures.json": "docs/quality-reviews/build71-parent-access.json"
+        }
+      },
+      {
+        "name": "interaction",
+        "exit": 0,
+        "source": "tests/build70-interaction-context.mjs",
+        "sourceSHA256": "c8ae7cbe0045d4e0c57c0d2c7eb90cc5911023f090535dce7e70defe5d62c67d",
+        "outputOnlyReplacements": {
+          "docs/quality-reviews/build70-parent-interaction-": "docs/quality-reviews/build71-parent-interaction-"
+        }
+      },
+      {
+        "name": "controls",
+        "exit": 0,
+        "source": "tests/normal-controls-playtest.mjs",
+        "sourceSHA256": "5dbf42a116e521cb4abdc67c52f7781a196b06730b5daba790041ec9e4a4d4f9",
+        "outputOnlyReplacements": {}
+      }
+    ]
+  },
+  "privilegedController": {
+    "phase": "won",
+    "cores": 3,
+    "bossDead": true,
+    "upload": 1,
+    "errors": [],
+    "label": "Exact-information control driver, not independent discovery or human play."
+  },
+  "ordinaryTrial": {
+    "method": "One source-informed normal URL trial with ordinary visible controls, pause-assisted browser-timed input and software-WebGL fallback. No hidden state, test URL, arrangement, teleport or boosts. No captureHeld.",
+    "outcome": "Explicitly closed nonterminal at00:21; Elian recovered, one opening elimination, health100/shield47. No boss/upload/victory/anchor coverage.",
+    "mistakes": "Northward walk stopped at existing east barricade; lateral/backtracking route correction retained. At the north receiver approach4.1m, rear triangle visibly pointed back while remaining1.4m outside reach. Turned180degrees and stepped forward while holding E; Elian recovered.",
+    "limits": "Substantial source/prior-route knowledge; deliberately sought the north approach. This is not independent discovery or causal improvement evidence.",
+    "driverPid": 24844,
+    "chromePid": 24854,
+    "close": "Explicit close, browserClosed true, driver exit0 and both exact owned PIDs absent.",
+    "actions": "../media/build71-parent-play/actions.jsonl"
+  },
+  "retainedFailures": "build71-parent-module-fixture-error.json preserves the first test failure: bare import three in an unbundled page evaluation. Corrected to the local module path; no game fix for that fixture error.",
+  "broaderLimits": "Target acquisition, route/receiver friction under fire, dense cues, repetitive simple models, encounter/content depth and human enjoyment/audio/hardware validation remain open. No score uplift or AAA certification.",
+  "production": {
+    "checks": 14,
+    "errors": [],
+    "failedRequests": []
+  }
+}

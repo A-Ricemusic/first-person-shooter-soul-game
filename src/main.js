@@ -19,7 +19,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 70</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 71</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -161,7 +161,7 @@ function drawMarkers(markers){
  focus.classList.toggle('charging',!!visor.focused?.charging);
  markers=[...markers.filter(m=>m.kind!=='enemy'),...visor.cues];
  const memory=$('memory-card');if(!memory.classList.contains('hidden'))placed.push(memory.getBoundingClientRect());
- for(const panel of [focus,note])if(!panel.classList.contains('hidden'))placed.push(panel.getBoundingClientRect());
+ for(const panel of [focus,note,$('interaction')])if(!panel.classList.contains('hidden'))placed.push(panel.getBoundingClientRect());
  placed.push({left:innerWidth-205,right:innerWidth,top:90,bottom:315});
  markers.sort((a,b)=>(b.charging?4:b.recent?3:b.inRange?2:0)-(a.charging?4:a.recent?3:a.inRange?2:0));
  for(const m of markers){
@@ -194,6 +194,7 @@ function drawMarkers(markers){
    continue;
   }
   const onscreen=m.front&&Math.abs(m.x)<.86&&Math.abs(m.y)<.68;
+  el.classList.toggle('approach',!!m.approach);
   const x=onscreen?(m.x+1)*50:50+Math.sin(m.bearing)*43,rawY=onscreen?(1-m.y)*50:50-Math.cos(m.bearing)*32;let y=rawY;if(x>82&&y<45)y=51;if(x<24&&y<23)y=28;
   // Keep cue text out of the aperture. Threats retain bearing and priority;
   // competing text stacks below its projected anchor with bounded separation.
@@ -203,7 +204,7 @@ function drawMarkers(markers){
   el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;
   el.querySelector('b').textContent=!onscreen&&m.kind==='enemy'?m.label.split(' / ')[0]:m.label;
   el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':m.recent?'RECENT FIRE':''):m.id==='ground-step'?'NEXT STEP · CHECK PATROLS':m.doorway?'CLEAR APPROACH':m.inZone?'IN ZONE':m.inRange?'HOLD E':`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
-  const key=[el.querySelector('b').textContent,el.querySelector('small').textContent.length,onscreen,m.charging,innerWidth].join('|');
+  const key=[el.querySelector('b').textContent,el.querySelector('small').textContent.length,onscreen,m.charging,!!m.approach,innerWidth].join('|');
   if(el._sizeKey!==key){el._sizeKey=key;el._size={width:el.offsetWidth,height:el.offsetHeight};}
   const anchor={x:x*innerWidth/100,y:rawY*innerHeight/100};
   const spot=m.id==='ground-step'&&onscreen?{...anchor,rect:{left:anchor.x-el._size.width/2,right:anchor.x+el._size.width/2,top:anchor.y-el._size.height,bottom:anchor.y}}:placeMarker(x*innerWidth/100,Math.max(16,Math.min(80,y))*innerHeight/100,el._size.width,el._size.height,{width:innerWidth,height:innerHeight},placed);

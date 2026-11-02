@@ -90,3 +90,9 @@ body:not(.in-game) #waypoints{visibility:hidden}
 .bearing{min-width:150px;text-align:center}
 .bearing #compass-direction{display:inline-block;min-width:3ch;text-align:right}
 .bearing .bearing-unit{margin:0 0 0 3px}
+/* Near a receiver, keep its direction until the actual hold becomes available.
+   The existing interaction prompt owns the name/reach text. */
+.world-marker.core .marker-symbol,.world-marker.exit .marker-symbol{display:inline-block}
+.world-marker.core.approach{min-width:22px}
+.world-marker.core.approach>b,.world-marker.core.approach>small{display:none}
+.world-marker.core.approach .marker-symbol{display:block;font-size:21px;color:#b3f1e8}

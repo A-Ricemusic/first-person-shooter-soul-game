@@ -39,8 +39,8 @@ try{
  mkdirSync('docs/media/build59-parent-recovery',{recursive:true});
  for(const width of [1280,1440]){
   await page.setViewportSize({width,height:800});await page.evaluate(()=>{const g=window.__SOULFALL__.game;g.restart();g.clearRun();g.openPlanning();g.selectRoute('core-0');g.closePlanning();g.player.set(0,1.7,-29.84);g.yaw=0;g.pitch=0;g.runTime=40;g.animate(0);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);});
-  const layout=await page.evaluate(()=>({gapFont:parseFloat(getComputedStyle(document.querySelector('#interaction small')).fontSize),markerOpacity:document.querySelector('[data-marker-id="core-2"]').style.opacity}));
-  assert.ok(layout.gapFont>=12);assert.equal(layout.markerOpacity,'0');result.checks.push(`${width}px reach gap uses readable12px text`);result.checks.push(`${width}px nearby waypoint text yields to the actual interaction prompt`);
+  const layout=await page.evaluate(()=>{const marker=document.querySelector('[data-marker-id="core-2"]');return{gapFont:parseFloat(getComputedStyle(document.querySelector('#interaction small')).fontSize),markerOpacity:getComputedStyle(marker).opacity,glyphOnly:marker.classList.contains('approach')&&getComputedStyle(marker.querySelector('b')).display==='none'};});
+  assert.ok(layout.gapFont>=12);assert.notEqual(layout.markerOpacity,'0');assert.ok(layout.glyphOnly);result.checks.push(`${width}px reach gap uses readable12px text`);result.checks.push(`${width}px unavailable nearby recovery retains a direction without duplicate waypoint text`);
   const rect=await page.locator('#interaction').boundingBox();assert.ok(rect&&rect.x>=0&&rect.x+rect.width<=width);result.checks.push(`${width}px actual outside-reach prompt fits viewport`);
   await page.screenshot({path:`docs/media/build59-parent-recovery/${width}-heart-selected-west.jpg`,type:'jpeg',quality:85});
  }
