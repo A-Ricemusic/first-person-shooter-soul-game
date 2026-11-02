@@ -1,0 +1,65 @@
+{
+  "baseline": "0b881e1cee316cb104e8880800572ad5ca1d4838",
+  "method": "Arranged original-world medical wall positions, actual updateEnemies/navigation call, no added wall or changed navigation. Callback records arguments and forwards to existing steering. Not ordinary play or a review.",
+  "finding": "An unacquired hunter routes to both exact concealed player positions; the route goal changes when the unseen player moves, rather than remaining at a last perceived location.",
+  "role": "hunter",
+  "observations": [
+    {
+      "visible": false,
+      "position": [
+        -12,
+        0,
+        -24
+      ],
+      "routing": {
+        "goal": {
+          "x": -24,
+          "z": -24
+        },
+        "player": {
+          "x": -24,
+          "z": -24
+        },
+        "visible": false,
+        "home": {
+          "x": -12,
+          "z": -24
+        },
+        "lastSeen": {
+          "x": -12,
+          "z": -24
+        }
+      }
+    },
+    {
+      "visible": false,
+      "position": [
+        -12,
+        0,
+        -24
+      ],
+      "routing": {
+        "goal": {
+          "x": -30,
+          "z": -27
+        },
+        "player": {
+          "x": -30,
+          "z": -27
+        },
+        "visible": false,
+        "home": {
+          "x": -12,
+          "z": -24
+        },
+        "lastSeen": {
+          "x": -12,
+          "z": -24
+        }
+      }
+    }
+  ],
+  "worldColliderCount": 578,
+  "errors": [],
+  "limits": "Two arranged poses establish the current routing behavior, not fairness or human enjoyment. This file intentionally audits the pre-Build54 behavior and is not a future expected-behavior regression."
+}
