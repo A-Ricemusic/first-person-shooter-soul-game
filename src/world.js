@@ -208,7 +208,7 @@ export async function buildWorld(scene) {
   }
   // Build51: instantiate before navigation/map caches; every visible solid has the same bounds.
   let inductionAsset;
-  try{inductionAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/induction-hall.glb`)).scene;}catch(_){}
+  try{inductionAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/induction-hall-build68.glb`)).scene;}catch(_){}
   const inductionMaterials={concrete:concrete,steel,edge,roof:darkConcrete,enamel:amber,ceramic:new THREE.MeshStandardMaterial({color:0xada882,roughness:.7}),copper:amber,dark:black,mark:new THREE.MeshStandardMaterial({color:0xb4a571,roughness:.9})};
   for(const p of INDUCTION.parts){
     const c=new THREE.Vector3(...p.center),h=new THREE.Vector3(...p.size).multiplyScalar(.5);
@@ -217,7 +217,7 @@ export async function buildWorld(scene) {
   }
   if(inductionAsset){inductionAsset.traverse(o=>{if(o.isMesh){if(o.material.name==='Induction concrete')o.material=concrete;if(o.material.name==='Induction roof')o.material=darkConcrete;o.castShadow=true;o.receiveShadow=true;}});group.add(inductionAsset);}
   sign('CUSTODIAN / INDUCTION','I / II / III — SERVICE BAYS',11,4.2,23.16,8,.8,'#dfc797');
-  sign('SHUTTERS LIFT / FIRE','CLEAR COIL COMPONENTS TAKE CRITICAL HITS',11,2.3,10.34,4.8,.95,'#dfc797');
+  sign('CUSTODIAN / NORTH ENTRY','SHUTTERS LIFT / FIRE AT CLEAR COILS',9.5,4.3,10.34,3.6,.8,'#dfc797');
   const southExit=sign('UPLINK ←','SOUTH SERVICE EXIT',4.3,2.8,21.3,2.8,.7,'#b5d2c2');southExit.rotation.y=Math.PI/2;
   for(const z of [12,19])point(11,4.6,z,0xf2d7a6,35,12);
   // Build43: one authoritative parts list supplies authored and load-failure geometry.

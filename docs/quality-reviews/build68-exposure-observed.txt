@@ -1,0 +1,32 @@
+{
+  checks: [
+    'map portal gap',
+    'actual visible pursuit portal false 8.018459236973854,0,12.013224680363416 visible true',
+    'actual visible pursuit portal true 8.1,0,7.992499999999984 visible true',
+    'return projectile 9.5',
+    'return projectile 7.25',
+    'return projectile 12.5',
+    'actual boss first mesh visible from north',
+    'boss acquires north and telegraphs',
+    'observed boss volley portal crossings 0',
+    'rain roof preserved'
+  ],
+  pursuits: [
+    [ 8.018459236973854, 0, 12.013224680363416 ],
+    [ 8.1, 0, 7.992499999999984 ]
+  ],
+  returns: [
+    { x: 9.5, shield: 41 },
+    { x: 7.25, shield: 60 },
+    { x: 12.5, shield: 60 }
+  ],
+  targets: [
+    { coil: 0, first: 'Shutter_0_0', los: true },
+    { coil: 1, first: 'Shutter_1_0', los: true },
+    { coil: 2, first: 'Shutter_2_0', los: true }
+  ],
+  leaks: 0,
+  windup: -0.010000000000000009,
+  volley: [],
+  passed: 0
+}
