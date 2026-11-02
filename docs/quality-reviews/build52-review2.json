@@ -1,0 +1,98 @@
+{
+  "reviewer": "reviewer2",
+  "build": 52,
+  "method": "Exactly two ordinary terminal attempts through normal UI at http://127.0.0.1:5173/ using installed Chrome visible driver. Discovery limited to screenshots, visible UI and operator handbook. No source, tests, prior reviews, hidden state or debug URLs inspected.",
+  "evidence_directory": "docs/media/build52-review2",
+  "raw_evidence": "Driver actions and screenshots retained without alteration.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal_outcome": "OPERATOR LOST",
+      "mission_time": "01:08",
+      "score": 2255,
+      "eliminations": 1,
+      "accuracy_percent": 4,
+      "critical_eliminations": 1,
+      "phase_evades": 1,
+      "memory_coverage": [
+        "Mara Solberg recovered",
+        "Sera Nord recovered"
+      ],
+      "combat": "Induction guard killed by rifle optic fire. Patrols mostly avoided; repeated navigation delays under fire.",
+      "boss": "Not activated; third memory not recovered.",
+      "upload": "Not reached.",
+      "traversal": {
+        "used": true,
+        "result": "Crossed low cover after held Space and forward input, progressing archive distance from 17m to 5m. Jump versus vault not independently established. A prior brief Space press did not cross the first obstacle; failure cause unknown."
+      },
+      "terminal_evidence": "attempt1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "terminal_outcome": "OPERATOR LOST",
+      "mission_time": "01:13",
+      "score": 3435,
+      "eliminations": 2,
+      "accuracy_percent": 11,
+      "critical_eliminations": 2,
+      "phase_evades": 1,
+      "memory_coverage": [
+        "Mara Solberg recovered",
+        "Sera Nord recovered",
+        "Elian Vale recovered"
+      ],
+      "combat": "Induction guard and a patrol killed by rifle. Breacher fired and shell reload observed; no breacher elimination confirmed. Shift cooldown observed; final summary reports one phase evade, but no interrupt independently confirmed.",
+      "boss": "Activated Custodian; three numbered plates, full coil HUD and locking-lanes announcement observed. Approached to 16m and attempted rifle fire, then died. Coil damage, breaks and destruction not established.",
+      "upload": "Not reached; extraction remained jammed.",
+      "traversal": {
+        "used": true,
+        "result": "Space held at a visible clear-landing vault prompt. Subsequent view remained against architecture; success or failure of that individual vault unknown. Ordinary movement and Shift subsequently reached next areas."
+      },
+      "terminal_evidence": "attempt2-boss-fire.jpg"
+    }
+  ],
+  "coverage": {
+    "memory": "All three recovery interactions observed across attempt2; post-loss memory reading not opened.",
+    "combat": "Rifle critical eliminations, ADS, reload, breacher shots and shell reload, directional threat cues, damage, shield regeneration, Shift cooldown.",
+    "boss": "Activation and approach only.",
+    "upload": "Unobserved.",
+    "navigation": "Facility map opened; held Tab ground trace clearly visible on boss approach. Repeated cover/wall collisions delayed navigation."
+  },
+  "strengths": [
+    "Cohesive rain, cyan/amber lighting and restrained typography establish a strong visual identity.",
+    "Readable objective, memory completion cards, receiver floor-ring instruction, distances and mission end summary.",
+    "Physical numbered boss plates and explicit coil HUD communicate the target structure.",
+    "Rifle critical feedback and distinct weapon silhouettes support combat understanding.",
+    "Memory recovery provides tangible supply and health relief."
+  ],
+  "problems": [
+    "Cover-heavy archive navigation repeatedly led to walls or obstacles while under fire; straight-line distance alone did not resolve approaches. Map and trace helped, though I did not use them consistently.",
+    "Distant patrols are small and visually simple; with multiple directional cues, identifying the immediate damaging source was difficult in these paused synthetic attempts.",
+    "Clear-landing vault prompt did not let me confidently infer actual traversal completion from before/after views. This is an uncertainty, not a confirmed traversal defect.",
+    "Boss escalation was lethal before I could establish a useful firing angle; this limited review cannot determine its balance for continuous human play.",
+    "Weapon/world geometry remains visibly blocky compared with the polished menu and HUD."
+  ],
+  "ratings_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "combat_readability": 6,
+    "AAA_readiness": 4
+  },
+  "rating_scope": "Independent provisional judgment of observed slice only. No human enjoyment, audio or hardware certification.",
+  "confounds": [
+    "Browser-timed synthetic DOM inputs and automatic Escape pauses, not continuous human mouse/keyboard play.",
+    "Some press steps were effectively extremely brief; held key steps were used later. Unsuccessful brief actions cannot be attributed to game defects.",
+    "Long fire batches and approximate screenshot-based aim produced low accuracy and exposed the player.",
+    "Software-WebGL fallback enabled; no performance or GPU certification.",
+    "Initial deploy remained live while screenshot was inspected, adding mission time before the first action."
+  ],
+  "cleanup": {
+    "explicit_close_sent": true,
+    "driver_pid": 31407,
+    "chrome_pid": 31417,
+    "driver_exit_code": 0,
+    "browser_closed_reported": true,
+    "verification": "ps -p 31407,31417 -o pid=,ppid=,comm= returned exit 1 and empty output after driver exit: both exact owned PIDs absent. No unrelated process killed."
+  }
+}

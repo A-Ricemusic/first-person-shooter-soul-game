@@ -7,6 +7,8 @@ export function poseHandling(g,{ads,progress,bob}){
  const pull=smooth(.26,.44,progress)*(1-smooth(.59,.77,progress));
  if(g.supportHand){g.supportHand.position.set(-.033*reach,(-.037-.155*pull)*reach,(.175+.045*pull)*reach);g.supportHand.rotation.set(0,0,0)}
  if(g.reloadCell&&g.cellHome){g.reloadCell.position.copy(g.cellHome);g.reloadCell.position.y-=.31*pull;g.reloadCell.position.z-=.09*pull}
+ const vaultReach=g.vault?Math.sin(Math.PI*g.vault.elapsed/.62):0;
+ if(g.supportHand&&vaultReach){g.supportHand.position.y+=.13*vaultReach;g.supportHand.position.z-=.14*vaultReach;g.supportHand.rotation.x=-.35*vaultReach;}
  const handling=Math.sin(progress*Math.PI);
  g.weapon.position.set(.3*(1-ads),-.27+ads*.115-Math.abs(bob)+handling*.15,-.35+g.kick*.065);
  g.weapon.rotation.set(g.kick*.035-handling*.12,handling*.08,-handling*.16-bob*.8);

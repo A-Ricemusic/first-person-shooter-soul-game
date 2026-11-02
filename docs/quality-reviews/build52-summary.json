@@ -1,0 +1,209 @@
+{
+  "build": 52,
+  "baseline": "c923d6edd4c4941c45fce3e147ce4e57644ebacb",
+  "implementation": "Separate contextual full-cylinder floor-to-floor Space vault, .62s committed; original jump API and weapon/enemy/mission values retained. Original weapon/glove rigs reused; no new mesh assets.",
+  "physics": "build52-implementation-physics.json",
+  "browser": [
+    "build52-implementation-browser.json",
+    "build52-implementation-fallback-browser.json"
+  ],
+  "broadSuite": "build52-implementation-suite-suite.json",
+  "focusedSuite": "build52-implementation-final-checks.json",
+  "initialFailures": [
+    {
+      "check": "pure traversal large dt",
+      "failure": "advanceVault checked a straight chord across multiple lift/forward/drop phases, cancelling valid large-dt vaults",
+      "correction": "bounded 1/240s trajectory progression with each segment revalidated"
+    },
+    {
+      "check": "raised ordinary jump fixture",
+      "failure": "fixture stood beside support at z1.05, so ordinary jump correctly rejected unsupported pose",
+      "correction": "fixture stands on top at z0"
+    }
+  ],
+  "fixtureLimits": [
+    "Readiness RAF polling timeout corrected with timer polling",
+    "All-GLB abort fixture timed out; narrowed to viewmodel assets",
+    "Pointer lock/map race retained; explicit pointer-fallback arranged fixture passes both asset modes",
+    "Not exhaustive world/hand IK/contact clearance certification"
+  ],
+  "privileged": {
+    "report": "build52-implementation-privileged.json",
+    "phase": "won",
+    "cores": 3,
+    "bossDead": true,
+    "coils": [
+      0,
+      0,
+      0
+    ],
+    "upload": 1,
+    "errors": [],
+    "method": "Exact-information normal-input controller; no teleport, resources, kills or invulnerability grants. Not discovery."
+  },
+  "ordinary": "build52-implementation-play.json",
+  "ordinaryOutcomes": [
+    "loss00:31 two memories one elimination",
+    "loss00:53 three memories one elimination, boss shots, no confirmed coil defeat or upload"
+  ],
+  "normalTraversal": "Separate source-informed normal-URL run from spawn reached actual hall low shield, displayed valid prompt, Space crossed it with raised committed pose and landing. Nonterminal movement coverage, not mission win.",
+  "reviews": [
+    {
+      "file": "build52-review1.json",
+      "ratings": {
+        "gameplay": 6,
+        "presentation": 7,
+        "usability": 6,
+        "combat_readability": 5,
+        "AAA_readiness": 4
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "terminal_outcome": "OPERATOR LOST",
+          "mission_time": "00:57",
+          "score": 1180,
+          "eliminations": 1,
+          "accuracy_percent": 3,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "memories_recovered": [
+            "MARA SOLBERG"
+          ],
+          "memory_observations": "Recovery by holding E succeeded after entering ring; supplies restored. Post-death recovered record opened and displayed station medic story.",
+          "combat_observations": "Opening guard eliminated with rifle aimed toward optic. Patrols damaged shield and health while negotiating archive partitions. Later rifle shots did not establish another elimination.",
+          "boss": "Not reached; inactive coil structure visible near spawn, active boss combat not observed.",
+          "upload": "Not reached.",
+          "traversal": {
+            "walking": "Used successfully to reach west archive; repeatedly blocked by tall partitions.",
+            "dash": "Pressed during archive exit; cooldown reset later, but successful interrupt or evade not established; end screen reports 0 phase evades.",
+            "space": "Pressed in terminal batch after death appears to have occurred; actual jump/vault not established.",
+            "vault_success": "unknown"
+          },
+          "terminal_screenshot": "attempt1-terminal.jpg"
+        },
+        {
+          "attempt": 2,
+          "terminal_outcome": "OPERATOR LOST",
+          "mission_time": "01:01",
+          "score": 2360,
+          "eliminations": 2,
+          "accuracy_percent": 12,
+          "critical_eliminations": 2,
+          "phase_evades": 0,
+          "memories_recovered": [
+            "MARA SOLBERG",
+            "SERA NORD"
+          ],
+          "memory_observations": "Both recoveries succeeded with hold E; objective advanced and supplies/health restored. East archive approached but not recovered.",
+          "combat_observations": "Opening guard eliminated using rifle; second elimination registered during rifle/pump breakout. Pump breacher selected, fired and reloaded from 3 to6 shells. Heart warden engaged but no elimination established. Incoming fire rapidly drained health during aiming and recovery.",
+          "boss": "Not activated or fought; only two memories recovered.",
+          "upload": "Not reached.",
+          "traversal": {
+            "walking": "Used successfully between west archive and Heart. East approach ran into partitions and failed to reach receiver.",
+            "map_and_trace": "Opened visible paused map and used held Tab trace; helped reach Heart approach.",
+            "dash": "Used during breakout and Heart engagement; recharge visible but interrupt success not established; end screen0 phase evades.",
+            "space": "Pressed during breakout and east entry. Changed position, but screenshots do not establish a vault or distinguish jump from vault.",
+            "vault_success": "unknown"
+          },
+          "terminal_screenshot": "attempt2-terminal.jpg"
+        }
+      ]
+    },
+    {
+      "file": "build52-review2.json",
+      "ratings": {
+        "gameplay": 6,
+        "presentation": 7,
+        "usability": 6,
+        "combat_readability": 6,
+        "AAA_readiness": 4
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "terminal_outcome": "OPERATOR LOST",
+          "mission_time": "01:08",
+          "score": 2255,
+          "eliminations": 1,
+          "accuracy_percent": 4,
+          "critical_eliminations": 1,
+          "phase_evades": 1,
+          "memory_coverage": [
+            "Mara Solberg recovered",
+            "Sera Nord recovered"
+          ],
+          "combat": "Induction guard killed by rifle optic fire. Patrols mostly avoided; repeated navigation delays under fire.",
+          "boss": "Not activated; third memory not recovered.",
+          "upload": "Not reached.",
+          "traversal": {
+            "used": true,
+            "result": "Crossed low cover after held Space and forward input, progressing archive distance from 17m to 5m. Jump versus vault not independently established. A prior brief Space press did not cross the first obstacle; failure cause unknown."
+          },
+          "terminal_evidence": "attempt1-terminal.jpg"
+        },
+        {
+          "attempt": 2,
+          "terminal_outcome": "OPERATOR LOST",
+          "mission_time": "01:13",
+          "score": 3435,
+          "eliminations": 2,
+          "accuracy_percent": 11,
+          "critical_eliminations": 2,
+          "phase_evades": 1,
+          "memory_coverage": [
+            "Mara Solberg recovered",
+            "Sera Nord recovered",
+            "Elian Vale recovered"
+          ],
+          "combat": "Induction guard and a patrol killed by rifle. Breacher fired and shell reload observed; no breacher elimination confirmed. Shift cooldown observed; final summary reports one phase evade, but no interrupt independently confirmed.",
+          "boss": "Activated Custodian; three numbered plates, full coil HUD and locking-lanes announcement observed. Approached to 16m and attempted rifle fire, then died. Coil damage, breaks and destruction not established.",
+          "upload": "Not reached; extraction remained jammed.",
+          "traversal": {
+            "used": true,
+            "result": "Space held at a visible clear-landing vault prompt. Subsequent view remained against architecture; success or failure of that individual vault unknown. Ordinary movement and Shift subsequently reached next areas."
+          },
+          "terminal_evidence": "attempt2-boss-fire.jpg"
+        }
+      ]
+    }
+  ],
+  "independentWins": 0,
+  "independentLosses": 4,
+  "reviewMethod": "Exactly two fresh native GPT-6.1 Sol agents, fork none, sequential, two terminal ordinary attempts each; only normalURL/visible driver help/visibleUI/evidence prefix/rubric. No source/coordinates/solutions/prior ratings. No edits/tests/other owned browser while playing.",
+  "freeze": {
+    "files": 254,
+    "digest": "fcde9a379874e169cb4f7db602207c54a91f30a627c1e78229247c5cf223bec1",
+    "beforeBetweenAfterMatch": true
+  },
+  "rawHashes": {
+    "docs/quality-reviews/build52-review1.json": "9adeec1e889362546ab493f61e178cff4980427cae0895fd3abd3187e1f7eb53",
+    "docs/media/build52-review1/actions.jsonl": "5aecb025d379014767b3e39de2ab867556ec242f9c660ca2b221146d30c3c638",
+    "docs/quality-reviews/build52-review2.json": "2944fc41da179b66e706642b55b422140114b5c56cb29cb2accd67323aee98ad",
+    "docs/media/build52-review2/actions.jsonl": "6d4e1d68db7c99e67fb393431b0062bb386ba72cb7de10b2102f51bce8d58fe5"
+  },
+  "cleanup": {
+    "review1": [
+      30675,
+      30685
+    ],
+    "review2": [
+      31407,
+      31417
+    ],
+    "reviewDriversExit0": true,
+    "reviewPidsAbsent": true,
+    "implementationWrapper": "First replay wrapper did not recognize visible end; terminated exact Python parent and driver input ended. Exact driver/Chrome absent; exit code unavailable. Subsequent replay and traversal explicitly closed exit0."
+  },
+  "postReviewRuntimeChanges": false,
+  "limits": "Four independent losses, no independent coil defeat/upload, vault success uncertain in independent evidence. Source-informed normal traversal succeeded. No ordinary mission win. Synthetic input materially confounds aim, fairness and timing. No human fun/audio/hardware/AAA certification or causal comparison with earlier builds. Overall quality mission unfinished.",
+  "protectedServer": "Final read-only HTTP200 local5173 and protected Build23 tailnet5173. Python63172 unchanged, bound127.0.0.1:61467 serving original /tmp/soulfall-play-build23-_4s5lus4. No Serve/Tailscale/snapshot changes.",
+  "finalProduction": {
+    "checks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "report": "build52-implementation-shipped-production.txt",
+    "references": 721,
+    "missing": []
+  }
+}

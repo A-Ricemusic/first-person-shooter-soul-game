@@ -1,0 +1,102 @@
+{
+  "reviewer": "build52-review1",
+  "build": 52,
+  "url": "http://127.0.0.1:5173/",
+  "method": "Exactly two ordinary terminal attempts through normal UI using installed Chrome and tools/visible-playtest.mjs. Learned through visible menu, operator handbook, screenshots, map, HUD and own attempts. No source, tests, prior reviews, hidden state, debug URLs or resource changes inspected.",
+  "evidence_directory": "docs/media/build52-review1",
+  "raw_evidence": "Driver actions and screenshots preserved in evidence directory; includes failed selector commands while closing recovered-record dialog.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal_outcome": "OPERATOR LOST",
+      "mission_time": "00:57",
+      "score": 1180,
+      "eliminations": 1,
+      "accuracy_percent": 3,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories_recovered": [
+        "MARA SOLBERG"
+      ],
+      "memory_observations": "Recovery by holding E succeeded after entering ring; supplies restored. Post-death recovered record opened and displayed station medic story.",
+      "combat_observations": "Opening guard eliminated with rifle aimed toward optic. Patrols damaged shield and health while negotiating archive partitions. Later rifle shots did not establish another elimination.",
+      "boss": "Not reached; inactive coil structure visible near spawn, active boss combat not observed.",
+      "upload": "Not reached.",
+      "traversal": {
+        "walking": "Used successfully to reach west archive; repeatedly blocked by tall partitions.",
+        "dash": "Pressed during archive exit; cooldown reset later, but successful interrupt or evade not established; end screen reports 0 phase evades.",
+        "space": "Pressed in terminal batch after death appears to have occurred; actual jump/vault not established.",
+        "vault_success": "unknown"
+      },
+      "terminal_screenshot": "attempt1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "terminal_outcome": "OPERATOR LOST",
+      "mission_time": "01:01",
+      "score": 2360,
+      "eliminations": 2,
+      "accuracy_percent": 12,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "memories_recovered": [
+        "MARA SOLBERG",
+        "SERA NORD"
+      ],
+      "memory_observations": "Both recoveries succeeded with hold E; objective advanced and supplies/health restored. East archive approached but not recovered.",
+      "combat_observations": "Opening guard eliminated using rifle; second elimination registered during rifle/pump breakout. Pump breacher selected, fired and reloaded from 3 to6 shells. Heart warden engaged but no elimination established. Incoming fire rapidly drained health during aiming and recovery.",
+      "boss": "Not activated or fought; only two memories recovered.",
+      "upload": "Not reached.",
+      "traversal": {
+        "walking": "Used successfully between west archive and Heart. East approach ran into partitions and failed to reach receiver.",
+        "map_and_trace": "Opened visible paused map and used held Tab trace; helped reach Heart approach.",
+        "dash": "Used during breakout and Heart engagement; recharge visible but interrupt success not established; end screen0 phase evades.",
+        "space": "Pressed during breakout and east entry. Changed position, but screenshots do not establish a vault or distinguish jump from vault.",
+        "vault_success": "unknown"
+      },
+      "terminal_screenshot": "attempt2-terminal.jpg"
+    }
+  ],
+  "strengths": [
+    "Cohesive rain, wet reflective ground, teal lighting, oversized station signage and restrained HUD create a strong station atmosphere.",
+    "Opening guard instruction clearly names optic, Shift and flank options.",
+    "Recovery gives clear memory confirmation, updates objectives and restores supplies; recovered narrative remains accessible after death.",
+    "Paused map and Tab ground approach aid navigation; shield regeneration allowed a second attempt to continue after severe damage.",
+    "End screen clearly reports recovered people and combat statistics."
+  ],
+  "problems": [
+    "From several archive angles, objective marker placement and distance were difficult to reconcile with walls and the receiver ring; navigation required repeated short corrections under fire.",
+    "Tall and low partitions were hard to judge for traversal from paused views; Space inputs did not provide evidence sufficient to confirm vault success.",
+    "Patrol attacks drained health quickly while I oriented and held E; small direction cues conveyed danger but did not always make source position immediately clear.",
+    "Ordinary sentinels and wardens share a fairly simple mechanical silhouette; the large optic is useful but the observed character presentation remains visibly stylized and simple beside polished UI.",
+    "Handbook contains substantial useful detail in one dense dialog; learning combat and route rules in a first attempt is demanding."
+  ],
+  "ratings_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "combat_readability": 5,
+    "AAA_readiness": 4
+  },
+  "rating_basis": "Scores reflect only these two failed ordinary attempts and visible presentation. Strong atmosphere and working recovery/navigation loop, with my combat exposure and navigation friction limiting progress. AAA readiness is a limited observed slice judgment, not full-game certification.",
+  "confounds": [
+    "Synthetic browser-timed DOM input and automatic screenshot/Escape pauses differ substantially from continuous human play.",
+    "Long firing/movement batches exposed the operator while aiming updates occurred between screenshots; low accuracy and deaths cannot alone establish balance defects.",
+    "Screenshot capture itself can allow further simulation: attempt2 east-entry beforePause showed2 health, after showed terminal death.",
+    "Software-WebGL fallback enabled; hardware renderer and performance not certified.",
+    "No human enjoyment claim, audio assessment, hardware certification or full boss/upload assessment.",
+    "Three failed dialog selectors/timeouts were driver interaction mistakes, preserved in raw actions; retry was through normal close/archive and deploy UI."
+  ],
+  "cleanup": {
+    "explicit_close_sent": true,
+    "driver_pid": 30675,
+    "chrome_pid": 30685,
+    "driver_exit_code": 0,
+    "driver_reported_browser_closed": true,
+    "pid_verification_command": "ps -p 30675,30685 -o pid=,ppid=,command=",
+    "pid_verification_exit_code": 1,
+    "pid_verification_output": "",
+    "exact_owned_pids_absent": true,
+    "unrelated_processes_killed": false
+  }
+}

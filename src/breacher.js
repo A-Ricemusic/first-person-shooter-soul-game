@@ -55,6 +55,8 @@ export function poseBreacher(g,{ads,bob}){
  g.weapon.position.set(.3*(1-ads),-.28+ads*.13-Math.abs(bob),-.28+g.kick*.07*(g.options.reducedMotion?0:1));
  g.weapon.rotation.set(0,0,0);
  for(const name of ['Pump','SupportHand']){const o=model.getObjectByName(name);if(o){o.userData.home??=o.position.clone();o.position.copy(o.userData.home);o.position.z+=cycle;if(name==='SupportHand'){o.position.y-=insert*.12;o.position.z+=insert*.35;}}}
+ const vaultReach=g.vault?Math.sin(Math.PI*g.vault.elapsed/.62):0;
+ const support=model.getObjectByName('SupportHand');if(support&&vaultReach){support.position.y+=.13*vaultReach;support.position.z-=.14*vaultReach;}
  // Bridge each moving wrist to its fixed off-screen elbow; hands never scale.
  for(const [side,elbow,length] of [['Support',new T.Vector3(-.24,-.34,-.03),.62],['Grip',new T.Vector3(.25,-.36,.25),.5]]){
   const sleeve=model.getObjectByName(side+'Sleeve'),hand=model.getObjectByName(side+'Hand');if(!sleeve||!hand)continue;

@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-11-02T03:41:50.155Z",
+  "checks": [
+    {
+      "name": "10 FPS movement and mission time follow elapsed time",
+      "observed": {
+        "simulationDelta": 0.09999999999999999,
+        "distance": 0.5500000000000114
+      },
+      "status": "passed"
+    },
+    {
+      "name": "Turn and fire in the same frame uses current aim",
+      "observed": {
+        "before": 150,
+        "after": 133,
+        "ammo": 29
+      },
+      "status": "passed"
+    },
+    {
+      "name": "A shot on a 100 ms frame retains a visible muzzle flash",
+      "observed": {
+        "ammo": 28,
+        "visible": true
+      },
+      "status": "passed"
+    },
+    {
+      "name": "All five origin offsets blocked by real central concrete",
+      "observed": [
+        {
+          "originZ": -16,
+          "shield": 60
+        },
+        {
+          "originZ": -16.05,
+          "shield": 60
+        },
+        {
+          "originZ": -16.1,
+          "shield": 60
+        },
+        {
+          "originZ": -16.15,
+          "shield": 60
+        },
+        {
+          "originZ": -16.2,
+          "shield": 60
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "Unobstructed enemy projectile still damages player",
+      "observed": {
+        "shield": 41
+      },
+      "status": "passed"
+    },
+    {
+      "name": "Restart clears ADS, recoil and muzzle flash immediately",
+      "observed": {
+        "aim": false,
+        "blend": 0,
+        "fov": 75,
+        "recoil": 0,
+        "kick": 0,
+        "muzzle": false,
+        "flash": 0,
+        "light": 0
+      },
+      "status": "passed"
+    }
+  ],
+  "limitations": "Deterministic browser reproductions with controlled frame timestamps and arranged encounters. Not a human playtest or performance benchmark."
+}

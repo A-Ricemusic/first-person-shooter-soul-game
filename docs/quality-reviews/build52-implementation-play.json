@@ -1,0 +1,31 @@
+{
+  "method": "Source-informed normal URL, retained prior ordinary input command sequences with visible approach correction in run2. No game evaluation or teleport/resources. Not independent discovery.",
+  "attempts": [
+    {
+      "actions": "docs/media/build52-implementation-play/actions.jsonl",
+      "terminal": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nSERA NORDNight operator\nELIMINATIONS\n1\nMISSION TIME\n00:31\nSCORE\n2,180\n25% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES\nDEPLOY AGAIN\n\u2197\nREAD RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "errors": [
+        {
+          "at": "2026-11-02T03:36:34.080Z",
+          "type": "command-error",
+          "sequence": 6,
+          "error": "Cannot resume from visible end; use its normal UI."
+        }
+      ]
+    },
+    {
+      "actions": "docs/media/build52-implementation-play2/actions.jsonl",
+      "terminal": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nELIAN VALERelay engineer\nSERA NORDNight operator\nELIMINATIONS\n1\nMISSION TIME\n00:53\nSCORE\n3,180\n5% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES\nDEPLOY AGAIN\n\u2197\nREAD RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "errors": []
+    }
+  ],
+  "traversal": "Separate nonterminal normal URL approach from spawn shows valid Space prompt, committed rise and landing over actual hall south cover. docs/media/build52-implementation-traversal-play/actions.jsonl.",
+  "cleanup": "Run1 wrapper failed to recognize visible end and was terminated, closing driver input via EOF; driver exit code unavailable. Run2 and traversal explicitly closed, exit0; exact owned PIDs absent.",
+  "limits": "Synthetic paused captures; no ordinary mission win; failed attempts and wrapper error retained."
+}
