@@ -449,8 +449,9 @@ export class Game {
   interact() {
     if (this.phase !== 'playing'||!this.grounded||this.vault) return;
     const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
-    if(!core&&this.suitService&&serviceStatus(this).near&&serviceStatus(this).valid)return;
-    if (!core) { this.event('notice', 'Approach a memory receiver. Hold E to recover its memory.'); return; }
+    // Local receiver/service feedback already describes reach and availability.
+    // An idle E press must not replace current combat or upload notices.
+    if (!core) return;
     this.channelCore = core;
   }
   recoverCore(core) {
