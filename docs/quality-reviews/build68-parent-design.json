@@ -1,0 +1,47 @@
+{
+  "stage": "Build68 parent design only; runtime remains Build67 in this commit",
+  "baseline": "8af42d173f484bd3be5c8ab534763e4f3832b5d2",
+  "decision": "Author a genuinely open north maintenance portal in the Custodian hall, replacing the centre of the existing blast wall with a supported4m wide opening of at least3.6m clear height. Keep cheek cover and the other existing entrances.",
+  "why": "Latest reviewer1 lost exposed time at the hall wall before reaching the boss; earlier parent normal play also met this wall and needed map/side corrections. Physical access and sight should agree with the north approach already represented by the route field. This is a level/exposure change, not a demonstrated quality uplift or a fix for every early approach.",
+  "evidence": {
+    "review": "build67-review1.json: fresh attempt moved into wall at01:11, corrected around route by01:18, died01:26.",
+    "parent": "../media/build66-parent-play/finale-approach-map.jpg and raw actions retain repeated north-wall approach failures.",
+    "currentPart": {
+      "name": "North_blast_wall",
+      "center": [
+        10,
+        2,
+        10
+      ],
+      "size": [
+        6,
+        4,
+        0.5
+      ],
+      "bounds": "x7..13, y0..4, z9.75..10.25"
+    },
+    "spanningObstructions": [
+      "North_service_panel at11,2.3,10.29; size5,1.2,.06",
+      "world.js SHUTTERS LIFT / FIRE sign at11,2.3,10.34; size4.8,.95"
+    ]
+  },
+  "geometry": {
+    "aperture": "Target x8..12 at z10: inner width4m, clear height>=3.6m. Verify actual exported trim/jambs/signs leave that volume open. Cheeks occupy remaining old wall ends and support header. Child may adjust small framing dimensions with measured justification.",
+    "headroom": "Standing body1.9m, jump speed8 and gravity21 imply theoretical apex body top3.424m on level ground. A3.6m clear aperture leaves margin; validate actual swept jump/crouch/dash movement. No sill or forced vault for ordinary walking.",
+    "visuals": "Original Blender structural jambs/header, attached hardware and restrained physical entrance identification. Move BOTH spanning service panel and code sign above opening or onto retained cover. Do not leave an opaque non-solid curtain across the doorway. Add no live HUD panel or steering assistance.",
+    "shelter": "Retain supported canopy, existing roof/rain footprint, other blast walls, service paths, baffles and uplink. Confirm no floating joins or detached rails.",
+    "assets": "Use new Build68 GLB/native blend/provenance stem to preserve old published asset files. Shared current layout metadata drives exported geometry, fallback, colliders and roof/map/navigation. Existing Blender authoring helpers may be reused; new generator must not accidentally overwrite the old induction-hall assets."
+  },
+  "rules": "Weapons, enemies/spawns, health/damage, difficulty, timings, memory reach, phase, boss gate, upload and Build67 anchor remain unchanged. The opening deliberately increases bidirectional physical sight/fire exposure and adds an approach; document rather than hide this balance effect.",
+  "integration": "PlayerRoute already seeds north standoffs at x9..13,z11..12 as well as south. Facility map excludes overhead solids above standing head height. Reuse these physical-clearance systems; change them only if a measured integration defect requires it, without invented route arrows or closed-door maps.",
+  "verification_required": [
+    "Before/after actual renderer/physics baseline at same positions, clearly labeled arranged. Verify portal centre formerly blocked and now open, both retained cheeks/header remain physical cover, and actual Blender mesh/fallback/collision bounds agree.",
+    "Grounded standing/crouch walks both directions across a grid of aperture positions, jump headroom and swept phase dash; no invisible collision, falling support gap or ambiguous lip. Do not weaken player collision or clip through walls.",
+    "Real player-route field and NPC pursuit through new doorway; map shows the gap, roof still masks rain. Keep other entrances and fresh/anchor paths functional.",
+    "Real first-mesh/foreign-cover shot queries and boss/patrol LOS, telegraphs and projectiles: actors can see/fire through the opening, cheek cover still blocks; observe increased exposure. Preserve Build66 cosmetic-ray exclusions and actual component feedback.",
+    "Attempt normal-URL source-informed play with visible input/screens, retain corrections/misses/outcomes. No debug/teleport/resources/arrangement in that trial, no replay success assumption.",
+    "Affected hall/movement/routing/boss-feedback/anchor regressions, fresh exact-information controller actual win, production14, source/shipped dossier resources, owned browser cleanup.",
+    "Exactly two fresh sequential GPT-6.1 Sol visible-only reviewers, two actual terminal attempts each on frozen source; neutral brief, full named0\u201310 dimensions, no target score, no forced north route/anchor choice. Classify fresh versus checkpoint-assisted outcomes and cumulative time honestly."
+  ],
+  "limits": "North portal does not solve central low-cover detours, receiver reach, aiming, HUD density, narrow content or human enjoyment/audio/hardware. It is not AAA certification. Implementation/validation pending."
+}
