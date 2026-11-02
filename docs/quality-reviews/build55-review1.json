@@ -1,0 +1,267 @@
+{
+  "reviewId": "build55-review1",
+  "buildObserved": "55",
+  "url": "http://127.0.0.1:5173/",
+  "reviewType": "Independent visible-only synthetic play review",
+  "method": {
+    "driver": "node tools/visible-playtest.mjs --out docs/media/build55-review1",
+    "helpReadFirst": true,
+    "inputMode": "browser",
+    "attemptsRequired": 2,
+    "terminalAttemptsCompleted": 2,
+    "retry": "Visible DEPLOY AGAIN button after attempt 1; no third deployment.",
+    "observation": "Visible game screenshots inspected using view_image, plus driver-returned visible UI text and own action timing evidence. No source, tests, internal game state, earlier reviews, solutions, test URLs, arbitrary game evaluation, or shared preview browser used.",
+    "tactics": "Attempt 1 opened with an aimed rifle burst, detoured toward West Archive, recovered West/Heart/East, and approached the Custodian. Attempt 2 opened with the pump breacher, recovered Heart/West/East, used rifle optic shots, then flanked into the Custodian hall and disabled two coils.",
+    "confounds": [
+      "Browser-timed synthetic DOM input through ordinary listeners; this is paused synthetic play, not a human continuous session.",
+      "Batches capture after actions. Most batches automatically Escape-paused; resume used the visible Resume button. This grants substantial planning time.",
+      "Several early actions were chosen from the preceding photograph while the next image was being requested, so view-dependent decisions lagged by one photograph. Later alignment photographs were inspected separately before acting. Moving targets, stale views and my corrections contributed to misses; these are not attributed to game aiming bugs.",
+      "Screenshot scheduling and browser performance time add delay. A nominal 100 ms fire hold sometimes lasted about 130-192 ms in recorded browser timings; screenshot captures commonly took roughly 160-340 ms.",
+      "Held ADS captures used captureHeld and explicitly released firing/movement first in many cases; held ADS photographs still leave aim held during capture. Default captures release controls first.",
+      "Fallback look used the right mouse button held. Short settling waits were generally used before captures, but some movement/reload photographs capture a transient state.",
+      "One relative look request of -2450 was rejected as Invalid relative mouse delta (sequence 29). It was preserved and followed with a valid -2400 request; no mission reset occurred.",
+      "Software-WebGL fallback was enabled; no hardware, framerate, latency, audio quality, or human enjoyment certification is claimed."
+    ]
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "loss",
+      "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:48",
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 2,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "coresRecovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "custodianCoilsDisabled": 0,
+      "summary": "The opening rifle ADS burst visibly produced WARDEN // CRITICAL +180. Many later shots missed, including firing at walls or empty lanes after stale-view turns. Low cover and archive wall detours consumed much of the run. Recovered all cores, reached the Custodian exterior without a clear coil line, and died during a south/west flank and reload.",
+      "honestFailures": [
+        "Repeated cover collisions and wall-facing movement.",
+        "Breacher shots often missed; cannot infer its damage balance from this run.",
+        "Some long bursts were fired without a visible target at the final aim point.",
+        "Heart recovery was tried too far away before moving into its floor ring.",
+        "Custodian firing line was never established."
+      ],
+      "keyEvidence": [
+        "docs/media/build55-review1/attempt1-optic-ads.jpg",
+        "docs/media/build55-review1/attempt1-south-intake.jpg",
+        "docs/media/build55-review1/attempt1-map.jpg",
+        "docs/media/build55-review1/attempt1-west-turn.jpg",
+        "docs/media/build55-review1/attempt1-breacher-contact.jpg",
+        "docs/media/build55-review1/attempt1-exit-lane.jpg",
+        "docs/media/build55-review1/attempt1-breacher-followup.jpg",
+        "docs/media/build55-review1/attempt1-heart-around-cover.jpg",
+        "docs/media/build55-review1/attempt1-three-cores.jpg",
+        "docs/media/build55-review1/attempt1-custodian-volley.jpg",
+        "docs/media/build55-review1/attempt1-custodian-south-flank.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "outcome": "loss",
+      "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:28",
+      "eliminations": 2,
+      "score": 3280,
+      "accuracyPercent": 40,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "coresRecovered": [
+        "Sera Nord",
+        "Mara Solberg",
+        "Elian Vale"
+      ],
+      "custodianCoilsDisabled": 2,
+      "custodianFinalVisibleState": "1 100% / 2 OFF / 3 OFF",
+      "summary": "Pump breacher eliminated the opening Warden after several shots and corrections. Reload showed individual Shell seated messages. Recovered Heart first; rifle realignment on its Warden produced the second elimination. Repeated north-wall detours preceded West recovery. Crossed the yard to East, then entered the Custodian hall. Rifle bursts disabled coils 3 and 2. Health fell to 6 while stationary firing with nearby sentinels; a final Shift/reload/strafe attempt ended in death before the remaining coil was disabled.",
+      "honestFailures": [
+        "Early breacher shots and a yard burst missed.",
+        "Several navigation batches still ran into archive walls or took the wrong route.",
+        "Stationary coil firing left me exposed; the final loss is not proof that the encounter is impossible or unfair.",
+        "No extraction/upload completion was observed."
+      ],
+      "keyEvidence": [
+        "docs/media/build55-review1/attempt2-opening-breacher.jpg",
+        "docs/media/build55-review1/attempt2-close-breacher-pair.jpg",
+        "docs/media/build55-review1/attempt2-vault-push.jpg",
+        "docs/media/build55-review1/attempt2-heart-core.jpg",
+        "docs/media/build55-review1/attempt2-rifle-realign.jpg",
+        "docs/media/build55-review1/attempt2-heart-warden-down.jpg",
+        "docs/media/build55-review1/attempt2-clear-north-wall.jpg",
+        "docs/media/build55-review1/attempt2-cross-yard.jpg",
+        "docs/media/build55-review1/attempt2-east-core-try.jpg",
+        "docs/media/build55-review1/attempt2-custodian-front-flank.jpg",
+        "docs/media/build55-review1/attempt2-coil-fire.jpg",
+        "docs/media/build55-review1/attempt2-second-coil-fire.jpg",
+        "docs/media/build55-review1/attempt2-final-coil-try.jpg"
+      ]
+    }
+  ],
+  "weaponHandMaterialHandling": {
+    "rifle": "Dark slate-blue angular receiver, squared open optic frame, cyan accent strip and simple beveled surfaces. ADS clearly centers and enlarges the weapon. The initial optic burst killed a Warden and later aligned fire killed the Heart Warden. Rifle reload showed a repositioned lower hand and a Reloading/Weapon ready state; ammo and reserve updated. Sustained fire and reload were exercised.",
+    "breacher": "Chunkier, long flat top and two bright gold/yellow front sight posts; plainly distinguishable from the rifle. Single trigger presses consumed shells, with visible delays/cadence between shots. Attempt 2 neutralized the opening Warden. Reload produced separate Shell seated messages and reached six shells. No claim of spread or exact damage values is supported.",
+    "hands": "Gray-blue gloves and sleeves are visible at the supporting grip, with segmented/ribbed finger shapes and a lower gripping hand during rifle reload. They read as simplified faceted models. Still photographs do not support a full animation or anatomical rigging audit.",
+    "materials": "Weapons and gloves mostly use clean broad surfaces with restrained bevel highlights; limited visible fine wear, seams, fabric grain, or complex metal variation. Rain, wet floor reflections, cracked concrete and warm/cyan lights give the environment more surface variety than the first-person assets.",
+    "handlingCoverage": [
+      "Rifle hip and ADS views, sustained fire, reload, swap.",
+      "Breacher hip and ADS views, multiple deliberate shots, reload.",
+      "Sprint, movement, Shift, Space attempt, Tab hold and paused facility map."
+    ],
+    "limits": [
+      "No audio assessment.",
+      "No comprehensive recoil, reload interruption, damage, precision, animation continuity or performance measurement.",
+      "Space was tried and vault prompts were seen, but screenshots do not prove a full successful vault sequence.",
+      "Tab was held for photographs; a reliable ground-trace route was not established in the captured views.",
+      "Shift produced PHASE BREAK / DISCHARGE CANCELED once, while both terminal scorecards reported zero phase evades."
+    ]
+  },
+  "strengths": [
+    {
+      "finding": "Cohesive rainy industrial setting with cyan highlights, warm pools of light and reflected floor lighting; the title screen establishes a clear visual identity.",
+      "evidence": [
+        "docs/media/build55-review1/initial-menu.jpg",
+        "docs/media/build55-review1/attempt2-cross-yard.jpg"
+      ]
+    },
+    {
+      "finding": "Warden optic/amber charge and contextual Shift-or-optic prompts are visually distinct. An aligned opening rifle burst gave clear critical feedback.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-deploy.jpg",
+        "docs/media/build55-review1/attempt1-optic-ads.jpg",
+        "docs/media/build55-review1/attempt2-rifle-realign.jpg"
+      ]
+    },
+    {
+      "finding": "Map names objectives and distinguishes wall, low cover, receiver and player. Core recovery floor-ring prompts, memory cards and restored supplies communicate progress.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-map.jpg",
+        "docs/media/build55-review1/attempt1-heart-around-cover.jpg",
+        "docs/media/build55-review1/attempt1-three-cores.jpg"
+      ]
+    },
+    {
+      "finding": "Custodian UI communicates armored/open states and individual OFF coils. Clear rifle fire visibly disabled two coils, making progress readable.",
+      "evidence": [
+        "docs/media/build55-review1/attempt2-coil-fire.jpg",
+        "docs/media/build55-review1/attempt2-second-coil-fire.jpg"
+      ]
+    },
+    {
+      "finding": "End screens show recovered people, eliminations, time, score, accuracy and a direct visible retry.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-custodian-south-flank.jpg",
+        "docs/media/build55-review1/attempt2-final-coil-try.jpg"
+      ]
+    }
+  ],
+  "defectsAndFriction": [
+    {
+      "severity": "medium",
+      "finding": "Near walls, large scenery surfaces occlude most of the view and the weapon disappears substantially into/behind the surface. This hinders orientation and first-person presentation. Repeated independent examples occurred around archive and Custodian walls; collision internals were not inspected.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-west-turn.jpg",
+        "docs/media/build55-review1/attempt1-exit-lane.jpg",
+        "docs/media/build55-review1/attempt1-side-exit.jpg",
+        "docs/media/build55-review1/attempt2-custodian-east-lane.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "Navigating around archive walls and low cover repeatedly required corrections. World hints identify south intake/east service, but a direct objective marker can remain across blocked geometry and the hinted opening took effort to find. My stale-view controls and route mistakes materially contribute to this result.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-trace.jpg",
+        "docs/media/build55-review1/attempt1-clear-cover.jpg",
+        "docs/media/build55-review1/attempt2-west-flank.jpg",
+        "docs/media/build55-review1/attempt2-clear-north-wall.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "finding": "First-person weapons, hands and sentinels retain broad, simple geometry and clean materials. They communicate function, but the close view lacks the surface richness and model detail expected of a finished AAA presentation.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-south-intake.jpg",
+        "docs/media/build55-review1/attempt1-breacher-trace.jpg",
+        "docs/media/build55-review1/attempt2-close-breacher-pair.jpg"
+      ]
+    },
+    {
+      "severity": "low",
+      "finding": "Some contextual copy, map legends and weapon status labels are very small at the captured 1280 by 800 presentation; reading them requires close inspection.",
+      "evidence": [
+        "docs/media/build55-review1/attempt1-map.jpg",
+        "docs/media/build55-review1/attempt2-custodian-coils-aim.jpg"
+      ]
+    },
+    {
+      "severity": "coverage observation",
+      "finding": "Health fell rapidly during exposed Custodian firing while close sentinels were present. Directional orange indicators existed, but paused stills did not establish which source dealt each hit. This limits combat-source readability assessment and is not a verified damage or fairness defect.",
+      "evidence": [
+        "docs/media/build55-review1/attempt2-second-coil-aim.jpg",
+        "docs/media/build55-review1/attempt2-second-coil-fire.jpg"
+      ]
+    }
+  ],
+  "ratings": {
+    "scale": "0-10, higher is better; subjective assessment of observed slice under this method.",
+    "gameplay": {
+      "score": 6.0,
+      "reason": "Functional recovery/combat loop, alternate core order, supplies and a multi-component final fight. Route friction and exposure cost were substantial, with control confounds acknowledged."
+    },
+    "presentation": {
+      "score": 6.5,
+      "reason": "Strong coherent menu, lighting and wet industrial atmosphere; first-person and enemy assets remain visibly simple and close-wall occlusion reduces polish."
+    },
+    "usability": {
+      "score": 6.0,
+      "reason": "Useful map, interaction ring instructions, status feedback and retry. Small text and obstructed objective approaches took effort to resolve."
+    },
+    "combatReadability": {
+      "score": 6.5,
+      "reason": "Optics, amber charges, critical feed and coil OFF states are clear. Threat-source attribution in close multi-enemy fighting was less clear in stills."
+    },
+    "aaaReadiness": {
+      "score": 3.5,
+      "reason": "A coherent playable slice with working mission progression, but visual asset detail, near-wall weapon behavior and the unverified animation/audio/performance/extraction coverage prevent a finished AAA judgment."
+    }
+  },
+  "coverageLimits": [
+    "Exactly two ordinary terminal losses; no win, extraction upload, full memory-reading screen or settings flow evaluated.",
+    "No bugs inferred from source or tests; no runtime changes made.",
+    "No human enjoyment, audio, hardware, accessibility compliance, or broad platform certification claimed.",
+    "Low accuracy in attempt 1 is explicitly preserved and substantially reflects reviewer tactics and delayed photographs."
+  ],
+  "artifacts": {
+    "rawActions": "docs/media/build55-review1/actions.jsonl",
+    "screenshots": "docs/media/build55-review1/",
+    "closure": "docs/media/build55-review1/closure.json",
+    "report": "docs/quality-reviews/build55-review1.json"
+  },
+  "closure": {
+    "explicitCloseSent": {
+      "op": "close"
+    },
+    "driverSession": 15075,
+    "driverExitCode": 0,
+    "driverResponse": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 51427,
+      "chromePid": 51437,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "pidVerification": {
+      "command": "ps -p 51427,51437 -o pid=,ppid=,command=",
+      "exitCode": 1,
+      "stdout": "",
+      "meaning": "Neither exact owned PID was present after driver exit."
+    },
+    "unrelatedProcessesKilled": false
+  }
+}

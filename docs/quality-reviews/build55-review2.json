@@ -1,0 +1,175 @@
+{
+  "reviewer": "build55-review2",
+  "build": 55,
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "kind": "Independent visible UI play review",
+    "ordinaryMissionAttempts": 2,
+    "driverCommand": "node tools/visible-playtest.mjs --out docs/media/build55-review2",
+    "inputMode": "browser",
+    "inputs": "Installed visible driver JSON-line commands only; ordinary deploy and visible Deploy Again button; keyboard, mouse, screenshots, facility map and visible HUD.",
+    "observations": "Screenshots opened and inspected through view_image. No source, tests, old reviews, hidden state, arbitrary evaluation, solution lookup or additional mission pass used.",
+    "graphics": "Driver reported software-WebGL fallback enabled; renderer not certified.",
+    "confounds": [
+      "Paused synthetic play, not continuous human or hardware input. Each action normally photographs live then pauses with Escape; this creates ample planning time.",
+      "Browser-timed synthetic DOM input and scheduling can extend waits: observed examples include requested 700 ms taking 782 ms, 1000 taking 1152 ms, 800 taking 944 ms, and 2900 taking 3033 ms.",
+      "Photographs took roughly 24\u2013391 ms and live simulation can advance during capture; e.g. attempt1-east-approach screenshot health 79 versus beforePause health 83. Held ADS captures were explicitly used and movement/fire released where appropriate.",
+      "Mouse aim was calibrated by visible photographs; several honest misses, especially breacher shots and post-Shift firing, were reviewer aiming/position errors and do not independently prove weapon defects.",
+      "One attempt-2 extraction command was rejected with Invalid relative mouse delta for x=2500. It is preserved in the action log, then retried using two x=1250 steps. This is a driver limit, not a game defect.",
+      "No audio, human enjoyment, controller, hardware frame pacing or GPU certification assessed."
+    ]
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "start": "Visible Enter the Storm button (#deploy).",
+      "tactics": "Critical rifle ADS shot on entry Warden, west side route, tried pump breacher fire/reload, recovered west then Heart then east memories, sprint/Shift and attempted vault, attacked Custodian coils.",
+      "outcome": "loss",
+      "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:26",
+      "eliminations": 1,
+      "score": 3180,
+      "accuracyPercent": 20,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "progress": "All three memories recovered. Coil 3 OFF; coil 2 last photographed at 90%, coil 1 at 100%. Died while attempting remaining coils.",
+      "honestFailures": "Breacher fired and consumed ammo without an elimination; rifle shots also missed. Multiple recovery holds began outside the receiver reach. Shift moved position and invalidated a follow-up aim. Vault attempt did not clear the encountered black barrier.",
+      "evidence": [
+        "docs/media/build55-review2/attempt1-rifle-ads.jpg",
+        "docs/media/build55-review2/attempt1-breacher.jpg",
+        "docs/media/build55-review2/attempt1-west-recover.jpg",
+        "docs/media/build55-review2/attempt1-east-recover.jpg",
+        "docs/media/build55-review2/attempt1-coils-fire2.jpg",
+        "docs/media/build55-review2/attempt1-final-push.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "start": "Clicked visible DEPLOY AGAIN button after attempt 1 terminal screen.",
+      "tactics": "More deliberate rifle ADS photographs and weak-point fire; west, Heart, east recovery route; attacked all three coils, returned toward extraction and held the deck.",
+      "outcome": "loss",
+      "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "missionTime": "01:32",
+      "eliminations": 4,
+      "score": 3560,
+      "accuracyPercent": 25,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "progress": "All three memories recovered, all three Custodian coils OFF, uplink released. Entered deck; last preterminal photograph showed 14% uplink. Died during a stationary timed hold.",
+      "honestFailures": "Some east contact shots missed; several obstacles and receiver holds needed repositioning. Took severe damage near Custodian while focused on coils. Did not complete extraction or establish a maximum upload progress between photographs.",
+      "evidence": [
+        "docs/media/build55-review2/attempt2-sentinel-aim.jpg",
+        "docs/media/build55-review2/attempt2-heart-fight.jpg",
+        "docs/media/build55-review2/attempt2-east-receiver.jpg",
+        "docs/media/build55-review2/attempt2-coil2-fire.jpg",
+        "docs/media/build55-review2/attempt2-uplink-enter.jpg",
+        "docs/media/build55-review2/attempt2-uplink-hold2.jpg"
+      ]
+    }
+  ],
+  "weaponHandMaterialHandling": {
+    "rifle": "Dark angular receiver, cyan accent, open rectangular optic, barrel components and pale support glove are readable. ADS centers the weapon and provided a usable sight picture for repeat critical hits. Firing consumed ammo rapidly; reload lowered the weapon, showed Reloading then Weapon ready, and restored magazine after waiting.",
+    "breacher": "Distinct broader, long-barrel body with two prominent yellow sight posts, six-round magazine and separate reserve. Tried ADS, sustained trigger fire, switching and reload. Ammo fell from six to four, later three; reload restored six. No breacher kill confirmed.",
+    "hands": "Visible pale glove/fingers at support grip and simple sleeves. In inspected stills these read as coarse segmented geometry; no convincing detailed skin/fabric, sophisticated finger articulation or intricate manipulation was established. No dedicated animation capture, so cannot judge every reload/pump frame.",
+    "materials": "Weapons and hands have clean broad shaded surfaces and limited fine detail. Concrete shows cracks/mottling, wet ground carries warm reflections, rain and cyan lighting establish a cohesive storm station. Repeated block props and simple robot bodies remain visibly prototype scale/detail.",
+    "handlingLimits": "Two ordinary missions only. No frame-by-frame animation study, audio judgement, controller comparison, exhaustive weapon mechanics, damage model certification, successful extraction or later content coverage."
+  },
+  "strengths": [
+    {
+      "observation": "Strong cyan/amber storm palette, reflective floor, rain and central circular relay landmark give the facility a consistent visual identity.",
+      "evidence": "docs/media/build55-review2/attempt1-breacher.jpg"
+    },
+    {
+      "observation": "Objective names, world signs, distance readouts and paused facility map made the three-memory route understandable without external instructions.",
+      "evidence": "docs/media/build55-review2/attempt1-map.jpg"
+    },
+    {
+      "observation": "Rifle optic weak-point shots visibly rewarded precision with critical elimination feedback; second attempt improved to three combat kills before boss completion.",
+      "evidence": "docs/media/build55-review2/attempt2-heart-fight.jpg"
+    },
+    {
+      "observation": "Numbered coils, OFF states, armored/open-window labels and uplink-release message clearly expose boss progress and objective transition.",
+      "evidence": "docs/media/build55-review2/attempt2-coil2-fire.jpg"
+    },
+    {
+      "observation": "Terminal results and visible retry worked, preserving an understandable mission result.",
+      "evidence": "docs/media/build55-review2/attempt2-uplink-hold2.jpg"
+    }
+  ],
+  "defectsAndFriction": [
+    {
+      "severity": "medium",
+      "observation": "Navigation repeatedly stopped at low cover, bench-like props and boss geometry; some obstacles were legible only after a no-progress movement batch. The vault attempt at the black barrier did not clear it. This cost mission exposure and repeated adjustments.",
+      "evidence": [
+        "docs/media/build55-review2/attempt1-custodian-vault.jpg",
+        "docs/media/build55-review2/attempt2-west-ring.jpg",
+        "docs/media/build55-review2/attempt2-extraction-route.jpg"
+      ],
+      "limit": "Collision intent and exact vault eligibility cannot be diagnosed from visible play alone."
+    },
+    {
+      "severity": "medium",
+      "observation": "MOVE CLOSER at roughly 3.1\u20133.5 M and solid receiver bodies led to repeated unsuccessful E holds around the recovery floor ring. Prompt is clear, but interaction placement felt exacting under fire.",
+      "evidence": [
+        "docs/media/build55-review2/attempt1-west-close.jpg",
+        "docs/media/build55-review2/attempt2-mara-secured.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "observation": "Late combat stacked incoming damage from offscreen enemies while attention was on coil shutters. Direction chevrons and recent-fire text help, but I lost large chunks of health without visually identifying each attacker; still screenshots limit a stronger attribution.",
+      "evidence": [
+        "docs/media/build55-review2/attempt2-coil3-fire.jpg",
+        "docs/media/build55-review2/attempt2-coil-pressure.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "observation": "Weapons, gloves, robot enemies, worktables and large flat walls retain broad block forms and simple materials; inspected hand/weapon presentation lacks the detailed authored surface treatment expected for AAA readiness.",
+      "evidence": [
+        "docs/media/build55-review2/attempt1-breacher.jpg",
+        "docs/media/build55-review2/attempt2-coil-reaim.jpg"
+      ]
+    },
+    {
+      "severity": "low",
+      "observation": "Objective, boss status, instructional announcements, damage indicators, mini-map and textual feeds can compete for attention in combat. Small monospaced text is useful but less immediately readable than the primary HUD.",
+      "evidence": "docs/media/build55-review2/attempt2-east-receiver.jpg"
+    }
+  ],
+  "ratings": {
+    "scale": "0\u201310, independent observed vertical-slice judgement; no target score assumed.",
+    "gameplay": 6.5,
+    "presentation": 6.5,
+    "usability": 6.0,
+    "combatReadability": 6.0,
+    "aaaReadiness": 3.5,
+    "rationale": "A coherent complete mission loop, readable objectives and precision/boss feedback; route friction, crowded threat communication and simple assets/hand detail reduce polish. Neither attempt completed extraction, and synthetic pauses constrain claims about continuous play."
+  },
+  "evidence": {
+    "directory": "docs/media/build55-review2",
+    "actionLog": "docs/media/build55-review2/actions.jsonl",
+    "allActionsAndFailuresPreserved": true,
+    "terminalScreenshots": [
+      "docs/media/build55-review2/attempt1-final-push.jpg",
+      "docs/media/build55-review2/attempt2-uplink-hold2.jpg"
+    ],
+    "runtimeEdited": false
+  },
+  "closure": {
+    "explicitCloseSent": true,
+    "driverPid": 53069,
+    "chromePid": 53079,
+    "driverExitCode": 0,
+    "driverClosedEvent": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "pidVerificationCommand": "ps -p 53069,53079 -o pid=,ppid=,comm=",
+    "pidVerificationExitCode": 1,
+    "pidVerificationOutput": "",
+    "exactOwnedPidsAbsent": true,
+    "unrelatedProcessesKilled": false
+  }
+}

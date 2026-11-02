@@ -1,0 +1,368 @@
+{
+  "scope": "Build55 original first-person finish for both weapons. Bounded pass, overall quality mission unfinished.",
+  "runtimeChanges": [
+    "Breacher visual hand/shell/wrist/sleeve poses only",
+    "Build55 menu label"
+  ],
+  "gameplayTuningChanged": false,
+  "assets": {
+    "author": "Original local procedural Blender geometry and images",
+    "generators": [
+      "tools/build55-viewmodel.py",
+      "tools/build55-breacher.py",
+      "tools/build55_finish.py"
+    ],
+    "rows": [
+      {
+        "name": "coil-rifle-handling",
+        "bytes": 805868,
+        "sha256": "21ce3aed23ca2d3bd5d7935db20352082d7e264a71941dc1f765a1f803b94e93",
+        "triangles": 9712,
+        "drawPrimitives": 8,
+        "materials": 5,
+        "images": 3,
+        "uvPrimitives": 8,
+        "normalMappedMaterials": 5,
+        "roughnessMappedMaterials": 5,
+        "nodes": [
+          "MuzzleAnchor",
+          "ReloadCell",
+          "RifleBody",
+          "SightCenter"
+        ],
+        "estimatedTextureGPUBytesWithMipmaps": 16777216,
+        "embeddedImageBytes": 327984,
+        "normalAttributePrimitives": 8
+      },
+      {
+        "name": "operator-hands",
+        "bytes": 1014144,
+        "sha256": "a9ae0190d01b8e64f89f0092da6b4f9ecfc5d34385d4824533806182b2748555",
+        "triangles": 16352,
+        "drawPrimitives": 8,
+        "materials": 4,
+        "images": 3,
+        "uvPrimitives": 8,
+        "normalMappedMaterials": 4,
+        "roughnessMappedMaterials": 4,
+        "nodes": [
+          "GripGlove",
+          "GripWrist",
+          "GripHand",
+          "Woven forearm.001",
+          "GripSleeve",
+          "SupportGlove",
+          "SupportWrist",
+          "SupportHand",
+          "Woven forearm",
+          "SupportSleeve"
+        ],
+        "estimatedTextureGPUBytesWithMipmaps": 16777216,
+        "embeddedImageBytes": 478671,
+        "normalAttributePrimitives": 8
+      },
+      {
+        "name": "pump-breacher",
+        "bytes": 1676652,
+        "sha256": "e3cac2b270ce624ba514a06000e770b6c1d805a527858174ef601b308df1ef46",
+        "triangles": 21064,
+        "drawPrimitives": 19,
+        "materials": 7,
+        "images": 6,
+        "uvPrimitives": 19,
+        "normalMappedMaterials": 7,
+        "roughnessMappedMaterials": 7,
+        "nodes": [
+          "GripGlove",
+          "GripWrist",
+          "GripHand",
+          "Woven forearm.001",
+          "GripSleeve",
+          "MuzzleAnchor",
+          "Pump",
+          "PumpRib0",
+          "PumpRib1",
+          "PumpRib2",
+          "PumpRib3",
+          "PumpRib4",
+          "PumpRib5",
+          "Receiver",
+          "Shell",
+          "SightCenter",
+          "SupportGlove",
+          "SupportWrist",
+          "SupportHand",
+          "Woven forearm",
+          "SupportSleeve"
+        ],
+        "estimatedTextureGPUBytesWithMipmaps": 33554432,
+        "embeddedImageBytes": 806914,
+        "normalAttributePrimitives": 19
+      }
+    ],
+    "limits": "RGBA8 uncompressed estimate with mipmaps, not hardware measurement; glTF exporter may pack roughness/metalness. No borrowed artwork."
+  },
+  "initialChecks": {
+    "passed": 59,
+    "total": 62,
+    "failures": [
+      "Medical harness disappeared during implementation hot update; retained and passed rerun",
+      "Production asset-ready race: explicit asynchronous readiness wait added, final 14 passed",
+      "Legacy 5000 triangle budget: measured 21064 for breacher with shared rounded gloves; documented ceiling 24000"
+    ]
+  },
+  "checks": [
+    "build55-implementation-suite-suite.json",
+    "build55-implementation-focused.json",
+    "build55-implementation-final.json",
+    "build55-implementation-contracts.json"
+  ],
+  "normalImplementationPlay": "build55-implementation-play.json",
+  "privileged": {
+    "report": "build55-implementation-privileged.json",
+    "outcome": "won",
+    "time": 57.789333333331136,
+    "cores": 3,
+    "bossDead": true,
+    "coils": [
+      0,
+      0,
+      0
+    ],
+    "upload": 1,
+    "errors": []
+  },
+  "independentReviews": [
+    {
+      "raw": "build55-review1.json",
+      "scores": {
+        "gameplay": 6.0,
+        "presentation": 6.5,
+        "usability": 6.0,
+        "combatReadability": 6.5,
+        "aaaReadiness": 3.5
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "outcome": "loss",
+          "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+          "missionTime": "01:48",
+          "eliminations": 1,
+          "score": 3180,
+          "accuracyPercent": 2,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "coresRecovered": [
+            "Mara Solberg",
+            "Sera Nord",
+            "Elian Vale"
+          ],
+          "custodianCoilsDisabled": 0,
+          "summary": "The opening rifle ADS burst visibly produced WARDEN // CRITICAL +180. Many later shots missed, including firing at walls or empty lanes after stale-view turns. Low cover and archive wall detours consumed much of the run. Recovered all cores, reached the Custodian exterior without a clear coil line, and died during a south/west flank and reload.",
+          "honestFailures": [
+            "Repeated cover collisions and wall-facing movement.",
+            "Breacher shots often missed; cannot infer its damage balance from this run.",
+            "Some long bursts were fired without a visible target at the final aim point.",
+            "Heart recovery was tried too far away before moving into its floor ring.",
+            "Custodian firing line was never established."
+          ],
+          "keyEvidence": [
+            "docs/media/build55-review1/attempt1-optic-ads.jpg",
+            "docs/media/build55-review1/attempt1-south-intake.jpg",
+            "docs/media/build55-review1/attempt1-map.jpg",
+            "docs/media/build55-review1/attempt1-west-turn.jpg",
+            "docs/media/build55-review1/attempt1-breacher-contact.jpg",
+            "docs/media/build55-review1/attempt1-exit-lane.jpg",
+            "docs/media/build55-review1/attempt1-breacher-followup.jpg",
+            "docs/media/build55-review1/attempt1-heart-around-cover.jpg",
+            "docs/media/build55-review1/attempt1-three-cores.jpg",
+            "docs/media/build55-review1/attempt1-custodian-volley.jpg",
+            "docs/media/build55-review1/attempt1-custodian-south-flank.jpg"
+          ]
+        },
+        {
+          "number": 2,
+          "outcome": "loss",
+          "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+          "missionTime": "01:28",
+          "eliminations": 2,
+          "score": 3280,
+          "accuracyPercent": 40,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "coresRecovered": [
+            "Sera Nord",
+            "Mara Solberg",
+            "Elian Vale"
+          ],
+          "custodianCoilsDisabled": 2,
+          "custodianFinalVisibleState": "1 100% / 2 OFF / 3 OFF",
+          "summary": "Pump breacher eliminated the opening Warden after several shots and corrections. Reload showed individual Shell seated messages. Recovered Heart first; rifle realignment on its Warden produced the second elimination. Repeated north-wall detours preceded West recovery. Crossed the yard to East, then entered the Custodian hall. Rifle bursts disabled coils 3 and 2. Health fell to 6 while stationary firing with nearby sentinels; a final Shift/reload/strafe attempt ended in death before the remaining coil was disabled.",
+          "honestFailures": [
+            "Early breacher shots and a yard burst missed.",
+            "Several navigation batches still ran into archive walls or took the wrong route.",
+            "Stationary coil firing left me exposed; the final loss is not proof that the encounter is impossible or unfair.",
+            "No extraction/upload completion was observed."
+          ],
+          "keyEvidence": [
+            "docs/media/build55-review1/attempt2-opening-breacher.jpg",
+            "docs/media/build55-review1/attempt2-close-breacher-pair.jpg",
+            "docs/media/build55-review1/attempt2-vault-push.jpg",
+            "docs/media/build55-review1/attempt2-heart-core.jpg",
+            "docs/media/build55-review1/attempt2-rifle-realign.jpg",
+            "docs/media/build55-review1/attempt2-heart-warden-down.jpg",
+            "docs/media/build55-review1/attempt2-clear-north-wall.jpg",
+            "docs/media/build55-review1/attempt2-cross-yard.jpg",
+            "docs/media/build55-review1/attempt2-east-core-try.jpg",
+            "docs/media/build55-review1/attempt2-custodian-front-flank.jpg",
+            "docs/media/build55-review1/attempt2-coil-fire.jpg",
+            "docs/media/build55-review1/attempt2-second-coil-fire.jpg",
+            "docs/media/build55-review1/attempt2-final-coil-try.jpg"
+          ]
+        }
+      ],
+      "closure": {
+        "explicitCloseSent": {
+          "op": "close"
+        },
+        "driverSession": 15075,
+        "driverExitCode": 0,
+        "driverResponse": {
+          "type": "closed",
+          "reason": "input ended or close requested",
+          "driverPid": 51427,
+          "chromePid": 51437,
+          "browserLaunched": true,
+          "browserClosed": true
+        },
+        "pidVerification": {
+          "command": "ps -p 51427,51437 -o pid=,ppid=,command=",
+          "exitCode": 1,
+          "stdout": "",
+          "meaning": "Neither exact owned PID was present after driver exit."
+        },
+        "unrelatedProcessesKilled": false
+      }
+    },
+    {
+      "raw": "build55-review2.json",
+      "scores": {
+        "gameplay": 6.5,
+        "presentation": 6.5,
+        "usability": 6.0,
+        "combatReadability": 6.0,
+        "aaaReadiness": 3.5
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "start": "Visible Enter the Storm button (#deploy).",
+          "tactics": "Critical rifle ADS shot on entry Warden, west side route, tried pump breacher fire/reload, recovered west then Heart then east memories, sprint/Shift and attempted vault, attacked Custodian coils.",
+          "outcome": "loss",
+          "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+          "missionTime": "01:26",
+          "eliminations": 1,
+          "score": 3180,
+          "accuracyPercent": 20,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "progress": "All three memories recovered. Coil 3 OFF; coil 2 last photographed at 90%, coil 1 at 100%. Died while attempting remaining coils.",
+          "honestFailures": "Breacher fired and consumed ammo without an elimination; rifle shots also missed. Multiple recovery holds began outside the receiver reach. Shift moved position and invalidated a follow-up aim. Vault attempt did not clear the encountered black barrier.",
+          "evidence": [
+            "docs/media/build55-review2/attempt1-rifle-ads.jpg",
+            "docs/media/build55-review2/attempt1-breacher.jpg",
+            "docs/media/build55-review2/attempt1-west-recover.jpg",
+            "docs/media/build55-review2/attempt1-east-recover.jpg",
+            "docs/media/build55-review2/attempt1-coils-fire2.jpg",
+            "docs/media/build55-review2/attempt1-final-push.jpg"
+          ]
+        },
+        {
+          "number": 2,
+          "start": "Clicked visible DEPLOY AGAIN button after attempt 1 terminal screen.",
+          "tactics": "More deliberate rifle ADS photographs and weak-point fire; west, Heart, east recovery route; attacked all three coils, returned toward extraction and held the deck.",
+          "outcome": "loss",
+          "terminalText": "OPERATOR LOST / THE STATION REMEMBERS.",
+          "missionTime": "01:32",
+          "eliminations": 4,
+          "score": 3560,
+          "accuracyPercent": 25,
+          "criticalEliminations": 2,
+          "phaseEvades": 0,
+          "progress": "All three memories recovered, all three Custodian coils OFF, uplink released. Entered deck; last preterminal photograph showed 14% uplink. Died during a stationary timed hold.",
+          "honestFailures": "Some east contact shots missed; several obstacles and receiver holds needed repositioning. Took severe damage near Custodian while focused on coils. Did not complete extraction or establish a maximum upload progress between photographs.",
+          "evidence": [
+            "docs/media/build55-review2/attempt2-sentinel-aim.jpg",
+            "docs/media/build55-review2/attempt2-heart-fight.jpg",
+            "docs/media/build55-review2/attempt2-east-receiver.jpg",
+            "docs/media/build55-review2/attempt2-coil2-fire.jpg",
+            "docs/media/build55-review2/attempt2-uplink-enter.jpg",
+            "docs/media/build55-review2/attempt2-uplink-hold2.jpg"
+          ]
+        }
+      ],
+      "closure": {
+        "explicitCloseSent": true,
+        "driverPid": 53069,
+        "chromePid": 53079,
+        "driverExitCode": 0,
+        "driverClosedEvent": {
+          "reason": "input ended or close requested",
+          "browserLaunched": true,
+          "browserClosed": true
+        },
+        "pidVerificationCommand": "ps -p 53069,53079 -o pid=,ppid=,comm=",
+        "pidVerificationExitCode": 1,
+        "pidVerificationOutput": "",
+        "exactOwnedPidsAbsent": true,
+        "unrelatedProcessesKilled": false
+      }
+    }
+  ],
+  "freeze": {
+    "files": 299,
+    "beforeBetweenAfterEqual": true,
+    "digest": "a44b1f3d41a4e1a07bd256d385e3fd4630cce5c28fafdea401da31f78f8a545c"
+  },
+  "postReviewBookkeeping": {
+    "unreviewed": true,
+    "files": [
+      "public/assets/pump-breacher-provenance.json",
+      "tools/build55-breacher.py",
+      "tests/build50-assets.mjs"
+    ],
+    "reason": "Correct stale texture/triangle metadata and legacy geometry budget; no runtime, GLB, PNG or native blend change. No rescore."
+  },
+  "limits": [
+    "Rigid grip fingers rather than articulated hand skeleton or contact IK",
+    "Coarse segmented closeup hand shapes; limited visible fine material detail independently reported",
+    "Near-wall weapon occlusion remains",
+    "Software WebGL, synthetic paused input and capture drift; no human enjoyment/audio/hardware/AAA certification",
+    "Four independent losses; one independently defeated boss and reached 14% photographed upload, no independent extraction win"
+  ],
+  "finalVerification": {
+    "productionChecks": 14,
+    "productionLog": "build55-postreview-production.txt",
+    "assetBudgetCheckExit": 0,
+    "reviewedRuntimeAndVisualAssetsUnchanged": true,
+    "sourceAndProductionReferences": 782,
+    "missingReferences": [],
+    "protectedHTTP": [
+      {
+        "url": "http://127.0.0.1:5173/",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:61467/",
+        "status": 200
+      },
+      {
+        "url": "http://bonnies-macbook-air.tail21e865.ts.net:5173/",
+        "status": 200
+      }
+    ],
+    "allRecordedDriverPidsAbsent": true,
+    "historicalHTMLAndParentEvidenceByteIdentical": true
+  }
+}

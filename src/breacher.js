@@ -56,15 +56,21 @@ export function poseBreacher(g,{ads,bob}){
  const progress=g.reloading?1-g.reloadTimer/.55:0,insert=Math.sin(progress*Math.PI);
  g.weapon.position.set(.3*(1-ads),-.28+ads*.13-Math.abs(bob),-.28+g.kick*.07*(g.options.reducedMotion?0:1));
  g.weapon.rotation.set(0,0,0);
- for(const name of ['Pump','SupportHand']){const o=model.getObjectByName(name);if(o){o.userData.home??=o.position.clone();o.position.copy(o.userData.home);o.position.z+=cycle;if(name==='SupportHand'){o.position.y-=insert*.12;o.position.z+=insert*.35;}}}
+ for(const name of ['Pump','SupportHand']){const o=model.getObjectByName(name);if(o){o.userData.home??=o.position.clone();o.position.copy(o.userData.home);o.position.z+=cycle;if(name==='SupportHand'){o.position.x+=insert*.012;o.position.y+=insert*.001;o.position.z+=insert*.37;}}}
  const vaultReach=g.vault?Math.sin(Math.PI*g.vault.elapsed/.62):0;
  const support=model.getObjectByName('SupportHand');if(support&&vaultReach){support.position.y+=.13*vaultReach;support.position.z-=.14*vaultReach;}
  // Bridge each moving wrist to its fixed off-screen elbow; hands never scale.
  for(const [side,elbow,length] of [['Support',new T.Vector3(-.24,-.34,-.03),.62],['Grip',new T.Vector3(.25,-.36,.25),.5]]){
   const sleeve=model.getObjectByName(side+'Sleeve'),hand=model.getObjectByName(side+'Hand');if(!sleeve||!hand)continue;
-  const wrist=hand.position.clone(),direction=wrist.clone().sub(elbow);sleeve.position.copy(elbow).add(wrist).multiplyScalar(.5);sleeve.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),direction.clone().normalize());sleeve.scale.set(1,1,direction.length()/length);
+  const anchor=model.getObjectByName(side+'Wrist');
+  if(anchor){
+   model.updateWorldMatrix(true,true);const wrist=model.worldToLocal(anchor.getWorldPosition(new T.Vector3())),direction=wrist.clone().sub(elbow);
+   sleeve.position.copy(elbow);sleeve.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),direction.clone().normalize());sleeve.scale.set(1,direction.length(),1);
+  }else{
+   const wrist=hand.position.clone(),direction=wrist.clone().sub(elbow);sleeve.position.copy(elbow).add(wrist).multiplyScalar(.5);sleeve.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),direction.clone().normalize());sleeve.scale.set(1,1,direction.length()/length);
+  }
  }
- const shell=model.getObjectByName('Shell');if(shell){shell.visible=g.reloading;shell.position.y=-.16-insert*.08;shell.position.z=-.35+insert*.12;}
+ const shell=model.getObjectByName('Shell');if(shell){shell.visible=g.reloading;if(support&&model.getObjectByName('SupportWrist')){model.updateWorldMatrix(true,true);const contact=support.localToWorld(new T.Vector3(.003,-.068,-.565));shell.position.copy(model.worldToLocal(contact));}else{shell.position.y=-.16-insert*.08;shell.position.z=-.35+insert*.12;}}
  for(let i=0;i<6;i++){const rib=model.getObjectByName('PumpRib'+i);if(rib){rib.userData.home??=rib.position.clone();rib.position.copy(rib.userData.home);rib.position.z+=cycle;}}
  const anchor=model.getObjectByName('MuzzleAnchor');if(anchor){model.updateWorldMatrix(true,true);g.muzzle.position.copy(g.weapon.worldToLocal(anchor.getWorldPosition(new T.Vector3())));}else g.muzzle.position.set(0,.035,-1.14);
 }

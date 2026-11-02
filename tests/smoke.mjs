@@ -20,6 +20,8 @@ try {
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('response',r=>{if(r.status()>=400)failedRequests.push(`${r.status()} ${r.url()}`)});
  await page.goto(`${base}/?test=1`);await page.waitForFunction(()=>window.__SOULFALL__,null,{timeout:60000});
  assert.equal((await state(page)).phase,'ready');assert.equal(await page.locator('#deploy').isEnabled(),true);
+ // Game readiness permits the functional fallback while hero assets decode.
+ await page.waitForFunction(()=>{const g=window.__SOULFALL__?.game;return g?.weaponAsset&&g.sentinelAsset},null,{timeout:15000});
  const assets=await page.evaluate(()=>({meshes:window.__SOULFALL__.game.renderer.info.render.calls,weapon:!!window.__SOULFALL__.game.weaponAsset,sentinel:!!window.__SOULFALL__.game.sentinelAsset}));assert.ok(assets.weapon&&assets.sentinel);assert.ok(assets.meshes>0);
  mkdirSync('docs/media',{recursive:true});await page.screenshot({path:'docs/media/current-title.png'});record('WebGL & Blender assets',`Actual renderer initialized; weapon + sentinel GLBs loaded; ${assets.meshes} draw calls in title frame.`);
  await page.click('#open-settings');await page.locator('#volume').fill('0.35');await page.locator('#sensitivity').fill('1.25');await page.locator('#motion').check();await page.locator('#settings-dialog [data-close]').last().click();

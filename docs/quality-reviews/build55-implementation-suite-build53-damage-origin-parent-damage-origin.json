@@ -1,0 +1,25 @@
+{
+  "method": "Arranged actual projectile and existing HUD, not ordinary play or independent rescore.",
+  "checks": [
+    "real swept projectile applies unchanged Sentinel damage",
+    "actual projectile records its historical muzzle origin",
+    "indicator bears toward recorded shot origin",
+    "moving shooter cannot move indicator; camera rotation still works",
+    "fixture really obscures the recorded origin",
+    "new cover does not erase an already received hit",
+    "subsequent shooter defeat does not erase recent hit",
+    "historical hit reaches existing visible damage indicator",
+    "pause hides historical cue",
+    "map hides historical cue",
+    "historical cue expires after unchanged 1.1 seconds",
+    "in-flight shot may report its origin after its shooter is gone",
+    "mutable projectile/source vector cannot move stored hit origin",
+    "unlocated environmental damage clears prior direction",
+    "existing phase protection neither damages nor invents a hit origin",
+    "located environmental blast reports its actual origin without an enemy identity",
+    "restart clears historical origin and source"
+  ],
+  "initialShield": 60,
+  "damage": 19,
+  "errors": []
+}
