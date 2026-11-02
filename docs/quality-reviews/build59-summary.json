@@ -1,0 +1,133 @@
+{
+  "build": 59,
+  "baseline": "d3384ebde127d084866ee95f4cca4ff230339754",
+  "scope": "Documentation-only independent review; exactly two fresh GPT-6.1 Sol reviewers, sequential, two terminal normal-URL attempts each. No post-review tuning or rescoring.",
+  "rawScores": {
+    "review1": {
+      "gameplay": 5.5,
+      "presentation": 7.0,
+      "usability": 5.5,
+      "readability": 6.0,
+      "AAA_readiness": 3.0
+    },
+    "review2": {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 6,
+      "aaaReadiness": 3
+    }
+  },
+  "outcomes": [
+    {
+      "reviewer": 1,
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "time": "00:55",
+      "memories": 2,
+      "eliminations": 1,
+      "accuracyPercent": 7,
+      "boss": "not reached",
+      "upload": "not reached"
+    },
+    {
+      "reviewer": 1,
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "time": "00:38",
+      "memories": 2,
+      "eliminations": 3,
+      "accuracyPercent": 35,
+      "boss": "not reached",
+      "upload": "not reached"
+    },
+    {
+      "reviewer": 2,
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "time": "01:33",
+      "memories": 3,
+      "eliminations": 2,
+      "accuracyPercent": 10,
+      "boss": {
+        "lastLiveCoils": {
+          "1": "100%",
+          "2": "OFF",
+          "3": "OFF"
+        },
+        "disabledCount": 2,
+        "damageEvidence": [
+          "attempt1-coil-burst.jpg",
+          "attempt1-right-coil.jpg"
+        ],
+        "uploadCoverage": "None; never reached extraction objective."
+      },
+      "upload": "None; never reached extraction objective."
+    },
+    {
+      "reviewer": 2,
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "time": "01:08",
+      "memories": 3,
+      "eliminations": 2,
+      "accuracyPercent": 26,
+      "boss": {
+        "disabledCount": 3,
+        "observedOrder": [
+          1,
+          2,
+          3
+        ],
+        "damageEvidence": [
+          "attempt2-first-coil-fire.jpg",
+          "attempt2-middle-coil-fire.jpg",
+          "attempt2-last-coil-fire.jpg"
+        ],
+        "uploadCoverage": "Entered extraction with20health;12% then50% visible. Died during final2.6s defense batch; final percentage unknown, no completed upload."
+      },
+      "upload": "Entered extraction with20health;12% then50% visible. Died during final2.6s defense batch; final percentage unknown, no completed upload."
+    }
+  ],
+  "cueEvidence": {
+    "review1": "a1-heart.jpg: nearby Sera / Heart3.7m /0.9m outside; a1-heart-recovered.jpg is a failed hold at2.9m /0.2m outside despite filename; a1-heart-align.jpg confirms actual recovery after lateral correction.",
+    "review2": "attempt1-east-return.jpg: nearby Elian /2.9m /0.1m outside; short correction then recovery. attempt2-mara.jpg0.8m outside and attempt2-elian.jpg0.5m outside precede successful corrections.",
+    "limit": "Visible labels and reported use of reach/map cues do not isolate causal benefit of Build59. Reviewers were not primed about the change. No independent map target selection/held Tab preservation test."
+  },
+  "findings": [
+    "Repeated out-of-reach holds and overshoots cost exposure; assess ring depth/approach readability.",
+    "Pillars, low cover and archive/hall walls required corrections; assess route readability under pressure.",
+    "Small threats, repeated geometry and competing cues remain concerns; retain exact aim/miss records.",
+    "Reviewer2 reached50% upload with7health; defense failed. More combat-focused route benefit is untested."
+  ],
+  "separateParentEvidence": "Parent trial is source-informed, deliberately nonterminal; privileged mission controller won using internal position/collider information. Neither is an independent attempt.",
+  "limits": [
+    "All four independent attempts lost.",
+    "Pause-assisted synthetic input; fallback mouse-button look and imperfect aiming.",
+    "No continuous human enjoyment/audio/hardware validation or AAA certification.",
+    "Software rendering flags do not certify hardware rendering.",
+    "No post-review implementation; broader quality mission unfinished."
+  ],
+  "preservation": "Freeze before/between/after/final covers runtime/src/assets/driver/package/index/vite and parent evidence; historical evidence retained.",
+  "cleanup": {
+    "exactPidsAbsent": [
+      74604,
+      74614,
+      75098,
+      75108
+    ],
+    "driversExited": 0,
+    "services": {
+      "5173": 200,
+      "61467": 200
+    },
+    "protectedBuild23": "Snapshot, Python63172, Tailnet/Serve and release left untouched."
+  },
+  "validation": {
+    "productionChecks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "warning": "Existing chunk-size warning",
+    "retainedHarnessFailure": "build59-review-validation-failure.json; corrected namespace isolation; no test assertion failure"
+  }
+}

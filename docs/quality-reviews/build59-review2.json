@@ -1,0 +1,176 @@
+{
+  "build": 59,
+  "reviewer": "review2",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "attemptCount": 2,
+    "terminalAttempts": 2,
+    "driver": "tools/visible-playtest.mjs",
+    "inputMode": "browser synthetic ordinary UI",
+    "inspection": "Only driver help and own visible UI/screenshots; no source, other reports, hidden state, evaluation, debug, testURL, teleport, arranged actors or privileged controller.",
+    "preview": "Not retried; parent reported two preview snapshot timeouts. Installed owned Chrome fallback used.",
+    "limitations": [
+      "Paused synthetic input with short action batches; cannot establish continuous human aiming, enjoyment or real-time handling.",
+      "Software-WebGL fallback enabled; no hardware performance conclusions.",
+      "No audio evaluation."
+    ]
+  },
+  "rawScores": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "aaaReadiness": 3
+  },
+  "scoreRationale": {
+    "gameplay": "Coil destruction and objective recovery gave meaningful progress, but I mostly bypassed enemies and lost both runs; sustained combat quality remains uncertain.",
+    "presentation": "Strong rainy teal/orange station atmosphere, wet reflections and coherent title/HUD; repeated blocky enemies and architecture remain visibly prototype-like.",
+    "usability": "Persistent controls, exact outside-reach prompts and paused map support recovery; collision and camera steering required repeated corrections.",
+    "readability": "Objectives and coil percentages are useful. Small typography, crowded overlapping cues, offscreen receiver markers and architectural occlusion made quick interpretation difficult.",
+    "aaaReadiness": "Playable slice with a clear loop, but these two losses and limited automation cannot certify polish, breadth or AAA readiness."
+  },
+  "teaching": {
+    "noticed": [
+      "Menu: recover three soul cores, disable jammer, upload inside marked deck; outside pauses briefly then decays.",
+      "HUD: WASD, mouse look, C crouch, Ctrl sprint, R reload, Space vault/jump, Shift phase dash, hold E recover, RMB aim.",
+      "Induction instruction: aim optic, Shift amber charge or flank.",
+      "West triage storage blocks sightlines; south intake/east service.",
+      "Heart guard: break warden to open armor or aim optic.",
+      "East interceptors track movement; change direction after charge.",
+      "Boss: shutters armored/chip or wait opening, clear components, numbered coils; Shift close breaks lanes.",
+      "Map freezes mission; receiver reach ring and exact outside-reach distances."
+    ],
+    "usedWithObservedResults": [
+      "Optic-directed opening burst eliminated induction guard in each run.",
+      "Hold E recovered all three memories each run after position corrections.",
+      "Map visibly clarified my overshoot north of Mara and Heart in attempt1; southward corrections then succeeded.",
+      "Ctrl sprint sped traversal but also collided with a pillar in attempt2.",
+      "Close Shift produced CUSTODIAN PHASE BREAK / COILS OPEN 3s in attempt1, followed by coil2 disable. No phase evade credited at either terminal.",
+      "R reload replenished magazine; some captures showed reload still pending.",
+      "Crouched strafe during upload increased visible progress from12% to50%, but health fell20 to7 and I subsequently died; no claim of tactical benefit."
+    ],
+    "unproven": [
+      "Saw vault clear-landing cue but did not use Space.",
+      "Saw interceptor movement advice but did not verify a successful charge dodge.",
+      "Saw upload outside pause/decay instruction but did not leave/reenter or verify decay.",
+      "No map target selection, Tab trace, shotgun or service recovery tested."
+    ]
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:33",
+      "score": 3360,
+      "eliminations": 2,
+      "accuracyPercent": 10,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "memoriesRecovered": 3,
+      "boss": {
+        "lastLiveCoils": {
+          "1": "100%",
+          "2": "OFF",
+          "3": "OFF"
+        },
+        "disabledCount": 2,
+        "damageEvidence": [
+          "attempt1-coil-burst.jpg",
+          "attempt1-right-coil.jpg"
+        ],
+        "uploadCoverage": "None; never reached extraction objective."
+      },
+      "actionNarrative": [
+        "Raised aim20 relative pixels and fired1.8s at induction optic: one critical elimination;18 rounds spent. Reloaded while W+A toward west.",
+        "Advanced diagonally then forward; E was too far away. Cover blocked progress. A leftward aiming/strafe burst spent14 rounds without kill and lost shield.",
+        "Flanked into wall; D2s then W1.6s reached4.2m outside ring. W450ms overshot receiver northward; E failed and another12-round burst failed to kill sentinel.",
+        "Paused M map showed position north/east of Mara. S+A750ms plus E2.4s recovered her.",
+        "Turned east and sprinted, then north toward Heart. First E outside ring failed. Shift plus A600ms and burst failed to recover and left69health. Map showed north of receiver; S600ms plus E recovered Sera.",
+        "Turned southeast/sprinted toward east; shot nearby sentinel low and gained second elimination. A/W flank went too far northeast. Map showed overshoot; southwest return reached2.9m but E failed by0.1m. W160ms plus E recovered Elian.",
+        "Sprinted southwest into hall wall. Sidestep/forward route around it, several turns and fallback right-button look eventually found coils.",
+        "Close Shift opened coils. Aimed left/up and fired21 rounds:coil2 OFF. Reloaded and aimed right;27-round burst:coil3 OFF, shield34.",
+        "Repositioned left then turned too far left, firing24 rounds away from remaining coil1; health36. Tried reloading/reaiming/Shift but died before useful recovery."
+      ],
+      "keyEvidence": [
+        "attempt1-start.jpg",
+        "attempt1-map.jpg",
+        "attempt1-heart-map.jpg",
+        "attempt1-east-map.jpg",
+        "attempt1-coils-view.jpg",
+        "attempt1-coil-burst.jpg",
+        "attempt1-right-coil.jpg",
+        "attempt1-left-coil.jpg",
+        "attempt1-last-coil-reaim.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:08",
+      "score": 3280,
+      "eliminations": 2,
+      "accuracyPercent": 26,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "memoriesRecovered": 3,
+      "boss": {
+        "disabledCount": 3,
+        "observedOrder": [
+          1,
+          2,
+          3
+        ],
+        "damageEvidence": [
+          "attempt2-first-coil-fire.jpg",
+          "attempt2-middle-coil-fire.jpg",
+          "attempt2-last-coil-fire.jpg"
+        ],
+        "uploadCoverage": "Entered extraction with20health;12% then50% visible. Died during final2.6s defense batch; final percentage unknown, no completed upload."
+      },
+      "actionNarrative": [
+        "Restarted with visible DEPLOY AGAIN. Raised aim and fired1s; induction critical kill. W+A sprint then W sprint reached west8m.",
+        "W+A1.1s E failed at3.6m/outside0.8m; W400ms plus E recovered Mara.",
+        "NE sprint hit a pillar; heart distance barely changed32 to31m while shield fell41 to3. D800ms then sprint3.2s corrected collision and reached9m.",
+        "Turned northwest and moved1.5s; E failed at5.5m. D900ms plus E recovered Sera.",
+        "Southeast sprint reached east8m; W+D1.2s E failed by0.5m. W300ms plus E recovered Elian.",
+        "Southwest sprint reached hall wall7m. D1.3s/W1.5s and turn faced visible side coil12m away.",
+        "Aimed115px right/15px up and fired1.8s; coil1 OFF. Reload/forward moved near assembly. Sidestepped south and turned toward remaining coils.",
+        "Aimed middle coil and fired2.7s; coil2 OFF,health78. Reloaded/reaimed right, fired2.5s; all coils disabled and RETURN TO EXTRACTION,health33.",
+        "Turned southwest/sprinted1.8s onto deck:12% upload,20health. Crouched/reloaded/turned north, strafed left then right:50% upload,7health.",
+        "Aimed left at interceptor while strafing right and firing; died at01:08. This defense did not demonstrate a successful evade or survival strategy."
+      ],
+      "keyEvidence": [
+        "attempt2-start.jpg",
+        "attempt2-heart-route.jpg",
+        "attempt2-pillar-correction.jpg",
+        "attempt2-first-coil-fire.jpg",
+        "attempt2-middle-coil-fire.jpg",
+        "attempt2-last-coil-fire.jpg",
+        "attempt2-extraction-run.jpg",
+        "attempt2-upload-defense.jpg",
+        "attempt2-upload-final-defense.jpg"
+      ]
+    }
+  ],
+  "findings": [
+    "Repeatedly stopping just outside receiver reach cost exposed time; precise distance prompts enabled correction, but image-space ring interpretation remained difficult.",
+    "Boss side approach gave a clear shot to coil1 in second run; close frontal view in first run exposed coils2/3 but hid coil1. This is observed access, not a general route recommendation.",
+    "Successful coil hits gave clear OFF and visual blackened-coil feedback. Shooting disabled/inert housing or scenery wasted rounds in first attempt.",
+    "Low health entering extraction was decisive in second run. I left most patrol enemies alive and did not establish whether a more combat-focused approach improves survival.",
+    "A look-only batch had unchanged heading at capture; right-mouse look fallback visibly turned the camera. Relative sensitivity and delayed capture made aim imperfect.",
+    "No page errors reported by driver; no inference of absence of other bugs."
+  ],
+  "evidenceDirectory": "docs/media/build59-review2/",
+  "cleanup": {
+    "driverPid": 75098,
+    "chromePid": 75108,
+    "explicitClose": true,
+    "driverExitCode": 0,
+    "driverCloseResponse": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification": "ps -p 75098,75108 -o pid=,comm= returned exit1 with empty output after awaited driver exit: both exact PIDs absent."
+  }
+}

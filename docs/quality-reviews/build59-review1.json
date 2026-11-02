@@ -1,0 +1,142 @@
+{
+  "reviewer": "build59-review1",
+  "build": 59,
+  "url": "http://127.0.0.1:5173/",
+  "method": "Exactly two terminal attempts through normal visible UI using installed Chrome and tools/visible-playtest.mjs; only driver help and own UI/screenshots inspected. No source, reports, eval, debug, test URL, teleport, arranged actors, privileged state or controller used.",
+  "evidence_directory": "docs/media/build59-review1/",
+  "limitations": [
+    "Paused synthetic input and screenshot batches limit conclusions about continuous human aiming and enjoyment.",
+    "Software WebGL fallback; no hardware performance or GPU certification conclusion.",
+    "Mouse capture unavailable; visible UI taught hold mouse button and drag. Right mouse drag used.",
+    "No boss damage, disable, upload, or success phase reached; those remain unassessed."
+  ],
+  "scores_raw_0_to_10": {
+    "gameplay": 5.5,
+    "presentation": 7.0,
+    "usability": 5.5,
+    "readability": 6.0,
+    "AAA_readiness": 3.0
+  },
+  "score_reasons": {
+    "gameplay": "Objective recovery and ranged pressure created actual decisions, but both runs ended while navigating with very limited successful aiming. Combat depth and late mission are unproven.",
+    "presentation": "Cohesive rain, teal/amber lighting, large typography and clean terminal screens; repeated blocky robots and cover geometry remain visibly prototype-like.",
+    "usability": "Move, map, reload, vault, recovery and fallback look were taught. Map helped plan/correct routes. Reach boundary caused several failed holds under damage; movement into pillars/walls needed correction.",
+    "readability": "Readable objective distances, health/ammo and recovery confirmations. Multiple simultaneous contextual panels, minimap, damage arrows and enemy status compete for attention; enemy optic aim remained difficult in these batches.",
+    "AAA_readiness": "Limited observed encounter/content range, coarse repeated geometry and incomplete end-to-end coverage. No AAA certification implied."
+  },
+  "controls_noticed_and_used": [
+    "WASD movement",
+    "R reload",
+    "M paused facility map",
+    "Space vault/jump",
+    "Hold E recover",
+    "Shift phase dash",
+    "Ctrl sprint",
+    "right mouse button drag fallback look",
+    "left mouse fire",
+    "Escape/visible Resume between screenshots"
+  ],
+  "controls_noticed_not_demonstrated": [
+    "C crouch hint appeared but not used",
+    "Tab trace taught by map but not used",
+    "weapon 1/2 shown but remained rifle"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal": "OPERATOR LOST",
+      "mission_time": "00:55",
+      "score": 2180,
+      "eliminations": 1,
+      "accuracy_percent": 7,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "actions_and_failures": [
+        "Fired centered 1.3s rifle burst at induction guard; kill/critical feed confirmed. Advanced north, opened M map, then moved west and north.",
+        "Stopped at low cover; Space with forward movement vaulted through. E at 5.4m failed; moved 700ms closer and held E to recover Mara.",
+        "Right-button look x100 changed heading 000 to007; fired 1.5s toward sentinel, no elimination, ammo18 to04, shield60 to22. These were misses or ineffective shots, not successful tactical use.",
+        "Reloaded while advancing toward Heart. E failed at3.7m, then again at2.9m with0.2m outside-reach prompt.",
+        "Used forward Shift and fired20 rounds. Warden status changed to armor open, but kill stayed1 and terminal credited0 phase evades. No demonstrated benefit claimed from cue alone.",
+        "Moved right400ms and held E; Sera recovered.",
+        "Moved east then south; turned right via1000px drag to079 and mistakenly advanced toward outer boundary, distance to Elian increased11 to17m. Map showed position beyond northeast of receiver; attempted south/west correction, died."
+      ],
+      "evidence": [
+        "attempt1-start.jpg",
+        "a1-map.jpg",
+        "a1-west.jpg",
+        "a1-vault.jpg",
+        "a1-recover.jpg",
+        "a1-east-exit.jpg",
+        "a1-heart.jpg",
+        "a1-heart-recovered.jpg",
+        "a1-heart-dash.jpg",
+        "a1-heart-align.jpg",
+        "a1-map2.jpg",
+        "a1-east-correct.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "terminal": "OPERATOR LOST",
+      "mission_time": "00:38",
+      "score": 2300,
+      "eliminations": 3,
+      "accuracy_percent": 35,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "recovered": [
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "actions_and_failures": [
+        "Clicked visible Deploy Again. Killed induction guard with1.2s centered burst. Chose east-first route rather than previous west-first.",
+        "Moved right4s and north4s. Continued forward and Space; reached pillar obstructing view/movement. Sidestepped right450ms, advanced1200ms, held E and recovered Elian.",
+        "Moved left4.5s and north1.4s toward Heart, prematurely held E; failed recovery while health fell89 shield0.",
+        "Forward Shift600ms then2s rifle burst near Heart killed second enemy, but health fell31. E failed0.8m outside reach. Advanced350ms with reload, then held E; Sera recovered, health38 shield22.",
+        "Tried Ctrl+left sprint2.4s then backward1.6s toward west archive; blocked route/wall left target15m away. Health19 shield0.",
+        "Aimed170px right and20px down at visible sentinel, fired while moving backward and using Shift; then attempted left movement. Third elimination registered but died at00:38. No phase evade credited."
+      ],
+      "evidence": [
+        "attempt2-start.jpg",
+        "a2-east-route.jpg",
+        "a2-east-vault.jpg",
+        "a2-east-recover.jpg",
+        "a2-heart-route.jpg",
+        "a2-heart-dash-fire.jpg",
+        "a2-heart-correction.jpg",
+        "a2-west-sprint.jpg",
+        "a2-west-recovery.jpg"
+      ]
+    }
+  ],
+  "coverage": {
+    "boss_damage": "absent",
+    "boss_disable": "absent",
+    "upload": "absent",
+    "terminal_attempts": 2,
+    "nonterminal_abandoned_attempts": 0,
+    "uncertainties": [
+      "Exact damage sources during movement cannot be assigned reliably from paused screenshots.",
+      "Enemy armor-open cue seen after dash, but attempt1 shots did not kill; attempt2 kill occurred after dash/fire without isolating cause.",
+      "No conclusion about late mission difficulty, upload readability, full completion, continuous aiming or human enjoyment."
+    ]
+  },
+  "cleanup": {
+    "driver_pid": 74604,
+    "chrome_pid": 74614,
+    "explicit_close_sent": true,
+    "closed_response": {
+      "reason": "input ended or close requested",
+      "browserClosed": true
+    },
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 74604,74614 -o pid=,comm=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "both_exact_pids_absent": true
+  }
+}

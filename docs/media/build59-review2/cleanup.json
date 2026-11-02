@@ -1,0 +1,12 @@
+{
+  "driverPid": 75098,
+  "chromePid": 75108,
+  "explicitClose": true,
+  "driverExitCode": 0,
+  "driverCloseResponse": {
+    "reason": "input ended or close requested",
+    "browserLaunched": true,
+    "browserClosed": true
+  },
+  "verification": "ps -p 75098,75108 -o pid=,comm= returned exit1 with empty output after awaited driver exit: both exact PIDs absent."
+}

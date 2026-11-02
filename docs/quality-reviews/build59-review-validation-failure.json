@@ -1,0 +1,7 @@
+{
+  "phase": "final validation wrapper after first successful link check",
+  "error": "TypeError: unsupported operand type(s) for /: 'Parser' and 'str'",
+  "cause": "Executing legacy link validator in wrapper namespace overwrote wrapper path variable p. Link check itself passed883 source/shipped resources.",
+  "correction": "Run output-path-only validator in isolated namespace; no runtime or test changes.",
+  "runtimeFailure": false
+}
