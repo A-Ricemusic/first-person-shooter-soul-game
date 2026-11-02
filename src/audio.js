@@ -1,6 +1,6 @@
 /** All sounds are authored at runtime; no third-party samples. */
 export class SoulAudio {
-  constructor() { this.volume = 0.65; this.ctx = null; }
+  constructor() { this.volume = 0.65; this.ctx = null; this.oneShots=new Set(); }
   wake() {
     try {
       if (!this.ctx) {
@@ -33,6 +33,10 @@ export class SoulAudio {
     if(active)this.ctx.resume().catch(()=>{});
     else if(suspend && this.ctx.state==='running')this.ctx.suspend().catch(()=>{});
   }
+  track(source,...nodes) {
+    this.oneShots.add(source);source.onended=()=>{this.oneShots.delete(source);source.disconnect();for(const node of nodes)node.disconnect()};
+  }
+  clearTransient() { for(const source of this.oneShots){try{source.stop()}catch{}source.disconnect()}this.oneShots.clear(); }
   setVolume(v) { this.volume = Math.max(0, Math.min(1, Number(v) || 0)); if (this.master) this.master.gain.setTargetAtTime(this.volume * 0.5, this.ctx.currentTime, 0.03); }
   tone(frequency, duration, type = 'sine', gain = 0.3, end = frequency, delay = 0) {
     if (!this.ctx || this.ctx.state !== 'running') return;
@@ -40,14 +44,14 @@ export class SoulAudio {
     const o = this.ctx.createOscillator(), g = this.ctx.createGain();
     o.type = type; o.frequency.setValueAtTime(frequency, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, end), t + duration);
     g.gain.setValueAtTime(0.001, t); g.gain.linearRampToValueAtTime(gain, t + 0.006); g.gain.exponentialRampToValueAtTime(0.001, t + duration);
-    o.connect(g); g.connect(this.master); o.start(t); o.stop(t + duration + 0.01);
+    this.track(o,g);o.connect(g); g.connect(this.master); o.start(t); o.stop(t + duration + 0.01);
   }
   burst(duration, gain = 0.4, cutoff = 1200) {
     if (!this.ctx || this.ctx.state !== 'running') return;
     const t = this.ctx.currentTime, source = this.ctx.createBufferSource(), g = this.ctx.createGain(), filter = this.ctx.createBiquadFilter();
     source.buffer = this.noise; filter.type = 'lowpass'; filter.frequency.value = cutoff;
     g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(0.001, t + duration);
-    source.connect(filter); filter.connect(g); g.connect(this.master); source.start(t, Math.random() * 0.7); source.stop(t + duration);
+    this.track(source,filter,g);source.connect(filter); filter.connect(g); g.connect(this.master); source.start(t, Math.random() * 0.7); source.stop(t + duration);
   }
   shoot() { this.burst(0.13, 0.8, 3400); this.tone(140, 0.11, 'triangle', 0.65, 38); this.tone(1600, 0.035, 'square', 0.1, 260); }
   hit(head) { this.tone(head ? 1400 : 800, 0.06, 'sine', 0.18, head ? 1800 : 500); }
@@ -62,10 +66,10 @@ export class SoulAudio {
     p.pan.value=Math.max(-1,Math.min(1,pan));o.frequency.setValueAtTime(320,t);o.frequency.linearRampToValueAtTime(560,t+.22);
     g.gain.setValueAtTime(.001,t);g.gain.linearRampToValueAtTime(.16*Math.min(1,12/Math.max(1,distance)),t+.025);g.gain.exponentialRampToValueAtTime(.001,t+.24);
     o.connect(g);g.connect(p);p.connect(this.master);o.start();o.stop(t+.25);
-    o.onended=()=>{o.disconnect();g.disconnect();p.disconnect();};
+    this.track(o,g,p);
   }
   footstep(sprint) { this.burst(0.07, sprint ? 0.11 : 0.06, 450); }
   win() { [220, 277, 330, 440, 554, 660].forEach((f, i) => this.tone(f, 1.7, 'sine', 0.17, f, i * 0.13)); }
   lose() { this.tone(180, 1.3, 'sawtooth', 0.13, 35); }
-  dispose() { this.bedSources?.forEach(s=>s.stop()); this.ctx?.close(); }
+  dispose() { this.clearTransient();this.bedSources?.forEach(s=>s.stop()); this.ctx?.close(); }
 }

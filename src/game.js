@@ -6,7 +6,7 @@ import {nearLowCover} from './control-hints.js';
 import {shootBreacher,buildBreacher,poseBreacher} from './breacher.js';
 import {CONTACT_WINDUP,fallbackContact,attachContact,contactReach,animateContact,cancelContact} from './contact-discharge.js';
 import {prepareCustodianTurn,custodianAim,custodianObjectiveVisible,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
-import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
+import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors,visualCapacitor} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
 import * as THREE from 'three';
@@ -290,15 +290,39 @@ export class Game {
   }
 
   setSettings(options = {}) {
+    if(options.difficulty && options.difficulty!==this.options.difficulty)this.invalidateAnchor();
     this.options = { ...this.options, ...options }; this.routeHelp?.reset();this.routeWaypoint=null;if(this.routeTrace)this.routeTrace.visible=false;this.routePath=[];this.routeNext=0; this.audio.setVolume(this.options.volume);
     if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? 2 : 1.5)); this.renderer.shadowMap.enabled = options.quality !== 'low'; }
     this.resize?.();
   }
-  start(options = {}) {
+  invalidateAnchor() { this.finaleAnchor=null; this.anchorInvalidated=true; }
+  canRetryAnchor() { return this.phase==='lost' && !!this.finaleAnchor && !this.anchorInvalidated && this.activeDifficulty===this.options.difficulty; }
+  earnAnchor() {
+    if(this.finaleAnchor || this.anchorInvalidated)return;
+    const stats={};for(const k of ['kills','score','phaseDodges','dashCount','phaseInterrupts','headshots','shotsFired','shotsHit'])stats[k]=this[k];
+    const snapshot={difficulty:this.activeDifficulty,stats,cores:this.coreNodes.map(c=>c.collected),encounters:[...this.encounters],caps:this.world.capacitors.map(b=>b.state==='intact'?'intact':'spent'),actors:this.enemies.map(e=>({id:e.id,type:e.type,role:e.role,home:e.home.toArray(),health:e.health,maxHealth:e.maxHealth}))};
+    const freeze=o=>{Object.values(o).forEach(v=>{if(v&&typeof v==='object')freeze(v)});return Object.freeze(o)};
+    this.finaleAnchor=freeze(snapshot);
+  }
+  retryAnchor() {
+    if(!this.canRetryAnchor())return false;
+    const anchor=this.finaleAnchor, placements=[];
+    // Validate the complete finite plan before destroying the failed life. Never drop an actor.
+    for(const actor of anchor.actors){
+      const home=new THREE.Vector3(...actor.home);
+      const point=[home,...this.world.spawnPoints].find(p=>this.canOccupy(p.x,p.z,.55)&&Math.hypot(p.x-this.world.playerSpawn.x,p.z-this.world.playerSpawn.z)>=8&&placements.every(q=>Math.hypot(p.x-q.x,p.z-q.z)>=1.2));
+      if(!point){this.event('notice','Uplink retry unavailable: defender placement blocked. Start fresh.');return false;}
+      placements.push(point.clone());
+    }
+    this.resetRun({}, {anchor,placements,time:this.runTime,retries:(this.anchorRetries||0)+1});return true;
+  }
+  start(options = {}) { this.resetRun(options); }
+  resetRun(options = {}, retry = null) {
     if (!this.loaded) return;
-    this.routeGoal=null;this.routeManual=false;this.routePath=[];this.routeNext=0; this.setSettings(options); this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
+    this.lastFrame=0;this.emitTimer=0;this.planningUnlock=false;
+    this.routeGoal=null;this.routeManual=false;this.routePath=[];this.routeNext=0; this.setSettings(options); if(!retry){this.finaleAnchor=null;this.anchorInvalidated=false;this.anchorRetries=0;} this.audio.clearTransient();this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
-    this.activeWeapon='rifle';this.weaponSlots.breacher={ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0};
+    this.activeWeapon='rifle';this.weaponSlots.rifle={ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0};this.dashVector.set(0,0,0);this.weaponSlots.breacher={ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0};
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
     resetService(this); this.serviceDamaged=false; this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true; this.vault=null;
@@ -309,7 +333,18 @@ export class Game {
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
     this.contactHint=false; this.crouchLearned=false; resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
-    this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
+    if(retry){
+      const {anchor,placements}=retry;this.runTime=retry.time;this.anchorRetries=retry.retries;
+      Object.assign(this,anchor.stats);this.cores=anchor.cores.filter(Boolean).length;
+      this.coreNodes.forEach((c,i)=>{c.collected=anchor.cores[i];c.group.visible=!c.collected;this.world.setCoreState?.(c.id,c.collected)});
+      this.encounters=new Set(anchor.encounters);
+      this.world.capacitors.forEach((b,i)=>{b.state=anchor.caps[i];visualCapacitor(b,this.options.reducedMotion)});
+      anchor.actors.forEach((a,i)=>{this.spawnEnemy(placements[i],a.type,i,a.role);const e=this.enemies.at(-1);e.id=a.id;e.health=a.health;e.maxHealth=a.maxHealth;e.home.fromArray(a.home)});
+      this.nextEnemyId=Math.max(0,...anchor.actors.map(a=>a.id));
+      this.custodian.active=true;this.custodian.cooldown=2.5;
+    }else this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard');
+    this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock();
+    this.event('phase',retry?'UPLINK RETRY · Cached memories, fresh suit. Custodian reset.':'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
   openPlanning() {
@@ -428,7 +463,7 @@ export class Game {
     this.event('memory', '', { ...CORE_SITES[core.id], id:core.id });
     for (let i = 0; i < (this.options.reducedMotion?0:6); i++) this.particle(core.position.clone().add(new THREE.Vector3(0, .85, 0)), 0x4297a6, .35, .025);
     if (this.cores < this.coreNodes.length) this.event('notice','Memory secured. Supplies restored. Choose your next archive.');
-    else { this.custodian.active=true; this.custodian.cooldown=2.5; this.spawnWave(2); this.event('notice','MEMORIES SECURED · STATION COUNTERMEASURE ARMING. Disable the three Custodian coils to release the uplink.'); }
+    else { this.custodian.active=true; this.custodian.cooldown=2.5; this.spawnWave(2); this.earnAnchor(); this.event('notice','UPLINK CACHE EARNED · MEMORIES SECURED · STATION COUNTERMEASURE ARMING. Disable the three Custodian coils to release the uplink.'); }
     this.emit();
   }
 
@@ -549,7 +584,7 @@ export class Game {
     cancelCapacitors(this.world.capacitors);
     for(const e of this.enemies){e.contactWindup=0;e.contactFlash=0;animateContact(e,0);}
     clearCustodianLines(this.custodian); this.vault=null; this.phase = won ? 'won' : 'lost';for(const e of this.enemies){e.hitFlash=0;updateCharge(this,e);} this.audio.setActive(false, false); this.clearInput();
-    if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
+    if (won) { this.invalidateAnchor(); this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
     this.event(won ? 'win' : 'lose', won ? 'SIGNAL RESTORED. YOU BROUGHT THEM HOME.' : 'SIGNAL LOST. EVERY SOUL DESERVES ANOTHER CHANCE.'); this.emit();
   }
@@ -939,6 +974,7 @@ export class Game {
       crouchHint:!(closest?.distance<4.5)&&nearLowCover(this,this.world),
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       routeHelp:this.routeWaypoint?.label||'',routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
+      anchorEligible:this.canRetryAnchor(),anchorRetries:this.anchorRetries||0,checkpointAssisted:(this.anchorRetries||0)>0,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
