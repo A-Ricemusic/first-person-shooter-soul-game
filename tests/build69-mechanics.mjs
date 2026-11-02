@@ -1,5 +1,5 @@
 import {chromium} from '@playwright/test';import {writeFileSync} from 'node:fs';import assert from 'node:assert/strict';
-const fallback=process.env.BUILD69_FALLBACK==='1',prefix=`build69-mechanics-${fallback?'fallback':'glb'}`;
+const fallback=process.env.BUILD69_FALLBACK==='1',prefix=process.env.BUILD69_MECHANICS_PREFIX||`build69-mechanics-${fallback?'fallback':'glb'}`;
 const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});let result;
 try{const p=await b.newPage({viewport:{width:1440,height:900}});if(fallback)await p.route('**/assets/build69-custodian.glb',r=>r.abort());const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(()=>window.requestAnimationFrame=()=>1);await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50,timeout:60000});await p.click('#deploy',{force:true});result=await p.evaluate(async()=>{
 const g=window.__SOULFALL__.game,T=await import('/node_modules/three/build/three.module.js'),M=await import('/src/custodian.js'),c=g.custodian,checks=[],rows=[],bad=[];const ok=(v,m)=>{if(!v)throw Error(m);checks.push(m)};
@@ -8,7 +8,7 @@ setup();M.updateCustodian(g,.01);ok(c.windup===1.8,'original 1.8s lock');const l
 // Exact triangle closed-surface containment, deduplicating shared triangle hits.
 const ray=new T.Raycaster(),dir=new T.Vector3(.381,.529,.759).normalize();c.model.traverse(m=>{if(m.isMesh)m.material.side=T.DoubleSide});
 function inside(mesh,point){ray.set(point,dir);const distances=ray.intersectObject(mesh,false).map(h=>h.distance).filter((d,i,a)=>i===0||d-a[i-1]>1e-5);return distances.length%2===1;}
-for(const y of [.95,1.7,2.7,3.2])for(const r of [1.5,2.5,5,9,18,30])for(let a=0;a<24;a++){
+for(const y of [.95,1.7,2.7,3.2])for(const r of [1.5,1.8,1.9,2,2.1,2.2,2.3,2.4,2.5,2.9,3,3.5,4,5,9,18,30])for(let a=0;a<24;a++){
  const x=11+Math.sin(a*Math.PI/12)*r,z=16+Math.cos(a*Math.PI/12)*r;if(!g.canOccupy(x,z))continue;
  setup(x,y,z);M.updateCustodian(g,.01);if(!c.windup)continue;
  for(const state of ['closed','windup','fire','open','closing','spent']){
@@ -18,7 +18,7 @@ for(const y of [.95,1.7,2.7,3.2])for(const r of [1.5,2.5,5,9,18,30])for(let a=0;
  rows.push({x,y,z});
 }
 ok(rows.length>100,'finite legal posture/yaw/range samples');ok(!bad.length,'muzzles/barrels outside actual mesh '+JSON.stringify(bad.slice(0,5)));
-setup(11,1.7,23);M.updateCustodian(g,.01);const n=c.coils[1],start=n.pivot.localToWorld(new T.Vector3(...n.metadata.boreStart)),end=n.muzzle.getWorldPosition(new T.Vector3()),wall=new T.Box3(start.clone().lerp(end,.5).addScalar(-.03),start.clone().lerp(end,.5).addScalar(.03));g.world.colliders.push(wall);M.updateCustodian(g,1.81);ok(!g.projectiles.some(p=>p.custodianCoil===n),'foreign wall in barrel prevents spawn behind it');g.world.colliders.pop();
+for(const fraction of [.05,.65]){setup(11,1.7,23);M.updateCustodian(g,.01);const n=c.coils[1],start=n.pivot.localToWorld(new T.Vector3(...n.metadata.boreStart)),end=n.muzzle.getWorldPosition(new T.Vector3()),wall=new T.Box3(n.pivot.getWorldPosition(new T.Vector3()).lerp(end,fraction).addScalar(-.03),n.pivot.getWorldPosition(new T.Vector3()).lerp(end,fraction).addScalar(.03));g.world.colliders.push(wall);M.updateCustodian(g,1.81);ok(!g.projectiles.some(p=>p.custodianCoil===n),'foreign wall in barrel prevents spawn behind it');g.world.colliders.pop();}
 for(const distance of [4.799,4.801]){setup(11,2.85,16.55+distance);c.windup=1;c.coils.forEach(n=>n.target=g.player.clone());c.cooldown=10;g.dashTime=.1;g.dashVector.set(0,0,-1);M.updateCustodian(g,.01);ok((c.stagger>0)===(distance<4.8),'original logical phase boundary '+distance);}
 setup();M.updateCustodian(g,.01);M.updateCustodian(g,1.81);c.coils.forEach(n=>n.hp=0);g.updateProjectiles(.01);ok(!g.projectiles.length,'disabled owner shots removed');g.restart();ok(c.coils.every(n=>!n.target&&!n.line&&n.pivot.quaternion.equals(new T.Quaternion())),'fresh reset clears transient aim');
 return{checks,north,samples:rows.length,actualMeshContainmentFailures:bad,fallback:c.fallback};});assert.equal(result.fallback,fallback);assert.deepEqual(errors,[]);result.errors=errors;

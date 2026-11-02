@@ -41,7 +41,7 @@ for i,x in enumerate([-1.65,0,1.65]):
   # physical Roman I/II/III identities on both shutter faces; order follows coil, not view.
   for j in range(i+1):part(f'Identifier_{i}_{face}_{j}',[x+(j-i/2)*.16,2.18,z+sign*.65],[.06,.36,.025],'mark',i,True)
  part(f'Neck_{i}',[x,2.86,z],[.08,.20,.08],'steel',form='cylinder')
- part(f'Yaw_bearing_{i}',[x,2.74,z],[.32,.11,.32],'dark',form='cylinder')
+ part(f'Yaw_bearing_{i}',[x,2.73,z],[.32,.09,.32],'dark',form='cylinder')
  part(f'Head_{i}',[x,3.08,z],[.24,.24,.24],'ceramic',i,head=True)
  part(f'Barrel_{i}',[x,3.08,z+.18],[.10,.10,.20],'dark',i,head=True)
  part(f'Muzzle_{i}',[x,3.08,z+.30],[.12,.12,.04],'copper',i,head=True)
@@ -54,6 +54,7 @@ surfaces={p['name']:{k:p[k] for k in ('positions','normals')} for p in parts}
 light={**manifest,'parts':[{k:v for k,v in p.items() if k not in ('positions','normals')} for p in parts]}
 (R/'src/build69-custodian-layout.json').write_text(json.dumps(light,separators=(',',':'))+'\n')
 (R/'src/build69-custodian-surfaces.json').write_text(json.dumps(surfaces,separators=(',',':'))+'\n')
+bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=str(R/'public/assets/build69-custodian.blend'))
 bpy.ops.export_scene.gltf(filepath=str(R/'public/assets/build69-custodian.glb'),export_format='GLB',export_yup=True)
 cost=dict(version=69,provenance=manifest['provenance'],generator='tools/build69-custodian.py',triangles=sum(len(p['positions'])//9 for p in parts),meshCount=len(parts),materialCount=len(mats),textureCount=0,estimatedDrawCalls=len(parts),glbBytes=(R/'public/assets/build69-custodian.glb').stat().st_size,limits='Measured asset counts only; no hardware performance certification. Flat machined surfaces and simple procedural material colors; world and player remain stylized.')

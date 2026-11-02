@@ -1,0 +1,120 @@
+{
+  "reviewer": "build69-review2 independent ordinary visible playtest",
+  "url": "http://127.0.0.1:5173/",
+  "menu_visible_build": "BUILD 68 (review prefix requested build69)",
+  "method": "Exactly two terminal ordinary attempts. Defaults. Read only helper --help, visible screenshots and visible UI output. No game source, earlier reports/controllers, dossier, hidden state, debug APIs, test URL, arrangement, teleport, resources or boosts. No subagents.",
+  "attempts": [
+    {
+      "number": 1,
+      "start": "Fresh menu deployment",
+      "terminal": "OPERATOR LOST",
+      "mission_time": "00:45",
+      "recovered": [
+        "Mara Solberg"
+      ],
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy": "5%",
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "uplink_retries": 0,
+      "route": "Opening optic kill; west ground approach; navigated low cover; recovered Mara; attempted to cross toward Heart; died under patrol fire.",
+      "anchor_continuation": "Not visibly offered; Start Fresh, Read Recovered Memories and Return to Title offered."
+    },
+    {
+      "number": 2,
+      "start": "Visible START FRESH button; reset timer 00:00, health100/shield60, zero kills",
+      "terminal": "OPERATOR LOST",
+      "mission_time": "00:48",
+      "recovered": [
+        "Elian Vale"
+      ],
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy": "13%",
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "uplink_retries": 0,
+      "route": "Opening optic kill; east route; blocked at generator/cover, backed around it and vaulted; recovered Elian; reached Heart 0.2m outside receiver reach; Shift visibly canceled discharge but displaced position; died before recovering Sera.",
+      "anchor_continuation": "Not visibly offered."
+    }
+  ],
+  "cumulative_play_time": "End screens explicitly label CUMULATIVE PLAY TIME. Each was a fresh attempt, 45 + 48 = approximately 93 seconds total displayed mission play; no anchor continuation. Paused review/wall-clock time excluded.",
+  "scale": {
+    "common": "0 unusable/absent; 2 severely compromised; 4 weak prototype; 5 functional mixed prototype; 6 promising but conspicuously limited; 7 solid indie/vertical-slice quality; 8 polished release quality; 9 exceptional; 10 reference-leading. Ratings assess only actual observed coverage.",
+    "gameplay": "Combat, movement, encounter decisions and reward loop.",
+    "presentation": "Art direction, environment, animation and audiovisual polish (audio not assessed here).",
+    "usability": "Control discoverability, navigation and interaction workflow.",
+    "readability": "Legibility of threats, objectives, feedback and geometry.",
+    "AAA-readiness": "Observed distance to contemporary premium FPS production finish and breadth; not a claim about unseen content."
+  },
+  "ratings": {
+    "gameplay": {
+      "score": 6.0,
+      "reason": "Optic kill, recovery resupply and visibly interruptible Warden create an understandable loop. Alternate archive approach works. Robot movement and repeated exposed holds feel basic; pressure overtook my navigation. Two deaths prevent evaluation of full loop."
+    },
+    "presentation": {
+      "score": 7.0,
+      "reason": "Strong restrained teal/amber identity, rainy reflective yard, coherent menu and mission composition. Very simple geometric robots, props and close-up surfaces reveal prototype scope. No audio judgment."
+    },
+    "usability": {
+      "score": 6.5,
+      "reason": "Controls are visible; precise receiver reach feedback and paused map help. Frequent low-cover/generator collisions interrupted movement; aim turn sensitivity took experimentation. Fresh reset is clear."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Orange optic, incoming-fire wedges, recovery announcements and named archives read well. Small distant threats and dense map/trace-like indicators are harder to parse; flat low cover sometimes hides route continuation. Small text is abundant."
+    },
+    "AAA-readiness": {
+      "score": 3.5,
+      "reason": "Coherent and promising vertical-slice shell, but simplified models, limited witnessed combat variation and prototype geometry remain well below premium FPS finish. Full mission, boss/jammer, extraction and robustness remain unverified."
+    }
+  },
+  "coverage": [
+    "Title/menu",
+    "Rifle hip/ADS firing and critical opening kill twice",
+    "Reload",
+    "WASD movement",
+    "West and east ground approaches",
+    "Jump/vault",
+    "Paused facility map",
+    "Hold-E recovery of Mara and Elian on separate fresh runs",
+    "Receiver out-of-reach feedback",
+    "Health/shield loss and recovery resupply",
+    "Shift phase-break announcement",
+    "Two death summaries and fresh reset"
+  ],
+  "not_covered": [
+    "Win",
+    "Three memories in one run",
+    "Sera recovery",
+    "Jammer/Custodian encounter completion",
+    "Uplink/extraction",
+    "Anchor activation/continuation",
+    "Pump breacher",
+    "Settings/accessibility",
+    "Read recovered memories",
+    "Audio",
+    "Sustained human real-time aiming",
+    "Hardware GPU performance"
+  ],
+  "limitations": [
+    "Browser-timed synthetic controls with frequent automatic Escape pauses: not continuous human real-time play.",
+    "Software-WebGL fallback enabled; renderer not certified; no performance or AAA hardware benchmark.",
+    "Mouse-button-held look used as documented fallback; right ADS held during look. No captureHeld used, so no deliberately held-fire photograph/extra-shot mode. Default captures release controls first, but live screenshot/browser scheduling still adds time.",
+    "Attempt2 final action screenshot shows 6 health at 00:48; afterRelease/automatic-pause visible output is already terminal. Terminal screenshot separately confirms death. Capture timing can admit damage before pause.",
+    "An early attempt2 image read was attempted before file existed, then retried successfully; no driver failure.",
+    "Title visibly says BUILD 68 despite requested build69 evidence prefix."
+  ],
+  "evidence": "docs/media/build69-review2/actions.jsonl and 19 JPG screenshots",
+  "cleanup": {
+    "driver_pid": 18026,
+    "chrome_pid": 18036,
+    "close": "Explicit op close; closed response browserClosed true",
+    "driver_exit_code": 0,
+    "ps_command": "ps -p 18026,18036 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_stdout": "",
+    "result": "Both exact owned PIDs absent. No global kill used."
+  }
+}

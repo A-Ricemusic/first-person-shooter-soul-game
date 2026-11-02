@@ -1,0 +1,75 @@
+{
+  "review": "Fresh independent ordinary visible playtest; normal http://127.0.0.1:5173/; exactly two terminal attempts",
+  "scale": "0 unusable/absent; 2 severely weak; 4 rough prototype; 5 functional but substantial shortcomings; 6 promising vertical slice; 7 strong indie quality; 8 polished commercial quality; 9 excellent AAA quality; 10 exceptional benchmark. AAA-readiness measures readiness for a full-price AAA release, not ambition. Ratings reflect observed scope only.",
+  "ratings": {
+    "gameplay": {
+      "score": 5.5,
+      "reason": "Induction optic kill is satisfying; recovery supplies and route choice create stakes. First attempts were dominated by navigation around cover and attritional fire; shift did not produce a successful evade in my play. Two deaths give insufficient evidence for encounter depth or late balance."
+    },
+    "presentation": {
+      "score": 7,
+      "reason": "Cohesive storm-lit teal/amber industrial identity, strong title/death typography and attractive Heart silhouette. Blocky repeated robots/props and sparse spatial detail retain a prototype appearance."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "Controls remain discoverable on HUD; paused selectable map works and fresh restart resets cleanly. Receiver reach required trial and error, and nearby/behind-cover guidance did not make the last approach obvious to me."
+    },
+    "readability": {
+      "score": 6,
+      "reason": "Large health/ammo and optic color are clear; distance markers and named signs help. Small condensed HUD text, layered guidance, obstructing cover and offscreen fire make situational reading harder."
+    },
+    "AAA-readiness": {
+      "score": 3.5,
+      "reason": "Strong visual direction and functional slice, but observed repetition, modest geometry/animation, rough approach clarity and narrow unverified mission coverage fall well short of release-grade AAA proof."
+    }
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "start": "Fresh menu deploy",
+      "outcome": "death / OPERATOR LOST",
+      "displayedCumulativeMissionTime": "01:03",
+      "kills": 2,
+      "accuracy": "13%",
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "uplinkRetries": 0,
+      "recovered": [
+        "Mara Solberg"
+      ],
+      "coverage": "Induction kill, west route, map, reload, failed early E approach, shift, successful Mara hold E, Heart arrival and guard kill; died attempting Sera approach.",
+      "anchorContinuation": "None visibly offered; end offered START FRESH, READ RECOVERED MEMORIES, RETURN TO TITLE."
+    },
+    {
+      "number": 2,
+      "start": "Visible START FRESH reset: 100 health, 60 shield, zero kills, 00:00",
+      "outcome": "death / OPERATOR LOST",
+      "displayedCumulativeMissionTime": "00:37",
+      "kills": 1,
+      "accuracy": "15%",
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "uplinkRetries": 0,
+      "recovered": [],
+      "coverage": "Induction kill, east route, paused map selection of Elian, rifle firing/reload, failed receiver approach, weapon switch shortly before death.",
+      "anchorContinuation": "None offered or used."
+    }
+  ],
+  "combinedDisplayedPlayTime": "01:40 across separate fresh runs (63 + 37 seconds); wall time contains pauses and screenshot inspection. No anchor retries.",
+  "limitations": [
+    "Paused synthetic browser-timed DOM controls through ordinary listeners; not continuous human mouse play.",
+    "Software-WebGL fallback enabled, renderer not certified; not a GPU/frame-rate benchmark.",
+    "Right-button held look fallback used; ADS sensitivity complicated aim. No captureHeld photographs; firing explicitly released before capture, so no held-fire screenshot extra-shot claim. Browser scheduling/capture-to-pause delay still applies; first death occurred between live capture state and automatic pause, preserved in result and death photograph.",
+    "No source, hidden state, debug API, test URL, teleport, boosts or resource arrangements used. Only helper help, visible UI results and screenshots informed play.",
+    "No audio-quality assessment; no extraction/jammer completion, win, all-three recovery, anchor continuation, full weapon balance, crouch/sprint/vault or sustained performance coverage.",
+    "Title visibly says BUILD 68 although requested artifact prefix is build69; version discrepancy preserved rather than inferred away.",
+    "No desired score was provided or targeted; ordinary failures retained."
+  ],
+  "evidence": "docs/media/build69-review1/actions.jsonl and 22 JPG captures; report stored under docs/quality-reviews/build69-review1",
+  "cleanup": {
+    "driverPid": 17673,
+    "chromePid": 17683,
+    "close": "Explicit close command; browserClosed true; awaited session exit code 0",
+    "pidCheck": "ps -p 17673,17683 -o pid=,ppid=,stat=,command= returned exit 1 and empty stdout; both exact owned PIDs absent"
+  }
+}
