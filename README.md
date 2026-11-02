@@ -56,3 +56,5 @@ Build55 finishes the original first-person assets with Blender-authored 1K UV ba
 Build56: **C** toggles physical crouch (1.05 m eye, 1.25 m body, 3 m/s). Ctrl requests standing and sprint; blocked headroom retains the low body. Posture changes require grounding outside phase/vault; low jumps retain posture. Stand before vaulting. Recovery and upload require grounding.
 
 Build57 teaches C beside nearby low cover using the existing controls strip. The short lesson stays visible during combat, then retires after a completed crouch; recovery and service-grate instructions keep priority. Combat and posture tuning are unchanged.
+
+Build58 replaces the generic Custodian diamond with one small numbered component bracket when a physical coil surface is clear. Foreign cover, the machine itself and nearer enemies block the cue; it carries no offscreen tracking arrow. The existing aim readout identifies inert housing. Damage, assets and mission rules remain unchanged. Evidence and ordinary-play limitations are recorded in `docs/human.html`.

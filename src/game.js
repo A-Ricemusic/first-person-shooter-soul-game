@@ -1,3 +1,4 @@
+import {focusedCustodianTarget} from './custodian-targets.js';
 import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
 import {nearLowCover} from './control-hints.js';
 import {shootBreacher,buildBreacher,poseBreacher} from './breacher.js';
@@ -858,7 +859,11 @@ export class Game {
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
-      if(!this.custodian.dead)markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
+      if(!this.custodian.dead){
+        const target=focusedCustodianTarget(this);
+        if(target)markers.push({id:'custodian-component',kind:'component',label:['I','II','III'][target.index],exposed:target.exposed,...project(target.point)});
+        else markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
+      }
       else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))});
     }
     // A doorway is actionable only along a swept, walkable approach. This is
@@ -872,7 +877,7 @@ export class Game {
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||(e.windup>0||e.contactWindup>0))){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.contactWindup>0?'DISCHARGE / SHIFT OR BACK AWAY':e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0||e.contactWindup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18)),aimed=custodianAim(this);if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:aimed?.label||(this.custodian.open>0?'CUSTODIAN / OPEN WINDOW':'CUSTODIAN / ARMORED SHUTTERS'),health:aimed?.health??this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:this.custodian.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
-    for(const m of markers)if(m.kind!=='enemy')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
+    for(const m of markers)if(m.kind!=='enemy'&&m.kind!=='component')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
   }
   damageCuePosition() {
