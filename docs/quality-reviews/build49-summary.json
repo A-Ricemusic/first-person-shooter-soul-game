@@ -1,0 +1,140 @@
+{
+  "gameplayCommit": "fb2ba9635887fd515ba46c668854b819f2b6fb7d",
+  "gameplayTitle": "BUILD48",
+  "pass": "Build49 browser-timed visible input",
+  "gameplayOrAssetEdits": false,
+  "method": "Exactly two fresh native GPT-6.1 Sol agents, fork_turns:none, sequential2terminalordinaryattempts each. Visible normalURL/UI/screenshots/driverhelp only; no source/statehooks/oldreports/routes/scores/desiredverdict supplied. No source/driver edits, tests or other Chrome during either review. Freeze94files matched before/between/after.",
+  "independentWins": 0,
+  "independentLosses": 4,
+  "review1": {
+    "report": "build49-review1.json",
+    "ratings": {
+      "gameplay": 6.5,
+      "presentation": 7,
+      "usability": 6.5,
+      "readability": 6.5,
+      "AAAReadiness": 4
+    },
+    "outcomes": [
+      {
+        "attempt": 1,
+        "outcome": "OPERATOR LOST",
+        "missionTime": "01:15",
+        "score": 3255,
+        "accuracyPercent": 10,
+        "eliminations": 1,
+        "criticalEliminations": 1,
+        "phaseEvades": 1,
+        "memories": [
+          "Mara Solberg",
+          "Sera Nord",
+          "Elian Vale"
+        ],
+        "boss": "Coil 2 visibly OFF; coils 1 and 3 remained 100% at last preterminal view. Custodian not disabled.",
+        "upload": "Not reached",
+        "terminalScreenshot": "../media/build49-review1/coil-one2.jpg"
+      },
+      {
+        "attempt": 2,
+        "outcome": "OPERATOR LOST",
+        "missionTime": "01:09",
+        "score": 3360,
+        "accuracyPercent": 18,
+        "eliminations": 2,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "memories": [
+          "Mara Solberg",
+          "Sera Nord",
+          "Elian Vale"
+        ],
+        "boss": "Coils 2 and 3 visibly OFF; coil 1 remained 100% at last preterminal view. Custodian not disabled.",
+        "upload": "Not reached",
+        "terminalScreenshot": "../media/build49-review1/a2-coil1.jpg"
+      }
+    ]
+  },
+  "review2": {
+    "report": "build49-review2.json",
+    "ratings": {
+      "provisional": true,
+      "scale": "0\u201310, higher is better",
+      "gameplay": 6.5,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 6.5,
+      "aaaReadiness": 4,
+      "rationale": "Two ordinary failures with meaningful progress and a second attempt reaching the final hold. Cohesive presentation and clear macro goals, but local navigation and precise combat were difficult in this method. Insufficient evidence for full mission completion, long-term replayability, audio or hardware performance."
+    },
+    "outcomes": [
+      {
+        "attempt": 1,
+        "outcome": "death",
+        "terminalText": "OPERATOR LOST",
+        "missionTime": "01:00",
+        "score": 2615,
+        "accuracyPercent": 9,
+        "eliminations": 3,
+        "criticalEliminations": 3,
+        "phaseEvades": 1,
+        "memories": [
+          "MARA SOLBERG",
+          "SERA NORD"
+        ],
+        "boss": "Not reached; Elian remained unrecovered",
+        "upload": "Not reached",
+        "tactics": "Shot entry optic with ADS, approached west archive, recovered Mara after several failed range attempts, recovered Sera, tried to reach east archive. Collision/navigation confusion and missed shots consumed armor/health; died while retreating/dashing from east cover.",
+        "terminalScreenshot": "../media/build49-review2/east-escape.jpg",
+        "sequence": 23
+      },
+      {
+        "attempt": 2,
+        "outcome": "death",
+        "terminalText": "OPERATOR LOST",
+        "missionTime": "01:22",
+        "score": 3740,
+        "accuracyPercent": 17,
+        "eliminations": 5,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "memories": [
+          "ELIAN VALE",
+          "SERA NORD",
+          "MARA SOLBERG"
+        ],
+        "boss": "Three coils visibly disabled; RETURN TO EXTRACTION shown.",
+        "upload": "Reached deck; 71% visibly photographed before final death. No completed upload or success established.",
+        "tactics": "Selected Elian manually in map, approached east first, then Heart, then west via east service. Disabled coils with rifle fire. Reached extraction, killed a close warden, accidentally dashed forward out of deck, reentered, strafed/jumped while attempting to finish upload and died.",
+        "terminalScreenshot": "../media/build49-review2/a2-terminal.jpg",
+        "sequence": 50
+      }
+    ]
+  },
+  "telemetry": [
+    {
+      "reviewer": 1,
+      "waitStepCount": 79,
+      "maxWaitOverrunMs": 243.30000001192093,
+      "explicitReleaseCount": 57,
+      "maxReleaseDispatchMs": 4.599999964237213,
+      "maxCaptureMs": 868.1872079999885
+    },
+    {
+      "reviewer": 2,
+      "waitStepCount": 90,
+      "maxWaitOverrunMs": 125.09999996423721,
+      "explicitReleaseCount": 70,
+      "maxReleaseDispatchMs": 0.6000000238418579,
+      "maxCaptureMs": 1072.9966659999918
+    }
+  ],
+  "telemetryLimits": "Input-event scheduling/capture durations only, not game FPS, hardware benchmark or historical-input causal comparison. Browser timers still overrun under load; screenshots add live time.",
+  "driverVerification": {
+    "timingFixture": "build49-parent-input-timing.json",
+    "lifecycle": "build49-parent-driver-checks.json",
+    "firstFailure": "build49-parent-first-driver-failure.jsonl",
+    "correction": "Rapid map toggles required a browser paint/task turn for pointer-lock transitions. Scheduler yields for M/Escape, with bounded timeout/cancel; no gameplay edit."
+  },
+  "limitations": "Synthetic untrusted DOM events follow game listeners but differ from physical browser defaults. Pause-assisted screenshots do not establish continuous human input, human enjoyment, audio or hardware performance. Different reviewers/method prohibit attributing score or outcome changes causally to scheduling.",
+  "nextDesign": "Original Blender-authored close-range breacher shotgun as a second selectable weapon. Actual per-pellet surface/cover hits, falloff, limited separate ammunition and physical pump/reload handling; rifle/enemy/mission values preserved. Planned, not implemented/validated in this pass."
+}

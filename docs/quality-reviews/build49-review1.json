@@ -1,0 +1,134 @@
+{
+  "reviewer": "reviewer1",
+  "gameplayTitle": "SOULFALL BUILD48",
+  "pass": "Build49 visible driver instrumentation",
+  "attemptCount": 2,
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "inputs": "browser-timed synthetic DOM through ordinary listeners; pause-assisted adaptive screenshots",
+    "sourceInspection": false,
+    "limitations": [
+      "Not continuous human play or a performance benchmark.",
+      "Software-WebGL fallback; renderer not certified.",
+      "No audio assessment.",
+      "Capture scheduling adds mission time; beforePause HUD can precede photograph.",
+      "No handbook read, no manual map destination selection; default nearest-reachable guidance used."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:15",
+      "score": 3255,
+      "accuracyPercent": 10,
+      "eliminations": 1,
+      "criticalEliminations": 1,
+      "phaseEvades": 1,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Coil 2 visibly OFF; coils 1 and 3 remained 100% at last preterminal view. Custodian not disabled.",
+      "upload": "Not reached",
+      "terminalScreenshot": "../media/build49-review1/coil-one2.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:09",
+      "score": 3360,
+      "accuracyPercent": 18,
+      "eliminations": 2,
+      "criticalEliminations": 2,
+      "phaseEvades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Coils 2 and 3 visibly OFF; coil 1 remained 100% at last preterminal view. Custodian not disabled.",
+      "upload": "Not reached",
+      "terminalScreenshot": "../media/build49-review1/a2-coil1.jpg"
+    }
+  ],
+  "evidence": {
+    "actions": "../media/build49-review1/actions.jsonl",
+    "retry": "../media/build49-review1/retry.jpg",
+    "map": "../media/build49-review1/map.jpg",
+    "heldADS": "../media/build49-review1/guard-ads.jpg",
+    "heldTrace": "../media/build49-review1/west-trace.jpg",
+    "bossProgress": "../media/build49-review1/a2-coil2.jpg",
+    "navigationDifficulty": [
+      "../media/build49-review1/a2-heart.jpg",
+      "../media/build49-review1/a2-heart-around.jpg",
+      "../media/build49-review1/a2-unwedge.jpg"
+    ]
+  },
+  "controlsObserved": {
+    "movement": "WASD, Ctrl sprint used. Space used once; isolated jump effect not established.",
+    "combat": "LMB firing, RMB ADS, R reload, Shift used. Opening optic critical kill reproduced; second Heart warden critical kill observed. Most other shots missed or hit cover/armor.",
+    "recover": "Held E recovered all three memories in each attempt. MOVE CLOSER feedback preceded successful recovery after moving further into ring.",
+    "map": "M opened paused facility map. Default Mara/nearest guidance shown; destination buttons not clicked.",
+    "trace": "Held Tab with captureHeld and movement explicitly released showed ground chevrons on west approach; some occluded approaches showed little usable trace.",
+    "retry": "Visible DEPLOY AGAIN clicked once. No third attempt."
+  },
+  "strengths": [
+    "Coherent teal/amber station identity, rain and reflective pavement create a strong setting.",
+    "Large archive signs, named memory receivers, distance markers and explicit move-closer feedback made objectives understandable.",
+    "Optic critical targeting gave repeatable combat feedback; coil OFF status and broadcast announcement made boss progress legible.",
+    "Recovery supplied health/ammunition and changed objectives clearly; terminal screen cleanly reports results and retry."
+  ],
+  "problems": [
+    {
+      "finding": "Navigation around cover repeatedly stalled while distance remained nearby; second attempt spent multiple batches facing the west exit wall before retreating south to recover a clear approach.",
+      "evidence": "a2-heart.jpg, a2-heart-around.jpg, a2-unwedge.jpg, a2-south-exit.jpg",
+      "qualification": "Partly synthetic control/aiming error; no claim of collision defect."
+    },
+    {
+      "finding": "Small thin HUD/event text can lose contrast against walls/rain and is harder to scan while several damage/charge cues compete.",
+      "evidence": "leave-west.jpg, elian2.jpg, a2-coil3.jpg"
+    },
+    {
+      "finding": "Boss aiming was difficult to diagnose from ordinary sight: armored faces and structural posts consume shots, while copper exposure needs precise angle and timing. I failed both fights despite all memories.",
+      "evidence": "coil-one.jpg, coil-one2.jpg, a2-coil1.jpg",
+      "qualification": "Low measured accuracy and stationary firing are major reviewer limitations; this does not establish unfair difficulty."
+    },
+    {
+      "finding": "Environment and robots remain visibly simple/blocky with repeated rectangular cover and sparse open perimeter. Presentation is cohesive but below AAA asset/detail expectations.",
+      "evidence": "custodian-flank.jpg, east-trace.jpg"
+    }
+  ],
+  "ratingsProvisionalOutOf10": {
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 6.5,
+    "readability": 6.5,
+    "AAAReadiness": 4
+  },
+  "errors": {
+    "pageErrors": [],
+    "driverCommandErrors": [
+      {
+        "sequence": 3,
+        "error": "Unsupported input step.",
+        "cause": "Reviewer supplied wrong step shape; corrected after CLI help."
+      },
+      {
+        "sequence": 4,
+        "error": "Use click, capture, act, status or close. No arbitrary evaluation is accepted.",
+        "cause": "Reviewer attempted unsupported help op; read CLI --help instead."
+      }
+    ],
+    "missesRetained": true
+  },
+  "cleanup": {
+    "driverPid": 68607,
+    "chromePid": 68608,
+    "closeCommandSent": true,
+    "browserClosed": true,
+    "driverExitCode": 0,
+    "verification": "ps -p 68607,68608 -o pid=,comm= returned no rows, exit 1. No process killed; servers untouched."
+  }
+}

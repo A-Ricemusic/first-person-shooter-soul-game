@@ -1,5 +1,6 @@
 // Ordinary controls only. JSON lines on stdin; EOF always closes the owned Chrome.
 import {chromium} from '@playwright/test';
+import {createBrowserInput,validateSteps} from './visible-input.mjs';
 import {parseArgs} from 'node:util';
 import {createInterface} from 'node:readline';
 import {createHash,randomUUID} from 'node:crypto';
@@ -9,7 +10,8 @@ import {fileURLToPath} from 'node:url';
 import {tmpdir} from 'node:os';
 import {setTimeout as delay} from 'node:timers/promises';
 
-const {values}=parseArgs({options:{url:{type:'string',default:'http://127.0.0.1:5173/'},out:{type:'string',default:'docs/media/current-visible-playtest'},headed:{type:'boolean',default:false},help:{type:'boolean',short:'h',default:false}}});
+const {values}=parseArgs({options:{'input-mode':{type:'string',default:'browser'},url:{type:'string',default:'http://127.0.0.1:5173/'},out:{type:'string',default:'docs/media/current-visible-playtest'},headed:{type:'boolean',default:false},help:{type:'boolean',short:'h',default:false}}});
+if(!['browser','cdp'].includes(values['input-mode']))throw Error('Input mode must be browser or cdp.');
 if(values.help){
  process.stdout.write(`Usage: npm run playtest:visible -- --out docs/media/unique-review-name
 Use a TTY for an interactive session. Commands are JSON lines:
@@ -33,6 +35,12 @@ Resume button. Capture defaults to Escape pause from playing or planning.
 Escape closes the map as it pauses, including the automatic post-capture pause.
 After resume the map starts closed; M opens it again. To capture a close toggle,
 press M twice within one uninterrupted act.
+Input batches default to browser-timed synthetic DOM events through ordinary game listeners.
+No transport round trips occur between steps, and default input release happens in the browser
+before the batch returns. Timings use browser performance time. captureHeld still leaves
+inputs down through the photograph: explicitly release movement/fire for held ADS or Tab.
+This remains paused, synthetic play; screenshot time and browser scheduling can add delays.
+--input-mode=cdp retains the older transport-timed controls for diagnostics.
 No test URL, arbitrary evaluation or hidden game observations are accepted.
 EOF closes the owned browser. A project lock rejects a second driver before launch.
 --headed opens a window; software-WebGL fallback remains allowed, not a GPU benchmark.
@@ -48,13 +56,14 @@ const rl=createInterface({input:process.stdin,crlfDelay:Infinity});
 // Subscribe before async startup: piped input/EOF must not be lost during launch.
 const commands=rl[Symbol.asyncIterator]();
 const emit=value=>process.stdout.write(JSON.stringify(value)+'\n');
-let server,browser,page,cdp,owned=false,closing,sequence=0;
+let server,browser,page,cdp,browserInput,owned=false,closing,sequence=0;
 const keys=new Set(),buttons=new Set(),pageErrors=[];
 const metadata={token,driverPid:process.pid,root,chromePid:null,started:new Date().toISOString()};
 const validKey=key=>/^(Key[WASDREM]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(key);
 
 async function log(entry){await appendFile(join(output,'actions.jsonl'),JSON.stringify({at:new Date().toISOString(),...entry})+'\n');}
 async function release(){
+ if(browserInput){try{await browserInput.evaluate(input=>input.release());}catch{}}
  for(const key of keys){try{await page.keyboard.up(key);}catch{}}keys.clear();
  for(const button of buttons){try{await page.mouse.up({button});}catch{}}buttons.clear();
 }
@@ -107,7 +116,7 @@ async function step(action){
 async function shutdown(reason){
  if(closing)return closing;
  closing=(async()=>{
-  rl.close();await release();
+  rl.close();if(browserInput){try{await browserInput.evaluate(input=>input.cancel());}catch{}}await release();
   if(server){let timer;try{await Promise.race([server.close(),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Close timed out')),5000);})]);}catch{await server.kill();}finally{clearTimeout(timer);}}
   if(owned){const current=JSON.parse(await readFile(join(lock,'owner.json'),'utf8').catch(()=>'{}'));if(current.token===token)await rm(lock,{recursive:true,force:true});}
   emit({type:'closed',reason,driverPid:process.pid,chromePid:metadata.chromePid,browserLaunched:!!server,browserClosed:!server||server.process().exitCode!==null||server.process().signalCode!==null});
@@ -123,7 +132,8 @@ try{
  browser=await chromium.connect(server.wsEndpoint());browser.once('disconnected',()=>rl.close());
  page=await browser.newPage({viewport:{width:1280,height:800}});page.setDefaultTimeout(4000);page.on('pageerror',e=>pageErrors.push(e.message));cdp=await page.context().newCDPSession(page);
  await page.goto(url.href,{timeout:30000});await page.waitForFunction(()=>{const b=document.querySelector('#deploy');return b&&!b.disabled;},null,{timeout:30000});
- emit({type:'ready',...metadata,lock,output,ui:await ui(),graphics:'Software-WebGL fallback enabled; renderer not certified'});
+ if(values['input-mode']==='browser')browserInput=await page.evaluateHandle(createBrowserInput);
+ emit({type:'ready',...metadata,inputMode:values['input-mode'],lock,output,ui:await ui(),graphics:'Software-WebGL fallback enabled; renderer not certified'});
  for await(const line of commands){
   if(!line.trim())continue;
   let command;const started=performance.now();
@@ -137,14 +147,17 @@ try{
     result=command.capture?await capture(command.capture,command.pauseAfter===true):{ui:await ui()};
    }else if(command.op==='capture')result=await capture(command.label||`${sequence}-capture`,command.pauseAfter!==false);
    else if(command.op==='act'){
+    validateSteps(command.steps||[]);
+    if(command.capture&&!/^[a-zA-Z0-9_-]{1,80}$/.test(command.capture))throw Error('Capture label must use letters, digits, underscore or hyphen.');
     if(command.resume){const state=await ui();if(state.phase==='paused')await page.locator('#resume').click();else if(!['playing','planning'].includes(state.phase))throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
     if(!['playing','planning'].includes((await ui()).phase))throw new Error('Action requires the playing or planning view.');
-    const timings=[];let heldCapture;
+    let timings=[],heldCapture,inputBatchMs;
     try{
-     for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}
+     if(browserInput){const batch=await browserInput.evaluate((input,args)=>input.run(args),{steps:command.steps||[],retainHeld:command.captureHeld===true});timings=batch.timings;inputBatchMs=batch.browserMs;}
+     else for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}
      if(command.captureHeld===true)heldCapture=await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false);
     }finally{await release();}
-    result={...(heldCapture||await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false)),timings,...(heldCapture?{captureHeld:true,afterRelease:await ui()}:{} )};
+    result={...(heldCapture||await capture(command.capture||`${sequence}-act`,command.pauseAfter!==false)),timings,inputMode:values['input-mode'],inputBatchMs,...(heldCapture?{captureHeld:true,afterRelease:await ui()}:{} )};
    }else throw new Error('Use click, capture, act, status or close. No arbitrary evaluation is accepted.');
    const response={type:'result',sequence,...result,clientMs:performance.now()-started,pageErrors:[...pageErrors]};await log(response);emit(response);
   }catch(error){await release();try{if(page&&['playing','planning'].includes((await ui()).phase))await page.keyboard.press('Escape');}catch{}const response={type:'command-error',sequence,error:error.message};await log(response);emit(response);}

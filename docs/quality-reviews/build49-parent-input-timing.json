@@ -1,0 +1,121 @@
+{
+  "method": "Actual Chrome DOM-event fixture. Artificial Node handover delay, not a measurement of game FPS or historical reviewer latency. Browser controls are synthetic events; no game state/clock is read.",
+  "nativeHoldMs": 1040.699999988079,
+  "browserHoldMs": 152.80000001192093,
+  "batch": {
+    "timings": [
+      {
+        "action": {
+          "type": "down",
+          "key": "KeyW"
+        },
+        "startedMs": 0,
+        "browserMs": 0.3999999761581421
+      },
+      {
+        "action": {
+          "type": "wait",
+          "ms": 150
+        },
+        "startedMs": 0.3999999761581421,
+        "browserMs": 152.60000002384186
+      }
+    ],
+    "browserMs": 153
+  },
+  "chordEvents": [
+    {
+      "kind": "keydown",
+      "code": "ControlLeft",
+      "ctrl": true,
+      "shift": false,
+      "at": 3019,
+      "trusted": false
+    },
+    {
+      "kind": "keydown",
+      "code": "KeyW",
+      "ctrl": true,
+      "shift": false,
+      "at": 3019.100000023842,
+      "trusted": false
+    },
+    {
+      "kind": "mousemove",
+      "button": 0,
+      "ctrl": false,
+      "shift": false,
+      "x": 12,
+      "y": -8,
+      "at": 3019.199999988079,
+      "trusted": false
+    },
+    {
+      "kind": "mousedown",
+      "button": 2,
+      "ctrl": true,
+      "shift": false,
+      "x": 0,
+      "y": 0,
+      "at": 3020.900000035763,
+      "trusted": false
+    },
+    {
+      "kind": "mousedown",
+      "button": 0,
+      "ctrl": true,
+      "shift": false,
+      "x": 0,
+      "y": 0,
+      "at": 3020.900000035763,
+      "trusted": false
+    },
+    {
+      "kind": "keyup",
+      "code": "ControlLeft",
+      "ctrl": false,
+      "shift": false,
+      "at": 3062.400000035763,
+      "trusted": false
+    },
+    {
+      "kind": "keyup",
+      "code": "KeyW",
+      "ctrl": false,
+      "shift": false,
+      "at": 3062.400000035763,
+      "trusted": false
+    },
+    {
+      "kind": "mouseup",
+      "button": 2,
+      "ctrl": false,
+      "shift": false,
+      "x": 0,
+      "y": 0,
+      "at": 3062.400000035763,
+      "trusted": false
+    },
+    {
+      "kind": "mouseup",
+      "button": 0,
+      "ctrl": false,
+      "shift": false,
+      "x": 0,
+      "y": 0,
+      "at": 3062.400000035763,
+      "trusted": false
+    }
+  ],
+  "canceled": {
+    "error": "jsHandle.evaluate: Error: Input batch canceled.\n    at Object.run (eval at evaluate (:370:30), <anonymous>:35:33)\n    at async <anonymous>:396:30"
+  },
+  "checks": [
+    "Default release before browser batch returns",
+    "Node handover gap cannot extend completed browser hold",
+    "Ctrl/game key/relative look/button event semantics",
+    "Opt-in held controls and explicit release",
+    "Cancel wakes long wait and clears input; controller reusable",
+    "Invalid batch rejected before any event"
+  ]
+}

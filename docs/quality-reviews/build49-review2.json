@@ -1,0 +1,179 @@
+{
+  "reviewer": "reviewer2",
+  "pass": "Build49 visible-driver instrumentation; gameplay title BUILD48",
+  "attemptCount": 2,
+  "terminalCount": 2,
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "mode": "browser-timed synthetic DOM inputs through ordinary listeners; pause assisted",
+    "observations": "Visible UI, facility map, driver CLI help and actual JPEG inspection only.",
+    "limits": [
+      "Not continuous human input or a performance benchmark.",
+      "Software WebGL fallback; no certified hardware renderer or audio assessment.",
+      "No repository source/assets/docs/old reviews/tests/history or hidden game state read; no game edits, tests, build, autoaim or route lookup.",
+      "Screenshot capture/scheduling adds live time; beforePause HUD can precede photographed HUD. No camera defect inferred from heading lag."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "terminalText": "OPERATOR LOST",
+      "missionTime": "01:00",
+      "score": 2615,
+      "accuracyPercent": 9,
+      "eliminations": 3,
+      "criticalEliminations": 3,
+      "phaseEvades": 1,
+      "memories": [
+        "MARA SOLBERG",
+        "SERA NORD"
+      ],
+      "boss": "Not reached; Elian remained unrecovered",
+      "upload": "Not reached",
+      "tactics": "Shot entry optic with ADS, approached west archive, recovered Mara after several failed range attempts, recovered Sera, tried to reach east archive. Collision/navigation confusion and missed shots consumed armor/health; died while retreating/dashing from east cover.",
+      "terminalScreenshot": "../media/build49-review2/east-escape.jpg",
+      "sequence": 23
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "terminalText": "OPERATOR LOST",
+      "missionTime": "01:22",
+      "score": 3740,
+      "accuracyPercent": 17,
+      "eliminations": 5,
+      "criticalEliminations": 3,
+      "phaseEvades": 0,
+      "memories": [
+        "ELIAN VALE",
+        "SERA NORD",
+        "MARA SOLBERG"
+      ],
+      "boss": "Three coils visibly disabled; RETURN TO EXTRACTION shown.",
+      "upload": "Reached deck; 71% visibly photographed before final death. No completed upload or success established.",
+      "tactics": "Selected Elian manually in map, approached east first, then Heart, then west via east service. Disabled coils with rifle fire. Reached extraction, killed a close warden, accidentally dashed forward out of deck, reentered, strafed/jumped while attempting to finish upload and died.",
+      "terminalScreenshot": "../media/build49-review2/a2-terminal.jpg",
+      "sequence": 50
+    }
+  ],
+  "controls": {
+    "used": [
+      "WASD movement",
+      "ControlLeft sprint",
+      "relative mouse look",
+      "left mouse fire",
+      "right mouse ADS",
+      "R reload",
+      "ShiftLeft phase dash",
+      "hold E recovery",
+      "M facility map",
+      "held Tab trace",
+      "Space jump",
+      "visible Resume and Deploy Again UI"
+    ],
+    "selection": "Attempt 1 used default Auto nearest reachable. Attempt 2 clicked visible ELIAN · EAST ARCHIVE; selected Elian and objective update confirmed.",
+    "trace": "Held Tab with captureHeld:true and movement/fire explicitly released produced floor arrows and approach labels in advance-trace, west-approach, a2-heart and a2-west-entry.",
+    "ads": "Held ADS photograph guard-fire.jpg; subsequent ADS shots used default released capture.",
+    "notUsed": [
+      "Handbook/read recovered memories",
+      "Settings"
+    ]
+  },
+  "strengths": [
+    {
+      "finding": "Strong visual identity: restrained cyan/amber palette, wet courtyard reflections, rain, bold condensed title and consistent terminal panels.",
+      "evidence": [
+        "../media/build49-review2/menu.jpg",
+        "../media/build49-review2/a2-terminal.jpg"
+      ]
+    },
+    {
+      "finding": "Map selection is useful and visibly changes objective. Floor trace, distance and named approach hints helped recover from wrong approaches.",
+      "evidence": [
+        "../media/build49-review2/a2-select.jpg",
+        "../media/build49-review2/a2-west-entry.jpg"
+      ]
+    },
+    {
+      "finding": "Recovery restores supplies, giving a practical objective incentive. Coils have legible individual OFF feedback and the uplink reports edge/decay states.",
+      "evidence": [
+        "../media/build49-review2/a2-all-memories.jpg",
+        "../media/build49-review2/a2-coil3.jpg",
+        "../media/build49-review2/a2-reenter.jpg"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "finding": "Local navigation around the west building and east pillars was hard to read at close range. Several forward/strafe batches ended against walls with the target still nearby; I exposed myself while trying to find openings. This is an observed usability difficulty, not proof of broken collision.",
+      "evidence": [
+        "../media/build49-review2/heart-trace.jpg",
+        "../media/build49-review2/heart-lane.jpg",
+        "../media/build49-review2/east-recover.jpg",
+        "../media/build49-review2/a2-west-service.jpg"
+      ]
+    },
+    {
+      "finding": "At 3.3m Mara still said MOVE CLOSER, while a short lateral step enabled recovery. The floor ring helps, but range and receiver geometry were easy to misjudge.",
+      "evidence": [
+        "../media/build49-review2/a2-mara-core.jpg",
+        "../media/build49-review2/a2-all-memories.jpg"
+      ]
+    },
+    {
+      "finding": "Small enemies and narrow optics were difficult to aim at with this synthetic method; repeated bursts missed. My low accuracy is a method/player limitation as well as a readability concern, not a weapon bug.",
+      "evidence": [
+        "../media/build49-review2/west-fight.jpg",
+        "../media/build49-review2/west-target.jpg",
+        "../media/build49-review2/a2-terminal.jpg"
+      ]
+    },
+    {
+      "finding": "Extraction required looking away from the deck to fight while maintaining its bounds. Edge warnings were useful, but my dash without held direction moved forward out of the zone, and four rifle sentinels remained visible during the final low-health hold.",
+      "evidence": [
+        "../media/build49-review2/a2-uplink-defense.jpg",
+        "../media/build49-review2/a2-hold-defense.jpg"
+      ]
+    },
+    {
+      "finding": "Environment and robot silhouettes remain visibly simple/repetitive; large blank wall and sky areas reduce detail richness compared with polished AAA presentation.",
+      "evidence": [
+        "../media/build49-review2/a2-west-service.jpg",
+        "../media/build49-review2/a2-custodian-route.jpg"
+      ]
+    }
+  ],
+  "ratings": {
+    "provisional": true,
+    "scale": "0–10, higher is better",
+    "gameplay": 6.5,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6.5,
+    "aaaReadiness": 4,
+    "rationale": "Two ordinary failures with meaningful progress and a second attempt reaching the final hold. Cohesive presentation and clear macro goals, but local navigation and precise combat were difficult in this method. Insufficient evidence for full mission completion, long-term replayability, audio or hardware performance."
+  },
+  "errors": [
+    {
+      "sequence": 3,
+      "error": "Unsupported input step",
+      "cause": "Reviewer initially sent wrong step schema; read visible CLI --help and corrected. Retained in actions.jsonl.",
+      "gameDefect": false
+    }
+  ],
+  "evidence": {
+    "actions": "../media/build49-review2/actions.jsonl",
+    "allMissesAndDeathsRetained": true,
+    "retry": "../media/build49-review2/retry.jpg"
+  },
+  "cleanup": {
+    "driverPid": 72607,
+    "chromePid": 72608,
+    "closeCommand": "op close after second terminal",
+    "driverExitCode": 0,
+    "browserClosed": true,
+    "processVerification": "ps -p 72607,72608 -o pid=,ppid=,command= returned exit 1 and empty output; exact owned PIDs absent.",
+    "unrelatedProcessesKilled": false
+  }
+}
