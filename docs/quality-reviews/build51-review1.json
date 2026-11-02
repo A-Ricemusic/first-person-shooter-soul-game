@@ -1,0 +1,86 @@
+{
+  "review": "build51-review1",
+  "method": "Normal visible UI at http://127.0.0.1:5173/ using installed Chrome visible-playtest driver, browser synthetic controls and pause-assisted screenshots. No source, internal state, tests, or external solutions consulted.",
+  "menu_build_label": "BUILD 50",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "00:54",
+      "recovered": [
+        "Mara Solberg"
+      ],
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy_percent": 9,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "notes": "Killed initial guard with rifle, navigated west triage around blocking cover, recovered Mara, reached Heart receiver vicinity but failed recovery; shots at Heart guard missed and dash overshot ring."
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "00:41",
+      "recovered": [
+        "Elian Vale"
+      ],
+      "eliminations": 1,
+      "score": 1100,
+      "accuracy_percent": 12,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "notes": "Normal DEPLOY AGAIN retry. Used east service approach, blocked briefly by isolator/cover, recovered Elian, reached Heart vicinity and died attempting lateral dash/recovery."
+    }
+  ],
+  "ratings_0_to_10": {
+    "gameplay": 5,
+    "presentation": 6,
+    "usability": 6,
+    "combat_readability": 4,
+    "aaa_readiness": 2
+  },
+  "strengths": [
+    "Strong consistent teal/amber rainy station mood and large Heart landmark.",
+    "Clear health/ammo and recovery confirmations; paused facility map labels side approaches and low cover.",
+    "Distinct rifle and pump breacher models, functional weapon switching/reload and recovery supply replenishment.",
+    "Side approaches allowed reaching different memories in two short attempts."
+  ],
+  "problems": [
+    "Enemy figures and weapon meshes are visibly simple and stiff, short of finished high-budget presentation.",
+    "Multiple off-axis attacks drained shield/health while navigating; small directional wedges and threat labels did not make every source easy to locate.",
+    "Initial accurate rifle optic kill contrasted with many later missed shots; later aiming/hit success was difficult to assess from visible feedback.",
+    "Several forward movement batches made no progress against low props; workaround required map/camera inspection.",
+    "Receiver ring proximity matters; dash overshot Heart approach and interaction attempts failed. This is partly synthetic-control execution error, not proof of broken interaction.",
+    "Menu showed BUILD 50 in this requested build51 review."
+  ],
+  "coverage": {
+    "architecture_cover": "Visibly traveled entry, west triage/storage and east maintenance/service, worked around low obstacles; used map. No claim of measured damage protection.",
+    "rifle": "Fired both attempts; initial guard visibly eliminated; reloaded.",
+    "pump_breacher": "Switched and fired attempt 1 until empty, no additional kill evidenced.",
+    "boss": "Custodian/Jammer location appeared on map only; no boss encounter or kill evidenced.",
+    "upload": "Not reached; no upload behavior assessed.",
+    "memories": "Mara recovered attempt 1, Elian attempt 2; Heart vicinity reached both, Sera not recovered."
+  },
+  "limitations": [
+    "Exactly two terminal attempts, both losses; later mission not covered.",
+    "Synthetic controls and automatic screenshot pauses differ from continuous human play; no human enjoyment claim.",
+    "Software-WebGL fallback; no audio or hardware/performance certification.",
+    "No runtime page errors were reported by driver during these actions."
+  ],
+  "evidence_directory": "docs/media/build51-review1",
+  "cleanup": {
+    "close_command": "{\"op\":\"close\"}",
+    "driver_pid": 3608,
+    "chrome_pid": 3618,
+    "driver_exit_code": 0,
+    "closed_response": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 3608,3618 -o pid=,ppid=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "meaning": "Both exact owned PIDs absent; no unrelated browser or server touched."
+  }
+}

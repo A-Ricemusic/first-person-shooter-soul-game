@@ -1,0 +1,95 @@
+{
+  "review": "build51-review2",
+  "method": "Independent visible UI playtest via installed Chrome fallback and tools/visible-playtest.mjs; exactly two ordinary terminal attempts, second via visible DEPLOY AGAIN.",
+  "url": "http://127.0.0.1:5173/",
+  "visible_build_label": "BUILD 50",
+  "ratings": {
+    "gameplay": 5.5,
+    "presentation": 6.5,
+    "usability": 5.5,
+    "combat_readability": 4.5,
+    "AAA_readiness": 3.0
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "01:52",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracy_percent": 11,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Reached and fired on three-coil Custodian. Coil 2 visibly OFF; coils 1 and 3 still 100% at last clear boss screenshot. Died during continued fire/reload.",
+      "upload": "Not reached"
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "01:16",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracy_percent": 3,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Reached Custodian vicinity; turned into obstructing wall, fired into wall, attempted flank and died. Last visible coil HUD all 100%.",
+      "upload": "Not reached"
+    }
+  ],
+  "strengths": [
+    "Strong coherent rain, teal lighting, wet ground and signage atmosphere; title and result typography look deliberate.",
+    "Map identifies walls, low cover, receivers and extraction, with paused planning and selected objective; distance and floor-ring prompts let me recover all memories on both attempts.",
+    "Entry warden optic tutorial was actionable: first burst missed high, corrected burst killed; repeated entry kill on second run.",
+    "Memory recovery restores supplies and creates clear progression; three numbered boss coils show individual status.",
+    "Soul Shift produced visible PHASE BREAK / DISCHARGE CANCELED feedback."
+  ],
+  "problems": [
+    "Navigation repeatedly stopped against low cover, storage and boss walls; target markers through geometry identify destination but give insufficient actionable approach at close range. Several screenshots became wall-filled.",
+    "Damage from multiple directions was hard to attribute while navigating. Edge arrows and small enemy silhouettes offered limited prioritization; lethal damage arrived quickly around the boss.",
+    "Combat target geometry and gray cover blended together; boss approach from north was obstructed while its marker remained directly ahead. I spent a burst into wall on attempt 2.",
+    "First attempt required much corrective navigation; synthetic paused control amplified aiming and orientation difficulty, so observed misses are not a human skill assessment.",
+    "Menu labels the displayed slice BUILD 50 despite review requested as build51."
+  ],
+  "coverage": {
+    "architecture": "Traversed central entry, west triage/storage, Heart, east maintenance/archive and Custodian vicinity. Used side lanes and moved around storage. Low cover and walls visibly blocked movement; shelter near cover coincided with shield recovery, but protection effectiveness was not isolated.",
+    "weapons": "Coil rifle fired both attempts; optic entry kill evidenced. Pump breacher selected and fired in attempt 1, ammo reduced to 01/24; no breacher elimination evidenced.",
+    "boss": "Engaged in attempt 1; coil 2 disabled. Reached obstructed approach in attempt 2. Boss not defeated.",
+    "upload": "Neither attempt reached active upload or extraction success.",
+    "other": "No source, tests, hidden state, debug URL, external solutions or prior reviews read. All misses/actions retained; no runtime/assets/tools edits."
+  },
+  "limitations": [
+    "Synthetic browser-timed controls with pause-assisted screenshots; not a human enjoyment evaluation.",
+    "Software-WebGL fallback; no audio, hardware, frame-rate or GPU certification.",
+    "Two losses only; no success/upload timing, full weapon balance, settings or accessibility coverage.",
+    "No pageErrors reported in returned action results."
+  ],
+  "evidence_directory": "docs/media/build51-review2",
+  "cleanup": {
+    "explicit_close_sent": true,
+    "driver_pid": 4766,
+    "chrome_pid": 4777,
+    "closed_response": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 4766,
+      "chromePid": 4777,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driver_exit_code": 0,
+    "exact_pid_verification_command": "ps -p 4766,4777 -o pid=,ppid=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "conclusion": "Both exact owned PIDs absent. No unrelated Chrome, server or Tailscale touched."
+  }
+}

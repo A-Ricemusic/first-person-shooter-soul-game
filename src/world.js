@@ -3,6 +3,7 @@ import terminalParts from './terminal-parts.json';
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
 import WORKSHOP from './workshop-layout.json';
+import INDUCTION from './induction-layout.json';
 import UPLINK from './uplink-layout.json' with {type:'json'};
 import { CORE_SITES, SERVICE_ROUTES } from './mission.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -204,6 +205,20 @@ export async function buildWorld(scene) {
     receivers.push({model,progress,cassette});
     sign(CORE_SITES[i].person,`MEMORY RECEIVER / ${CORE_SITES[i].role.toUpperCase()}`,x,.53,z+.415,1.03,.24);
   }
+  // Build51: instantiate before navigation/map caches; every visible solid has the same bounds.
+  let inductionAsset;
+  try{inductionAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/induction-hall.glb`)).scene;}catch(_){}
+  const inductionMaterials={concrete:concrete,steel,edge,roof:darkConcrete,enamel:amber,ceramic:new THREE.MeshStandardMaterial({color:0xada882,roughness:.7}),copper:amber,dark:black,mark:new THREE.MeshStandardMaterial({color:0xb4a571,roughness:.9})};
+  for(const p of INDUCTION.parts){
+    const c=new THREE.Vector3(...p.center),h=new THREE.Vector3(...p.size).multiplyScalar(.5);
+    if(p.solid){const b=new THREE.Box3(c.clone().sub(h),c.clone().add(h));b.induction=true;colliders.push(b);}
+    if(!inductionAsset)box(...p.center,...p.size,inductionMaterials[p.material]);
+  }
+  if(inductionAsset){inductionAsset.traverse(o=>{if(o.isMesh){if(o.material.name==='Induction concrete')o.material=concrete;if(o.material.name==='Induction roof')o.material=darkConcrete;o.castShadow=true;o.receiveShadow=true;}});group.add(inductionAsset);}
+  sign('CUSTODIAN / INDUCTION','I / II / III — SERVICE BAYS',11,4.2,23.16,8,.8,'#dfc797');
+  sign('SHUTTERS LIFT / FIRE','CLEAR COIL COMPONENTS TAKE CRITICAL HITS',11,2.3,10.34,4.8,.95,'#dfc797');
+  const southExit=sign('UPLINK ←','SOUTH SERVICE EXIT',4.3,2.8,21.3,2.8,.7,'#b5d2c2');southExit.rotation.y=Math.PI/2;
+  for(const z of [12,19])point(11,4.6,z,0xf2d7a6,35,12);
   // Build43: one authoritative parts list supplies authored and load-failure geometry.
   let workshopAsset;
   try{workshopAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/engineering-workshop.glb`)).scene;}catch(_){}
@@ -326,7 +341,7 @@ export async function buildWorld(scene) {
   }
   // Rain is one transparent draw call; world update only translates it.
   const roof=WORKSHOP.parts.find(p=>p.name===WORKSHOP.roofPart);
-  const shelters=[MEDICAL.shelter,{minX:roof.center[0]-roof.size[0]/2,maxX:roof.center[0]+roof.size[0]/2,minZ:roof.center[2]-roof.size[2]/2,maxZ:roof.center[2]+roof.size[2]/2,ceiling:roof.center[1]-roof.size[1]/2}];
+  const shelters=[INDUCTION.shelter,MEDICAL.shelter,{minX:roof.center[0]-roof.size[0]/2,maxX:roof.center[0]+roof.size[0]/2,minZ:roof.center[2]-roof.size[2]/2,maxZ:roof.center[2]+roof.size[2]/2,ceiling:roof.center[1]-roof.size[1]/2}];
   function maskRain(r,p){if(shelters.some(sh=>r[p]>=sh.minX&&r[p]<=sh.maxX&&r[p+2]>=sh.minZ&&r[p+2]<=sh.maxZ&&r[p+4]<sh.ceiling)){r[p+1]=24;r[p+4]=23;}}
   const rainN=1700, rainPositions=new Float32Array(rainN*6),rainSpeeds=new Float32Array(rainN);
   for(let i=0;i<rainN;i++){const x=(rng()-.5)*92,y=rng()*24,z=(rng()-.5)*100;rainPositions.set([x,y,z,x-.08,y-.8-rng()*.5,z+.02],i*6);rainSpeeds[i]=10+rng()*8;maskRain(rainPositions,i*6);}
@@ -355,7 +370,7 @@ export async function buildWorld(scene) {
   }
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
-    capacitors, colliders, medical:MEDICAL, workshop:WORKSHOP, shelters, rainPositions,
+    capacitors, colliders, medical:MEDICAL, workshop:WORKSHOP, induction:INDUCTION, shelters, rainPositions,
     receivers, uplink, routeLights,
     setUplinkState(powered,progress){if(uplink.userData.powered===powered&&uplink.userData.progress===progress)return;routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
     setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;if(r.model.userData.progress===progress&&r.model.userData.recovered===recovered)return;

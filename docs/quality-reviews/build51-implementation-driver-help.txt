@@ -1,0 +1,31 @@
+Usage: npm run playtest:visible -- --out docs/media/unique-review-name
+Use a TTY for an interactive session. Commands are JSON lines:
+{"op":"click","selector":"#deploy","capture":"deploy","pauseAfter":true}
+{"op":"act","resume":true,"steps":[{"type":"down","key":"KeyW"},{"type":"wait","ms":500}],"capture":"advance"}
+{"op":"act","resume":true,"steps":[{"type":"look","x":20,"y":0},{"type":"mouseDown","button":"left"},{"type":"wait","ms":300}],"capture":"fire"}
+{"op":"capture","label":"view"}
+{"op":"status"}
+{"op":"close"}
+Game keys: Digit1 rifle, Digit2 pump breacher; WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
+ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
+For held-control photographs (Tab trace or ADS), set captureHeld:true on act: capture occurs BEFORE releasing held controls. Default capture releases first; automatic pause clears Tab.
+Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
+look with relative x/y; wait with ms. Act releases held inputs, captures live,
+then uses ordinary Escape unless pauseAfter:false. Set captureHeld:true on an act
+to photograph held ADS before input release. Held movement/fire continue during
+capture; release those explicitly when only aiming is wanted. Inputs still release
+on success or failure. The response includes visible afterRelease UI for this mode.
+resume:true uses the visible
+Resume button. Capture defaults to Escape pause from playing or planning.
+Escape closes the map as it pauses, including the automatic post-capture pause.
+After resume the map starts closed; M opens it again. To capture a close toggle,
+press M twice within one uninterrupted act.
+Input batches default to browser-timed synthetic DOM events through ordinary game listeners.
+No transport round trips occur between steps, and default input release happens in the browser
+before the batch returns. Timings use browser performance time. captureHeld still leaves
+inputs down through the photograph: explicitly release movement/fire for held ADS or Tab.
+This remains paused, synthetic play; screenshot time and browser scheduling can add delays.
+--input-mode=cdp retains the older transport-timed controls for diagnostics.
+No test URL, arbitrary evaluation or hidden game observations are accepted.
+EOF closes the owned browser. A project lock rejects a second driver before launch.
+--headed opens a window; software-WebGL fallback remains allowed, not a GPU benchmark.

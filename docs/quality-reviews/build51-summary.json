@@ -1,0 +1,169 @@
+{
+  "build": 51,
+  "baseline": "f8eba96c543712056b81f422e335efd3931d25b1",
+  "implementation": "Original Blender induction hall at fixed Custodian origin; shared physical shielding, canopy, busbars, drainage, service/firing aisles and south exit. Physical encounter exposure changes. Enemy/weapon/mission numerical values and exact machine hit geometry unchanged.",
+  "asset": {
+    "author": "SOULFALL original procedural Blender authorship",
+    "build": 51,
+    "source": "tools/build51-hall.py",
+    "layout": "src/induction-layout.json",
+    "triangles": 1608,
+    "objects": 134,
+    "materials": 9,
+    "glbBytes": 119372,
+    "textureBytes": 0,
+    "dependencies": "Local original helpers only. Each closed box exactly matches layout; no borrowed commercial assets."
+  },
+  "verification": {
+    "firstBroadSuite": "build51-implementation-suite.json",
+    "firstBroadFailures": [
+      "coordination projectile trajectory now shielded",
+      "warden art context destroyed during implementation HMR",
+      "old bypass occupied by initial shield",
+      "raised gantry sightline blocked by initial north wall",
+      "old extraction route occupied by initial pier/ribs",
+      "old steering fixture behind new shielding"
+    ],
+    "refinements": "Moved north wall end, south shield, northwest pier and west ribs to retain established routes; closed roof seams and mounted bus/light supports. Final layout suite 6/6, geometry authored/fallback passed, adapted coordination and steering passed, weapon50 assets/lifecycle and final production14 passed.",
+    "retainedObsoleteAssertions": "Original coordination and warden-steering assume unobstructed pre-hall trajectories; retained failures. New fixtures move the sentinel to (0,0,12) and steering exercise to z25 without weakening assertions or changing AI.",
+    "geometry": "build51-implementation-geometry.json",
+    "finalLayout": "build51-implementation-final-layout-suite.json",
+    "assetChecks": "build51-implementation-final-checks.json",
+    "production": "build51-implementation-final-production.txt",
+    "privileged": "Exact-information normal-input rifle and mixed controllers won with all3, boss dead, coils[0,0,0], upload1, errors[]. Mixed log confirms breacher shell consumption. Not independent discovery.",
+    "rifle": "build51-implementation-affected-controls.json",
+    "mixed": "build51-implementation-mixed-controls.json",
+    "ordinary": "build51-implementation-play.json"
+  },
+  "reviews": [
+    {
+      "file": "build51-review1.json",
+      "ratings": {
+        "gameplay": 5,
+        "presentation": 6,
+        "usability": 6,
+        "combat_readability": 4,
+        "aaa_readiness": 2
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "OPERATOR LOST",
+          "mission_time": "00:54",
+          "recovered": [
+            "Mara Solberg"
+          ],
+          "eliminations": 1,
+          "score": 1180,
+          "accuracy_percent": 9,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "notes": "Killed initial guard with rifle, navigated west triage around blocking cover, recovered Mara, reached Heart receiver vicinity but failed recovery; shots at Heart guard missed and dash overshot ring."
+        },
+        {
+          "attempt": 2,
+          "outcome": "OPERATOR LOST",
+          "mission_time": "00:41",
+          "recovered": [
+            "Elian Vale"
+          ],
+          "eliminations": 1,
+          "score": 1100,
+          "accuracy_percent": 12,
+          "critical_eliminations": 0,
+          "phase_evades": 0,
+          "notes": "Normal DEPLOY AGAIN retry. Used east service approach, blocked briefly by isolator/cover, recovered Elian, reached Heart vicinity and died attempting lateral dash/recovery."
+        }
+      ]
+    },
+    {
+      "file": "build51-review2.json",
+      "ratings": {
+        "gameplay": 5.5,
+        "presentation": 6.5,
+        "usability": 5.5,
+        "combat_readability": 4.5,
+        "AAA_readiness": 3.0
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "OPERATOR LOST",
+          "mission_time": "01:52",
+          "score": 3180,
+          "eliminations": 1,
+          "accuracy_percent": 11,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "memories": [
+            "Mara Solberg",
+            "Sera Nord",
+            "Elian Vale"
+          ],
+          "boss": "Reached and fired on three-coil Custodian. Coil 2 visibly OFF; coils 1 and 3 still 100% at last clear boss screenshot. Died during continued fire/reload.",
+          "upload": "Not reached"
+        },
+        {
+          "attempt": 2,
+          "outcome": "OPERATOR LOST",
+          "mission_time": "01:16",
+          "score": 3180,
+          "eliminations": 1,
+          "accuracy_percent": 3,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "memories": [
+            "Mara Solberg",
+            "Sera Nord",
+            "Elian Vale"
+          ],
+          "boss": "Reached Custodian vicinity; turned into obstructing wall, fired into wall, attempted flank and died. Last visible coil HUD all 100%.",
+          "upload": "Not reached"
+        }
+      ]
+    }
+  ],
+  "independentWins": 0,
+  "independentLosses": 4,
+  "reviewMethod": "Exactly two fresh native gpt-6.1-sol agents, fork_turns:none, sequential, two terminal ordinary attempts each. Only normal URL, driver help, evidence prefix and honest rating rubric; no source, coordinates, solutions or prior ratings. No edits/tests/Blender/second owned browser while playing.",
+  "freeze": {
+    "files": 241,
+    "beforeBetweenAfterMatch": true,
+    "digest": "33a3a05a1c73d1e09d6c8c3be6ba7d06ea2c5dbd942915faa4285bc6616907ba"
+  },
+  "cleanup": {
+    "implementation": [
+      1688,
+      1698
+    ],
+    "review1": [
+      3608,
+      3618
+    ],
+    "review2": [
+      4766,
+      4777
+    ],
+    "allExplicitCloseExit0": true,
+    "allExactOwnedPidsAbsent": true
+  },
+  "postReviewFix": "UNREVIEWED label-only correction: menu BUILD50 -> BUILD51. No third review or rescore. Affected production smoke14 rerun; geometry/combat unchanged.",
+  "limits": "No ordinary or independent win. Source-informed second attempt defeated boss, entered uplink at last photographed14%, died00:59. Reviewer1 never reached hall; reviewer2 disabled coilII once, no upload. Different reviewers/methods do not establish causal score changes. No human fun, audio or hardware/AAA certification. Overall quality mission remains unfinished.",
+  "rawHashes": {
+    "docs/quality-reviews/build51-review1.json": "06d6fe48a95624b11863419a16972698902c74f14ea2316933bfdd760f4213d7",
+    "docs/media/build51-review1/actions.jsonl": "6935f95fe5921c59f92d5f1008ba2c8edd5eb3ce47b584f0b122f46efec0d80f",
+    "docs/quality-reviews/build51-review2.json": "c7a0384a825d83800266c7690279c9e438c006cf17d41a9b0dc33545a37c6253",
+    "docs/media/build51-review2/actions.jsonl": "9d61ba040cc653626bf56b05eee063d5796d8f800ec2ff05012416f428613e50"
+  },
+  "postReviewValidation": {
+    "productionChecks": 14,
+    "errors": [],
+    "report": "build51-implementation-post-label-production.txt",
+    "changedFrozenPaths": [
+      "src/main.js"
+    ],
+    "change": "BUILD 50 -> BUILD 51 only; unreviewed",
+    "links": "build51-summary-links.json"
+  },
+  "protectedServer": "Read-only HTTP200 local5173 and protected Build23 tailnet5173. Python63172 remains bound61467 serving /tmp/soulfall-play-build23-_4s5lus4. No server/Serve/Tailscale or release changes."
+}
