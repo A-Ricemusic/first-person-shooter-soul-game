@@ -62,3 +62,5 @@ Build58 replaces the generic Custodian diamond with one small numbered component
 Build59 aligns nearby receiver feedback: local heading, scanner and waypoint identify the same person while the planned map route stays selected. The existing prompt shows how far outside recovery reach the player is, with larger text and no duplicate close waypoint label. Recovery radius, hold time, world geometry and combat rules are unchanged.
 
 Build61 fixes fallback mouse-look after one mouse button is released while another remains held. The visible input helper rejects uncaptured, unheld look instead of silently issuing ignored movement; its example now shows the required button order. Sensitivity, combat values and Blender assets are unchanged. Historical review scores remain unmodified.
+
+Build62 deliberately delays new patrol ranged charges through the Custodian’s existing exposed-coil window (2.6 seconds after a volley, 3 after a phase break). Moving patrols, committed shots and close discharges remain dangerous. Damage, exposure duration, assets, service and upload rules stay unchanged; this is a combat pacing change whose independent results are pending.

@@ -21,5 +21,5 @@ export class AttackCoordinator {
     return false;
   }
   start(){this.pending=false;this.lease=0;}
-  resolve(){this.start();this.recovery=.8;}
+  resolve(responseSeconds=.8){this.start();this.recovery=responseSeconds;}
 }
