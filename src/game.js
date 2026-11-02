@@ -10,7 +10,7 @@ import {attachLegs,animateLegs,fallbackDrone} from './drone-motion.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import MEDICAL from './medical-layout.json';
-import { createRole, dutyGoal } from './enemy-roles.js';
+import { createRole, dutyGoal, hearShot } from './enemy-roles.js';
 import { PlayerRoute } from './player-route.js';
 import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
@@ -307,6 +307,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
+    this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
     this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
@@ -367,7 +368,7 @@ export class Game {
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
     const contactRig=attachContact(this.contactAsset,group,type,type==='warden'&&!this.wardenAsset);
-    this.enemies.push({ contactRig, contactWindup:0, meleeCooldown:0, ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: this.player.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ contactRig, contactWindup:0, meleeCooldown:0, ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: position.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   traversalWorld() {
@@ -407,12 +408,19 @@ export class Game {
     this.emit();
   }
 
+  emitShotNoise(origin) {
+    if(this.phase!=='playing')return;
+    const point=origin.clone();
+    for(const enemy of this.enemies)hearShot(enemy,point);
+  }
+
   shoot() {
     if(this.vault)return;
     if(this.activeWeapon==='breacher'){shootBreacher(this);return;}
     if (this.fireTimer > 0 || this.reloading || this.phase !== 'playing') return;
     if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', 'No ammunition. Recover a core or collect a fallen sentinel’s supply.'); } return; }
     this.ammo--; this.shotsFired++; this.fireTimer = 0.105; this.recoil = Math.min(0.1, this.recoil + 0.018); this.kick = 1;
+    this.emitShotNoise(this.player);
     this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045; this.flashJustTriggered = true;
     const direction = new THREE.Vector3(); this.camera.getWorldDirection(direction);
     const spread = this.aim ? 0.0014 : 0.006; direction.x += (Math.random() - 0.5) * spread; direction.y += (Math.random() - 0.5) * spread; direction.normalize();
@@ -600,7 +608,11 @@ export class Game {
       const position = enemy.group.position, delta = this.player.clone().sub(position); delta.y = 0;
       const distance = delta.length(), dir = delta.clone().normalize();
       const eye = position.clone().add(new THREE.Vector3(0, 1.3, 0));
-      enemy.visible = this.hasLineOfSight(eye, this.player);
+      enemy.visible = (enemy.role==='guard' || distance<36) && this.hasLineOfSight(eye, this.player);
+      if(enemy.visible)enemy.observedVelocity.copy(this.playerVelocity);
+      const goal = dutyGoal(enemy,this.player,enemy.visible,dt,this.navigation);
+      const perceivedDelta=goal.clone().sub(position).setY(0), perceivedDistance=perceivedDelta.length();
+      const perceivedDir=perceivedDelta.clone().normalize();
       // A newly armed contact never consumes this frame's elapsed time.
       const rangedCommitted=enemy.windup>0;
       const contactCommitted=enemy.contactWindup>0;
@@ -620,7 +632,7 @@ export class Game {
         }
       }
       if (rangedCommitted) {
-        if(enemy.type==='stalker' && enemy.windup>.16) { const lead=Math.min(1.7,distance/18+.16); enemy.target.copy(this.player).addScaledVector(this.playerVelocity,lead); }
+        if(enemy.type==='stalker' && enemy.windup>.16 && enemy.visible) { const lead=Math.min(1.7,distance/18+.16); enemy.target.copy(this.player).addScaledVector(enemy.observedVelocity,lead); }
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
@@ -629,14 +641,13 @@ export class Game {
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
       }
-      const goal = dutyGoal(enemy,this.player,enemy.visible,dt);
-      const guarding = enemy.role==='guard' && enemy.duty!=='chase';
+      const guarding = !enemy.visible && enemy.duty!=='chase' || enemy.role==='guard' && enemy.duty!=='chase';
       const move = new THREE.Vector3();
-      const approaching = distance > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible;
-      if (approaching) move.add(dir);
-      else if (distance < 5) move.addScaledVector(dir, -0.7);
+      const approaching = (enemy.visible?distance:perceivedDistance) > (enemy.type === 'warden' ? 6 : enemy.type === 'stalker' ? 8 : 16) || !enemy.visible;
+      if (approaching && (enemy.visible || perceivedDistance>.7)) move.add(enemy.visible?dir:perceivedDir);
+      else if (enemy.visible && distance < 5) move.addScaledVector(dir, -0.7);
       if (enemy.visible && enemy.type!=='warden') move.add(new THREE.Vector3(-dir.z, 0, dir.x).multiplyScalar(Math.sin(enemy.phase * 0.65) * 0.65));
-      if(enemy.role==='guard' && !enemy.visible && !guarding)move.copy(goal).sub(position).setY(0);
+      if(!enemy.visible && !guarding){move.copy(goal).sub(position).setY(0);if(move.length()<.7)move.set(0,0,0);}
       if(guarding) { move.copy(goal).sub(position);move.y=0;if(move.length()<.7)move.set(0,0,0); }
       // A route to the target must not turn a visible retreat/strafe into a rush.
       // Returning guards still navigate home, including while engaging a target.
@@ -658,8 +669,9 @@ export class Game {
         enemy.leftLeg.rotation.x = Math.sin(enemy.phase * 7) * 0.45; enemy.rightLeg.rotation.x = -enemy.leftLeg.rotation.x;
       }
       // A returning rig faces its travel unless visibly engaging or committed.
-      const facingDelta=enemy.role==='guard' && !enemy.visible && enemy.windup<=0
-        ? (move.lengthSq()>.001 ? move : new THREE.Vector3(Math.sin(enemy.group.rotation.y),0,Math.cos(enemy.group.rotation.y))) : delta;
+      const scan=enemy.duty==='search'?Math.sin(enemy.searchTime*2)*.65:0;
+      const facingDelta=!enemy.visible
+        ? (enemy.windup>0 ? enemy.target.clone().sub(position).setY(0) : move.lengthSq()>.001 ? move : new THREE.Vector3(Math.sin((enemy.duty==='search'?enemy.searchHeading:enemy.group.rotation.y)+scan),0,Math.cos((enemy.duty==='search'?enemy.searchHeading:enemy.group.rotation.y)+scan))) : delta;
       const facing = Math.atan2(facingDelta.x, facingDelta.z);
       if(enemy.wardenRig){
         const turn=Math.atan2(Math.sin(facing-enemy.group.rotation.y),Math.cos(facing-enemy.group.rotation.y));

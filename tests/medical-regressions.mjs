@@ -16,9 +16,9 @@ try{
  for(let i=0;i<r.length;i+=6)if(r[i]>=sh.minX&&r[i]<=sh.maxX&&r[i+2]>=sh.minZ&&r[i+2]<=sh.maxZ&&r[i+4]<sh.ceiling)rainLeaks++;
  const pursuit=[];
  for(const type of ['sentinel','stalker','warden'])for(const [name,start,end,axis,threshold,sign]of [
- ['south-enter',[-25,-3],[-32,-25],'z',-10,-1],['south-leave',[-32,-25],[-25,15],'z',-8,1],['east-enter',[-7,-16],[-34,-16],'x',-15,-1],['east-leave',[-32,-16],[10,-16],'x',-13,1]]){
- g.clearRun();g.player.set(end[0],1.7,end[1]);g.spawnEnemy(v(start[0],0,start[1]),type,5);const e=g.enemies[0];e.cooldown=1000;let crossed=false,penetrations=0,t=0;
- for(;t<40;t+=1/60){g.runTime+=1/60;g.updateEnemies(1/60);if(!g.canOccupy(e.group.position.x,e.group.position.z,.449))penetrations++;if((e.group.position[axis]-threshold)*sign>0){crossed=true;break;}}
+ ['south-enter',[-25,-3],[-32,-25],'z',-10,-1],['south-leave',[-32,-25],[-25,-5],'z',-8,1],['east-enter',[-7,-16],[-28,-16],'x',-15,-1],['east-leave',[-32,-16],[-12,-16],'x',-13,1]]){
+ g.clearRun();g.player.set(end[0],1.7,end[1]);g.spawnEnemy(v(start[0],0,start[1]),type,5);const e=g.enemies[0];const heardOrigin=g.player.clone();g.player.set(30,1.7,30);e.cooldown=1000;let crossed=false,penetrations=0,t=0;
+ for(;t<40;t+=1/60){g.runTime+=1/60;if(Math.round(t*60)%30===0)g.emitShotNoise(heardOrigin);g.updateEnemies(1/60);if(!g.canOccupy(e.group.position.x,e.group.position.z,.449))penetrations++;if((e.group.position[axis]-threshold)*sign>0){crossed=true;break;}}
  pursuit.push({type,name,crossed,penetrations,seconds:t,end:e.group.position.toArray()});
  }
  // Projectile swept into the sealed front return, never reaches player behind it.
@@ -30,5 +30,5 @@ try{
  for(const [label,pos,target]of [['south',[-25,2,-2],[-25,2,-22]],['service',[-6,2,-16],[-28,2,-18]],['interior',[-25,2,-12],[-31,1.7,-23]]]){
   const budget=await p.evaluate(({pos,target})=>{const g=window.__SOULFALL__.game;g.player.set(...pos);const dx=target[0]-pos[0],dz=target[2]-pos[2];g.yaw=Math.atan2(-dx,-dz);g.pitch=Math.atan2(target[1]-pos[1],Math.hypot(dx,dz));g.animate(0);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);return{calls:g.renderer.info.render.calls,triangles:g.renderer.info.render.triangles};},{pos,target});const path=`docs/media/${process.env.MEDICAL_CAPTURE_PREFIX||'current'}-${label}.png`;await p.screenshot({path});captures.push({path,budget});
  }
- writeFileSync(process.env.MEDICAL_OUTPUT||'docs/quality-reviews/current-medical-checks.json',JSON.stringify({method:'Arranged test=1 actual WebGL. Twelve real AI pursuits, swept projectile, LOS and weather checks. Software rendering; no audio/hardware claim.',result,captures,assetBytes:statSync('public/assets/west-triage.glb').size},null,2));console.log(JSON.stringify(result));
+ writeFileSync(process.env.MEDICAL_OUTPUT||'docs/quality-reviews/current-medical-checks.json',JSON.stringify({method:'Arranged test=1 actual WebGL. Twelve real AI pursuits with synthetic repeated fixed-origin shot events within 24m and player outside sight (Build54 event-routing fixture, not actual shots or normal input), swept projectile, LOS and weather checks. Software rendering; no audio/hardware claim.',result,captures,assetBytes:statSync('public/assets/west-triage.glb').size},null,2));console.log(JSON.stringify(result));
 }finally{await b.close()}

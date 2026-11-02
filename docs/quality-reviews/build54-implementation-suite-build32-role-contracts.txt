@@ -1,0 +1,28 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
++ actual - expected
+
+  Vector3 {
++   x: 0,
+-   x: 100,
+    y: 0,
++   z: 0
+-   z: 100
+  }
+
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/.build54-implementation-suite-build32-role-contracts.mjs:16:93
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:633:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: Vector3 { x: 0, y: 0, z: 0 },
+  expected: Vector3 { x: 100, y: 0, z: 100 },
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

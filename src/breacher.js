@@ -11,6 +11,7 @@ export function shootBreacher(g){
  // Held empty fire must let the first shell seat before interruption.
  if(g.reloading){if(g.ammo<=0)return;g.reloading=false;g.reloadTimer=0;}
  if(g.ammo<=0){g.reload();return;}
+ g.emitShotNoise(g.player);
  g.ammo--;g.shotsFired++;g.fireTimer=.88;g.kick=1;g.recoil=Math.min(.1,g.recoil+.028);
  g.audio.tone(78,.19,'sawtooth',.12,32);g.muzzle.visible=true;g.flashLight.intensity=5;g.flashTimer=.045;g.flashJustTriggered=true;
  const forward=g.camera.getWorldDirection(new T.Vector3()),right=new T.Vector3(1,0,0).applyQuaternion(g.camera.quaternion),up=new T.Vector3(0,1,0).applyQuaternion(g.camera.quaternion);

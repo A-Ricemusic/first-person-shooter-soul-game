@@ -12,7 +12,7 @@ e.group.position.z=27;hp=e.health;const T=await import('/node_modules/.vite/deps
 g.world.colliders=[];
 // Small physical mesh fixtures isolate nearest target, armor and multi-kill accounting.
 for(const e of g.enemies)e.group.position.set(80,0,80);
-const make=(x,z,type='sentinel')=>{const group=new T.Group(),red=new T.MeshStandardMaterial({color:0x444444,emissive:0x111111}),m=new T.Mesh(new T.BoxGeometry(.15,.35,.1),red);group.position.set(x,1.7,z);group.add(m);g.scene.add(group);const e={group,red,type,health:1000};g.enemies.push(e);return e;};
+const {createRole:awaitRole}=await import('/src/enemy-roles.js');const make=(x,z,type='sentinel')=>{const group=new T.Group(),red=new T.MeshStandardMaterial({color:0x444444,emissive:0x111111}),m=new T.Mesh(new T.BoxGeometry(.15,.35,.1),red);group.position.set(x,1.7,z);group.add(m);g.scene.add(group);const e={...(awaitRole(group.position)),group,red,type,health:1000};g.enemies.push(e);return e;};
 const front=make(0,27,'warden'),rear=make(0,25);Math.random=()=>0;g.fireTimer=0;g.ammo=6;let before=front.health;g.shoot();check('armored Warden body seven per pellet; nearest actor screens rear',front.health===before-56&&rear.health===1000);front.armorOpen=1;before=front.health;g.fireTimer=0;g.shoot();check('opened Warden body fourteen per pellet',front.health===before-112);
 front.group.children[0].name='Optic';before=front.health;g.fireTimer=0;g.shoot();check('physical optic twenty-one per pellet',front.health===before-168);
 front.group.position.x=80;rear.group.position.x=80;

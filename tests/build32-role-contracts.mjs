@@ -13,5 +13,5 @@ e.group.position.set(5,0,0);e.duty='chase';e.lastSeen.set(11,0,0);e.unseen=0;
 dutyGoal(e,v(100,100),false,1);assert.equal(e.duty,'chase');assert.equal(e.lastSeen.x,11);
 dutyGoal(e,v(100,100),false,2.1);assert.equal(e.duty,'return');
 e.group.position.set(17,0,0);e.duty='chase';dutyGoal(e,v(17,0),true,.1);assert.equal(e.duty,'return');
-const hunter={...createRole(v(0,0)),group:{position:v(0,0)}};const player=v(100,100);assert.equal(dutyGoal(hunter,player,false,10),player);
+const hunter={...createRole(v(0,0)),group:{position:v(0,0)}};const player=v(100,100);assert.deepEqual(dutyGoal(hunter,player,false,10).toArray(),hunter.home.toArray());assert.equal(hunter.duty,'hold');
 console.log('Role contracts: hysteresis, sticky return, immutable home, 3s sight memory, weapon/health independence, unassigned hunter passed');

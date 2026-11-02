@@ -21,6 +21,7 @@ try{
    g.spawnEnemy(spawn,type,0,kind==='return'?'guard':'hunter');const e=g.enemies[0];
    if(kind==='return'){e.group.position.set(24.45,0,-17.8);e.duty='return';}
    e.cooldown=100;e.phase=-3;
+   if(kind==='hidden')g.emitShotNoise(g.player); // A copied, within-radius shot origin supplies legitimate contact.
    const initial={enemy:e.group.position.toArray(),player:g.player.toArray(),canEnemy:g.canOccupy(e.group.position.x,e.group.position.z,.55),canPlayer:g.canOccupy(g.player.x,g.player.z,.4),visible:g.hasLineOfSight(e.group.position.clone().add(g.player.clone().set(0,1.3,0)),g.player),direct:g.navigation.clear(e.group.position,kind==='return'?e.home:g.player),distance:Math.hypot(e.group.position.x-g.player.x,e.group.position.z-g.player.z)};
    const queries=g.navigation.queries,trace=[];let minDistance=Infinity,minHome=Infinity,invalid=0;
    for(let i=0;i<seconds*120;i++){

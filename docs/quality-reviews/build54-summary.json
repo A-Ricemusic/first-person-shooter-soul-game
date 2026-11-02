@@ -1,0 +1,311 @@
+{
+  "build": 54,
+  "base": "e9ba17ab56c8390f373f7444a62b558405151adb",
+  "scope": "Intentional mobile hunter pressure change: physical sight or copied discrete shot origin; last-contact pursuit, bounded local search, return/hold. No new meshes, combat statistics or mission values.",
+  "design": {
+    "sight": "360-degree physical LOS within 36m for hunters; not camera gaze. Guards retain their local rules.",
+    "hearing": "24m simple distance, through cover, once per consumed rifle round/shell; no acoustic simulation. No queued listening state.",
+    "memorySeconds": 3,
+    "searchSeconds": 5,
+    "searchRadiusMeters": 3,
+    "searchSamples": 4,
+    "returnTimeoutSeconds": 20,
+    "fallback": "Unreachable search candidates rejected by NPC grid/capsule and path; scan in place. Return timeout holds actual position, no teleport/despawn. Visible reacquisition works throughout.",
+    "pose": "Face perceived path or committed attack target; stationary search yaw scan, existing Blender rigs and charge/hit priority.",
+    "restarts": "Enemy IDs reset for deterministic search; state owned only by each run\u2019s actors. Pause/planning stop updates/listening; no catchup."
+  },
+  "validation": {
+    "initialSuite": "build54-implementation-suite-suite.json",
+    "processes": 58,
+    "initialFailures": [
+      "breacher",
+      "warden-art",
+      "medical-regressions",
+      "build32-role-contracts",
+      "build32-roles",
+      "ranged-spacing-regressions",
+      "ending-regressions",
+      "build50-breacher"
+    ],
+    "reruns": "build54-implementation-reruns.json",
+    "finalFixtures": [
+      {
+        "name": "medical-regressions",
+        "exit": 0
+      },
+      {
+        "name": "build32-roles",
+        "exit": 0
+      }
+    ],
+    "focusedBrowser": "build54-implementation-browser.json",
+    "motion": "build54-implementation-motion.json",
+    "contractChanges": "build54-implementation-contract-changes.json",
+    "failuresAndLimits": "Original failures retained. Older warden-steering-regressions and build46-coordination remain failed, were excluded from Build53 suite; current Build51 replacements pass. Diagonal medical probe at (-28,-25) fits .4m player but fails .55m NPC footprint; no universal pathfinding claim. Capture overlay failures retained in motion-initial, wide shots retained in motion-wide. No runtime changes to green obsolete omniscience assertions.",
+    "toolingNotice": "The reused link checker wrote its historical default report once; the new result was copied to build54-summary-links.json and the historical file restored byte for byte. Final historical tracked docs diff is only human.html; all prior section content and reports preserved."
+  },
+  "implementationPlay": {
+    "method": "Source-informed normal URL replay, ordinary driver controls, paused synthetic captures. Not independent/human play.",
+    "terminal": [
+      {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nELIAN VALERelay engineer\nSERA NORDNight operator\nELIMINATIONS\n1\nMISSION TIME\n00:49\nSCORE\n3,180\n5% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES\nDEPLOY AGAIN\n\u2197\nREAD RECOVERED MEMORIESRETURN TO TITLE"
+      }
+    ],
+    "driverExit": 0,
+    "ownedPids": [
+      42679,
+      42680
+    ],
+    "ownedPidsAbsent": true,
+    "actions": "docs/media/build54-implementation-play/actions.jsonl"
+  },
+  "privileged": {
+    "method": "Exact-information automated normal controls: reads colliders, authored Custodian target metadata, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage; not independent discovery or human play. Grounded-height planning includes low obstacles, lookahead requires a clear segment, and boss aiming waits for the known firing position.",
+    "phase": "won",
+    "cores": 3,
+    "custodian": {
+      "x": 11,
+      "z": 16,
+      "active": true,
+      "dead": true,
+      "open": false,
+      "charging": false,
+      "coils": [
+        0,
+        0,
+        0
+      ]
+    },
+    "upload": 1,
+    "errors": [],
+    "limits": "Exact internal geometry/positions inform normal-input aim and routing. No teleport/resources/killAll/reveal mutations. Not independent discovery or human enjoyment."
+  },
+  "reviews": [
+    {
+      "path": "build54-review1.json",
+      "sha256": "05391b77397fafc663538dfd38c6c9504c0ba85c76193bc42fa6fa7e1ab7ca54",
+      "raw": {
+        "reviewer": "build54-review1",
+        "method": "Exactly two ordinary terminal attempts through visible UI, one owned browser-timed driver, no source or hidden state inspected.",
+        "ratings": {
+          "G_gameplay": 5,
+          "P_presentation": 7,
+          "U_usability": 5,
+          "R_combat_readability": 4,
+          "AAA_readiness": 3
+        },
+        "verdict": "Attractive and coherent prototype presentation, but these two runs did not deliver a readable, satisfying combat and navigation loop. Not AAA ready on this evidence.",
+        "merits": [
+          "Rain, wet ground, teal lighting, signage and strong title typography establish a consistent drowned industrial setting.",
+          "Initial guard optic gave an understandable target; both runs earned one critical elimination.",
+          "Recovery visibly names Mara Solberg, changes objective, fills the first memory slot and restores supplies.",
+          "Facility map clearly labels archives, low cover, receiver reach, jammer and extraction; its pause instruction is explicit.",
+          "Space vault overcame a low obstacle in the second run and enabled memory recovery."
+        ],
+        "objections": [
+          "Repeatedly ended facing a nearly featureless wall while the objective distance remained 15\u201318 m; the route cue said signal behind cover but did not make the required exit immediately clear to me.",
+          "Damage continued while I was trying to identify a route. Direction arrows indicated threats but I could not reliably locate and engage the damaging enemies in these captures.",
+          "Rifle and breacher volleys aimed toward a visible orange enemy did not yield an additional elimination; synthetic aiming and my misses limit conclusions about hit registration.",
+          "Dense small text and several simultaneous HUD messages compete for attention during fire.",
+          "Angular enemies and weapon forms look substantially more basic than the polished menu and lighting."
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "difficulty": "Default; no difficulty setting changed",
+            "outcome": "OPERATOR LOST",
+            "time": "00:32",
+            "score": 1180,
+            "memories": [
+              "MARA SOLBERG"
+            ],
+            "eliminations": 1,
+            "criticalEliminations": 1,
+            "accuracyPercent": 8,
+            "phaseEvades": 0,
+            "boss": "Not reached or fought",
+            "upload": "Not reached",
+            "weaponUse": "Coil rifle: 22-round initial volley killed induction guard; reload; 27-round volley toward archive enemy missed or failed to eliminate. No breacher use.",
+            "play": "Flanked northwest, corrected east around archive wall, held E successfully, opened map, dashed northeast, reached wall near Heart and died during further east/north route attempt.",
+            "evidence": [
+              "deployed.jpg",
+              "first-flank.jpg",
+              "archive-approach.jpg",
+              "archive-recover.jpg",
+              "map-first.jpg",
+              "heart-approach.jpg",
+              "heart-recovery-try.jpg"
+            ]
+          },
+          {
+            "attempt": 2,
+            "difficulty": "Default; no difficulty setting changed",
+            "outcome": "OPERATOR LOST",
+            "time": "00:44",
+            "score": 1180,
+            "memories": [
+              "MARA SOLBERG"
+            ],
+            "eliminations": 1,
+            "criticalEliminations": 1,
+            "accuracyPercent": 17,
+            "phaseEvades": 0,
+            "boss": "Not reached or fought",
+            "upload": "Not reached",
+            "weaponUse": "Coil rifle: eight initial rounds killed induction guard; reload; 18-round aimed volley did not eliminate archive enemy. Pump breacher selected, fired three shells without additional elimination. Final requested fire occurred after terminal loss.",
+            "play": "Repeated northwest approach but stalled at low cover 16 m from receiver; attempted E too far away. Space vault then forward movement and E recovered Mara. Tried breacher and Shift, met north wall, turned east then north, remained near Heart wall, died during further strafe/dash attempt.",
+            "evidence": [
+              "attempt-two.jpg",
+              "two-mara.jpg",
+              "two-recovery.jpg",
+              "two-vault.jpg",
+              "two-breacher.jpg",
+              "two-heart-route.jpg",
+              "two-terminal.jpg"
+            ]
+          }
+        ],
+        "errors": "All driver result pageErrors arrays were empty; no action command errors observed.",
+        "visibilityLimits": [
+          "No inference about internal AI knowledge or implementation.",
+          "Boss, other memories and upload experience unassessed.",
+          "Synthetic controls, capture pauses and software WebGL limit aim, latency, fairness and hardware judgments.",
+          "Ratings reflect these two short unsuccessful runs, including my navigation and aiming errors."
+        ],
+        "evidenceDirectory": "docs/media/build54-review1",
+        "actionRecord": "docs/media/build54-review1/actions.jsonl",
+        "cleanup": {
+          "explicitCloseSent": true,
+          "driverPid": 43854,
+          "chromePid": 43864,
+          "closedReportedBothPids": true,
+          "browserClosed": true,
+          "driverExitCode": 0,
+          "psExactPidsAbsent": true,
+          "psExitCode": 1
+        }
+      }
+    },
+    {
+      "path": "build54-review2.json",
+      "sha256": "f563f25a6c4839de21b960dd8bf195666028fc1f029bb76d772d547b3007a57a",
+      "raw": {
+        "reviewer": "build54-review2",
+        "method": "Exactly two ordinary terminal attempts using only visible UI and the owned visible-playtest driver; default browser-timed input; default difficulty unchanged.",
+        "ratings": {
+          "G_gameplay": 6.5,
+          "P_presentation": 7.5,
+          "U_usability": 6,
+          "R_combat_readability": 6,
+          "AAA_readiness": 4
+        },
+        "verdict": "A visually coherent, playable vertical slice with useful navigation and an understandable mission loop, but my two losses exposed substantial onboarding and combat legibility friction. Not AAA ready on the evidence I observed.",
+        "merits": [
+          "Rain, wet ground reflections, teal lighting, architectural signage and restrained typography create a cohesive station atmosphere.",
+          "The paused facility map clearly labels archives, extraction and the Custodian. Held Tab provides a visible ground approach.",
+          "Memory recovery gives a clear named confirmation and restores supplies. The mission advances cleanly through three recoveries to the jammer.",
+          "Coil I visibly turned dark and the top readout changed to OFF after my second-attempt rifle volley; this made progress understandable."
+        ],
+        "objections": [
+          "The handbook delivers many mechanics in a dense block before play; reading it did not translate into confident combat decisions under pressure.",
+          "I repeatedly walked into cover or overshot receiver rings. A distance of 3.3 to 4.0 metres still required another small step; the close prompt helped but recovery positioning remained fussy.",
+          "My first moving sentinel volley missed extensively, with only 4 rifle rounds remaining and no elimination. The breacher then emptied without an elimination while I pushed against cover.",
+          "At the boss, surrounding architecture repeatedly hid the target and I needed several turns to identify a clear coil face. Multiple small directional cues did not tell me which source caused each health loss.",
+          "In the second attempt health fell from 83 with 9 shield to terminal loss during the next reload/fire batch; I did not visibly identify the responsible attack before death. This is an observation of my visibility, not a claim about attack fairness or AI."
+        ],
+        "attempts": [
+          {
+            "number": 1,
+            "outcome": "OPERATOR LOST",
+            "missionTime": "01:36",
+            "score": 3360,
+            "memories": [
+              "Mara Solberg",
+              "Sera Nord",
+              "Elian Vale"
+            ],
+            "eliminations": 2,
+            "accuracyPercent": 5,
+            "criticalEliminations": 2,
+            "phaseEvades": 0,
+            "boss": "Reached Custodian; last visible coil readout was all three at 100%; fired while approaching and died. No coil disable observed.",
+            "upload": "Not reached; uplink remained jammed.",
+            "weapons": "Rifle killed induction guard and heart warden; many rounds missed a moving sentinel and later scenery. Pump breacher fired through its magazine twice with no observed elimination, then reloaded; returned to rifle.",
+            "movement": "Used map, Tab trace, strafing, jump/vault and Shift. Several failed receiver approaches and cover collisions retained in evidence."
+          },
+          {
+            "number": 2,
+            "outcome": "OPERATOR LOST",
+            "missionTime": "01:00",
+            "score": 3180,
+            "memories": [
+              "Mara Solberg",
+              "Sera Nord",
+              "Elian Vale"
+            ],
+            "eliminations": 1,
+            "accuracyPercent": 22,
+            "criticalEliminations": 1,
+            "phaseEvades": 0,
+            "boss": "Reached Custodian, disabled coil I with rifle; last visible readout: I OFF, II 100%, III 100%. Died in next reload/fire batch.",
+            "upload": "Not reached; uplink remained jammed.",
+            "weapons": "Rifle only; induction critical elimination, reload before boss, successful coil volley, attempted reload and second volley.",
+            "movement": "Applied first-attempt navigation learning, vaulted low cover, used two Shift attempts, and recovered all memories faster. Still needed small corrections at every receiver."
+          }
+        ],
+        "errors": "Every driver result reported pageErrors: []; no driver command errors observed.",
+        "visibilityLimits": [
+          "No source, tests, routes, hidden state, other reports or debug observations used; no inference about internal enemy knowledge.",
+          "Synthetic controls, capture pauses and software WebGL limit judgments about aim, latency, fairness and hardware performance.",
+          "No completed boss kill, upload, victory or extensive settings/difficulty comparison observed."
+        ],
+        "evidence": {
+          "directory": "docs/media/build54-review2",
+          "allActionsAndResults": "docs/media/build54-review2/actions.jsonl",
+          "terminalScreenshots": [
+            "docs/media/build54-review2/a1-boss-fire.jpg",
+            "docs/media/build54-review2/a2-coil-two.jpg"
+          ],
+          "coilProgress": "docs/media/build54-review2/a2-coil-volley.jpg"
+        },
+        "cleanup": {
+          "explicitCloseSent": true,
+          "driverPid": 44318,
+          "chromePid": 44328,
+          "closedReportedBrowserClosed": true,
+          "driverExitCode": 0,
+          "verification": "ps -p 44318,44328 -o pid=,command= returned no rows and exit 1; both exact owned PIDs absent. No kill used."
+        }
+      }
+    }
+  ],
+  "freeze": {
+    "files": 274,
+    "sha256": "be7e344eeca1f53ecaf7b5f1e8e0218b0531a86d871ca250297c5435eb316f46",
+    "identicalBeforeBetweenAfter": true,
+    "postReviewRuntimeChanges": false
+  },
+  "provenance": "Existing original Blender assets reused. No public/assets, world, navigation, combat-feedback or Custodian payload change. Exact 4.35MB lazy Custodian fallback preserved.",
+  "protected": "build54-implementation-protected.json; parent tool/reports/section unchanged; Build23 snapshot/server/Serve/release untouched.",
+  "finalChecks": {
+    "production": "build54-implementation-shipped-production.txt",
+    "dossierLinks": "build54-summary-links.json",
+    "endpoints": "build54-implementation-endpoints.json",
+    "productionPassed": 14,
+    "browserErrors": [],
+    "failedRequests": [],
+    "dossierLocalReferencesPerTree": 757,
+    "dossierMissing": [],
+    "latestHTTP": 200,
+    "protectedBuild23HTTP": 200,
+    "protectedPythonPid": 63172
+  },
+  "limits": [
+    "Four independent losses, no ordinary boss victory/upload.",
+    "Ratings retain original labels; no causal comparison to different reviewers or prior methods.",
+    "Synthetic DOM timing, capture pauses, misses, simple geometry and narrow encounter breadth limit fairness/enjoyment conclusions.",
+    "Software-WebGL flags are not hardware certification; no human enjoyment, audio or AAA certification.",
+    "Overall quality mission remains unfinished."
+  ]
+}
