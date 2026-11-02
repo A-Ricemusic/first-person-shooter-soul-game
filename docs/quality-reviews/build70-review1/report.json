@@ -1,0 +1,88 @@
+{
+  "reviewer": "build70-review1",
+  "build": 70,
+  "independent": true,
+  "url": "http://127.0.0.1:5173/",
+  "settings": "Defaults; browser synthetic input; software WebGL fallback",
+  "terminal_attempt_count": 2,
+  "ratings": {
+    "gameplay": {
+      "score": 5.5,
+      "out_of": 10,
+      "reason": "Opening optic kill feels rewarding; phase dash and recovery supplies offer tactical tools. Two fast deaths while struggling with archive sentinels left combat feeling punishing and hard to correct."
+    },
+    "presentation": {
+      "score": 7,
+      "out_of": 10,
+      "reason": "Strong rain, wet floor lighting, restrained teal/amber identity and polished title/end screens. Boxy robots, repetitive white partitions and simple weapon geometry remain visibly prototype scale."
+    },
+    "usability": {
+      "score": 7,
+      "out_of": 10,
+      "reason": "Controls are immediately displayed, map pauses safely, restart is clear, and recovery explicitly says how far outside reach. Repeated small adjustments near the receiver under fire were frustrating."
+    },
+    "readability": {
+      "score": 6,
+      "out_of": 10,
+      "reason": "Clear objective names, compass and threat labels. Tiny map labels, dense HUD, muted small enemies and ambiguous firing direction made rapid targeting difficult."
+    },
+    "AAA-readiness": {
+      "score": 4,
+      "out_of": 10,
+      "reason": "Cohesive vertical-slice framing and functioning feedback, but observed environmental/character simplicity and combat legibility fall well short of a finished AAA FPS. Late mission and performance remain unassessed."
+    }
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "type": "fresh",
+      "start": "ENTER THE STORM / #deploy",
+      "terminal": "death",
+      "raw_terminal_ui": "OPERATOR LOST | THE STATION REMEMBERS. | ELIMINATIONS 1 | MISSION TIME 00:29 | SCORE 180 | 4% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME",
+      "recovered": [],
+      "evidence": "docs/media/build70-review1/attempt1-recover.jpg",
+      "experience": "Killed induction warden, used map, approached West Archive, missed sentinel shots and held E just outside reach, died before recovery."
+    },
+    {
+      "number": 2,
+      "type": "fresh restart",
+      "start": "Visible START FRESH on death screen (text=START FRESH)",
+      "terminal": "death",
+      "raw_terminal_ui": "OPERATOR LOST | THE STATION REMEMBERS. | MARA SOLBERG Station medic | ELIMINATIONS 1 | MISSION TIME 00:39 | SCORE 1,180 | 4% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES \u00b7 0 UPLINK RETRIES \u00b7 CUMULATIVE PLAY TIME",
+      "recovered": [
+        "MARA SOLBERG"
+      ],
+      "evidence": "docs/media/build70-review1/attempt2-heart-approach.jpg",
+      "experience": "Killed induction warden again. Tried rifle, dash and shotgun against archive sentinels. Repeated reach prompts 1.1m then 0.2m outside. Recovered Mara with E; health rose from 22 to 42 and supplies restored. Died while attempting to move toward Heart."
+    }
+  ],
+  "strengths": [
+    "Attractive cohesive title and end-screen typography and atmosphere.",
+    "Opening announcement explains optic, Shift, flank options.",
+    "Map shows walls, low cover, receiver reach, objective selection and player.",
+    "Recovery supplies and memory card clearly acknowledge progress.",
+    "No page errors returned in my actions."
+  ],
+  "problems": [
+    "Sentinels small and low contrast against archive fixtures; my aim repeatedly failed, with only 4% displayed accuracy. This is observed difficulty, not proof of a hit-registration bug.",
+    "Received damage while trying to enter a small receiver reach area; repeated nearly-in-range E attempts were costly.",
+    "Repeated boxy fixtures make spatial discrimination less immediate.",
+    "HUD has many small labels at once; map and event text require deliberate reading."
+  ],
+  "coverage_limits": [
+    "Only induction and western archive combat; one recovered core. No jammer disable, east archive recovery, Heart recovery, uplink, victory, anchors, settings changes, or audio judgment.",
+    "Synthetic paused play and software WebGL are not representative of continuous mouse play or hardware performance.",
+    "No source, prior reports or other reviewer evidence inspected."
+  ],
+  "method": {
+    "captureHeld": false,
+    "capture_added_shots": "None: default release before every capture. Screenshot and browser scheduling add small elapsed time before automatic pause.",
+    "look": "RMB held before each fallback look; all deltas within 2400; default sensitivity unchanged.",
+    "pauses": "Each act/click captured then automatically paused with Escape; map itself paused. Wall time includes reading own captures and tool calls.",
+    "timers": "Terminal UI labels time CUMULATIVE PLAY TIME. No anchors used; each fresh run starts at 00:00, ends 00:29 and 00:39. Combined displayed run time 68 seconds, not wall time or one continuous attempt. Driver ready 19:50:46Z; cleanup confirmed by 19:54:12Z (~206 sec wall envelope).",
+    "filename_note": "attempt2-terminal.jpg was optimistically named before the action: it is a nonterminal successful Mara recovery at 00:34, not a third outcome. Actual second terminal is attempt2-heart-approach.jpg."
+  },
+  "evidence_directory": "docs/media/build70-review1",
+  "action_log": "docs/media/build70-review1/actions.jsonl",
+  "cleanup": "docs/quality-reviews/build70-review1/cleanup.json"
+}
