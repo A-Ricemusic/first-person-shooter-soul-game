@@ -22,6 +22,22 @@ function pose(c,dt=0){for(const n of c.coils){
 }c.group.updateWorldMatrix(true,true);}
 // Only foreign world cover clips telegraphs; the machine's physical meshes still block rifle shots.
 function clipped(g,from,to){const ray=new T.Ray(from,to.clone().sub(from).normalize());let d=from.distanceTo(to);for(const box of g.world.colliders){if(box.custodian)continue;const p=ray.intersectBox(box,new T.Vector3());if(p)d=Math.min(d,from.distanceTo(p));}return ray.at(d,new T.Vector3());}
+// Objective visibility considers foreign cover, not the machine's own collision
+// slices. A mission bearing is not an aim target or a promise of a walkable path.
+export function custodianObjectiveVisible(g){
+ const c=g.custodian;if(c.dead)return false;
+ const point=new T.Vector3(),hit=new T.Vector3(),ray=new T.Ray();
+ for(const n of c.coils){
+  if(n.hp<=0)continue;
+  const body=n.parts.find(m=>m.name.startsWith('Coil'));
+  const targets=body?[body.getWorldPosition(point).clone(),n.origin]:[n.origin];
+  for(const target of targets){
+   const length=g.player.distanceTo(target);ray.set(g.player,target.clone().sub(g.player).normalize());
+   if(!g.world.colliders.some(box=>!box.custodian&&(box.containsPoint(g.player)||(ray.intersectBox(box,hit)&&hit.distanceTo(g.player)<=length))))return true;
+  }
+ }
+ return false;
+}
 export function custodianAim(g){const c=g.custodian;if(!c.active||c.dead)return null;const direction=g.camera.getWorldDirection(new T.Vector3());g.raycaster.set(g.player,direction);const h=g.raycaster.intersectObject(c.model,true)[0];if(!h||!g.hasLineOfSight(g.player,h.point,0))return null;for(const e of g.enemies){const a=g.raycaster.intersectObject(e.group,true)[0];if(a&&a.distance<h.distance)return null;}const i=h.object.userData.coil,n=c.coils[i];return n?{label:n.hp<=0?`COIL ${i+1} / INERT COVER`:`COIL ${i+1} / ${c.open>0&&!h.object.userData.shutter?'EXPOSED COMPONENT':'ARMORED'}`,health:n.hp/(160*g.difficulty.health)}:null;}
 export function hitCustodian(g,intersection,volley=null){const c=g.custodian,i=intersection.object.userData.coil,n=c.coils[i];if(!c.active||c.dead||!n||n.hp<=0)return;const critical=c.open>0&&!intersection.object.userData.shutter,damage=volley?(critical?14:7)*volley.scale:critical?82:17;n.hp=Math.max(0,n.hp-damage);if(!volley)g.shotsHit++;else volley.hit=true;g.audio.hit(critical);g.event('hit',critical?'COIL EXPOSED':`ARMORED · CHIP ${damage}`,{headshot:critical,damage});if(n.hp===0){if(n.line){n.line.removeFromParent();n.line.geometry.dispose();n.line.material.dispose();n.line=null;}g.event('notice','BROADCAST COIL DISABLED · ONE LESS FIRING LANE');if(c.coils.every(n=>n.hp<=0)){c.dead=true;c.coordination.reset();clearCustodianLines(c);c.windup=0;c.open=0;g.kills++;g.score+=100;g.audio.kill();g.exitBoundary.material.color.setHex(0x65ffb7);g.exitBeam.visible=true;g.event('kill','CUSTODIAN DISABLED +100 · UPLINK RELEASED');}}
  pose(c);

@@ -1,0 +1,28 @@
+{
+  "pass": "Build52 parent Custodian objective occlusion correction",
+  "baseline": "f77883680e4c82736a915816db24bf46df69e862",
+  "finding": "Memory/extraction objectives carry cover visibility; the Custodian objective did not. Build51 reviewer2 wall-filled attempt2-boss-engage.jpg still showed DISABLE CUSTODIAN7M, while shots hit the wall.",
+  "change": "Mission bearing checks live component body/head points against foreign world colliders. Machine-owned collision slices are ignored for this objective visibility test only. Weapons, physical cover, enemy LOS, damage, navigation and timing are unchanged. If hidden, existing blocked-signal note replaces the bearing with USE A HALL OPENING / HOLD TAB FOR GROUND TRACE. This is destination visibility, not an aim solution or walkable-path promise.",
+  "focusedVerification": "build52-parent-objective-occlusion.json",
+  "fixtureCorrections": [
+    {
+      "failure": "TypeError: Cannot read properties of undefined (reading includes)",
+      "cause": "Fixture called state emit but not the separate onMarkers renderer; paused requestAnimationFrame meant no automatic marker render.",
+      "correction": "Explicitly call existing onMarkers with actual captureMarkers output."
+    },
+    {
+      "failure": "open objective returns to visible marker DOM",
+      "cause": "Fixture queried .marker instead of existing .world-marker class.",
+      "correction": "Use actual renderer class; assertions otherwise unchanged."
+    }
+  ],
+  "ratings": "No new review or rescore; both raw Build51 reviews retained unchanged. This small post-review runtime fix is independently unreviewed.",
+  "nextDesign": "Contextual Space vault for low cover with swept body/head clearance, preserved ordinary jump when unavailable and authored first-person handling. Planned, not implemented or validated here.",
+  "limits": "Arranged renderer/geometry checks do not establish discovery, human enjoyment, AAA readiness or fairness. Broader mission unfinished.",
+  "production": {
+    "passed": 14,
+    "errors": [],
+    "report": "build52-parent-production.json",
+    "log": "build52-parent-production.txt"
+  }
+}

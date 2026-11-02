@@ -1,6 +1,6 @@
 import {shootBreacher,buildBreacher,poseBreacher} from './breacher.js';
 import {CONTACT_WINDUP,fallbackContact,attachContact,contactReach,animateContact,cancelContact} from './contact-discharge.js';
-import {prepareCustodianTurn,custodianAim,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
+import {prepareCustodianTurn,custodianAim,custodianObjectiveVisible,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
 import {capacitorShot,activateCapacitor,updateCapacitors,resetCapacitors,cancelCapacitors} from './capacitors.js';
 import {poseHandling,disposeAsset} from './viewmodel.js';
 import { facilityFootprints } from './facility-map.js';
@@ -825,7 +825,7 @@ export class Game {
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
-      if(!this.custodian.dead)markers.push({id:'custodian',kind:'exit',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
+      if(!this.custodian.dead)markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
       else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
     }
     // A doorway is actionable only along a swept, walkable approach. This is
