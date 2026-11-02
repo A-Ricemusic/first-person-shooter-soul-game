@@ -1,0 +1,253 @@
+{
+  "review_id": "build50-review1",
+  "build_visible": "BUILD 50",
+  "url": "http://127.0.0.1:5173/",
+  "reviewer": "Independent visible-play reviewer 1",
+  "method": {
+    "attempts_required": 2,
+    "terminal_attempts_completed": 2,
+    "browser_mode": "default browser input mode, installed Chrome, software WebGL fallback",
+    "observations": "Visible screenshots and driver-returned visible UI text only. Read the in-game handbook and facility map. Used ordinary controls and normal Deploy Again retry.",
+    "limits": [
+      "Browser-timed synthetic DOM input and pause-assisted screenshots differ from continuous human play.",
+      "Screenshots add live simulation time; attempt 1 died between capture and automatic pause.",
+      "No human enjoyment certification, audio assessment, or hardware/performance certification.",
+      "No source, assets, docs, history, prior reviews, tests, state hooks, arbitrary evaluation, alternate routes, game edits, builds, or Blender inspected or used.",
+      "Only the normal game URL was used. No shared preview or other browser."
+    ],
+    "driver_command": "node tools/visible-playtest.mjs --out docs/media/build50-review1",
+    "raw_evidence_directory": "docs/media/build50-review1/",
+    "raw_actions_policy": "All commands, misses, stalls, deaths, and driver responses were retained in the driver evidence. Nothing was retried outside the two ordinary attempts or discarded to improve the assessment."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "start_sequence": 5,
+      "terminal_sequence": 22,
+      "terminal_capture_sequence": 23,
+      "outcome": "death / OPERATOR LOST",
+      "mission_time": "00:59",
+      "score": 2100,
+      "eliminations": 1,
+      "accuracy_percent": 11,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "memories_ui_confirmed": [
+        "MARA SOLBERG",
+        "SERA NORD"
+      ],
+      "unrecovered": [
+        "ELIAN VALE"
+      ],
+      "boss_progress": "Not reached; still recovering Elian at death.",
+      "upload_progress": "No upload UI reached; no upload progress established.",
+      "weapons": [
+        {
+          "weapon": "Coil rifle",
+          "selected_and_fired_confirmed": true,
+          "evidence": [
+            "docs/media/build50-review1/attempt1-rifle.jpg",
+            "docs/media/build50-review1/attempt1-west-fight.jpg"
+          ],
+          "details": "Initial trigger hold reduced ammo 30 to 13 and showed WARDEN // NEUTRALIZED +100 with 1 elimination. Later rifle fire consumed ammo to 10, without another confirmed kill."
+        },
+        {
+          "weapon": "Pump breacher",
+          "selected_and_fired_confirmed": true,
+          "evidence": [
+            "docs/media/build50-review1/attempt1-breacher.jpg",
+            "docs/media/build50-review1/attempt1-breacher-followup.jpg"
+          ],
+          "details": "Digit2 selected the visibly different PUMP BREACHER. Ammo read 03 then 01 after held fire. No confirmed breacher kill; aim missed or failed to finish the mobile sentinel. One further shell was commanded before switching back to rifle; no screenshot separately proves that last shell."
+        }
+      ],
+      "misses_and_stalls": [
+        "Forward movement stopped at the central service low cover.",
+        "First Mara E hold was out of range at 2.9 m; moving right allowed recovery.",
+        "Breacher and later rifle shots did not eliminate the west sentinel.",
+        "Movement into west storage/walls stalled while health fell; I eventually exited south/east.",
+        "First Heart E hold was out of range at 3.8 m; next short advance recovered Sera.",
+        "The attempt1-east-run capture showed health 10, then the driver after-pause UI already showed death."
+      ],
+      "terminal_evidence": "docs/media/build50-review1/attempt1-terminal.jpg"
+    },
+    {
+      "attempt": 2,
+      "start_sequence": 24,
+      "terminal_sequence": 42,
+      "outcome": "death / OPERATOR LOST",
+      "mission_time": "01:08",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracy_percent": 10,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories_ui_confirmed": [
+        "MARA SOLBERG",
+        "SERA NORD",
+        "ELIAN VALE"
+      ],
+      "boss_progress": "Boss objective activated after Elian. Visibly approached to 21 m. Last visible coil readout was I 100%, II 100%, III 100%; shutters changed from armored to OPEN WINDOW. No coil destruction or damage amount was established. Final firing input was issued toward the boss but ended on the death screen, so boss hits and actual final shots are unconfirmed.",
+      "upload_progress": "No upload phase or percentage reached; release of uplink not established.",
+      "weapons": [
+        {
+          "weapon": "Coil rifle",
+          "selected_and_fired_confirmed": true,
+          "evidence": [
+            "docs/media/build50-review1/attempt2-west.jpg",
+            "docs/media/build50-review1/attempt2-custodian-approach.jpg"
+          ],
+          "details": "Initial rifle burst followed by reload left reserve 169 and one elimination. Final death screen credited one critical elimination. Rifle remained visibly selected through boss approach. Final ADS/fire commands were issued but the resulting screenshot was already terminal."
+        },
+        {
+          "weapon": "Pump breacher",
+          "selected_and_fired_confirmed": false,
+          "details": "Not selected in attempt 2."
+        }
+      ],
+      "misses_and_stalls": [
+        "Overran or approached Mara from the wrong side; repeated E holds were out of reach at 9 m, 6 m and 3.3 m before recovery.",
+        "Heart approach had E misses at 7 m, 3.8 m and 3.6 m before a short forward move recovered it.",
+        "Two east diagonal batches gave little or no visible movement; collision is an inference, not a diagnosed code defect. Reorientation and a dash made progress.",
+        "Reached East Archive with health 31; recovery raised visible health to 32 and shield to 22, with incoming fire confounding the total healing amount.",
+        "Approached the Custodian with health 9 and died while trying to reposition and fire."
+      ],
+      "terminal_evidence": "docs/media/build50-review1/attempt2-custodian-fire.jpg"
+    }
+  ],
+  "command_errors": [],
+  "page_errors": "All driver result records observed returned pageErrors: [].",
+  "strengths": [
+    {
+      "finding": "The title composition, storm, teal/amber lighting, reflective ground and large typographic hierarchy give the slice a coherent mood.",
+      "evidence": [
+        "docs/media/build50-review1/menu.jpg",
+        "docs/media/build50-review1/attempt1-start.jpg",
+        "docs/media/build50-review1/attempt2-east-turn.jpg"
+      ]
+    },
+    {
+      "finding": "Memory recovery changes the objective and supplies visibly; the end screen preserves the actual recovered people and useful performance statistics.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-memory1-recover.jpg",
+        "docs/media/build50-review1/attempt2-memory3.jpg",
+        "docs/media/build50-review1/attempt2-custodian-fire.jpg"
+      ]
+    },
+    {
+      "finding": "The paused facility map and short ground trace gave workable architectural guidance, and the handbook explicitly explains its danger limitation.",
+      "evidence": [
+        "docs/media/build50-review1/handbook.jpg",
+        "docs/media/build50-review1/attempt1-map.jpg",
+        "docs/media/build50-review1/attempt1-west-approach.jpg"
+      ]
+    },
+    {
+      "finding": "Rifle and breacher have distinct silhouettes and ammo displays; rifle hits produced an unambiguous neutralization feed.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-rifle.jpg",
+        "docs/media/build50-review1/attempt1-breacher.jpg"
+      ]
+    },
+    {
+      "finding": "Custodian I/II/III cells and the top coil status provided a visible connection between a world target and mission progression.",
+      "evidence": [
+        "docs/media/build50-review1/attempt2-custodian-approach.jpg"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "finding": "Close-range navigation around low cover and storage was difficult from the first-person view; I repeatedly spent dangerous seconds against obstacles, with uncertain route direction. This is an observed usability problem in this method, not proof of broken collision.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-intake.jpg",
+        "docs/media/build50-review1/attempt1-heart-approach.jpg",
+        "docs/media/build50-review1/attempt1-heart-near.jpg",
+        "docs/media/build50-review1/attempt2-east-lane.jpg"
+      ]
+    },
+    {
+      "finding": "Receiver distance and the floor ring required repeated correction even when the receiver appeared close. The MOVE CLOSER instruction helped, but the interaction position was easy to overshoot while under fire.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-memory1.jpg",
+        "docs/media/build50-review1/attempt2-mara-three.jpg",
+        "docs/media/build50-review1/attempt2-memory2.jpg"
+      ]
+    },
+    {
+      "finding": "Threat indicators accumulated from several directions while the lower target readout focused one enemy. I often knew I was being hit without rapidly locating a safe response; the small bracketed targets and muted cues were hard to use during synthetic batches.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-memory2.jpg",
+        "docs/media/build50-review1/attempt2-east-lane.jpg",
+        "docs/media/build50-review1/attempt2-custodian-approach.jpg"
+      ]
+    },
+    {
+      "finding": "Dense signage, objective text, visor cues and map labels can overlap. At the Heart and East Archive the weapon/receiver post also obscured relevant targets and prompts.",
+      "evidence": [
+        "docs/media/build50-review1/attempt2-heart-two.jpg",
+        "docs/media/build50-review1/attempt2-memory2.jpg",
+        "docs/media/build50-review1/attempt2-east-service.jpg"
+      ]
+    },
+    {
+      "finding": "The clean blocky characters, sparse facial/character detail and repeated simple environmental shapes remain visibly below a finished AAA presentation despite strong lighting and UI composition.",
+      "evidence": [
+        "docs/media/build50-review1/attempt1-breacher-followup.jpg",
+        "docs/media/build50-review1/attempt2-east-turn.jpg",
+        "docs/media/build50-review1/attempt2-custodian-approach.jpg"
+      ]
+    },
+    {
+      "finding": "The handbook is extensive and its first screen only exposes part of the text; much mechanical detail arrived before play. I used driver-returned visible dialog text to read the remaining handbook content, so I cannot claim its scrolling interaction was tested.",
+      "evidence": [
+        "docs/media/build50-review1/handbook.jpg"
+      ]
+    }
+  ],
+  "provisional_ratings_0_to_10": {
+    "gameplay": {
+      "score": 6.0,
+      "reason": "Meaningful memory, weapon, regeneration, cover and boss mechanics are visible, but my two losses were dominated by awkward navigation and weak aiming feedback at moving threats. Boss combat and upload remain insufficiently exercised."
+    },
+    "presentation": {
+      "score": 7.0,
+      "reason": "Strong cohesive storm lighting, palette and typography; simple geometry and characters limit finish."
+    },
+    "usability": {
+      "score": 6.0,
+      "reason": "Map, trace, retry and objective changes are useful. Recovery positioning and obstacle routes needed repeated correction under fire."
+    },
+    "readability": {
+      "score": 6.0,
+      "reason": "Large health/ammo and objective headings are clear; small cue text, overlap and occluding receiver posts weakened combat interpretation."
+    },
+    "AAA_readiness": {
+      "score": 3.0,
+      "reason": "A coherent playable slice, with substantial asset/detail/animation and broader human usability validation still needed. Two losses cannot certify campaign balance, boss completion, upload or production readiness."
+    }
+  },
+  "cleanup": {
+    "close_explicitly_sent": true,
+    "close_command": {
+      "op": "close"
+    },
+    "driver_pid": 86437,
+    "chrome_pid": 86447,
+    "driver_close_response": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 86437,
+      "chromePid": 86447,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driver_exit_code": 0,
+    "pid_verification_command": "ps -p 86437,86447 -o pid=,ppid=,stat=,command=",
+    "pid_verification_exit_code": 1,
+    "pid_verification_stdout": "",
+    "verified_owned_driver_and_chrome_absent": true,
+    "unrelated_processes_killed": false
+  },
+  "scope_compliance": "Exactly two terminal ordinary attempts; normal retry after first, stop and close after second. Only own evidence/review written; no runtime changes."
+}

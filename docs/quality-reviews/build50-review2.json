@@ -1,0 +1,148 @@
+{
+  "reviewer": "build50-review2 independent visible-play reviewer",
+  "build_visible": 50,
+  "url": "http://127.0.0.1:5173/",
+  "evidence_directory": "docs/media/build50-review2",
+  "verdict": "Two completed ordinary attempts, both deaths. The second attempt improved targeting and disabled one Custodian coil, but neither released the uplink.",
+  "method": {
+    "attempt_count": 2,
+    "terminal_attempt_count": 2,
+    "browser": "Driver default browser mode, installed Chrome, software-WebGL fallback reported by driver",
+    "driver_command": "node tools/visible-playtest.mjs --out docs/media/build50-review2",
+    "protocol_learning": "Only node tools/visible-playtest.mjs --help was run to learn the driver protocol.",
+    "observations": "Visible screenshots and ordinary visible UI text returned by the driver; visible handbook and paused facility map were consulted.",
+    "controls": "Ordinary click selectors, WASD, relative look, left mouse fire, 1/2 weapon selection, R reload, E recovery, Shift, Tab trace, M map, ordinary Resume and Deploy Again UI, captures, close.",
+    "restrictions_followed": "No source, assets, documentation, history, prior reviews, tests, state hooks, console evaluation, hidden routes, coordinate lookup, shared preview, runtime edits, build, or Blender. No subagents.",
+    "limits": [
+      "Browser-timed synthetic DOM input and pause-assisted screenshots differ from continuous human play.",
+      "Screenshots add live time; in sequence 45 the screenshot still showed play while the after-capture UI had reached death. Sequence 46 confirms the terminal screen.",
+      "Aiming errors and stationary firing in these attempts materially contributed to poor accuracy and deaths. These losses alone do not establish unfair difficulty.",
+      "No human enjoyment, audio quality, hardware performance, input latency, accessibility, or AAA production certification is claimed.",
+      "Extraction upload behavior was not reached and was not verified."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "start": "Normal Enter the Storm UI",
+      "outcome": "death",
+      "terminal_ui": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "mission_time": "01:13",
+      "eliminations": 1,
+      "score": 3180,
+      "accuracy_percent": 5,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "memories": {
+        "count": 3,
+        "names": ["Mara Solberg", "Sera Nord", "Elian Vale"],
+        "evidence": ["docs/media/build50-review2/14-attempt1-memory-result.jpg", "docs/media/build50-review2/17-attempt1-heart-close.jpg", "docs/media/build50-review2/20-attempt1-east-console.jpg"]
+      },
+      "boss": {
+        "armed": true,
+        "last_visibly_established_coils": {"I": "100%", "II": "100%", "III": "100%"},
+        "disabled_coils_visibly_established": 0,
+        "evidence": "docs/media/build50-review2/23-attempt1-terminal-or-charge.jpg",
+        "qualification": "The last pre-death coil screen was 100/100/100; the terminal screen does not provide final coil percentages."
+      },
+      "upload": {"released": false, "progress_visibly_established": "None; JAMMED remained visible."},
+      "weapons": [
+        {"name": "Coil Rifle", "selected_and_fired": true, "evidence": ["docs/media/build50-review2/04-attempt1-start.jpg", "docs/media/build50-review2/05-attempt1-rifle-burst.jpg"], "observed": "Ammo fell from 30 to 16 during initial strafe burst, with zero eliminations. Later rifle optic fire preceded the first elimination."},
+        {"name": "Pump Breacher", "selected_and_fired": true, "evidence": ["docs/media/build50-review2/09-attempt1-breacher.jpg", "docs/media/build50-review2/10-attempt1-breacher-correction.jpg", "docs/media/build50-review2/11-attempt1-close-fight.jpg"], "observed": "Distinct weapon model/name and shell counts 04, 02, then 01 were visible. Early volleys missed while aim was corrected. Reload reserve fell 24 to 21; no elimination was established for those volleys."}
+      ],
+      "misses_and_failed_actions": [
+        "Initial rifle strafe burst consumed rounds without an elimination.",
+        "Breacher aim corrections consumed shells without an elimination.",
+        "Recovery holds at 6 M and 3.4 M failed; MOVE CLOSER / STEP INSIDE THE FLOOR RING became visible before successful recovery.",
+        "Several boss volleys hit no visibly established coil damage; the black supports, plates, and low aim obscured copper.",
+        "Attempt ended during close coil combat after health had fallen to 8."
+      ],
+      "terminal_evidence": "docs/media/build50-review2/24-attempt1-coil-close-fire.jpg"
+    },
+    {
+      "attempt": 2,
+      "start": "Normal DEPLOY AGAIN retry UI after first death",
+      "outcome": "death",
+      "terminal_ui": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "mission_time": "01:14",
+      "eliminations": 2,
+      "score": 3360,
+      "accuracy_percent": 11,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "memories": {
+        "count": 3,
+        "names": ["Mara Solberg", "Sera Nord", "Elian Vale"],
+        "evidence": ["docs/media/build50-review2/31-attempt2-mara-secured.jpg", "docs/media/build50-review2/35-attempt2-east-route.jpg", "docs/media/build50-review2/36-attempt2-east-recovered.jpg"]
+      },
+      "boss": {
+        "armed": true,
+        "last_visibly_established_coils": {"I": "OFF", "II": "100%", "III": "100%"},
+        "disabled_coils_visibly_established": 1,
+        "phase_break_visibly_established": true,
+        "evidence": ["docs/media/build50-review2/43-attempt2-coil-one-fire.jpg", "docs/media/build50-review2/44-attempt2-coil-flank.jpg", "docs/media/build50-review2/45-attempt2-coil-return-aim.jpg"],
+        "observed": "Rifle fire at a clear copper face produced BROADCAST COIL DISABLED / ONE LESS FIRING LANE and I OFF. A later Shift produced CUSTODIAN PHASE BREAK / COILS OPEN 3s."
+      },
+      "upload": {"released": false, "progress_visibly_established": "None; JAMMED remained visible."},
+      "weapons": [
+        {"name": "Coil Rifle", "selected_and_fired": true, "evidence": ["docs/media/build50-review2/26-attempt2-guard-aim.jpg", "docs/media/build50-review2/43-attempt2-coil-one-fire.jpg"], "observed": "First guard disappeared with WARDEN // CRITICAL +180 and elimination count 1. Rifle fire later disabled coil I."},
+        {"name": "Pump Breacher", "selected_and_fired": true, "evidence": "docs/media/build50-review2/29-attempt2-breacher-target.jpg", "observed": "Weapon name/model and 03 shells were visible after firing; the nearby sentinel disappeared and elimination count rose 1 to 2."}
+      ],
+      "misses_and_failed_actions": [
+        "First sentinel rifle volley missed before breacher aim correction achieved the second elimination.",
+        "Later rifle volleys beside west archive cover did not establish an elimination.",
+        "Recovery holds at 2.9 M west archive and 3.2 M Heart failed until a small forward step entered the floor ring.",
+        "Early boss volleys left all coils at 100%; aim hit supports or missed copper.",
+        "The successful coil I burst coincided with health falling from 95 to 37; subsequent flank and aim correction ended in death."
+      ],
+      "terminal_evidence": "docs/media/build50-review2/46-attempt2-terminal.jpg"
+    }
+  ],
+  "strengths": [
+    {"finding": "The rain, wet reflections, cool cyan lighting, warm engineering lighting, and consistent title typography establish a coherent industrial storm mood.", "evidence": ["docs/media/build50-review2/01-menu.jpg", "docs/media/build50-review2/08-attempt1-archive-entry.jpg", "docs/media/build50-review2/36-attempt2-east-recovered.jpg"]},
+    {"finding": "Facility map, objective distance, physical archive signage, and Tab ground trace made all three memory locations discoverable in both attempts.", "evidence": ["docs/media/build50-review2/06-attempt1-map.jpg", "docs/media/build50-review2/07-attempt1-west-approach.jpg", "docs/media/build50-review2/14-attempt1-memory-result.jpg"]},
+    {"finding": "Recovery restores supplies and changes the objective clearly. The three filled memory boxes and named recovery cards give readable progression.", "evidence": ["docs/media/build50-review2/17-attempt1-heart-close.jpg", "docs/media/build50-review2/36-attempt2-east-recovered.jpg"]},
+    {"finding": "Weapon silhouettes and HUD names distinguish rifle and breacher; rifle critical feedback, coil OFF state, and phase-break announcements visibly confirm successful actions.", "evidence": ["docs/media/build50-review2/26-attempt2-guard-aim.jpg", "docs/media/build50-review2/29-attempt2-breacher-target.jpg", "docs/media/build50-review2/43-attempt2-coil-one-fire.jpg", "docs/media/build50-review2/44-attempt2-coil-flank.jpg"]},
+    {"finding": "Death screen reports time, score, accuracy, and eliminations and offers a straightforward normal retry.", "evidence": "docs/media/build50-review2/46-attempt2-terminal.jpg"}
+  ],
+  "problems": [
+    {"finding": "Boss targeting took substantial visual interpretation. Large support bars and armored number plates frequently covered the copper face at close range, while the central HUD said find clear copper. Early sustained fire produced no visible progress. A clearer aim-level cue for the live coil surface would help.", "evidence": ["docs/media/build50-review2/23-attempt1-terminal-or-charge.jpg", "docs/media/build50-review2/40-attempt2-coil-chip.jpg", "docs/media/build50-review2/42-attempt2-coil-sight.jpg"]},
+    {"finding": "Threat direction indicators conveyed several sources, but identifying and responding to offscreen patrol damage while aiming at coils was difficult in this method. The successful coil burst coincided with a 58-health loss; the display did not make the precise damage sources obvious to me.", "evidence": ["docs/media/build50-review2/42-attempt2-coil-sight.jpg", "docs/media/build50-review2/43-attempt2-coil-one-fire.jpg", "docs/media/build50-review2/44-attempt2-coil-flank.jpg"], "qualification": "Synthetic pause-assisted aiming and stationary fire are significant confounders; this is an observed readability problem for this run, not proof of unfair damage."},
+    {"finding": "The E recovery reach was stricter than my visual sense of being at the console. Repeated holds at about 3 M did nothing until a small extra step. MOVE CLOSER and STEP INSIDE THE FLOOR RING are useful, but a more obvious ring boundary or reach cue could reduce repeated failed holds.", "evidence": ["docs/media/build50-review2/13-attempt1-mara.jpg", "docs/media/build50-review2/30-attempt2-mara-recovery.jpg", "docs/media/build50-review2/34-attempt2-heart-recovery.jpg"]},
+    {"finding": "The strongest environmental mood is ahead of the visible asset detail: weapons, humanoid enemies, cover, and stations remain mostly simple block forms. Repeated geometry and sparse physical detail limit the impression of a finished premium shooter.", "evidence": ["docs/media/build50-review2/09-attempt1-breacher.jpg", "docs/media/build50-review2/18-attempt1-east-approach.jpg", "docs/media/build50-review2/38-attempt2-coil-close.jpg"]},
+    {"finding": "Some small HUD and announcement text competed with signs and combat at 1280x800; the boss readout occupies the upper center while the physical plates and copper occupy the aim region. Readability was strongest when paused.", "evidence": ["docs/media/build50-review2/20-attempt1-east-console.jpg", "docs/media/build50-review2/40-attempt2-coil-chip.jpg"]}
+  ],
+  "ratings_provisional_0_to_10": {
+    "gameplay": {"score": 6.5, "reason": "Coherent recover/restore/fight structure, distinct weapons and Shift interaction; two deaths and incomplete boss encounter limit the assessment."},
+    "presentation": {"score": 7.5, "reason": "Strong lighting, rain, reflections, signage, typography; simple repeated assets reduce finish."},
+    "usability": {"score": 7.0, "reason": "Clear retry, mission map, objective distance and trace; recovery reach required repeated corrections and the handbook is dense."},
+    "readability": {"score": 6.0, "reason": "Good objective and success feedback, but coil faces, support occlusion and multiple threat cues were difficult to resolve during combat."},
+    "AAA_readiness": {"score": 4.0, "reason": "Promising coherent vertical slice, with substantial visible asset, combat readability and encounter polish still needed; not a certification."}
+  },
+  "errors_and_raw_evidence": {
+    "driver_command_errors": [],
+    "page_errors_reported": [],
+    "orchestration_error": {
+      "message": "aborted before dispatch",
+      "when": "Before sequence 43, concurrent parent progress message arrived.",
+      "driver_received": false,
+      "raw_unsent_command": {"op":"act","resume":true,"steps":[{"type":"look","x":-30,"y":30},{"type":"mouseDown","button":"left"},{"type":"wait","ms":3000},{"type":"mouseUp","button":"left"},{"type":"press","key":"KeyR"}],"capture":"43-attempt2-coil-one-fire"},
+      "resolution": "Identical command was resent once and completed as sequence 43."
+    },
+    "retention": "All driver-generated raw actions, screenshots, misses, failed recovery holds and both deaths remain in docs/media/build50-review2. No action or loss was deleted or replaced. The aborted-before-dispatch tool event is retained explicitly here because it was not received by the driver.",
+    "sequence_ranges": {"menu_and_handbook": [1, 3], "attempt_1": [4, 24], "attempt_2": [25, 46]},
+    "raw_capture_labels_in_order": ["01-menu", "02-handbook", "03-menu-ready", "04-attempt1-start", "05-attempt1-rifle-burst", "06-attempt1-map", "07-attempt1-west-approach", "08-attempt1-archive-entry", "09-attempt1-breacher", "10-attempt1-breacher-correction", "11-attempt1-close-fight", "12-attempt1-recovery-try", "13-attempt1-mara", "14-attempt1-memory-result", "15-attempt1-heart-approach", "16-attempt1-heart-recovery", "17-attempt1-heart-close", "18-attempt1-east-approach", "19-attempt1-east-trace", "20-attempt1-east-console", "21-attempt1-custodian-route", "22-attempt1-coil-fire", "23-attempt1-terminal-or-charge", "24-attempt1-coil-close-fire", "25-attempt2-start", "26-attempt2-guard-aim", "27-attempt2-west-arrival", "28-attempt2-sentinel-rifle", "29-attempt2-breacher-target", "30-attempt2-mara-recovery", "31-attempt2-mara-secured", "32-attempt2-archive-cover-fight", "33-attempt2-heart-route", "34-attempt2-heart-recovery", "35-attempt2-east-route", "36-attempt2-east-recovered", "37-attempt2-custodian-approach", "38-attempt2-coil-close", "39-attempt2-coil-aim", "40-attempt2-coil-chip", "41-attempt2-clear-face", "42-attempt2-coil-sight", "43-attempt2-coil-one-fire", "44-attempt2-coil-flank", "45-attempt2-coil-return-aim", "46-attempt2-terminal"]
+  },
+  "cleanup": {
+    "explicit_close_sent": {"op": "close"},
+    "driver_pid": 88183,
+    "chrome_pid": 88193,
+    "driver_exit_code": 0,
+    "closed_response": {"type": "closed", "reason": "input ended or close requested", "driverPid": 88183, "chromePid": 88193, "browserLaunched": true, "browserClosed": true},
+    "verification_command": "ps -p 88183,88193 -o pid=,comm=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "both_exact_owned_pids_absent": true,
+    "unrelated_browser_processes_signaled": false
+  }
+}

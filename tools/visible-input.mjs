@@ -4,7 +4,7 @@ export function validateSteps(steps) {
  for(const a of steps){
   if(!a||typeof a!=='object')throw Error('Unsupported input step.');
   if(['down','up','press'].includes(a.type)){
-   if(!/^(Key[WASDREM]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(a.key))throw Error('Unsupported game key.');
+   if(!/^(Key[WASDREM]|Digit[12]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(a.key))throw Error('Unsupported game key.');
   }else if(['mouseDown','mouseUp'].includes(a.type)){
    if(!['left','right'].includes(a.button||'left'))throw Error('Unsupported mouse button.');
   }else if(a.type==='look'){
@@ -20,7 +20,7 @@ export function createBrowserInput(){
  const canvas=document.querySelector('#game-canvas');if(!canvas)throw Error('Game canvas missing.');
  const keys=new Set(),buttons=new Set();let generation=0,busy=false,wake=null;
  const mods=()=>({ctrlKey:keys.has('ControlLeft')||keys.has('ControlRight'),shiftKey:keys.has('ShiftLeft')||keys.has('ShiftRight')});
- const keyValue=code=>code.startsWith('Key')?(mods().shiftKey?code.slice(3):code.slice(3).toLowerCase()):code==='Space'?' ':code.startsWith('Shift')?'Shift':code.startsWith('Control')?'Control':code;
+ const keyValue=code=>code.startsWith('Key')?(mods().shiftKey?code.slice(3):code.slice(3).toLowerCase()):code.startsWith('Digit')?code.slice(5):code==='Space'?' ':code.startsWith('Shift')?'Shift':code.startsWith('Control')?'Control':code;
  const key=(code,down)=>{
   const repeat=down&&keys.has(code);if(down)keys.add(code);else keys.delete(code);
   canvas.dispatchEvent(new KeyboardEvent(down?'keydown':'keyup',{code,key:keyValue(code),location:/^(Shift|Control)/.test(code)?code.endsWith('Right')?2:1:0,repeat,...mods(),bubbles:true,cancelable:true}));

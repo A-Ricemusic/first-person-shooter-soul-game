@@ -7,7 +7,7 @@ const browser=await chromium.launch({executablePath:'/Applications/Google Chrome
 try{
  const page=await browser.newPage();await page.setContent('<canvas id="game-canvas" tabindex="0"></canvas><pre id="events"></pre>');await page.locator('canvas').focus();
  await page.evaluate(()=>{
-  const list=[];for(const kind of ['keydown','keyup','mousedown','mouseup','mousemove'])document.addEventListener(kind,e=>{list.push({kind,code:e.code,button:e.button,ctrl:e.ctrlKey,shift:e.shiftKey,x:e.movementX,y:e.movementY,at:performance.now(),trusted:e.isTrusted});document.querySelector('#events').textContent=JSON.stringify(list);});
+  const list=[];for(const kind of ['keydown','keyup','mousedown','mouseup','mousemove'])document.addEventListener(kind,e=>{list.push({kind,code:e.code,key:e.key,button:e.button,ctrl:e.ctrlKey,shift:e.shiftKey,x:e.movementX,y:e.movementY,at:performance.now(),trusted:e.isTrusted});document.querySelector('#events').textContent=JSON.stringify(list);});
  });
  const events=()=>page.locator('#events').innerText().then(x=>JSON.parse(x||'[]'));
  await page.keyboard.down('KeyW');await delay(150);await delay(800);await page.keyboard.up('KeyW');
@@ -27,6 +27,8 @@ try{
  const long=input.evaluate(c=>c.run({steps:[{type:'down',key:'KeyW'},{type:'wait',ms:10000}]})).then(()=>({resolved:true}),e=>({error:e.message}));await delay(80);await input.evaluate(c=>c.cancel());const canceled=await long;
  assert.match(canceled.error,/canceled/);assert.ok(performance.now()-cancelStart<2000);assert.deepEqual(await input.evaluate(c=>c.held()),{keys:[],buttons:[]});
  await input.evaluate(c=>c.run({steps:[{type:'press',key:'Space'}]}));
+ await input.evaluate(c=>c.run({steps:[{type:'press',key:'Digit1'},{type:'press',key:'Digit2'}]}));
+ const digits=(await events()).filter(e=>e.code?.startsWith('Digit'));assert.deepEqual(digits.map(e=>e.key),['1','1','2','2']);validateSteps([{type:'press',key:'Digit2'}]);
  const prior=(await events()).length;assert.throws(()=>validateSteps([{type:'down',key:'KeyW'},{type:'wait',ms:-1}]),/Wait must/);assert.equal((await events()).length,prior);
  writeFileSync(process.env.INPUT_TIMING_OUTPUT||'docs/quality-reviews/current-input-timing.json',JSON.stringify({method:'Actual Chrome DOM-event fixture. Artificial Node handover delay, not a measurement of game FPS or historical reviewer latency. Browser controls are synthetic events; no game state/clock is read.',nativeHoldMs:nativeHold,browserHoldMs:browserHold,batch,chordEvents:chords,canceled,checks:['Default release before browser batch returns','Node handover gap cannot extend completed browser hold','Ctrl/game key/relative look/button event semantics','Opt-in held controls and explicit release','Cancel wakes long wait and clears input; controller reusable','Invalid batch rejected before any event']},null,2)+'\n');
  console.log({nativeHoldMs:nativeHold,browserHoldMs:browserHold,checks:6});

@@ -1,0 +1,9 @@
+// Source-informed replay of a documented implementation route; visible normal URL only.
+// Strong rehearsal advantage. No state evaluation or game hooks. All divergent outcomes retained.
+import {spawn} from 'node:child_process';import {createInterface} from 'node:readline';import{readFileSync,writeFileSync}from'node:fs';
+const child=spawn(process.execPath,['tools/visible-playtest.mjs','--out','docs/media/build50-implementation-play2'],{cwd:process.cwd(),stdio:['pipe','pipe','inherit']});const lines=createInterface({input:child.stdout})[Symbol.asyncIterator]();const next=async()=>JSON.parse((await lines.next()).value);const ready=await next();console.log(JSON.stringify(ready));const results=[];
+async function send(c){child.stdin.write(JSON.stringify(c)+'\n');const r=await next();results.push(r);console.log(JSON.stringify({sequence:r.sequence,path:r.path,ui:r.beforePause||r.ui,error:r.error}));return r;}
+const commands=readFileSync('docs/media/build49-review2/actions.jsonl','utf8').trim().split('\n').map(JSON.parse).filter(d=>d.type==='command'&&d.sequence>=24&&d.sequence<=50);
+for(const d of commands){const c=structuredClone(d.command);if(d.sequence===24){c.selector='#deploy';}if(d.sequence===42)c.steps.unshift({type:'press',key:'Digit2'});if(d.sequence===44)c.steps.unshift({type:'press',key:'Digit1'});
+const r=await send(c);if(r.beforePause?.phase==='lost'||r.beforePause?.phase==='won')break;}
+await send({op:'close'});child.stdin.end();const exit=await new Promise(resolve=>child.on('exit',resolve));writeFileSync('docs/quality-reviews/build50-implementation-play2.json',JSON.stringify({method:'Source-informed normal-URL historical-input route replay with breacher substitutions. Browser-timed synthetic DOM controls; pause-assisted screenshot observations. Rehearsed, not independent or continuous human play. Divergence, misses and losses retained in actions.jsonl.',ready,results,exit},null,2));

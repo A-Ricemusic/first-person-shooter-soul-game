@@ -1,0 +1,97 @@
+{
+  "build": 50,
+  "baseline": "89c6a05730caa55211eb814804dcf75baf18dcca",
+  "implementation": "Original Blender pump breacher, independent loadout state and physical pellet volleys; rifle trace preserved. No enemy, mission, difficulty or world edits.",
+  "tuning": {
+    "pellets": 8,
+    "body": 14,
+    "optic": 21,
+    "armoredWardenBody": 7,
+    "bossClosed": 7,
+    "bossOpenNonShutter": 14,
+    "fullDamageThroughMeters": 6,
+    "zeroDamageMeters": 24,
+    "hipSpreadRadians": 0.065,
+    "adsSpreadRadians": 0.048,
+    "cadenceSeconds": 0.88,
+    "shellInsertSeconds": 0.55,
+    "magazine": 6,
+    "initialReserve": 24,
+    "reserveCap": 36,
+    "pickupShells": 4,
+    "coreShells": 8
+  },
+  "verification": {
+    "suite": "build50-implementation-suite.json",
+    "initialFailures": [
+      "New browser fixture unresolved bare module import; corrected test import, retained log.",
+      "Role browser execution context destroyed during development navigation/reload; unchanged original check passed on frozen rerun."
+    ],
+    "final": "build50-final-checks.json",
+    "rifleController": "build50-implementation-controls.json",
+    "mixedController": "build50-mixed-controls.json",
+    "controllers": "Both privileged exact-information normal-input runs won with all3, custodian.dead true, coils[0,0,0], upload1, errors[]. Mixed controller logged breacher selection and shell consumption. Not independent play.",
+    "ordinaryImplementation": "Two historical-input replay losses with no cores, then adaptive source-informed normal-URL loss at00:34 with Elian recovered. No ordinary implementation boss defeat or completed upload; that requested coverage remains unmet. New-gun firing in replay and actual recovery in adaptive attempt are separate observations.",
+    "production": "14/14 final smoke; known lazy fallback chunk warning retained.",
+    "historicalOutputs": "build50-output-preservation.json"
+  },
+  "reviewMethod": "Exactly two fresh native gpt-6.1-sol reviewers, fork_turns:none, sequential, two terminal normal-URL visible-only attempts each. No code edits/tests/Blender/other owned browser during reviews. No source/routes/old scores supplied.",
+  "reviews": [
+    {
+      "file": "build50-review1.json",
+      "ratings": {
+        "gameplay": 6.0,
+        "presentation": 7.0,
+        "usability": 6.0,
+        "readability": 6.0,
+        "AAA_readiness": 3.0
+      },
+      "outcomes": [
+        "Death00:59,2memories, boss/upload unreached",
+        "Death01:08,3memories, last coils100/100/100, upload unreached"
+      ],
+      "weaponEvidence": "Both selected/fired on first attempt; no confirmed breacher kill."
+    },
+    {
+      "file": "build50-review2.json",
+      "ratings": {
+        "gameplay": 6.5,
+        "presentation": 7.5,
+        "usability": 7.0,
+        "readability": 6.0,
+        "AAA_readiness": 4.0
+      },
+      "outcomes": [
+        "Death01:13,3memories, last coils100/100/100, upload jammed",
+        "Death01:14,3memories, coilI OFF, II/III100%, upload jammed"
+      ],
+      "weaponEvidence": "Both selected/fired. Second attempt visibly confirmed nearby sentinel breacher kill; rifle disabled coilI."
+    }
+  ],
+  "independentWins": 0,
+  "independentLosses": 4,
+  "freeze": {
+    "files": 226,
+    "beforeBetweenAfterMatch": true,
+    "reports": [
+      "build50-implementation-freeze-before.json",
+      "build50-implementation-freeze-between.json",
+      "build50-implementation-freeze-after.json"
+    ]
+  },
+  "cleanup": {
+    "review1": [
+      86437,
+      86447
+    ],
+    "review2": [
+      88183,
+      88193
+    ],
+    "allExplicitCloseExit0": true,
+    "allExactPidsAbsent": true
+  },
+  "postReviewRuntimeEdits": false,
+  "limits": "Synthetic untrusted DOM controls and pause-assisted screenshots, with browser timer/capture overruns. No causal comparison between different reviewers, human enjoyment, audio listening or hardware certification. Overall quality mission remains unfinished.",
+  "protectedServer": "Read-only checks: local5173 HTTP200; protected Build23 tailnet HTTP200, Python63172 still serving61467 from unchanged snapshot path. No server/Serve/Tailscale changes."
+}
