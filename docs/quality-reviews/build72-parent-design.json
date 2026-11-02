@@ -1,0 +1,68 @@
+{
+  "status": "Build72 DESIGN ONLY. Runtime remains Build71; no new asset or gameplay behavior implemented by this parent commit.",
+  "baseline": "4f7e26fefa4bce39117c6c4f63bc2f4cdc287425",
+  "problem": "Build71 reviewers retained small/simplified enemies, aim misses and offscreen pressure. The parent audit confirms a compact17-mesh/1840-triangle Sentinel. These observations do not prove hit-registration failure or unfair damage. Improve the physical enemy presentation and make its readable body mass less like disconnected boxes.",
+  "decision": "Author a new original Blender Sentinel with a coherent supported mechanical anatomy, a stronger upright silhouette, distinct material hierarchy and state-driven bracing/handling. It remains the planted walking gun platform, contrasting with ducted Interceptor and tracked Warden.",
+  "baselineAudit": {
+    "file": "build72-parent-baseline.json",
+    "samples": 18,
+    "authoredRadius": 0.44102608817900635,
+    "completeVisibleActorRadiusIncludingContact": 0.45117903329553144,
+    "authoredMeshes": 17,
+    "authoredTriangles": 1840,
+    "completeVisibleActorTriangles": 2488,
+    "maxOpticPositionError": 4.9329605116226885e-08,
+    "limits": "Finite arranged states/yaws, not a proof of all possible animation poses. Geometry audit, not ordinary play or quality certification."
+  },
+  "retainedFixtureError": "build72-parent-obstructed-fixture.json and matching media preserve the initial art camera blocked by the central splitter. Corrected comparison uses actor(-8,0,-15) and camera(-8,1.7,-15+distance) at3/12/24m; no gameplay fix was made for that arranged camera.",
+  "artRequirements": [
+    "New original Blender native/GLB/generator/provenance under Build72 stems; preserve all old assets/tools/evidence. Existing source tools/build_drones.py is reference only, never run it over published sentinel/interceptor files.",
+    "Credible connected load path from planted feet through knee/hip linkages, spine and protected emitter cradle. Give plates thickness, hinge/piston bearings and believable gaps/fasteners; no hovering limbs or decoration floating off its mount. Retain grounded foot placement through travel, strafing, turning, stopping and planted attacks.",
+    "Use a readable material hierarchy and modeled silhouette at3/12/24m in the actual wet station, not just a turntable. Restrained service enamel, exposed worn metal and protected dark recesses should separate the body from the station. Avoid an all-emissive outline or another HUD label. Original Blender-authored baked PBR detail is encouraged where it adds close-view credibility; no external stock material or unsupported realism claim.",
+    "Distinct silhouette must retain role contrast: Sentinel walking/planted, Interceptor hovering ducted, Warden broad tracked. Do not reauthor unrelated actors/level/weapons in this pass.",
+    "State-driven joints/panels should visibly brace during existing windup/fireRecovery, settle after firing and show bounded physical impact reaction without a new stun or changing attack cadence. Author actual pivots/metadata in Blender and test connections through closed/charge/fire/recovery/contact/hit/stagger/reset states.",
+    "Integrate existing discharge hardware without burying optic/emitter, cutting through armor, detaching supports or enlarging the legacy actor envelope. A supported Sentinel-only mount correction is allowed if necessary; reach/damage/timers remain fixed. Measure complete visible actor including contact rig, not only droneRig.model.",
+    "Keep new Sentinel body within existing0.45m movement radius; full actor including discharge should not exceed measured legacy combined envelope beyond numerical tolerance. Preserve movement/navigation radii and steering rules. Do not claim the legacy complete actor was strictly within0.45m: finite baseline reaches0.451179m.",
+    "Retain exact Optic mesh centre(0,1.3,.418), legacy precision centre(0,1.3,.43)/radius.24 and actual emitter/muzzle face at the existing fire origin. New housing/shutters must not conceal or embed the optic/fire origin. Keep fixed target geometry anchored while body mechanisms articulate.",
+    "A broader rendered body deliberately changes which body rays hit, even with fixed health/damage. Explicitly document and sample the old/new hit silhouettes. Do not disguise a larger physical target as unchanged combat or enlarge invisible precision spheres.",
+    "Share geometry/textures safely between instances, clone mutable material/pose state; kill/reset/disposal must not corrupt survivors. New forced-load-failure geometry must preserve the new silhouette and anchors, rather than silently reverting to the old tiny robot. Defer any large exact fallback payload until needed.",
+    "Provisional budgets: <=8000 Sentinel triangles, <=24 mesh primitives before existing contact hardware, <=2MB shipped GLB including its texture payload. Merge static surfaces by material and measure actual multi-actor draw calls. Adjust only with evidence and explicit tradeoff; no headless hardware-performance certification."
+  ],
+  "fixedGameplay": {
+    "sentinelHealth": "100 * difficulty.health",
+    "rifleBodyDamage": 34,
+    "riflePrecisionDamage": 82,
+    "precisionRadius": 0.24,
+    "precisionCentre": [
+      0,
+      1.3,
+      0.43
+    ],
+    "opticMeshCentre": [
+      0,
+      1.3,
+      0.418
+    ],
+    "rangedOrigin": [
+      0,
+      1.3,
+      0.43
+    ],
+    "rangedWindup": 0.65,
+    "projectileSpeed": 15,
+    "projectileBaseDamage": 19,
+    "fireRecovery": 0.45,
+    "contactWindup": 0.55,
+    "contactBaseDamage": 15,
+    "otherRules": "Preserve cooldown formula, shot admission, locked targets, guard/hunter perception/navigation/roles, planted cycle, contact reach, phase cancellation, difficulty scaling and mission/recovery/service/anchor/upload rules. No aim assist, tuning enemies/resources/spawns to force reviewer wins, steering overhaul or new HUD panel."
+  },
+  "verification": [
+    "Matching baseline and final actual-renderer3/12/24m standing/crouched/ADS/side/rear comparisons; no blocked camera advertised as an art view. Inspect final images yourself. Include short actual-renderer movement/charge/recovery/impact motion evidence, clearly labeled arranged if so.",
+    "Representative finite legal turn/stride/plant/contact/hit states, complete mesh envelope including discharge, foot support/joint connectivity and optic/emitter stability. Distinguish intended bearing contacts from unintended intersections; do not use huge pose counts as a quality rating.",
+    "Actual rifle/breacher body/precision/cover rays, old/new hit-silhouette comparison, enemy fire origin/LOS/shot sweep, phase interruption, role behavior, planted attack duration, pause/planning and fresh/anchor reset. GLB and actual forced-new-URL fallback variants.",
+    "Affected art/alignment/lifecycle/contact/shot/phase/role/movement/anchor suites and fresh privileged controller actual won/all3/bossdead/upload1/errors[]. Production14, source/shipped resource links and all history preserved. Prefix outputs; retain failures.",
+    "Implementer actual normal-URL visible-input play with Sentinel combat, errors and source-informed limitations retained. No debug/resources/teleport/arrangement in ordinary play, no manufactured late coverage.",
+    "Stable commit and frozen source/assets/tests/helper/historical bytes, then exactly two fresh sequential GPT-6.1 Sol reviewers with two terminal attempts each. Neutral visible-only default play, full named0\u201310 ratings/reasons, no desired scores or solution briefing. No third review/rescore; correctness fixes afterward must be labeled unreviewed."
+  ],
+  "limits": "This design is pending and gives no score uplift. It does not resolve route/receiver friction, offscreen pressure, short mission/content depth, simplified hands, human enjoyment/audio/hardware validation or prove AAA readiness."
+}
