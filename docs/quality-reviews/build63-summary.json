@@ -1,0 +1,179 @@
+{
+  "build": 63,
+  "implementation": {
+    "design": {
+      "trigger": "Standing floor-relative walking with less than 20% actual post-collision planar progress over short 0.1s simulation windows, sustained 0.6s. Windowing tolerates tiny final-substep creep. No fire, ADS, phase, vault, air or raised support.",
+      "lifetime": "4 simulation seconds; 6s cooldown. Pause/planning hide and freeze remaining duration, clear stall/input and path, recompute on resume. Tab cancels automatic help and retains on-demand trace independent of setting.",
+      "goal": "Manual selection first; AUTO may use nearby receiver without mutating plan. Effective-goal changes invalidate cache and old cue. Collection/end/restart/settings cancel. Ready service and recovery take priority.",
+      "path": "Existing conservative standing-capsule PlayerRoute fields and depth-tested bounded 12m trace. At most .35s cadence including no-connection failures. One first swept-clear segment waypoint at up to 2m, replaces generic goal marker. Onscreen ground anchor never relocated for label layout; conflict hides it. Offscreen arrow is broad direction only. No enemy tracking, movement or resource grants.",
+      "assets": "Existing original Blender assets unchanged; no new static asset or geometry/combat/content changes."
+    },
+    "implementationPlay": {
+      "method": "Six normal URL source-informed ordinary-input trials from spawn using visible driver, synthetic batches and Escape screenshot pauses; no hidden state/controller/resources/actors. All closed nonterminal. Separate internal-state diagnostics are explicitly fixtures.",
+      "trials": [
+        "play: forward movement did not sustain a block",
+        "play2: boundary attempt, no observed automatic cue",
+        "play3: low-cover block, absent cue",
+        "play4: longer low-cover block, absent cue",
+        "play5: low-cover block, absent cue",
+        "play6: after simulation-window fix, cue visible at low cover; subsequent left/forward correction progresses. No aimed turn, combat, recovery, service, boss or upload coverage in this trial."
+      ],
+      "diagnosis": "Early fixed-step fixtures missed the live tiny-substep collision creep resetting a per-substep timer. Retained live diagnostic led to simulation-window measurement and a variable-substep regression."
+    },
+    "limits": [
+      "Conservative standing graph cannot promise crouch-only or raised connections. No fabricated cue without a valid path.",
+      "Paused synthetic controls and screenshots affect timing; software WebGL is not hardware performance certification.",
+      "Implementation observation is not independent discovery or causal improvement. Human enjoyment, audio and hardware remain untested.",
+      "Broader quality mission remains unfinished; no AAA or perfection certification."
+    ]
+  },
+  "reviewReports": [
+    "build63-review1.json",
+    "build63-review2.json"
+  ],
+  "rawScores": [
+    {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 6,
+      "aaa_readiness": 3
+    },
+    {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 5,
+      "readability": 6,
+      "AAA_readiness": 3
+    }
+  ],
+  "allFourOutcomes": [
+    "death 01:06; Mara/Sera; 3 eliminations; 13% accuracy",
+    "death 01:06; all three memories; Custodian, no confirmed coil damage; 1 elimination; 23% accuracy",
+    "death 00:50; Mara/Sera; 2 eliminations; 27% accuracy",
+    "death 02:07; all three memories; Custodian, no observed coil damage; 1 elimination; 5% accuracy"
+  ],
+  "automaticCueEvidence": [
+    {
+      "reviewer": 1,
+      "displayedCaptures": [
+        {
+          "sequence": 17,
+          "capture": "attempt1-eastward.jpg",
+          "missionTime": "00:49",
+          "copy": "GROUND ROUTE / EAST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 18,
+          "capture": "attempt1-east-approach.jpg",
+          "missionTime": "00:52",
+          "copy": "GROUND ROUTE / EAST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 20,
+          "capture": "attempt1-east-search.jpg",
+          "missionTime": "00:57",
+          "copy": "GROUND ROUTE / EAST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 39,
+          "capture": "attempt2-coils-side.jpg",
+          "missionTime": "00:51",
+          "copy": "GROUND ROUTE / CUSTODIAN\nWalkable ground \u00b7 patrols still matter"
+        }
+      ],
+      "benefit": "Not established. Reviewer1 did not isolate automatic cue use; Reviewer2 saw ground chevrons but did not reliably avoid collisions."
+    },
+    {
+      "reviewer": 2,
+      "displayedCaptures": [
+        {
+          "sequence": 6,
+          "capture": "attempt1-intake.jpg",
+          "missionTime": "00:13",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 15,
+          "capture": "attempt2-flank.jpg",
+          "missionTime": "00:07",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 16,
+          "capture": "attempt2-trace.jpg",
+          "missionTime": "00:12",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 18,
+          "capture": "attempt2-unblocked.jpg",
+          "missionTime": "00:27",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 19,
+          "capture": "attempt2-cross.jpg",
+          "missionTime": "00:35",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 20,
+          "capture": "attempt2-service.jpg",
+          "missionTime": "00:40",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        },
+        {
+          "sequence": 24,
+          "capture": "attempt2-mara-approach.jpg",
+          "missionTime": "00:59",
+          "copy": "GROUND ROUTE / WEST ARCHIVE\nWalkable ground \u00b7 patrols still matter"
+        }
+      ],
+      "benefit": "Not established. Reviewer1 did not isolate automatic cue use; Reviewer2 saw ground chevrons but did not reliably avoid collisions."
+    }
+  ],
+  "independentCoverage": "No service, Custodian shutdown or upload completed. Two attempts reached Custodian with all memories; no confirmed coil damage. All four attempts died. No causal score comparison, third review, rescore or post-review runtime edits.",
+  "privilegedCoverage": {
+    "method": "Exact information controller reads internal positions/colliders/targets and emits ordinary controls. Not ordinary discovery or human play. Final controller won with three memories and upload; no resource or actor grants.",
+    "report": "build63-implementation-controls.json",
+    "time": 58.08093333333131
+  },
+  "validation": {
+    "focused": "build63-implementation-focused.json",
+    "affected": "build63-implementation-checks.json",
+    "production": "14 checks passed after final marker placement correction. Controller last won before that final UI-only placement adjustment.",
+    "compass": "Parent behavior and reports preserved; compatibility copy passed 15 readout cases and 10 rendered desktop views plus mobile hiding.",
+    "freeze": {
+      "equal": true,
+      "digest": "359684a2ad1b606dbc01e9d868a1eeb75855610337c8adc3ac4a7439f67cbe73",
+      "ownedExit": [
+        {
+          "pid": 90402,
+          "alive": false
+        },
+        {
+          "pid": 90412,
+          "alive": false
+        },
+        {
+          "pid": 91043,
+          "alive": false
+        },
+        {
+          "pid": 91053,
+          "alive": false
+        }
+      ]
+    },
+    "links": "build63-summary-links.json"
+  },
+  "remainingLimits": [
+    "Independent navigation and aiming remain difficult; no ordinary win in this sample.",
+    "Automatic guidance was displayed but reliable benefit is unproven. Conservative crouch-only, raised and disconnected paths remain unsupported.",
+    "Early generic initial controls strip can overlap vitals at 1280 in an arranged disabled-help fixture; active contextual strip compositions pass. This existing initial-strip limitation is retained, not hidden as a pass.",
+    "Paused synthetic input and live capture timing, software WebGL, unknown human enjoyment/audio/hardware. No AAA certification.",
+    "Reviewer1 reported a live/terminal elimination discrepancy; not diagnosed or changed in this navigation pass.",
+    "Broader quality mission unfinished."
+  ]
+}

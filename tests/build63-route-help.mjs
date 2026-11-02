@@ -1,0 +1,40 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+import {RouteHelp} from '../src/route-help.js';
+const h=new RouteHelp(),checks=[];const ok=(v,n)=>{assert.ok(v,n);checks.push(n)};
+const tick=(n,extra={})=>{for(let i=0;i<n;i++)h.tick(.01,{eligible:true,intended:.055,progress:0,goal:'core-0',...extra})};
+tick(59);ok(!h.remaining,'before .6');tick(1);ok(h.remaining===4,'four simulation seconds');h.clearInput();ok(h.remaining===4&&!h.stalled,'pause input cleanup retains duration');tick(401,{eligible:false});ok(!h.remaining&&h.cooldown>0,'expires, cooldown remains');tick(100);ok(!h.remaining,'cooldown blocks repeat');tick(101);ok(h.remaining>0,'retrigger after cooldown');
+for(const progress of [.055,.02,.011]){h.reset();tick(100,{progress});ok(!h.remaining,'walking or sliding progresses '+progress)}h.reset();tick(100,{intended:0});ok(!h.remaining,'standing no trigger');h.reset();tick(100,{eligible:false});ok(!h.remaining,'excluded posture/input');
+h.reset();for(let i=0;i<100;i++){h.tick(1/120,{eligible:true,intended:5.5/120,progress:0,goal:'core-0'});h.tick(.00001,{eligible:true,intended:.000055,progress:.000055,goal:'core-0'})}ok(h.remaining>0,'tiny collision substep creep does not reset sustained stall');
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});
+const errors=[];
+try{
+ const p=await b.newPage({viewport:{width:1280,height:800}});p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(()=>window.requestAnimationFrame=()=>1);
+ await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50,timeout:60000});await p.click('#deploy',{force:true});
+ const rows=await p.evaluate(async()=>{
+ const g=window.__SOULFALL__.game,{STANDING,CROUCHED}=await import('/src/movement.js'),rows=[];const ok=(v,n)=>{if(!v)throw Error(n);rows.push(n)};g.requestLock=()=>{};g.clearRun();g.player.set(0,1.7,31);g.profile=STANDING;g.phase='playing';g.updateRouteGoal();
+ const show=()=>{g.routeHelp.remaining=4;g.routeHelp.goal=null;g.updateRouteTrace()};show();ok(g.routeTrace.visible&&g.routeWaypoint,'automatic trace and waypoint');ok(g.playerRoute.clear(g.player,g.routeWaypoint),'waypoint swept clear');
+ const goal=g.routeGoal;g.pause();const remaining=g.routeHelp.remaining;g.update(30);ok(g.routeHelp.remaining===remaining&&!g.routeTrace.visible&&!g.routeWaypoint,'pause hidden and frozen');g.resume();g.updateRouteTrace();ok(g.routeWaypoint&&g.routeHelp.remaining===remaining,'resume recomputes without catchup');
+ g.openPlanning();g.closePlanning();g.updateRouteTrace();ok(g.routeWaypoint,'unchanged map retains help');g.openPlanning();g.selectRoute('core-2');ok(!g.routeHelp.remaining,'explicit selection cancels');g.closePlanning();show();g.keys.add('Tab');g.updateRouteTrace();ok(!g.routeHelp.remaining&&g.routeTrace.visible,'Tab cancels auto and remains explicit');g.keys.clear();g.updateRouteTrace();ok(!g.routeTrace.visible,'release Tab no stale auto');
+ g.setSettings({contextualRouteHelp:false});show();ok(!g.routeTrace.visible,'disabled auto');g.keys.add('Tab');g.updateRouteTrace();ok(g.routeTrace.visible,'Tab when auto disabled');g.keys.clear();g.setSettings({contextualRouteHelp:true});
+ g.player.set(-26,1.7,-21);g.routeGoal='core-2';g.routeManual=false;show();ok(g.routeCacheGoal==='core-0'&&g.routeGoal==='core-2','local receiver without plan mutation');g.routeManual=true;show();ok(g.routeCacheGoal==='core-2','manual priority');
+ for(const mode of ['air','raised','crouch','vault','phase','aim','fire']){g.player.set(0,1.7,31);g.grounded=true;g.profile=STANDING;g.vault=null;g.dashTime=0;g.aim=false;g.mouseDown=false;if(mode==='air')g.grounded=false;if(mode==='raised')g.player.y=2;if(mode==='crouch'){g.profile=CROUCHED;g.player.y=CROUCHED.eyeHeight}if(mode==='vault')g.vault={};if(mode==='phase')g.dashTime=.1;if(mode==='aim')g.aim=true;if(mode==='fire')g.mouseDown=true;show();ok(!g.routeTrace.visible,'hide '+mode);}
+ g.player.set(0,1.7,31);g.grounded=true;g.profile=STANDING;g.vault=null;g.dashTime=0;g.aim=false;g.mouseDown=false;g.routeManual=true;g.routeGoal='core-2';g.routeHelp.reset();g.keys.add('KeyW');
+ // Real post-collision obstruction: find a floor position beside a collider, then walk into it.
+ let found=false;for(const box of g.world.colliders){const x=(box.min.x+box.max.x)/2,z=box.max.z+.401;if(box.max.y<.5||!g.playerRoute.can({x,z})||g.playerRoute.can({x,z:z-.1}))continue;g.player.set(x,1.7,z);g.yaw=0;g.velocityY=0;g.grounded=true;g.routeHelp.reset();for(let i=0;i<80;i++)g.update(.01);if(g.routeHelp.remaining>0){found=true;break;}}
+ ok(found,'actual blocked movement triggers');g.keys.clear();g.updateRouteTrace();const valid=g.routeWaypoint;ok(!valid||g.playerRoute.clear(g.player,valid),'blocked-position waypoint clear');
+ const savedPath=g.playerRoute.path;let calls=0;g.playerRoute.path=()=>{calls++;return []};g.routeNext=0;g.routePath=[];show();const next=g.routeNext;for(let i=0;i<100;i++)g.updateRouteTrace();ok(calls===1&&g.routeNext===next&&next>g.runTime,'no-route throttled');g.playerRoute.path=savedPath;
+ g.routeHelp.remaining=4;g.routeTrace.visible=true;g.setSettings({contextualRouteHelp:false});ok(!g.routeTrace.visible&&!g.routeHelp.remaining,'settings immediately cancels visible and pending help');g.finish(false);ok(!g.routeHelp.remaining,'end clears');g.start();ok(!g.routeHelp.remaining,'restart clears');g.clearRun();return rows;
+ });checks.push(...rows);
+ for(const width of [1280,1440])for(const mode of ['route','threat','recovery','service']){await p.setViewportSize({width,height:800});await p.evaluate(mode=>{const g=window.__SOULFALL__.game;g.clearRun();g.setSettings({contextualRouteHelp:true});g.runTime=30;g.phase='playing';g.player.set(0,1.7,31);g.health=60;g.shield=20;g.cores=0;g.coreNodes.forEach(c=>c.collected=false);g.custodian.dead=false;g.yaw=0;g.pitch=-.2;g.routeGoal='core-0';g.routeManual=false;
+ if(mode==='threat'){const e=g.spawnEnemy(g.player.clone().set(0,0,24),'sentinel');const enemy=g.enemies.at(-1);enemy.visible=true;enemy.lastAttack=g.runTime;enemy.windup=.5;}
+ if(mode==='recovery'){const end=g.playerRoute.path(g.player,'core-0').at(-1);g.player.set(end.x,1.7,end.z);}
+ if(mode==='service'){g.player.set(-2.05,1.7,30.6);g.cores=3;g.custodian.dead=true;}
+ g.routeHelp.remaining=4;g.routeHelp.goal=null;g.routeNext=0;g.updateRouteTrace();g.animate(0);g.emit();g.onMarkers(g.captureMarkers());g.renderer.render(g.scene,g.camera);
+ const field=document.querySelector('#field-controls'),vitals=document.querySelector('.vitals'),a=field.getBoundingClientRect(),b=vitals.getBoundingClientRect();if(!field.classList.contains('hidden')&&a.bottom>b.top&&a.left<b.right&&a.right>b.left)throw Error('field/vitals overlap '+JSON.stringify({mode,a:a.toJSON(),b:b.toJSON()}));
+ if(['recovery','service'].includes(mode)&&g.routeWaypoint)throw Error('interaction priority '+mode);
+},mode);await p.screenshot({path:`docs/media/build63-implementation-${width}-${mode}.png`});}
+ await p.evaluate(()=>{const el=document.querySelector('#route-help');el.checked=false;el.dispatchEvent(new Event('change'));if(JSON.parse(localStorage.getItem('soulfall-settings')).contextualRouteHelp!==false)throw Error('persist false');el.checked=true;el.dispatchEvent(new Event('change'));if(JSON.parse(localStorage.getItem('soulfall-settings')).contextualRouteHelp!==true)throw Error('persist true')});checks.push('checkbox persists both values');
+ ok(errors.length===0,'no page errors');writeFileSync('docs/quality-reviews/build63-implementation-focused.json',JSON.stringify({method:'Arranged state and real movement fixtures, not ordinary discovery; compositions arrange real enemy warning, receiver and powered-service states; actual render and field/vitals bounds at both desktop widths.',checks,errors},null,2));console.log(checks);
+}finally{await b.close()}

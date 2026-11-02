@@ -1,6 +1,6 @@
 # SOULFALL: The Last Signal
 
-Build55 is a single-player web FPS pitch prototype set in a storm-battered station. Recover three memories, disable the Custodian’s broadcast coils, then hold the uplink deck to extract. Original Blender assets support the rifle, robots, receivers, workshop and other environment props.
+Build63 is a single-player web FPS pitch prototype set in a storm-battered station. Recover three memories, disable the Custodian’s broadcast coils, then hold the uplink deck to extract. Original Blender assets support the rifle, robots, receivers, workshop and other environment props.
 
 [Play](https://a-ricemusic.github.io/first-person-shooter-soul-game/) · [Design decisions and evidence](https://a-ricemusic.github.io/first-person-shooter-soul-game/docs/human.html)
 
@@ -65,4 +65,4 @@ Build61 fixes fallback mouse-look after one mouse button is released while anoth
 
 Build62 deliberately delays new patrol ranged charges through the Custodian’s existing exposed-coil window (2.6 seconds after a volley, 3 after a phase break). Moving patrols, committed shots and close discharges remain dangerous. Damage, exposure duration, assets, service and upload rules stay unchanged; this is a combat pacing change whose independent results are pending.
 
-Build63 corrects compass orientation: the compact HUD shows the actual cardinal direction and normalized degrees, including the north wrap to000. Camera, sensitivity, physics and combat remain unchanged. The visible test driver can read the displayed cardinal label. Contextual ground-route work and independent mission reviews are still pending.
+Build63 corrects compass orientation: the compact HUD shows the actual cardinal direction and normalized degrees, including the north wrap to000. Camera, sensitivity, physics and combat remain unchanged. The visible test driver can read the displayed cardinal label. Contextual route help briefly marks walkable ground after sustained blocked walking. It is enabled by default in Settings; held Tab remains available independently. Patrols still matter. The Build63 dossier retains validation and two independent mission reviews with their limits.

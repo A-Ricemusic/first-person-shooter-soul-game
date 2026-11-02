@@ -15,6 +15,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
 import MEDICAL from './medical-layout.json';
 import { createRole, dutyGoal, hearShot } from './enemy-roles.js';
+import { RouteHelp } from './route-help.js';
 import { PlayerRoute } from './player-route.js';
 import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
@@ -174,6 +175,7 @@ export class Game {
   }
 
   buildPlayerRoute() {
+    this.routeHelp=new RouteHelp();
     this.playerRoute=new PlayerRoute(this.world,this.coreNodes);
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(24*12),3));geometry.setDrawRange(0,0);
     this.routeTrace=new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color:0x8ee8e0,transparent:true,opacity:.72,depthTest:true,depthWrite:false}));
@@ -183,7 +185,7 @@ export class Game {
   selectRoute(key='auto') {
     if(this.phase!=='planning')return;
     if(key!=='auto'&&!this.coreNodes.some(c=>`core-${c.id}`===key&&!c.collected))return;
-    this.routeGoal=key==='auto'?null:key;this.routeManual=key!=='auto';this.routeNext=0;this.updateRouteGoal();this.emit();
+    this.routeHelp.reset();this.routeWaypoint=null;this.routeGoal=key==='auto'?null:key;this.routeManual=key!=='auto';this.routeNext=0;this.updateRouteGoal();this.emit();
   }
   updateRouteGoal() {
     const available=this.coreNodes.filter(c=>!c.collected);
@@ -193,14 +195,29 @@ export class Game {
     this.routeGoal=sorted[0].key;this.routeManual=false;this.routeNext=0;
   }
   updateRouteTrace() {
-    this.updateRouteGoal();this.routeTrace.visible=false;
-    if(this.phase!=='playing'||!this.keys.has('Tab'))return;
-    if(!this.grounded||Math.abs(feetY(this.player,profileOf(this)))>.025){this.routeStatus='Return to floor for ground trace';return;}
-    if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,this.routeGoal,this.grounded,profileOf(this));this.routeNext=this.runTime+.35;}
+    this.updateRouteGoal();this.routeTrace.visible=false;this.routeWaypoint=null;
+    const explicit=this.keys.has('Tab');
+    if(explicit)this.routeHelp.reset();
+    const local=nearbyReceiver(this.coreNodes.map(c=>({id:c.id,collected:c.collected,distance:recoveryDistance(this.player,c.position,profileOf(this))})));
+    const goal=!explicit&&!this.routeManual&&local?`core-${local.id}`:this.routeGoal;
+    if(this.routeCacheGoal!==goal){this.routeCacheGoal=goal;this.routeNext=0;this.routePath=[];}
+    if(this.routeHelp.goal&&this.routeHelp.goal!==goal)this.routeHelp.reset();
+    const automatic=this.options.contextualRouteHelp!==false&&this.routeHelp.remaining>0&&!this.aim&&!this.mouseDown&&!this.channelCore&&!(local&&local.distance<RECOVERY_RADIUS)&&!(serviceStatus(this).valid&&serviceStatus(this).powered&&!serviceStatus(this).spent);
+    if(this.phase!=='playing'||(!explicit&&!automatic))return;
+    if(this.vault||this.dashTime>0||profileOf(this).eyeHeight<1.7-1e-6||!this.grounded||Math.abs(feetY(this.player,profileOf(this)))>.025){this.routeStatus='Return to floor for ground trace';return;}
+    if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,goal,this.grounded,profileOf(this));this.routeNext=this.runTime+.35;}
     const path=this.routePath||[];let join=-1;
     for(let i=Math.min(path.length-1,12);i>=0;i--)if(Math.hypot(path[i].x-this.player.x,path[i].z-this.player.z)<3&&this.playerRoute.clear(this.player,path[i])){join=i;break;}
-    if(join<0){this.routeStatus='No ground route from this position';this.routeNext=0;return;}
-    this.routeStatus='';const a=this.routeTrace.geometry.attributes.position;let count=0,remaining=12,spacing=.8,from=this.player;
+    if(join<0){this.routeStatus='No ground route from this position';return;}
+    this.routeStatus='';
+    if(automatic){
+      const to=path.slice(join).find(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)>.5);
+      if(to&&this.playerRoute.clear(this.player,to)){
+        const d=Math.hypot(to.x-this.player.x,to.z-this.player.z),t=Math.min(1,2/d);
+        this.routeWaypoint={x:this.player.x+(to.x-this.player.x)*t,z:this.player.z+(to.z-this.player.z)*t,goal,label:goal.startsWith('core-')?CORE_SITES[Number(goal.split('-')[1])].name:goal==='custodian'?'CUSTODIAN':'EXTRACTION'};
+      }
+    }
+    const a=this.routeTrace.geometry.attributes.position;let count=0,remaining=12,spacing=.8,from=this.player;
     for(let i=join;i<path.length&&remaining>0;i++){
       const to=path[i],dx=to.x-from.x,dz=to.z-from.z,len=Math.hypot(dx,dz);if(len<.001)continue;
       const limit=Math.min(len,remaining),ux=dx/len,uz=dz/len;
@@ -272,7 +289,7 @@ export class Game {
   }
 
   setSettings(options = {}) {
-    this.options = { ...this.options, ...options }; this.audio.setVolume(this.options.volume);
+    this.options = { ...this.options, ...options }; this.routeHelp?.reset();this.routeWaypoint=null;if(this.routeTrace)this.routeTrace.visible=false;this.routePath=[];this.routeNext=0; this.audio.setVolume(this.options.volume);
     if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? 2 : 1.5)); this.renderer.shadowMap.enabled = options.quality !== 'low'; }
     this.resize?.();
   }
@@ -310,9 +327,9 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
-    this.nextEnemyId=0;
+    this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
     this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
@@ -551,9 +568,11 @@ export class Game {
     updatePosture(this,this.world,dt);
     if(this.crouchRequested&&profileOf(this).eyeHeight<=1.05+1e-6)this.crouchLearned=true;
     const speed = profileOf(this).eyeHeight<1.7-1e-6 ? 3 : this.aim ? 3.1 : sprint ? 8 : 5.5;
+    const routeSpecial=!!this.vault||this.dashTime>0;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
     else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
     else movePlayer(this, this.world, direction.x * speed * dt, direction.z * speed * dt, dt);
+    this.routeHelp.tick(dt,{eligible:this.options.contextualRouteHelp!==false&&this.grounded&&Math.abs(feetY(this.player,profileOf(this)))<.025&&profileOf(this).eyeHeight>=1.7-1e-6&&!routeSpecial&&!this.vault&&!this.aim&&!this.mouseDown&&!this.keys.has('Tab'),intended:direction.length()*speed*dt,progress:Math.hypot(this.player.x-previousPlayer.x,this.player.z-previousPlayer.z),goal:this.routeCacheGoal||this.routeGoal});
     if (direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
@@ -881,6 +900,10 @@ export class Game {
       const door=doors.filter(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)<25&&this.navigation.clear(this.player,p)&&this.hasLineOfSight(this.player,new THREE.Vector3(p.x,1.7,p.z),0)).sort((a,b)=>Math.hypot(a.x-this.player.x,a.z-this.player.z)-Math.hypot(b.x-this.player.x,b.z-this.player.z))[0];
       if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
     }
+    if(this.routeWaypoint){
+      for(let i=markers.length-1;i>=0;i--)if(markers[i].kind!=='enemy'&&markers[i].kind!=='component')markers.splice(i,1);
+      const w=this.routeWaypoint;markers.push({id:'ground-step',kind:'core',label:`GROUND / ${w.label}`,doorway:true,...project(new THREE.Vector3(w.x,.15,w.z))});
+    }
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||(e.windup>0||e.contactWindup>0))){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.contactWindup>0?'DISCHARGE / SHIFT OR BACK AWAY':e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0||e.contactWindup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18)),aimed=custodianAim(this);if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:aimed?.label||(this.custodian.open>0?'CUSTODIAN / OPEN WINDOW':'CUSTODIAN / ARMORED SHUTTERS'),health:aimed?.health??this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:this.custodian.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
@@ -901,7 +924,7 @@ export class Game {
       localRecovery:nearbyReceiver(coreMarkers)?{id:closest.id,distance:closest.distance,remaining:Math.max(0,closest.distance-RECOVERY_RADIUS)}:null,
       crouchHint:!(closest?.distance<4.5)&&nearLowCover(this,this.world),
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
-      routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
+      routeHelp:this.routeWaypoint?.label||'',routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,

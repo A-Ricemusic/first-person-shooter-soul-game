@@ -1,0 +1,90 @@
+{
+  "reviewer": "build63-review1",
+  "build": 63,
+  "method": "Fresh independent visible UI review; exactly two ordinary-input terminal attempts at http://127.0.0.1:5173/ using tools/visible-playtest.mjs. No source, old reports, hidden state, debug URL, routes or arrangements inspected.",
+  "scores": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "aaa_readiness": 3
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "mission_time": "01:06",
+      "eliminations": 3,
+      "score": 2380,
+      "accuracy_percent": 13,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "observations": [
+        "Opening ADS burst killed induction guard with critical feedback, using the optic hint. Spent 12 rifle rounds.",
+        "Moved too far west into narrow space beside triage wall; south intake/east service hint was visible but did not immediately solve approach. Eventually moved around storage. Move closer prompt specified 0.7 m outside reach and floor ring; small lateral correction then held E successfully recovered Mara, reserve increased 180 to 240.",
+        "Recovered Sera after overshooting console and correcting backward/laterally; reserve rose to 288 and shield returned to 60.",
+        "Shift near Heart showed recharge but no directly established interruption benefit there. Later East Shift visibly displayed PHASE BREAK / DISCHARGE CANCELED; survived at 5 health and reached Elian recovery prompt, but died during held E.",
+        "Late unaimed firing used 11 rounds without visible additional kill before death; end screen showed 3 eliminations while earlier live counter stayed 1. I cannot establish the cause of that discrepancy."
+      ],
+      "terminal_evidence": "docs/media/build63-review1/attempt1-last-recovery.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "mission_time": "01:06",
+      "eliminations": 1,
+      "score": 3100,
+      "accuracy_percent": 23,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "observations": [
+        "Viewed facility map legend and held Tab trace. Walked south intake toward Mara rather than repeating initial wall detour. Recovered Mara at 00:14 versus 00:29 previously; map, visible approach and prior experience jointly helped, not isolated proof of trace efficacy.",
+        "Opening burst again killed guard. Two attempted ADS corrections at distant Sentinel spent rounds without another elimination; aim remained visibly beside target. Reload worked.",
+        "Recovered Sera directly without killing Heart guard. East guidance and marker helped orientation but maintenance objects and walls still caused overshooting; backward correction recovered Elian at 00:39.",
+        "Reached Custodian phase. Read three coils 100%, armored shutters/open-window changes, locking-lanes warning, and upload brief-pause/reenter-before-decay text. Upload was never reached.",
+        "Used crouch hint once, but no demonstrated damage reduction. Vault cleared low obstruction and distance dropped from 20 m to 12 m. Hall-opening/Tab instruction was noticed and used while flanking; eventually obtained clear view of coils at 9 m.",
+        "Initial coil burst was visibly left of coils and all three remained 100%. Tried reload and corrected aim; died during that batch, so no observed successful coil damage, shutdown, or extraction."
+      ],
+      "terminal_evidence": "docs/media/build63-review1/attempt2-coil-corrected.jpg"
+    }
+  ],
+  "strengths": [
+    "Cohesive teal/amber storm presentation, reflective ground and readable large title/end panels.",
+    "Recovery feedback and supplies restoration gave observable benefits; explicit outside-reach prompt enabled a successful small correction.",
+    "Combat, memory objectives and later Custodian phase create more structure than an empty shooting arena."
+  ],
+  "obstructions_and_corrections": [
+    "Objective markers repeatedly pointed through opaque storage/walls. More prominent entry-side affordances and clearer nearby approach indication would reduce circling.",
+    "Small monospaced hints compete with HUD, minimap and scene signs. Increase key tactical hint size/contrast and reduce simultaneous instructional clutter.",
+    "ADS aiming and sight alignment were difficult in this screenshot-driven fallback; several long bursts visibly missed. Stronger hit confirmation and clearer coil target feedback would help distinguish cover misses from armored hits.",
+    "Death at Custodian came quickly while focusing on reload/aim despite 79 health just before. Threat direction cues existed, but a clearer lane attack countdown and attack source could help prioritize evasive action.",
+    "Live versus terminal eliminations differed in attempt 1; verify that summaries count the same category or label categories explicitly."
+  ],
+  "guidance_not_established": [
+    "Saw interceptor change-direction instruction but did not deliberately time a direction change after charge; no demonstrated benefit.",
+    "Saw crouch/low-cover prompt and used crouch briefly; no demonstrated protection benefit.",
+    "Read upload decay instruction only; never reached upload or decay interaction."
+  ],
+  "limitations": "Paused synthetic screenshot play with software WebGL; does not establish human enjoyment, audio quality, hardware performance, or AAA certification. These are honest limited-sample ratings, not perfection claims.",
+  "evidence_directory": "docs/media/build63-review1",
+  "cleanup": {
+    "close_op_sent": true,
+    "driver_exit_code": 0,
+    "driver_pid": 90402,
+    "chrome_pid": 90412,
+    "browser_closed_reported": true,
+    "exact_owned_pids_absent": true,
+    "verification": "ps -p 90402,90412 -o pid=,comm= returned no rows, exit 1 after driver exit 0"
+  },
+  "terminal_attempt_count": 2,
+  "third_attempt_or_rescore": false
+}

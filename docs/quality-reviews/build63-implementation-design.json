@@ -1,0 +1,27 @@
+{
+  "design": {
+    "trigger": "Standing floor-relative walking with less than 20% actual post-collision planar progress over short 0.1s simulation windows, sustained 0.6s. Windowing tolerates tiny final-substep creep. No fire, ADS, phase, vault, air or raised support.",
+    "lifetime": "4 simulation seconds; 6s cooldown. Pause/planning hide and freeze remaining duration, clear stall/input and path, recompute on resume. Tab cancels automatic help and retains on-demand trace independent of setting.",
+    "goal": "Manual selection first; AUTO may use nearby receiver without mutating plan. Effective-goal changes invalidate cache and old cue. Collection/end/restart/settings cancel. Ready service and recovery take priority.",
+    "path": "Existing conservative standing-capsule PlayerRoute fields and depth-tested bounded 12m trace. At most .35s cadence including no-connection failures. One first swept-clear segment waypoint at up to 2m, replaces generic goal marker. Onscreen ground anchor never relocated for label layout; conflict hides it. Offscreen arrow is broad direction only. No enemy tracking, movement or resource grants.",
+    "assets": "Existing original Blender assets unchanged; no new static asset or geometry/combat/content changes."
+  },
+  "implementationPlay": {
+    "method": "Six normal URL source-informed ordinary-input trials from spawn using visible driver, synthetic batches and Escape screenshot pauses; no hidden state/controller/resources/actors. All closed nonterminal. Separate internal-state diagnostics are explicitly fixtures.",
+    "trials": [
+      "play: forward movement did not sustain a block",
+      "play2: boundary attempt, no observed automatic cue",
+      "play3: low-cover block, absent cue",
+      "play4: longer low-cover block, absent cue",
+      "play5: low-cover block, absent cue",
+      "play6: after simulation-window fix, cue visible at low cover; subsequent left/forward correction progresses. No aimed turn, combat, recovery, service, boss or upload coverage in this trial."
+    ],
+    "diagnosis": "Early fixed-step fixtures missed the live tiny-substep collision creep resetting a per-substep timer. Retained live diagnostic led to simulation-window measurement and a variable-substep regression."
+  },
+  "limits": [
+    "Conservative standing graph cannot promise crouch-only or raised connections. No fabricated cue without a valid path.",
+    "Paused synthetic controls and screenshots affect timing; software WebGL is not hardware performance certification.",
+    "Implementation observation is not independent discovery or causal improvement. Human enjoyment, audio and hardware remain untested.",
+    "Broader quality mission remains unfinished; no AAA or perfection certification."
+  ]
+}

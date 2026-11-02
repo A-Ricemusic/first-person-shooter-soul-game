@@ -1,0 +1,117 @@
+{
+  "reviewer": "review2",
+  "build": 63,
+  "url": "http://127.0.0.1:5173/",
+  "method": "Exactly two terminal ordinary-input attempts using visible-playtest.mjs and visible UI/screenshots only. No source, old reports, hidden state, debug URLs or route information inspected.",
+  "scores_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 5,
+    "readability": 6,
+    "AAA_readiness": 3
+  },
+  "ratings_rationale": {
+    "gameplay": "Readable objective progression and recovery rewards support persistence, but collision confusion and ineffective sustained aim dominated my play. This synthetic session cannot establish human enjoyment.",
+    "presentation": "Strong coherent rain, wet light, cyan/amber palette, typography and title/end screens. Geometry, characters and weapon look visibly simple and repeated.",
+    "usability": "Map and distance indicators help, but I repeatedly pushed into machinery and cover without knowing why apparently open paths failed. Recovery reach required several corrections under fire.",
+    "readability": "Large vitals, ammo and objective are clear; numerous simultaneous lower-left guidance, compass, minimap and combat indicators compete. World markers sometimes landed away from the receiver I needed.",
+    "AAA_readiness": "Promising vertical slice, but this evidence does not support AAA certification; navigation friction, combat clarity and asset detail need substantial work."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal": "death",
+      "visible_terminal_stats": {
+        "eliminations": 2,
+        "mission_time": "00:50",
+        "score": 2280,
+        "accuracy_percent": 27,
+        "critical_eliminations": 1,
+        "phase_evades": 0
+      },
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "later_interactions": "Died while moving toward East Archive. No Elian, Custodian or upload interaction reached.",
+      "aiming": "Opening centered rifle fire killed induction Warden with critical feedback. Later ADS turn/fire at patrol and sentinel spent ammunition without an elimination; last close Warden burst produced the second kill.",
+      "obstructions_and_corrections": "Initial forward movement and jump stalled at low cover (distance stayed 42 m); strafed left then advanced. Later walked into archive wall, corrected right toward visible receiver; E at 5.8 m failed, forward step then E recovered Mara. Heart E at 5.3 m failed; right step then E recovered Sera.",
+      "evidence": [
+        "attempt1-map.jpg",
+        "attempt1-recover-try.jpg",
+        "attempt1-mara.jpg",
+        "attempt1-sera.jpg",
+        "attempt1-east.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "terminal": "death",
+      "visible_terminal_stats": {
+        "eliminations": 1,
+        "mission_time": "02:07",
+        "score": 3255,
+        "accuracy_percent": 5,
+        "critical_eliminations": 1,
+        "phase_evades": 1
+      },
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "later_interactions": "Reached Custodian phase, saw three coils at 100%, shutters armored/open-window guidance, moved within about 5.3 m and fired. No observed coil damage; last captured coil percentages remained 100%. Never released uplink or uploaded.",
+      "aiming": "Opening rifle burst killed guard. Multiple ADS adjustments overshot or aimed into cover, with little effective damage. I saw sentinel charging but did not successfully eliminate it. Final fire toward Custodian did not demonstrate damage before death.",
+      "obstructions_and_corrections": "East machinery blocked several movement batches (47 m objective distance barely changed); backed out and strafed, later dash/jump finally opened yard access. Mara and Sera needed closer steps after failed E holds. Explicit outside-reach meter helped correct Sera and Elian approach; recovered Elian after forward/right correction. Brown wall blocked Custodian approach; moved around side and turned to reacquire it.",
+      "evidence": [
+        "attempt2-trace.jpg",
+        "attempt2-yard.jpg",
+        "attempt2-dash.jpg",
+        "attempt2-sera.jpg",
+        "attempt2-recover-final.jpg",
+        "attempt2-east-search.jpg",
+        "attempt2-terminal-or-elian.jpg",
+        "attempt2-turn.jpg",
+        "attempt2-terminal.jpg",
+        "attempt2-coils.jpg"
+      ]
+    }
+  ],
+  "guidance": {
+    "noticed_and_used": [
+      "M facility map: inspected map legend and west archive placement after getting blocked. It helped choose a left-side correction, although not precise collision handling.",
+      "Hold E and receiver distance: successfully used on all three receivers across the attempts.",
+      "Move closer / outside reach / floor ring: actually used to make short corrections and recover Sera and Elian in attempt 2.",
+      "Shift break nearby charges: used multiple times; terminal UI confirms one phase evade in attempt 2.",
+      "Reload R: used successfully; ammo visibly restored."
+    ],
+    "seen_without_demonstrated_benefit": [
+      "C crouch near cover: saw text, did not crouch.",
+      "Interceptors track movement / change direction after charge: saw text, did not demonstrate intentional timed counterplay.",
+      "Custodian armored/open-window and chip guidance: saw and attempted fire, no coil damage observed.",
+      "Upload inside marked deck and outside-decay explanation on menu/HUD: read but never reached upload."
+    ],
+    "trace": "Attempted held Tab capture. No clear route line was visible in that photograph; later ground chevrons appeared in ordinary captures, but my use did not reliably prevent collision."
+  },
+  "concrete_corrections": [
+    "Make collision boundaries and usable openings more visually explicit, especially near east machinery and low cover.",
+    "Keep route markers on visibly traversable ground and communicate blocked movement sooner.",
+    "Improve hit/miss and armor feedback so sustained fire explains failure more clearly.",
+    "Show receiver reach direction/ring clearly before E is held; repeated near-but-outside holds cost health.",
+    "Reduce competing instructional overlays during combat while retaining essential vitals and threat state."
+  ],
+  "limitations": [
+    "Paused synthetic screenshot play and software WebGL do not establish human enjoyment, audio quality, or hardware performance.",
+    "Poor aim and movement are reviewer limitations as well as usability evidence; low accuracy is not proof weapons are broken.",
+    "No third attempt or rescore."
+  ],
+  "evidence_prefix": "docs/media/build63-review2",
+  "cleanup": {
+    "explicit_close_sent": true,
+    "driver_pid": 91043,
+    "chrome_pid": 91053,
+    "driver_exit_code": 0,
+    "browser_closed_reported": true,
+    "verification": "ps -p 91043,91053 -o pid=,comm= returned no output and exit 1; both exact owned PIDs absent."
+  }
+}
