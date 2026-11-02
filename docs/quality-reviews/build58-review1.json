@@ -1,0 +1,140 @@
+{
+  "build": 58,
+  "reviewer": "review1",
+  "method": "Independent ordinary visible UI play, normal http://127.0.0.1:5173/ only; visible-playtest browser synthetic input, short paused batches, fallback mouse-button drag look; installed headed Chrome with software WebGL.",
+  "attempt_count": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "terminal_label": "OPERATOR LOST / THE STATION REMEMBERS",
+      "mission_time": "01:29",
+      "eliminations": 3,
+      "score": 3460,
+      "accuracy_percent_visible": 8,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "coil_II": "OFF",
+        "coil_III": "OFF",
+        "coil_I_last_observed_percent": 90,
+        "confirmed_phase_break": true,
+        "fully_disabled": false
+      },
+      "upload": "not reached",
+      "terminal_evidence": "docs/media/build58-review1/a1-last-coil.jpg"
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "terminal_label": "OPERATOR LOST / THE STATION REMEMBERS",
+      "mission_time": "01:16",
+      "eliminations": 2,
+      "score": 3355,
+      "accuracy_percent_visible": 23,
+      "critical_eliminations": 1,
+      "phase_evades": 1,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "fully_disabled": true,
+        "evidence": "RETURN TO EXTRACTION; EXTRACTION 23 M; REACH THE GREEN BEACON HOLD 6 SECONDS appeared immediately before terminal death"
+      },
+      "upload": "not reached; no progress observed",
+      "terminal_evidence": "docs/media/build58-review1/a2-final-coil-push.jpg"
+    }
+  ],
+  "controls_teaching": {
+    "noticed": [
+      "Menu mission outline: three cores, jammer, upload deck",
+      "Operator Handbook detailed coils, shutters, phase break, weapons, crouch, vault, map/Tab trace, capacitors, shield regen, threat visor",
+      "Fallback drag-look announcement",
+      "Persistent initial movement/control strip",
+      "Contextual crouch and vault prompts",
+      "Move closer / step inside floor ring receiver prompt",
+      "Custodian lane lock, open window, coil OFF and phase-break text",
+      "End-screen accuracy, critical eliminations and phase evades"
+    ],
+    "used": [
+      "WASD",
+      "Control sprint",
+      "R reload rifle and shell insertion",
+      "RMB ADS",
+      "LMB fire",
+      "1/2 weapon switching",
+      "Shift dash",
+      "C crouch and stand",
+      "Space attempted vault/jump",
+      "M paused map",
+      "Tab ground trace",
+      "hold E recover",
+      "Escape/resume via driver"
+    ],
+    "unused_or_unconfirmed": [
+      "Capacitor discharge",
+      "Successful vault traversal",
+      "Jump combat evasion",
+      "Map manual objective selection",
+      "Read recovered memories"
+    ]
+  },
+  "obstacles_and_failures": [
+    "First movement hit foreground cover; Space did not clear that obstacle; strafed around.",
+    "Cabinet and shelf walls repeatedly obscured receiver approach; map and ground trace helped recover routes.",
+    "Recovery attempts at 8m, 4.5m and 3.7m failed until closer; explicit move-closer feedback was useful.",
+    "Held breacher firing missed moving Sentinel; only two shells spent in 1.5 seconds, later shell reload visibly restored 4 to 6.",
+    "Some intended rapid fallback look changes failed to rotate as expected; isolated mouse-button look plus wait worked.",
+    "Large turns and target movement caused fire into empty space, shutters or inert/occluding parts. Preserve as real misses, not evidence of broken hit detection.",
+    "Patrols accumulated while concentrating on coils. Both runs died from incoming threats; second cleared jammer but died before moving to extraction.",
+    "Second final capture began with 8 health / RETURN TO EXTRACTION and ended on death during photograph/pause; synthetic capture scheduling limits precise timing interpretation."
+  ],
+  "presentation_observations": [
+    "Strong coherent teal/amber storm-industrial identity, clean title typography and wet-floor lighting.",
+    "Weapon, robot and facility geometry remain visibly simple and repetitive at close range; open grey skyline and repeated rectangular cover reduce richness.",
+    "HUD health/ammo, named objectives and numbered coil percentages are legible.",
+    "Several simultaneous messages, brackets, directional threats and center objective panels compete in close combat. Coil physical faces require circling and keeping track of which dark coil is inert."
+  ],
+  "raw_scores_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 7,
+    "AAA_readiness": 3
+  },
+  "score_basis": "Playable tactical movement and recover/disable progression with useful shield/recovery feedback. Attractive coherent slice presentation, but simplified environment/actors and dense combat overlays; two ordinary deaths and no extraction coverage preclude strong completion claims. Scores are independent subjective observations under this method.",
+  "limitations": [
+    "Pause-assisted synthetic input and fallback drag look limit aiming and continuous-action judgments.",
+    "No human enjoyment judgment, audio validation, physical hardware/performance benchmark or AAA certification.",
+    "No upload, victory or full extraction coverage. Exact shots and misses unavailable in visible UI; end accuracy retained without inventing counts.",
+    "Only own UI/screenshots and driver help inspected; no source/state/debug/test URL/controllers/resources inspected."
+  ],
+  "evidence_prefix": "docs/media/build58-review1",
+  "cleanup": {
+    "owned_driver_pid": 71327,
+    "owned_chrome_pid": 71337,
+    "close_command": "{\"op\":\"close\"}",
+    "closed_event": {
+      "browserClosed": true,
+      "driverPid": 71327,
+      "chromePid": 71337
+    },
+    "awaited_driver_exit_code": 0,
+    "verification_command": "ps -p 71327,71337 -o pid=,ppid=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "owned_pids_absent": true,
+    "services": "existing services untouched"
+  }
+}

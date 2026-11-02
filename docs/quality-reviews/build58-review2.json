@@ -1,0 +1,152 @@
+{
+  "reviewer": "independent visible playtester 2",
+  "build": 58,
+  "url": "http://127.0.0.1:5173/",
+  "evidence_prefix": "docs/media/build58-review2",
+  "attempt_count": 2,
+  "method": {
+    "inspection": "Only driver help, own visible UI and screenshots. No source, state, debug, test URL or prior reviews.",
+    "input": "Browser-timed synthetic ordinary inputs with Escape pauses between batches; driver fallback relative look used.",
+    "limitations": [
+      "Pause-assisted synthetic play and fallback look limit aiming judgments and do not validate continuous human play.",
+      "No human enjoyment, audio, hardware performance or AAA certification.",
+      "Software-WebGL fallback."
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "terminal_evidence": "docs/media/build58-review2/attempt1-east-final.jpg",
+      "mission_time": "00:45",
+      "eliminations": 2,
+      "score": 2360,
+      "accuracy_percent": 10,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "boss_damage": "unknown; Custodian not reached",
+      "boss_disables": 0,
+      "upload": "not reached",
+      "tactics": "Killed entry guard at optic, routed west around low cover, recovered Mara, traversed north to Sera, attempted east recovery under fire.",
+      "failures": [
+        "Held E at 10m/8m before sufficiently close.",
+        "East receiver remained 6\u20137m away behind cover; failed approach and died under interceptor fire.",
+        "Last shooting burst did not save attempt."
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "terminal_evidence": "docs/media/build58-review2/attempt2-death.jpg",
+      "mission_time": "00:39",
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy_percent": 20,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Elian Vale"
+      ],
+      "boss_damage": "unknown; Custodian not reached",
+      "boss_disables": 0,
+      "upload": "not reached",
+      "tactics": "Killed entry guard, chose east-first approach, used prompted vault to pass entry cover, recovered Elian, tried moving north-west to Heart.",
+      "failures": [
+        "Repeated Heart recovery failed at edge of floor ring.",
+        "Stationary recovery attempts sustained heavy fire.",
+        "Shift without held movement dashed forward away from receiver rather than simply defending; died after failed recovery."
+      ]
+    }
+  ],
+  "controls": {
+    "noticed": [
+      "WASD move",
+      "mouse look",
+      "C crouch",
+      "Ctrl sprint",
+      "R reload",
+      "Space vault/jump",
+      "Shift phase dash / break nearby charges",
+      "hold E recover",
+      "RMB aim",
+      "M facility map",
+      "Tab trace on map footer",
+      "1/2 weapon selection"
+    ],
+    "used": [
+      "WASD",
+      "relative mouse look",
+      "left fire",
+      "R reload",
+      "Shift dash",
+      "Space vault",
+      "hold E",
+      "M map",
+      "Escape pause/resume"
+    ],
+    "not_used": [
+      "crouch",
+      "sprint",
+      "ADS",
+      "breacher",
+      "Tab trace"
+    ]
+  },
+  "learning": [
+    "Entry announcement explicitly teaches amber-charge counter and optic aiming; two critical kills in attempt 1 support basic discoverability.",
+    "Contextual low-cover crouch and clear-landing vault prompts are useful; vault was used successfully.",
+    "Map identifies walls, low cover, receivers, current position, jammer and extraction.",
+    "Move closer / step inside floor ring teaching arrived near receivers; exact proximity remained costly to judge during fire.",
+    "Memory recovery visibly restores supplies."
+  ],
+  "observations": {
+    "strengths": [
+      "Strong cohesive rainy teal/amber presentation, large mission title and clear typography.",
+      "World archive signage, objective distance and map support routing.",
+      "Deaths preserve recovered names and show clear retry action and statistics.",
+      "Enemy optics and charging captions provide readable threat/counter cues."
+    ],
+    "obstacles": [
+      "Many small HUD labels compete with scene and world signs; minimap and archive signs can overlap visually.",
+      "Selected Mara objective stayed selected while deliberately approaching Elian/Heart, so distant objective label was less helpful for local receiver distance.",
+      "Cover interrupted intended travel several times.",
+      "Rear/flank threats and repeated failed recoveries drained health before I understood exact reachable ring.",
+      "Enemies are visibly blocky and environment repeats simple cover/structural forms; presentation exceeds geometry/animation richness."
+    ]
+  },
+  "coverage_gaps": [
+    "No all-three recovery run",
+    "No Custodian/jammer fight or confirmed boss damage/disables",
+    "No extraction upload/decay",
+    "No victory",
+    "No breacher/ADS/crouch/sprint/trace validation"
+  ],
+  "raw_scores_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 7,
+    "aaa_readiness": 3
+  },
+  "score_rationale": "Readable, coherent vertical slice with useful contextual teaching and strong mood. Two honest failed runs show routing/proximity and combat-under-recovery friction. Limited observed encounter/asset richness and missing end-to-end coverage do not support AAA readiness.",
+  "cleanup": {
+    "owned_driver_pid": 72083,
+    "owned_chrome_pid": 72093,
+    "close_command_sent": true,
+    "driver_reported_browser_closed": true,
+    "driver_exit_code": 0,
+    "pid_verification_command": "ps -p 72083,72093 -o pid=,comm=",
+    "pid_verification_exit_code": 1,
+    "pid_verification_output": "",
+    "both_owned_pids_absent": true,
+    "existing_services": "untouched"
+  }
+}

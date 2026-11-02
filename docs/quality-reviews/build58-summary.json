@@ -1,0 +1,217 @@
+{
+  "build": 58,
+  "baseline": "831405004e020c81a6b31c7bba70458040aee50b",
+  "scope": "Independent TEST/REVIEW only; exactly two fresh native GPT-6.1 Sol reviewers, sequential, fork_turns none, two terminal normal-URL attempts each. No fixes or tuning.",
+  "reviewer_brief": "Only normal URL, driver help, own visible UI and screenshots. No source/state/debug/testURL/controller/resource inspection, routes or feature/tactic disclosure. UI may teach.",
+  "outcomes": [
+    {
+      "reviewer": 1,
+      "attempt": 1,
+      "outcome": "death",
+      "terminal_label": "OPERATOR LOST / THE STATION REMEMBERS",
+      "mission_time": "01:29",
+      "eliminations": 3,
+      "score": 3460,
+      "accuracy_percent_visible": 8,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "coil_II": "OFF",
+        "coil_III": "OFF",
+        "coil_I_last_observed_percent": 90,
+        "confirmed_phase_break": true,
+        "fully_disabled": false
+      },
+      "upload": "not reached",
+      "terminal_evidence": "docs/media/build58-review1/a1-last-coil.jpg"
+    },
+    {
+      "reviewer": 1,
+      "attempt": 2,
+      "outcome": "death",
+      "terminal_label": "OPERATOR LOST / THE STATION REMEMBERS",
+      "mission_time": "01:16",
+      "eliminations": 2,
+      "score": 3355,
+      "accuracy_percent_visible": 23,
+      "critical_eliminations": 1,
+      "phase_evades": 1,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "fully_disabled": true,
+        "evidence": "RETURN TO EXTRACTION; EXTRACTION 23 M; REACH THE GREEN BEACON HOLD 6 SECONDS appeared immediately before terminal death"
+      },
+      "upload": "not reached; no progress observed",
+      "terminal_evidence": "docs/media/build58-review1/a2-final-coil-push.jpg"
+    },
+    {
+      "reviewer": 2,
+      "attempt": 1,
+      "outcome": "death",
+      "terminal_evidence": "docs/media/build58-review2/attempt1-east-final.jpg",
+      "mission_time": "00:45",
+      "eliminations": 2,
+      "score": 2360,
+      "accuracy_percent": 10,
+      "critical_eliminations": 2,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "boss_damage": "unknown; Custodian not reached",
+      "boss_disables": 0,
+      "upload": "not reached",
+      "tactics": "Killed entry guard at optic, routed west around low cover, recovered Mara, traversed north to Sera, attempted east recovery under fire.",
+      "failures": [
+        "Held E at 10m/8m before sufficiently close.",
+        "East receiver remained 6\u20137m away behind cover; failed approach and died under interceptor fire.",
+        "Last shooting burst did not save attempt."
+      ]
+    },
+    {
+      "reviewer": 2,
+      "attempt": 2,
+      "outcome": "death",
+      "terminal_evidence": "docs/media/build58-review2/attempt2-death.jpg",
+      "mission_time": "00:39",
+      "eliminations": 1,
+      "score": 1180,
+      "accuracy_percent": 20,
+      "critical_eliminations": 1,
+      "phase_evades": 0,
+      "shots": "unknown",
+      "misses": "unknown",
+      "recoveries": [
+        "Elian Vale"
+      ],
+      "boss_damage": "unknown; Custodian not reached",
+      "boss_disables": 0,
+      "upload": "not reached",
+      "tactics": "Killed entry guard, chose east-first approach, used prompted vault to pass entry cover, recovered Elian, tried moving north-west to Heart.",
+      "failures": [
+        "Repeated Heart recovery failed at edge of floor ring.",
+        "Stationary recovery attempts sustained heavy fire.",
+        "Shift without held movement dashed forward away from receiver rather than simply defending; died after failed recovery."
+      ]
+    }
+  ],
+  "raw_ratings": {
+    "review1": {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 7,
+      "AAA_readiness": 3
+    },
+    "review2": {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 7,
+      "aaa_readiness": 3
+    }
+  },
+  "aim_and_cue_observations": [
+    "Reviewer1 actions sequence2 visibly opened handbook containing numbered bracket, amber/cyan and physical-face teaching. UI supplied this information; reviewer brief did not.",
+    "Reviewer1 reported large-turn/fallback friction and shots into empty space, shutters or occluding parts; some rapid same-batch look failed while isolated drag plus wait worked.",
+    "Reviewer1 confirmed coil II/III OFF and I last 90% on attempt1; all disabled / RETURN TO EXTRACTION on attempt2. This is ordinary boss damage coverage, not proof the numbered cue caused progress.",
+    "No explicit reviewer attribution to numbered anchor usefulness or amber/cyan interpretation in combat. Do not infer conscious cue use solely from boss damage.",
+    "Reviewer2 never reached boss: no boss shots or cue-use coverage. Exact shot/miss totals unknown for all attempts; retain visible accuracy only."
+  ],
+  "findings_for_parent": [
+    "Investigate recovery reach teaching under fire: repeated E attempts at 4\u201310m or ring edge; retain actual range mechanics pending design decision.",
+    "Inspect cabinet/shelf/low-cover approach readability and persistent selected objective during alternate routes.",
+    "Reduce competing HUD/world labels where demonstrated, preserving threat information.",
+    "Assess flank/patrol pressure while recovering and concentrating on boss; one run cleared jammer but died before extraction.",
+    "Investigate rapid fallback-look sequencing in a separate authorized task; this review freezes driver/runtime.",
+    "Close-range geometry/actor repetition and limited encountered variety constrain presentation/AAA ratings."
+  ],
+  "decision": "Preserve all four deaths and both raw ratings; no rescore, third reviewer, code fix, feature or post-review tuning. Parent owns follow-up. No causal improvement claim. Broader quality mission unfinished.",
+  "method_limits": [
+    "Pause-assisted synthetic input and fallback look limit aiming and continuous human-play judgments.",
+    "Chrome launch software flags do not establish actual renderer/GPU. Reviewers described software WebGL; no independent renderer/hardware certification.",
+    "No upload or victory; no human enjoyment/audio/hardware/AAA certification."
+  ],
+  "freeze": {
+    "before": "build58-review-freeze-before.json",
+    "between": "build58-review-freeze-between.json",
+    "after": "build58-review-freeze-after.json",
+    "digest": "c4c6bd542d2f20ea74248f945b5d08302efaeacea3ea5ebba2b277980c178843",
+    "unchanged": true
+  },
+  "cleanup": {
+    "review1": {
+      "owned_driver_pid": 71327,
+      "owned_chrome_pid": 71337,
+      "close_command": "{\"op\":\"close\"}",
+      "closed_event": {
+        "browserClosed": true,
+        "driverPid": 71327,
+        "chromePid": 71337
+      },
+      "awaited_driver_exit_code": 0,
+      "verification_command": "ps -p 71327,71337 -o pid=,ppid=,command=",
+      "verification_exit_code": 1,
+      "verification_output": "",
+      "owned_pids_absent": true,
+      "services": "existing services untouched"
+    },
+    "review2": {
+      "owned_driver_pid": 72083,
+      "owned_chrome_pid": 72093,
+      "close_command_sent": true,
+      "driver_reported_browser_closed": true,
+      "driver_exit_code": 0,
+      "pid_verification_command": "ps -p 72083,72093 -o pid=,comm=",
+      "pid_verification_exit_code": 1,
+      "pid_verification_output": "",
+      "both_owned_pids_absent": true,
+      "existing_services": "untouched"
+    },
+    "independently_verified_pids_absent": [
+      71327,
+      71337,
+      72083,
+      72093
+    ]
+  },
+  "evidence": [
+    "build58-review1.json",
+    "build58-review2.json",
+    "../media/build58-review1/actions.jsonl",
+    "../media/build58-review2/actions.jsonl"
+  ],
+  "validation": {
+    "docsBuild": "passed; retained existing large fallback chunk warning",
+    "production": "build58-review-production.json",
+    "productionChecks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "links": "build58-review-links.json",
+    "preservation": "build58-review-freeze-final.json",
+    "services": "both localhost endpoints returned 200; Build23 snapshot/server/Tailscale untouched",
+    "sourceReferences": 855,
+    "shippedReferences": 855,
+    "missingReferences": [],
+    "finalEndpointStatus": {
+      "127.0.0.1:5173": 200,
+      "127.0.0.1:61467": 200
+    }
+  }
+}
