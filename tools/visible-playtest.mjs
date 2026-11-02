@@ -80,7 +80,7 @@ async function ui(){
   const dialog=document.querySelector('dialog[open]');
   const phase=visible(dialog)?'dialog':visible(document.getElementById('end'))?'end':visible(document.getElementById('pause'))?'paused':visible(document.getElementById('menu'))?'menu':visible(document.getElementById('facility-map'))?'planning':visible(document.getElementById('hud'))?'playing':'loading';
   const result={phase};
-  if(['playing','planning'].includes(phase))for(const id of ['objective','health','shield','ammo','reserve','kills','timer','heading','compass-direction','interaction','signal-distance','extraction-status','memory-card','announcement','event-feed','dash-status','facility-map','field-controls','service-hint'])result[id]=text(id);
+  if(['playing','planning'].includes(phase))for(const id of ['objective','health','shield','ammo','reserve','kills','timer','heading','compass-direction','interaction','signal-distance','extraction-status','memory-card','announcement','event-feed','dash-status','facility-map','field-controls','service-hint','threat-focus'])result[id]=text(id);
   if(phase==='end')result.outcome=text('end');
   if(phase==='dialog')result.dialog=dialog.innerText;
   return result;

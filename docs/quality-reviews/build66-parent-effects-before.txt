@@ -1,0 +1,117 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   {
++     active: true,
++     label: null,
++     lineVisible: true,
++     targets: [],
++     type: 'sentinel'
++   },
++   {
++     active: false,
++     label: null,
++     lineVisible: false,
++     targets: [],
++     type: 'sentinel'
++   },
++   {
++     active: true,
++     label: null,
++     lineVisible: true,
++     targets: [],
++     type: 'stalker'
++   },
++   {
++     active: false,
++     label: null,
++     lineVisible: false,
++     targets: [],
++     type: 'stalker'
++   },
++   {
++     active: true,
++     label: null,
++     lineVisible: true,
++     targets: [],
++     type: 'warden'
++   },
++   {
++     active: false,
++     label: null,
++     lineVisible: false,
++     targets: [],
++     type: 'warden'
++   },
++   {
++     coilDamage: 0,
++     enemyDamage: 56,
++     hits: 1,
++     legacyRig: true
++   },
++   {
++     readout: null
++   }
++ ]
+- []
+
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/build66-effect-occlusion.mjs:15:366 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      type: 'sentinel',
+      active: true,
+      lineVisible: true,
+      label: null,
+      targets: []
+    },
+    {
+      type: 'sentinel',
+      active: false,
+      lineVisible: false,
+      label: null,
+      targets: []
+    },
+    {
+      type: 'stalker',
+      active: true,
+      lineVisible: true,
+      label: null,
+      targets: []
+    },
+    {
+      type: 'stalker',
+      active: false,
+      lineVisible: false,
+      label: null,
+      targets: []
+    },
+    {
+      type: 'warden',
+      active: true,
+      lineVisible: true,
+      label: null,
+      targets: []
+    },
+    {
+      type: 'warden',
+      active: false,
+      lineVisible: false,
+      label: null,
+      targets: []
+    },
+    { legacyRig: true, enemyDamage: 56, coilDamage: 0, hits: 1 },
+    { readout: null }
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

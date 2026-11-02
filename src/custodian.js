@@ -1,3 +1,4 @@
+import {actorOccludes} from './actor-surfaces.js';
 import {hitNormal} from './combat-feedback.js';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -39,7 +40,18 @@ export function custodianObjectiveVisible(g){
  }
  return false;
 }
-export function custodianAim(g){const c=g.custodian;if(!c.active||c.dead)return null;const direction=g.camera.getWorldDirection(new T.Vector3());g.raycaster.set(g.player,direction);const h=g.raycaster.intersectObject(c.model,true)[0];if(!h||!g.hasLineOfSight(g.player,h.point,0))return null;for(const e of g.enemies){const a=g.raycaster.intersectObject(e.group,true)[0];if(a&&a.distance<h.distance)return null;}const i=h.object.userData.coil,n=c.coils[i];return n?{label:n.hp<=0?`COIL ${i+1} / INERT COVER`:`COIL ${i+1} / ${c.open>0&&!h.object.userData.shutter?'EXPOSED COMPONENT':'ARMORED'}`,health:n.hp/(160*g.difficulty.health)}:{label:'INERT HOUSING / AIM AT NUMBERED COILS',health:1};}
+export function custodianAim(g){
+ const c=g.custodian;if(!c.active||c.dead)return null;
+ g.raycaster.set(g.player,g.camera.getWorldDirection(new T.Vector3()));
+ const h=g.raycaster.intersectObject(c.model,true)[0];if(!h)return null;
+ // The exact machine mesh already selects the first physical surface. Its
+ // conservative movement boxes must not hide that surface's classification.
+ const ray=g.raycaster.ray,point=new T.Vector3();
+ if(g.world.colliders.some(box=>!box.custodian&&(box.containsPoint(g.player)||(ray.intersectBox(box,point)&&point.distanceTo(g.player)<=h.distance))))return null;
+ if(actorOccludes(g,g.raycaster,h.distance))return null;
+ const i=h.object.userData.coil,n=c.coils[i];
+ return {point:h.point,label:n?`COIL ${i+1} / ${n.hp<=0?'INERT COVER':c.open>0&&!h.object.userData.shutter?'EXPOSED COMPONENT':'ARMORED'}`:'INERT HOUSING / AIM AT NUMBERED COILS',health:n?n.hp/(160*g.difficulty.health):1};
+}
 // A later pellet must not replace the kill effect from the same shell.
 export function hitCustodian(g,intersection,volley=null){const c=g.custodian,i=intersection.object.userData.coil,n=c.coils[i];if(!c.active||c.dead||!n||n.hp<=0){if(!volley?.wasLive)g.combatFeedback?.impact(intersection.point,hitNormal(intersection,g.ray.direction),'surface',g.options.reducedMotion);return;}const critical=c.open>0&&!intersection.object.userData.shutter,damage=volley?(critical?14:7)*volley.scale:critical?82:17;n.hp=Math.max(0,n.hp-damage);g.combatFeedback?.impact(intersection.point,hitNormal(intersection,g.ray.direction),n.hp===0?'kill':critical?'critical':'armor',g.options.reducedMotion);if(!volley)g.shotsHit++;else volley.hit=true;g.audio.hit(critical);g.event('hit',critical?'COIL EXPOSED':`ARMORED · CHIP ${damage}`,{headshot:critical,damage});if(n.hp===0){if(n.line){n.line.removeFromParent();n.line.geometry.dispose();n.line.material.dispose();n.line=null;}g.event('notice','BROADCAST COIL DISABLED · ONE LESS FIRING LANE');if(c.coils.every(n=>n.hp<=0)){c.dead=true;c.coordination.reset();clearCustodianLines(c);c.windup=0;c.open=0;g.kills++;g.score+=100;g.audio.kill();g.exitBoundary.material.color.setHex(0x65ffb7);g.exitBeam.visible=true;g.event('kill','CUSTODIAN DISABLED +100 · UPLINK RELEASED · WEST PLATE SUIT SERVICE READY · ONE USE');}}
  pose(c);

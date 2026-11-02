@@ -1,3 +1,4 @@
+import {actorSurfaceHit} from './actor-surfaces.js';
 import {hitNormal} from './combat-feedback.js';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -22,7 +23,7 @@ export function shootBreacher(g){
   g.ray.set(g.player,dir);g.raycaster.set(g.player,dir);
   const prop=capacitorShot(g.ray,g.raycaster,g.world.capacitors,g.world.colliders);let distance=Math.min(24,prop.distance),target=null,impact=null;
   // Every pellet chooses its nearest actual mesh, including shutters and foreign actors.
-  for(const e of g.enemies){e.group.updateWorldMatrix(true,true);const model=(e.wardenRig||e.droneRig)?.model||e.group;const h=g.raycaster.intersectObject(model,true)[0];if(h&&h.distance<distance){distance=h.distance;target=e;impact=h;}}
+  for(const e of g.enemies){const h=actorSurfaceHit(e,g.raycaster);if(h&&h.distance<distance){distance=h.distance;target=e;impact=h;}}
   g.custodian.group.updateWorldMatrix(true,true);const bh=g.raycaster.intersectObject(g.custodian.model,true)[0];
   if(bh&&bh.distance<distance){distance=bh.distance;target=null;impact=bh;}
   const scale=falloff(distance),end=g.player.clone().addScaledVector(dir,distance);

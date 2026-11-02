@@ -1,3 +1,4 @@
+import {actorOccludes} from './actor-surfaces.js';
 import * as T from 'three';
 
 const raycaster=new T.Raycaster();
@@ -22,14 +23,7 @@ export function custodianTargets(g){
   if(!surface||surface.object.userData.coil!==i)continue;
   ray.set(g.player,delta);
   if(g.world.colliders.some(box=>!box.custodian&&(box.containsPoint(g.player)||(ray.intersectBox(box,hit)&&hit.distanceTo(g.player)<=surface.distance))))continue;
-  if(g.enemies.some(e=>{
-   // Rifle precision uses the existing fixed optic sphere as well as body mesh.
-   // Its small rim must also occlude a shot-opportunity cue.
-   const optic=ray.intersectSphere(new T.Sphere(g.enemyOpticPosition(e),.24),new T.Vector3());
-   if(optic&&optic.distanceTo(g.player)<=surface.distance)return true;
-   e.group.updateWorldMatrix(true,true);const h=raycaster.intersectObject(e.group,true)[0];
-   return h&&h.distance<=surface.distance;
-  }))continue;
+  if(actorOccludes(g,raycaster,surface.distance))continue;
   targets.push({index:i,point:surface.point,exposed:c.open>0&&!surface.object.userData.shutter,score:p.x*p.x+p.y*p.y});
  }
  return targets;

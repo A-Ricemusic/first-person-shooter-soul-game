@@ -1,0 +1,16 @@
+import {chromium} from '@playwright/test';import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});
+try{
+ const p=await b.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(()=>window.requestAnimationFrame=()=>1);await p.goto('http://127.0.0.1:5173/?test=1');await p.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50,timeout:60000});await p.click('#deploy',{force:true});
+ const result=await p.evaluate(async()=>{
+  const g=window.__SOULFALL__.game,T=await import('/node_modules/three/build/three.module.js'),M=await import('/src/custodian.js'),C=await import('/src/custodian-targets.js'),F=await import('/src/combat-feedback.js'),rows=[],c=g.custodian;
+  function setup(type,legacy=false){g.restart();g.clearRun();g.player.set(11,1.7,23);g.cores=3;g.phase='playing';g.grounded=true;c.active=true;c.dead=false;c.windup=0;c.open=0;c.cooldown=100;c.coils.forEach(n=>n.hp=160);M.updateCustodian(g,0);g.yaw=0;g.pitch=Math.atan2(2.18-1.7,7);g.recoil=0;g.syncCamera();const asset=g.wardenAsset;if(legacy)g.wardenAsset=null;g.spawnEnemy(new T.Vector3(15,0,20),type);g.wardenAsset=asset;const e=g.enemies[0];e.windup=.6;e.target.copy(g.player);F.updateCharge(g,e);return e;}
+  for(const type of ['sentinel','stalker','warden'])for(const active of [true,false]){
+   const e=setup(type);if(!active){e.windup=0;F.updateCharge(g,e);}const label=M.custodianAim(g)?.label??null,targets=C.custodianTargets(g).map(t=>t.index);rows.push({type,active,lineVisible:e.chargeLine.visible,label,targets});
+  }
+  const e=setup('warden',true);g.selectWeapon('breacher');g.ammo=6;g.fireTimer=0;g.reloading=false;const hp=e.health,coil=c.coils[1].hp;const random=Math.random;Math.random=()=>0;try{g.shoot();}finally{Math.random=random;}const shell={legacyRig:!e.wardenRig,enemyDamage:hp-e.health,coilDamage:coil-c.coils[1].hp,hits:g.shotsHit};
+  setup('sentinel');g.clearRun();g.player.set(8.75,1.7,23);g.spawnEnemy(new T.Vector3(8.75,0,19.5),'sentinel');const sentinel=g.enemies[0];sentinel.group.updateWorldMatrix(true,true);g.yaw=0;g.pitch=Math.atan2(1.55-1.7,7);g.syncCamera();const hiddenLegacy={readout:M.custodianAim(g)?.label??null};
+  const failures=[];for(const r of rows)if(!r.label?.startsWith('COIL 2 /')||!r.targets.includes(1))failures.push(r);if(shell.enemyDamage!==0||shell.coilDamage<=0||shell.hits!==1)failures.push(shell);if(!hiddenLegacy.readout?.includes('INERT HOUSING'))failures.push(hiddenLegacy);return {rows,shell,hiddenLegacy,failures};
+ });
+ writeFileSync(process.env.EFFECT_OCCLUSION_OUTPUT||'docs/quality-reviews/build66-parent-effects.json',JSON.stringify({method:'Arranged actual actors with active and retired charge-line geometry, hidden legacy meshes and forced missing-Warden fallback. Actual centre-pellet shot with deterministic spread; not ordinary play.',...result,errors},null,2)+'\n');assert.deepEqual(result.failures,[]);assert.deepEqual(errors,[]);console.log('Cosmetic beams and hidden legacy bodies do not block classifications/cues; fallback pellets hit actual surfaces only.');
+}finally{await b.close();}

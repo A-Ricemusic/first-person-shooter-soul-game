@@ -70,3 +70,5 @@ Build63 corrects compass orientation: the compact HUD shows the actual cardinal 
 Build64 restores gray physical strike effects on inert Custodian housing, spent coils and dormant/dead machinery without granting damage or hit credit. Breacher overkill preserves the shell’s coil-kill effect and single reward. Evidence, fixture corrections and ordinary-play limits are retained in the Build64 dossier.
 
 Build65 makes walking Sentinels plant during their ranged charge and0.45-second recovery; Interceptors retain mobile fire. This changes combat exposure while preserving damage, health and nominal firing timings. Decisions, retained ordinary mistakes and validation limits are in the Build65 dossier.
+
+Build66 names the actual Custodian surface under the reticle in the existing focus line. Physical actor queries exclude cosmetic charge rays and hidden legacy bodies, including a repaired missing-Warden breacher fallback. Original numeric combat rules remain; ordinary failures and the initial fixture gap are retained in the dossier.

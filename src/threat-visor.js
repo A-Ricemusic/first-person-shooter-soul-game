@@ -7,7 +7,8 @@ export function threatVisor(markers, previousFocus) {
  const previous=candidates.find(m=>m.id===previousFocus);
  // A challenger must be meaningfully closer to the reticle. No timer or stale
  // target survives the Game's eligibility gate, death, or a turn away.
- const focused=previous&&nearest&&Math.hypot(previous.x,previous.y)<Math.hypot(nearest.x,nearest.y)+.075?previous:nearest;
+ // A classified physical surface under the reticle takes the existing readout.
+ const focused=candidates.find(m=>m.aimed)||(previous&&nearest&&Math.hypot(previous.x,previous.y)<Math.hypot(nearest.x,nearest.y)+.075?previous:nearest);
  const groups=new Map(),cues=[];
  for(const m of enemies){
   if(visible(m)){cues.push({...m,onscreen:true,count:1,charges:Number(m.charging),fires:Number(!m.charging&&m.recent),hits:Number(!m.charging&&!m.recent),members:[m.id]});continue;}
