@@ -1,0 +1,89 @@
+{
+  "stage": "Build69 parent design only; runtime remains Build68 in this commit",
+  "baseline": "86a12e029e994ead149a7bc9635e5ce730270b6c",
+  "problem": "North volley suppression is not just a conservative-AABB false positive. Recorded muzzle anchors lie deep inside the actual authored24-sided yaw-bearing cylinders after north aim. Skipping self collision would disguise a real mechanical intersection.",
+  "evidence": "build68-exposure.json, build68-review-summary.json and original tools/build45-custodian.py cylinder geometry",
+  "measuredNorthPose": [
+    {
+      "coil": 0,
+      "muzzle": [
+        9.261839995826744,
+        2.7800799966901772,
+        15.842319975967808
+      ],
+      "bearingCentre": [
+        9.35,
+        2.79,
+        15.8
+      ],
+      "radialDistance": 0.09779144493126296,
+      "radius": 0.23,
+      "verticalBounds": [
+        2.7,
+        2.88
+      ],
+      "insideActual24SidedCylinder": true
+    },
+    {
+      "coil": 1,
+      "muzzle": [
+        10.912866836494695,
+        2.783197907979267,
+        16.241723212885724
+      ],
+      "bearingCentre": [
+        11,
+        2.79,
+        16.2
+      ],
+      "radialDistance": 0.09660752908520993,
+      "radius": 0.23,
+      "verticalBounds": [
+        2.7,
+        2.88
+      ],
+      "insideActual24SidedCylinder": true
+    },
+    {
+      "coil": 2,
+      "muzzle": [
+        12.555952656487577,
+        2.780222938684332,
+        15.84335785914276
+      ],
+      "bearingCentre": [
+        12.65,
+        2.79,
+        15.8
+      ],
+      "radialDistance": 0.10356064296433824,
+      "radius": 0.23,
+      "verticalBounds": [
+        2.7,
+        2.88
+      ],
+      "insideActual24SidedCylinder": true
+    }
+  ],
+  "decision": "Re-author compact, physically supported turret mounts/pivots/muzzle anchors and any necessary barrel/shutter handling so real emitter geometry, flash/telegraph origins and projectile launch agree. Keep genuine machine/foreign cover; do not mask the failure by firing through all self geometry.",
+  "constraints": [
+    "New original Blender native/GLB/provenance and exact fallback payload use a new Build69 stem; keep old published asset files and historical evidence unchanged. Shared metadata drives static/animated parts and actual mount/muzzle anchors.",
+    "Coil centres/numbering/health/damage rules, foundation, valid traversal and existing mission geometry stay coherent. Correctly supported bearing/neck/carriage: no floating gun or barrel embedded in a collar.",
+    "All valid target bearings and near/mid/far legal standing/crouched/raised poses require geometry-aware clearance. Check closed, charging, firing, open, closing and permanently spent transitions. Compact raised carriage with retracting/parking barrel may be preferable to tall guns that create a new north-header blind spot; exact solution must be measured.",
+    "Derive firing/sight origins from actual authored rig/mounts, not the old unrelated hard-coded nominal point. Keep the original phase-break distance anchors/radius and timings where possible by separating logical ability anchor from physical firing mount. Document any required geometry-driven perception/exposure change.",
+    "Launch only from a clear muzzle just beyond its visible front. A proper emitting barrel can be excluded from its own bore test, but real collar/other-coil/foreign cover cannot be globally bypassed. Pending shots that hit actual cover must stop, not spawn past it.",
+    "Preserve fixed1.8-second windup, fan/locked aim, projectile12m/s and13damage, cooldown/open/phase timing and progressive per-coil shutdown. No timing/health/damage nerfs or autoaim changes to force review wins.",
+    "Show actual north-portal volley from updateCustodian, not a hand-spawned patrol projectile. It must create valid shots and at least one cross the clear portal and apply original damage when aligned; cheek/header/foreign cover still protects. Do not require all fan shots to pass a physically blocked edge.",
+    "Preserve owner identity/recent-fire cue, exact readouts/component cues, disabled-coil projectile removal and anchor retry reset. No new HUD panel or unrelated encounter changes.",
+    "Telegraph geometry must follow any moving muzzle during windup while retaining the same locked target. Spent heads must remain mechanically clear, and fresh/anchor reset must restore all carriage/slider/aim state without stale shot origins."
+  ],
+  "validation_required": [
+    "Retain baseline actual-mesh containment and zero-volley failure; same-pose corrected GLB/forced-fallback comparisons with actual rendered geometry and launch/projectile traces.",
+    "Finite legal yaw/range/posture sampling and dynamic shutter/recoil and spent/reset transitions, including north/south/side and nearest valid player positions. Detect muzzle/body intersections and supported gun connectivity; do not label invalid blocked poses as required unoccluded shots.",
+    "Actual windup/telegraph/launch/swept damage, cover and disabled-coil/cancel/reset contracts. Foreign barrel blockage must not create a projectile behind the wall. Keep phase distance behavior explicitly tested.",
+    "Source-informed normal-URL play with ordinary visible controls and retained errors/limits; no debug/resources/teleport/arrangement and no manufactured boss coverage.",
+    "Affected art/fallback/shot/cue/phase/movement/anchor regressions, fresh privileged controller actual win, production14 and source/shipped local resources. Preserve old output names/bytes and failures.",
+    "Exactly two fresh sequential GPT-6.1 Sol reviewers, two actual terminal ordinary attempts each on frozen source; neutral visible-only brief, full named0\u201310 ratings with no desired score. Distinguish anchor continuations/cumulative time and do not claim causal improvement without evidence."
+  ],
+  "limits": "Actual corrected firing can increase danger; this is a mechanical/attack-consistency repair, not demonstrated fairness or enjoyment. Early route detours, failed holds, aiming/HUD density, narrow content and human enjoyment/audio/hardware remain open. Implementation pending, no rating uplift or AAA certification."
+}
