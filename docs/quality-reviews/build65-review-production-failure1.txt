@@ -1,0 +1,31 @@
+PASS WebGL & Blender assets: Actual renderer initialized; weapon + sentinel GLBs loaded; 271 draw calls in title frame.
+PASS Menus & settings: Briefing and controls open/close; volume/sensitivity/motion persist to localStorage.
+PASS Keyboard focus & movement: W moves after deployment click; Space produces a jump.
+PASS Pause & resume: Escape pauses, releases input, freezes mission time, and resumes via button.
+PASS Arena connectivity & cover: 5524 traversable grid points; all three core sites connected to extraction; central cover and perimeter reject entry.
+PASS Firing & reload: Actual mouse input consumes rounds; R reload transfers reserve into the magazine.
+PASS Soul Shift: Protection absorbs damage during dash; cooldown prevents repeat dash; substeps stop at concrete cover.
+PASS Damage & regeneration: Damage depletes shield before health; shield recovers after the safe interval.
+PASS Recovery & extraction: Holding E completes nearby recovery once; archive ingress stages finite encounters; all three cores plus extraction yield victory and score.
+PASS Failure & clean restart: Victory restarts with fresh resources/objectives/enemies; lethal damage enters failure screen.
+PASS Responsive menu: 390px-wide menu has no horizontal overflow. Gameplay remains desktop-first.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(imgs)
+
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/.build65-review-smoke.mjs:54:258
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.16.0

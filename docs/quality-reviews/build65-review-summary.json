@@ -1,0 +1,171 @@
+{
+  "pass": "Build65 TEST-ONLY independent field reviews",
+  "baseline": "fc13194cbe3cfdf97fd6fa56005c5c7a99e902ac",
+  "reviewerCount": 2,
+  "terminalAttempts": 4,
+  "reviewers": [
+    {
+      "reviewer": 1,
+      "model": "gpt-6.1-sol",
+      "scale": "0\u201310; 0 absent/unusable, 3 substantial shortcomings, 5 functional but mixed, 7 strong with gaps, 9 excellent shipping, 10 exceptional",
+      "definitions": {
+        "G": "graphics and visual craft",
+        "P": "play systems and tactical experience",
+        "U": "usability and onboarding"
+      },
+      "rawRatings": {
+        "G": 6,
+        "P": 5,
+        "U": 7,
+        "readability": 6,
+        "AAA readiness": 3
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "death",
+          "time": "00:27",
+          "score": 180,
+          "memories": 0,
+          "eliminations": 1,
+          "accuracyPercent": 3,
+          "terminal": "docs/media/build65-review1/a1-terminal.jpg"
+        },
+        {
+          "attempt": 2,
+          "outcome": "death",
+          "time": "01:04",
+          "score": 3360,
+          "memories": 3,
+          "eliminations": 2,
+          "accuracyPercent": 8,
+          "coilCoverage": "one disabled; two remained 100%",
+          "terminal": "docs/media/build65-review1/a2-terminal.jpg"
+        }
+      ],
+      "cleanup": {
+        "driverPid": 97859,
+        "chromePid": 97880,
+        "explicitClose": true,
+        "exitCode": 0,
+        "exactPidsAbsent": true
+      }
+    },
+    {
+      "reviewer": 2,
+      "model": "gpt-6.1-sol",
+      "scale": "1\u201310; 1 severely deficient, 5 functional with substantial friction, 7 strong with gaps, 9 excellent near commercial benchmark, 10 exceptional demonstrated completeness",
+      "definitions": {
+        "G": "gameplay decision quality and encounter experience",
+        "P": "presentation/art polish",
+        "U": "usability/control/navigation clarity"
+      },
+      "rawRatings": {
+        "G": 6,
+        "P": 7,
+        "U": 6,
+        "readability": 7,
+        "AAA readiness": 4
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "death",
+          "time": "01:16",
+          "score": 2180,
+          "memories": 2,
+          "eliminations": 1,
+          "accuracyPercent": 4,
+          "terminal": "docs/media/build65-review2/attempt1-terminal.jpg"
+        },
+        {
+          "attempt": 2,
+          "outcome": "death",
+          "time": "00:44",
+          "score": 1180,
+          "memories": 1,
+          "eliminations": 1,
+          "accuracyPercent": 9,
+          "terminal": "docs/media/build65-review2/attempt2-heart-last-effort.jpg"
+        }
+      ],
+      "cleanup": {
+        "driverPid": 98282,
+        "chromePid": 98292,
+        "explicitClose": true,
+        "exitCode": 0,
+        "exactPidsAbsent": true
+      }
+    }
+  ],
+  "ratingCaution": "Raw scores and definitions retained. G/P meanings differ between reviewers; do not average, normalize or directly compare these labels. Reasons and exact coverage remain in original reports.",
+  "method": "Exactly two fresh sequential native GPT-6.1 Sol agents, fork_turns:none. Neutral URL/help/prefix/two-terminal-attempt brief. Help/protocol and own visible evidence only; ordinary browser-timed input at normal URL; pause-assisted synthetic screenshots/UI/action logs. No source, prior reports, hidden state, test URL, controller, resources, teleport, arranged actors or prewritten route. No tests/build/editing while reviewer owned Chrome.",
+  "ordinaryEvidence": "Both repeatably eliminated opening optic guard. Reviewer1 also eliminated Heart guard, recovered all memories in attempt2 and disabled one coil after backing away/retargeting. Reviewer2 observed phase break cancel a charge/open armor, but did not convert this into an elimination; terminal phase-evade counters remained zero. Map and numeric reach feedback helped corrections.",
+  "remainingFailures": "Missed moving targets, exposed stationary shots, cover/wall collisions and wrong approaches, E holds outside reach, overlapping small hints, close coil shutter occlusion. Four deaths; no independent victory/upload. Low accuracy does not establish defective hit detection or unfair combat.",
+  "causation": "No time-resolved evidence identifies a successful shot specifically during Sentinel planting/recovery. No causal benefit, score uplift or balance conclusion. Parent source-informed run closed nonterminal at00:53/health5; privileged controller won/all3/upload1/errors[] using internal information. Neither substitutes for independent results.",
+  "limits": "Pause-assisted synthetic controls, software WebGL and two attempts/person. Not human enjoyment/audio/hardware/AAA certification. Review1 reached one disabled coil but no upload/victory; review2 did not reach jammer fight or all3 chain. See original exact coverage.",
+  "implementation": "No gameplay, assets, config, tests, driver or package edits; no rescore or fixes after reviews. Overall quality mission unfinished; findings return to root.",
+  "protected": "Tailnet remains immutable Build23 through 127.0.0.1:61467; main/dist updates do not make Tailnet serve65. No server/binding/Tailscale changes.",
+  "rawEvidenceHashes": {
+    "docs/media/build65-review1/a2-coil-close-fire.jpg": "2b8174ec4ed90062e1fdd6b8daeafa45f21c4bc50e9882fa367ef6db97019191",
+    "docs/media/build65-review1/a1-memory-combat.jpg": "a59cab188a5eb4ec093d296f8410eace97edf2bd23a8fe870486da57fe5425a4",
+    "docs/media/build65-review1/a2-east-approach.jpg": "7cfb843d2373de68d11eaa135a30ce57376fdbaced49cdf448bcb9f85b086510",
+    "docs/media/build65-review1/a1-terminal.jpg": "23ebb3a19c3d64fcd553dceacb0999f3aca05d063cf8c4971817eef7be030d80",
+    "docs/media/build65-review1/a2-heart-hold.jpg": "c8129b7fb67ab44316d9a5324dd53e941ae2ff88a21eda867d2e4e54dcef762e",
+    "docs/media/build65-review1/attempt1-start.jpg": "5d0d21f637c605f19c18f823ea6e750bceb4b3591b6f6240ec4df8b32130e635",
+    "docs/media/build65-review1/a2-heart-approach.jpg": "98889c2714a50e57e90bd8d5c1d6fb3aafb8ed013913b4ba385ced1d1c2504bb",
+    "docs/media/build65-review1/a1-west.jpg": "e87dfc7ff7e3266397988fa86b931ae70e5dcf1adfd525beb8bc47a9dd35c634",
+    "docs/media/build65-review1/attempt2-start.jpg": "36fb99519839317dd4d15b73080f8ec71dc3f7b9062ab7bf80dd610eed2049da",
+    "docs/media/build65-review1/a2-recover.jpg": "bb73436328efe707674e42568aa113455ebf0752b1afb2911affbacdf53355bd",
+    "docs/media/build65-review1/a2-custodian-navigation.jpg": "53d61cdf8597f2347723b06c8cbeffe49ed69e96761f44c0e884e4bf7df238df",
+    "docs/media/build65-review1/a2-hall-correction.jpg": "c9c4cec0ad5e0ef9b575bcee45fe171f338511ff119aa5246c513f701f13e604",
+    "docs/media/build65-review1/menu.jpg": "5554a602a8ca37f7f091527a4dbb1b62b05d4e5aca8a6995963ea50004323dd9",
+    "docs/media/build65-review1/a2-second-coil.jpg": "29084634a6a338641fbd4433d7c6224a6ff1fb69a339362e896e07967ff19ede",
+    "docs/media/build65-review1/a1-contact.jpg": "4899c585bae56cdaf53da34f2439255a81c4c04ed1bedcf201800c2361c22ff0",
+    "docs/media/build65-review1/a2-custodian-close.jpg": "dc590853dbea88e60d1af4f288e443167e62e4999dd5b860a4ebe00ac6d45060",
+    "docs/media/build65-review1/a1-first-fire.jpg": "15623bf17ab95c8c1d7aa920f2f275445c03e50bb662909722563a4d080a6be1",
+    "docs/media/build65-review1/a2-east-hold.jpg": "e9e81166b540fb89360e277b01edf2e27f93b552b8e3d04ad876fa0596fcf336",
+    "docs/media/build65-review1/a2-west-trace.jpg": "5c05b8ac6b2dbd2577ecbd53fdf6405b8bd9f4d42d07b215c71789e3b8453350",
+    "docs/media/build65-review1/actions.jsonl": "6495c44bc1784b50c39292849c65f51f82107ba96258904f3fa5d4a8ea5ea162",
+    "docs/media/build65-review1/a2-coil-retarget.jpg": "147879ae5756a1f1b12a1b75b4a04e9aec419355714b0e6c5b90ea3bce67906e",
+    "docs/media/build65-review1/a1-advance.jpg": "bb9fcd204293eb8a4d2ffe2db5367ef41eda3561045ba889fc0e777c8129fcde",
+    "docs/media/build65-review1/a2-coil-fire.jpg": "dd37eee337af9e700582d0a1d3130b3e08ec64639eeb640aaefe389845280b1f",
+    "docs/media/build65-review1/a2-map.jpg": "f3df2727f6d2d2dd6985feafe853ad42dfff0738f4c892fac4d5a047a6d0c1f8",
+    "docs/media/build65-review1/a2-terminal.jpg": "45bf57e0b77d688b9db989ae4b482e0b984f23d76f0c37123e94b869a753bbe0",
+    "docs/media/build65-review1/a1-recover-try.jpg": "9512ea49c4efe9904cf67dbc8767aedc19d4f20afbd6c820f850070640e2330b",
+    "docs/media/build65-review2/attempt2-heart-route.jpg": "85ce039c4b511de7e704997bcb73d3b29152e0edca359dafb0e3e9bef1f5d313",
+    "docs/media/build65-review2/attempt1-last-defense.jpg": "cf51ac3e4736cb8f1c39454169651af7f7eec1169af7fbbbdcbcf5415d939762",
+    "docs/media/build65-review2/attempt1-west-lane.jpg": "471bec76d380cc039b7065589b86620ead611c957268d4796da14e7dec885ecb",
+    "docs/media/build65-review2/attempt2-map.jpg": "41b57f8e4064fb072b500494db60e8a945231962c7d8ed8705be0ac86505bb77",
+    "docs/media/build65-review2/attempt1-archive-near.jpg": "21929ce10f590242990cfdd9031156520edefc35214b589b2c2e4c7cca1f6f3d",
+    "docs/media/build65-review2/attempt2-heart-last-effort.jpg": "de82169cfbb1fe4a1e2b73ede8e9cf5d15c6cb533d2b47a4dfd3bce1b5f2edc7",
+    "docs/media/build65-review2/attempt1-east-route.jpg": "3225133ccb06ff04773a04c16527ef3a0d2f8e4173f49dd5cd7f1f1b49ffd9cc",
+    "docs/media/build65-review2/attempt1-recover-mara.jpg": "a9ea22825ba4725811a57ed2343769368dd7cd25ce5f7c586f9fd512dec96553",
+    "docs/media/build65-review2/attempt2-elian-recovery.jpg": "2d76be7c8bff26ef0709e3e568ef3a178ecbcdcb608df2a1745c062624626d4c",
+    "docs/media/build65-review2/attempt1-heart-hold.jpg": "e4208242505859afbb96345f0470f434b6801df6dd0d8dd706496f125160f94a",
+    "docs/media/build65-review2/attempt2-east-flank.jpg": "2b496d64b00ae8e94d06534144d95aed42b49663cca715912519713f0f8913ab",
+    "docs/media/build65-review2/attempt1-map.jpg": "763faae383fe98e6f8f75697894204749cb1c6ec51b50d3ed817fdcad3311f33",
+    "docs/media/build65-review2/attempt1-start.jpg": "8c1d6037b62b78f61dc6d50749120fb08f51c3d996c90df86e5744b8e2e7e19e",
+    "docs/media/build65-review2/attempt2-east-service.jpg": "021406e104fe16862830b4f6046cb71b9d946a9adfecfe12ae57440a7a73296c",
+    "docs/media/build65-review2/attempt1-receiver-search.jpg": "41e95cadb89ea7b8d3d773ccabbed7f2d5de26c11bbc631ce9dcd68212966d44",
+    "docs/media/build65-review2/attempt1-sera-secured.jpg": "9c508983889bffce764c1ec73035a828dd85304631f5c5419df45e3f41851d79",
+    "docs/media/build65-review2/attempt1-intake-search.jpg": "64976a023e47a9afe20b9fa648999fb7c24ae5b982f58a0c932acf00b65c78b5",
+    "docs/media/build65-review2/attempt2-breacher-defense.jpg": "1d851c7310a3f1bd7145ce29fe3471d231fea4a6e3361bdb3eab54007224a12d",
+    "docs/media/build65-review2/attempt2-start.jpg": "a4fa02990f63904ed612bef236535fca6a42dd9717690e80b53e0cab22b8aa51",
+    "docs/media/build65-review2/attempt2-east-intake.jpg": "84d282a09442a00282f1038dc486b3f3a3e99de441e2873c44690f6f05ab44f5",
+    "docs/media/build65-review2/menu.jpg": "a32871d1b945ecfb05b2aafac87f4e34783f15fb81e46e4a30c92844908a624d",
+    "docs/media/build65-review2/attempt1-heart-approach.jpg": "6a10ee9efe335cd7ebc97cdb5eed46f4d5232681acc91d4a131ebab528e11eff",
+    "docs/media/build65-review2/attempt2-east-approach.jpg": "836cb2049dbb6ac08c3a81d592ef5c265ec174ad04c84c9422e0087158f8a02f",
+    "docs/media/build65-review2/attempt1-west-approach.jpg": "ce73d0489c2c3715d8de01c9e124f3255f4c1a863e4b25ebad61f56ad2206f68",
+    "docs/media/build65-review2/attempt1-archive-hold.jpg": "6109e53b9b84e9ed6435e89acfb5a1ebff1ddf4423d0fbe1a295da50584ce6e2",
+    "docs/media/build65-review2/attempt1-cover-correction.jpg": "cc1db6fcb3e28460765e4591c1c16a75f2eda6943b9099a954186dc8185934fb",
+    "docs/media/build65-review2/attempt1-sera-recovery.jpg": "769db54fd30ce071ce2101aa7312f3bdc239d06622cf744e0798cac418db6e91",
+    "docs/media/build65-review2/attempt2-interceptor-fire.jpg": "611261559421c89761431f611ead2183bae4ffba14c86677c898097f16d9e925",
+    "docs/media/build65-review2/attempt1-opening-fire.jpg": "321efb2e249431ab27598896034460fcac4f811b7b94673e2bf8667318fae29c",
+    "docs/media/build65-review2/attempt1-sera-recovered.jpg": "51894d4954c25b083148fad91ccbf4257581d1fa5ee839841c806b3e70ac3c5c",
+    "docs/media/build65-review2/attempt1-terminal.jpg": "ad22206a66a55e68bb090214b1d59a237193d27ce0fa39f9ad31d5bf87715881",
+    "docs/media/build65-review2/actions.jsonl": "37cd810c1bdfb1ab66e6eae9fe4b3c2413e340255dd61eac1e6b7695305843cc",
+    "docs/quality-reviews/build65-review1.md": "feb5461211d4e62209e1ea21b12044a07e4d68e1549e4bd43086714331635009",
+    "docs/quality-reviews/build65-review2.md": "f5ddfc330b652aa569b44c0538870ba823612d7579ff6477df90f899eca95854"
+  }
+}
