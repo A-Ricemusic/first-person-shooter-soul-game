@@ -1,0 +1,61 @@
+{
+  "baseline_head_and_remote": "17ef44d4c8618ed7470ceb54d0d78b303f237a31",
+  "initial_tree_clean": true,
+  "reviewers": 2,
+  "ordinary_attempts": 4,
+  "terminal_outcomes": [
+    "review1 attempt1 death00:34",
+    "review1 attempt2 death02:10",
+    "review2 attempt1 death01:26",
+    "review2 attempt2 death00:39"
+  ],
+  "build": {
+    "exit_code": 0,
+    "runs": 1,
+    "warning": "Existing deferred exact-fallback chunk-size warning"
+  },
+  "production": {
+    "exit_code": 0,
+    "checks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "method": "tests/smoke.mjs temporary sibling; only three output string-prefix replacements; temporary file removed. Privileged smoke fixtures, separate from ordinary play."
+  },
+  "reviewer_cleanup": {
+    "explicit_close": true,
+    "awaited_exit_codes": [
+      0,
+      0
+    ],
+    "pids": [
+      2927,
+      2937,
+      3614,
+      3624
+    ],
+    "exact_pids_absent": true
+  },
+  "servers": {
+    "5173": 200,
+    "61467": 200
+  },
+  "protected_build23": "Snapshot /tmp/soulfall-play-build23-_4s5lus4 and Python63172 untouched; Tailnet remains Build23. No Serve/Funnel/release/bindings changes.",
+  "dossier": "Only new section inserted before unchanged parent; all prior bytes preserved in source and dist.",
+  "preservation_report": "build66-review-preservation.json",
+  "link_validation_initial_failure": "First pass before final generated artifacts existed/shipped; retained in build66-review-links-initial-failure.json. Final pass after targeted shipping resolves all links.",
+  "temporary_scripts_removed": true,
+  "no_gameplay_edits": true,
+  "no_parent_controller_rerun": true,
+  "no_deployment_or_PR_monitoring": true,
+  "link_validation": {
+    "source_local_links": 1072,
+    "dist_local_links": 1072,
+    "missing": []
+  },
+  "final_preservation": {
+    "existing_files_checked": 34634,
+    "unexpected_changes": [],
+    "all_raw_review_files_unchanged": true
+  },
+  "temporary_cleanup": "Output-only sibling removed. New temporary scripts, freeze working copy and dist inode backup removed after final preservation check."
+}
