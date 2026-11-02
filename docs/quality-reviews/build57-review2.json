@@ -1,0 +1,143 @@
+{
+  "reviewer": "review2",
+  "build": 57,
+  "url": "http://127.0.0.1:5173/",
+  "attemptCount": 2,
+  "method": {
+    "driver": "node tools/visible-playtest.mjs --out docs/media/build57-review2",
+    "tty": true,
+    "inputMode": "browser synthetic visible UI",
+    "sources": "Driver --help and own visible interface/screenshots only. No source, game state, eval, hooks, privileged controllers, other reviews, tests or builds inspected.",
+    "limitations": [
+      "Paused between short input batches; synthetic input and screenshot scheduling prevent a continuous human skill or latency assessment.",
+      "Relative look used driver-supported fallback behavior; aiming was approximate and misses are reviewer execution limitations.",
+      "Software-WebGL fallback enabled; no hardware/GPU certification or performance benchmark."
+    ]
+  },
+  "rawRatingsOutOf10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "overallAAAReadiness": 4
+  },
+  "ratingReasons": {
+    "gameplay": "Opening optic kill and phase break were understandable and satisfying. All three receivers were reachable with route corrections. Remaining enemies could be bypassed while recovering; boss pressure then killed me rapidly while reloading or aiming. Two losses do not establish balance or a complete loop.",
+    "presentation": "Strong rainy teal/amber atmosphere, coherent title and end screens, glowing relay landmark and useful weapon silhouettes. Environments and enemies remain visibly angular, repeated and sparse, with empty gray exterior vistas and plain cover geometry. Attractive vertical slice rather than AAA finish.",
+    "usability": "Persistent controls and explicit floor-ring/hold-E prompts helped. Map clarified routing and paused safely. Several forward holds hit low cover without progress; the signal marker alone did not explain a traversable approach. Receiver range demanded small corrections.",
+    "readability": "Large objective, health and ammo were clear. Amber optics and phase feedback taught opening combat. Small mono text, many overlapping hints, translucent panels and a tiny minimap were harder to read. Boss status said open window but coil components were small at distance, with shutters/posts/base competing for aim.",
+    "overallAAAReadiness": "A coherent playable mission with good visual direction, but my observed combat/navigation clarity, asset detail and unverified end-to-end upload do not support AAA readiness."
+  },
+  "controlsActuallyNoticed": [
+    "Visible HUD: WASD movement, mouse look, C crouch, Ctrl sprint, R reload, Space vault/jump, Shift phase dash, hold E recover, RMB aim, weapon 1/2, M facility map.",
+    "Opening banner: break amber charge with Shift, aim optic, or flank.",
+    "Contextual low-cover crouch card, clear-landing vault prompt, hold Tab ground-trace suggestion, move-closer floor-ring recovery prompt.",
+    "Boss HUD: three coil percentages, armored shutters versus open window, move to cover / Shift close to break."
+  ],
+  "controlsActuallyUsed": [
+    "WASD",
+    "relative look",
+    "left fire",
+    "R reload",
+    "E hold recovery",
+    "M map (attempt1)",
+    "Space (attempt1; no verified completed vault)",
+    "Shift (both attempts)",
+    "right aim input (attempt2; no held ADS screenshot verification)",
+    "Ctrl sprint input (attempt2; no separately verified sprint state)",
+    "Digit2 breacher and Digit1 rifle (attempt2 weapon visibly changed)",
+    "C crouch input near attempt2 end; terminal loss prevented verification of completed stance"
+  ],
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:01",
+      "eliminations": 2,
+      "score": 3280,
+      "accuracyPercent": 10,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Reached DISABLE UPLINK CUSTODIAN. Last visible coil values 100%,100%,100%. No verified coil damage or disable.",
+      "upload": "Never reached; no upload progress observed.",
+      "actions": "Raised opening aim slightly and fired 16 rifle rounds; critical +180 and one elimination confirmed. Reloaded and moved diagonally west. Forward movement remained at 41 m behind low cover; map showed low cover blocks movement. Strafed around it, approached west ring and held E, visibly recovered Mara. Moved east/north around barriers; Space pressed at cover but no completed vault inferred. Recovered Sera. Shift close to second guard produced PHASE BREAK / DISCHARGE CANCELED / ARMOR OPEN and a second elimination after burst. Moved diagonally southeast, corrected from 2.9 m to inside east ring, held E to recover Elian. Rotated toward Custodian, worked around walls, fired from about 14 m with poor alignment. Reload/aim attempt ended in death.",
+      "aimingAndMisses": "Opening optic hit confirmed. Second guard elimination confirmed with phase-break feedback. Boss bursts were visibly right of coils or obstructed by structure, spent most magazine, all coil values remained 100%; terminal accuracy 10%.",
+      "evidence": [
+        "docs/media/build57-review2/attempt1-start.jpg",
+        "docs/media/build57-review2/attempt1-guard-fire.jpg",
+        "docs/media/build57-review2/attempt1-map.jpg",
+        "docs/media/build57-review2/attempt1-recover-try.jpg",
+        "docs/media/build57-review2/attempt1-heart-recover.jpg",
+        "docs/media/build57-review2/attempt1-second-guard.jpg",
+        "docs/media/build57-review2/attempt1-third-core.jpg",
+        "docs/media/build57-review2/attempt1-boss-fire.jpg",
+        "docs/media/build57-review2/attempt1-coil-aim.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:03",
+      "eliminations": 1,
+      "score": 3255,
+      "accuracyPercent": 11,
+      "criticalEliminations": 1,
+      "phaseEvades": 1,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Reached Custodian again, moved to 4.2 m and fired. Last visible coil values 100%,100%,100%. No verified damage or disable.",
+      "upload": "Never reached; no upload progress observed.",
+      "actions": "Deployed again from visible end button. Slight upward aim, RMB and rifle burst eliminated opener critically. Reloaded and strafed west. Tried Ctrl/W, encountered low cover again; went left around it. First E hold at 5.3 m failed, then diagonal correction and hold recovered Mara. Switched to breacher, fired two shells toward distant sentinel without an elimination; switched back. Advanced to Heart, first recovery at 4.5 m failed. Shift and rifle burst near Warden did not kill it; moved right and held E, recovered Sera. Reloaded, southeast travel and E recovered Elian. Rotated south and flanked wall to clear boss sight. Rifle burst at 17 m missed right. Reloaded, advanced and dashed close, fired with crosshair near coil base. At 30 health attempted reload, C, strafe and higher aim; died before successful recovery.",
+      "aimingAndMisses": "Opening critical confirmed. Breacher shots did not eliminate sentinel. Heart Warden survived burst. Boss crosshair was initially right of components then at base instead of orange component center; coil HUD stayed 100%. Terminal accuracy 11%; one phase evade recorded by visible end screen.",
+      "evidence": [
+        "docs/media/build57-review2/attempt2-opening.jpg",
+        "docs/media/build57-review2/attempt2-west-sprint.jpg",
+        "docs/media/build57-review2/attempt2-mara-try.jpg",
+        "docs/media/build57-review2/attempt2-mara.jpg",
+        "docs/media/build57-review2/attempt2-breacher.jpg",
+        "docs/media/build57-review2/attempt2-heart.jpg",
+        "docs/media/build57-review2/attempt2-third-core.jpg",
+        "docs/media/build57-review2/attempt2-clear-coils.jpg",
+        "docs/media/build57-review2/attempt2-coil-burst.jpg",
+        "docs/media/build57-review2/attempt2-close-coils.jpg",
+        "docs/media/build57-review2/attempt2-terminal.jpg"
+      ]
+    }
+  ],
+  "priorityObservations": [
+    "Make blocked travel and safe route around low cover clearer at the point of collision.",
+    "Strengthen component targeting guidance on Custodian: marker points to overall machine while shutters, posts and base attract shots; I did not identify a reliable component hit in two attempts.",
+    "Retain recovery supplies, named memory confirmation, explicit ring-distance prompts, phase-break message and clear retry end screen.",
+    "Reduce dependence on tiny mono text and overlapping peripheral panels during pressured combat."
+  ],
+  "cleanup": {
+    "driverPid": 68692,
+    "chromePid": 68702,
+    "explicitCloseSent": {
+      "op": "close"
+    },
+    "closedEvent": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 68692,
+      "chromePid": 68702,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "pidCheckCommand": "ps -p 68692,68702 -o pid=,comm=",
+    "pidCheckExitCode": 1,
+    "pidCheckOutput": "",
+    "conclusion": "Both exact recorded PIDs absent after explicit close and awaited driver exit."
+  },
+  "evidenceDirectory": "docs/media/build57-review2/",
+  "sessionEvidence": "Driver writes its own action/screenshot logs within evidence directory."
+}
