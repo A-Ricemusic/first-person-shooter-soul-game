@@ -1,0 +1,74 @@
+{
+  "pass": "Build65 parent: planted Sentinel firing cycle",
+  "baseline": "cabf79dbab2f6885b635541afd15a3c51d6751ec",
+  "decision": "Sentinels stop translating while charging a ranged shot, on its resolving tick, and for0.45 simulation seconds afterward. Their authored shutter linkage settles through recovery. Interceptors and Wardens retain their existing locomotion.",
+  "why": "Build64 ordinary reviews retained successful centered opening shots but repeated moving-Sentinel misses under fire. A distinct stationary firing/recovery interval gives a physical opportunity to reacquire without aim assistance or altering hit geometry. This is an intentional combat-exposure/balance change, not a demonstrated difficulty fix.",
+  "rules": "Cooldown, perception, navigation/duty timers and hazards continue. Existing committed shots still fire. Recovery blocks a new ranged admission even at a long boundary tick; next eligible tick may charge. Pause/planning freeze remaining recovery. New actors start at0. Contact/phase interruption remain.",
+  "unchanged": "Damage, health, spread, precision geometry, shot velocity, nominal windup/cooldown values, encounters, recovery reach, assets, boss and upload. Existing original Blender Sentinel parts are animated; no new art claim.",
+  "arranged": {
+    "before": "build65-parent-cycle-before.json",
+    "after": "build65-parent-cycle.json",
+    "cycleFixtures": 6,
+    "difficulties": [
+      "story",
+      "standard",
+      "veteran"
+    ],
+    "roles": [
+      "hunter",
+      "returning guard"
+    ],
+    "checks": "Planted translation, resumed motion, repeated actual shots, target lock, other-role movement, pause/planning, reset, phase, active projectile damage, long-boundary admission and timestamp independence.",
+    "fixtureCorrection": "build65-parent-cycle-difficulty-fixture.json/txt retained: initial setup set activeDifficulty then restart overwrote it from options; corrected to set options before restart, and retained a properly sampled baseline. No claim initial mislabeled rows used three difficulties.",
+    "limits": "High fixture health prevents termination. Arranged120Hz actual updates are correctness evidence, not ordinary survival or enjoyment."
+  },
+  "regressions": {
+    "index": "build65-parent-regressions.json",
+    "allPassed": true,
+    "groups": [
+      "contact",
+      "drone shot alignment",
+      "drone lifecycle/fallback",
+      "18 spacing/pursuit/return fixtures",
+      "combat timing",
+      "56 rendered attacker views"
+    ]
+  },
+  "normalTrial": {
+    "evidence": "../media/build65-parent-play/actions.jsonl",
+    "method": "One source-informed normal-URL ordinary synthetic input run. Reused known historical travel durations and consulted old route actions; aimed using current visible screenshots. Pauses and held captures affect timing. No testURL/hidden state/resources/actor arrangement/teleport. Not independent discovery.",
+    "result": "Opening Warden, a bay Sentinel, Heart Warden and a returning-yard Sentinel eliminated: live counter4. All three memories recovered. Bay acquisition required two aim corrections. Return burst initially missed, health85 to53; correction raised count3 to4 while health40. Failed Heart hold at5.1m, Elian hold at2.8m/0.1m outside reach, corrected by short lateral move. Rehearsed finale approach diverged; north-facing bursts saw no clear coils or confirmed damage. Later south turn revealed coils, but trial explicitly closed nonterminal at00:53, health5, shield0. No boss disable, service, upload, win or terminal death.",
+    "namingWarning": "Capture finale-route-loss.jpg is a historical action label, not an actual terminal loss; visible UI remains playing.",
+    "commandError": "Relative look2513 exceeded helper limit and was rejected; retained in action log. Corrected with two permitted ordinary1257/1256 drags.",
+    "limits": "No time-resolved observation isolates whether successful hits occurred specifically during planting; no causal improvement, enjoyment or scoring claim. Other crossfire remained dangerous.",
+    "cleanup": {
+      "driverPid": 96454,
+      "chromePid": 96464,
+      "explicitClose": true,
+      "exitCode": 0,
+      "exactPidsAbsent": true
+    }
+  },
+  "next": "Fresh two-reviewer ordinary field pass pending; no root quality rating.",
+  "limits": "Receiver proximity/collision corrections, returning finale sightlines, pressure, narrow content, rigid presentation and human enjoyment/audio/hardware remain unresolved. Overall mission unfinished.",
+  "privileged": {
+    "report": "build65-parent-privileged.json",
+    "phase": "won",
+    "cores": 3,
+    "upload": 1,
+    "kills": 11,
+    "health": 100,
+    "missionSeconds": 60.3974666666646,
+    "errors": [],
+    "limits": "Exact internal geometry, target metadata and position observations drive aim/path decisions. Not independent discovery or human enjoyment."
+  },
+  "production": {
+    "report": "build65-parent-production.json",
+    "checks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "applicationRawKB": 285.83,
+    "applicationGzipKB": 83.54,
+    "note": "Existing large deferred exact-fallback chunk warning retained; no hardware performance claim."
+  }
+}

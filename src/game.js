@@ -27,6 +27,7 @@ import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRAC
 
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = THREE.MathUtils.clamp;
+const SENTINEL_RECOVERY_SECONDS = .45;
 const DIFFICULTIES = {
   story: { damage: 0.55, health: 0.8, speed: 0.8, fire: 1.35, label: 'Story' },
   standard: { damage: 1, health: 1, speed: 1, fire: 1, label: 'Standard' },
@@ -390,7 +391,7 @@ export class Game {
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
     }
     const contactRig=attachContact(this.contactAsset,group,type,type==='warden'&&!this.wardenAsset);
-    this.enemies.push({ contactRig, contactWindup:0, meleeCooldown:0, ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: position.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
+    this.enemies.push({ contactRig, contactWindup:0, meleeCooldown:0, fireRecovery:0, ...createRole(position,role), id: ++this.nextEnemyId, lastHit: -100, lastAttack: -100, droneRig, wardenRig, group, leftLeg, rightLeg, red, light, type, health: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, maxHealth: (type === 'warden' ? 150 : type === 'stalker' ? 70 : 100) * this.difficulty.health, cooldown: 1 + offset * 0.3, windup: 0, target: position.clone(), avoidSign: offset % 2 ? 1 : -1, phase: offset * 1.7, stuck: 0, visible: false });
   }
 
   traversalWorld() {
@@ -632,6 +633,8 @@ export class Game {
     let charging=this.enemies.filter(e=>e.windup>0).length+(this.custodian.windup>0?1:0); const maxCharging=this.activeDifficulty==='veteran'?3:2;
     for (const enemy of this.enemies) {
       if(['won','lost'].includes(this.phase))break;
+      const recovering=enemy.fireRecovery>0;
+      enemy.fireRecovery=Math.max(0,(enemy.fireRecovery||0)-dt);
       enemy.phase += dt; enemy.cooldown -= dt; enemy.meleeCooldown=Math.max(0,(enemy.meleeCooldown||0)-dt); enemy.armorOpen=Math.max(0,(enemy.armorOpen||0)-dt);
       if(enemy.hitFlash>0){enemy.hitFlash=Math.max(0,enemy.hitFlash-dt);if(!enemy.hitFlash&&enemy.type!=='warden')enemy.red.emissive.setHex(0xff341c);}
       if(enemy.stagger>0){if(enemy.contactWindup>0)cancelContact(enemy);animateContact(enemy,dt);enemy.stagger=Math.max(0,enemy.stagger-dt);if(enemy.type==='warden')wardenEmission(enemy.red,enemy.armorOpen>0,false,enemy.hitFlash>0);else if(!enemy.stagger){enemy.red.emissive.setHex(0xff341c);enemy.red.emissiveIntensity=2;}animateWarden(enemy,dt);this.animateDrone(enemy,dt);continue;}
@@ -666,7 +669,7 @@ export class Game {
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
-      } else if (!braced && !contactCommitted && enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && charging<maxCharging) {
+      } else if (!braced && !contactCommitted && enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && !recovering && charging<maxCharging) {
         charging++; enemy.windup = enemy.type === 'warden' ? 1.6 : enemy.type === 'stalker' ? 0.42 : 0.65;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
@@ -684,7 +687,10 @@ export class Game {
       const routing = guarding ? move.lengthSq()>.001 : approaching;
       const waypoint=routing?this.navigation.steer(enemy,goal,this.runTime):null;
       if(waypoint)move.set(waypoint.x-position.x,0,waypoint.z-position.z);
-      if(braced)move.set(0,0,0);
+      // Sentinels plant for the full shot and its mechanical recovery.
+      // Committed shots/projectiles still resolve; Interceptors keep moving.
+      const planted=braced || enemy.type==='sentinel'&&(rangedCommitted||enemy.windup>0||recovering||enemy.fireRecovery>0);
+      if(planted)move.set(0,0,0);
       // Local obstacle steering and separation keep a group from collapsing into one target.
       if (move.lengthSq() > 0.001) {
         move.normalize(); const speed = (enemy.type === 'stalker' ? 3.2 : 2.1) * this.difficulty.speed * (enemy.windup > 0 ? 0.25 : 1);
@@ -729,14 +735,16 @@ export class Game {
     // Linkages and propulsion move independently of the stabilized precision optic.
     const charge=enemy.windup>0 ? 1-enemy.windup/(enemy.type==='stalker'?.42:.65) : 0;
     const recoil=Math.max(0,1-(this.runTime-enemy.lastAttack)/.22);
-    r.top.position.y=r.topY+charge*.07+recoil*.045;
-    r.bottom.position.y=r.bottomY-charge*.07-recoil*.045;
+    const settle=enemy.type==='sentinel'?Math.min(1,(enemy.fireRecovery||0)/SENTINEL_RECOVERY_SECONDS):0;
+    r.top.position.y=r.topY+charge*.07+recoil*.045+settle*.035;
+    r.bottom.position.y=r.bottomY-charge*.07-recoil*.045-settle*.035;
     r.vanes.forEach((v,i)=>{if(r.legs)v.rotation.x=(i?1:-1)*Math.min(.35,r.speed*.09);else {v.rotation.y+=(enemy.stagger>0?4:18+Math.min(20,r.speed*5))*dt;}});
     if(!(enemy.hitFlash>0)&&!(enemy.stagger>0))enemy.red.emissiveIntensity=enemy.windup>0?.65+charge*.65:.65;
     if(enemy.stagger>0 && !(enemy.hitFlash>0))enemy.red.emissiveIntensity=.8;
     enemy.light.intensity=enemy.windup>0?.12:.03;
   }
   enemyFire(enemy) {
+    if(enemy.type==='sentinel')enemy.fireRecovery=SENTINEL_RECOVERY_SECONDS;
     enemy.lastAttack=this.runTime;
     const origin = fireOrigin(enemy);
     const velocity = enemy.target.clone().sub(origin).normalize().multiplyScalar(enemy.type === 'stalker' ? 18 : 15);
