@@ -1,6 +1,7 @@
 import SUIT from './suit-service-layout.json' with {type:'json'};
 import {createCapacitors} from './capacitors.js';
-import terminalParts from './terminal-parts.json';
+import terminalParts from './build70-access-terminal-parts.json';
+import ACCESS from './build70-access-layout.json';
 import * as THREE from 'three';
 import MEDICAL from './medical-layout.json';
 import WORKSHOP from './workshop-layout.json';
@@ -178,7 +179,7 @@ export async function buildWorld(scene) {
   function prop(asset,x,z,rot=0){const obj=asset.scene.clone(true);obj.position.set(x,0,z);obj.rotation.y=rot;group.add(obj);return obj;}
   // One authored asset, shared geometry; per-terminal mutable display materials.
   let receiverAsset;
-  try { receiverAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/memory-receiver.glb`)).scene; }
+  try { receiverAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/build70-access-receiver.glb`)).scene; }
   catch (_) { /* Honest cabinet fallback uses exactly the same solid envelope. */ }
   for(const [i,x,z] of [[0,MEDICAL.core[0],MEDICAL.core[1]],[1,24,-15],[2,0,-33]]) {
     const model=receiverAsset?receiverAsset.clone(true):new THREE.Group();
@@ -194,7 +195,6 @@ export async function buildWorld(scene) {
     const beacon=point(x,3.5,z,0x26c8eb,18,10),materials=[];
     model.traverse(o=>{if(o.isMesh&&o.name==='Beacon'){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
     coreVisuals.push({pylon:model,materials,beacon});
-    sign(x<0?'WEST ARCHIVE':x>0?'EAST ARCHIVE':'THE HEART','MEMORY TERMINAL / HOLD E AT CONSOLE',x,2.8,z-.135,3,.55);
     box(x,.018,z,3,.035,3,steel);
     model.updateMatrixWorld(true);
     model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;
@@ -204,6 +204,7 @@ export async function buildWorld(scene) {
     }});
     const progress=model.getObjectByName('Progress'),cassette=model.getObjectByName('MemoryCassette');
     receivers.push({model,progress,cassette});
+    for(const [dx,dz,rot,width] of [[0,.166,0,1.1],[0,-.686,Math.PI,1.1],[.616,-.26,Math.PI/2,.72],[-.616,-.26,-Math.PI/2,.72]]){const face=sign(CORE_SITES[i].person,'MEMORY / ARCHIVE',x+dx,2.64,z+dz,width,.28);face.rotation.y=rot;}
     sign(CORE_SITES[i].person,`MEMORY RECEIVER / ${CORE_SITES[i].role.toUpperCase()}`,x,.53,z+.415,1.03,.24);
   }
   // Build51: instantiate before navigation/map caches; every visible solid has the same bounds.
@@ -257,11 +258,17 @@ export async function buildWorld(scene) {
     point(x,3,z,colors[i],24,12);
     for(const dx of [-3,3])box(x+dx,.03,z,.1,.04,6,[weakCyan,amber,cyan][i]);
   }
-  // Physical warning placard is mounted beside the lane, not over the target.
-  box(-8,2.2,23.01,3.6,.82,.08,steel,true);
-  for(const x of [-9.3,-6.7])box(x,1.72,22.8,.09,.4,.1,edge);
-  sign('INDUCTION GUARD','CAUTION / ACTIVE INDUCTION FIELD',-8,2.2,23.06,3.5,.75,'#ffc078');
-  const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
+  // Build70: original aisle architecture shares authored/fallback/collision metadata.
+  let accessAsset;
+  try{accessAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/build70-access-architecture.glb`)).scene;}catch(_){}
+  const accessMaterials={steel,edge,concrete,amber,paint:new THREE.MeshStandardMaterial({color:0x6b8278,roughness:.95})};
+  for(const p of ACCESS.parts){
+    if(p.solid){const c=new THREE.Vector3(...p.center),h=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(h),c.clone().add(h)));}
+    if(!accessAsset)box(...p.center,...p.size,accessMaterials[p.material]);
+  }
+  if(accessAsset){accessAsset.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});group.add(accessAsset);}
+  sign('INDUCTION','ACTIVE FIELD',-3.5,2.05,23.056,1.02,.54,'#ffc078');
+  const cover=[[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));});}
   // Split defense: fixed physical cover, open 2.8m center and exposed flanks.
   // Register the authored envelope before any navigation or route cache exists.
