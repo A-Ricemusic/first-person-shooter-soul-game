@@ -1,4 +1,4 @@
-import {canPlayerOccupy} from './movement.js';
+import {canPlayerOccupy,feetY,STANDING} from './movement.js';
 import {recoveryDistance,isInsideExtraction} from './mission.js';
 import CUSTODIAN from './custodian-layout.json';
 
@@ -57,8 +57,8 @@ export class PlayerRoute {
     }return best;
   }
   distance(p,key){const f=this.fields.get(key),i=f?this.connection(p,f):-1;return i<0?Infinity:f.distance[i]*this.step+Math.hypot(this.point(i).x-p.x,this.point(i).z-p.z);}
-  path(p,key,grounded=true){
-    this.queries++;if(!grounded||Math.abs(p.y-1.7)>.025)return [];
+  path(p,key,grounded=true,profile=STANDING){
+    this.queries++;if(!grounded||Math.abs(feetY(p,profile))>.025)return [];
     const f=this.fields.get(key);if(!f)return [];let i=this.connection(p,f);if(i<0)return [];
     const raw=[{x:p.x,z:p.z},this.point(i)];while(f.next[i]>=0){i=f.next[i];raw.push(this.point(i));}
     const out=[raw[0]];let at=0;

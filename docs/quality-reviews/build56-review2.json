@@ -1,0 +1,134 @@
+{
+  "reviewer": "build56-review2",
+  "build": 56,
+  "url": "http://127.0.0.1:5173/",
+  "method": {
+    "independent": true,
+    "attemptCount": 2,
+    "information": "Visible normal UI, screenshots, handbook, driver --help only",
+    "inputMode": "browser timed synthetic DOM controls",
+    "graphics": "Software-WebGL fallback, renderer not certified",
+    "preview": "Shared preview failure not retried"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:07",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracyPercent": 3,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "reach": "Recovered Mara, Sera and Elian; Disable Uplink Custodian objective reached; no extraction",
+      "lastVerifiedCoilsPercent": [
+        100,
+        100,
+        100
+      ],
+      "terminalEvidence": "docs/media/build56-review2/attempt1-retreat-fire.jpg"
+    },
+    {
+      "attempt": 2,
+      "start": "Visible DEPLOY AGAIN button after first terminal",
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:23",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracyPercent": 7,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "reach": "Recovered all three memories; fought Custodian, damaged two coils; no extraction",
+      "lastVerifiedCoilsPercent": [
+        100,
+        49,
+        23
+      ],
+      "terminalEvidence": "docs/media/build56-review2/attempt2-final-assault.jpg",
+      "coilEvidence": "docs/media/build56-review2/attempt2-end.jpg"
+    }
+  ],
+  "scores": {
+    "gameplay": {
+      "score": 6.5,
+      "outOf": 10,
+      "evidence": "Meaningful precision/phase/cover choices and three recoveries achievable. Second run reached boss sooner and damaged coils, but surviving accumulated patrol pressure while understanding boss geometry was difficult."
+    },
+    "presentation": {
+      "score": 7.5,
+      "outOf": 10,
+      "evidence": "Cohesive cyan/amber identity, rain, reflective floor, landmark relay and strong menu typography. Repeated boxy architecture and simple robots/weapons keep it visibly a vertical slice."
+    },
+    "usability": {
+      "score": 6.5,
+      "outOf": 10,
+      "evidence": "Objective distances, signage, recovery prompts and end/redeploy flow worked. Handbook is dense; several nearly-in-range holds failed until small repositioning. Collision and failed vault progress were initially ambiguous."
+    },
+    "combatReadability": {
+      "score": 5.5,
+      "outOf": 10,
+      "evidence": "Orange charge cues, target readouts, coil health percentages and explicit phase-break announcement useful. Small optics and bars occluding copper components caused repeated misses; offscreen multi-source damage hard to attribute during batches."
+    },
+    "aaaReadiness": {
+      "score": 3.5,
+      "outOf": 10,
+      "evidence": "Strong art direction and functional complete loss/redeploy loop; limited scope and geometric assets, difficult hit/occlusion readability and unverified extraction/full mission completion prevent AAA assessment."
+    }
+  },
+  "controlsObserved": {
+    "used": "WASD movement; LMB rifle/breacher firing; RMB aim/look; R reload; hold E recovery; Shift dash; 1/2 weapons; Escape automatic pause/resume; Space attempted vault; Tab attempted trace",
+    "verified": "Rifle ammo decreased and induction critical elimination twice; health/shield changes; three memory cards/objective changes both runs; weapon switched and shell count/reload changed; boss phase-break announcement and coil damage",
+    "notVerified": "First Space action did not reduce objective distance or visibly pass obstacle. Tab held during approach but released before screenshot, so trace usefulness not established. No successful phase evade count, no extraction, no map use, no crouch/sprint certification."
+  },
+  "failedActionsAndUncertainty": [
+    "Initial click command used text instead of selector and failed with locator selector error; text selector then opened handbook.",
+    "Attempt 1 forward/vault near entry obstruction left distance at 42m; moved around it.",
+    "Attempt 1 Heart rifle bursts consumed ammunition without another elimination; terminal accuracy 3%.",
+    "Both attempts had receiver holds too far away; MOVE CLOSER / floor ring prompt required correction.",
+    "Attempt 2 large ADS look turned only to heading 110, moved into outer wall; another look corrected to south then toward boss.",
+    "Initial boss volleys left coils at 100%; visible structural bars and off-center crosshair explain likely obstruction/misses, not proven hidden collision fault.",
+    "Close Shift changed position enough to invalidate aim; subsequent captures showed opposite side. Later phase break was explicitly confirmed.",
+    "No inference of successful fire/recovery/dash from key press alone; results above rely on visible UI."
+  ],
+  "evidence": {
+    "menu": "docs/media/build56-review2/menu.jpg",
+    "handbook": "docs/media/build56-review2/handbook.jpg",
+    "firstRecovery": "docs/media/build56-review2/attempt1-recovered.jpg",
+    "allMemoriesFirst": "docs/media/build56-review2/attempt1-third-secured.jpg",
+    "allMemoriesSecond": "docs/media/build56-review2/attempt2-third.jpg",
+    "bossPhaseBreak": "docs/media/build56-review2/attempt2-last-fight.jpg",
+    "bossCoilDamage": "docs/media/build56-review2/attempt2-coil-breacher.jpg",
+    "rawArtifactsDirectory": "docs/media/build56-review2/",
+    "rawActions": "Preserved driver output artifacts in the directory; no runtime/driver edits"
+  },
+  "limitations": [
+    "Synthetic input batches with pauses and screenshot/capture delay; not continuous human play.",
+    "Software WebGL; no hardware performance or GPU certification.",
+    "No human fun, audio quality, accessibility or controller certification.",
+    "Exactly two losses; boss completion, extraction and victory not observed.",
+    "Scores are reviewer judgments from limited visible play, not product certification."
+  ],
+  "closureVerification": {
+    "explicitCommand": {
+      "op": "close"
+    },
+    "ready": {
+      "driverPid": 60110,
+      "chromePid": 60120,
+      "inputMode": "browser"
+    },
+    "closed": {
+      "reason": "input ended or close requested",
+      "driverPid": 60110,
+      "chromePid": 60120,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "psCommand": "ps -p 60110,60120 -o pid=,comm=",
+    "psExitCode": 1,
+    "psOutput": "",
+    "exactPidsAbsent": true,
+    "broadKillUsed": false
+  }
+}

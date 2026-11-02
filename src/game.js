@@ -15,7 +15,7 @@ import { PlayerRoute } from './player-route.js';
 import { StaticNavigation } from './navigation.js';
 import { buildWorld } from './world.js';
 import { advanceUpload } from './upload.js';
-import { movePlayer, jumpPlayer } from './movement.js';
+import { movePlayer, jumpPlayer, STANDING, profileOf, feetY, updatePosture, toggleCrouch, playerHitProfile } from './movement.js';
 import {planVault,startVault,advanceVault,VAULT_SECONDS} from './traversal.js';
 import { SoulAudio } from './audio.js';
 import { CORE_SITES, RECOVERY_SECONDS, RECOVERY_RADIUS, recoveryDistance, EXTRACTION_SECONDS, EXTRACTION_FOOTPRINT, extractionMargin, extractionDistance, extractionCenter, isInsideExtraction } from './mission.js';
@@ -80,7 +80,7 @@ export class Game {
     this.world = await buildWorld(this.scene);
     this.custodian=await createCustodian(this);
     this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
-    this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
+    this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.profile=STANDING; this.crouchRequested=false; this.standBlocked=false;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = -0.02;
     this.scene.add(new THREE.HemisphereLight(0x9cc6db, 0x1a1c20, 0.8));
     try {
@@ -191,8 +191,8 @@ export class Game {
   updateRouteTrace() {
     this.updateRouteGoal();this.routeTrace.visible=false;
     if(this.phase!=='playing'||!this.keys.has('Tab'))return;
-    if(!this.grounded||Math.abs(this.player.y-1.7)>.025){this.routeStatus='Return to floor for ground trace';return;}
-    if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,this.routeGoal,this.grounded);this.routeNext=this.runTime+.35;}
+    if(!this.grounded||Math.abs(feetY(this.player,profileOf(this)))>.025){this.routeStatus='Return to floor for ground trace';return;}
+    if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,this.routeGoal,this.grounded,profileOf(this));this.routeNext=this.runTime+.35;}
     const path=this.routePath||[];let join=-1;
     for(let i=Math.min(path.length-1,12);i>=0;i--)if(Math.hypot(path[i].x-this.player.x,path[i].z-this.player.z)<3&&this.playerRoute.clear(this.player,path[i])){join=i;break;}
     if(join<0){this.routeStatus='No ground route from this position';this.routeNext=0;return;}
@@ -215,10 +215,11 @@ export class Game {
       if (this.phase !== 'playing' || e.target.closest('input,select,textarea,dialog')) return;
       if (e.repeat && !this.keys.has(e.code)) return; // Held across pause requires release before reuse.
       // Ctrl is sprint: suppress Ctrl+W/R/S browser shortcuts while the game owns input.
-      if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyR', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'].includes(e.code)) e.preventDefault();
+      if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyR', 'KeyE', 'KeyC', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'].includes(e.code)) e.preventDefault();
       if (!e.repeat) {
         if (e.code === 'Digit1') this.selectWeapon('rifle');
         if (e.code === 'Digit2') this.selectWeapon('breacher');
+        if (e.code === 'KeyC') toggleCrouch(this);
         if (e.code === 'KeyR') this.reload();
         if (e.code === 'KeyE') this.interact();
         if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') this.dash();
@@ -281,7 +282,7 @@ export class Game {
     this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true; this.vault=null;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
     this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
-    this.player.copy(this.world.playerSpawn); this.player.y = 1.7;
+    this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.profile=STANDING; this.crouchRequested=false; this.standBlocked=false;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
@@ -390,7 +391,7 @@ export class Game {
   }
   interact() {
     if (this.phase !== 'playing'||!this.grounded||this.vault) return;
-    const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
+    const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
     if (!core) { this.event('notice', 'Approach a memory receiver. Hold E to recover its memory.'); return; }
     this.channelCore = core;
   }
@@ -540,7 +541,9 @@ export class Game {
     } }
     const previousPlayer=this.player.clone();
     const direction = this.moveDirection(), sprint = this.keys.has('ControlLeft') || this.keys.has('ControlRight');
-    const speed = this.aim ? 3.1 : sprint ? 8 : 5.5;
+    if(sprint&&this.grounded&&!this.vault&&!(this.dashTime>0))this.crouchRequested=false;
+    updatePosture(this,this.world,dt);
+    const speed = profileOf(this).eyeHeight<1.7-1e-6 ? 3 : this.aim ? 3.1 : sprint ? 8 : 5.5;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
     else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
     else movePlayer(this, this.world, direction.x * speed * dt, direction.z * speed * dt, dt);
@@ -551,14 +554,14 @@ export class Game {
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
-    const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position)<RECOVERY_RADIUS);
+    const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
     if(nearby&&this.grounded&&!this.vault&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
       // Build44 replaces distance-triggered extraction Interceptors with the fixed jammer.
       this.extractionWave=true;
       if(!this.custodian.dead){this.extractionProgress=0;this.extractionBuffer=0;return;}
-      const inside=this.grounded&&!this.vault&&isInsideExtraction(this.player,this.world.playerSpawn);
+      const inside=this.grounded&&!this.vault&&isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this));
       const upload=advanceUpload(this.extractionProgress,this.extractionBuffer,inside,dt);
       this.extractionProgress=upload.progress;this.extractionBuffer=upload.buffer;
       if(inside&&this.extractionProgress+1e-8>=this.extractionSeconds)this.finish(true);
@@ -729,8 +732,9 @@ export class Game {
         const hit = this.ray.intersectBox(box, this.wallPoint);
         if (hit) wallDistance = Math.min(wallDistance, previous.distanceTo(hit));
       }
-      const body = new THREE.Sphere(this.player.clone().add(new THREE.Vector3(0, -0.5, 0)), 0.65);
-      const head = new THREE.Sphere(this.player, 0.38);
+      const hitProfile=playerHitProfile(this);
+      const body = new THREE.Sphere(this.player.clone().add(new THREE.Vector3(0, hitProfile.torsoOffset, 0)), hitProfile.torsoRadius);
+      const head = new THREE.Sphere(this.player.clone().add(new THREE.Vector3(0,hitProfile.headOffset,0)), hitProfile.headRadius);
       for (const sphere of [body, head]) {
         if (sphere.containsPoint(previous)) { playerDistance = 0; break; }
         const hit = this.ray.intersectSphere(sphere, this.wallPoint);
@@ -765,7 +769,7 @@ export class Game {
     const motion = this.options.reducedMotion ? 0 : 1;
     const moving = this.phase === 'playing' && this.moveDirection().lengthSq() > 0.1;
     const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
-    this.camera.position.copy(this.player); this.camera.position.y += bob;
+    this.camera.position.copy(this.player); // Physical eye and shot origin remain identical; weapon retains optional bob.
     this.camera.rotation.set(this.pitch + this.recoil * motion, this.yaw, this.dashTime > 0 ? -0.035 * motion : 0, 'YXZ');
     this.camera.updateWorldMatrix(true, false);
   }
@@ -776,7 +780,7 @@ export class Game {
     for (const c of this.coreNodes) {
       const progress=this.channelCore===c?Math.min(1,this.coreProgress/RECOVERY_SECONDS):0;
       this.world.setReceiverState(c.id,progress,c.collected);
-      const distance=recoveryDistance(this.player,c.position);
+      const distance=recoveryDistance(this.player,c.position,profileOf(this));
       c.reach.visible=!c.collected&&distance<7.5;
       c.reach.material.opacity=distance < RECOVERY_RADIUS ? .4 : .24;
     }
@@ -846,14 +850,14 @@ export class Game {
     const shelter=MEDICAL.shelter;
     const inMedicalBay=this.player.x>=shelter.minX&&this.player.x<=shelter.maxX&&this.player.z>=shelter.minZ&&this.player.z<=shelter.maxZ&&this.player.y<shelter.ceiling;
     const markers=this.coreNodes.filter(c=>!c.collected&&(!this.routeGoal||`core-${c.id}`===this.routeGoal)).map(c=>{
-      const distance=recoveryDistance(this.player,c.position);
+      const distance=recoveryDistance(this.player,c.position,profileOf(this));
       const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
       return {id:`core-${c.id}`,kind:'core',approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
       if(!this.custodian.dead)markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
-      else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn)});
+      else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))});
     }
     // A doorway is actionable only along a swept, walkable approach. This is
     // local aperture guidance, never a cached route through unseen architecture.
@@ -877,7 +881,7 @@ export class Game {
   captureState() {
     if(this.playerRoute&&['playing','planning'].includes(this.phase))this.updateRouteGoal();
     const damagePoint=this.damageCuePosition();
-    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
+    const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position,profileOf(this)) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
@@ -885,15 +889,15 @@ export class Game {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
-      objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn)?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
+      objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, extractionBuffer:this.extractionBuffer||0, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
-      difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded }, coreMarkers,
-      nearestCoreDistance: closest?.distance ?? null, recoveryReady:this.grounded&&!this.vault&&closest?.distance < RECOVERY_RADIUS, interaction: !this.vault&&this.grounded&&closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : (this.grounded&&!this.vault&&planVault(this,this.traversalWorld(),this.moveDirection().lengthSq()>.01?this.moveDirection():{x:-Math.sin(this.yaw),z:-Math.cos(this.yaw)})?'Space · Vault':''), heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded, eyeHeight:profileOf(this).eyeHeight, feetY:feetY(this.player,profileOf(this)), crouched:profileOf(this).eyeHeight<1.7-1e-6, standBlocked:this.standBlocked }, coreMarkers,
+      nearestCoreDistance: closest?.distance ?? null, recoveryReady:this.grounded&&!this.vault&&closest?.distance < RECOVERY_RADIUS, interaction: !this.vault&&this.grounded&&closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : (this.grounded&&!this.vault&&planVault(this,this.traversalWorld(),this.moveDirection().lengthSq()>.01?this.moveDirection():{x:-Math.sin(this.yaw),z:-Math.cos(this.yaw)})?'Space · Vault':this.standBlocked?'CROUCHED · HEADROOM BLOCKED':profileOf(this).eyeHeight<1.7-1e-6?'CROUCHED · C TO STAND':''), heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       // Centre navigation distance only; extractionMargin owns all edge guidance.
       exitDistance: this.world ? extractionDistance(this.player,extractionCenter(this.world.playerSpawn)) : 0,
       extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,
-      insideExtraction: this.world ? isInsideExtraction(this.player,this.world.playerSpawn) : false,
+      insideExtraction: this.world ? this.grounded&&!this.vault&&isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this)) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
       custodian:{x:11,z:16,active:this.custodian?.active,dead:this.custodian?.dead,open:this.custodian?.open>0,charging:this.custodian?.windup>0,coils:this.custodian?.coils.map(n=>Math.max(0,n.hp/(160*(this.difficulty?.health||1))))},
       facilityLayout:this.facilityLayout, bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
@@ -906,7 +910,7 @@ export class Game {
     this.debug = {
       teleport: (x, z) => { if (!this.canOccupy(x, z)) throw new Error('Target is inside a collider'); this.player.set(x, 1.7, z); this.emit(); },
       collectCore: i => { const c = this.coreNodes[i]; this.player.set(c.position.x, 1.7, c.position.z+1.5); this.recoverCore(c); },
-      extract: () => { this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.extractionProgress=this.extractionSeconds||EXTRACTION_SECONDS; this.update(0.001); },
+      extract: () => { this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.profile=STANDING; this.crouchRequested=false; this.standBlocked=false; this.extractionProgress=this.extractionSeconds||EXTRACTION_SECONDS; this.update(0.001); },
       damage: n => this.damage(n),
       killAll: () => [...this.enemies].forEach(e => this.killEnemy(e)),
       advance: seconds => { for (let elapsed = 0; elapsed < seconds; elapsed += 1 / 60) if (this.phase === 'playing') this.update(1 / 60); this.emit(); },

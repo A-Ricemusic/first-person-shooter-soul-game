@@ -4,7 +4,7 @@ export function validateSteps(steps) {
  for(const a of steps){
   if(!a||typeof a!=='object')throw Error('Unsupported input step.');
   if(['down','up','press'].includes(a.type)){
-   if(!/^(Key[WASDREM]|Digit[12]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(a.key))throw Error('Unsupported game key.');
+   if(!/^(Key[WASDREMC]|Digit[12]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(a.key))throw Error('Unsupported game key.');
   }else if(['mouseDown','mouseUp'].includes(a.type)){
    if(!['left','right'].includes(a.button||'left'))throw Error('Unsupported mouse button.');
   }else if(a.type==='look'){

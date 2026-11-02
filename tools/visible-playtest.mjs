@@ -22,7 +22,7 @@ Use a TTY for an interactive session. Commands are JSON lines:
 {"op":"status"}
 {"op":"close"}
 Game keys: Digit1 rifle, Digit2 pump breacher; WASD, R reload, E recover, M toggle paused facility map, arrows, Space,
-ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
+KeyC (toggle crouch), ShiftLeft / ShiftRight, ControlLeft / ControlRight, Escape, Tab. Map freezes the mission; press M again to close and resume.
 For held-control photographs (Tab trace or ADS), set captureHeld:true on act: capture occurs BEFORE releasing held controls. Default capture releases first; automatic pause clears Tab.
 Steps: down/up/press with a game key; mouseDown/mouseUp with left/right;
 look with relative x/y; wait with ms. Act releases held inputs, captures live,
@@ -59,7 +59,7 @@ const emit=value=>process.stdout.write(JSON.stringify(value)+'\n');
 let server,browser,page,cdp,browserInput,owned=false,closing,sequence=0;
 const keys=new Set(),buttons=new Set(),pageErrors=[];
 const metadata={token,driverPid:process.pid,root,chromePid:null,started:new Date().toISOString()};
-const validKey=key=>/^(Key[WASDREM]|Digit[12]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(key);
+const validKey=key=>/^(Key[WASDREMC]|Digit[12]|Arrow(Up|Down|Left|Right)|Space|Shift(Left|Right)|Control(Left|Right)|Escape|Tab)$/.test(key);
 
 async function log(entry){await appendFile(join(output,'actions.jsonl'),JSON.stringify({at:new Date().toISOString(),...entry})+'\n');}
 async function release(){

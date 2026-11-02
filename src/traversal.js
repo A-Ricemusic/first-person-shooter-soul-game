@@ -1,4 +1,4 @@
-import {canPlayerOccupy,EYE_HEIGHT,BODY_HEIGHT,PLAYER_RADIUS} from './movement.js';
+import {profileOf,canPlayerOccupy,EYE_HEIGHT,BODY_HEIGHT,PLAYER_RADIUS} from './movement.js';
 export const VAULT_SECONDS=.62;
 const smooth=t=>t*t*(3-2*t);
 const lerp=(a,b,t)=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,z:a.z+(b.z-a.z)*t});
@@ -19,7 +19,7 @@ export function clearVaultSegment(world,a,b){
 export function planVault(body,world,direction){
  const p=body.player,feet=p.y-EYE_HEIGHT,len=Math.hypot(direction.x,direction.z);
  // Only a supported floor start. Raised/unsupported poses keep ordinary jump.
- if(!body.grounded||Math.abs(feet)>1e-6||len<.1||!canPlayerOccupy(world,p.x,p.y,p.z,PLAYER_RADIUS))return null;
+ if(profileOf(body).eyeHeight<EYE_HEIGHT-1e-6||!body.grounded||Math.abs(feet)>1e-6||len<.1||!canPlayerOccupy(world,p.x,p.y,p.z,PLAYER_RADIUS))return null;
  const dx=direction.x/len,dz=direction.z/len;
  let first=null;
  for(let d=.03;d<=.95;d+=.03){if(!canPlayerOccupy(world,p.x+dx*d,p.y,p.z+dz*d,PLAYER_RADIUS+.02)){first=d;break;}}

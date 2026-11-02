@@ -1,0 +1,154 @@
+{
+  "reviewer": "build56-review1",
+  "build": 56,
+  "url": "http://127.0.0.1:5173/",
+  "method": "Independent visible UI only. Existing visible-playtest driver, browser-timed synthetic normal controls, installed Chrome software WebGL fallback. Exactly two attempts; visible Deploy Again used between them. No source, tests, internal state, other reports, routes or solutions consulted.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal": "loss",
+      "visibleOutcome": "OPERATOR LOST \u2014 THE STATION REMEMBERS.",
+      "missionTime": "01:25",
+      "score": 3360,
+      "eliminations": 2,
+      "criticalEliminations": 2,
+      "accuracyPercent": 6,
+      "phaseEvades": 0,
+      "reach": "All three memories visibly recovered; reached Disable Uplink Custodian; no disabled coils confirmed; extraction not reached.",
+      "evidence": [
+        "docs/media/build56-review1/recover-west.jpg",
+        "docs/media/build56-review1/heart-recovery.jpg",
+        "docs/media/build56-review1/all-memories.jpg",
+        "docs/media/build56-review1/coil-fire.jpg",
+        "docs/media/build56-review1/coil-damage.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "terminal": "loss",
+      "visibleOutcome": "OPERATOR LOST \u2014 THE STATION REMEMBERS.",
+      "missionTime": "01:14",
+      "score": 3360,
+      "eliminations": 2,
+      "criticalEliminations": 2,
+      "accuracyPercent": 12,
+      "phaseEvades": 0,
+      "reach": "All three memories recovered. Custodian coil 2 visibly OFF; coils 1 and 3 still 100% at last live capture. Extraction not reached.",
+      "evidence": [
+        "docs/media/build56-review1/attempt2-mara.jpg",
+        "docs/media/build56-review1/attempt2-heart.jpg",
+        "docs/media/build56-review1/attempt2-memories.jpg",
+        "docs/media/build56-review1/attempt2-coil-hit.jpg",
+        "docs/media/build56-review1/attempt2-next-coil.jpg"
+      ]
+    }
+  ],
+  "scores": {
+    "gameplay": {
+      "score": 6.5,
+      "outOf": 10,
+      "evidence": "Recoveries replenish supplies, optic critical kills reward aim, movement and phase break offer choices. Two losses after recoveries show meaningful pressure, but exposed stationary firing and confusing hall approach dominated this synthetic session."
+    },
+    "presentation": {
+      "score": 7,
+      "outOf": 10,
+      "evidence": "Cohesive teal/amber rainy industrial look, strong menu typography and lit wet surfaces; clear large relay landmark. Repeated block geometry and sparse distant backdrop limit polish."
+    },
+    "usability": {
+      "score": 7,
+      "outOf": 10,
+      "evidence": "Persistent control strip, objective distances, map pause, contextual E and Space messages, explicit terminal retry. Low cover blocked forward travel until vault; recovery at 3.3m failed with helpful move-closer instruction. Hall angles still took considerable searching."
+    },
+    "combatReadability": {
+      "score": 6,
+      "outOf": 10,
+      "evidence": "Amber optics, charging/recent-fire labels, directional damage, phase cooldown and per-coil status communicate state. Small distant enemies and component occlusion made aim hard; shots at walls and shutters often produced no useful progress."
+    },
+    "aaaReadiness": {
+      "score": 3,
+      "outOf": 10,
+      "evidence": "Promising cohesive playable slice with mission progression and polished interface, but enemy silhouettes, repeated environment forms and unclear component angles fall short of a finished premium shooter. Only one mission and two failed runs observed."
+    }
+  },
+  "observations": [
+    {
+      "kind": "success",
+      "text": "First induction guard and Heart guard optic kills confirmed by elimination increments and final 2 critical eliminations, in both runs."
+    },
+    {
+      "kind": "failure",
+      "text": "Attempt1 west-near forward movement left receiver distance at 17m; Space vault subsequently reduced it to 7m.",
+      "evidence": [
+        "docs/media/build56-review1/west-near.jpg",
+        "docs/media/build56-review1/vault-west.jpg"
+      ]
+    },
+    {
+      "kind": "failure",
+      "text": "Attempt1 initial Heart hold E at 3.3m did not recover: visible MOVE CLOSER / STEP INSIDE FLOOR RING. Adjusting left then holding E succeeded.",
+      "evidence": [
+        "docs/media/build56-review1/heart-reach.jpg",
+        "docs/media/build56-review1/heart-recovery.jpg"
+      ]
+    },
+    {
+      "kind": "miss",
+      "text": "West sentinel bursts in both runs did not increase kills; many later shots hit cover or empty scenery. Button presses were not counted as successful hits."
+    },
+    {
+      "kind": "uncertainty",
+      "text": "Shift was used repeatedly. Cooldown and one explicit CUSTODIAN PHASE BREAK announcement were seen; terminal UI recorded 0 phase evades, so no successful evades claimed."
+    },
+    {
+      "kind": "failure",
+      "text": "Attempt2 moved before turning toward Custodian, then burst into close wall; ammo fell 30 to 3 without coil progress.",
+      "evidence": [
+        "docs/media/build56-review1/attempt2-coils.jpg"
+      ]
+    },
+    {
+      "kind": "success",
+      "text": "Attempt2 clear angle burst followed by Shift yielded coil 2 OFF on visible status. Cannot isolate exact individual bullet responsible.",
+      "evidence": [
+        "docs/media/build56-review1/attempt2-south-angle.jpg",
+        "docs/media/build56-review1/attempt2-coil-hit.jpg"
+      ]
+    }
+  ],
+  "controls": {
+    "used": "WASD, left fire, right mouse held during relative look, R reload, E held recover, M paused facility map, Space vault, Shift phase dash, Tab held trace, visible Resume and Deploy Again.",
+    "seenButNotValidated": "C crouch, Ctrl sprint, Digit1 rifle and Digit2 pump breacher, RMB aim shown by UI; no claim of testing all controls."
+  },
+  "limitations": [
+    "Synthetic browser-timed inputs and automatic pause between captures; movement/fire can continue during photograph; capture and browser scheduling delays affect reactions.",
+    "Software-WebGL fallback; no hardware performance certification.",
+    "No human fun, audio quality, controller, accessibility or broader hardware certification.",
+    "Two losses only; uplink upload, victory, pump breacher and complete mission not evaluated.",
+    "No page errors reported by visible driver during captured actions."
+  ],
+  "evidenceDirectory": "docs/media/build56-review1/",
+  "rawActions": "Preserved driver-generated raw commands/results and all screenshots in evidence directory; no edits made.",
+  "closure": {
+    "explicitCloseSent": {
+      "op": "close"
+    },
+    "readyPids": {
+      "driverPid": 59373,
+      "chromePid": 59383
+    },
+    "closedEvent": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 59373,
+      "chromePid": 59383,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "verificationCommand": "ps -p 59373,59383 -o pid=,comm=",
+    "verificationExitCode": 1,
+    "verificationOutput": "",
+    "exactPidsAbsent": true,
+    "broadKillUsed": false
+  }
+}
