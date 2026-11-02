@@ -1,0 +1,36 @@
+{
+  "stage": "Build67 parent design only; no runtime change in this commit",
+  "baseline": "d4739024b60140a42a98794878eccf3e2c608479",
+  "decision": "Optional in-memory finale retry anchor earned only by genuinely recovering all three memories during the current run. No partial-coil carryover or automatic victory.",
+  "evidence": [
+    {
+      "report": "build66-review1.json",
+      "finding": "Second attempt recovered all3, died02:10 after one coil OFF and another26%; first died00:34 with1memory."
+    },
+    {
+      "report": "build66-review2.json",
+      "finding": "First attempt recovered all3, died01:26 after two coils OFF; second died00:39 with0memories."
+    }
+  ],
+  "why": "Let players practice the finale after earning collection progress instead of repeating every approach after each boss error. Optional fresh-run path preserves uninterrupted challenge. This intentionally makes repeated finale attempts more forgiving; ordinary benefit is not established.",
+  "rules": {
+    "earn": "Create one immutable snapshot immediately after third recovery applies its rewards and spawns the existing final pair. Do not update it on coil damage, boss defeat or upload progress.",
+    "availability": "Only lost phase, same current run and same difficulty. No anchor before all3, on victory, after Start fresh, restart/pause reset, title departure or page refresh. No persistence/save-system claim.",
+    "restore": "Use uplink/player spawn, full existing fresh-suit loadout (100health/60armor, rifle30/180, breacher6/24), standing profile, neutral inputs and ready movement. Restore three collected flags/world visuals without replaying core rewards/events. Boss returns with all3 coils fully healthy, new attacks; upload/buffer reset0 and suit service unused/unpowered.",
+    "remaining_defenders": "Only actors alive at anchor return, with their anchor health and authored home/role. Pre-anchor kills remain earned, post-anchor kills are rolled back. Reset pursuit/targets/charges/projectiles/effects/cooldowns; validate legal, separated placements and at least8m spawn clearance. Prefer authored home, then finite authored spawn points if needed. Do not silently delete actors to manufacture success.",
+    "environment": "Preserve spent capacitors from the anchor. Pending warnings are consumed/spent when clearing transient hazards, consistent with existing terminal cancellation. Loose dropped supplies are not reconstructed. Document this reset model plainly.",
+    "statistics": "Restore anchor progression/score/shot statistics to avoid repeat-kill farming. Preserve cumulative elapsed play time through failed lives and increment visible anchor retry count. Label assisted completion and elapsed-time semantics. Fresh-run personal bests must not be overwritten or competed against by anchor completions.",
+    "ui": "Add a separate end-screen Retry from uplink primary when eligible. Keep existing play-again ID/handler as explicit Start fresh so existing fresh restart contract stays intact. Explain cached memories and fresh suit briefly in the end copy. Avoid a new live HUD panel or handbook expansion. Brief final-recovery notice can name the anchor.",
+    "technical": "Refactor shared start/reset path or add a focused module; avoid replaying recoverCore to restore flags and avoid duplicate temporary enemies/events. Prevalidate restore plan, keep input/audio/pause/planning lifecycle correct, and retain normal-URL debug isolation."
+  },
+  "verification_required": [
+    "Actual game/browser fixtures: eligibility, third-core-only creation, no double rewards, immutable enemy/cap snapshot, difficulty invalidation, clear title/fresh paths, full boss reset, survivor restoration/clearance, score rollback, cumulative time/retry count, normal restart and victory behavior.",
+    "Exercise repeated retry/pause/restart cycles, geometry/material disposal and no shared-asset corruption; preserve old evidence/output names.",
+    "Real UI click after an arranged loss must restore the anchor and allow normal movement/fire/map/phase; explicit fixture labeling.",
+    "At least one source-informed normal-URL implementation play attempt, retain all misses/holds/losses/incompletion. Do not deliberately throw or grant resources to force ordinary anchor coverage.",
+    "Exactly two fresh sequential GPT-6.1 Sol reviewers, two terminal attempts each on frozen source. Neutral visible-only brief; full named dimensions on0\u201310 scale without desired score. Identify checkpoint-assisted continuations from visible UI, not as fresh full-run victories.",
+    "Affected regressions, production14, source/shipped dossier resource checks, owned browser cleanup, clean main push and remote SHA verification."
+  ],
+  "assets": "Reuse existing original Blender uplink/receiver assets. No new model or AAA art claim.",
+  "status": "Implementation and validation pending; overall quality mission unfinished. Navigation, reach, HUD density, content breadth and human enjoyment/audio/hardware remain unresolved."
+}
