@@ -1,0 +1,212 @@
+{
+  "build": 61,
+  "reviewer": "review1",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "attempts": 2,
+    "fresh_browser_each": true,
+    "visible_only": true,
+    "driver": "tools/visible-playtest.mjs --headed",
+    "limitations": [
+      "Paused synthetic browser input and screenshot inspection; limited continuous human aiming and reaction assessment.",
+      "No audio audition; sound quality and spatial audio unassessed.",
+      "Software WebGL fallback; no hardware performance certification or AAA certification.",
+      "Enjoyment judgment is provisional under screenshot driven play."
+    ],
+    "prohibited_access_used": false
+  },
+  "ratings_out_of_10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 7,
+    "AAA_readiness": 3
+  },
+  "assessment": {
+    "strengths": [
+      "Strong cyan/amber rainy industrial identity, attractive title screen and clear terminal summary.",
+      "Memory receivers, floor rings, distance feedback and supply restoration establish a readable objective loop.",
+      "Precise optic aiming can remove wardens quickly; second attempt improved route time and accuracy."
+    ],
+    "issues": [
+      "Boss aiming lanes are crowded by walls, pillars and low cover. I repeatedly saw components yet failed to damage them from my actual line of fire.",
+      "Boss exposure removed health rapidly while I was orienting and shooting. Paused input amplifies my aiming limits, but the transition felt much harsher than the recovery stage.",
+      "Enemy silhouettes and environments remain simple and repeated; visual polish does not reach modern AAA fidelity.",
+      "Compass shows fixed N/E labels around changing numeric headings, which I found less intuitive when making large turns."
+    ],
+    "enjoyment": "Recovery navigation and deliberate optic shots were satisfying; boss obstruction and rapid damage frustrated me. Cannot substitute for sustained real time human play."
+  },
+  "controls": {
+    "noticed": [
+      "WASD move",
+      "mouse look",
+      "RMB aim",
+      "LMB fire",
+      "R reload",
+      "Space jump/vault",
+      "Shift phase dash/break nearby charges",
+      "C crouch",
+      "Ctrl sprint",
+      "hold E recover",
+      "M paused facility map",
+      "Tab trace",
+      "1/2 weapon selection"
+    ],
+    "used": [
+      "WASD",
+      "RMB held before relative look",
+      "LMB rifle fire",
+      "R reload",
+      "Space vault/jump",
+      "Shift phase dash",
+      "C crouch and stand",
+      "E recovery",
+      "M facility map",
+      "visible Resume"
+    ],
+    "not_exercised": [
+      "Ctrl sprint",
+      "Tab trace",
+      "weapon2"
+    ],
+    "aiming": "Used right-button drag ADS sensitivity for turns, including large 940-1250 relative-x sweeps and small 40-95 corrections. Used screenshot positions to correct horizontal/vertical aim. Turn scale learned naturally; ADS narrows view. No privileged look controller."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "loss",
+      "terminal_text": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "terminal_metrics": {
+        "eliminations": 2,
+        "mission_time": "01:15",
+        "score": 3360,
+        "accuracy_percent": 12,
+        "critical_eliminations": 2,
+        "phase_evades": 0
+      },
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "confirmed_disabled_coils": [
+          3
+        ],
+        "last_visible_coils": {
+          "1": "100%",
+          "2": "100%",
+          "3": "OFF"
+        },
+        "damage_received": "Health100/shield9 at01:04; health56/shield0 at01:10; health37 just before terminal transition.",
+        "uncertainty": "Final screenshot before auto pause was live; terminal appeared during capture/pause boundary. Terminal screenshot independently confirms loss. No hidden damage values."
+      },
+      "shots_and_misses": "Initial20-round held burst killed warden but overfired.17-round burst after small turn missed visible enemy;16-round Heart burst initially underturned, then corrected43px and killed warden. Coil3 disabled after29-round burst. Final roughly27-round burst fired after dash/reposition into empty/obstructed sightline. At least about139 rounds inferred from ammo deltas; screenshot timing and shot after capture can shift counts. Exact hit/miss counts unavailable; terminal12% is authoritative visible accuracy.",
+      "mistakes_and_recovery": [
+        "Held E at6m before reach; moved closer and recovered.",
+        "Moved into low cover; used Space to cross.",
+        "Underturned toward target and fired at wall; adjusted ADS aim.",
+        "East receiver reached2.9m with0.2m outside reach hint; reversed slightly and recovered.",
+        "Dash/reposition changed view during firing; failed to reacquire boss before lethal damage."
+      ],
+      "service": {
+        "attempts": 0,
+        "completions": 0,
+        "note": "Medical and repair signage visible; no deliberate service interaction performed."
+      },
+      "upload": {
+        "attempted": false,
+        "completed": false,
+        "gap": "Jammer remained active; upload deck mechanics untested."
+      },
+      "evidence": [
+        "docs/media/build61-review1/attempt1-map.jpg",
+        "docs/media/build61-review1/attempt1-mara.jpg",
+        "docs/media/build61-review1/attempt1-sera.jpg",
+        "docs/media/build61-review1/attempt1-elian-secured.jpg",
+        "docs/media/build61-review1/attempt1-coil-fire.jpg",
+        "docs/media/build61-review1/attempt1-terminal.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "loss",
+      "terminal_text": "OPERATOR LOST / THE STATION REMEMBERS.",
+      "terminal_metrics": {
+        "eliminations": 2,
+        "mission_time": "01:09",
+        "score": 3360,
+        "accuracy_percent": 21,
+        "critical_eliminations": 2,
+        "phase_evades": 0
+      },
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": {
+        "confirmed_disabled_coils": [],
+        "last_visible_coils": {
+          "1": "100%",
+          "2": "100%",
+          "3": "100%"
+        },
+        "uncertainty": "All100% last observed at01:07. Final burst ended in terminal so cannot assert whether last shots chipped anything. No confirmed boss damage or disable.",
+        "damage_received": "100health/34shield at00:57;66/0 at00:59;53/0 at01:06; loss01:09."
+      },
+      "shots_and_misses": "Starting6-round burst killed warden. Two sentinel bursts (about9 and16 rounds) failed to kill; not reliably centered.9-round optic burst killed Heart warden.18-round boss burst left all coils100%, apparently obstructed/left of components;14-round burst after crouch/dash went into close cover. Final burst not countable at terminal. At least72 rifle rounds before final burst inferred from ammo deltas; exact misses unavailable. Terminal21% accuracy.",
+      "mistakes_and_recovery": [
+        "Overshot East approach by long strafe/vault; reversed2.1s and moved forward0.5s, then recovered.",
+        "Tried firing from behind cover while crosshair left of coil; all100% feedback showed failure.",
+        "Crouch plus dash advanced into close wall; stood and strafed around it.",
+        "After obtaining visible side view, final aimed exposure was lethal."
+      ],
+      "service": {
+        "attempts": 0,
+        "completions": 0,
+        "note": "Repair/manual cutoff signage observed near East Archive; no service executed."
+      },
+      "upload": {
+        "attempted": false,
+        "completed": false,
+        "gap": "Boss remained active; no upload, pause, decay or successful extraction assessment."
+      },
+      "evidence": [
+        "docs/media/build61-review1/attempt2-mara.jpg",
+        "docs/media/build61-review1/attempt2-heart-shot.jpg",
+        "docs/media/build61-review1/attempt2-east-correct.jpg",
+        "docs/media/build61-review1/attempt2-boss-push.jpg",
+        "docs/media/build61-review1/attempt2-boss-open.jpg",
+        "docs/media/build61-review1/attempt2-terminal.jpg"
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "attempt": 1,
+      "driver_pid": 81347,
+      "chrome_pid": 81357,
+      "explicit_close": true,
+      "driver_exit_code": 0,
+      "exact_pids_absent": true,
+      "verification": "ps -p81347,81357 returned no rows,exit1"
+    },
+    {
+      "attempt": 2,
+      "driver_pid": 81672,
+      "chrome_pid": 81682,
+      "explicit_close": true,
+      "driver_exit_code": 0,
+      "exact_pids_absent": true,
+      "verification": "ps -p81672,81682 returned no rows,exit1"
+    }
+  ],
+  "coverage_gaps": [
+    "No mission win or upload coverage.",
+    "No completed service interaction.",
+    "No shotgun, sprint or trace assessment.",
+    "No settings/accessibility or memory narrative reading.",
+    "No audio or real GPU performance assessment."
+  ]
+}

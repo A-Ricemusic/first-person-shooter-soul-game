@@ -1,0 +1,111 @@
+{
+  "build": 61,
+  "reviewer": "review2",
+  "method": "Independent visible normal-URL play, two fresh browser attempts to terminal screens. Read visible-playtest help first. No source, other reviews, hidden state, evaluation, test URL, privileged controller, or arrangements used.",
+  "url": "http://127.0.0.1:5173/",
+  "ratings": {
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 6,
+    "readability": 6.5,
+    "aaaReadiness": 3.5
+  },
+  "overall": "Atmospheric and coherent playable slice with satisfying critical-hit and memory-recovery feedback. Distinct cover routes and a multi-coil boss give the mission structure. My exposed, imprecise routing was punished strongly; this is not evidence of an impossible mission. Geometric actors, repeated architecture, small dense labels and incomplete tested mission coverage do not support AAA readiness.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal": "loss",
+      "terminalEvidence": "docs/media/build61-review2-attempt1/coil2-fire.jpg",
+      "visibleFinalMetrics": {
+        "missionTime": "01:48",
+        "score": 3255,
+        "eliminations": 1,
+        "accuracy": "25%",
+        "criticalEliminations": 1,
+        "phaseEvades": 1,
+        "recovered": [
+          "Mara Solberg",
+          "Sera Nord",
+          "Elian Vale"
+        ]
+      },
+      "route": "Killed induction guard, used map, struggled around West storage, backed out and recovered Mara at01:05. Recovered Sera at01:23 and Elian at01:31. Returned to Custodian and disabled coil1. Died firing toward another coil.",
+      "shots": "20 rifle rounds in opening burst, then reload30/160. First boss burst consumed30 rounds. Second boss burst ended in death; exact count unknown. Terminal25% accuracy is authoritative visible feedback; exact misses and hits cannot be independently reconstructed. Continued fire after induction kill likely wasted rounds.",
+      "boss": "Coil1 visibly OFF after first30-round boss burst; coils2/3 last readable100%. Second burst had no confirmed additional disable. Health fell100 to62 during first burst, then terminal loss.",
+      "inputMistakes": "Diagonal approach hit West wall/storage; holding E too far away repeatedly produced approach-receiver guidance. Recovered by backing out and strafing to south intake. Oversized2500 look delta rejected by guard; split into900/900/700 without disabling guard. Initial boss turn faced away; corrected via heading and own screenshots. Used dash during reposition; final records1 phase evade.",
+      "services": "No service interaction attempted or completed. Saw service-labelled furniture; memory recoveries restored reserve supplies.",
+      "upload": "All memories recovered, jammer remained active; no uplink entry, upload or completion tested."
+    },
+    {
+      "attempt": 2,
+      "terminal": "loss",
+      "terminalEvidence": "docs/media/build61-review2-attempt2/sera-try.jpg",
+      "visibleFinalMetrics": {
+        "missionTime": "00:41",
+        "score": 1180,
+        "eliminations": 1,
+        "accuracy": "17%",
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "recovered": [
+          "Mara Solberg"
+        ]
+      },
+      "route": "Fresh deployment. Killed induction guard and reached Mara faster at00:20. Attempted route toward Heart, hit cover and corrected with strafe, reached eastern side of Heart. Mistakenly advanced north instead of west toward receiver while low health and died.",
+      "shots": "12 rifle rounds consumed by sole opening burst; ammo18 remained through last live capture. Visible17% accuracy suggests most rounds missed or were ineffective; precise hit semantics unknown.",
+      "boss": "Not reached; no damage or disables.",
+      "inputMistakes": "Tried E at4.9m; moved500ms closer and recovered Mara. Reused approximate movement timings from my own first run but different position hit central cover. Corrected by strafing east. At Heart chose forward movement despite receiver left in screenshot; this was my input/navigation mistake. Issued one subsequent resume action before recognizing terminal response; driver rejected resume from end normally.",
+      "services": "No service attempt/completion.",
+      "upload": "Only Mara recovered. Sera/Elian, jammer, uplink/upload untested."
+    }
+  ],
+  "controls": {
+    "noticed": "WASD movement, mouse look, C crouch, Ctrl sprint, R reload, Space vault/jump, Shift phase dash, hold E recover; M facility map, RMB aim; weapon slots1/2 displayed.",
+    "actuallyUsed": "WASD, held-RMB relative look and aimed left-button rifle fire, R reload, hold E, M map, Shift dash, Space jump/vault, visible resume/deploy UI. Did not test crouch, sprint, weapon2 or Tab trace.",
+    "aiming": "Uncaptured turning required helper-held RMB. Approximately850 relative pixels yielded61 degrees under ADS. Small vertical adjustment -30 aligned induction optic for critical kill. Large turns required several valid drags. No continuous human aiming; captures normally released inputs and paused via Escape."
+  },
+  "findings": {
+    "strengths": [
+      "Rain, wet lighting and cyan/amber palette form a clear identity.",
+      "Map distinguishes walls and low cover, receiver destinations and uplink.",
+      "Objective changes, recovery cards and terminal results clearly communicate progress.",
+      "Boss coil percentages and disable announcement gave useful confirmation."
+    ],
+    "friction": [
+      "Receiver direction marker can remain through large opaque surfaces; distance alone did not identify the reachable entrance until map and south-intake guidance were combined.",
+      "Small thin type on map/HUD requires attention amid layered announcements.",
+      "Enemies can keep pressuring during navigation; my attempts neglected most patrols, which materially contributed to both losses.",
+      "Blocky repeated robot models and simple environment geometry remain visibly prototype-like despite strong lighting."
+    ]
+  },
+  "limits": [
+    "Paused synthetic input/capture with short batches; browser scheduling and screenshots interrupt natural pacing.",
+    "Limited continuous-human aiming and enjoyment assessment; scores reflect observed structure and feedback, not a claim of human feel.",
+    "Audio not audibly assessed; no judgement of mix, spatial cues or soundtrack quality.",
+    "Software-WebGL fallback reported; no hardware GPU performance, latency, framerate or stability certification.",
+    "No full upload, service, alternate weapon, crouch/sprint or successful terminal victory coverage."
+  ],
+  "cleanup": [
+    {
+      "attempt": 1,
+      "driverPid": 82036,
+      "chromePid": 82046,
+      "explicitClose": true,
+      "driverExitCode": 0,
+      "exactOwnedPidsAbsent": true
+    },
+    {
+      "attempt": 2,
+      "driverPid": 82322,
+      "chromePid": 82332,
+      "explicitClose": true,
+      "driverExitCode": 0,
+      "exactOwnedPidsAbsent": true
+    }
+  ],
+  "cleanupMethod": "Explicit close JSON, await driver completion exit0, ps -p exact driver/chrome PIDs returned no rows exit1 after each. No global kill; Vite untouched.",
+  "evidenceDirectories": [
+    "docs/media/build61-review2-attempt1",
+    "docs/media/build61-review2-attempt2"
+  ]
+}
