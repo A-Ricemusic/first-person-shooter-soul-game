@@ -64,3 +64,5 @@ Build59 aligns nearby receiver feedback: local heading, scanner and waypoint ide
 Build61 fixes fallback mouse-look after one mouse button is released while another remains held. The visible input helper rejects uncaptured, unheld look instead of silently issuing ignored movement; its example now shows the required button order. Sensitivity, combat values and Blender assets are unchanged. Historical review scores remain unmodified.
 
 Build62 deliberately delays new patrol ranged charges through the Custodian’s existing exposed-coil window (2.6 seconds after a volley, 3 after a phase break). Moving patrols, committed shots and close discharges remain dangerous. Damage, exposure duration, assets, service and upload rules stay unchanged; this is a combat pacing change whose independent results are pending.
+
+Build63 corrects compass orientation: the compact HUD shows the actual cardinal direction and normalized degrees, including the north wrap to000. Camera, sensitivity, physics and combat remain unchanged. The visible test driver can read the displayed cardinal label. Contextual ground-route work and independent mission reviews are still pending.

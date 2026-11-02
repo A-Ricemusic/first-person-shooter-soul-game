@@ -1,0 +1,34 @@
+{
+  "pass": "Build63 parent: correct compass orientation",
+  "baseline": "0d5577883660ec4f8315a7937d588382413cbfee",
+  "decision": "Replace fixed N/E decoration with actual eight-sector cardinal direction and normalized three-digit degrees. Rounded north wraps to000 instead of360; accessible label names direction. Existing compact desktop location/mobile hiding retained.",
+  "unchanged": "Camera, mouse sensitivity, movement, map north/player marker, physics, assets, combat and mission rules.",
+  "driver": "Read-only visible UI whitelist includes compass-direction using existing recursive visibility filter; no hidden state or driving logic added.",
+  "verification": {
+    "report": "build63-parent-compass.json",
+    "pureCases": 15,
+    "renderedViews": 10,
+    "cases": "Eight directions,22.5/337.5 degree sector thresholds,359.6/359.8 rounding wrap,negative/multiple-turn inputs, two desktop layouts and existing hidden mobile compass."
+  },
+  "normalTrial": {
+    "method": "Normal URL from spawn, synthetic ordinary held-RMB drag and pauses. Deliberately chose repeated near-quarter turns to check readout. No testURL/hidden observations/teleport/resource/actor arrangement.",
+    "result": "Visible E090,S180,W270,N000 in succession; rendered view rotated. Ammo30,health100,shield60 unchanged; no kills or recoveries. Deliberately closed nonterminal around00:01.",
+    "evidence": "../media/build63-parent-turns/actions.jsonl",
+    "limits": "Not a mission win/loss, navigation discovery, combat or human-enjoyment test."
+  },
+  "cleanup": {
+    "driverPid": 87305,
+    "chromePid": 87315,
+    "explicitClose": true,
+    "exitCode": 0,
+    "exactPidsAbsent": true
+  },
+  "next": "Substantive contextual ground-route assistance implementation and two fresh reviews pending; parent compass fix alone receives no quality score.",
+  "limits": "Blocked approaches, target visibility, combat survival, service discovery, content depth, human enjoyment/audio/hardware and overall quality mission remain open.",
+  "production": {
+    "report": "build63-parent-production.json",
+    "checks": 14,
+    "errors": [],
+    "failedRequests": []
+  }
+}
