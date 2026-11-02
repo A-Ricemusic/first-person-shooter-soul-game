@@ -1,0 +1,229 @@
+{
+  "method": "Arranged actual game updates and projectile resolution at120Hz. High fixture health prevents termination, not ordinary survival/enjoyment. Roles/difficulties sampled, no human or performance claim.",
+  "rows": [
+    {
+      "difficulty": "story",
+      "role": "hunter",
+      "plantedDrift": 0,
+      "mobileDistance": 6.3560000000000025,
+      "plantedTicks": 266,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 4.633333333333353,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 39.099999999999994
+    },
+    {
+      "difficulty": "story",
+      "role": "guard",
+      "plantedDrift": 0,
+      "mobileDistance": 6.300000000000049,
+      "plantedTicks": 266,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 4.416666666666676,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 39.099999999999994
+    },
+    {
+      "difficulty": "standard",
+      "role": "hunter",
+      "plantedDrift": 0,
+      "mobileDistance": 7.647499999999992,
+      "plantedTicks": 266,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 3.874999999999989,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 22
+    },
+    {
+      "difficulty": "standard",
+      "role": "guard",
+      "plantedDrift": 0,
+      "mobileDistance": 7.647499999999975,
+      "plantedTicks": 266,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 3.7749999999999893,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 22
+    },
+    {
+      "difficulty": "veteran",
+      "role": "hunter",
+      "plantedDrift": 0,
+      "mobileDistance": 7.265124999999977,
+      "plantedTicks": 342,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 3.274999999999991,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 10.599999999999998
+    },
+    {
+      "difficulty": "veteran",
+      "role": "guard",
+      "plantedDrift": 0,
+      "mobileDistance": 7.6877499999999985,
+      "plantedTicks": 321,
+      "shots": [
+        {
+          "at": 0.6583333333333334,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        },
+        {
+          "at": 3.433333333333324,
+          "damage": 19,
+          "locked": [
+            0,
+            1.7,
+            23
+          ]
+        }
+      ],
+      "health": 10000,
+      "shield": 10.599999999999998
+    }
+  ],
+  "checks": [
+    {
+      "label": "stalker remains mobile while charging",
+      "passed": true,
+      "motion": 0.07999999999999925
+    },
+    {
+      "label": "warden remains mobile while charging",
+      "passed": true,
+      "motion": 0.08749999999999147
+    },
+    {
+      "label": "Sentinel locked target is not updated by lateral player movement",
+      "passed": true
+    },
+    {
+      "label": "Pause and planning preserve remaining fire recovery",
+      "passed": true,
+      "recovery": 0.4333333333333333,
+      "paused": 0.4333333333333333
+    },
+    {
+      "label": "New run actors start without stale recovery",
+      "passed": true
+    },
+    {
+      "label": "Phase still cancels close Sentinel charge",
+      "passed": true
+    },
+    {
+      "label": "Committed projectile remains dangerous during planted recovery",
+      "passed": true,
+      "shieldBefore": 60,
+      "shieldAfter": 41
+    },
+    {
+      "label": "Long recovery boundary tick neither moves nor starts an unseen shot",
+      "passed": true
+    },
+    {
+      "label": "Next eligible tick can start another ordinary charge",
+      "passed": true
+    },
+    {
+      "label": "Unrelated attack timestamp cannot replant a mobile Sentinel",
+      "passed": true
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

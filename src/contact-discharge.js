@@ -18,6 +18,8 @@ export function attachContact(template,group,type,fallbackWarden=false){
  const model=template.clone(true),emitters=[];
  model.traverse(n=>{if(!n.isMesh)return;n.userData.sharedGeometry=true;n.material=n.material.clone();if(n.material.name==='DischargeAmber')emitters.push(n.material);});
  if(type==='warden')model.scale.set(1.5,1,1.5);
+ // Sentinel cartridge bolts to the pelvic load rails, below the stabilized emitter cradle.
+ if(type==='sentinel')model.position.y=-.30;
  // The legacy backup has solid shoulder blocks: mount on their upper frame.
  if(fallbackWarden)model.position.y=.45;
  model.name='ContactDischargeAssembly';group.add(model);

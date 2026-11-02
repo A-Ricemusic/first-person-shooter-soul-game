@@ -91,10 +91,15 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = -0.02;
     this.scene.add(new THREE.HemisphereLight(0x9cc6db, 0x1a1c20, 0.8));
     try {
-      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/sentinel.glb`);
+      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/build72-implementation-sentinel.glb`);
       if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>asset.scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Sentinel rig');
       this.sentinelAsset = asset.scene;
-    } catch (_) { /* Procedural combat silhouette remains a robust loading fallback. */ }
+    } catch (_) {
+      // Defer exact new geometry until the new URL fails; never silently restore the old body.
+      const {default:payload}=await import('./build72-sentinel-fallback.js');
+      const bytes=Uint8Array.from(atob(payload),c=>c.charCodeAt(0));
+      this.sentinelAsset=(await new GLTFLoader().parseAsync(bytes.buffer,'')).scene;
+    }
     try {
       const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/induction-warden.glb`);
       const required = ['ArmorLeft','ArmorRight','Fan','Emitter','WeakpointAnchor','BodyAnchor'];
@@ -775,7 +780,7 @@ export class Game {
     const settle=enemy.type==='sentinel'?Math.min(1,(enemy.fireRecovery||0)/SENTINEL_RECOVERY_SECONDS):0;
     r.top.position.y=r.topY+charge*.07+recoil*.045+settle*.035;
     r.bottom.position.y=r.bottomY-charge*.07-recoil*.045-settle*.035;
-    r.vanes.forEach((v,i)=>{if(r.legs)v.rotation.x=(i?1:-1)*Math.min(.35,r.speed*.09);else {v.rotation.y+=(enemy.stagger>0?4:18+Math.min(20,r.speed*5))*dt;}});
+    r.vanes.forEach((v,i)=>{if(r.legs)v.rotation.x=(i?1:-1)*(Math.min(.18,r.speed*.05)+charge*.12+settle*.08+Math.min(.1,(enemy.hitFlash||0)*.5));else {v.rotation.y+=(enemy.stagger>0?4:18+Math.min(20,r.speed*5))*dt;}});
     if(!(enemy.hitFlash>0)&&!(enemy.stagger>0))enemy.red.emissiveIntensity=enemy.windup>0?.65+charge*.65:.65;
     if(enemy.stagger>0 && !(enemy.hitFlash>0))enemy.red.emissiveIntensity=.8;
     enemy.light.intensity=enemy.windup>0?.12:.03;
