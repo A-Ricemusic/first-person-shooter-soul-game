@@ -1,3 +1,4 @@
+import {serviceStatus,resetService,updateService} from './suit-service.js';
 import {nearbyReceiver} from './recovery-feedback.js';
 import {focusedCustodianTarget} from './custodian-targets.js';
 import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
@@ -281,7 +282,7 @@ export class Game {
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.activeWeapon='rifle';this.weaponSlots.breacher={ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0};
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0;
-    this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
+    resetService(this); this.serviceDamaged=false; this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true; this.vault=null;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
     this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
@@ -309,7 +310,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
@@ -395,6 +396,7 @@ export class Game {
   interact() {
     if (this.phase !== 'playing'||!this.grounded||this.vault) return;
     const core = this.coreNodes.find(c => !c.collected && recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
+    if(!core&&this.suitService&&serviceStatus(this).near&&serviceStatus(this).valid)return;
     if (!core) { this.event('notice', 'Approach a memory receiver. Hold E to recover its memory.'); return; }
     this.channelCore = core;
   }
@@ -516,6 +518,7 @@ export class Game {
   damage(amount, from = null, attacker = null) {
     if (this.phase !== 'playing') return;
     if(this.invulnerable>0){if(from){this.phaseDodges++;this.score+=75;this.event('phaseDodge','PHASE EVADE +75');}return;}
+    if(amount>0){this.serviceDamaged=true;if(this.suitService)this.suitService.progress=0;}
     this.damageSource=attacker&&(this.enemies.includes(attacker)||(attacker===this.custodian&&attacker.active&&!attacker.dead))?attacker:null;
     this.damageOrigin=from?from.clone():null;
     if(this.damageSource)attacker.lastAttack=this.runTime;
@@ -558,6 +561,7 @@ export class Game {
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
+    updateService(this,dt);
     const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
     if(nearby&&this.grounded&&!this.vault&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
@@ -780,6 +784,7 @@ export class Game {
 
   animate(dt) {
     this.combatFeedback?.update(dt);
+    if(this.suitService)this.world.setSuitServiceState?.(serviceStatus(this));
     this.animTime += dt; this.world.update?.(dt, this.animTime);
     for (const c of this.coreNodes) {
       const progress=this.channelCore===c?Math.min(1,this.coreProgress/RECOVERY_SECONDS):0;
@@ -901,10 +906,11 @@ export class Game {
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
+      suitService:this.suitService?serviceStatus(this):null,
       coreProgress:Math.min(1,this.coreProgress/RECOVERY_SECONDS)||0, extractionProgress:Math.min(1,this.extractionProgress/(this.extractionSeconds||EXTRACTION_SECONDS))||0, extractionSeconds:this.extractionSeconds||EXTRACTION_SECONDS, extractionBuffer:this.extractionBuffer||0, phaseDodges:this.phaseDodges||0, dashCount:this.dashCount||0, phaseInterrupts:this.phaseInterrupts||0,
       score: this.score, enemiesAlive: this.enemies.length, headshots: this.headshots, accuracy: this.shotsFired ? Math.round(this.shotsHit / this.shotsFired * 100) : 0,
       difficulty: this.activeDifficulty || this.options.difficulty, player: { x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.yaw, grounded: this.grounded, eyeHeight:profileOf(this).eyeHeight, feetY:feetY(this.player,profileOf(this)), crouched:profileOf(this).eyeHeight<1.7-1e-6, standBlocked:this.standBlocked }, coreMarkers,
-      nearestCoreDistance: closest?.distance ?? null, recoveryReady:this.grounded&&!this.vault&&closest?.distance < RECOVERY_RADIUS, interaction: !this.vault&&this.grounded&&closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : (this.grounded&&!this.vault&&planVault(this,this.traversalWorld(),this.moveDirection().lengthSq()>.01?this.moveDirection():{x:-Math.sin(this.yaw),z:-Math.cos(this.yaw)})?'Space · Vault':this.standBlocked?'CROUCHED · HEADROOM BLOCKED':profileOf(this).eyeHeight<1.7-1e-6?'CROUCHED · C TO STAND':''), heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
+      nearestCoreDistance: closest?.distance ?? null, recoveryReady:this.grounded&&!this.vault&&closest?.distance < RECOVERY_RADIUS, interaction: this.suitService&&serviceStatus(this).near&&serviceStatus(this).valid ? `SUIT SERVICE // ${serviceStatus(this).state}` : !this.vault&&this.grounded&&closest?.distance < RECOVERY_RADIUS ? `RECOVER // ${CORE_SITES[closest.id].name}` : closest?.distance < 4.5 ? `MOVE CLOSER // ${CORE_SITES[closest.id].name}` : (this.grounded&&!this.vault&&planVault(this,this.traversalWorld(),this.moveDirection().lengthSq()>.01?this.moveDirection():{x:-Math.sin(this.yaw),z:-Math.cos(this.yaw)})?'Space · Vault':this.standBlocked?'CROUCHED · HEADROOM BLOCKED':profileOf(this).eyeHeight<1.7-1e-6?'CROUCHED · C TO STAND':''), heading: ((-this.yaw * 180 / Math.PI) % 360 + 360) % 360,
       // Centre navigation distance only; extractionMargin owns all edge guidance.
       exitDistance: this.world ? extractionDistance(this.player,extractionCenter(this.world.playerSpawn)) : 0,
       extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,

@@ -1,0 +1,22 @@
+"""Original SOULFALL emergency suit service. No imported meshes. Shared Y-up meters."""
+import bpy,os,json
+exec(open(os.path.join(os.path.dirname(__file__),'build_assets.py')).read().split("asset('signal-pylon'")[0])
+bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
+L=json.load(open(os.path.join(ROOT,'src/suit-service-layout.json')))
+paint=material('Service enamel',(.16,.29,.27),.55,.42)
+cream=material('Service stencilled ivory',(.75,.81,.65),.1,.7)
+green=material('Service status',(.08,.7,.4),.3,.4,1)
+def part(n,p,s,m,bevel=.015):return box(n,(p[0],-p[2],p[1]),(s[0],s[2],s[1]),m,bevel)
+x,y,z=L['center'];part('ServiceHousing',L['center'],L['size'],paint,.035)
+part('Recessed face',(x,.78,z-.254),(.91,.99,.012),dark,.01)
+part('Cartridge',(x-.18,.64,z-.265),(.38,.6,.018),steel)
+for dx in [-.4,.4]:part('Captive latch',(x+dx,.61,z-.267),(.07,.26,.025),cream)
+for yy in [.22,.28,.34]:part('Vent',(x,yy,z-.263),(.52,.025,.012),steel,.004)
+part('ServiceStatus',(x,1.1,z-.267),(.78,.07,.018),green,.008)
+for i in range(8):part('ChargeCell%02d'%i,(x-.35+i*.1,.98,z-.267),(.065,.06,.018),green,.006)
+def label(text,yy,size):
+ bpy.ops.object.text_add(location=(x,-(z-.27),yy),rotation=(1.57079632679,0,3.14159265359));o=bpy.context.object;o.name='Authored '+text;o.data.body=text;o.data.align_x='CENTER';o.data.size=size;o.data.extrude=.0005;o.data.materials.append(cream);bpy.ops.object.convert(target='MESH')
+label('EMERGENCY SUIT SERVICE',1.22,.060);label('40 HP + AEGIS 60',.84,.075);label('HOLD E / 2 SEC',.48,.072);label('UPLINK / ONE CARTRIDGE',.12,.058)
+bpy.ops.object.select_all(action='SELECT');bpy.ops.export_scene.gltf(filepath=os.path.join(OUT,'suit-service.glb'),export_format='GLB',use_selection=True)
+bpy.context.preferences.filepaths.save_version=0;bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT,'suit-service.blend'))
+json.dump({'author':'Original SOULFALL Blender geometry and converted text','generator':'tools/build60-suit-service.py','layout':L,'externalMeshes':False,'glbBytes':os.path.getsize(os.path.join(OUT,'suit-service.glb'))},open(os.path.join(ROOT,'docs/quality-reviews/build60-blender-provenance.json'),'w'),indent=2)

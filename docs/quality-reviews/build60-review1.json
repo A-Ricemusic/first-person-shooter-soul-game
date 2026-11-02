@@ -1,0 +1,112 @@
+{
+  "review": "build60-review1",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Two ordinary terminal attempts using visible-playtest browser input and own visible UI/screenshots only. Installed headed Chrome fallback authorized after prior shared preview timeouts; no preview retries. No source, other reports, hidden state, eval, test URLs, arranged actors, resources, or runtime edits.",
+  "ratings": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "AAA-readiness": 3
+  },
+  "ratingReasons": {
+    "gameplay": "Memory recovery gives clear progression and tangible supplies; combat pressured navigation. Both losses exposed my poor aim and prolonged unprotected holds; limited evidence for sustained enjoyment.",
+    "presentation": "Cohesive rainy industrial palette, bright relay landmark and composed title screen. Repeated simple box-shaped enemies and geometry limit perceived production depth. Title visibly says BUILD59 despite review label build60.",
+    "usability": "Controls and contextual messages explain actions, map freezes mission and shows routes. Recover is straightforward when actually in reach. Mouse capture unavailable required fallback and turning was approximate; repeated holds outside range consumed dangerous time.",
+    "readability": "Objective distances, recovered cards, health and ammo are legible. Cyan archive markers and warm danger differentiate roles, but wall/cover occlusion and large boss overlays compete with combat sightlines.",
+    "AAA-readiness": "Two losses and narrow coverage cannot certify a polished full experience. Full boss defeat, upload and wider interactions remain unverified."
+  },
+  "controlsActuallyNoticed": [
+    "WASD move, mouse look, C crouch, Ctrl sprint, R reload, Space vault/jump, Shift phase dash, hold E recover in opening strip",
+    "RMB aim, 1/2 weapon selector on HUD",
+    "M facility map; map explains pause, M resume, Tab ground trace",
+    "Mouse capture unavailable; hold mouse button and drag to look",
+    "Induction guard: Shift breaks amber charge, optic aim or flank",
+    "Heart guard: break warden armor or precise optic",
+    "East interceptors track movement; change direction after charge",
+    "Custodian: three coils, armored chip/wait and open window, use cover/Shift close to break",
+    "Upload must occur inside marked deck; outside pauses briefly then decay"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "00:57",
+      "score": 3180,
+      "eliminations": 1,
+      "accuracyPercent": 16,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "progress": "All three memories recovered. Mara at00:22, Sera00:37, Elian00:47, each confirmed by MEMORY RECOVERED card and objective change. Mara reserve152\u2192212, Sera212\u2192242 after reload/fire, Elian242\u2192302.",
+      "navigation": "West diagonal advance, paused map read, approach through intake. East prompt0.8m outside reach corrected with short D step and hold successfully. Reached Custodian11m but cover/turn navigation failed under fire.",
+      "combat": "Opening centered fire killed guard; later approximate drag turns missed heart guard (kill count stayed1). Large right drag did not change displayed heading; ArrowRight changed014\u2192111 but image initially remained similar, so discrete captures/input timing limit interpretation. Tried turn, forward and Shift before terminal; no phase evade confirmed.",
+      "boss": "Coils last visibly100%,100%,100%; no confirmed damage or disables. Open-window and armored text observed.",
+      "holds": "Mara,Sera,Elian completed; prompt alone was not counted.",
+      "evidence": [
+        "attempt1-start.jpg",
+        "attempt1-map.jpg",
+        "attempt1-hold.jpg",
+        "attempt1-sera.jpg",
+        "attempt1-east.jpg",
+        "attempt1-elian.jpg",
+        "attempt1-custodian.jpg",
+        "attempt1-turn.jpg",
+        "attempt1-fight.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:02",
+      "score": 2180,
+      "eliminations": 1,
+      "accuracyPercent": 21,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "progress": "Mara and Sera completed, Elian failed; boss not activated.",
+      "navigation": "Forward movement blocked by low cover at17m. Corrected by lateral move around cover. Repeated Mara holds at4.9/3.5m failed until left/back correction; Sera hold at5.2m failed then forward correction completed. East0.5m outside reach, erroneous D step increased distance to4.1m; continued exposed movement ended in loss.",
+      "combat": "Opening short fire killed guard. Otherwise did not eliminate attackers and took sustained damage during holds/navigation.",
+      "holds": "Mara completed00:32 after failed attempts; Sera completed00:46 after failed hold. Elian E holds failed; no memory card or benefit.",
+      "boss": "No damage/disables coverage.",
+      "evidence": [
+        "attempt2-start.jpg",
+        "attempt2-west-route.jpg",
+        "attempt2-west-hold.jpg",
+        "attempt2-west-correct.jpg",
+        "attempt2-mara.jpg",
+        "attempt2-mara-corrected.jpg",
+        "attempt2-heart.jpg",
+        "attempt2-sera-corrected.jpg",
+        "attempt2-east.jpg",
+        "attempt2-elian-corrected.jpg",
+        "attempt2-boss-approach.jpg"
+      ]
+    }
+  ],
+  "interactions": {
+    "completed": "Five memory recoveries across two attempts, verified by cards/objective progression and supply changes. Reload and facility map used.",
+    "absentCoverage": "No upload progress/completion/decay, no Custodian coil disable, no repair/heal/ammo station use, no confirmed isolator benefit. Saw med table and shoot-isolator signage without completing interaction. Crouch, sprint, vault, weapon2 and Tab trace not exercised. Recovered-memory reading not opened."
+  },
+  "limits": [
+    "Paused synthetic input batches are not continuous human play.",
+    "Fallback drag look and keyboard turning were approximate; missed aim and route errors partly reflect this method.",
+    "Screenshot capture can advance live play; visible HUD and returned UI can differ (attempt2-east screenshot health69 vs UI81).",
+    "Continuous human enjoyment, audio quality and hardware performance unknown.",
+    "Software-WebGL fallback flags do not certify GPU rendering or performance.",
+    "No fake10 and no AAA certification."
+  ],
+  "cleanup": {
+    "closeOperation": "Explicit op close",
+    "driverPid": 78654,
+    "chromePid": 78664,
+    "driverExitCode": 0,
+    "closeResponse": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "pidVerification": "ps -p 78654,78664 -o pid=,ppid=,command= returned no output and exit1; exact owned driver and Chrome PIDs absent."
+  },
+  "evidenceDirectory": "docs/media/build60-review1"
+}

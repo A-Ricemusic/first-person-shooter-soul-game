@@ -1,0 +1,115 @@
+{
+  "review": "build60-review2",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Two ordinary terminal attempts through visible-playtest.mjs, one owned installed Chrome; only --help, visible UI and own screenshots used. No source/runtime/test edits or hidden observations. Menu visibly said BUILD 59.",
+  "ratings": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 7,
+    "AAA-readiness": 4
+  },
+  "ratingReasons": {
+    "gameplay": "Recovery supply rewards and distinct coil targets create a useful risk/reward loop. First run died navigating; second reached all memories and disabled two coils. Combat remained difficult to parse and aim under paused synthetic fallback input; no successful full mission demonstrated.",
+    "presentation": "Rain, reflective yard, cyan/orange palette, weapon model and large architectural Heart give a coherent atmosphere. Repeated simple geometry and flat close surfaces remain visible.",
+    "usability": "Distance, floor arrows, map and explicit outside-reach correction helped recover mistakes. Receiver behind storage and hall cover still caused overshoot; large boss HUD overlays some target area. Mouse capture unavailable required drag fallback.",
+    "readability": "Objectives, resource numbers and coil OFF states are legible. Recent-fire labels and orange directional warnings helped identify danger; initially shot above a sentinel rather than its optic.",
+    "AAA-readiness": "Promising slice, but two losses, incomplete upload coverage, approximate aiming, simple visual assets and unknown audio/performance prohibit AAA certification."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "00:41",
+      "score": 1000,
+      "accuracyPercent": 0,
+      "eliminations": 0,
+      "recovered": [
+        "MARA SOLBERG"
+      ],
+      "narrative": "Advanced centrally then west. Shot 18 rounds toward sentinel with no elimination and final 0% accuracy. Overshot into storage/wall; E hold at 14m failed. Used visible M map to understand position and backed south/right. 2.5s E hold completed Mara, visible memory card and supply-restored announcement, reserve 180 to 222 after reload/recovery. Heart hold at 4.0m failed with explicit 1.2m outside reach prompt; stepped closer and retried, but died before completion. No boss damage or upload reached.",
+      "evidence": [
+        "a1-west.jpg",
+        "a1-recover-try.jpg",
+        "a1-map.jpg",
+        "a1-receiver.jpg",
+        "a1-heart.jpg",
+        "a1-heart-correct.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "missionTime": "01:24",
+      "score": 3000,
+      "accuracyPercent": 10,
+      "eliminations": 0,
+      "recovered": [
+        "MARA SOLBERG",
+        "SERA NORD",
+        "ELIAN VALE"
+      ],
+      "narrative": "Took west lane directly, initial E at 9m failed; corrected left/forward and completed Mara. Moved east/north, overshot Heart to 9m after Shift; failed E, corrected left/south then completed Sera. Moved east/south and completed Elian; reserve increased by 60 for each recovery. Boss approach initially turned only to heading064, moved away to45m; corrected heading193, hit hall wall at20m, sidestepped and reached5.3m. Held Tab capture but ground trace was not clearly useful in this view. First rifle burst aimed at distant uplink fixtures and missed boss (all coils100%). Turned further to visible boss and disabled coil2, then adjusted left and disabled coil1. Shift moved closer, recharge visible; end reports0 phase evades, no confirmed evade benefit. Final two bursts aimed between/near coils and failed to disable third; health fell79 to61 to10 then death during capture/pause transition. All three memories retained on loss screen.",
+      "boss": {
+        "confirmedDisabled": [
+          2,
+          1
+        ],
+        "lastConfirmedRemainingCoil": {
+          "coil": 3,
+          "percent": 100
+        },
+        "thirdCoilDisabled": false,
+        "upload": "Not reached; jammed throughout. Upload/deck pause/decay behavior untested."
+      },
+      "evidence": [
+        "a2-west.jpg",
+        "a2-mara.jpg",
+        "a2-heart.jpg",
+        "a2-heart-correct.jpg",
+        "a2-east.jpg",
+        "a2-south.jpg",
+        "a2-trace.jpg",
+        "a2-coil-fire.jpg",
+        "a2-coils-aim.jpg",
+        "a2-left-coil.jpg",
+        "a2-third-coil.jpg",
+        "a2-third-correct.jpg",
+        "a2-terminal.jpg"
+      ]
+    }
+  ],
+  "controlsAndTeachingActuallyNoticed": [
+    "Menu: recover three cores, disable jammer, upload inside marked uplink deck; outside briefly pauses then decays.",
+    "Deploy HUD: WASD, mouse look, C crouch, Ctrl sprint, R reload, Space vault/jump, Shift phase dash, hold E recover.",
+    "Mouse capture unavailable: hold mouse button and drag to look. Used right-button drag and approximate look batches.",
+    "M facility map pauses mission, shows walls and low cover, receiver reach and named objectives; map text teaches Tab trace. Opened map once; did not change selected objective.",
+    "HUD R reload and RMB aim; actually reloaded and used ADS/fire. Did not use weapon2, crouch, sprint or vault.",
+    "West signal behind cover/go around triage storage; Heart move closer with explicit outside reach distance.",
+    "Induction guard amber charge can be broken by Shift, optic aim or flank; perimeter patrol says side lanes open.",
+    "Boss three coils, armored chip/wait opening, open window/find clear coil components, locking lanes/move cover or Shift close. Confirmed two OFF states and disable announcements."
+  ],
+  "interactionCoverage": {
+    "completed": "Mara in both runs; Sera and Elian in second, supported by memory cards, changed objectives and supply changes.",
+    "failedOrCorrected": "Out-of-range E holds did not count; corrected Mara on both runs and Heart on run2. Heart correction on run1 ended in death.",
+    "other": "No health/service station use, recovered-memory reading, settings, weapon2, upload benefit, extraction win, or boss completion demonstrated. Prompts alone are not recorded as benefits."
+  },
+  "limitations": [
+    "Paused synthetic input, screenshot/capture scheduling can add live time; run2 died between live capture and after-pause UI.",
+    "Approximate mouse-button fallback look; initial turns and several aim corrections missed.",
+    "Unknown continuous human enjoyment, audio experience and hardware performance. Software-WebGL fallback enabled flags do not certify GPU acceleration or performance.",
+    "No full mission win or upload coverage; ratings are limited judgments on observed play, not AAA certification."
+  ],
+  "evidenceRoot": "docs/media/build60-review2",
+  "cleanup": {
+    "explicitClose": true,
+    "driverPid": 79132,
+    "chromePid": 79142,
+    "closeMessage": "browserLaunched:true, browserClosed:true, reason: input ended or close requested",
+    "driverExitCode": 0,
+    "exactPidCheck": "ps -p 79132,79142 -o pid=,comm=",
+    "pidCheckExitCode": 1,
+    "pidCheckOutput": "",
+    "bothExactPidsAbsent": true
+  }
+}

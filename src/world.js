@@ -1,3 +1,4 @@
+import SUIT from './suit-service-layout.json' with {type:'json'};
 import {createCapacitors} from './capacitors.js';
 import terminalParts from './terminal-parts.json';
 import * as THREE from 'three';
@@ -263,6 +264,27 @@ export async function buildWorld(scene) {
   const cover=[[-8,22,0],[8,22,0],[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));});}
   // Split defense: fixed physical cover, open 2.8m center and exposed flanks.
+  // Register the authored envelope before any navigation or route cache exists.
+  const suitCenter=new THREE.Vector3(...SUIT.center),sh=new THREE.Vector3(...SUIT.size).multiplyScalar(.5);
+  const suitBounds=new THREE.Box3(suitCenter.clone().sub(sh),suitCenter.clone().add(sh));suitBounds.suitService=true;colliders.push(suitBounds);
+  let suit;
+  try{suit=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/suit-service.glb`)).scene;}catch(_){
+    suit=new THREE.Group();const housing=new THREE.Mesh(new THREE.BoxGeometry(...SUIT.size),steel);housing.position.copy(suitCenter);suit.add(housing);
+    const identity=sign('EMERGENCY SUIT SERVICE','UPLINK / ONE USE / 40 HP + AEGIS 60',SUIT.face[0],1.15,SUIT.face[2]-.004,.95,.24);identity.rotation.y=Math.PI;
+  }
+  suit.name='EmergencySuitService';suit.userData.dynamic=true;group.add(suit);
+  const suitDisplays=[];
+  suit.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.name==='ServiceStatus'||o.name.startsWith('ChargeCell')){o.material=o.material.clone();suitDisplays.push(o);}else o.userData.batchHousing=true;}});
+  // Physical face status panel remains with the cabinet, never a HUD marker.
+  const suitCanvas=document.createElement('canvas');suitCanvas.width=512;suitCanvas.height=128;
+  const suitTexture=new THREE.CanvasTexture(suitCanvas),suitPanel=new THREE.Mesh(new THREE.PlaneGeometry(.82,.205),new THREE.MeshBasicMaterial({map:suitTexture,side:THREE.DoubleSide}));
+  suitPanel.position.set(SUIT.face[0],.69,SUIT.face[2]-.003);suitPanel.rotation.y=Math.PI;suit.add(suitPanel);let suitSignature='';
+  function setSuitServiceState(a){
+    const signature=`${a.state}:${Math.floor(a.progress*8)}`;if(signature===suitSignature)return;suitSignature=signature;
+    const color=a.spent?'#60716e':!a.powered?'#d2a16a':a.progress>0?'#eef7c1':'#72f0c0',ctx=suitCanvas.getContext('2d');ctx.fillStyle='#10201f';ctx.fillRect(0,0,512,128);ctx.fillStyle=color;ctx.textAlign='center';ctx.font='bold 42px monospace';ctx.fillText(a.state,256,52);ctx.font='21px monospace';ctx.fillText(a.spent?'CARTRIDGE EXPENDED':!a.powered?'3 MEMORIES + CUSTODIAN OFF':a.progress>0?`${Math.floor(a.progress*100)}% / KEEP HOLDING`:'HOLD E 2s / +40 HP / ARMOR 60',256,95);suitTexture.needsUpdate=true;
+    for(const o of suitDisplays){o.material.color.set(color);o.material.emissive?.set(color);o.material.emissiveIntensity=o.name==='ServiceStatus'||a.progress>Number(o.name.slice(-2))/8?.6:.05;}
+  }
+  setSuitServiceState({state:'LOCKED',powered:false,spent:false,progress:0});
   let uplinkAsset;
   try{uplinkAsset=(await loader.loadAsync(`${import.meta.env.BASE_URL}assets/uplink-defense.glb`)).scene;}catch(_){}
   const uplink=uplinkAsset||new THREE.Group();uplink.userData.dynamic=true;group.add(uplink);
@@ -371,7 +393,7 @@ export async function buildWorld(scene) {
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
     capacitors, colliders, medical:MEDICAL, workshop:WORKSHOP, induction:INDUCTION, shelters, rainPositions,
-    receivers, uplink, routeLights,
+    receivers, uplink, routeLights, suit, suitBounds, setSuitServiceState,
     setUplinkState(powered,progress){if(uplink.userData.powered===powered&&uplink.userData.progress===progress)return;routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
     setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;if(r.model.userData.progress===progress&&r.model.userData.recovered===recovered)return;
       if(r.progress){r.progress.scale.x=recovered?1:.12+.88*progress;r.progress.material.emissiveIntensity=recovered?.18:.35+.55*progress;r.progress.material.color.setHex(recovered?0x548875:0x287d88);}
