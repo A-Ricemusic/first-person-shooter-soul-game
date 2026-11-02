@@ -1,0 +1,30 @@
+{
+  "pass": "Build53 parent historical damage-origin correction",
+  "baseline": "e8fd222651fb2bf414b0dd11234dc72aeceaea46",
+  "finding": "Damage origin was already stored, but periodic HUD state followed a live attacker optic and suppressed direction under current cover or shooter death. An already received projectile could therefore lose or move its cue.",
+  "change": "Snapshot any located hit origin on damage; use that snapshot for the unchanged1.1second indicator. Cover after a hit or later attacker movement/defeat cannot move or erase it. No current enemy tracking or identity is inferred. Located environmental blasts may supply direction; unlocated damage clears it. Live enemy threat markers retain existing visibility/range/history rules.",
+  "unchanged": "Damage, health/shield, projectile collision/trajectory/speed, enemy movement/attacks, phase, weapons, vault, objectives and timers.",
+  "focused": "build53-parent-damage-origin.json",
+  "fixtureFailure": {
+    "assertion": "real swept projectile applies unchanged damage",
+    "cause": "Initial test incorrectly expected13damage for a Sentinel;13belongs to Interceptor and Sentinel remains19.",
+    "correction": "Fixed fixture expected19 without changing gameplay."
+  },
+  "existingTestContracts": "Updated only obsolete cue semantics: attacker defeat retains the recent origin, dead-shooter projectile has a located origin, cover after a hit does not erase it. Current visible threat markers still disappear behind cover; unknown/unlocated damage clears prior direction; pause/expiry/reset remain.",
+  "affectedReports": [
+    "build53-parent-attacker.json",
+    "build53-parent-drone-edges.json",
+    "build53-parent-custodian-feedback.json"
+  ],
+  "reviewStatus": "Small post-Build52-review fix, independently unreviewed. No third review or rescore. Raw Build52 four-loss reports unchanged.",
+  "nextDesign": "Authored charging emitters, depth-tested/cover-clipped firing telegraphs and clear physical surface/armor/damage impacts. Planned, not implemented or endorsed by existing reviewers.",
+  "limits": "Arranged projectile/HUD and rendered-motion tests establish correctness, not discovery, fairness, human enjoyment, audio, hardware or AAA readiness. Overall quality mission unfinished.",
+  "production": {
+    "checks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "report": "build53-parent-production.json",
+    "log": "build53-parent-production.txt"
+  },
+  "packagingNote": "Refreshing all docs over existing dist encountered two preserved read-only Build17 report copies. Historical files were not changed; only current parent documentation was refreshed. Production14 had already passed."
+}

@@ -1,0 +1,41 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});
+try{
+ const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.addInitScript(()=>window.requestAnimationFrame=()=>1);
+ await page.goto('http://127.0.0.1:5173/?test=1');
+ await page.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{polling:50,timeout:60000});await page.click('#deploy',{force:true});
+ const result=await page.evaluate(async()=>{
+  const T=await import('/node_modules/three/build/three.module.js'),g=window.__SOULFALL__.game;
+  const checks=[],ok=(v,label)=>{if(!v)throw Error(label);checks.push(label);},near=(a,b)=>Math.abs(a-b)<1e-8;
+  g.clearRun();g.player.set(0,1.7,23);g.yaw=0;g.pitch=0;g.runTime=10;
+  g.spawnEnemy(new T.Vector3(0,0,18),'sentinel');const e=g.enemies[0];e.target.copy(g.player);g.enemyFire(e);
+  const firingOrigin=g.projectiles[0].origin.clone(),shield=g.shield;g.updateProjectiles(.5);
+  const base=g.captureState().damageDirection;
+  ok(g.shield===shield-19,'real swept projectile applies unchanged Sentinel damage');
+  ok(Number.isFinite(base)&&g.damageOrigin.equals(firingOrigin),'actual projectile records its historical muzzle origin');
+  const expected=Math.atan2(firingOrigin.x-g.player.x,-(firingOrigin.z-g.player.z));
+  ok(near(base,expected),'indicator bears toward recorded shot origin');
+  e.group.position.set(30,0,-30);g.yaw=.4;
+  ok(near(g.captureState().damageDirection,base+.4),'moving shooter cannot move indicator; camera rotation still works');
+  const wall=new T.Box3(new T.Vector3(-1,0,20),new T.Vector3(1,4,20.3));g.world.colliders.push(wall);
+  ok(!g.hasLineOfSight(g.player,firingOrigin,0),'fixture really obscures the recorded origin');
+  ok(near(g.captureState().damageDirection,base+.4),'new cover does not erase an already received hit');
+  g.killEnemy(e);ok(near(g.captureState().damageDirection,base+.4),'subsequent shooter defeat does not erase recent hit');
+  g.emit();ok(document.querySelector('#damage-direction').classList.contains('visible'),'historical hit reaches existing visible damage indicator');
+  g.phase='paused';ok(g.captureState().damageDirection===null,'pause hides historical cue');
+  g.phase='planning';ok(g.captureState().damageDirection===null,'map hides historical cue');g.phase='playing';
+  g.runTime+=1.11;ok(g.captureState().damageDirection===null,'historical cue expires after unchanged 1.1 seconds');g.world.colliders.pop();
+  g.damage(1,firingOrigin,e);ok(Number.isFinite(g.captureState().damageDirection),'in-flight shot may report its origin after its shooter is gone');
+  const copy=g.damageOrigin.clone();firingOrigin.x+=50;ok(g.damageOrigin.equals(copy),'mutable projectile/source vector cannot move stored hit origin');
+  g.damage(1);ok(g.damageOrigin===null&&g.captureState().damageDirection===null,'unlocated environmental damage clears prior direction');
+  g.invulnerable=.2;const health=g.health,remaining=g.shield;g.damage(10,new T.Vector3(8,1,8),e);
+  ok(g.health===health&&g.shield===remaining&&g.damageOrigin===null,'existing phase protection neither damages nor invents a hit origin');
+  g.invulnerable=0;g.damage(1,new T.Vector3(-4,1,16));ok(Number.isFinite(g.captureState().damageDirection),'located environmental blast reports its actual origin without an enemy identity');
+  g.restart();ok(g.damageOrigin===null&&g.damageSource===null&&g.captureState().damageDirection===null,'restart clears historical origin and source');
+  return {checks,initialShield:shield,damage:19};
+ });
+ assert.deepEqual(errors,[]);writeFileSync('docs/quality-reviews/build53-parent-damage-origin.json',JSON.stringify({method:'Arranged actual projectile and existing HUD, not ordinary play or independent rescore.',...result,errors},null,2)+'\n');console.log(JSON.stringify(result));
+}finally{await browser.close();}

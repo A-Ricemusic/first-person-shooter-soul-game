@@ -504,7 +504,7 @@ export class Game {
     if (this.phase !== 'playing') return;
     if(this.invulnerable>0){if(from){this.phaseDodges++;this.score+=75;this.event('phaseDodge','PHASE EVADE +75');}return;}
     this.damageSource=attacker&&(this.enemies.includes(attacker)||(attacker===this.custodian&&attacker.active&&!attacker.dead))?attacker:null;
-    this.damageOrigin=this.damageSource&&from?from.clone():null;
+    this.damageOrigin=from?from.clone():null;
     if(this.damageSource)attacker.lastAttack=this.runTime;
     amount *= this.difficulty.damage; const absorbed = Math.min(this.shield, amount); this.shield -= absorbed; this.health -= amount - absorbed;
     this.lastDamage = this.runTime; this.audio.hurt(); this.event('damage', '', { amount, direction: from ? Math.atan2(from.x-this.player.x,-(from.z-this.player.z))+this.yaw : null });
@@ -854,10 +854,9 @@ export class Game {
     return markers;
   }
   damageCuePosition() {
-    if(this.damageSource&&this.damageSource===this.custodian){
-      return this.custodian.active&&!this.custodian.dead?this.damageOrigin:null;
-    }
-    return this.enemies.includes(this.damageSource)?this.enemyOpticPosition(this.damageSource):null;
+    // A hit records where the shot came from. It must not become a live tracker
+    // or vanish when its shooter moves behind cover or is subsequently defeated.
+    return this.damageOrigin;
   }
   captureState() {
     if(this.playerRoute&&['playing','planning'].includes(this.phase))this.updateRouteGoal();
@@ -865,7 +864,7 @@ export class Game {
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
-      damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint&&this.hasLineOfSight(this.player,damagePoint,0) ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
+      damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,

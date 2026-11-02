@@ -22,11 +22,11 @@ try {
   g.yaw=.7;ok(Math.abs(g.captureState().damageDirection-base-.7)<1e-8,'cue follows camera rotation');
   ok(g.captureMarkers().find(m=>m.id==='custodian-focus')?.recent,'boss joins recent-fire threat hierarchy');
   const wall=new T.Box3(new T.Vector3(10,0,20),new T.Vector3(12,4,20.3));g.world.colliders.push(wall);
-  ok(g.captureState().damageDirection===null,'foreign cover suppresses source cue');g.world.colliders.pop();
+  ok(Math.abs(g.captureState().damageDirection-base-.7)<1e-8,'foreign cover cannot erase historical firing-origin cue');g.world.colliders.pop();
   g.phase='paused';ok(g.captureState().damageDirection===null,'pause hides cue');g.phase='planning';ok(g.captureState().damageDirection===null,'planning hides cue');g.phase='playing';
   g.runTime+=1.11;ok(g.captureState().damageDirection===null,'damage direction expires after existing 1.1s');
   g.runTime+=1.31;ok(!g.captureMarkers().find(m=>m.id==='custodian-focus')?.recent,'recent-fire emphasis expires after existing 2.4s');
-  g.damage(1,c.coils[1].origin,c);c.dead=true;ok(g.captureState().damageDirection===null,'defeated device cannot leave a tracked cue');c.dead=false;
+  g.damage(1,c.coils[1].origin,c);c.dead=true;ok(Number.isFinite(g.captureState().damageDirection),'defeated device retains recent hit origin without live tracking');c.dead=false;
   g.damage(1);ok(g.captureState().damageDirection===null&&g.damageOrigin===null,'environmental damage clears attacker and origin');
   g.damage(1,c.coils[1].origin,c);g.restart();
   ok(g.damageSource===null&&g.damageOrigin===null&&c.lastAttack===-100,'restart clears boss feedback history');
