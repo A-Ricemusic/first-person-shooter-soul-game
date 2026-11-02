@@ -1,0 +1,149 @@
+{
+  "build": 62,
+  "baseline": "dbc8d6819a761d5e4f00b400a8ae980c836dc48a",
+  "scope": "Independent test/review and documentation only; no implementation changes. Exactly two fresh native GPT-6.1 Sol reviewers, fork none, sequential, two terminal ordinary-input normal-URL attempts each.",
+  "rawRatings": {
+    "review1": {
+      "gameplay": 5.5,
+      "presentation": 7,
+      "usability": 5.5,
+      "readability": 6,
+      "AAAReadiness": 3
+    },
+    "review2": {
+      "gameplay": 6,
+      "presentation": 7,
+      "usability": 6,
+      "readability": 6,
+      "AAAReadiness": 3
+    }
+  },
+  "terminalOutcomes": [
+    {
+      "reviewer": 1,
+      "attempt": 1,
+      "outcome": "death",
+      "time": "01:09",
+      "memories": 2,
+      "kills": 1,
+      "accuracy": 14,
+      "boss": "No confirmed damage/disable",
+      "service": "No attempt/completion",
+      "upload": "Not reached"
+    },
+    {
+      "reviewer": 1,
+      "attempt": 2,
+      "outcome": "death",
+      "time": "01:16",
+      "memories": 2,
+      "kills": 3,
+      "accuracy": 11,
+      "boss": "Coil-gap fire, no confirmed damage/disable",
+      "service": "E hold near repair area, no confirmed completion",
+      "upload": "Not reached"
+    },
+    {
+      "reviewer": 2,
+      "attempt": 1,
+      "outcome": "death",
+      "time": "01:16",
+      "memories": 3,
+      "kills": 3,
+      "accuracy": 15,
+      "boss": "Coils III and II OFF; I last100%; final damage unknown",
+      "service": "SERVICE label seen; no attempt/completion",
+      "upload": "Not reached"
+    },
+    {
+      "reviewer": 2,
+      "attempt": 2,
+      "outcome": "death",
+      "time": "01:20",
+      "memories": 3,
+      "kills": 3,
+      "accuracy": 16,
+      "boss": "All coils last100%; final damage unknown",
+      "service": "Navigated toward repair sign; no interaction/completion",
+      "upload": "Not reached"
+    }
+  ],
+  "findings": [
+    "Wall/low-cover/machinery collisions repeatedly required detours or vault corrections.",
+    "Outside-reach recovery feedback supported precise position corrections.",
+    "Small moving threats, signage and component sightline obstruction complicated targeting; misses versus armor/occlusion sometimes uncertain.",
+    "Coherent industrial atmosphere, typography and objective loop; repetitive/simple geometry and limited encounter depth.",
+    "No independent service completion, final boss defeat or upload coverage."
+  ],
+  "methodLimits": [
+    "Pause-assisted synthetic input and timed screenshots; mouse capture unavailable, held-RMB fallback look.",
+    "Screenshots can show later UI than pre-capture reads. No continuous human assessment, audio evaluation or target-hardware/AAA certification.",
+    "Four deaths do not establish impossibility or causal effect of Build62 pacing. Raw ratings unchanged.",
+    "Parent source-informed normal-input win remains separate evidence, not a fifth independent outcome."
+  ],
+  "cleanup": {
+    "review1": {
+      "driverPid": 85136,
+      "chromePid": 85147,
+      "closeResponse": {
+        "type": "closed",
+        "browserClosed": true
+      },
+      "driverExitCode": 0,
+      "verificationCommand": "ps -p 85136,85147 -o pid=,comm=",
+      "verificationExitCode": 1,
+      "verificationOutput": "",
+      "conclusion": "Exact owned driver and Chrome PIDs absent after explicit close and awaited exit 0."
+    },
+    "review2": {
+      "driverPid": 85933,
+      "chromePid": 85943,
+      "closeResponse": {
+        "reason": "input ended or close requested",
+        "browserClosed": true
+      },
+      "driverExitCode": 0,
+      "verification": {
+        "command": "ps -p 85933,85943 -o pid=,comm=",
+        "exitCode": 1,
+        "stdout": "",
+        "meaning": "Both exact owned PIDs absent"
+      }
+    }
+  },
+  "freeze": [
+    "build62-review-freeze-before.json",
+    "build62-review-freeze-between.json",
+    "build62-review-freeze-after.json"
+  ],
+  "parentEvidence": "build62-parent-summary.json (immutable)",
+  "reports": [
+    "build62-review1.json",
+    "build62-review2.json"
+  ],
+  "evidence": [
+    "../media/build62-review1/actions.jsonl",
+    "../media/build62-review2/actions.jsonl"
+  ],
+  "broaderQualityMission": "Unfinished; parent handles findings, no tuning or third reviewer/rescore.",
+  "validation": {
+    "build": "build62-review-build.txt",
+    "buildExit": 0,
+    "buildMethod": "Temporary sibling Vite config changes only dossier output path; CLI outDir in /tmp. All runtime asset hashes match parent dist. Historical dist docs untouched; only new evidence and human.html copied. Existing large deferred-chunk warning retained.",
+    "production": "build62-review-production.json",
+    "productionChecks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "links": "build62-review-links.json",
+    "finalFreeze": "build62-review-freeze-final.json",
+    "noNewFailures": true,
+    "reviewerArtifactPreservation": true,
+    "exactReviewerPidsAbsent": true,
+    "localEndpoints": {
+      "http://127.0.0.1:5173/": 200,
+      "http://127.0.0.1:61467/": 200
+    },
+    "ownedReviewAndTestBrowsersRemaining": 0,
+    "localResourcesPerDossier": 960
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "build": 62,
+  "reviewer": "review1",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Fresh independent visible gameplay review, ordinary browser synthetic input with installed headed Chrome software-WebGL fallback. Only driver --help read; no source/state/eval/debug URLs or arranged actors.",
+  "terminalAttempts": 2,
+  "ratingsOutOf10": {
+    "gameplay": 5.5,
+    "presentation": 7,
+    "usability": 5.5,
+    "readability": 6,
+    "AAAReadiness": 3
+  },
+  "ratingRationale": {
+    "gameplay": "Recovering memories while pressured by distinct guards creates a meaningful objective loop. Successful critical eliminations and supply restoration are clear. My two runs ended quickly after navigation and targeting errors; I did not experience the complete boss/upload loop.",
+    "presentation": "Strong typography, teal/amber palette, rainy industrial setting and reflective light establish a coherent atmosphere. Repeated primitive geometry and similar robot silhouettes limit visual richness.",
+    "usability": "Onscreen controls, paused map and restart are useful. I repeatedly pushed against cover/walls with little immediate understanding of the obstruction, and recovery attempts outside reach failed until I corrected position.",
+    "readability": "Objective distance, floor rings, critical feedback and directional damage cues help. Dense contextual text and many small threats compete for attention; some world signs look like actionable objectives without a clear target.",
+    "AAAReadiness": "A coherent vertical slice, but these limited visible runs do not show the polish, content depth, animation variety or combat readability expected for that standard. This is an opinion, not certification."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "death",
+      "missionTime": "01:09",
+      "eliminations": 1,
+      "criticalEliminations": 1,
+      "accuracyPercent": 14,
+      "phaseEvades": 0,
+      "score": 2180,
+      "cores": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "actions": "Shot initial centered induction guard, moved forward and west, opened paused map, reloaded, advanced toward west archive. W movement stalled at 17m; E failed. Space vaults corrected the low-cover obstruction and E recovered Mara. Tried east then north, hit receiver/sign/column geometry, backed away and corrected route. Learned held RMB drag sensitivity through 500/400 pixel turns, then corrected north. Reached Heart at 3.6m; failed E outside reach, moved 450ms closer and recovered Sera. Attempted aim/fire at nearby warden too late and died.",
+      "aimMissesAndCorrections": "Initial long burst used 17 rounds for one critical elimination. Late Heart burst did not secure another kill; terminal accuracy 14%. No claim every miss was geometrically blocked.",
+      "boss": "No confirmed Custodian damage or disable.",
+      "services": "No confirmed service interaction or completion. Core recovery restored supplies.",
+      "upload": "Not reached."
+    },
+    {
+      "attempt": 2,
+      "outcome": "death",
+      "missionTime": "01:16",
+      "eliminations": 3,
+      "criticalEliminations": 2,
+      "accuracyPercent": 11,
+      "phaseEvades": 0,
+      "score": 2460,
+      "cores": [
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "actions": "Killed initial guard with shorter 700ms burst, headed east, vaulted cover, explored shutter/coil installation near map jammer marker. Fired 22 rounds at visible coil gap, reloaded; no confirmed damage feedback. Circled installation, northward strafe blocked by wall, corrected backward then north. Missed moving sentinel on first 900ms burst; corrected aim 300px and achieved critical elimination. Reached east receiver at 4.7m, E failed; moved 500ms closer and recovered Elian. Approached repair/manual-cutout area and held E 1800ms without confirmed service feedback. Retreated west under fire, fired at interceptor with a Shift input, reached three eliminations. Recovered Sera with E after small position correction, reloaded. Turned 2280px toward west, fled and attempted to navigate around archive enclosure; became blocked and died during next retreat correction.",
+      "aimMissesAndCorrections": "Coil fire had no observed damage confirmation, potentially blocked or wrong target. First sentinel aim missed moving target; 300px correction produced critical elimination. Long interceptor burst expended 23 rounds and total kills increased to three, but exact per-shot hits unknown. Terminal accuracy 11%.",
+      "boss": "Sought jammer at industrial coils; no visible boss health, confirmed boss damage, or disabled component. Cannot infer boss was harmed from firing.",
+      "services": "One deliberate E attempt near repair area, no service hint/completion observed. This may have been wrong position. Core supply restoration confirmed.",
+      "upload": "Not reached."
+    }
+  ],
+  "controlLearning": [
+    "UI taught WASD, R reload, Space vault, Shift dash, hold E recover, RMB aim.",
+    "Map M pauses mission and clearly marks walls, low cover and receiver reach.",
+    "Mouse capture unavailable; held RMB look fallback used. Turn sensitivity required corrections. Largest look delta 2280, below 2400 guard.",
+    "Used Shift in attempt 2; end screen reported zero phase evades. Did not test shotgun, crouch or sprint."
+  ],
+  "strengths": [
+    "Distinctive menu and mission UI.",
+    "Recovery ring and outside-reach message provide actionable position feedback.",
+    "Critical elimination and supply restoration feedback make success understandable."
+  ],
+  "issues": [
+    "Repeated wall/cover collisions interrupted navigation despite visible objective markers.",
+    "Under fire I struggled to identify and track multiple small robot threats while reading contextual prompts.",
+    "Coil/shutter signage invited fire but I could not tell whether my shots affected anything."
+  ],
+  "uncertainty": [
+    "Paused synthetic short batches and screenshot scheduling limit assessment of continuous combat.",
+    "No audio evaluation, hardware performance benchmark or human enjoyment claim.",
+    "Two deaths do not establish full mission balance or boss/upload quality.",
+    "UI extraction sometimes differed slightly from photographed health during capture; terminal screens are the outcome evidence."
+  ],
+  "evidenceDirectory": "docs/media/build62-review1",
+  "terminalEvidence": [
+    "attempt1-heart-combat.jpg",
+    "attempt2-terminal-or-exit.jpg"
+  ],
+  "inputEvidence": "Driver generated input/capture logs in own evidence directory.",
+  "cleanup": {
+    "driverPid": 85136,
+    "chromePid": 85147,
+    "closeResponse": {
+      "type": "closed",
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "verificationCommand": "ps -p 85136,85147 -o pid=,comm=",
+    "verificationExitCode": 1,
+    "verificationOutput": "",
+    "conclusion": "Exact owned driver and Chrome PIDs absent after explicit close and awaited exit 0."
+  }
+}

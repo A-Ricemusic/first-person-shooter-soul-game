@@ -1,0 +1,142 @@
+{
+  "build": 62,
+  "reviewer": "review2",
+  "method": {
+    "url": "http://127.0.0.1:5173/",
+    "driver": "tools/visible-playtest.mjs --headed",
+    "inputMode": "browser synthetic visible input",
+    "graphics": "Software-WebGL fallback",
+    "sources": "Only driver --help and visible UI/screenshots. No game source/state/eval/debug inspected.",
+    "limitations": [
+      "Pauses between action batches and synthetic input limit continuous human assessment.",
+      "No audio, hardware performance, human enjoyment, or AAA certification claim.",
+      "Mouse capture unavailable; right mouse button drag used. Some heading UI in returned beforePause lagged the photographed camera rotation."
+    ]
+  },
+  "ratingsOutOf10": {
+    "gameplay": 6,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 6,
+    "AAAReadiness": 3
+  },
+  "ratingReasons": {
+    "gameplay": "Recoveries, replenishment, charge interruptions and distinct coil targets make a coherent mission. My exposed stationary firing was punished. Navigation and distinguishing clean target lines consumed considerable effort; both runs died.",
+    "presentation": "Strong title/end typography, rain, wet-ground light, teal/amber palette and the large relay landmark create atmosphere. Geometry, robots, equipment and weapon remain conspicuously simple and repetitive.",
+    "usability": "Visible key hints, map freeze, objective distance, floor rings and exact outside-reach feedback enabled independent progress. Collision near machinery repeatedly defeated apparently plausible movement; service interactions were not learned.",
+    "readability": "Large mission and health text works well. Enemies overlap receiver signage, pillars/shutters obstruct firing, and several announcements plus coil panel compete with combat. Small compass/map and low-contrast material boundaries require interpretation.",
+    "AAAReadiness": "This is a promising bounded vertical slice by observed scope and finish. Simple assets, limited encounter variety and readability/navigation friction remain far from a polished large-production release; rating is an opinion within this limited test."
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "terminal": "death",
+      "missionTime": "01:16",
+      "score": 3535,
+      "eliminations": 3,
+      "accuracyPercent": 15,
+      "criticalEliminations": 2,
+      "phaseEvades": 1,
+      "recoveries": [
+        "Mara at00:17",
+        "Sera at00:33",
+        "Elian at00:56"
+      ],
+      "actions": "Shot initial induction guard with ADS, reloaded, advanced northwest using WASD and inspected M map. Followed west east-service opening, strafed west and held E successfully. Fired at sentinel without a kill, exited east, advanced toward Heart, corrected a0.6m reach deficit with short W and held E. Adjusted optic aim and gained second elimination. Traversed southeast; repeated movement stalled at low cover while health fell100 to43 to5. Shift produced PHASE EVADE +75. Turned east, jumped forward and fired a burst into equipment rather than a clean enemy line. Strafed south/east around machinery, corrected East Archive reach1.5m with diagonal movement, held E. Turned south, sprinted toward Custodian, then west around hall edge.",
+      "aimAndBoss": "First guard kill confirmed. Sentinel burst spent17 rounds without elimination; exact miss/block split unknown. Heart optic correction yielded second elimination. Boss first clear lane burst disabled coil3 (coil1/2 remained100). Subsequent23-round burst while repositioning did no visible coil damage, with a pillar/wall near line. Corrected right190 mouse delta, fired/reloaded/fired: coil2 OFF, coil1 last observed100. Final left30 correction and firing ended in death; final third elimination source uncertain.",
+      "service": {
+        "attempts": 0,
+        "completions": 0,
+        "note": "Saw SERVICE label near boss, did not approach or use it."
+      },
+      "upload": {
+        "attempted": false,
+        "completed": false,
+        "reason": "Custodian remained active at last live observation."
+      },
+      "evidence": [
+        "a1-map.jpg",
+        "a1-recover-try.jpg",
+        "a1-heart-recovery.jpg",
+        "a1-east-try.jpg",
+        "a1-east-corrected.jpg",
+        "a1-boss-fire.jpg",
+        "a1-boss-next.jpg",
+        "a1-coil-correction.jpg",
+        "a1-final-coil.jpg"
+      ]
+    },
+    {
+      "number": 2,
+      "terminal": "death",
+      "missionTime": "01:20",
+      "score": 3540,
+      "eliminations": 3,
+      "accuracyPercent": 16,
+      "criticalEliminations": 3,
+      "phaseEvades": 0,
+      "recoveries": [
+        "Mara at00:40",
+        "Sera at00:54",
+        "Elian at01:07"
+      ],
+      "actions": "Clicked visible Deploy Again. Killed induction guard and reloaded; tried right-side approach toward repair/manual-cutoff signage. W/D motion repeatedly blocked against coil structure; backed up and moved left, then used central/west route. Recovered Mara. Aimed sentinel with right310,y20 and fired16 without kill, then corrected right105,y10 and fired12; elimination confirmed. Returned facing north, strafed east, reloaded, approached Heart. W450ms then Shift and E recovered Sera, optic burst yielded third kill. Backed south first before east traversal to avoid prior cover trap. East approach E initially0.2m short; D180ms then E recovered Elian. Fired at interceptor without confirmed kill. Reloaded, turned south using2400 delta, sprinted to hall, moved further south then turned west; wall blocked sight. Strafed south to opening and aimed boss.",
+      "aimAndBoss": "Sentinel initial aim was left of moving target/near low cover; correction confirmed kill. Heart guard optic attack after Shift confirmed kill. East interceptor moved right of crosshair; ten shots yielded no kill. Boss firing27 rounds after right75,y-30 correction had all three coils still100 at01:17; target gap/shutters/aim obstruction uncertain. Reload and left30,y5 correction ended in death before another live damage capture. No boss disable confirmed.",
+      "service": {
+        "attempts": 0,
+        "completions": 0,
+        "note": "Tried navigating toward repair/manual-cutoff signage early but never reached an interaction prompt or used service."
+      },
+      "upload": {
+        "attempted": false,
+        "completed": false,
+        "reason": "All coils last observed100."
+      },
+      "evidence": [
+        "a2-start.jpg",
+        "a2-service-route.jpg",
+        "a2-around-coils.jpg",
+        "a2-west-detour.jpg",
+        "a2-mara.jpg",
+        "a2-sentinel-fire.jpg",
+        "a2-sentinel-correction.jpg",
+        "a2-heart-recovered.jpg",
+        "a2-east-recover.jpg",
+        "a2-east-corrected.jpg",
+        "a2-open-lane.jpg",
+        "a2-coil3-fire.jpg",
+        "a2-coil-aim-correction.jpg"
+      ]
+    }
+  ],
+  "controlLearning": [
+    "Menu explained three cores, jammer then marked-deck upload.",
+    "HUD taught Ctrl sprint, Shift phase dash, Space vault/jump, E hold recovery, RMB aim; driver help supplied same ordinary keys.",
+    "M map clarified wall and low-cover collision, archive positions and approach names.",
+    "Exact outside-reach message made small recovery correction actionable.",
+    "Used rifle only; no crouch/shotgun evaluation."
+  ],
+  "uncertainty": [
+    "No continuous live human reaction testing.",
+    "Misses versus armor/occlusion cannot always be separated from screenshots; report does not infer hidden hit state.",
+    "No service completion or upload behavior tested.",
+    "No final coil1 damage known after last screenshot in attempt1."
+  ],
+  "cleanup": {
+    "driverPid": 85933,
+    "chromePid": 85943,
+    "closeResponse": {
+      "reason": "input ended or close requested",
+      "browserClosed": true
+    },
+    "driverExitCode": 0,
+    "verification": {
+      "command": "ps -p 85933,85943 -o pid=,comm=",
+      "exitCode": 1,
+      "stdout": "",
+      "meaning": "Both exact owned PIDs absent"
+    }
+  },
+  "evidenceDirectory": "docs/media/build62-review2",
+  "actionLog": "Driver-generated evidence directory contains captures and session logs."
+}
