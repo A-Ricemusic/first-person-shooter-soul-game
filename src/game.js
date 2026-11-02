@@ -1,3 +1,4 @@
+import {nearbyReceiver} from './recovery-feedback.js';
 import {focusedCustodianTarget} from './custodian-targets.js';
 import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
 import {nearLowCover} from './control-hints.js';
@@ -852,10 +853,11 @@ export class Game {
     const project=(position)=>{const delta=position.clone().sub(this.camera.position),forward=new THREE.Vector3();this.camera.getWorldDirection(forward);const front=delta.dot(forward)>0;const p=position.clone().project(this.camera);return {x:p.x,y:p.y,front,distance:delta.length(),bearing:Math.atan2(delta.x,-delta.z)+this.yaw};};
     const shelter=MEDICAL.shelter;
     const inMedicalBay=this.player.x>=shelter.minX&&this.player.x<=shelter.maxX&&this.player.z>=shelter.minZ&&this.player.z<=shelter.maxZ&&this.player.y<shelter.ceiling;
-    const markers=this.coreNodes.filter(c=>!c.collected&&(!this.routeGoal||`core-${c.id}`===this.routeGoal)).map(c=>{
+    const local=nearbyReceiver(this.coreNodes.map(c=>({id:c.id,collected:c.collected,distance:recoveryDistance(this.player,c.position,profileOf(this))})));
+    const markers=this.coreNodes.filter(c=>!c.collected&&(local?c.id===local.id:!this.routeGoal||`core-${c.id}`===this.routeGoal)).map(c=>{
       const distance=recoveryDistance(this.player,c.position,profileOf(this));
       const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
-      return {id:`core-${c.id}`,kind:'core',approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
+      return {id:`core-${c.id}`,kind:'core',suppressed:c.id===local?.id&&distance<4.5,approachHint,occluded:!this.hasLineOfSight(this.player,c.position.clone().setY(1.7),0),label:CORE_SITES[c.id].name,...project(c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:distance<RECOVERY_RADIUS};
     });
     if(this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
@@ -877,7 +879,7 @@ export class Game {
     for(const e of this.enemies)if(this.hasLineOfSight(this.player,this.enemyOpticPosition(e),0)&&(e.lastHit>this.runTime-3||e.lastAttack>this.runTime-2.4||(e.windup>0||e.contactWindup>0))){const p=project(this.enemyOpticPosition(e));if(p.distance<32)markers.push({id:`enemy-${e.id}`,kind:'enemy',type:e.type,label:e.contactWindup>0?'DISCHARGE / SHIFT OR BACK AWAY':e.type==='warden'?(e.armorOpen>0?'WARDEN / ARMOR OPEN':'WARDEN / SHIFT OR OPTIC'):e.type==='stalker'?'INTERCEPTOR':'SENTINEL',health:e.health/e.maxHealth,charging:e.windup>0||e.contactWindup>0,recent:e.lastAttack>this.runTime-2.4,...p});}
     if(this.custodian.active&&!this.custodian.dead&&this.custodian.coils.some(n=>n.hp>0&&this.hasLineOfSight(this.player,n.origin,0))){const p=project(this.custodian.group.position.clone().setY(2.18)),aimed=custodianAim(this);if(p.distance<32)markers.push({id:'custodian-focus',kind:'enemy',type:'custodian',label:aimed?.label||(this.custodian.open>0?'CUSTODIAN / OPEN WINDOW':'CUSTODIAN / ARMORED SHUTTERS'),health:aimed?.health??this.custodian.coils.reduce((s,n)=>s+n.hp,0)/(480*this.difficulty.health),charging:this.custodian.windup>0,recent:this.custodian.lastAttack>this.runTime-2.4,...p});}
     const focus=this.enemies.filter(e=>e.visible).map(e=>project(e.group.position.clone().add(new THREE.Vector3(0,e.type==='warden'?2:1.3,.3)))).filter(p=>p.front&&Math.abs(p.x)<.3&&Math.abs(p.y)<.4);
-    for(const m of markers)if(m.kind!=='enemy'&&m.kind!=='component')m.suppressed=m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
+    for(const m of markers)if(m.kind!=='enemy'&&m.kind!=='component')m.suppressed=!!m.suppressed||m.front&&Math.abs(m.x)<.28&&Math.abs(m.y)<.3&&(this.aim||focus.some(p=>p.distance<m.distance&&Math.abs(p.x-m.x)<.3&&Math.abs(p.y-m.y)<.35));
     return markers;
   }
   damageCuePosition() {
@@ -891,6 +893,7 @@ export class Game {
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position,profileOf(this)) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
+      localRecovery:nearbyReceiver(coreMarkers)?{id:closest.id,distance:closest.distance,remaining:Math.max(0,closest.distance-RECOVERY_RADIUS)}:null,
       crouchHint:!(closest?.distance<4.5)&&nearLowCover(this,this.world),
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',

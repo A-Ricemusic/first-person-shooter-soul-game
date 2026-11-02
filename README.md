@@ -58,3 +58,5 @@ Build56: **C** toggles physical crouch (1.05 m eye, 1.25 m body, 3 m/s). Ctrl re
 Build57 teaches C beside nearby low cover using the existing controls strip. The short lesson stays visible during combat, then retires after a completed crouch; recovery and service-grate instructions keep priority. Combat and posture tuning are unchanged.
 
 Build58 replaces the generic Custodian diamond with one small numbered component bracket when a physical coil surface is clear. Foreign cover, the machine itself and nearer enemies block the cue; it carries no offscreen tracking arrow. The existing aim readout identifies inert housing. Damage, assets and mission rules remain unchanged. Evidence and ordinary-play limitations are recorded in `docs/human.html`.
+
+Build59 aligns nearby receiver feedback: local heading, scanner and waypoint identify the same person while the planned map route stays selected. The existing prompt shows how far outside recovery reach the player is, with larger text and no duplicate close waypoint label. Recovery radius, hold time, world geometry and combat rules are unchanged.
