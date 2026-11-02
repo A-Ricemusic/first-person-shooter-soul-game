@@ -47,7 +47,7 @@
 .combat-priority #memory-card{padding:10px 14px;opacity:.8}
 .combat-priority #memory-card p,.combat-priority #memory-card #memory-role{display:none}
 .combat-priority #memory-card h3{margin:5px 0;font-size:19px}
-.combat-priority #field-controls,.combat-priority #event-feed{visibility:hidden}
+.combat-priority #field-controls:not(.contextual),.combat-priority #event-feed{visibility:hidden}
 .combat-priority #announcement{font-size:13px;max-width:360px;left:28px;top:150px;text-align:left;transform:none}
 body:not(.in-game) #waypoints{visibility:hidden}
 
@@ -74,3 +74,5 @@ body:not(.in-game) #waypoints{visibility:hidden}
 #extraction-panel #custodian-cells{height:auto;display:flex;justify-content:center;gap:12px;background:none;margin:9px 0;color:#ffd29c}#extraction-panel #custodian-cells span{display:inline;margin:0;letter-spacing:1px;font:11px monospace}
 
 #route-selection{display:flex;flex-wrap:wrap;gap:6px;pointer-events:auto;margin:10px 0;font:13px sans-serif}#route-selection button{color:#deeeee;background:#18343f;border:1px solid #567480;padding:7px;cursor:pointer}#route-selection button[aria-pressed="true"]{border-color:#9ffff0;background:#285453}#route-selection button:disabled{opacity:.5;cursor:default}#route-selection span{width:100%;color:#a9e8db}#facility-map{max-height:calc(100vh - 24px);overflow:auto;pointer-events:auto}#facility-canvas{max-height:calc(100vh - 270px);object-fit:contain}
+
+#field-controls.contextual{left:28px;bottom:140px;transform:none;width:min(320px,calc(100vw - 56px));font-size:12px;border-color:#8ee8e077;white-space:normal;text-align:center;max-width:320px}#field-controls.contextual kbd{font-size:14px}#field-controls.contextual span{display:block;margin-top:7px;font-size:11px;letter-spacing:.4px;color:#c7dbd6}

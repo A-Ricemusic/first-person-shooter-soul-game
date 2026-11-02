@@ -1,4 +1,5 @@
 import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
+import {nearLowCover} from './control-hints.js';
 import {shootBreacher,buildBreacher,poseBreacher} from './breacher.js';
 import {CONTACT_WINDUP,fallbackContact,attachContact,contactReach,animateContact,cancelContact} from './contact-discharge.js';
 import {prepareCustodianTurn,custodianAim,custodianObjectiveVisible,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
@@ -286,7 +287,7 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
     this.exitBoundary.material.color.setHex(0x637b83); this.exitBeam.visible = false;
-    this.contactHint=false; resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
+    this.contactHint=false; this.crouchLearned=false; resetCustodian(this); this.encounters = new Set(); this.phaseCueAt = -100;
     this.spawnEnemy(new THREE.Vector3(0,0,22),'warden',5,'guard'); this.phase = 'playing'; this.audio.setActive(true); this.animate(0); this.requestLock(); this.event('phase', 'Induction guard ahead. Break its amber charge with Shift, aim at its optic, or flank via either side.'); this.emit();
   }
   restart(options = {}) { this.start(options); }
@@ -543,6 +544,7 @@ export class Game {
     const direction = this.moveDirection(), sprint = this.keys.has('ControlLeft') || this.keys.has('ControlRight');
     if(sprint&&this.grounded&&!this.vault&&!(this.dashTime>0))this.crouchRequested=false;
     updatePosture(this,this.world,dt);
+    if(this.crouchRequested&&profileOf(this).eyeHeight<=1.05+1e-6)this.crouchLearned=true;
     const speed = profileOf(this).eyeHeight<1.7-1e-6 ? 3 : this.aim ? 3.1 : sprint ? 8 : 5.5;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
     else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
@@ -884,6 +886,7 @@ export class Game {
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position,profileOf(this)) }));
     const closest = coreMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
+      crouchHint:!(closest?.distance<4.5)&&nearLowCover(this,this.world),
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
