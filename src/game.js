@@ -1,3 +1,4 @@
+import {CombatFeedback,fireOrigin,hitNormal,updateCharge} from './combat-feedback.js';
 import {shootBreacher,buildBreacher,poseBreacher} from './breacher.js';
 import {CONTACT_WINDUP,fallbackContact,attachContact,contactReach,animateContact,cancelContact} from './contact-discharge.js';
 import {prepareCustodianTurn,custodianAim,custodianObjectiveVisible,createCustodian,resetCustodian,updateCustodian,hitCustodian,clearCustodianLines} from './custodian.js';
@@ -74,7 +75,7 @@ export class Game {
     this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 1.12;
-    this.scene = new THREE.Scene(); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
+    this.scene = new THREE.Scene(); this.combatFeedback=new CombatFeedback(this.scene); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
     this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
     this.world = await buildWorld(this.scene);
     this.custodian=await createCustodian(this);
@@ -306,7 +307,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { if(this.routeTrace)this.routeTrace.visible=false;this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
-    this.vault=null;
+    this.vault=null; this.combatFeedback?.clear();
     this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
     [...this.enemies, ...this.projectiles, ...this.effects, ...this.pickups].forEach(item => {
       const object = item.mesh || item.group;
@@ -415,7 +416,7 @@ export class Game {
     this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045; this.flashJustTriggered = true;
     const direction = new THREE.Vector3(); this.camera.getWorldDirection(direction);
     const spread = this.aim ? 0.0014 : 0.006; direction.x += (Math.random() - 0.5) * spread; direction.y += (Math.random() - 0.5) * spread; direction.normalize();
-    this.ray.set(this.player, direction); let distance = 120, hit = null, headshot = false;
+    this.ray.set(this.player, direction); let distance = 120, hit = null, headshot = false, actorNormal=null;
     this.raycaster.set(this.player,direction);
     const propHit=capacitorShot(this.ray,this.raycaster,this.world.capacitors,this.world.colliders);
     distance=propHit.distance;
@@ -423,32 +424,32 @@ export class Game {
       const body = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, this.sentinelAsset ? 1.3 : 1.04, 0)), this.sentinelAsset ? 0.68 : 0.53);
       const head = new THREE.Sphere(enemy.group.position.clone().add(new THREE.Vector3(0, enemy.type==='warden' ? 2 : 1.3, enemy.type==='warden' ? .3 : .43).applyAxisAngle(UP, enemy.group.rotation.y)), 0.24);
       const h = this.ray.intersectSphere(head, new THREE.Vector3());
-      let b;
+      let b,enemyNormal=direction.clone().negate();
       if (enemy.wardenRig || enemy.droneRig) {
         // Authored shoulders/skids are physical body targets; the old sphere both
         // missed visible armor edges and admitted empty-space hits. Precision
         // remains the same fixed 0.24m sphere, independent of shutter motion.
         enemy.group.updateWorldMatrix(true, true);
         this.raycaster.set(this.player, direction);
-        b = this.raycaster.intersectObject((enemy.wardenRig||enemy.droneRig).model, true)[0]?.point;
+        const intersection=this.raycaster.intersectObject((enemy.wardenRig||enemy.droneRig).model, true)[0]; b=intersection?.point; enemyNormal=hitNormal(intersection,direction);
       } else b = this.ray.intersectSphere(body, new THREE.Vector3());
       const precision = h && h.distanceTo(this.player)<distance;
       const point = precision ? h : b;
-      if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!precision; }
+      if (point && point.distanceTo(this.player) < distance) { distance = point.distanceTo(this.player); hit = enemy; headshot = !!precision; actorNormal=precision?point.clone().sub(head.center).normalize():enemyNormal; }
     }
     this.custodian.group.updateWorldMatrix(true,true);
     let bossHit=this.raycaster.intersectObject(this.custodian.model,true)[0];
     if(bossHit&&bossHit.distance<distance){distance=bossHit.distance;hit=null;}else bossHit=null;
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
-    if(bossHit) { hitCustodian(this,bossHit); for(let i=0;i<2;i++)this.particle(end,0xb6c5ca,.18,.025); } else if (hit) {
+    if(bossHit) { hitCustodian(this,bossHit);  } else if (hit) {
       const damage=headshot ? 82 : hit.type==='warden' && !(hit.armorOpen>0) ? 17 : 34;
       this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= damage;
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
-      for (let i = 0; i < 4; i++) this.particle(end, headshot ? 0xffffff : 0xff9a45, 0.35, 0.045);
+      hit.feedbackKind=headshot?'critical':hit.type==='warden'&&!(hit.armorOpen>0)?'armor':'damage';this.combatFeedback.impact(end,actorNormal,hit.health<=0?'kill':hit.feedbackKind,this.options.reducedMotion);
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
       if (hit.health <= 0) this.killEnemy(hit, headshot);
-    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); for (let i = 0; i < 3; i++) this.particle(end, 0xffbf75, 0.3, 0.03); }
+    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion); }
     this.event('shot', '', { ammo: this.ammo });
   }
 
@@ -511,9 +512,10 @@ export class Game {
     if (this.health <= 0) { this.health = 0; this.finish(false); } this.emit();
   }
   finish(won) {
+    this.combatFeedback?.clear();for(const e of this.enemies)if(e.chargeLine)e.chargeLine.visible=false;
     cancelCapacitors(this.world.capacitors);
     for(const e of this.enemies){e.contactWindup=0;e.contactFlash=0;animateContact(e,0);}
-    clearCustodianLines(this.custodian); this.vault=null; this.phase = won ? 'won' : 'lost'; this.audio.setActive(false, false); this.clearInput();
+    clearCustodianLines(this.custodian); this.vault=null; this.phase = won ? 'won' : 'lost';for(const e of this.enemies){e.hitFlash=0;updateCharge(this,e);} this.audio.setActive(false, false); this.clearInput();
     if (won) { this.score += Math.round(this.health * 10 + Math.max(0, 600 - this.runTime) * 4); this.audio.win(); } else this.audio.lose();
     if (document.pointerLockElement === this.canvas) document.exitPointerLock?.();
     this.event(won ? 'win' : 'lose', won ? 'SIGNAL RESTORED. YOU BROUGHT THEM HOME.' : 'SIGNAL LOST. EVERY SOUL DESERVES ANOTHER CHANCE.'); this.emit();
@@ -673,6 +675,7 @@ export class Game {
       this.animateDrone(enemy,dt);
       animateContact(enemy,dt);
     }
+    for(const enemy of this.enemies)updateCharge(this,enemy);
   }
 
   animateDrone(enemy,dt) {
@@ -693,7 +696,7 @@ export class Game {
   }
   enemyFire(enemy) {
     enemy.lastAttack=this.runTime;
-    const origin = enemy.group.position.clone().add(new THREE.Vector3(0, enemy.droneRig?1.3:1.2, enemy.droneRig?.43:0).applyAxisAngle(UP,enemy.group.rotation?.y||0));
+    const origin = fireOrigin(enemy);
     const velocity = enemy.target.clone().sub(origin).normalize().multiplyScalar(enemy.type === 'stalker' ? 18 : 15);
     const projectile = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.16, 8), new THREE.MeshBasicMaterial({ color: 0xff6a31 }));
     projectile.quaternion.setFromUnitVectors(UP, velocity.clone().normalize());
@@ -756,6 +759,7 @@ export class Game {
   }
 
   animate(dt) {
+    this.combatFeedback?.update(dt);
     this.animTime += dt; this.world.update?.(dt, this.animTime);
     for (const c of this.coreNodes) {
       const progress=this.channelCore===c?Math.min(1,this.coreProgress/RECOVERY_SECONDS):0;
@@ -906,7 +910,7 @@ export class Game {
   dispose() {
     this.vault=null;
     this.disposed = true; cancelAnimationFrame(this.frameId); this.cleanups.forEach(fn => fn());
-    this.audio.dispose();
+    this.audio.dispose(); this.combatFeedback?.dispose();
     // Scene clones and unloaded templates share geometry. Release each resource
     // once, including template parts not present in a live actor.
     this.scene?.traverse(o => { if(o.isInstancedMesh)o.dispose(); });

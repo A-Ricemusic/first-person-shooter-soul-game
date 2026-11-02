@@ -1,0 +1,526 @@
+{
+  "build": 53,
+  "base": "51ac033113d7fc7fdcb867758d2244d8fd82897c",
+  "scope": "Presentation only: existing shutter/armor emission, depth-tested cover-clipped patrol charging rays, pooled resolved surface/armor/damage/critical/defeat impact strokes. No new authored mesh assets, target geometry or combat numeric changes. Original firing origin formula shared without changing its value.",
+  "pool": {
+    "marks": 48,
+    "meshesPerMark": 2,
+    "materials": 48,
+    "markLifeSeconds": [
+      0.22,
+      0.3,
+      0.38
+    ],
+    "chargeLinesMaximum": 12,
+    "diagnosticEventsMaximum": 64
+  },
+  "validation": {
+    "suite": "build53-implementation-suite-suite.json",
+    "initialRows": 58,
+    "initialContextFailures": [
+      "warden-art",
+      "warden-motion"
+    ],
+    "reruns": "build53-implementation-reruns.json",
+    "focused": "build53-implementation-feedback-render4.json",
+    "focusedChecks": 23,
+    "extra": "build53-implementation-feedback-extra.json",
+    "extraChecks": 29,
+    "renderedSequences": "16 charge frames plus 16 actual impact frames; two widths, hip and ADS. Extra fixture uses rifle in hip and breacher in ADS; health padded solely in arranged rendering fixtures.",
+    "attacker": "56 additional moving rendered frames passed.",
+    "failures": "Warden contexts destroyed during implementation HMR; unchanged reruns passed. Focused wait initially polled disabled RAF; later body fixture retained recoil and charge assertion retained hit flash. Both setup errors corrected without runtime changes. First capture sets retained stale pause or resize-cleared frames; final sequences wait after resize and preserve test framebuffer. All failed reports/captures retained.",
+    "postReview": "Extra boss gates and impact render fixture only; no runtime/assets/driver changes after freeze."
+  },
+  "implementationPlay": [
+    {
+      "prefix": "build53-implementation-play",
+      "terminal": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nMARA SOLBERGStation medic\nELIAN VALERelay engineer\nSERA NORDNight operator\nELIMINATIONS\n1\nMISSION TIME\n00:49\nSCORE\n3,180\n5% ACCURACY \u00b7 1 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES\nDEPLOY AGAIN\n\u2197\nREAD RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "closed": [],
+      "keys": [
+        "",
+        "ControlLeft",
+        "KeyA",
+        "KeyD",
+        "KeyE",
+        "KeyR",
+        "KeyS",
+        "KeyW",
+        "Space"
+      ]
+    },
+    {
+      "prefix": "build53-implementation-play2",
+      "terminal": {
+        "phase": "end",
+        "outcome": "OPERATOR LOST\nTHE STATION\nREMEMBERS.\n\nThe relay is still calling. Take a breath. Find another way through.\n\nELIMINATIONS\n1\nMISSION TIME\n00:51\nSCORE\n100\n5% ACCURACY \u00b7 0 CRITICAL ELIMINATIONS \u00b7 0 PHASE EVADES\nDEPLOY AGAIN\n\u2197\nREAD RECOVERED MEMORIESRETURN TO TITLE"
+      },
+      "closed": [],
+      "keys": [
+        "",
+        "ControlLeft",
+        "Digit1",
+        "Digit2",
+        "KeyA",
+        "KeyD",
+        "KeyE",
+        "KeyR",
+        "KeyS",
+        "KeyW",
+        "ShiftLeft",
+        "Space"
+      ]
+    }
+  ],
+  "privileged": {
+    "report": "build53-implementation-privileged.json",
+    "phase": "won",
+    "cores": 3,
+    "bossDead": true,
+    "coils": [
+      0,
+      0,
+      0
+    ],
+    "upload": 1,
+    "errors": [],
+    "method": "Exact internal positions/geometry for path and aim, ordinary inputs; no teleport/resources/killAll. Not independent discovery/fun."
+  },
+  "reviews": [
+    {
+      "raw": "build53-review1.json",
+      "ratings": {
+        "G_gameplay": 6.5,
+        "P_presentation": 7.5,
+        "U_usability": 6.5,
+        "R_readiness": 5.5,
+        "AAA_ambition_readiness": 3.5
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "result": "loss",
+          "missionTime": "01:31",
+          "eliminations": 3,
+          "score": 3380,
+          "accuracyPercent": 10,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "memories": [
+            "Mara Solberg",
+            "Sera Nord",
+            "Elian Vale"
+          ],
+          "boss": "Reached Custodian. All three coils read 100% in last readable boss photograph. Fired at it with poor aim; no verified damage, destroyed coil or boss defeat.",
+          "upload": "Not reached"
+        },
+        {
+          "number": 2,
+          "result": "loss",
+          "missionTime": "01:46",
+          "eliminations": 2,
+          "score": 2200,
+          "accuracyPercent": 22,
+          "criticalEliminations": 0,
+          "phaseEvades": 0,
+          "memories": [
+            "Mara Solberg",
+            "Sera Nord"
+          ],
+          "boss": "Not activated in this attempt",
+          "upload": "Not reached"
+        }
+      ],
+      "cleanup": {
+        "closeCommand": {
+          "op": "close"
+        },
+        "driverPid": 37291,
+        "chromePid": 37301,
+        "closedEvent": {
+          "browserLaunched": true,
+          "browserClosed": true,
+          "reason": "input ended or close requested"
+        },
+        "driverExitCode": 0,
+        "verification": "ps -p 37291,37301 -o pid=,comm= returned empty output with exit1: both exact PIDs absent. No global kill used."
+      }
+    },
+    {
+      "raw": "build53-review2.json",
+      "ratings": {
+        "G_gameplay": 6,
+        "P_presentation": 7,
+        "U_usability": 6,
+        "R_readiness": 5,
+        "AAA_ambition_readiness": 3
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "loss",
+          "mission_time": "01:08",
+          "kills": 1,
+          "memories": [
+            "Mara Solberg",
+            "Sera Nord"
+          ],
+          "score": 2100,
+          "accuracy_percent": 23,
+          "critical_eliminations": 0,
+          "phase_evades": 0,
+          "observations": [
+            "Opening rifle burst consumed 18 rounds, confirmed Warden neutralized +100; health 100, shield 60 to 22.",
+            "Map made west intake and archive layout understandable; movement initially collided with storage/walls, later reached receiver and held E.",
+            "Mara recovery restored supplies; Sera recovery confirmed on memory card and changed objective to Elian.",
+            "A later 13-round burst at a nearby interceptor did not increase kills; no exact outgoing damage numbers observed.",
+            "Shield regenerated to 60 in cover. Later exposed eastward travel reduced health from 100 to 9 and shield to zero; terminal loss followed during capture/pause transition."
+          ]
+        },
+        {
+          "attempt": 2,
+          "outcome": "loss",
+          "mission_time": "00:38",
+          "kills": 2,
+          "memories": [],
+          "score": 280,
+          "accuracy_percent": 4,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "observations": [
+            "Higher aim, ADS, rifle fire and Shift produced WARDEN // CRITICAL +180 and SOUL SHIFT feedback. Health 100/shield 51, rifle 14 rounds, reserve 204 after pickup feedback. Cannot isolate which part of the combined inputs caused the result.",
+            "Patrol rifle burst consumed 23 rounds with no new kill; misses or cover hits cannot be separated from snapshots.",
+            "Pump breacher engagement advanced kill count from one to two, consumed its loaded ammunition; precise target identity and damage unconfirmed.",
+            "Visible SHOOT ISOLATOR sign was approached, but no successful isolator destruction confirmed.",
+            "Health fell 100 to 61 to 17 with shield zero while navigating and firing; terminal loss followed."
+          ]
+        }
+      ],
+      "cleanup": {
+        "close_requested": true,
+        "driver_exit_code": 0,
+        "driverPid": 37984,
+        "chromePid": 37994,
+        "browserClosed": true,
+        "verification_command": "ps -p 37984,37994 -o pid=,comm=",
+        "verification_exit_code": 1,
+        "verification_output": "",
+        "both_exact_pids_absent": true,
+        "global_kills_used": false
+      }
+    }
+  ],
+  "freeze": {
+    "before-review1": "3a4ffde467d4fe52b1f1f52b9b7ea61752c950267f1f1b491b9e4e74d6c7dd35",
+    "between-reviews": "3a4ffde467d4fe52b1f1f52b9b7ea61752c950267f1f1b491b9e4e74d6c7dd35",
+    "after-review2": "3a4ffde467d4fe52b1f1f52b9b7ea61752c950267f1f1b491b9e4e74d6c7dd35",
+    "final": "3a4ffde467d4fe52b1f1f52b9b7ea61752c950267f1f1b491b9e4e74d6c7dd35"
+  },
+  "protectedParentArtifacts": [
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-0.jpg",
+      "sha256": "0bd5a898bac160f8981eaa13dd9f5c693d26363820bd40b4415f0682980a53e4"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-1.jpg",
+      "sha256": "a576e30a5c34f309d575d38020ec484015f05a8eacc0be8d1f1fee3e44bfdaeb"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-2.jpg",
+      "sha256": "51e1b07de9a439a64c7a97e5c19ab26d60e68aa3c0a40b406e0f24e469663d27"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-3.jpg",
+      "sha256": "9f00f6ef80a89dbafb9d7fbcf6d17729b95145ac0f6b3478fca4d867d1e59d22"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-4.jpg",
+      "sha256": "de1e28e61e81c09036daab61935fe65ca1cbf4300bc8fcfad1685ee419debd2a"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-5.jpg",
+      "sha256": "64c7ff20911dfb85436b8de00cb48ad6919443190f05cc13fb1ab51037dd922c"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-ads-6.jpg",
+      "sha256": "0e5d7e8df33ff6efeb645a2dbd0e6964c2312b3bf7dbbbca3b4f3e12622207ae"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-0.jpg",
+      "sha256": "9adb07ab8be95fbeee0edeb973bb797ea326ada9cf7a740a203339f4340afed2"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-1.jpg",
+      "sha256": "d79ae4f761cb7fae87af0c611bc22fcb124b4e9e95892dcdf13c855c897c795c"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-2.jpg",
+      "sha256": "f90440abfaf5cf02ca129b7742270141490566be8b270c61676b14f389ff2ce4"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-3.jpg",
+      "sha256": "f0b41b9c24552810d80b4a0208e07316273443feb48cc3ec743046a64a379131"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-4.jpg",
+      "sha256": "0b23efecd51e49061980efa524f7293702fb3ebe81771996f2e85a3ae1d72a73"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-5.jpg",
+      "sha256": "43214e866eb319982f19e7e4ce0b5cdf73bd8230be51078f859a804d8f5b7ebd"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-bay-hip-6.jpg",
+      "sha256": "5409004234fd34c954ead26a9f7e1c73fbc72690e53495cb367894f607a63a8d"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-0.jpg",
+      "sha256": "ec6a2f8fd74845a6f677f5547b010d65281c1e6f844b369531d947cbbdeeaea8"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-1.jpg",
+      "sha256": "e7afda792d410c21c64e890a5dfb2d7afa092ce9b7750a9d015767b35d1bed82"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-2.jpg",
+      "sha256": "8cc59c678b9a530c57694e56ee5c75a17849ea5cdcc9924340ceb04f7ddf4e01"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-3.jpg",
+      "sha256": "f04eba448efacf21e011590f02d968e13e6269e17f7524d60c89832dd57da3e1"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-4.jpg",
+      "sha256": "0f464c0deae62e0109ebe8fd7f5ed894269a0e66a82d631777cac08fdd3b7235"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-5.jpg",
+      "sha256": "7355f8f9636374bb99842db3ed78e8bc92fdc3d714221e4be01e53d57c70f91f"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-ads-6.jpg",
+      "sha256": "04d3a164995424044fd0d51030499613fb954eb790e6cb877fe5b406bbb99c88"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-0.jpg",
+      "sha256": "48b77448001b1e192dbf474d42bb16b6b8aac969a9131bd9899d43d5700d3a8d"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-1.jpg",
+      "sha256": "a033a05015506d4358260f5c3078b816a56aa57879d800b3da151a5a57bb1b75"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-2.jpg",
+      "sha256": "d18aa733084fe62b9ed6fde254b6817c05ea174878aeae797b922c64dbdbf0b3"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-3.jpg",
+      "sha256": "7825b10ce35ff6528969c3dc5adf6f83322a9b8b11c7d221b11950e68f01f7c7"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-4.jpg",
+      "sha256": "3ee7cb94b6416f32cfa490acb3b69e3bcdac9304cffa8ffd7c52285b8f15fa70"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-5.jpg",
+      "sha256": "85241b25db01b163ca88e0b6ed861760978cdf9f2f0b431bd95f2fa663ec6035"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1280-yard-hip-6.jpg",
+      "sha256": "31441ebd13fef407676a85ed3190b100cee3a98493835ce21b082179d4c7c066"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-0.jpg",
+      "sha256": "5db6d6275df3cb7b1bc74c58e225cadd43a3b1b3743b338ab93a982e3c130a9a"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-1.jpg",
+      "sha256": "9772fc057a79c894706fcfb9736d5bceaa2e3d5f64741be0f67ffc3f9175269b"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-2.jpg",
+      "sha256": "6ad7a1da2e0297747c60f1770415aacc40c122386e44c4157217fb07b3e8b967"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-3.jpg",
+      "sha256": "0f7418e723649acafbfbe5b6f5c1011f158f7dfc1c9ea23b7b29654a4ba27cf4"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-4.jpg",
+      "sha256": "4b34b9db80cb46760f1794690182eaf508c3013b372ec5da72f209c75eb2a693"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-5.jpg",
+      "sha256": "2dbe8082c7ad1499a5bf7d3c710530c56875775390d9c071729accdf490383ec"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-ads-6.jpg",
+      "sha256": "6af77654d7bf509d5e7e858d99534a2f2e9117f92a6748834b15f15d032bddd3"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-0.jpg",
+      "sha256": "14f1042a9cf36334ad5f8a5a675284d306451cb0d511bfd12010af5c69072b52"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-1.jpg",
+      "sha256": "27028a9bfdb0acba0e36ff19bf678b847e00bc3780bd6002c0b7c9bc4ebdb73e"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-2.jpg",
+      "sha256": "5cfb839f5e0bdb0ab9454ebfe850f0f894a43b91c5286bc3c49178437c96dfec"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-3.jpg",
+      "sha256": "cfafec6e2169432dadc7c4d67f7623532131390b8b93708d15ef289c6b9e9413"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-4.jpg",
+      "sha256": "6336482bfc2158ba18c2def670997207ce5c81258c7af8817add059f8a561959"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-5.jpg",
+      "sha256": "709e79ccb57954a5544566501eedaeb3cf4f58961038c6176e15b75f0d6bbbb8"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-bay-hip-6.jpg",
+      "sha256": "38f6c357c2fc404fe5252b659d4855c00b3b5046392c4a52703e0c2f4f2d9bb9"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-0.jpg",
+      "sha256": "bcb12956efb88047fb551e520d3829ed7825e325b77c673d2aa31891f1659f02"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-1.jpg",
+      "sha256": "3477b775c8e178fc21d5d576e2cc10cb09385315c1545fb97395794b6941c9c3"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-2.jpg",
+      "sha256": "600f13133622c4d7053dbd75140c78849874b3cbb2f8a6123bf77040fdc0e62d"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-3.jpg",
+      "sha256": "1bbcdf7119d128984701a64c50b030c5adc61f3950bffab84ff1e3ca756e7dbb"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-4.jpg",
+      "sha256": "e69be4741aea5fd7bc65cf9899ef7c7d0bcb56718eb5a221521bcbc4cd535e9c"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-5.jpg",
+      "sha256": "fa2ed5c18aa522ffec291fbb9bf7a3aae19ec8cad3cc5e1e7305e2ae3f3f7226"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-ads-6.jpg",
+      "sha256": "1135fccf1c9a91eff11f98c1bb88dc6d1bdb93033fbc56556ed79a2a636e65ef"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-0.jpg",
+      "sha256": "e5406bcf9cb2ec23a639a3d02a17ea4c1fb9bbadcb26dec26ed6035775484f6d"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-1.jpg",
+      "sha256": "185026ea28ef3d54479490bb487c67e685d067b8c0a8dd9e89414de40912927f"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-2.jpg",
+      "sha256": "88847807c37bb4034ce5364a42fe6db364c05cd8629b6d506c8705175b4c78ef"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-3.jpg",
+      "sha256": "85014aa6adb1a72d59218ef64f53d9571b1851ddfe9b9b8e056968d2de57b7f7"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-4.jpg",
+      "sha256": "798de58ab44de9c7d1dc16f9d0b67164c2a5a90786856a286ab56a71678943c0"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-5.jpg",
+      "sha256": "b0248d50b338e557c029634a2854fd22c71db08aaffbb34607fe878ef8042d78"
+    },
+    {
+      "path": "docs/media/build53-parent-attacker-1440-yard-hip-6.jpg",
+      "sha256": "8d772c5b802b5ceb59a59fa98b92530ee0160424c48d1cf252e321a3459f3ee1"
+    },
+    {
+      "path": "docs/media/build53-parent-production-mobile-menu.png",
+      "sha256": "85a7b365a29a3438157d30b622cc8823aee1e4cf72b5083956ad6f5f689bb159"
+    },
+    {
+      "path": "docs/media/build53-parent-production-title.png",
+      "sha256": "f4bc36a9441c01f82f38d4652ae73368e44e27780958434eb41632c9e9f1b336"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-attacker.json",
+      "sha256": "fda0a52f22232d3d330b156731d1a193e19a7e2869a1fe1422af4809954d4d03"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-attacker.txt",
+      "sha256": "c3690f8bb2be1bf13cb74656bd87bce5c61c98a08125e60a369ba7ea368c1449"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-custodian-feedback.json",
+      "sha256": "22b3e37d265b64dc5f27794e092c546935efc792d250b5ba13b9db6b6551a473"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-custodian-feedback.txt",
+      "sha256": "91e09e71c74da38c2422ba7e93ab2286ce9e157b2fe38eefa841c3be14166e3a"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-damage-origin.json",
+      "sha256": "1789253eb37be8bd7b0843387443e250bd1d4ebb9e8714a7238066ea7de16189"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-damage-summary.json",
+      "sha256": "ae1e371a00af75e7839dcf1fbf9d3360032533a6b901c327b22e9c95ffa95273"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-drone-edges.json",
+      "sha256": "65137268c43da94cb8c71dc6085165273e9d4b0ae225f551597486e00de1eff0"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-drone-edges.txt",
+      "sha256": "f252e2aa08b73610fa3cd5b8b98fe7a5798e03a61c23869662c214f5f86cd69d"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-production.json",
+      "sha256": "884078ba0cada486378d0faf2908a25b24efb5eb3a388708c25f17e455d2de5e"
+    },
+    {
+      "path": "docs/quality-reviews/build53-parent-production.txt",
+      "sha256": "9c51420a45cfb62af8ba7f5bd76c7bcc2318903926e5d9c03fa11ac00f2bcf6e"
+    }
+  ],
+  "parentSectionSha256": "fe5624071826b7d21aff7df4a6c7f3539711192c00ef20675f77e273f807af44",
+  "rawEvidenceHashes": {
+    "docs/quality-reviews/build53-review1.json": "dfc1ddae98ae089c32a18344d59fe2bbd8bafdeaf1b86aa4781883d379b01ace",
+    "docs/media/build53-review1/actions.jsonl": "30298882e735031b3b4fe2adcb999870e57f93b289d1b67da6b9c0b030a147b1",
+    "docs/quality-reviews/build53-review2.json": "2b43663edb21ca6e15ec9c1792a66dff6d5c658d547082d922488722179b339c",
+    "docs/media/build53-review2/actions.jsonl": "75143f6c745e921bce1825f2774776a65a333d36e84292751537cef6cce16da8"
+  },
+  "limits": "Four independent losses; reviewer1 reached active Custodian but no independently verified coil damage or upload. Source-informed ordinary attempts lost. No ordinary mission win. New physical cue benefit not independently isolated; incoming off-axis/shot attribution and collision navigation remain concerns. Vault completion not independently established. Synthetic DOM inputs/capture pauses confound aim/timing/fairness. No causal previous-review comparison, human enjoyment/audio/hardware/AAA certification. Overall mission unfinished.",
+  "production": {
+    "checks": 14,
+    "errors": [],
+    "failedRequests": [],
+    "report": "build53-implementation-shipped-production.txt",
+    "dossierReferences": 745,
+    "missing": []
+  },
+  "protectedServer": {
+    "HTTP": {
+      "http://127.0.0.1:5173/": 200,
+      "http://127.0.0.1:61467/": 200,
+      "http://bonnies-macbook-air.tail21e865.ts.net:5173/": 200
+    },
+    "process": "63172 /opt/homebrew/Cellar/python@3.15/3.15.2/Frameworks/Python.framework/Versions/3.15/Resources/Python.app/Contents/MacOS/Python -m http.server 61467 --bind 127.0.0.1 --directory /tmp/soulfall-play-build23-_4s5lus4",
+    "noSnapshotServeTailscaleChanges": true
+  },
+  "cleanup": {
+    "implementationDriversExit0": true,
+    "ownedImplementationPidsAbsent": true,
+    "reviewDriversExit0": true,
+    "reviewOwnedPidsAbsent": true
+  }
+}

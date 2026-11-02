@@ -17,6 +17,8 @@ Open the printed local URL and choose **Enter the Storm**. Escape pauses and rel
 
 WASD move · mouse look · LMB fire · RMB aim · R reload · Shift phase dash · Ctrl sprint · Space contextual low-cover vault / jump · hold E recover · M paused facility map · hold Tab ground trace · Escape pause.
 
+Charging emitters glow amber and cast a physical sightline that stops at cover. Bullet strikes show gray surface chips, amber armor chips, cyan damage, and pale optic strikes. These cues describe actual contact; empty shots produce no impact.
+
 The map lets you select a receiver. The optional trace follows known ground geometry; stay alert for patrols. A close phase break can interrupt a charging attack. Robot proximity discharges have a visible windup and can also be interrupted or avoided.
 
 ## Verify and playtest

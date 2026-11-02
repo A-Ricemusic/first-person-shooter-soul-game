@@ -1,0 +1,129 @@
+{
+  "build": 53,
+  "reviewer": "build53-review1",
+  "url": "http://127.0.0.1:5173/",
+  "method": "Independent ordinary visible play only; installed visible-playtest driver, browser-timed synthetic DOM input and capture pauses. No source/tests/prior reviews/hidden state read. No subagents. Exactly two terminal attempts, then stopped.",
+  "ratings": {
+    "G_gameplay": 6.5,
+    "P_presentation": 7.5,
+    "U_usability": 6.5,
+    "R_readiness": 5.5,
+    "AAA_ambition_readiness": 3.5
+  },
+  "verdict": "Promising coherent vertical slice with useful tactical teaching and polished graphic identity. My observed combat and navigation did not yet feel consistently readable enough to call release ready. AAA readiness remains far lower than the strength of the title screen.",
+  "attempts": [
+    {
+      "number": 1,
+      "result": "loss",
+      "missionTime": "01:31",
+      "eliminations": 3,
+      "score": 3380,
+      "accuracyPercent": 10,
+      "criticalEliminations": 1,
+      "phaseEvades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord",
+        "Elian Vale"
+      ],
+      "boss": "Reached Custodian. All three coils read 100% in last readable boss photograph. Fired at it with poor aim; no verified damage, destroyed coil or boss defeat.",
+      "upload": "Not reached"
+    },
+    {
+      "number": 2,
+      "result": "loss",
+      "missionTime": "01:46",
+      "eliminations": 2,
+      "score": 2200,
+      "accuracyPercent": 22,
+      "criticalEliminations": 0,
+      "phaseEvades": 0,
+      "memories": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "boss": "Not activated in this attempt",
+      "upload": "Not reached"
+    }
+  ],
+  "observations": {
+    "gameplay": "First rifle optic burst took ammo 30 to 13 and showed WARDEN // CRITICAL +180 and one elimination. Second attempt close Shift plus breacher showed PHASE BREAK, DISCHARGE CANCELED, ARMOR OPEN 3s and WARDEN NEUTRALIZED +100 without initial health/shield loss. These different entry tactics were satisfying. Subsequent stationary bursts missed heavily. One archive burst consumed 24 rifle rounds with no kill while shield fell 41 to 3; correction plus reload/Shift produced second elimination, health 65, shield 0. Heart guard elimination raised first-run total to three with a phase-break announcement. Not every shot hit could be distinguished from these still captures.",
+    "damage": "Incoming fire had orange direction wedges, recent-fire enemy labels and red vignette. First run shield 60 to 41 on Mara recovery, then 3; correction ended health65 shield0. Later Custodian approach health98 shield3, then health75 shield0 before death. Second run health85 after Mara, then 68 visible on photograph after a returned UI read of85, then21, then5 after Heart guard fight. Sera recovery visibly restored health5 to25 and shield16. Final approach read22 health13 shield before terminal loss. Returned UI and screenshot can differ during capture; these are snapshots, not per-hit damage measurements.",
+    "presentation": "Rain, wet reflective floor, teal versus amber lighting, large station signs, circular relay landmark, geometric weapon silhouettes and restrained typography make a coherent atmospheric scene. Title and death panels look especially finished. Close walls and pillars remain visibly simple geometry/materials, and repeated compact robot shapes and a largely flat facility constrain AAA impression. Software WebGL fallback means no GPU performance conclusion.",
+    "usability": "Clear key strip, objective/distance, floor rings, map that explicitly pauses, recovery prompts, ammo and critical/phase messages helped. Map exposed all receivers and Custodian fairly. Low cover blocked movement repeatedly; multiple long inputs ended unchanged against corners or walls. The reminder to find an open approach helped but I still spent considerable time navigating collisions. Enemy labels and direction markers convey threat, but several attackers remained out of frame and health could fall rapidly while correcting aim. Tactical text can compete with multiple HUD regions.",
+    "readiness": "No pageErrors reported in driver results. Deployment, recovery, reload, weapon switch, map and retry worked in observed coverage. Two terminal loss screens were reached. No victory, upload, full memory prose, settings/accessibility, audio, sustained performance, or complete boss lifecycle coverage."
+  },
+  "limitations": [
+    "Browser-timed synthetic DOM inputs and automatic Escape/capture pauses limit physical timing, aim and fairness confidence.",
+    "Photographs and visible DOM snapshots can straddle active simulation frames; e.g. ammo01 versus screenshot00 and health85 versus screenshot68.",
+    "No per-shot hit count, exact damage amount or enemy health inferred from hidden data.",
+    "Handbook not opened; tactics learned from visible UI and driver help.",
+    "No upload or success conclusion."
+  ],
+  "evidence": {
+    "actions": "docs/media/build53-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build53-review1/archive-fight.jpg",
+      "docs/media/build53-review1/attempt2-archive.jpg",
+      "docs/media/build53-review1/attempt2-breacher.jpg",
+      "docs/media/build53-review1/attempt2-detour.jpg",
+      "docs/media/build53-review1/attempt2-east-push.jpg",
+      "docs/media/build53-review1/attempt2-east-recover.jpg",
+      "docs/media/build53-review1/attempt2-guard.jpg",
+      "docs/media/build53-review1/attempt2-heart-near.jpg",
+      "docs/media/build53-review1/attempt2-heart.jpg",
+      "docs/media/build53-review1/attempt2-last-recovery.jpg",
+      "docs/media/build53-review1/attempt2-mara.jpg",
+      "docs/media/build53-review1/attempt2-push.jpg",
+      "docs/media/build53-review1/attempt2-sentinel.jpg",
+      "docs/media/build53-review1/attempt2-start.jpg",
+      "docs/media/build53-review1/attempt2-west-lane.jpg",
+      "docs/media/build53-review1/attempt2-west.jpg",
+      "docs/media/build53-review1/coil-correction.jpg",
+      "docs/media/build53-review1/coil-one-fire.jpg",
+      "docs/media/build53-review1/coils-front.jpg",
+      "docs/media/build53-review1/custodian-route.jpg",
+      "docs/media/build53-review1/custodian-view.jpg",
+      "docs/media/build53-review1/deploy.jpg",
+      "docs/media/build53-review1/east-intake.jpg",
+      "docs/media/build53-review1/east-map.jpg",
+      "docs/media/build53-review1/east-route.jpg",
+      "docs/media/build53-review1/elian-recover.jpg",
+      "docs/media/build53-review1/heart-guard-fight.jpg",
+      "docs/media/build53-review1/heart-recover.jpg",
+      "docs/media/build53-review1/heart-route.jpg",
+      "docs/media/build53-review1/initial.jpg",
+      "docs/media/build53-review1/map-advance.jpg",
+      "docs/media/build53-review1/mara-recover.jpg",
+      "docs/media/build53-review1/optic-fire.jpg",
+      "docs/media/build53-review1/sentinel-correction.jpg",
+      "docs/media/build53-review1/turn-back.jpg",
+      "docs/media/build53-review1/west-approach.jpg",
+      "docs/media/build53-review1/west-lane.jpg"
+    ],
+    "terminalCommands": [
+      "node tools/visible-playtest.mjs --help",
+      "node tools/visible-playtest.mjs --out docs/media/build53-review1",
+      "ps -p 37291,37301 -o pid=,comm=",
+      "rg --files docs/media/build53-review1"
+    ],
+    "errors": [
+      "Two premature view_image calls failed because west-lane.jpg and attempt2-west-lane.jpg had not been written yet; each was later viewed successfully. No evidence deleted."
+    ],
+    "commandPreservation": "Every browser JSON command/result is preserved by driver actions.jsonl and tool conversation; help, terminal launch, process check, listing and report-writing calls remain in tool conversation."
+  },
+  "cleanup": {
+    "closeCommand": {
+      "op": "close"
+    },
+    "driverPid": 37291,
+    "chromePid": 37301,
+    "closedEvent": {
+      "browserLaunched": true,
+      "browserClosed": true,
+      "reason": "input ended or close requested"
+    },
+    "driverExitCode": 0,
+    "verification": "ps -p 37291,37301 -o pid=,comm= returned empty output with exit1: both exact PIDs absent. No global kill used."
+  }
+}

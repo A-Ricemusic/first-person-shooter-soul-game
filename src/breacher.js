@@ -1,3 +1,4 @@
+import {hitNormal} from './combat-feedback.js';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {capacitorShot,activateCapacitor} from './capacitors.js';
@@ -24,13 +25,13 @@ export function shootBreacher(g){
   g.custodian.group.updateWorldMatrix(true,true);const bh=g.raycaster.intersectObject(g.custodian.model,true)[0];
   if(bh&&bh.distance<distance){distance=bh.distance;target=null;impact=bh;}
   const scale=falloff(distance),end=g.player.clone().addScaledVector(dir,distance);
-  if(target&&scale>0){const optic=/^(Optic|RecessedOptic|OpticalPupil)$/.test(impact.object.name);const damage=(optic?21:target.type==='warden'&&!(target.armorOpen>0)?7:14)*scale;const entry=actors.get(target)||{damage:0,optic:false};entry.damage+=damage;entry.optic ||= optic;actors.set(target,entry);connected=true;}
+  if(target&&scale>0){const optic=/^(Optic|RecessedOptic|OpticalPupil)$/.test(impact.object.name);const damage=(optic?21:target.type==='warden'&&!(target.armorOpen>0)?7:14)*scale;const entry=actors.get(target)||{damage:0,optic:false};entry.damage+=damage;entry.optic ||= optic;entry.point=impact.point.clone();entry.normal=hitNormal(impact,dir);actors.set(target,entry);connected=true;target.feedbackKind=optic?'critical':target.type==='warden'&&!(target.armorOpen>0)?'armor':'damage';g.combatFeedback?.impact(impact.point,hitNormal(impact,dir),target.feedbackKind,g.options.reducedMotion);}
   else if(impact&&scale>0)bossHits.push({impact,scale});
-  else if(prop.bank&&prop.distance<=24)banks.add(prop.bank);
+  else if(!impact&&prop.distance<=24){if(prop.bank)banks.add(prop.bank);if(prop.point)g.combatFeedback?.impact(prop.point,prop.normal,'surface',g.options.reducedMotion);}
   g.tracer(g.muzzle.getWorldPosition(new T.Vector3()),end,0xffd29a,.055);
  }
  // Resolve after tracing so killed/removed actors cannot uncover later pellets.
- for(const [e,v] of actors){e.health-=v.damage;e.lastHit=g.runTime;e.hitFlash=.08;e.red.emissive.setHex(0xffffff);g.audio.hit(v.optic);g.event('hit',v.optic?'OPTIC':'',{damage:v.damage,headshot:v.optic});if(e.health<=0)g.killEnemy(e,v.optic);}
+ for(const [e,v] of actors){e.health-=v.damage;e.lastHit=g.runTime;e.hitFlash=.08;e.red.emissive.setHex(0xffffff);g.audio.hit(v.optic);g.event('hit',v.optic?'OPTIC':'',{damage:v.damage,headshot:v.optic});if(e.health<=0){g.combatFeedback?.impact(v.point,v.normal,'kill',g.options.reducedMotion);g.killEnemy(e,v.optic);}}
  for(const {impact,scale} of bossHits){const volley={scale,hit:false};hitCustodian(g,impact,volley);connected ||= volley.hit;}
  for(const bank of banks)activateCapacitor(g,bank);
  if(connected)g.shotsHit++;

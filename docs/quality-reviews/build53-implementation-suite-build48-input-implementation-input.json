@@ -1,0 +1,21 @@
+{
+  "method": "Arranged deterministic renderer with real keyboard events; pointer fallback enabled to isolate focus/input checks. No combat/discovery claim.",
+  "spatial": {
+    "disconnected": "empty without fallback"
+  },
+  "cost": {
+    "queriesFor100Frames": 5,
+    "bufferBytes": 1152,
+    "geometryDisposals": 1,
+    "materialDisposals": 1
+  },
+  "checks": [
+    "Tab hold/release",
+    "M clears held trace",
+    "Tab traverses planning buttons",
+    "blur clears trace",
+    "bounded cadence/buffer identity",
+    "owned disposal once"
+  ],
+  "errors": []
+}

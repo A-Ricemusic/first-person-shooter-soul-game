@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import parts from './capacitor-parts.json';
+import {boxNormal,hitNormal} from './combat-feedback.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 export const OVERLOAD_SECONDS=1.1, BLAST_RADIUS=6;
 // Inclusive 3D body-centre test. Only the emitting bank's owned solids are excluded.
@@ -12,20 +13,20 @@ export function blastReaches(bank,body,colliders){
 }
 // A world solid wins ties; an owned envelope yields only to its actual target mesh.
 export function capacitorShot(ray,raycaster,banks,colliders,maxDistance=120){
-  let distance=maxDistance,bank=null;
+  let distance=maxDistance,bank=null,point=null,normal=null;
   // The Custodian has its own exact mesh query in Game.shoot; movement bounds are not rifle surfaces.
   for(const box of colliders){
     if(box.custodian)continue;
     const p=ray.intersectBox(box,new THREE.Vector3());if(!p)continue;
-    let d=p.distanceTo(ray.origin),target=null;
+    let d=p.distanceTo(ray.origin),target=null,resolved=p.clone(),n=boxNormal(p,box);
     if(box.capacitor){
       const b=box.capacitor;b.model.updateWorldMatrix(true,true);
       const hit=raycaster.intersectObject(b.model,true)[0];
-      if(hit){d=hit.distance;target=b.targets.includes(hit.object)?b:null;}
+      if(hit){d=hit.distance;resolved=hit.point.clone();n=hitNormal(hit,ray.direction);target=b.targets.includes(hit.object)?b:null;}
     }
-    if(d<distance){distance=d;bank=target;}
+    if(d<distance){distance=d;bank=target;point=resolved;normal=n;}
   }
-  return {distance,bank};
+  return {distance,bank,point,normal};
 }
 export async function createCapacitors(group,colliders,sign){
   let asset;
