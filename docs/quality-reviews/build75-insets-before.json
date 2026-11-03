@@ -1,0 +1,38 @@
+{
+  "method": "Engineering simulation of44px top/side and21px bottom cutout insets in mobile Chromium. CSS substitutes viewport insets; native touches test actual hit targets. Not a physical-phone or Safari result.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "hitAtPauseCenter": "touch-look",
+      "pauseRect": {
+        "x": 754,
+        "y": 44,
+        "width": 46,
+        "height": 46
+      },
+      "phase": "playing",
+      "passed": false
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "hitAtPauseCenter": "touch-look",
+      "pauseRect": {
+        "x": 300,
+        "y": 44,
+        "width": 46,
+        "height": 46
+      },
+      "phase": "playing",
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: native Pause must work below the simulated notch\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-insets.mjs:14:74"
+}

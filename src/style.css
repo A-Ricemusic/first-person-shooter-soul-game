@@ -120,3 +120,106 @@ body.touch-mode label[for="sensitivity"],body.touch-mode #sensitivity{display:no
  body.touch-mode #route-selection span{grid-column:1 / -1}
  body.touch-mode #facility-map footer,body.touch-mode #facility-map>p{grid-column:2}
 }
+
+/* Mobile information has separate rows; the aiming aperture remains open. */
+body.touch-mode{
+ --touch-top:max(10px,env(safe-area-inset-top));--touch-left:max(12px,env(safe-area-inset-left));
+ --touch-right:max(12px,env(safe-area-inset-right));--touch-bottom:max(12px,env(safe-area-inset-bottom));
+ --touch-hint-top:calc(var(--touch-top) + 74px);--touch-focus-top:calc(var(--touch-top) + 126px);
+}
+body.touch-mode .hud-top{top:var(--touch-top);left:var(--touch-left);right:var(--touch-right)}
+body.touch-mode #touch-look{top:calc(var(--touch-top) + 55px)}
+body.touch-mode #touch-map{top:var(--touch-top);right:calc(var(--touch-right) + 56px)}
+body.touch-mode #touch-stick{left:max(20px,var(--touch-left));bottom:max(20px,var(--touch-bottom))}
+body.touch-mode #touch-actions{right:var(--touch-right);bottom:var(--touch-bottom)}
+body.touch-mode .hud-bottom{left:calc(max(20px,var(--touch-left)) + 130px);right:calc(var(--touch-right) + 173px);bottom:var(--touch-bottom)}
+body.touch-mode .screen.overlay{padding:max(12px,var(--touch-top)) var(--touch-right) var(--touch-bottom) var(--touch-left)}
+body.touch-mode .end-panel,body.touch-mode .pause-panel{max-height:calc(100dvh - max(12px,var(--touch-top)) - var(--touch-bottom))}
+body.touch-mode.touch-uplink-stage{--touch-hint-top:calc(var(--touch-top) + 126px);--touch-focus-top:calc(var(--touch-top) + 130px)}
+body.touch-mode .hud-mission{max-width:calc(100vw - 166px)}
+body.touch-mode .hud-mission strong{font-size:12px;line-height:1.25;letter-spacing:.7px}
+body.touch-mode .hud-stats{top:calc(var(--touch-top) + 56px);font-size:11px;justify-content:flex-end;letter-spacing:.5px}
+body.touch-mode #kills{display:none}
+body.touch-mode .bearing{display:block;top:52px;font-size:12px;letter-spacing:1px}
+body.touch-mode #touch-controls button{font-size:11px}
+body.touch-mode #touch-fire small{font-size:10px}
+body.touch-mode #touch-use[data-ready="true"]{border-color:#a4fff0;background:linear-gradient(0deg,#317d70 var(--hold-progress,0%),#0a202be8 var(--hold-progress,0%));color:#e9fff9}
+body.touch-mode .touch-aim-setting{padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+body.touch-mode .touch-aim-setting output{float:right;color:var(--cyan)}
+body.touch-mode #touch-sensitivity{min-height:44px;touch-action:pan-y}
+body.touch-mode #settings-dialog>.primary-button{position:sticky;bottom:0;z-index:2;box-shadow:0 -10px 20px #091217e8}
+
+body.touch-mode #extraction-panel{
+ top:calc(var(--touch-top) + 74px);left:var(--touch-left);right:var(--touch-right);transform:none;width:auto;max-width:none;
+ display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 8px;
+ padding:6px 8px;text-align:left;
+}
+body.touch-mode #extraction-panel b{font-size:10px;letter-spacing:1px;line-height:13px}
+body.touch-mode #extraction-panel #custodian-cells{margin:0;gap:8px;justify-content:flex-end}
+body.touch-mode #extraction-panel #custodian-cells span{font-size:11px;line-height:13px;letter-spacing:0}
+body.touch-mode #uplink-cover{display:none}
+body.touch-mode #extraction-panel #extraction-status{grid-column:1 / -1;font-size:11px;line-height:14px;margin:0;letter-spacing:.2px}
+body.touch-mode #extraction-panel>div:last-child{position:absolute;bottom:0;left:0;right:0;height:3px}
+body.touch-mode #extraction-panel[data-mode="armored"],body.touch-mode #extraction-panel[data-mode="charging"]{border-color:#d9ac65;color:#ffdb9e}
+body.touch-mode #extraction-panel[data-mode="open"]{border-color:#8ee8e0;color:#b5fff0}
+
+body.touch-mode #blocked-signal,body.touch-mode #service-hint,body.touch-mode #interaction{
+ top:var(--touch-hint-top);bottom:auto;left:var(--touch-left);right:var(--touch-right);transform:none;
+ width:auto;min-width:0;max-width:none;padding:5px 8px;text-align:left;
+ font-size:12px;line-height:1.25;letter-spacing:.2px;
+}
+body.touch-mode #service-hint span{margin:3px 0 0;font-size:11px}
+body.touch-mode #interaction{display:grid;grid-template-columns:1fr 64px;gap:2px 8px;justify-content:stretch}
+body.touch-mode #interaction small{grid-column:1 / -1;font-size:11px;line-height:13px;letter-spacing:0}
+body.touch-mode #interaction .recovery-meter{min-width:0;width:64px;height:3px;margin:0}
+body.touch-mode #interaction .recovery-meter i{height:3px}
+body.touch-mode #threat-focus{top:var(--touch-focus-top);bottom:auto;left:var(--touch-left);right:var(--touch-right);transform:none;max-width:none;font-size:11px;line-height:1.25;padding:4px 8px}
+body.touch-mode.touch-interacting #blocked-signal,body.touch-mode.touch-interacting #service-hint,body.touch-mode.touch-interacting #threat-focus{display:none}
+body.touch-mode.touch-service-route #blocked-signal{display:none}
+body.touch-mode.touch-boss-stage #threat-focus:not(.charging){display:none}
+
+body.touch-mode #touch-notices{position:absolute;left:calc(max(20px,var(--touch-left)) + 130px);right:calc(var(--touch-right) + 173px);bottom:calc(var(--touch-bottom) + 74px);pointer-events:none}
+body.touch-mode #touch-notices #announcement{
+ position:static;display:none;transform:none;width:auto;max-width:none;margin:0;
+ font-size:11px;line-height:14px;letter-spacing:.2px;padding:4px 8px;
+ text-align:left;white-space:normal;max-height:36px;overflow:hidden;
+}
+body.touch-mode #touch-notices #announcement.visible{display:block}
+body.touch-mode #touch-notices.has-memory #announcement{display:none}
+body.touch-mode #touch-notices #memory-card{
+ position:static;width:auto;max-width:none;max-height:none;padding:4px 8px;overflow:hidden;
+ background:#0b232df2;opacity:1;
+}
+body.touch-mode #touch-notices #memory-card .micro-label{display:inline;font-size:10px;letter-spacing:.3px}
+body.touch-mode #touch-notices #memory-card h3{display:inline;margin:0 0 0 8px;font-size:14px;line-height:18px;letter-spacing:.3px}
+body.touch-mode #touch-notices #memory-role,body.touch-mode #touch-notices #memory-text{display:none}
+@media(orientation:portrait){
+ body.touch-mode .hud-bottom{left:var(--touch-left);right:var(--touch-right);bottom:calc(var(--touch-bottom) + 218px)}
+ body.touch-mode #touch-notices{left:var(--touch-left);right:var(--touch-right);top:calc(50% + 24px);bottom:auto}
+}
+@media(orientation:portrait) and (max-height:700px){body.touch-mode #touch-notices{top:auto;bottom:calc(50% + 28px)}}
+
+body.touch-mode .end-panel h2{font-size:36px;line-height:1.05;margin:8px 0}
+body.touch-mode .end-panel #end-copy{font-size:13px;line-height:1.45;margin:8px 0}
+body.touch-mode .end-panel .end-stats{padding:10px 0;margin-top:10px}
+body.touch-mode .end-panel .end-stats>div{gap:4px}
+body.touch-mode .end-panel .end-stats span{font-size:10px;letter-spacing:.5px}
+body.touch-mode .end-panel .end-stats b{font-size:28px}
+body.touch-mode .end-actions.anchor-available #retry-anchor,body.touch-mode .end-actions.anchor-available #play-again{grid-column:auto}
+@media(orientation:landscape){
+ body.touch-mode .end-panel{width:min(840px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 20px;padding:16px}
+ body.touch-mode #end-eyebrow{grid-column:1;grid-row:1}
+ body.touch-mode .end-panel #end-title{grid-column:1;grid-row:2;font-size:32px;margin:0}
+ body.touch-mode .end-panel #end-copy{grid-column:1;grid-row:3;margin:0;font-size:12px;line-height:1.35}
+ body.touch-mode .end-panel #end-manifest{grid-column:1;grid-row:4 / 6;margin:0;padding-left:8px}
+ body.touch-mode .end-panel #end-manifest>div{margin:4px 0}
+ body.touch-mode .end-panel #end-manifest span{font-size:10px}
+ body.touch-mode .end-panel .end-stats{grid-column:2;grid-row:1 / 3;margin:0;padding:6px 0}
+ body.touch-mode .end-panel #end-details{grid-column:2;grid-row:3 / 5;margin:0;font-size:10px;line-height:1.4;letter-spacing:.2px}
+ body.touch-mode .end-panel #personal-best{grid-column:2;grid-row:5;font-size:10px}
+ body.touch-mode .end-panel .end-actions{grid-column:1 / -1;grid-row:6;position:static;margin:0;padding:8px 0 0}
+}
+body.touch-mode .world-marker.ground-guide{padding:2px 4px;min-width:0;max-width:72px}
+body.touch-mode .world-marker.ground-guide .marker-symbol{display:block;font-size:16px;line-height:16px;margin:0}
+body.touch-mode .world-marker.ground-guide b{font-size:11px;line-height:12px;letter-spacing:0;margin:0}
+body.touch-mode .world-marker.ground-guide small,body.touch-mode .world-marker.ground-guide .enemy-track{display:none}

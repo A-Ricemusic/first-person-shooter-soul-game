@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs",
+    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs && node tests/mobile-aim-hud.mjs && node tests/mobile-insets.mjs",
     "test:production": "npm run build && node tests/mobile-production.mjs",
     "test:playtest": "node tests/playtest-regressions.mjs",
     "playtest:controls": "node tests/normal-controls-playtest.mjs",
@@ -53,7 +53,9 @@
     "test:visible-input": "node tests/visible-input-timing.mjs",
     "playtest:mobile": "node tools/mobile-playtest.mjs",
     "test:mobile-usability": "node tests/mobile-usability.mjs",
-    "test:mobile-menu-driver": "node tests/mobile-menu-driver.mjs"
+    "test:mobile-menu-driver": "node tests/mobile-menu-driver.mjs",
+    "test:mobile-aim-hud": "node tests/mobile-aim-hud.mjs",
+    "test:mobile-insets": "node tests/mobile-insets.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

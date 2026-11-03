@@ -1,0 +1,222 @@
+{
+  "review_id": "build74-mobile-review1",
+  "candidate": "Frozen build 74",
+  "url": "http://127.0.0.1:61470/",
+  "attempt_count": 1,
+  "method": {
+    "independent": true,
+    "source_tests_docs_prior_reviews_read": false,
+    "driver_help_read": true,
+    "input": "Native CDP touch contacts only; at most two contacts, normalized CSS coordinates; no keyboard/mouse",
+    "viewport_css": [
+      844,
+      390
+    ],
+    "screenshot_scale": 3,
+    "environment": "Mobile Chromium emulation with software WebGL fallback",
+    "assistance": "Driver captures live view then pauses after each batch. Screenshots inspected between batches. Synthetic gestures and pause-assisted decisions substantially reduce time pressure; not a continuous human phone session.",
+    "scope_limits": [
+      "Not physical-phone, Safari, hardware FPS, audio, or human enjoyment certification",
+      "No performance or regression suites",
+      "No runtime, helper, tests, settings, historical docs or existing evidence edited"
+    ]
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "loss",
+    "visible_title": "OPERATOR LOST / THE STATION REMEMBERS.",
+    "mission_time_shown": "00:55",
+    "memories_recovered": [
+      "MARA SOLBERG",
+      "SERA NORD"
+    ],
+    "recovery_count": 2,
+    "eliminations": 1,
+    "terminal_ui_text_stats": {
+      "score": 2100,
+      "accuracy_percent": 5,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "uplink_retries": 0
+    },
+    "stats_visibility_note": "Mission statistics were returned as terminal UI DOM text by the driver; the actual terminal screenshot shows loss title and buttons but clips the statistics. The two recoveries and elimination were independently seen in earlier live HUD screenshots.",
+    "attempt_command_start_utc": "2026-11-03T06:13:39.071Z",
+    "terminal_result_utc": "2026-11-03T06:18:36.118Z",
+    "wall_seconds_including_paused_inspection": 297.047,
+    "mission_duration_note": "00:55 is in-game time; wall duration includes pauses and screenshot inspection. No replay or arranged death."
+  },
+  "rating_scale": {
+    "minimum": 0,
+    "maximum": 10,
+    "definition": "0 unusable; 5 workable with substantial friction; 10 exceptionally clear and effective within observed coverage. Subjective provisional mobile usability assessment, not benchmark scores."
+  },
+  "ratings": {
+    "overall_mobile": {
+      "score": 6.5,
+      "definition": "Combined practical touch playability and clarity",
+      "reason": "Movement, firing, reload, dash and two recoveries worked; atmosphere and feedback are strong. Precision aiming and reading threat/navigation feedback while routing around cover were difficult, even with pauses."
+    },
+    "controls": {
+      "score": 6,
+      "definition": "Touch reach, aiming, simultaneous actions and response",
+      "reason": "Two-thumb movement plus fire and drag works; hold-use and dash registered. Small fire-drag changes required repeated correction and missed moving targets. Multiple closely packed right-side buttons compete with look space."
+    },
+    "gameplay": {
+      "score": 6.5,
+      "definition": "Observed combat, traversal and objective interactions",
+      "reason": "Useful cover, regeneration, receiver healing and phase-break feedback create choices. Recovered two objectives while under pressure; failed to control multiple threats on the third approach. Later encounter quality is unassessed."
+    },
+    "presentation": {
+      "score": 8,
+      "definition": "Observed visual atmosphere and interface coherence",
+      "reason": "Rain, reflective surfaces, cyan signage and restrained menu style form a coherent station atmosphere. No obvious rendering failure in viewed frames; software fallback and audio limits apply."
+    },
+    "usability": {
+      "score": 6,
+      "definition": "Onboarding, navigation and interaction discoverability",
+      "reason": "Briefing scroll, map and precise outside-reach prompt were useful. Wall/cover navigation near East Archive consumed corrections under fire. Mobile briefing still includes keyboard-specific map advice."
+    },
+    "readability": {
+      "score": 6,
+      "definition": "Legibility and visual prioritization at 844x390 CSS pixels",
+      "reason": "Health, ammo and major objective labels are clear. Tiny compass/timer/threat text and layered receiver/combat prompts require deliberate reading; terminal panel clips statistics in the inspected viewport."
+    }
+  },
+  "observed_coverage": [
+    "Menu, mission briefing and native menu scrolling; touch handbook opening",
+    "One fresh entry; induction guard elimination",
+    "Proportional movement/strafe, right-side look, simultaneous fire-drag and movement",
+    "Rifle magazine depletion and manual reload",
+    "Jump input during traversal; successful vault not established",
+    "Dash inputs and visible PHASE BREAK / SHOT CANCELED feedback",
+    "West receiver reach correction and HOLD USE recovery",
+    "Heart receiver HOLD USE recovery and visible health restoration",
+    "Map overview showing recovered and remaining objectives",
+    "East Archive approach, collisions/routing corrections, incoming fire and death",
+    "Actual terminal loss UI; no restart"
+  ],
+  "failed_interactions_and_recoveries": [
+    "Initial return-fire batches missed; shots and misses retained (terminal UI text reports 5% accuracy).",
+    "East approach met a wall/partition; backed off, strafed and turned to locate receiver, taking damage. Final hold-use attempt failed before third recovery.",
+    "After map capture the driver had automatically returned to paused phase; #close-map was rejected as not visible (sequence 20). Reopened map once, then resumed ordinary movement. Treat this as driver pause-workflow friction, not a proven game close-map defect.",
+    "One look drag at y=0.5 did not change heading; a later y=0.4 drag worked. Cause uncertain, potentially UI overlap; preserved in action log."
+  ],
+  "unresolved_actionable_issues": [
+    {
+      "id": "M1",
+      "severity": "medium",
+      "observation": "Precision aim on moving sentinels was hard to correct with fire-drag; right thumb area is crowded by a three-column control cluster.",
+      "evidence": [
+        "11-fire-advance.jpg",
+        "13-return-fire.jpg",
+        "14-strafe-dash.jpg"
+      ],
+      "suggestion": "Evaluate touch sensitivity options and clearer separation of free-look versus action-button hit regions on a real phone.",
+      "uncertainty": "Synthetic discrete drags and reviewer skill contribute; not a proven input defect."
+    },
+    {
+      "id": "M2",
+      "severity": "medium",
+      "observation": "Receiver direction points through opaque geometry at East Archive; approaching it led into a partition and required several corrections while taking fire.",
+      "evidence": [
+        "22-east-archive.jpg",
+        "23-east-correction.jpg",
+        "24-find-door.jpg"
+      ],
+      "suggestion": "Make nearby doorway/approach guidance more distinct from the direct receiver beacon.",
+      "uncertainty": "Map and ordinary alternate approaches may mitigate this; only one route attempted."
+    },
+    {
+      "id": "M3",
+      "severity": "low",
+      "observation": "Small secondary HUD labels and overlapping interaction/threat readouts require pause-assisted scrutiny at this viewport.",
+      "evidence": [
+        "11-fire-advance.jpg",
+        "16-warden-engagement.jpg"
+      ],
+      "suggestion": "Increase secondary text size or prioritize one prompt when interaction and combat cues coincide."
+    },
+    {
+      "id": "M4",
+      "severity": "low",
+      "observation": "Mission briefing references pressing M despite the mobile MAP control.",
+      "evidence": [
+        "02-brief.jpg"
+      ],
+      "suggestion": "Use input-specific wording in the briefing."
+    },
+    {
+      "id": "M5",
+      "severity": "low",
+      "observation": "The loss screenshot shows heading and restart/navigation buttons but omits terminal statistics present in UI text.",
+      "evidence": [
+        "26-east-use.jpg"
+      ],
+      "suggestion": "Ensure statistics remain visibly accessible in the short landscape layout.",
+      "uncertainty": "No terminal scrolling attempted because the review stopped promptly after loss; accessibility via scroll is unassessed."
+    }
+  ],
+  "unassessed": [
+    "Third memory recovery",
+    "Custodian coil battle",
+    "Extraction/upload",
+    "Suit service",
+    "Weapon swap/breacher",
+    "AIM toggle",
+    "Crouch",
+    "RUN toggle",
+    "Settings",
+    "Capacitor banks",
+    "Recovered-memory reading",
+    "Portrait layout",
+    "Audio",
+    "Continuous human touchscreen comfort",
+    "Frame-rate/performance"
+  ],
+  "evidence": {
+    "directory": "docs/media/build74-mobile-review1/",
+    "action_log": "docs/media/build74-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "01-menu.jpg",
+      "02-brief.jpg",
+      "03-brief-scrolled.jpg",
+      "04-accepted.jpg",
+      "05-how-to.jpg",
+      "06-entry.jpg",
+      "07-first-fire.jpg",
+      "08-toward-west.jpg",
+      "09-left-lane.jpg",
+      "10-archive-approach.jpg",
+      "11-fire-advance.jpg",
+      "12-recovery-use.jpg",
+      "13-return-fire.jpg",
+      "14-strafe-dash.jpg",
+      "15-heart-approach.jpg",
+      "16-warden-engagement.jpg",
+      "17-heart-use-fire.jpg",
+      "18-facility-map.jpg",
+      "20-map-reopen.jpg",
+      "21-eastward-movement.jpg",
+      "22-east-archive.jpg",
+      "23-east-correction.jpg",
+      "24-find-door.jpg",
+      "25-archive-turn.jpg",
+      "26-east-use.jpg"
+    ],
+    "retention": "All captures and exact input batches retained; no overwritten captures. Sequence 20 command failure retained in log."
+  },
+  "cleanup": {
+    "close_command_sent": true,
+    "driverPid": 1834,
+    "chromePid": 1844,
+    "driver_closed_result": {
+      "reason": "input ended or close requested",
+      "browserClosed": true
+    },
+    "driver_process_exit_code": 0,
+    "verification_command": "ps -p 1834,1844 -o pid=,comm=",
+    "verification_exit_code": 1,
+    "verification_stdout": "",
+    "conclusion": "Both exact owned PIDs absent after awaited process exit. No global kill or unrelated process touched."
+  }
+}

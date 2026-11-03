@@ -1,0 +1,198 @@
+{
+  "reviewer": "Independent visible-only mobile playtest review 2",
+  "candidate": "build74 frozen published game",
+  "url": "http://127.0.0.1:61470/",
+  "attempts": 1,
+  "orientation": "portrait throughout",
+  "environment": {
+    "viewport_css": [
+      390,
+      844
+    ],
+    "screenshot_scale": 3,
+    "browser": "mobile Chromium emulation",
+    "graphics": "Software-WebGL fallback enabled; renderer not certified",
+    "input": "native CDP touch, maximum two contacts, paused between action captures"
+  },
+  "method": {
+    "read": [
+      "Supplied mobile driver --help",
+      "Actual visible game UI and screenshots"
+    ],
+    "source_tests_documentation_prior_reviews_read": false,
+    "game_or_helper_modified": false,
+    "extra_runs": false,
+    "input": "Touch taps, stick movement, right-side drags, simultaneous move/fire, fire-drag, hold USE; no keyboard/mouse/eval/hidden state"
+  },
+  "rating_scale": {
+    "0": "Unusable or wholly unsuccessful in the observed mobile interaction",
+    "5": "Playable with substantial friction",
+    "10": "Excellent in the observed scope with negligible friction",
+    "basis": "Subjective independent ratings from this one attempt; not a completion or performance certification"
+  },
+  "ratings": {
+    "OVERALL MOBILE": {
+      "score": 6,
+      "definition": "Combined ability to understand, control and progress through the observed portrait mission",
+      "reason": "Completed all three recoveries and reached the boss, with usable touch controls and strong atmosphere; aiming, threat management and compact HUD caused substantial friction before terminal loss."
+    },
+    "controls": {
+      "score": 5,
+      "definition": "Touch movement, aiming, firing and action access",
+      "reason": "Stick movement, hold fire, reload, AIM toggle, dash and hold USE responded. Simultaneous movement/fire worked. Small look drags produced large perceived vertical changes; my aiming repeatedly overshot and ended at 4% accuracy. Synthetic gesture timing and my unfamiliarity limit attribution."
+    },
+    "gameplay": {
+      "score": 6,
+      "definition": "Observed combat, objective progression and recovery loop",
+      "reason": "Side approaches, cover, recharging shield and memory resupply supported real progress. Warden and patrol pressure remained dangerous during receiver holds. Boss armored/open states were visible, but no coil damage was confirmed before death."
+    },
+    "presentation": {
+      "score": 8,
+      "definition": "Visual atmosphere, visual identity and feedback",
+      "reason": "Rain, cyan relay lighting, industrial architecture, coherent menus and distinct recovery/end cards conveyed a consistent setting. Audio was unassessed."
+    },
+    "usability": {
+      "score": 6,
+      "definition": "Discoverability, navigation and task feedback",
+      "reason": "Handbook, paused map, named signals, doorway hints and precise outside-reach prompt were useful. Reaching receivers required several corrections, and changing sightlines around cover was initially confusing. This does not establish broken routing."
+    },
+    "readability": {
+      "score": 5,
+      "definition": "Legibility and separation of mission information in portrait",
+      "reason": "Main labels and buttons remained legible, but lower-left route hint overlapped health/shield. Boss status panel covered much of the upper central scene and competed with announcements; tiny threat markers and some small tracking text were difficult to use."
+    }
+  },
+  "outcome": {
+    "terminal": true,
+    "label": "OPERATOR LOST",
+    "mission_time_display": "01:29",
+    "score_display": 3175,
+    "eliminations": 1,
+    "recoveries": 3,
+    "recovered_names": [
+      "MARA SOLBERG",
+      "SERA NORD",
+      "ELIAN VALE"
+    ],
+    "accuracy_display": "4%",
+    "critical_eliminations": 0,
+    "phase_evades": 1,
+    "uplink_retries": 0,
+    "last_observed_objective": "DISABLE UPLINK CUSTODIAN",
+    "last_observed_coils_percent": [
+      100,
+      100,
+      100
+    ],
+    "extraction_completed": false,
+    "terminal_evidence": "docs/media/build74-mobile-review2/43-terminal-check.jpg"
+  },
+  "observed_coverage": [
+    "Title menu",
+    "First visible handbook page and touch instructions",
+    "Pause/resume",
+    "Facility map and Mara objective selection",
+    "Opening induction guard elimination",
+    "Patrol and relay-warden pressure",
+    "Cover collision and movement around structures",
+    "Rifle firing and fire-drag aiming",
+    "Simultaneous touch movement and fire",
+    "Reload",
+    "AIM toggle",
+    "Dash with PHASE EVADE feedback",
+    "Shield depletion and regeneration",
+    "All three receiver recoveries with held USE",
+    "Outside-reach prompt",
+    "Memory supply restoration",
+    "Custodian approach, numbered physical coil plates, armored/open-window status",
+    "Terminal loss screen"
+  ],
+  "unassessed": [
+    "Custodian component destruction or defeat",
+    "Extraction upload",
+    "Emergency suit service",
+    "Breacher swap and pellet behavior",
+    "Crouch, jump and vault",
+    "Capacitor detonation",
+    "RUN toggle",
+    "Settings",
+    "Full handbook scroll and recovered-memory prose",
+    "Retry behavior",
+    "Physical-phone ergonomics",
+    "Safari",
+    "Hardware FPS and frame pacing",
+    "Audio",
+    "Human enjoyment"
+  ],
+  "actionable_issues": [
+    {
+      "id": "M2-01",
+      "severity": "medium",
+      "observation": "Lower-left route hint box overlaps the health/shield area in portrait. Its small lines compete with health 100 and AEGIS 60.",
+      "evidence": [
+        "10-archive-approach.jpg",
+        "12-find-intake.jpg",
+        "21-receiver-search.jpg",
+        "22-next-signal.jpg"
+      ],
+      "recommendation": "Reserve a separate portrait hint area above the health cluster, with wrapping that avoids HUD stats."
+    },
+    {
+      "id": "M2-02",
+      "severity": "medium",
+      "observation": "Boss status panel occupies a large upper-center area and overlays world targets/announcements. At the first clear Custodian view, coil tops were partly behind this panel.",
+      "evidence": [
+        "35-custodian-approach.jpg",
+        "39-face-custodian.jpg"
+      ],
+      "recommendation": "Use a compact portrait coil status strip and relocate temporary announcements to preserve target visibility."
+    },
+    {
+      "id": "M2-03",
+      "severity": "medium",
+      "observation": "Fine vertical aim was difficult: a 0.09 viewport-height right-side drag followed by AIM left the sight on roof beams rather than the coils; subsequent correction was needed. Fire drags also overshot targets during movement.",
+      "evidence": [
+        "39-face-custodian.jpg",
+        "40-coil-targeting.jpg",
+        "41-adjust-coil-height.jpg"
+      ],
+      "recommendation": "Evaluate portrait vertical sensitivity and offer an easily discoverable touch sensitivity adjustment; verify with physical-device players before treating the observed overshoot as a product defect.",
+      "uncertainty": "Single unfamiliar operator and paused synthetic input; no claim of faulty input mapping."
+    }
+  ],
+  "strengths": [
+    "Primary touch action buttons are sizable and consistently positioned.",
+    "Receiver names, reach rings, distance and exact outside-reach text support correction.",
+    "Map pauses safely and identifies receivers, cover and player position.",
+    "Recovery and end UI clearly communicate progression and final statistics.",
+    "Memory supplies and shield regeneration permitted recovery from a near-fatal approach."
+  ],
+  "input_and_transport_notes": [
+    "Sequence 7: attempted #touch-map while automatically paused; driver returned Selector must be visible. Preserved; resumed via documented resume:true and used touch-map normally.",
+    "Sequence 9: map capture was followed by automatic pause. Reopened with pauseAfter:false for ordinary paused map inspection; no mission restart.",
+    "Sequence 38 fire-drag move took about 2166 ms in transport, extending live simultaneous movement before the requested wait. This timing was preserved.",
+    "Sequence 44: attempted reload, fine aim correction and wait before fire; driver returned Selector must be visible when the fire selector was no longer present. Immediate sequence 45 capture confirmed actual terminal OPERATOR LOST, rather than assuming an outcome from the error.",
+    "Ordinary navigation overshoots, missed shots and reload timing were retained. Unique screenshot labels include some intended-action names that do not imply success; outcome fields above follow actual visible UI."
+  ],
+  "limitations": [
+    "One fresh attempt, no replay or extra exploration after terminal.",
+    "Captures and action batches pause gameplay, so mission time is not real human continuous play duration.",
+    "No measured performance conclusion; emulation and software graphics fallback are not physical-phone/Safari/hardware FPS/audio/human enjoyment certification.",
+    "Cannot infer unobserved systems, regressions, full-game balance or guaranteed completion from this run."
+  ],
+  "media_directory": "docs/media/build74-mobile-review2/",
+  "cleanup": {
+    "close_requested": true,
+    "driverPid": 41531,
+    "chromePid": 41541,
+    "driver_close_event": {
+      "reason": "input ended or close requested",
+      "browserClosed": true
+    },
+    "interactive_process_exit_code": 0,
+    "verification_command": "ps -p 41531,41541 -o pid=,ppid=,stat=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Both exact owned process IDs absent after driver exit; no global process termination used."
+  }
+}

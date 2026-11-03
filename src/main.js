@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 74</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 75</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -68,13 +68,14 @@ $('close-map').onclick=closeMap;
 document.addEventListener('keydown',e=>{if(e.code!=='KeyM'||e.repeat||!['playing','planning'].includes(current.phase)||activePanel||!$('menu').classList.contains('hidden')||e.target.closest('input,select,textarea,dialog,[contenteditable]'))return;e.preventDefault();if(current.phase==='planning')closeMap();else game.openPlanning();});
 
 let messageTimer,hitTimer,flashTimer,shiftTimer,memoryTimer,directionTimer;
-function notify(text){if(game?.touchMode)text=text.replace(/\bShift\b/g,'DASH').replace(/Soul DASH/g,'Soul Shift').replace(/hold E/gi,'hold USE');$('announcement').textContent=text;$('announcement').classList.add('visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>$('announcement').classList.remove('visible'),2800)}
+function notify(text){if(game?.touchMode)text=text.replace(/\bShift\b/gi,'DASH').replace(/Soul DASH/gi,'Soul Shift').replace(/hold E/gi,'hold USE');$('announcement').textContent=text;$('announcement').classList.add('visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>$('announcement').classList.remove('visible'),2800)}
 function onEvent(e){
  // The live optic/bearing state owns charge warnings; a timed tutorial notice
  // would keep claiming CHARGING after the shot or a successful interrupt.
  if(e.type==='notice'&&e.message?.startsWith('WARDEN CHARGING'))return;
  if(e.type==='phase'){for(const t of [flashTimer,hitTimer,shiftTimer])clearTimeout(t);$('damage-flash').classList.remove('active');$('hitmarker').classList.remove('visible','kill');$('shift-flash').classList.remove('active');clearTimeout(memoryTimer);hide('memory-card',true);$('event-feed').replaceChildren();$('damage-direction').classList.remove('visible');}
- if(e.type==='memory'){$('memory-person').textContent=e.person;$('memory-role').textContent=e.role;$('memory-text').textContent=`“${e.memory}”`;hide('memory-card',false);clearTimeout(memoryTimer);memoryTimer=setTimeout(()=>hide('memory-card',true),7500)}
+ if(game?.touchMode&&['phaseDodge','phaseInterrupt','win','lose'].includes(e.type)){hide('memory-card',true);$('touch-notices')?.classList.remove('has-memory')}
+ if(e.type==='memory'){$('memory-person').textContent=e.person;$('memory-role').textContent=e.role;$('memory-text').textContent=`“${e.memory}”`;hide('memory-card',false);clearTimeout(memoryTimer);memoryTimer=setTimeout(()=>{hide('memory-card',true);$('touch-notices')?.classList.remove('has-memory')},game?.touchMode?2800:7500)}
 
 
  if(e.type==='damage'){ $('damage-flash').classList.add('active');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('damage-flash').classList.remove('active'),240) }
@@ -111,8 +112,31 @@ function renderState(s){
  const count=typeof s.cores==='number'?s.cores:0;[...$('core-slots').children].forEach((el,i)=>el.classList.toggle('recovered',s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count));
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
  if(s.heading!==undefined){const bearing=compassReadout(s.heading);$('heading').textContent=bearing.heading;$('compass-direction').textContent=bearing.direction;document.querySelector('.bearing').setAttribute('aria-label',bearing.spoken);}
- $('interaction').classList.toggle('recovery-local',!!s.localRecovery&&!!s.interaction&&!s.interaction.startsWith('CROUCHED')&&s.interaction!=='Space · Vault');hide('interaction',!s.interaction);if(s.interaction){const suit=s.interaction.startsWith('SUIT SERVICE'),ss=s.suitService;const vault=s.interaction==='Space · Vault',stance=s.interaction.startsWith('CROUCHED');$('interaction').querySelector('kbd').textContent=suit?'E':stance?'C':vault?'SPACE':s.recoveryReady?'E':'◇';$('interaction').querySelector('small').textContent=suit?(ss.spent?'CARTRIDGE SPENT':!ss.powered?'NEEDS 3 MEMORIES + CUSTODIAN DEFEATED':ss.full?'SUIT FULL · CARTRIDGE SAVED':`HOLD ${game?.touchMode?'USE':'E'} · 2 SECONDS · +40 HEALTH / AEGIS 60${ss.progress>0?' · '+Math.floor(ss.progress*100)+'%':''}`):stance?(s.player.standBlocked?'MOVE TO CLEAR HEADROOM':'LOW PROFILE · SLOWER MOVEMENT'):vault?'CLEAR LANDING':s.recoveryReady?'HOLD TO RECOVER':recoveryApproachText(s);$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?(game?.touchMode?s.interaction.replace(/^E · /,'USE · ').replace('Space · Vault','JUMP · Vault').replace('CROUCHED','CROUCH'):s.interaction.replace(/^E · /,'')):'RECOVER SOUL CORE';}
+ $('interaction').classList.toggle('recovery-local',!!s.localRecovery&&!!s.interaction&&!s.interaction.startsWith('CROUCHED')&&s.interaction!=='Space · Vault');hide('interaction',!s.interaction);if(s.interaction){const suit=s.interaction.startsWith('SUIT SERVICE'),ss=s.suitService;const vault=s.interaction==='Space · Vault',stance=s.interaction.startsWith('CROUCHED');$('interaction').querySelector('kbd').textContent=suit?'E':stance?'C':vault?'SPACE':s.recoveryReady?'E':'◇';$('interaction').querySelector('small').textContent=suit?(ss.spent?'CARTRIDGE SPENT':!ss.powered?'NEEDS 3 MEMORIES + CUSTODIAN DEFEATED':ss.full?'SUIT FULL · CARTRIDGE SAVED':`HOLD ${game?.touchMode?'USE':'E'} · 2 SECONDS · +40 HEALTH / AEGIS 60${ss.progress>0?' · '+Math.floor(ss.progress*100)+'%':''}`):stance?(s.player.standBlocked?'MOVE TO CLEAR HEADROOM':'LOW PROFILE · SLOWER MOVEMENT'):vault?'CLEAR LANDING':s.recoveryReady?'HOLD TO RECOVER':recoveryApproachText(s);$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?(game?.touchMode?s.interaction.replace(/^E · /,'USE · ').replace('Space · Vault','JUMP · Vault').replace('CROUCHED','CROUCH').replace('C TO STAND','TAP CROUCH TO STAND'):s.interaction.replace(/^E · /,'')):'RECOVER SOUL CORE';}
+ renderMobileHUD(s,service);
  document.body.classList.toggle('critical-health',s.health<30&&phase==='playing');
+}
+
+function renderMobileHUD(s,service){
+ if(!game?.touchMode)return;
+ const playing=s.phase==='playing',uplink=playing&&s.cores===s.totalCores;
+ const boss=uplink&&s.custodian?.active&&!s.custodian.dead;
+ document.body.classList.toggle('touch-interacting',playing&&!!s.interaction);
+ document.body.classList.toggle('touch-service-route',playing&&!!service);
+ document.body.classList.toggle('touch-uplink-stage',uplink);
+ document.body.classList.toggle('touch-boss-stage',!!boss);
+ $('uplink-title').textContent=boss?'CUSTODIAN':'UPLINK';
+ $('extraction-panel').dataset.mode=boss?(s.custodian.open?'open':s.custodian.charging?'charging':'armored'):'upload';
+ $('extraction-status').textContent=uploadStatus(s,{compact:true});
+ $('touch-notices')?.classList.toggle('has-memory',!$('memory-card').classList.contains('hidden'));
+ const reload=$('touch-reload');if(reload){reload.textContent=s.reloading?'LOADING':'RELOAD';reload.setAttribute('aria-busy',String(!!s.reloading))}
+ const use=$('touch-use');if(use){
+  const ss=s.suitService,repair=ss?.valid&&ss.near&&ss.powered&&!ss.spent&&!ss.full;
+  use.dataset.ready=String(!!(s.recoveryReady||repair));
+  const progress=Math.max(0,Math.min(1,repair?ss.progress:s.coreProgress||0));
+  use.style.setProperty('--hold-progress',`${progress*100}%`);
+  use.setAttribute('aria-label',s.recoveryReady?`Hold to recover ${CORE_SITES[s.localRecovery.id].person}`:repair?'Hold to service suit':'Hold to use');
+ }
 }
 
 function drawRadar(s){
@@ -149,7 +173,7 @@ const markerPool=new Map();
 let visorFocus;
 function drawMarkers(markers){
  const active=new Set(), placed=[];
- if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button,.hud-top,.hud-bottom')){if(el.getClientRects().length){const r=el.getBoundingClientRect();placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
+ if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button,.hud-top,.hud-bottom,#touch-notices,#extraction-panel,#service-hint')){if(el.getClientRects().length){const r=el.getBoundingClientRect();placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
  const blocked=nearest?.occluded?nearest:null;
  let note=$('blocked-signal');if(!note){note=document.createElement('div');note.id='blocked-signal';$('waypoints').append(note)}
@@ -161,6 +185,7 @@ function drawMarkers(markers){
  document.body.classList.toggle('combat-priority',visor.cues.some(m=>m.charging||m.recent));
  let focus=$('threat-focus');if(!focus){focus=document.createElement('div');focus.id='threat-focus';$('waypoints').append(focus)}
  focus.textContent=visor.focused?(visor.focused.aimed?visor.focused.label:`${visor.focused.label} · ${visor.focused.charging?'CHARGING':visor.focused.recent?'RECENT FIRE':visor.focused.health<.35?'DAMAGED':'TRACKING'}`):'';
+ if(game?.touchMode)focus.textContent=focus.textContent.replace(/\bSHIFT\b/g,'DASH');
  focus.dataset.target=visor.focused?.id||'';
  focus.classList.toggle('charging',!!visor.focused?.charging);
  markers=[...markers.filter(m=>m.kind!=='enemy'),...visor.cues];
@@ -198,7 +223,7 @@ function drawMarkers(markers){
    continue;
   }
   const onscreen=m.front&&Math.abs(m.x)<.86&&Math.abs(m.y)<.68;
-  el.classList.toggle('approach',!!m.approach);
+  el.classList.toggle('approach',!!m.approach);el.classList.toggle('ground-guide',m.id==='ground-step'&&!!game?.touchMode);
   const x=onscreen?(m.x+1)*50:50+Math.sin(m.bearing)*43,rawY=onscreen?(1-m.y)*50:50-Math.cos(m.bearing)*32;let y=rawY;if(x>82&&y<45)y=51;if(x<24&&y<23)y=28;
   // Keep cue text out of the aperture. Threats retain bearing and priority;
   // competing text stacks below its projected anchor with bounded separation.
@@ -206,8 +231,8 @@ function drawMarkers(markers){
   el.style.opacity=m.suppressed?'0':'';
   el.classList.toggle('edge',!onscreen);el.classList.toggle('charging',!!m.charging);
   el.querySelector('.marker-symbol').textContent=onscreen?'◇':'▲';el.querySelector('.marker-symbol').style.transform=onscreen?'none':`rotate(${m.bearing}rad)`;
-  el.querySelector('b').textContent=!onscreen&&m.kind==='enemy'?m.label.split(' / ')[0]:m.label;
-  el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':m.recent?'RECENT FIRE':''):m.id==='ground-step'?'NEXT STEP · CHECK PATROLS':m.doorway?'CLEAR APPROACH':m.inZone?'IN ZONE':m.inRange?(game?.touchMode?'HOLD USE':'HOLD E'):`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
+  el.querySelector('b').textContent=m.id==='ground-step'&&game?.touchMode?'PATH':!onscreen&&m.kind==='enemy'?m.label.split(' / ')[0]:m.label;
+  el.querySelector('small').textContent=m.kind==='enemy'?(m.charging?'CHARGING':m.recent?'RECENT FIRE':''):m.id==='ground-step'?(game?.touchMode?'':'NEXT STEP · CHECK PATROLS'):m.doorway?'CLEAR APPROACH':m.inZone?'IN ZONE':m.inRange?(game?.touchMode?'HOLD USE':'HOLD E'):`${m.distance<6?m.distance.toFixed(1):Math.round(m.distance)} M`;
   const key=[el.querySelector('b').textContent,el.querySelector('small').textContent.length,onscreen,m.charging,!!m.approach,innerWidth].join('|');
   if(el._sizeKey!==key){el._sizeKey=key;el._size={width:el.offsetWidth,height:el.offsetHeight};}
   const anchor={x:x*innerWidth/100,y:rawY*innerHeight/100};
@@ -226,7 +251,7 @@ function renderArchive(s){
  if(!ids.length){const p=document.createElement('p');p.textContent='No records recovered yet.';$('archive-list').append(p);return;}
  for(const id of ids){const m=CORE_SITES[id],a=document.createElement('article');a.innerHTML='<h3></h3><span></span><p></p>';a.querySelector('h3').textContent=m.person;a.querySelector('span').textContent=m.role;a.querySelector('p').textContent=`“${m.memory}”`;$('archive-list').append(a);}
 }
-function showEnd(s){const won=s.phase==='won';hide('retry-anchor',!s.anchorEligible);$('end-manifest').replaceChildren();const recovered=(s.coreMarkers||[]).filter(c=>c.collected);$('end-archive').disabled=recovered.length===0;for(const c of recovered){const row=document.createElement('div');row.innerHTML='<b></b><span></span>';row.querySelector('b').textContent=CORE_SITES[c.id].person;row.querySelector('span').textContent=CORE_SITES[c.id].role;$('end-manifest').append(row)}$('end-details').textContent=`${s.accuracy||0}% ACCURACY · ${s.headshots||0} CRITICAL ELIMINATIONS · ${s.phaseDodges||0} PHASE EVADES · ${s.anchorRetries||0} UPLINK RETRIES · CUMULATIVE PLAY TIME${s.checkpointAssisted?' · STATS RESTORED TO CACHE ON RETRY':''}`;$('end-eyebrow').textContent=won?'OPERATION COMPLETE':'OPERATOR LOST';$('end-title').innerHTML=won?'THE SIGNAL<br>LIVES.':'THE STATION<br>REMEMBERS.';$('end-copy').textContent=won?'Some things deserve a second life. You brought them home.':'The relay is still calling. Take a breath. Find another way through.';if(s.anchorEligible)$('end-copy').textContent='Memories cached. Retry at the uplink with a fresh suit and a full Custodian, or start fresh.';if(won&&s.checkpointAssisted)$('end-eyebrow').textContent='CHECKPOINT-ASSISTED COMPLETION';$('end-kills').textContent=s.kills||0;$('end-time').textContent=clock(s.time);$('end-score').textContent=Math.round(s.score||0).toLocaleString();try{const k=`soulfall-best-${s.difficulty||settings.difficulty}`;let best=Number(localStorage.getItem(k)||0);if(s.checkpointAssisted){$('personal-best').textContent='CHECKPOINT ASSISTED · EXCLUDED FROM FRESH PERSONAL BESTS'}else if(won&&(s.score||0)>best){best=s.score;localStorage.setItem(k,best);$('personal-best').textContent='NEW PERSONAL BEST'}else $('personal-best').textContent=best?`PERSONAL BEST · ${best.toLocaleString()}`:''}catch{}}
+function showEnd(s){const won=s.phase==='won';hide('retry-anchor',!s.anchorEligible);$('end-manifest').replaceChildren();const recovered=(s.coreMarkers||[]).filter(c=>c.collected);$('end-archive').disabled=recovered.length===0;for(const c of recovered){const row=document.createElement('div');row.innerHTML='<b></b><span></span>';row.querySelector('b').textContent=CORE_SITES[c.id].person;row.querySelector('span').textContent=CORE_SITES[c.id].role;$('end-manifest').append(row)}$('end-details').textContent=`${s.accuracy||0}% ACCURACY · ${s.headshots||0} CRITICAL ELIMINATIONS · ${s.phaseDodges||0} PHASE EVADES · ${s.anchorRetries||0} UPLINK RETRIES · CUMULATIVE PLAY TIME${s.checkpointAssisted?' · STATS RESTORED TO CACHE ON RETRY':''}`;$('end-eyebrow').textContent=won?'OPERATION COMPLETE':'OPERATOR LOST';$('end-title').innerHTML=game?.touchMode?(won?'SIGNAL RESTORED':'SIGNAL LOST'):(won?'THE SIGNAL<br>LIVES.':'THE STATION<br>REMEMBERS.');document.querySelector('.end-actions').classList.toggle('anchor-available',!!s.anchorEligible);$('end-copy').textContent=won?'Some things deserve a second life. You brought them home.':'The relay is still calling. Take a breath. Find another way through.';if(s.anchorEligible)$('end-copy').textContent='Memories cached. Retry at the uplink with a fresh suit and a full Custodian, or start fresh.';if(won&&s.checkpointAssisted)$('end-eyebrow').textContent='CHECKPOINT-ASSISTED COMPLETION';$('end-kills').textContent=s.kills||0;$('end-time').textContent=clock(s.time);$('end-score').textContent=Math.round(s.score||0).toLocaleString();try{const k=`soulfall-best-${s.difficulty||settings.difficulty}`;let best=Number(localStorage.getItem(k)||0);if(s.checkpointAssisted){$('personal-best').textContent='CHECKPOINT ASSISTED · EXCLUDED FROM FRESH PERSONAL BESTS'}else if(won&&(s.score||0)>best){best=s.score;localStorage.setItem(k,best);$('personal-best').textContent='NEW PERSONAL BEST'}else $('personal-best').textContent=best?`PERSONAL BEST · ${best.toLocaleString()}`:''}catch{}}
 async function boot(){try{game=new Game({canvas:$('game-canvas'),onState:renderState,onEvent,onMarkers:drawMarkers});await game.init();game.setSettings(settings);installTouch(game,{map:()=>game.openPlanning(),onSensitivity:value=>{settings.touchSensitivity=value;saveSettings()}});loaded=true;$('deploy').disabled=false;$('deploy-label').textContent='ENTER THE STORM';$('load-status').textContent='SYSTEMS ONLINE · READY TO DEPLOY';$('load-status').classList.add('ready');if(new URLSearchParams(location.search).has('test'))window.__SOULFALL__={game,get state(){return current},deploy,settings};}catch(e){console.error(e);hide('fatal',false);$('fatal-message').textContent=`The 3D engine could not initialize. Use a browser with WebGL 2 and hardware acceleration. ${e.message}`;}}
 boot();
 
