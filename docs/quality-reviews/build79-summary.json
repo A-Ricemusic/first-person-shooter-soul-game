@@ -1,0 +1,60 @@
+{
+  "status": "Immutable Build79 published after passing validation; fresh independent mobile reviews pending.",
+  "previousReviewedCommit": "068c6849e1b491e4386236619eb8da88b39f2ba6",
+  "previousOverallMobile": [
+    5.5,
+    5.5
+  ],
+  "publishedBuild": 79,
+  "newIndependentReviews": "Not started",
+  "evidence": [
+    "build78-review-complete.json",
+    "build78-between-reviews.json",
+    "build79-before.json",
+    "build79-after.json",
+    "build79-after-corrected.json",
+    "build79-before-corrected.json",
+    "build79-after-final.json",
+    "build79-source-checks.json",
+    "build79-parent-play.json",
+    "build79-final-checks.json",
+    "build79-validation-summary.json",
+    "build79-driver.json",
+    "build79-tailnet-play.json",
+    "build79-review-freeze.json",
+    "build79-publication-links.json"
+  ],
+  "fixtureCorrections": [
+    "Initial camera assertion read a held native move before delivery; waits for the expected input state now.",
+    "Initial collected-state fixture called recoverCore in planning, which is correctly rejected; fixture must explicitly stage playing and restore planning synchronously. Both initial runs retained."
+  ],
+  "qualityGoal": "Ongoing; reviewers receive no target score.",
+  "measurements": {
+    "fireRightTravelCSSPixels": {
+      "before": 37,
+      "after": 151
+    },
+    "portrait390x844OldMapCanvasShiftCSSPixels": 50,
+    "newMapAndButtonRectanglesStableProfiles": 5,
+    "handbookNativeScrollingProfiles": 5
+  },
+  "ordinaryOutcome": {
+    "outcome": "loss",
+    "missionTime": "01:02",
+    "memories": 3,
+    "bossDefeated": false,
+    "confirmedCoilDamage": false,
+    "eliminations": 2,
+    "accuracyPercent": 9
+  },
+  "captureMetadataCorrection": "Native helper had hardcoded screenshotScale3; actual CDP JPEG dimensions are CSS-sized. Future metadata now reads the JPEG header. Existing image/log bytes and ratings preserved; driver integration will verify the correction.",
+  "finalChecks": {
+    "controller": "won;all3;boss;upload1;health100;11kills;errors[]",
+    "buildExit": 0,
+    "productionGroups": 8,
+    "productionExit": 0,
+    "driverExit": 0
+  },
+  "playLink": "http://bonnies-macbook-air.tail21e865.ts.net:5174/",
+  "reviewPolicy": "Exactly two fresh sequential Sol reviewers, one landscape attempt and one portrait attempt on identical frozen bytes; no target score or prior findings supplied."
+}

@@ -1,0 +1,221 @@
+{
+  "review": "build78-mobile-review1",
+  "role": "independent visible-only mobile review",
+  "requested_source_commit": "068c6849e1b491e4386236619eb8da88b39f2ba6",
+  "source_commit_verified": false,
+  "build_identity": {
+    "requested": "Build78",
+    "visible_title": "BUILD 79",
+    "evidence": "menu.jpg",
+    "limitation": "Frozen URL title differs from requested build. No source or repository inspection performed; scores describe the served experience, not authenticated Build78 provenance."
+  },
+  "method": {
+    "url": "http://127.0.0.1:61474/",
+    "attempts": 1,
+    "viewport_css": {
+      "width": 844,
+      "height": 390
+    },
+    "screenshot_scale": 3,
+    "input": "native-cdp-touch, Chromium phone emulation, maximum two contacts",
+    "graphics": "Software-WebGL fallback enabled; renderer not certified",
+    "driver_command": "node tools/mobile-playtest.mjs --url http://127.0.0.1:61474/ --width 844 --height 390 --out docs/media/build78-mobile-review1",
+    "help_read_first": true,
+    "paused_inspection": true,
+    "inspection_detail": "Every captured image was viewed before adapting the next action. Driver paused after live action captures; map planning stayed paused until CLOSE MAP. Pauses provide substantial planning advantage and interrupt continuous play.",
+    "prohibited_methods_used": false,
+    "notes": "No source/tests/docs/prior reviews/recordings/internal state inspected. No scripts evaluated in browser, keyboard/mouse, resource mutations, retries, server changes, builds or installs. Only driver help, visible UI, owned captures and logs used."
+  },
+  "outcome": {
+    "terminal": true,
+    "status": "LOSS",
+    "heading": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "00:44",
+    "memories_recovered": 2,
+    "memories_total": 3,
+    "recovered": [
+      "MARA SOLBERG \u2014 Station medic",
+      "SERA NORD \u2014 Night operator"
+    ],
+    "eliminations": 1,
+    "score": 2180,
+    "accuracy_percent": 3,
+    "critical_eliminations": 1,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "terminal_footer": "CUMULATIVE PLAY TIME",
+    "evidence": "guard-escape-fire.jpg",
+    "progress": "Recovered West Archive then Heart; next objective ELIAN VALE at East Archive. Lost while firing and strafing away from the Heart warden. No third memory, jammer or uplink reached.",
+    "last_live_hud": {
+      "time": "00:43",
+      "health": 24,
+      "shield": 0,
+      "ammo": 17,
+      "reserve": 227
+    },
+    "terminal_health": "Not displayed on result screen"
+  },
+  "scale": {
+    "range": "0\u201310",
+    "anchors": {
+      "0": "unusable",
+      "3": "major friction prevents reliable play",
+      "5": "functional with substantial friction",
+      "7": "good with noticeable shortcomings",
+      "9": "excellent with minor issues",
+      "10": "exceptional across tested coverage"
+    },
+    "confidence": "Low to moderate: one short attempt, scripted native touches with paused inspection, software rendering and build identity mismatch. Scores are independent judgments, not target compliance."
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 5.5,
+      "reason": "A coherent navigable mission with functional native touch controls, but crowded layout, hard combat aiming and clipped onboarding reduced confidence in sustained mobile play."
+    },
+    "controls": {
+      "score": 5.0,
+      "reason": "Move, held FIRE drag plus simultaneous strafe, reload, USE, map and jump responded. Precise optic aiming was difficult; right-edge FIRE leaves little rightward drag room. 3% accuracy reflects my performance with this driver and cannot by itself establish a control defect."
+    },
+    "gameplay": {
+      "score": 6.0,
+      "reason": "Receiver recovery, route planning, low-cover traversal and dash/armor-break mechanic give concrete decisions. Surviving recovery under fire adds tension. Repeated ineffective shots at the Heart warden and rapid health loss made the response hard to learn in this attempt."
+    },
+    "presentation": {
+      "score": 7.0,
+      "reason": "Strong rain-soaked industrial atmosphere, cyan/amber enemy language, distinct relay landmark and consistent typography. Geometry looks angular and dark under this software-rendered capture; no physical performance or audio judgment."
+    },
+    "usability": {
+      "score": 5.5,
+      "reason": "Map clearly shows player, selected receiver and route length; recovery has explicit outside-reach and hold prompts. Handbook lower content remained clipped after one native swipe; recovery completion moved on quickly and memory prose was not read."
+    },
+    "readability": {
+      "score": 5.0,
+      "reason": "Main objective, health/ammo and terminal summary are legible. Numerous small labels and translucent text bands compete with scene detail at 844\u00d7390; map legend, threat text and terminal footer require close inspection."
+    }
+  },
+  "controls_exercised": [
+    "Native menu taps",
+    "Native handbook scroll attempt",
+    "Move joystick forward/diagonal/strafe",
+    "Held FIRE and drag aiming",
+    "Simultaneous movement and FIRE with two contacts",
+    "Reload",
+    "Jump at low cover (successfully crossed obstacle; did not verify separate vault animation)",
+    "Hold USE to recover two memories",
+    "MAP and CLOSE MAP",
+    "DASH (visible PHASE BREAK / DISCHARGE CANCELED / ARMOR OPEN 3s feedback)",
+    "Pause/resume through driver"
+  ],
+  "strengths": [
+    {
+      "detail": "Map provides route line, receiver selection, player arrow and walking distance without live threat pressure.",
+      "evidence": "map-first.jpg"
+    },
+    {
+      "detail": "Explicit 1.1 M OUTSIDE REACH prompt clarifies how to reach the Heart receiver.",
+      "evidence": "heart-approach.jpg"
+    },
+    {
+      "detail": "Jump allowed passage over initial low-cover obstacle to the first receiver.",
+      "evidence": [
+        "archive-approach.jpg",
+        "vault-route.jpg"
+      ]
+    },
+    {
+      "detail": "Dash gives immediate phase-break and armor-open feedback. Terminal phase evades remained zero; these are different visible reports and I infer no hidden counter behavior.",
+      "evidence": [
+        "dash-guard.jpg",
+        "guard-escape-fire.jpg"
+      ]
+    }
+  ],
+  "friction": [
+    {
+      "detail": "Handbook shows only first instruction and partial second; single upward native swipe did not visibly reveal lower text. Could be gesture targeting rather than proven scrolling defect.",
+      "evidence": [
+        "how-to-play.jpg",
+        "handbook-scroll.jpg"
+      ]
+    },
+    {
+      "detail": "Initial forward travel ran into low cover before jump cleared it; route guidance alone did not make traversal action obvious.",
+      "evidence": [
+        "archive-approach.jpg",
+        "vault-route.jpg"
+      ]
+    },
+    {
+      "detail": "Heart warden remained active after repeated bursts; optic alignment and right-edge FIRE drag were difficult. Lost health from 100 to 81 to 24 before terminal loss. Player skill and discrete driver gestures strongly confound difficulty judgments.",
+      "evidence": [
+        "heart-guard.jpg",
+        "sera-recovery-fight.jpg",
+        "dash-guard.jpg",
+        "guard-escape-fire.jpg"
+      ]
+    },
+    {
+      "detail": "Dense right-side control grid consumes a large part of the narrow viewport, and informational banners overlap the combat scene.",
+      "evidence": "mission-start.jpg"
+    },
+    {
+      "detail": "Requested Build78 provenance conflicts with visible BUILD 79 label.",
+      "evidence": "menu.jpg"
+    }
+  ],
+  "missing_coverage": [
+    "East Archive / Elian memory",
+    "Jammer coils and exposure windows",
+    "Uplink upload and extraction / victory",
+    "Recovered-memory prose",
+    "AIM, SWAP, CROUCH and RUN controls",
+    "Full tactical handbook and settings",
+    "Long-session balance and replayability",
+    "Physical phone performance",
+    "Safari",
+    "Audio",
+    "Continuous human enjoyment"
+  ],
+  "claims_limit": "No AAA readiness claim; no physical-device enjoyment validation. The 44-second mission timer excludes substantial paused inspection and is not wall-clock duration.",
+  "evidence": {
+    "directory": "docs/media/build78-mobile-review1",
+    "action_log": "actions.jsonl",
+    "screenshots": [
+      "menu.jpg",
+      "how-to-play.jpg",
+      "handbook-scroll.jpg",
+      "menu-return.jpg",
+      "mission-start.jpg",
+      "warden-fire.jpg",
+      "toward-west.jpg",
+      "map-first.jpg",
+      "archive-approach.jpg",
+      "vault-route.jpg",
+      "mara-recovery.jpg",
+      "sentinel-strafe.jpg",
+      "heart-approach.jpg",
+      "heart-guard.jpg",
+      "sera-recovery-fight.jpg",
+      "dash-guard.jpg",
+      "guard-escape-fire.jpg"
+    ]
+  },
+  "cleanup": {
+    "driver_pid": 85451,
+    "chrome_pid": 85524,
+    "close_sent": true,
+    "driver_exit_code": 0,
+    "driver_closed_output": {
+      "reason": "input ended or close requested",
+      "driverPid": 85451,
+      "chromePid": 85524,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 85451,85524 -o pid=,comm=",
+    "verification_exit_code": 1,
+    "verification_stdout": "",
+    "verified_both_exact_pids_absent": true,
+    "broad_process_killing": false
+  }
+}

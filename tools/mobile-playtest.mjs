@@ -71,10 +71,14 @@ async function capture(label,pauseAfter){
  if(!/^[a-zA-Z0-9_-]{1,80}$/.test(label))throw new Error('Capture label must use letters, digits, underscore or hyphen.');
  const beforePause=await ui(),started=performance.now();
  const result=await cdp.send('Page.captureScreenshot',{format:'jpeg',quality:75});
- const path=join(output,`${label}.jpg`);await writeFile(path,Buffer.from(result.data,'base64'));
+ const path=join(output,`${label}.jpg`),bytes=Buffer.from(result.data,'base64');await writeFile(path,bytes);
+ // CDP may return CSS-sized captures even with emulated deviceScaleFactor3.
+ // Read the JPEG dimensions rather than reporting the configured DPR.
+ let imagePixels;for(let offset=2;offset+8<bytes.length;){const marker=bytes[offset+1];offset+=2;const length=bytes.readUInt16BE(offset);if([0xc0,0xc1,0xc2].includes(marker)){imagePixels={width:bytes.readUInt16BE(offset+5),height:bytes.readUInt16BE(offset+3)};break}offset+=length}
+ if(!imagePixels)throw Error('Captured JPEG has no supported size header');
  const captureMs=performance.now()-started;
  if(pauseAfter&&beforePause.phase==='playing'&&(await ui()).phase==='playing')await tap('#pause-button');
- return{path,captureMs,beforePause,after:await ui(),cssViewport:{width:Number(values.width),height:Number(values.height)},screenshotScale:3};
+ return{path,captureMs,beforePause,after:await ui(),cssViewport:{width:Number(values.width),height:Number(values.height)},imagePixels,screenshotScale:imagePixels.width/Number(values.width)};
 }
 async function shutdown(reason){
  if(closing)return closing;

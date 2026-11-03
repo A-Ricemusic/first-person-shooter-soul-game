@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 78</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 79</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -160,7 +160,7 @@ function drawRadar(s){
 function renderRouteSelection(s){
  const el=$('route-selection'),signature=JSON.stringify([s.routeGoal,s.routeManual,s.coreMarkers?.map(c=>c.collected),s.custodian.dead]);if(el.dataset.signature===signature)return;el.dataset.signature=signature;el.replaceChildren();
  for(const [key,label,collected] of [['auto','Auto · nearest reachable',false],...(s.coreMarkers||[]).map(c=>[`core-${c.id}`,`${CORE_SITES[c.id].person.split(' ')[0]} · ${CORE_SITES[c.id].name}${c.collected?' · recovered':''}`,c.collected])]){
- const b=document.createElement('button');b.type='button';b.textContent=label;b.disabled=collected;b.setAttribute('aria-pressed',String(key==='auto'?!s.routeManual:s.routeGoal===key));b.onclick=()=>game.selectRoute(key);el.append(b);}
+ const b=document.createElement('button');b.type='button';b.textContent=game?.touchMode?(key==='auto'?'AUTO · NEAREST':`${CORE_SITES[Number(key.split('-')[1])].person.split(' ')[0]}${collected?' ✓':''}`):label;b.setAttribute('aria-label',label);b.disabled=collected;b.setAttribute('aria-pressed',String(key==='auto'?!s.routeManual:s.routeGoal===key));b.onclick=()=>game.selectRoute(key);el.append(b);}
  const note=document.createElement('span');note.textContent=s.cores===3?(s.custodian.dead?'Selected: Extraction':'Selected: Custodian approach'):`Selected: ${CORE_SITES[Number(s.routeGoal?.split('-')[1])]?.person||'Auto'}`;el.append(note);
 }
 let mapZoom=1,mapPathKey='',mapPath=[];

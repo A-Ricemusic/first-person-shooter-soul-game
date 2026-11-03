@@ -1,0 +1,537 @@
+{
+  "method": "Native-touch phone engineering checks. Actual camera/input and DOM layout measured. The collected map-state fixture briefly stages playing phase to collect a receiver, then restores planning synchronously; it is not a played recovery or mission.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "full handbook expands and remains natively scrollable above dismissal"
+      ],
+      "failures": [
+        {
+          "name": "handbook marks its scroll region and native swipes reveal the full lesson",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(await p.locator('#handbook-scroll-hint').isVisible())\n"
+        },
+        {
+          "name": "FIRE has at least100px of rightward thumb travel and symmetric80px corrections",
+          "error": "37"
+        },
+        {
+          "name": "recovering a receiver preserves every map target and canvas position",
+          "error": "The expression evaluated to a falsy value:\n\n  assert((await p.locator('#route-selection button:nth-child(2)').innerText()).includes('✓'))\n"
+        }
+      ],
+      "fireCenter": {
+        "x": 807,
+        "y": 222.5
+      },
+      "rightTravel": 37,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 421,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 421,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 393,
+            "height": 218,
+            "top": 137,
+            "right": 414,
+            "bottom": 355,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 421,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 421,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 393,
+            "height": 218,
+            "top": 137,
+            "right": 414,
+            "bottom": 355,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "full handbook expands and remains natively scrollable above dismissal"
+      ],
+      "failures": [
+        {
+          "name": "handbook marks its scroll region and native swipes reveal the full lesson",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(await p.locator('#handbook-scroll-hint').isVisible())\n"
+        },
+        {
+          "name": "FIRE has at least100px of rightward thumb travel and symmetric80px corrections",
+          "error": "37"
+        },
+        {
+          "name": "recovering a receiver preserves every map target and canvas position",
+          "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    buttons: [\n      {\n        h: 44,\n        w: 158,\n...\n        h: 44,\n+       w: 230,\n+       x: 12,\n+       y: 180\n-       w: 162,\n-       x: 176,\n-       y: 130\n      },\n      {\n        h: 44,\n        w: 159,\n        x: 12,\n+       y: 230\n-       y: 180\n      },\n      {\n        h: 44,\n        w: 135,\n        x: 177,\n+       y: 230\n-       y: 180\n      }\n    ],\n    canvas: {\n+     bottom: 654,\n-     bottom: 604,\n      height: 340,\n      left: 21,\n      right: 361,\n+     top: 314,\n-     top: 264,\n      width: 340,\n      x: 21,\n+     y: 314\n-     y: 264\n    }\n  }\n"
+        }
+      ],
+      "fireCenter": {
+        "x": 353,
+        "y": 676.5
+      },
+      "rightTravel": 37,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 158,
+              "h": 44
+            },
+            {
+              "x": 176,
+              "y": 130,
+              "w": 162,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 159,
+              "h": 44
+            },
+            {
+              "x": 177,
+              "y": 180,
+              "w": 135,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 264,
+            "width": 340,
+            "height": 340,
+            "top": 264,
+            "right": 361,
+            "bottom": 604,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 158,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 230,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 230,
+              "w": 159,
+              "h": 44
+            },
+            {
+              "x": 177,
+              "y": 230,
+              "w": 135,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 314,
+            "width": 340,
+            "height": 340,
+            "top": 314,
+            "right": 361,
+            "bottom": 654,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "full handbook expands and remains natively scrollable above dismissal"
+      ],
+      "failures": [
+        {
+          "name": "handbook marks its scroll region and native swipes reveal the full lesson",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(await p.locator('#handbook-scroll-hint').isVisible())\n"
+        },
+        {
+          "name": "FIRE has at least100px of rightward thumb travel and symmetric80px corrections",
+          "error": "37"
+        },
+        {
+          "name": "recovering a receiver preserves every map target and canvas position",
+          "error": "The expression evaluated to a falsy value:\n\n  assert((await p.locator('#route-selection button:nth-child(2)').innerText()).includes('✓'))\n"
+        }
+      ],
+      "fireCenter": {
+        "x": 630,
+        "y": 207.5
+      },
+      "rightTravel": 37,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 333,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 333,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 304.5,
+            "height": 203,
+            "top": 137,
+            "right": 325.5,
+            "bottom": 340,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 333,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 333,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 304.5,
+            "height": 203,
+            "top": 137,
+            "right": 325.5,
+            "bottom": 340,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "full handbook expands and remains natively scrollable above dismissal"
+      ],
+      "failures": [
+        {
+          "name": "handbook marks its scroll region and native swipes reveal the full lesson",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(await p.locator('#handbook-scroll-hint').isVisible())\n"
+        },
+        {
+          "name": "FIRE has at least100px of rightward thumb travel and symmetric80px corrections",
+          "error": "37"
+        },
+        {
+          "name": "recovering a receiver preserves every map target and canvas position",
+          "error": "The expression evaluated to a falsy value:\n\n  assert((await p.locator('#route-selection button:nth-child(2)').innerText()).includes('✓'))\n"
+        }
+      ],
+      "fireCenter": {
+        "x": 878,
+        "y": 244.5
+      },
+      "rightTravel": 37,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 457,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 457,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 428.5,
+            "height": 240,
+            "top": 137,
+            "right": 449.5,
+            "bottom": 377,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 457,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 457,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 428.5,
+            "height": 240,
+            "top": 137,
+            "right": 449.5,
+            "bottom": 377,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "full handbook expands and remains natively scrollable above dismissal"
+      ],
+      "failures": [
+        {
+          "name": "handbook marks its scroll region and native swipes reveal the full lesson",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(await p.locator('#handbook-scroll-hint').isVisible())\n"
+        },
+        {
+          "name": "FIRE has at least100px of rightward thumb travel and symmetric80px corrections",
+          "error": "37"
+        },
+        {
+          "name": "recovering a receiver preserves every map target and canvas position",
+          "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    buttons: [\n      {\n        h: 44,\n        w: 158,\n...\n        h: 44,\n+       w: 230,\n-       w: 162,\n        x: 12,\n        y: 180\n      },\n      {\n        h: 44,\n"
+        }
+      ],
+      "fireCenter": {
+        "x": 283,
+        "y": 472.5
+      },
+      "rightTravel": 37,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 158,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 162,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 230,
+              "w": 159,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 280,
+              "w": 135,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 364,
+            "width": 278,
+            "height": 278,
+            "top": 364,
+            "right": 299,
+            "bottom": 642,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 158,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 230,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 230,
+              "w": 159,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 280,
+              "w": 135,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 364,
+            "width": 278,
+            "height": 278,
+            "top": 364,
+            "right": 299,
+            "bottom": 642,
+            "left": 21
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}
