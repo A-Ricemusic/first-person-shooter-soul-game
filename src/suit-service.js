@@ -12,7 +12,7 @@ export function serviceStatus(g){
 export function resetService(g){g.suitService={spent:false,progress:0};}
 export function updateService(g,dt){
  const s=g.suitService,a=serviceStatus(g);
- if(g.phase!=='playing'||!a.valid||!a.powered||a.spent||a.full||!g.keys.has('KeyE')||g.serviceDamaged){s.progress=0;g.serviceDamaged=false;return;}
+ if(g.phase!=='playing'||!a.valid||!a.powered||a.spent||a.full||!g.useHeld()||g.serviceDamaged){s.progress=0;g.serviceDamaged=false;return;}
  s.progress+=dt;
  if(s.progress+1e-9>=L.seconds){
   const b=serviceStatus(g);

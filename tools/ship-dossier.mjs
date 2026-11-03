@@ -1,4 +1,4 @@
-import {copyFileSync,existsSync,linkSync,lstatSync,mkdirSync,readdirSync,unlinkSync} from 'node:fs';
+import {copyFileSync,existsSync,linkSync,lstatSync,mkdirSync,readdirSync,unlinkSync,readFileSync,writeFileSync} from 'node:fs';
 import {resolve,sep,join} from 'node:path';
 
 // Evidence media is immutable once recorded. Link those regular files locally
@@ -22,7 +22,7 @@ export function shipDossier(source='docs',destination='dist/docs'){
    try{linkSync(src,dst);stats.linkedMedia++;stats.linkedBytes+=s.size;return;}
    catch(e){if(!['EXDEV','EPERM','ENOSYS','ENOTSUP','EOPNOTSUPP'].includes(e.code))throw e;}
   }
-  copyFileSync(src,dst);stats.copiedFiles++;stats.copiedBytes+=s.size;
+  if(relative.endsWith('.html')){const html=readFileSync(src,'utf8').replace(/<img\b([^>]*?)>/gi,(tag,attrs)=>{if(/\bloading\s*=/.test(attrs))return tag;return '<img loading="lazy" decoding="async"'+attrs+'>'});writeFileSync(dst,html)}else copyFileSync(src,dst);stats.copiedFiles++;stats.copiedBytes+=s.size;
  }
  visit();return stats;
 }

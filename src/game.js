@@ -51,8 +51,9 @@ export class Game {
   constructor({ canvas, onState = () => {}, onEvent = () => {}, onMarkers = () => {} }) {
     this.canvas = canvas; this.onState = onState; this.onEvent = onEvent; this.onMarkers = onMarkers;
     this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
+    this.touchMove={x:0,z:0}; this.touchUse=false; this.touchSprint=false;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
-    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, volume: 0.65, reducedMotion: false, quality: 'balanced' };
+    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
     this.mouseDown = false; this.aim = false; this.dragging = false; this.pointerFallback = false;
     this.yaw = 0; this.pitch = 0; this.animTime = 0; this.runTime = 0; this.lastFrame = 0; this.emitTimer = 0;
@@ -78,14 +79,14 @@ export class Game {
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, powerPreference: 'high-performance' });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-    this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !this.touchMode, powerPreference: 'high-performance' });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.touchMode ? 1 : 1.75));
+    this.renderer.shadowMap.enabled = !this.touchMode; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 1.12;
     this.scene = new THREE.Scene(); this.combatFeedback=new CombatFeedback(this.scene); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
     this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
-    this.world = await buildWorld(this.scene);
+    this.world = await buildWorld(this.scene,{mobile:this.touchMode});
     this.custodian=await createCustodian(this);
     this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.profile=STANDING; this.crouchRequested=false; this.standBlocked=false;
@@ -238,7 +239,7 @@ export class Game {
 
   bindInput() {
     const listen = (target, event, callback, opts) => { target.addEventListener(event, callback, opts); this.cleanups.push(() => target.removeEventListener(event, callback, opts)); };
-    listen(window, 'resize', () => this.resize());
+    listen(window, 'resize', () => {this.clearInput();this.resize();});
     listen(document, 'keydown', e => {
       if (e.code === 'Escape' && ['playing','planning'].includes(this.phase)) { this.pause(); return; }
       if (this.phase !== 'playing' || e.target.closest('input,select,textarea,dialog')) return;
@@ -248,25 +249,25 @@ export class Game {
       if (!e.repeat) {
         if (e.code === 'Digit1') this.selectWeapon('rifle');
         if (e.code === 'Digit2') this.selectWeapon('breacher');
-        if (e.code === 'KeyC') toggleCrouch(this);
+        if (e.code === 'KeyC') this.action('crouch');
         if (e.code === 'KeyR') this.reload();
         if (e.code === 'KeyE') this.interact();
         if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') this.dash();
-        if (e.code === 'Space' && !this.vault) { const d=this.moveDirection(); if(d.lengthSq()<.01)d.set(-Math.sin(this.yaw),0,-Math.cos(this.yaw)); if(!startVault(this,this.traversalWorld(),d))jumpPlayer(this,this.world); }
+        if (e.code === 'Space') this.action('jump');
       }
       this.keys.add(e.code);
     });
     listen(document, 'keyup', e => {this.keys.delete(e.code);if(e.code==='Tab'){this.routeTrace.visible=false;this.routeStatus='';}});
     listen(this.canvas, 'contextmenu', e => e.preventDefault());
     listen(this.canvas, 'mousedown', e => {
-      if (this.phase !== 'playing') return;
+      if (this.touchMode || this.phase !== 'playing') return;
       this.audio.wake(); if (e.button === 0) this.mouseDown = true; if (e.button === 2) this.aim = true;
       this.dragging = true;
       if (!document.pointerLockElement && !this.pointerFallback) this.requestLock();
     });
     listen(document, 'mouseup', e => { if (e.button === 0) this.mouseDown = false; if (e.button === 2) this.aim = false; this.dragging = e.buttons !== 0; });
     listen(document, 'mousemove', e => {
-      if (this.phase !== 'playing' || (document.pointerLockElement !== this.canvas && !(this.pointerFallback && this.dragging))) return;
+      if (this.touchMode || this.phase !== 'playing' || (document.pointerLockElement !== this.canvas && !(this.pointerFallback && this.dragging))) return;
       const sensitivity = clamp(Number(this.options.sensitivity) || 1, 0.2, 3) * (this.aim ? 0.00125 : 0.002);
       this.yaw -= e.movementX * sensitivity; this.pitch = clamp(this.pitch - e.movementY * sensitivity, -1.44, 1.44);
     });
@@ -275,7 +276,7 @@ export class Game {
       // release without interpreting it as a fresh loss of gameplay focus.
       if(this.planningUnlock && document.pointerLockElement!==this.canvas){this.planningUnlock=false;if(this.phase==='playing')this.requestLock();return;}
       if(document.pointerLockElement===this.canvas)this.planningUnlock=false;
-      if(document.pointerLockElement!==this.canvas&&this.phase==='playing'&&!this.pointerFallback)this.pause();
+      if(!this.touchMode&&document.pointerLockElement!==this.canvas&&this.phase==='playing'&&!this.pointerFallback)this.pause();
     });
     listen(document, 'pointerlockerror', () => this.enableFallback());
     listen(window, 'blur', () => { if (['playing','planning'].includes(this.phase)) this.pause(); });
@@ -300,7 +301,7 @@ export class Game {
   setSettings(options = {}) {
     if(options.difficulty && options.difficulty!==this.options.difficulty)this.invalidateAnchor();
     this.options = { ...this.options, ...options }; this.routeHelp?.reset();this.routeWaypoint=null;if(this.routeTrace)this.routeTrace.visible=false;this.routePath=[];this.routeNext=0; this.audio.setVolume(this.options.volume);
-    if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? 2 : 1.5)); this.renderer.shadowMap.enabled = options.quality !== 'low'; }
+    if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? (this.touchMode?1.5:2) : (this.touchMode?1:1.5))); this.renderer.shadowMap.enabled = options.quality === 'high' || (!this.touchMode && options.quality !== 'low'); }
     this.resize?.();
   }
   invalidateAnchor() { this.finaleAnchor=null; this.anchorInvalidated=true; }
@@ -371,7 +372,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
@@ -449,7 +450,8 @@ export class Game {
   dash() {
     if (this.vault || this.phase !== 'playing' || this.dashCooldown > 0) return;
     this.dashVector.copy(this.moveDirection());
-    if (this.dashVector.lengthSq() < 0.01) this.dashVector.set(-Math.sin(this.yaw), 0, -Math.cos(this.yaw));
+    if (this.dashVector.lengthSq() < 1e-12) this.dashVector.set(-Math.sin(this.yaw), 0, -Math.cos(this.yaw));
+    this.dashVector.normalize();
     this.dashCount++; this.dashTime = 0.22; this.invulnerable = 0.4; this.dashCooldown = 4.5; this.audio.dash();
     this.event('dash', 'SOUL SHIFT');
     for (let i = 0; i < 12; i++) this.particle(this.player.clone().add(new THREE.Vector3((Math.random() - 0.5) * 0.6, Math.random() - 1, (Math.random() - 0.5) * 0.6)), 0x62eeff, 0.8, 0.08);
@@ -542,7 +544,20 @@ export class Game {
     this.emit();
   }
 
+  action(name) {
+    if(this.phase!=='playing')return;
+    this.audio.wake();
+    if(name==='reload')this.reload();
+    if(name==='dash')this.dash();
+    if(name==='crouch')toggleCrouch(this);
+    if(name==='swap')this.selectWeapon(this.activeWeapon==='rifle'?'breacher':'rifle');
+    if(name==='ads')this.aim=!this.aim;
+    if(name==='sprint')this.touchSprint=!this.touchSprint;
+    if(name==='jump'&&!this.vault){const d=this.moveDirection();if(d.lengthSq()<.01)d.set(-Math.sin(this.yaw),0,-Math.cos(this.yaw));d.normalize();if(!startVault(this,this.traversalWorld(),d))jumpPlayer(this,this.world);}
+  }
+  useHeld(){return this.touchUse||this.keys.has('KeyE')}
   moveDirection() {
+    if(this.touchMode)return new THREE.Vector3(this.touchMove.x,0,this.touchMove.z).applyAxisAngle(UP,this.yaw);
     const x = Number(this.keys.has('KeyD') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('ArrowLeft'));
     const z = Number(this.keys.has('KeyS') || this.keys.has('ArrowDown')) - Number(this.keys.has('KeyW') || this.keys.has('ArrowUp'));
     return new THREE.Vector3(x, 0, z).normalize().applyAxisAngle(UP, this.yaw);
@@ -608,7 +623,7 @@ export class Game {
       this.event('reloadComplete',this.reloading?'Shell seated.':'Weapon ready.');
     } }
     const previousPlayer=this.player.clone();
-    const direction = this.moveDirection(), sprint = this.keys.has('ControlLeft') || this.keys.has('ControlRight');
+    const direction = this.moveDirection(), sprint = this.touchSprint || this.keys.has('ControlLeft') || this.keys.has('ControlRight');
     if(sprint&&this.grounded&&!this.vault&&!(this.dashTime>0))this.crouchRequested=false;
     updatePosture(this,this.world,dt);
     if(this.crouchRequested&&profileOf(this).eyeHeight<=1.05+1e-6)this.crouchLearned=true;
@@ -627,7 +642,7 @@ export class Game {
     if(this.phase !== 'playing')return;
     updateService(this,dt);
     const nearby=this.coreNodes.find(c=>!c.collected&&recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
-    if(nearby&&this.grounded&&!this.vault&&this.keys.has('KeyE')) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
+    if(nearby&&this.grounded&&!this.vault&&this.useHeld()) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
     if(this.cores===this.coreNodes.length){
       // Build44 replaces distance-triggered extraction Interceptors with the fixed jammer.

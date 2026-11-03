@@ -1,0 +1,19 @@
+{
+  "method": "Mobile Chromium emulation, native touch. Engineering state reads on test URL separate from normal-URL checks. No physical hardware claims.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "deploy without lock",
+        "44px controls inside viewport",
+        "two-thumb analog move + fire-drag aim; independent release",
+        "dash normalized, ADS/reload/swap/crouch/run/jump/use native taps/cancel"
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "locator.isVisible: Error: strict mode violation: locator('#settings-dialog [data-close]') resolved to 2 elements:\n    1) <button data-close=\"\" class=\"close-button\" aria-label=\"Close settings\">×</button> aka getByRole('button', { name: 'Close settings' })\n    2) <button data-close=\"\" class=\"primary-button\">…</button> aka getByRole('button', { name: 'APPLY & CLOSE ↗' })\n\nCall log:\n\u001b[2m    - checking visibility of locator('#settings-dialog [data-close]')\u001b[22m\n\n    at Object.center (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tools/mobile-touch.mjs:5:500)\n    at Object.tap (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tools/mobile-touch.mjs:5:659)\n    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-smoke.mjs:14:243"
+}

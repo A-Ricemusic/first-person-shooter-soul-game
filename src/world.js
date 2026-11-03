@@ -13,7 +13,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 // Original Blender-authored props are combined with modular architectural geometry.
 // World coordinates: Y up, floor 0; front entrance at +Z.
-export async function buildWorld(scene) {
+export async function buildWorld(scene,{mobile=false}={}) {
   const rng = (() => { let s = 51319; return () => ((s = Math.imul(s, 1664525) + 1013904223 >>> 0) / 4294967296); })();
   const colliders = [], animated = [], coreVisuals = [], receivers = [];
   const group = new THREE.Group(); group.name = 'BLACKWATER / tidal power station'; scene.add(group);
@@ -61,7 +61,8 @@ export async function buildWorld(scene) {
     const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,delta.length(),12),mat);
     m.position.copy(av).add(bv).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());m.castShadow=true;group.add(m);return m;
   }
-  function point(x,y,z,color,intensity=12,dist=13) {const l=new THREE.PointLight(color,intensity,dist,2);l.position.set(x,y,z);group.add(l);return l;}
+
+  function point(x,y,z,color,intensity=12,dist=13,essential=false) {const l=new THREE.PointLight(color,intensity,dist,2);l.position.set(x,y,z);if(mobile&&!essential)l.visible=false;group.add(l);return l;}
   function sign(text,sub,x,y,z,width=5,height=1.8,color='#b0d0d5'){
     const c=document.createElement('canvas');c.width=1024;c.height=256;const ctx=c.getContext('2d');
     ctx.fillStyle='#111e24';ctx.fillRect(0,0,1024,256);ctx.fillStyle=color;ctx.font='700 100px sans-serif';ctx.font=`700 ${Math.min(100,100*948/Math.max(1,ctx.measureText(text).width))}px sans-serif`;ctx.fillText(text,38,126);
@@ -92,7 +93,7 @@ export async function buildWorld(scene) {
   sc.putImageData(si,0,0);
   const sky=new THREE.CanvasTexture(skyCanvas);sky.mapping=THREE.EquirectangularReflectionMapping;sky.colorSpace=THREE.SRGBColorSpace;scene.background=sky;
   scene.add(new THREE.HemisphereLight(0x91c0dc,0x15232a,1.55));
-  const sun=new THREE.DirectionalLight(0xb5d7ed,2.7);sun.position.set(-28,48,15);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);
+  const sun=new THREE.DirectionalLight(0xb5d7ed,2.7);sun.position.set(-28,48,15);sun.castShadow=true;sun.shadow.mapSize.set(mobile?1024:2048,mobile?1024:2048);
   Object.assign(sun.shadow.camera,{left:-48,right:48,top:50,bottom:-50,near:1,far:130});sun.shadow.bias=-.0003;sun.shadow.normalBias=.04;scene.add(sun);sun.target.position.set(0,0,-5);scene.add(sun.target);
   const rim=new THREE.DirectionalLight(0xf59c63,1.1);rim.position.set(40,8,-65);scene.add(rim);
 
@@ -135,14 +136,14 @@ export async function buildWorld(scene) {
   const hub=new THREE.Mesh(new THREE.SphereGeometry(1,24,16),steel);hub.scale.z=.4;hub.position.set(0,8,-43.3);group.add(hub);
   sign('BLACKWATER','TIDAL ARRAY  /  STATION 09',0,18.4,-44.1,17,3.5);
   sign('CONTROL','SIGNAL LOST · MANUAL RESTORE',0,3.4,-44.1,8,1.8,'#eeaa73');
-  point(0,8,-40,0x32b8db,110,23);
+  point(0,8,-40,0x32b8db,110,23,true);
   // Suspended cable gantry frames the skyline without obstructing the player.
   for(const z of [-27,20]){
     box(0,12,z,78,.8,1.2,steel);
     for(const x of [-35,35])box(x,6,z,1.2,12,1.6,concrete,true);
     for(let x=-32;x<34;x+=8)box(x,11.5,z,.3,.12,1.6,orange);
     for(let x=-24;x<34;x+=24){
-      const lamp=new THREE.SpotLight(0xa6dbe7,55,25,.7,.6,1.3);lamp.position.set(x,11,z);lamp.target.position.set(x,0,z-2);group.add(lamp,lamp.target);
+      const lamp=new THREE.SpotLight(0xa6dbe7,55,25,.7,.6,1.3);lamp.visible=!mobile;lamp.position.set(x,11,z);lamp.target.position.set(x,0,z-2);group.add(lamp,lamp.target);
     }
   }
   for(const x of [-12,12]){
@@ -193,7 +194,7 @@ export async function buildWorld(scene) {
       const bounds=new THREE.Box3(c.clone().sub(h),c.clone().add(h));
       bounds.receiverId=i;colliders.push(bounds);
     }
-    const beacon=point(x,3.5,z,0x26c8eb,18,10),materials=[];
+    const beacon=point(x,3.5,z,0x26c8eb,18,10,true),materials=[];
     model.traverse(o=>{if(o.isMesh&&o.name==='Beacon'){o.material=o.material.clone();materials.push({material:o.material,color:o.material.emissive.clone(),intensity:o.material.emissiveIntensity});}});
     coreVisuals.push({pylon:model,materials,beacon});
     box(x,.018,z,3,.035,3,steel);
@@ -256,7 +257,7 @@ export async function buildWorld(scene) {
     const colors=[0x76e4b0,0xffb347,0x6acbff], labels=['TRIAGE / LAST FERRY','REPAIR / MANUAL CUTOFF','RELAY / STILL HERE'];
     const storySign=sign(labels[i],['MARA · THE CHILDREN MADE IT','ELIAN · THE STATION CAN WAIT','SERA · EVERY SIGNAL IS A PERSON'][i],x,3.6,z-.9,7,1.5,['#94e4b9','#ffc078','#8edbff'][i]);
     if(i===0){storySign.position.set(-36.18,3.6,-19);storySign.rotation.y=Math.PI/2;}
-    point(x,3,z,colors[i],24,12);
+    point(x,3,z,colors[i],24,12,true);
     for(const dx of [-3,3])box(x+dx,.03,z,.1,.04,6,[weakCyan,amber,cyan][i]);
   }
   // Build70: original aisle architecture shares authored/fallback/collision metadata.
@@ -373,7 +374,7 @@ export async function buildWorld(scene) {
   const roof=WORKSHOP.parts.find(p=>p.name===WORKSHOP.roofPart);
   const shelters=[INDUCTION.shelter,MEDICAL.shelter,{minX:roof.center[0]-roof.size[0]/2,maxX:roof.center[0]+roof.size[0]/2,minZ:roof.center[2]-roof.size[2]/2,maxZ:roof.center[2]+roof.size[2]/2,ceiling:roof.center[1]-roof.size[1]/2}];
   function maskRain(r,p){if(shelters.some(sh=>r[p]>=sh.minX&&r[p]<=sh.maxX&&r[p+2]>=sh.minZ&&r[p+2]<=sh.maxZ&&r[p+4]<sh.ceiling)){r[p+1]=24;r[p+4]=23;}}
-  const rainN=1700, rainPositions=new Float32Array(rainN*6),rainSpeeds=new Float32Array(rainN);
+  const rainN=mobile?420:1700, rainPositions=new Float32Array(rainN*6),rainSpeeds=new Float32Array(rainN);
   for(let i=0;i<rainN;i++){const x=(rng()-.5)*92,y=rng()*24,z=(rng()-.5)*100;rainPositions.set([x,y,z,x-.08,y-.8-rng()*.5,z+.02],i*6);rainSpeeds[i]=10+rng()*8;maskRain(rainPositions,i*6);}
   const rainGeometry=new THREE.BufferGeometry();rainGeometry.setAttribute('position',new THREE.BufferAttribute(rainPositions,3));
   const rain=new THREE.LineSegments(rainGeometry,new THREE.LineBasicMaterial({color:0x91baca,transparent:true,opacity:.19,depthWrite:false}));rain.frustumCulled=false;group.add(rain);

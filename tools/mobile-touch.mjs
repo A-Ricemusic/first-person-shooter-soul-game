@@ -1,0 +1,6 @@
+// Native CDP contact transport shared by engineering suites (ordinary driver stands alone).
+export async function mobileTouch(page){
+ const cdp=await page.context().newCDPSession(page),held=new Map();
+ const send=(type,points)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints:points});
+ const api={async down(id,x,y){if(held.has(id))throw Error('already held');held.set(id,{id,x,y});await send('touchStart',[...held.values()])},async move(id,x,y){if(!held.has(id))throw Error('not held');held.set(id,{id,x,y});await send('touchMove',[...held.values()])},async up(id){const p=held.get(id);if(!p)throw Error('not held');await send('touchEnd',[p]);held.delete(id)},async clear(){if(held.size)await send('touchCancel',[]);held.clear()},async center(selector){const l=page.locator(selector);if(!await l.isVisible())throw Error('not visible '+selector);await l.scrollIntoViewIfNeeded();const r=await l.boundingBox();return{x:r.x+r.width/2,y:r.y+r.height/2}},async tap(selector){const p=await api.center(selector),id=[1,2].find(i=>!held.has(i));if(!id)throw Error('two contact maximum');await api.down(id,p.x,p.y);await page.waitForTimeout(50);await api.up(id);await page.waitForTimeout(80)}};return api;
+}
