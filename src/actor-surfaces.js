@@ -17,9 +17,10 @@ export function actorSurfaceHit(enemy,raycaster){
 
 // Match the active weapon's centre-ray rules, including the rifle's existing
 // fixed optic sphere and primitive-body fallback. Existing rifle precision and damage rules are retained.
-export function actorOccludes(g,raycaster,distance){
+export function actorOccludes(g,raycaster,distance,ignoreEnemy=null){
  const point=new T.Vector3();
  for(const e of g.enemies){
+  if(e===ignoreEnemy)continue;
   const h=actorSurfaceHit(e,raycaster);if(h&&h.distance<=distance)return true;
   if(g.activeWeapon==='breacher')continue;
   const optic=raycaster.ray.intersectSphere(new T.Sphere(g.enemyOpticPosition(e),.24),point);

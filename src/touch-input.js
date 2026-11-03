@@ -17,7 +17,7 @@ export function sceneTurnDisplacement(pixels,width,height){
 }
 
 // Each pointer owns one role until release; phase changes invalidate all ownership.
-export function installTouch(game,{map,onSensitivity,onFastTurns}){
+export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
  if(!game.touchMode)return;
  document.body.classList.add('touch-mode');
  const root=document.createElement('div');root.id='touch-controls';root.className='hidden';
@@ -86,7 +86,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns}){
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE gently for small steps. Swipe RIGHT to turn right, LEFT to turn left. Scene turns are linear by default. Faster long turns are optional in SETTINGS. TOOLS opens SWAP, CROUCH and RUN.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ for(const text of ['MOVE gently for small steps. Hold FIRE and drag to aim; AIM slows fine corrections. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
  help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps; release it to move at normal speed. You still need to enter the ring.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
@@ -102,5 +102,6 @@ export function installTouch(game,{map,onSensitivity,onFastTurns}){
  turn.onchange=()=>{game.options.fastSceneTurns=turn.checked;onFastTurns?.(turn.checked)};
  turnLabel.append(turn,document.createTextNode(' Faster long scene turns'));
  const note=document.createElement('p');note.className='setting-note';note.textContent='Small corrections stay precise. Long scene swipes turn faster when enabled. FIRE-drag stays linear; AIM halves speed. Lower sensitivity for finer aim.';
- setting.append(label,input,turnLabel,note);document.querySelector('#settings-dialog h2').after(setting);
+ const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Helps near misses reach visible targets. Cover still blocks shots. Rifle only; a cyan reticle ring marks an assisted shot. Assisted scores have a separate personal best.';
+ setting.append(label,input,turnLabel,note,assistLabel,assistNote);document.querySelector('#settings-dialog h2').after(setting);
 }

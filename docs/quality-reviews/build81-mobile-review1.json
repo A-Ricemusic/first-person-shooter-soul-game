@@ -1,0 +1,180 @@
+{
+  "review_id": "build81-mobile-review1",
+  "reviewer": "Independent mobile reviewer, GPT-6.1 Sol",
+  "attempts": 1,
+  "expected_frozen_source": "a8c3c3611f20cd64d13672ae216488f79befe3f0",
+  "source_verified": false,
+  "identity_observation": "Visible menu reads BUILD 81; source hash was supplied, not inspected.",
+  "url": "http://127.0.0.1:61477/",
+  "viewport": {
+    "width": 844,
+    "height": 390,
+    "orientation": "landscape",
+    "screenshot_scale": 1
+  },
+  "method": "Read only helper --help, then native JSON-lines touch input with at most two contacts. Every screenshot viewed before adaptive input. Planning map visibly closed with #close-map. No source/tests/docs/prior reviews/recordings/internal state inspected; no keyboard, mouse or evaluation used.",
+  "outcome": "LOSS",
+  "terminal_visible_text": [
+    "OPERATOR LOST",
+    "SIGNAL LOST"
+  ],
+  "terminal_stats": {
+    "eliminations": 1,
+    "mission_time": "00:43",
+    "score": 1100,
+    "accuracy_percent": 6,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "recovered_memories": [
+      "Mara Solberg \u2014 Station medic"
+    ],
+    "cumulative_play_time_label_visible": true
+  },
+  "coverage": {
+    "observed": [
+      "Title BUILD 81",
+      "Operator handbook",
+      "Opening induction guard",
+      "Rifle firing and reload",
+      "Movement and brief fire-drag aiming",
+      "Paused overview planning map and visible close",
+      "West Archive approach",
+      "Hold USE careful movement and Mara recovery",
+      "Patrol fire, damage indicators and critical health",
+      "Dash activation attempt with visible cooldown",
+      "North relay exit/cover navigation",
+      "Actual terminal loss screen"
+    ],
+    "not_reached": [
+      "Sera recovery",
+      "Elian recovery",
+      "Jammer coils",
+      "Upload/extraction",
+      "Win screen"
+    ],
+    "not_exercised": [
+      "Settings",
+      "Tools menu",
+      "Weapon swap",
+      "Crouch/run",
+      "Jump/vault",
+      "ADS",
+      "Full tactical handbook",
+      "Recovered memory reader"
+    ]
+  },
+  "helpful_moments": [
+    {
+      "evidence": "docs/media/build81-mobile-review1/how-to-play.jpg",
+      "observation": "Two-column handbook gives concise movement, map, USE and objective sequence instructions within the landscape viewport."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/planning-map.jpg",
+      "observation": "Paused map shows known facility, player, selected memory and walking route; it made the west destination understandable."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/first-guard.jpg",
+      "observation": "Opening centered enemy disappeared after a held burst; clear first combat success."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/mara-use.jpg",
+      "observation": "Precise 0.9 m outside reach prompt explained why USE had not recovered the memory."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/receiver-recovery.jpg",
+      "observation": "Stepping forward with USE then stopping recovered Mara, filled slot 01, and raised observed health from 73 to 90."
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "evidence": "docs/media/build81-mobile-review1/advance-north.jpg",
+      "observation": "Straight movement ended against induction cover; I had to strafe around it."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/mara-use.jpg",
+      "observation": "My first careful USE approach stopped outside reach while incoming fire depleted shield and health."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/toward-heart.jpg",
+      "observation": "Combined diagonal movement and held fire-drag did not effectively address the side sentinel; health fell to 33. The short drag changed heading only from 000 to 005, leaving me poorly aligned."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/north-exit-fight.jpg",
+      "observation": "Reload, movement, dash tap and firing left me at 14 health facing a largely blank obstructing wall, with only an edge PATH marker to guide escape."
+    },
+    {
+      "evidence": "docs/media/build81-mobile-review1/follow-exit-arrow.jpg",
+      "observation": "Attempting rightward then forward escape ended in loss before the second memory."
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 mixed but playable with substantial friction, 10 exceptional. Subjective scores for this single synthetic attempt only; overall is holistic, not a completion score or arithmetic mean.",
+    "overall_mobile": {
+      "score": 6,
+      "reason": "Coherent, readable and functional touch loop with one satisfying recovery, but combat/navigation coordination was difficult and the attempt ended quickly."
+    },
+    "controls": {
+      "score": 5,
+      "reason": "Movement, firing, reload and USE functioned. Aiming while moving and fitting dash into two-contact action were difficult for me; 6% accuracy limits any claim of effective combat control."
+    },
+    "gameplay": {
+      "score": 6,
+      "reason": "Clear memory objective, opening combat and recovery reward gave purpose. Side fire and cover routing overwhelmed me before later systems could be assessed."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Consistent cyan/amber visual language, rain-lit station and polished menu/end screen; close cover views became visually uninformative."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Useful handbook, pausing map, route and explicit receiver reach feedback. Simultaneous navigation and combat required attention across many touch buttons."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Large health/ammo and objective are clear; handbook fits. Distance/status text, map detail and secondary end statistics are small at 844x390."
+    }
+  },
+  "uncertainties": [
+    "Poor combat accuracy may reflect my synthetic touch technique and unfamiliarity; this one run cannot isolate control design from reviewer skill.",
+    "Only one elimination is confirmed by terminal stats; firing success against later sentinels is unconfirmed.",
+    "Dash was tapped and cooldown observed, but no phase evade was credited.",
+    "Later mission balance and content were not reached."
+  ],
+  "limitations": [
+    "Synthetic native-touch Chromium emulation, not a physical phone.",
+    "Software-WebGL fallback reported by helper; renderer not certified.",
+    "Captures pause the mission for inspection, and planning itself pauses. This materially reduces continuous pressure and prevents judging uninterrupted enjoyment.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment remain unassessed."
+  ],
+  "evidence": {
+    "directory": "docs/media/build81-mobile-review1/",
+    "raw_log": "docs/media/build81-mobile-review1/actions.jsonl",
+    "terminal_screenshot": "docs/media/build81-mobile-review1/follow-exit-arrow.jpg",
+    "screenshots": [
+      "docs/media/build81-mobile-review1/initial.jpg",
+      "docs/media/build81-mobile-review1/how-to-play.jpg",
+      "docs/media/build81-mobile-review1/mission-entry.jpg",
+      "docs/media/build81-mobile-review1/first-guard.jpg",
+      "docs/media/build81-mobile-review1/planning-map.jpg",
+      "docs/media/build81-mobile-review1/advance-north.jpg",
+      "docs/media/build81-mobile-review1/west-lane.jpg",
+      "docs/media/build81-mobile-review1/mara-use.jpg",
+      "docs/media/build81-mobile-review1/receiver-recovery.jpg",
+      "docs/media/build81-mobile-review1/toward-heart.jpg",
+      "docs/media/build81-mobile-review1/north-exit-fight.jpg",
+      "docs/media/build81-mobile-review1/follow-exit-arrow.jpg"
+    ]
+  },
+  "cleanup": {
+    "explicit_close_sent": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "owned_driver_pid": 17667,
+    "owned_chrome_pid": 17690,
+    "verification_command": "ps -p 17667,17690 -o pid=,ppid=,stat=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Both exact owned PIDs absent after helper exit; no kill commands used."
+  }
+}

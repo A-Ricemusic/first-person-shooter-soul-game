@@ -1,0 +1,218 @@
+{
+  "review": "build81-mobile-review2",
+  "role": "independent mobile reviewer",
+  "model": "GPT-6.1 Sol",
+  "date": "2026-11-03",
+  "identity": {
+    "expected_frozen_source": "a8c3c3611f20cd64d13672ae216488f79befe3f0",
+    "source_verified": false,
+    "reason": "Source inspection prohibited; identity assessed only through visible UI.",
+    "visible_build": "BUILD 81",
+    "mismatch_observed": false
+  },
+  "method": {
+    "url": "http://127.0.0.1:61477/",
+    "viewport_css": [
+      390,
+      844
+    ],
+    "orientation": "portrait",
+    "attempts": 1,
+    "fresh_start": true,
+    "retry_used": false,
+    "input": "Helper JSON-lines native Chromium two-contact touch; selector centers and normalized visible geometry.",
+    "inspection": "Viewed every generated screenshot before choosing subsequent adaptive input. Read helper --help only; no game source, tests, docs, prior reviews, recordings, target metadata or internal game state inspected.",
+    "pause_limitation": "Helper captured live and paused combat after each playing segment. Planning maps remained open until visibly tapped CLOSE MAP. Inspection time therefore did not continuously expose the player to combat; segmented synthetic play does not establish continuous enjoyment."
+  },
+  "result": {
+    "classification": "TERMINAL_LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:13",
+    "eliminations": 2,
+    "score": 3275,
+    "accuracy_percent": 6,
+    "critical_eliminations": 0,
+    "phase_evades": 1,
+    "uplink_retries": 0,
+    "memories_cached": [
+      "Mara Solberg",
+      "Elian Vale",
+      "Sera Nord"
+    ],
+    "custodian_destroyed": false,
+    "upload_reached": false,
+    "terminal_health": "Not displayed on end screen",
+    "last_preterminal_health": 57,
+    "last_preterminal_shield": 0,
+    "last_observed_coils_percent": [
+      100,
+      100,
+      100
+    ],
+    "terminal_coil_percent": "Not displayed; final burst outcome unknown",
+    "terminal_evidence": "docs/media/build81-mobile-review2/coil-copper-aim.jpg"
+  },
+  "coverage": {
+    "experienced": [
+      "Title screen and BUILD 81 identity",
+      "Operator handbook",
+      "Deployment and induction guard",
+      "Native touch movement and free-look",
+      "Fire hold plus drag aim",
+      "Simultaneous movement and fire",
+      "Reload and automatic reload indication",
+      "Dash with PHASE EVADE +75 feedback",
+      "Jump tap near cover; successful vault not established",
+      "Planning map overview and visible close",
+      "All three receiver recoveries using held USE and careful movement",
+      "Custodian armor and exposed firing windows",
+      "Actual loss screen"
+    ],
+    "unassessed": [
+      "Successful coil destruction",
+      "Upload and win flow",
+      "Retry flow",
+      "Tools submenu, swap, crouch and run",
+      "Settings options",
+      "Full tactical handbook expansion",
+      "Recovered memory reading",
+      "Local 2x map"
+    ]
+  },
+  "helpful_moments": [
+    {
+      "observation": "Centered opening fire hold removed the induction guard from view without damage.",
+      "evidence": "docs/media/build81-mobile-review2/first-guard-fire.jpg"
+    },
+    {
+      "observation": "Map gave an explicit walking route and remaining distance; later check showed Mara only 17m away after I overshot. Its pause allowed deliberate route correction.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/planning-map.jpg",
+        "docs/media/build81-mobile-review2/route-check.jpg"
+      ]
+    },
+    {
+      "observation": "MOVE CLOSER with 1.4m outside reach and held USE movement made the final receiver adjustment understandable; Mara recovery lit 01 and restored health.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/receiver-use.jpg",
+        "docs/media/build81-mobile-review2/archive-recovery.jpg"
+      ]
+    },
+    {
+      "observation": "Dash gave PHASE EVADE +75 feedback; the warden was absent after the second burst, with shield recovery visible.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/warden-engagement.jpg",
+        "docs/media/build81-mobile-review2/warden-second-burst.jpg"
+      ]
+    },
+    {
+      "observation": "Distinct memory slots, receiver names, objective changes and custodian percentages made progress legible.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/heart-recovery.jpg",
+        "docs/media/build81-mobile-review2/east-recovery.jpg"
+      ]
+    }
+  ],
+  "frustrations_and_failures": [
+    {
+      "observation": "Initial straight movement ended against the induction structure. Side-lane movement then overshot the receiver and took patrol damage. Map corrected my navigation; this is an observed player difficulty, not proof of a broken route.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/north-approach.jpg",
+        "docs/media/build81-mobile-review2/side-lane.jpg"
+      ]
+    },
+    {
+      "observation": "Small edge PATH and incoming-fire cues were harder to interpret than the map; off-screen threats were difficult to locate in portrait.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/heart-approach.jpg",
+        "docs/media/build81-mobile-review2/east-patrol-fight.jpg"
+      ]
+    },
+    {
+      "observation": "Precise fire drag required multiple corrections and reloads. End accuracy was 6%; aim technique and synthetic discrete gestures contributed, so this does not isolate a control defect.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/warden-engagement.jpg",
+        "docs/media/build81-mobile-review2/coil-copper-aim.jpg"
+      ]
+    },
+    {
+      "observation": "Pillars and low cover blocked custodian shots. First bursts left every coil at 100%. A later apparently exposed view still yielded no observed reduction: I initially aimed near numbered armor rather than the lower copper winding.",
+      "evidence": [
+        "docs/media/build81-mobile-review2/coil-first-burst.jpg",
+        "docs/media/build81-mobile-review2/custodian-near.jpg",
+        "docs/media/build81-mobile-review2/coil-two-window.jpg"
+      ]
+    },
+    {
+      "observation": "I corrected downward toward copper, waited through reload and fired again, but died before verifying damage. End occurred during that segment; the last dash tap did not establish a second evade.",
+      "evidence": "docs/media/build81-mobile-review2/coil-copper-aim.jpg"
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 mixed but playable with substantial friction; 7 good with noticeable shortcomings; 10 exceptional throughout the observed scope. Scores are subjective to this single segmented emulated portrait attempt, not a physical-device certification.",
+    "overall_mobile": 6,
+    "controls": 5,
+    "gameplay": 6,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "Completable basic interactions and three recovered memories, strong atmosphere, but navigation and precise coil combat caused repeated friction and terminal loss.",
+      "controls": "Large labeled touch targets and two-contact movement/fire worked. Fine aiming and long turns needed corrections; 6% accuracy limits confidence in combat comfort.",
+      "gameplay": "Receiver progression, resource recovery and dash timing provided useful decisions. Patrol pressure and obstructed coil sightlines overwhelmed this attempt. Later encounter balance is unassessed.",
+      "presentation": "Cohesive cyan/amber visual language, rain, industrial environment and polished title/end panels. Audio not assessed.",
+      "usability": "Handbook, explicit reach distance, paused route map and clear objective transitions helped me recover all memories. More map checks were needed than felt comfortable.",
+      "readability": "Health/ammo and progress were readable at 390px; small route/threat cues, narrow world view and visually overlapping coil armor/cover made rapid interpretation harder."
+    }
+  },
+  "limits": [
+    "Synthetic paused Chromium mobile emulation; not a physical phone.",
+    "Helper reported Software-WebGL fallback enabled; renderer not certified.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment remain unassessed.",
+    "No source/hash verification performed; expected frozen hash is user supplied.",
+    "One loss cannot establish success-path quality or general difficulty."
+  ],
+  "cleanup": {
+    "explicit_close_sent": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 43061,
+    "chrome_pid": 43094,
+    "verification_command": "ps -p 43061,43094 -o pid=,ppid=,stat=,comm=",
+    "verification_exit_code": 1,
+    "verification_stdout": "",
+    "outcome": "Exact owned driver and Chrome PIDs absent. No kill commands used."
+  },
+  "evidence": {
+    "raw_actions": "docs/media/build81-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build81-mobile-review2/archive-recovery.jpg",
+      "docs/media/build81-mobile-review2/coil-copper-aim.jpg",
+      "docs/media/build81-mobile-review2/coil-first-burst.jpg",
+      "docs/media/build81-mobile-review2/coil-flank.jpg",
+      "docs/media/build81-mobile-review2/coil-two-window.jpg",
+      "docs/media/build81-mobile-review2/custodian-approach.jpg",
+      "docs/media/build81-mobile-review2/custodian-clear-face.jpg",
+      "docs/media/build81-mobile-review2/custodian-near.jpg",
+      "docs/media/build81-mobile-review2/custodian-position.jpg",
+      "docs/media/build81-mobile-review2/deployment.jpg",
+      "docs/media/build81-mobile-review2/east-archive-approach.jpg",
+      "docs/media/build81-mobile-review2/east-patrol-fight.jpg",
+      "docs/media/build81-mobile-review2/east-recovery.jpg",
+      "docs/media/build81-mobile-review2/east-ring-map.jpg",
+      "docs/media/build81-mobile-review2/first-guard-fire.jpg",
+      "docs/media/build81-mobile-review2/heart-approach.jpg",
+      "docs/media/build81-mobile-review2/heart-recovery.jpg",
+      "docs/media/build81-mobile-review2/how-to-play.jpg",
+      "docs/media/build81-mobile-review2/initial-menu.jpg",
+      "docs/media/build81-mobile-review2/north-approach.jpg",
+      "docs/media/build81-mobile-review2/planning-map.jpg",
+      "docs/media/build81-mobile-review2/receiver-use.jpg",
+      "docs/media/build81-mobile-review2/route-check.jpg",
+      "docs/media/build81-mobile-review2/side-lane.jpg",
+      "docs/media/build81-mobile-review2/warden-engagement.jpg",
+      "docs/media/build81-mobile-review2/warden-second-burst.jpg",
+      "docs/media/build81-mobile-review2/west-archive-turn.jpg"
+    ]
+  }
+}
