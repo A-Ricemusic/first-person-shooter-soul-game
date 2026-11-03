@@ -3,8 +3,8 @@ import {createCapacitors} from './capacitors.js';
 import terminalParts from './build70-access-terminal-parts.json';
 import ACCESS from './build70-access-layout.json';
 import * as THREE from 'three';
-import MEDICAL from './build80-medical-layout.json';
-import MEDICAL_SURFACES from './build80-medical-surfaces.json';
+import MEDICAL from './build84-medical-layout.json';
+import MEDICAL_SURFACES from './build84-medical-surfaces.json';
 import WORKSHOP from './workshop-layout.json';
 import INDUCTION from './induction-layout.json';
 import UPLINK from './uplink-layout.json' with {type:'json'};
@@ -237,7 +237,7 @@ export async function buildWorld(scene,{mobile=false}={}) {
   sign('ENGINEERING / MAINTENANCE','ISOLATED BUS / MANUAL REPAIR',29,6.2,-8.87,8,.85,'#c4c7b1');
   for(const z of [-11,-27])point(29,6.3,z,0xd9d1ae,24,12);
   let triage;
-  try{triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage-build80.glb`)}catch(_){}
+  try{triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage-build84.glb`)}catch(_){}
   if(triage){triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);}
   else{
     const materials={'Reinforced slate concrete':concrete,'Canopy concrete':darkConcrete};
@@ -251,9 +251,11 @@ export async function buildWorld(scene,{mobile=false}={}) {
   const wayfinding=MEDICAL.wayfinding;
   const exitSign=sign('EXIT','COURTYARD',...wayfinding.serviceSign,3.7,.7,'#c0d9ad');exitSign.rotation.y=-Math.PI/2;
   const wallExit=sign('EXIT →','NORTH SERVICE / RELAY',...wayfinding.wallSign,1.9,.78,'#c0d9ad');wallExit.rotation.y=-Math.PI/2;
-  const northExit=sign('NORTH EXIT','RELAY / THE HEART',...wayfinding.northSign,6.7,.7,'#c0d9ad');northExit.rotation.y=-Math.PI/2;
-  const northOutside=sign('TRIAGE / NORTH SERVICE','MARA / STATION MEDIC',...wayfinding.northOutsideSign,6.7,.7,'#c0d9ad');northOutside.rotation.y=Math.PI/2;
-  sign('RELAY EXIT →','NORTH SERVICE / THE HEART',...wayfinding.northTurnSign,4,.78,'#c0d9ad');
+  const northExit=sign('EAST RELAY EXIT','RELAY / THE HEART',...wayfinding.northSign,6.7,.7,'#c0d9ad');northExit.rotation.y=-Math.PI/2;
+  const northOutside=sign('TRIAGE / EAST RELAY','MARA / STATION MEDIC',...wayfinding.northOutsideSign,6.7,.7,'#c0d9ad');northOutside.rotation.y=Math.PI/2;
+  sign('RELAY EXIT →','EAST SERVICE / THE HEART',...wayfinding.northTurnSign,4,.78,'#c0d9ad');
+  sign('NORTH EXIT / RELAY','SERA · TURN RIGHT OUTSIDE →',...wayfinding.rearSign,6.7,.7,'#c0d9ad');
+  const rearOutside=sign('TRIAGE / MEDICAL','MARA · STATION MEDIC',...wayfinding.rearOutsideSign,6.7,.7,'#c0d9ad');rearOutside.rotation.y=Math.PI;
   const intakeExit=sign('EXIT / INTAKE','LAST FERRY',...wayfinding.intakeSign,3.9,.7,'#c0d9ad');intakeExit.rotation.y=Math.PI;
   for(const z of [-12,-22]){for(const x of [-27,-23])box(x,7.02,z,.05,.34,.05,steel);box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
   // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.

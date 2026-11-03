@@ -1,0 +1,190 @@
+{
+  "review_id": "build83-mobile-review2",
+  "reviewer": "Independent mobile reviewer / GPT-6.1 Sol",
+  "status": "TERMINAL",
+  "attempts": 1,
+  "retry": false,
+  "identity": {
+    "expected_source_commit": "6783e94899a204e0109d9fa654d9069a827bf855",
+    "source_commit_verified": false,
+    "reason": "Source and repository metadata were not inspected under visible-only constraints.",
+    "visible_title": "SOUL FALL \u2014 THE LAST SIGNAL",
+    "visible_build": "BUILD 83",
+    "identity_mismatch_observed": false
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61479/",
+    "viewport_css": {
+      "width": 390,
+      "height": 844
+    },
+    "screenshot_pixels": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "Helper JSON-lines native CDP touch; at most two contacts; visible geometry and allowed selectors",
+    "graphics": "Synthetic Chromium; software-WebGL fallback reported by helper; renderer not certified",
+    "capture_behavior": "Live screenshots followed by automatic pause during gameplay. Each screenshot was viewed before adaptive input. Planning maps stayed open and were closed with visible CLOSE MAP. Inspection pauses substantially interrupt pacing and remove decision-time pressure."
+  },
+  "terminal": {
+    "outcome": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "00:39",
+    "eliminations": 1,
+    "score": 1100,
+    "accuracy_percent": 9,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "recovered_memories": [
+      "MARA SOLBERG \u2014 Station medic"
+    ],
+    "terminal_health": null,
+    "terminal_health_note": "No numeric health on terminal screen; last observed live value was 65 with shield 0 at 00:35.",
+    "terminal_screen": "docs/media/build83-mobile-review2/sera-approach.jpg",
+    "time_label_note": "Terminal screen describes cumulative play time; this review made exactly one fresh attempt."
+  },
+  "coverage": {
+    "experienced": [
+      "Title and BUILD 83 identity",
+      "Operator handbook",
+      "Opening induction guard combat",
+      "Stationary FIRE hold",
+      "Movement joystick forward, strafe, diagonal and backward",
+      "Two simultaneous contacts for movement plus FIRE and movement plus USE",
+      "FIRE drag and scene swipe aiming",
+      "Reload",
+      "DASH tap",
+      "Paused planning overview with route and automatic receiver selection",
+      "Cover collision/navigation",
+      "Mara proximity prompt and recovery",
+      "Incoming damage, shield depletion, health loss",
+      "Terminal loss screen"
+    ],
+    "not_reached": [
+      "Sera recovery",
+      "Elian recovery",
+      "Three-memory phase",
+      "Jammer coils",
+      "Uplink upload",
+      "Victory"
+    ],
+    "not_assessed": [
+      "Physical phones",
+      "Safari",
+      "Audio",
+      "Hardware performance",
+      "Continuous enjoyment",
+      "AIM fine adjustment",
+      "TOOLS submenu",
+      "Jump/vault",
+      "Local map zoom",
+      "Settings",
+      "Recovered memory reading"
+    ]
+  },
+  "attempt_narrative": [
+    "Read the visible operator handbook before deploying. Fired a stationary opening burst; the guard disappeared and the terminal screen later confirmed one elimination.",
+    "Opened the map (62 m walking route to Mara), closed it visibly, reloaded and moved north. Reached an obstructing surface, strafed left and moved north, overshooting the receiver.",
+    "Reopened the map (8 m route), closed it and backed toward Mara. Holding USE while outside reach did not recover it; the visible message specified 0.4 m outside reach.",
+    "Held USE while stepping backward briefly, then stopped and continued holding. Mara recovered; the objective switched to Sera, reserve ammunition rose to 240, and shield had dropped to 3.",
+    "Tried diagonal movement with FIRE and drag. Most shots missed; orientation was poor and health fell to 84. A perimeter discharge warning advised backing away, breaking sight or dashing.",
+    "Tapped DASH and reload, swiped the scene to turn and moved diagonally. Became pressed against cover; health fell to 65. The visible hint said signal behind cover, use north relay exit.",
+    "Opened the map (17 m walking route to Sera), closed it visibly, tried moving forward toward the route, then held USE. The game reached SIGNAL LOST during this action. No second attempt or post-terminal play was made."
+  ],
+  "helpful_moments": [
+    {
+      "observation": "Large, separated primary touch buttons and a clearly labeled movement pad made initial movement and firing discoverable.",
+      "evidence": "docs/media/build83-mobile-review2/deploy.jpg"
+    },
+    {
+      "observation": "The portrait planning map fit the viewport, showed walls, selected receiver, player arrow, and a cyan walking route; route length made the overshoot diagnosable.",
+      "evidence": "docs/media/build83-mobile-review2/route-position.jpg"
+    },
+    {
+      "observation": "The exact 0.4 m outside-reach prompt was actionable. USE plus a small step successfully completed Mara recovery.",
+      "evidence": "docs/media/build83-mobile-review2/mara-use.jpg"
+    },
+    {
+      "observation": "Objective change and the filled 01 box clearly confirmed first-memory progress. Terminal statistics were legible and unambiguous.",
+      "evidence": "docs/media/build83-mobile-review2/mara-recovery.jpg"
+    }
+  ],
+  "frustrations": [
+    {
+      "observation": "Forward movement brought the camera into a large close surface with very little world context. I needed the map repeatedly to understand position and detours.",
+      "evidence": "docs/media/build83-mobile-review2/north-route.jpg"
+    },
+    {
+      "observation": "My FIRE drag and subsequent scene swipe did not produce a useful combat view quickly. Two-contact movement worked, but I struggled to locate and engage incoming threats while navigating. This is an observed control-learning failure, not proof of a control defect.",
+      "evidence": "docs/media/build83-mobile-review2/toward-sera.jpg"
+    },
+    {
+      "observation": "The receiver was behind my current view while its small directional cue sat near the controls. I overshot it and spent shield waiting outside reach.",
+      "evidence": "docs/media/build83-mobile-review2/mara-use.jpg"
+    },
+    {
+      "observation": "Near cover, the scene became a close geometric surface while damage continued. The north-exit text helped conceptually, but I failed to translate it into a safe route before dying.",
+      "evidence": "docs/media/build83-mobile-review2/reorient.jpg"
+    },
+    {
+      "observation": "Small uppercase guidance and damage-direction marks demanded attention in the already narrow portrait scene; health and ammo were much easier to read.",
+      "evidence": "docs/media/build83-mobile-review2/toward-sera.jpg"
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 mixed/playable with substantial friction; 7 good with noticeable friction; 10 exceptional. Subjective scores for this single paused emulation attempt, not certification or an estimate of all game content.",
+    "overall_mobile": 5.5,
+    "controls": 5,
+    "gameplay": 5.5,
+    "presentation": 7.5,
+    "usability": 6,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "A coherent, attractive mobile layout supported a kill and one recovery, but navigation and threat acquisition overwhelmed me within 39 mission seconds.",
+      "controls": "Large buttons and native two-contact actions worked, including careful USE movement. I struggled with aim/turn orientation and simultaneous combat navigation.",
+      "gameplay": "Opening combat and a receiver recovery created understandable goals; damage and cover pressure were consequential. My route and aim failures limited meaningful combat and ended the run early. Later phases remain unknown.",
+      "presentation": "Strong teal/amber visual language, atmospheric title, rain and consistent typography. Close-up cover surfaces repeatedly reduced the scene to flat geometry. Audio is unassessed.",
+      "usability": "Useful handbook, paused route map, precise reach feedback and clear terminal results. Frequent map dependence and difficulty resolving cover exits slowed my progress.",
+      "readability": "Core health, ammo, objective and result numbers were readable at 390 px. Smaller all-caps hints and scattered threat cues were harder to parse during action."
+    }
+  },
+  "uncertainties": [
+    "Exact death cause/enemy was not visible to me; do not attribute it to a specific attack.",
+    "Opening guard optic/critical behavior was not established; terminal reports zero critical eliminations.",
+    "No frame-rate or latency benchmark was performed. Helper timings do not establish phone performance.",
+    "Paused screenshot inspection makes this unlike continuous real-time thumb play.",
+    "Single failed attempt offers narrow coverage; later mission balance and victory experience are unknown."
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_session_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "owned_driver_pid": 32764,
+    "owned_chrome_pid": 32775,
+    "verification": "ps -p 32764,32775 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "both_owned_pids_absent": true,
+    "broad_kill_used": false
+  },
+  "raw_evidence": {
+    "action_log": "docs/media/build83-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build83-mobile-review2/cover-map.jpg",
+      "docs/media/build83-mobile-review2/deploy.jpg",
+      "docs/media/build83-mobile-review2/guard-fire.jpg",
+      "docs/media/build83-mobile-review2/how-to.jpg",
+      "docs/media/build83-mobile-review2/left-around.jpg",
+      "docs/media/build83-mobile-review2/mara-recovery.jpg",
+      "docs/media/build83-mobile-review2/mara-use.jpg",
+      "docs/media/build83-mobile-review2/menu.jpg",
+      "docs/media/build83-mobile-review2/north-route.jpg",
+      "docs/media/build83-mobile-review2/planning.jpg",
+      "docs/media/build83-mobile-review2/reorient.jpg",
+      "docs/media/build83-mobile-review2/route-position.jpg",
+      "docs/media/build83-mobile-review2/sera-approach.jpg",
+      "docs/media/build83-mobile-review2/toward-sera.jpg"
+    ]
+  },
+  "scope": "Only helper --help was read for instructions. No game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. No implementation, builds, commits, server changes, publication, extra agents or rescore."
+}

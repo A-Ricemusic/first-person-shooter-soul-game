@@ -1,0 +1,195 @@
+{
+  "review": "build83-mobile-review1",
+  "reviewer": "Independent mobile reviewer; GPT-6.1 Sol",
+  "attempts": 1,
+  "identity": {
+    "expected_source": "6783e94899a204e0109d9fa654d9069a827bf855",
+    "source_verification": "Not inspected; frozen source supplied by requester.",
+    "expected_title": "BUILD83",
+    "observed_title": "SOULFALL / BUILD 83",
+    "title_matches": true
+  },
+  "setup": {
+    "url": "http://127.0.0.1:61479/",
+    "viewport_css": {
+      "width": 844,
+      "height": 390
+    },
+    "orientation": "landscape",
+    "helper": "node tools/mobile-playtest.mjs",
+    "input": "JSON-lines native Chromium two-contact touch; visible selectors and normalized geometry",
+    "inspection": "Only helper --help and fresh attempt screenshots/UI; no game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected."
+  },
+  "outcome": {
+    "status": "TERMINAL_LOSS",
+    "visible_labels": [
+      "OPERATOR LOST",
+      "SIGNAL LOST"
+    ],
+    "mission_time": "00:36",
+    "eliminations": 1,
+    "score": 1100,
+    "accuracy_percent": 24,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "recovered_memories": [
+      "MARA SOLBERG \u2014 Station medic"
+    ],
+    "last_playing_hud": {
+      "mission_time": "00:34",
+      "health": 59,
+      "shield": 0,
+      "ammo": 30,
+      "reserve": 243,
+      "objective": "RECOVER SERA NORD"
+    },
+    "terminal_health": "Not separately displayed on end screen",
+    "terminal_evidence": "docs/media/build83-mobile-review1/escape-wall.jpg"
+  },
+  "coverage": {
+    "experienced": [
+      "Title and operator handbook",
+      "Deployment and induction guard",
+      "Stationary FIRE burst",
+      "Reload by visible touch button",
+      "Forward and lateral movement",
+      "Scene swipe turning",
+      "Planning overview map for Mara and Sera; both closed visibly",
+      "Mara receiver approach, outside-reach feedback, held USE and successful memory recovery",
+      "North-service obstruction and attempted lateral correction",
+      "Attempted DASH touch during final movement",
+      "Actual loss screen"
+    ],
+    "not_experienced": [
+      "Elian or Sera recovery",
+      "Jammer coils and exposure windows",
+      "Uplink upload/extraction",
+      "Win screen",
+      "Tools submenu, weapon swap, crouch, run, AIM and jump/vault",
+      "Settings and full tactical handbook",
+      "Recovered memory reading"
+    ],
+    "dash_uncertainty": "Tapped visible DASH during final action; cannot establish whether it activated or helped before death."
+  },
+  "helpful_moments": [
+    {
+      "moment": "Guard disappeared after initial 2.2-second FIRE hold; health 100 and shield 60 remained. End screen confirms one elimination.",
+      "evidence": "docs/media/build83-mobile-review1/first-guard.jpg"
+    },
+    {
+      "moment": "Paused planning overview showed a route and walking distance (62m to Mara; later 33m to Sera), with explicit close button.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/planning-map.jpg",
+        "docs/media/build83-mobile-review1/sera-route.jpg"
+      ]
+    },
+    {
+      "moment": "Receiver showed distance/closer feedback and explicit 0.7m outside reach instruction. A further short step plus held USE recovered Mara and changed the objective.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/mara-recovery.jpg",
+        "docs/media/build83-mobile-review1/inside-receiver.jpg"
+      ]
+    },
+    {
+      "moment": "Large labeled touch buttons and a clear loss screen made available actions and final result easy to identify.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/deployment.jpg",
+        "docs/media/build83-mobile-review1/escape-wall.jpg"
+      ]
+    }
+  ],
+  "frustrations_and_failures": [
+    {
+      "moment": "Initial swipe turned northeast rather than toward west; I corrected with two further swipes. This was my input-direction learning error, not proof of a defect.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/west-approach.jpg",
+        "docs/media/build83-mobile-review1/toward-west.jpg",
+        "docs/media/build83-mobile-review1/west-lane.jpg"
+      ]
+    },
+    {
+      "moment": "First lateral approach and USE hold did not recover Mara; second approach remained 0.7m outside reach. Shield fell from 60 to 41 to 3 while I aligned. Precise positioning under fire felt costly.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/mara-use.jpg",
+        "docs/media/build83-mobile-review1/mara-recovery.jpg"
+      ]
+    },
+    {
+      "moment": "Following north from Mara put the camera against an opaque wall. Right strafing and forward movement still left an obstructed view, while health fell from 100 to 78 to 59 and then terminal loss. I did not successfully locate the opening or reorient to shoot attackers.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/north-service.jpg",
+        "docs/media/build83-mobile-review1/service-wall-correction.jpg",
+        "docs/media/build83-mobile-review1/escape-wall.jpg"
+      ]
+    },
+    {
+      "moment": "Large right-side controls occupy substantial scene area; tiny compass, distance, map geometry and ancillary HUD text demand close inspection at 844x390. Dark surfaces and wall-close views reduced navigation clarity.",
+      "evidence": [
+        "docs/media/build83-mobile-review1/deployment.jpg",
+        "docs/media/build83-mobile-review1/planning-map.jpg",
+        "docs/media/build83-mobile-review1/service-wall-correction.jpg"
+      ]
+    }
+  ],
+  "scores": {
+    "scale": "0 = unusable, 5 = workable with substantial friction, 7 = good with meaningful issues, 10 = exceptional. Subjective scores for only this one paused emulated attempt; overall is a judgment, not an arithmetic mean.",
+    "overall_mobile": 5,
+    "controls": 5,
+    "gameplay": 5,
+    "presentation": 7,
+    "usability": 6,
+    "readability": 5,
+    "reasons": {
+      "overall_mobile": "Functional touch combat and one successful objective, but costly receiver alignment and failed navigation under fire made this short attempt frustrating. Limited coverage constrains the rating.",
+      "controls": "FIRE and movement worked; two-contact MOVE plus USE recovered Mara. Turning required calibration and precise approach took multiple corrections. Human thumb reach and touch feel remain unknown.",
+      "gameplay": "Opening kill and memory recovery gave clear progress; incoming fire punished time spent on navigation. I failed to respond effectively and did not reach later systems.",
+      "presentation": "Cohesive stormy cyan/amber station and polished title/end panels; dark, obstructed views weakened spatial clarity. Audio unassessed.",
+      "usability": "Handbook, pausing map, route, explicit reach hint and final stats helped. Translating route into a usable opening while under threat remained difficult for me.",
+      "readability": "Primary objective and button labels readable; ancillary numbers, overview map and small text are cramped. Large controls obscure scene edges."
+    }
+  },
+  "limitations": [
+    "Synthetic native-touch Chromium emulation, not a physical device certification.",
+    "Helper reported Software-WebGL fallback; renderer not certified. Hardware performance and frame pacing were not measured.",
+    "Each action captured a live screenshot and then paused by default; inspection breaks and planning pauses substantially interrupt continuous play and grant extra decision time. Captures may include live damage.",
+    "Exactly one attempt, 36 seconds of displayed mission time; no retry or rescore.",
+    "Physical phones, Safari, audio, hardware performance, real-thumb ergonomics and continuous enjoyment remain unassessed.",
+    "Attacker positions/causes of individual damage were not confirmed from visible frames. No claim of a collision or pathfinding bug based on failed navigation."
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 30349,
+    "chrome_pid": 30359,
+    "verification_command": "ps -p 30349,30359 -o pid=,ppid=,stat=,command=",
+    "verification_output": "empty",
+    "verification_exit_code": 1,
+    "result": "Exact owned driver and Chrome PIDs absent; no broad kill used."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build83-mobile-review1",
+    "actions_log": "docs/media/build83-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build83-mobile-review1/advance-north.jpg",
+      "docs/media/build83-mobile-review1/deployment.jpg",
+      "docs/media/build83-mobile-review1/escape-wall.jpg",
+      "docs/media/build83-mobile-review1/first-guard.jpg",
+      "docs/media/build83-mobile-review1/how-to-play.jpg",
+      "docs/media/build83-mobile-review1/initial-menu.jpg",
+      "docs/media/build83-mobile-review1/inside-receiver.jpg",
+      "docs/media/build83-mobile-review1/mara-recovery.jpg",
+      "docs/media/build83-mobile-review1/mara-use.jpg",
+      "docs/media/build83-mobile-review1/menu-ready.jpg",
+      "docs/media/build83-mobile-review1/north-service.jpg",
+      "docs/media/build83-mobile-review1/planning-map.jpg",
+      "docs/media/build83-mobile-review1/sera-route.jpg",
+      "docs/media/build83-mobile-review1/service-wall-correction.jpg",
+      "docs/media/build83-mobile-review1/toward-west.jpg",
+      "docs/media/build83-mobile-review1/west-approach.jpg",
+      "docs/media/build83-mobile-review1/west-lane.jpg"
+    ]
+  },
+  "scope": "Only this review JSON and helper-generated evidence/logs created; no implementation, builds, commits, publication, server changes or agents."
+}
