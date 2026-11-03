@@ -957,7 +957,7 @@ export class Game {
       if(!this.custodian.dead){
         const target=focusedCustodianTarget(this);
         if(target)markers.push({id:'custodian-component',kind:'component',label:['I','II','III'][target.index],exposed:target.exposed,...project(target.point)});
-        else markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
+        else markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:this.touchMode?'USE A HALL OPENING · MAP TO PLAN':'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
       }
       else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))});
     }

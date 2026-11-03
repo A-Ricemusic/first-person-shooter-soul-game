@@ -223,3 +223,18 @@ body.touch-mode .world-marker.ground-guide{padding:2px 4px;min-width:0;max-width
 body.touch-mode .world-marker.ground-guide .marker-symbol{display:block;font-size:16px;line-height:16px;margin:0}
 body.touch-mode .world-marker.ground-guide b{font-size:11px;line-height:12px;letter-spacing:0;margin:0}
 body.touch-mode .world-marker.ground-guide small,body.touch-mode .world-marker.ground-guide .enemy-track{display:none}
+
+/* Build76: every uncovered scene pixel can begin a look gesture. Actual
+   stick, action, map and pause targets still own their pointer contacts. */
+body.touch-mode #touch-look{left:0}
+body.touch-mode #touch-use[data-near="true"]{font-weight:bold;color:#b5fff0}
+body.touch-mode #touch-use[data-ready="true"]{border-width:2px;box-shadow:0 0 0 2px #8ee8e030}
+body.touch-mode.touch-boss-stage #threat-focus,
+body.touch-mode.touch-boss-stage #blocked-signal,
+body.touch-mode.touch-boss-stage #interaction:not(.recovery-local){display:none}
+body.touch-mode #touch-quickstart{padding-left:22px;font-size:14px;line-height:1.45;margin:10px 0}
+body.touch-mode #touch-quickstart li{padding-left:4px;margin:10px 0}
+body.touch-mode #touch-handbook summary{min-height:44px;display:flex;align-items:center;color:var(--cyan);cursor:pointer;font-size:13px;touch-action:manipulation}
+body.touch-mode #touch-handbook summary::before{content:'＋';margin-right:10px}
+body.touch-mode #touch-handbook[open] summary::before{content:'−'}
+body.touch-mode #touch-handbook p{font-size:13px;line-height:1.5}

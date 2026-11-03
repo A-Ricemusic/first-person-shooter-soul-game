@@ -1,0 +1,1523 @@
+{
+  "method": "Mobile Chromium native-touch engineering checks. Real input measures camera angles, utility actions and independent contact release. HUD fixtures explicitly stage all recoveries, a camera pose, a receiver pose, a synthetic ground cue, a visible hint, a loss and one assisted-victory UI fixture; they are not mission wins or independent play.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px fine look stays within 6 degrees yaw and 3.5 degrees pitch",
+        "rotating preserves pixel gain and clears the previous gesture",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "compact boss strip leaves the aiming aperture clear",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions"
+      ],
+      "failures": [],
+      "hip20pxDegrees": {
+        "yaw": 4.344703659759797,
+        "pitch": 2.4438958086148856
+      },
+      "ads20pxDegrees": {
+        "yaw": 2.1723518298798985,
+        "pitch": 1.2219479043074428
+      },
+      "utility": {
+        "before": {
+          "yaw": -0.18957340186241114,
+          "pitch": -0.10663507109004738,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        },
+        "moved": {
+          "yaw": -0.20381931394916267,
+          "pitch": -0.09862174554124965,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 38.88888888888893,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 489.5234375,
+        "y": 202,
+        "width": 33.734375,
+        "height": 32,
+        "top": 202,
+        "right": 523.2578125,
+        "bottom": 234,
+        "left": 489.5234375
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 84,
+          "width": 820,
+          "height": 25,
+          "top": 84,
+          "right": 832,
+          "bottom": 109,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 326.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 326.8125,
+          "right": 250,
+          "bottom": 378,
+          "left": 150
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 84,
+          "width": 820,
+          "height": 44,
+          "top": 84,
+          "right": 832,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 326.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 326.8125,
+          "right": 250,
+          "bottom": 378,
+          "left": 150
+        },
+        "hud": {
+          "x": 150,
+          "y": 325,
+          "width": 509,
+          "height": 53,
+          "top": 325,
+          "right": 659,
+          "bottom": 378,
+          "left": 150
+        },
+        "bearing": {
+          "x": 347,
+          "y": 62,
+          "width": 150,
+          "height": 14,
+          "top": 62,
+          "right": 497,
+          "bottom": 76,
+          "left": 347
+        },
+        "status": "ARMORED · WAIT FOR OPENING",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 150,
+              "y": 276,
+              "width": 509,
+              "height": 28,
+              "top": 276,
+              "right": 659,
+              "bottom": 304,
+              "left": 150
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 254,
+            "width": 116,
+            "height": 116,
+            "top": 254,
+            "right": 136,
+            "bottom": 370,
+            "left": 20
+          },
+          {
+            "x": 668,
+            "y": 173,
+            "width": 50,
+            "height": 46,
+            "top": 173,
+            "right": 718,
+            "bottom": 219,
+            "left": 668
+          },
+          {
+            "x": 725,
+            "y": 173,
+            "width": 50,
+            "height": 46,
+            "top": 173,
+            "right": 775,
+            "bottom": 219,
+            "left": 725
+          },
+          {
+            "x": 668,
+            "y": 226,
+            "width": 50,
+            "height": 46,
+            "top": 226,
+            "right": 718,
+            "bottom": 272,
+            "left": 668
+          },
+          {
+            "x": 725,
+            "y": 226,
+            "width": 50,
+            "height": 46,
+            "top": 226,
+            "right": 775,
+            "bottom": 272,
+            "left": 725
+          },
+          {
+            "x": 668,
+            "y": 279,
+            "width": 50,
+            "height": 46,
+            "top": 279,
+            "right": 718,
+            "bottom": 325,
+            "left": 668
+          },
+          {
+            "x": 725,
+            "y": 279,
+            "width": 50,
+            "height": 46,
+            "top": 279,
+            "right": 775,
+            "bottom": 325,
+            "left": 725
+          },
+          {
+            "x": 782,
+            "y": 279,
+            "width": 50,
+            "height": 46,
+            "top": 279,
+            "right": 832,
+            "bottom": 325,
+            "left": 782
+          },
+          {
+            "x": 668,
+            "y": 332,
+            "width": 50,
+            "height": 46,
+            "top": 332,
+            "right": 718,
+            "bottom": 378,
+            "left": 668
+          },
+          {
+            "x": 782,
+            "y": 173,
+            "width": 50,
+            "height": 99,
+            "top": 173,
+            "right": 832,
+            "bottom": 272,
+            "left": 782
+          },
+          {
+            "x": 730,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 776,
+            "bottom": 56,
+            "left": 730
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 432,
+            "y": 65.3125,
+            "width": 69.34375,
+            "height": 34,
+            "top": 65.3125,
+            "right": 501.34375,
+            "bottom": 99.3125,
+            "left": 432
+          },
+          {
+            "x": 583.09375,
+            "y": 65.3125,
+            "width": 66.484375,
+            "height": 34,
+            "top": 65.3125,
+            "right": 649.578125,
+            "bottom": 99.3125,
+            "left": 583.09375
+          },
+          {
+            "x": 731.3125,
+            "y": 65.3125,
+            "width": 53.484375,
+            "height": 34,
+            "top": 65.3125,
+            "right": 784.796875,
+            "bottom": 99.3125,
+            "left": 731.3125
+          }
+        ],
+        "actions": {
+          "x": 59.203125,
+          "y": 229.6875,
+          "width": 725.59375,
+          "height": 118,
+          "top": 229.6875,
+          "right": 784.796875,
+          "bottom": 347.6875,
+          "left": 59.203125
+        }
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px fine look stays within 6 degrees yaw and 3.5 degrees pitch",
+        "rotating preserves pixel gain and clears the previous gesture",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "compact boss strip leaves the aiming aperture clear",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions"
+      ],
+      "failures": [],
+      "hip20pxDegrees": {
+        "yaw": 4.344700345013963,
+        "pitch": 2.4438958086148856
+      },
+      "ads20pxDegrees": {
+        "yaw": 2.1723501725069805,
+        "pitch": 1.2219479043074428
+      },
+      "utility": {
+        "before": {
+          "yaw": -0.1895733729357968,
+          "pitch": -0.10663507109004738,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        },
+        "moved": {
+          "yaw": -0.2038192850225483,
+          "pitch": -0.09862174554124965,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 29.62222222222216,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 217.1328125,
+        "y": 474.390625,
+        "width": 33.734375,
+        "height": 32,
+        "top": 474.390625,
+        "right": 250.8671875,
+        "bottom": 506.390625,
+        "left": 217.1328125
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 84,
+          "width": 366,
+          "height": 40,
+          "top": 84,
+          "right": 378,
+          "bottom": 124,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 562.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 562.8125,
+          "right": 112,
+          "bottom": 614,
+          "left": 12
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 84,
+          "width": 366,
+          "height": 44,
+          "top": 84,
+          "right": 378,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 562.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 562.8125,
+          "right": 112,
+          "bottom": 614,
+          "left": 12
+        },
+        "hud": {
+          "x": 12,
+          "y": 561,
+          "width": 366,
+          "height": 53,
+          "top": 561,
+          "right": 378,
+          "bottom": 614,
+          "left": 12
+        },
+        "bearing": {
+          "x": 120,
+          "y": 62,
+          "width": 150,
+          "height": 14,
+          "top": 62,
+          "right": 270,
+          "bottom": 76,
+          "left": 120
+        },
+        "status": "ARMORED · WAIT FOR OPENING",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 12,
+              "y": 446,
+              "width": 366,
+              "height": 28,
+              "top": 446,
+              "right": 378,
+              "bottom": 474,
+              "left": 12
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 708,
+            "width": 116,
+            "height": 116,
+            "top": 708,
+            "right": 136,
+            "bottom": 824,
+            "left": 20
+          },
+          {
+            "x": 214,
+            "y": 627,
+            "width": 50,
+            "height": 46,
+            "top": 627,
+            "right": 264,
+            "bottom": 673,
+            "left": 214
+          },
+          {
+            "x": 271,
+            "y": 627,
+            "width": 50,
+            "height": 46,
+            "top": 627,
+            "right": 321,
+            "bottom": 673,
+            "left": 271
+          },
+          {
+            "x": 214,
+            "y": 680,
+            "width": 50,
+            "height": 46,
+            "top": 680,
+            "right": 264,
+            "bottom": 726,
+            "left": 214
+          },
+          {
+            "x": 271,
+            "y": 680,
+            "width": 50,
+            "height": 46,
+            "top": 680,
+            "right": 321,
+            "bottom": 726,
+            "left": 271
+          },
+          {
+            "x": 214,
+            "y": 733,
+            "width": 50,
+            "height": 46,
+            "top": 733,
+            "right": 264,
+            "bottom": 779,
+            "left": 214
+          },
+          {
+            "x": 271,
+            "y": 733,
+            "width": 50,
+            "height": 46,
+            "top": 733,
+            "right": 321,
+            "bottom": 779,
+            "left": 271
+          },
+          {
+            "x": 328,
+            "y": 733,
+            "width": 50,
+            "height": 46,
+            "top": 733,
+            "right": 378,
+            "bottom": 779,
+            "left": 328
+          },
+          {
+            "x": 214,
+            "y": 786,
+            "width": 50,
+            "height": 46,
+            "top": 786,
+            "right": 264,
+            "bottom": 832,
+            "left": 214
+          },
+          {
+            "x": 328,
+            "y": 627,
+            "width": 50,
+            "height": 99,
+            "top": 627,
+            "right": 378,
+            "bottom": 726,
+            "left": 328
+          },
+          {
+            "x": 276,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 322,
+            "bottom": 56,
+            "left": 276
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 40.5,
+            "y": 410.734375,
+            "width": 69.34375,
+            "height": 34,
+            "top": 410.734375,
+            "right": 109.84375,
+            "bottom": 444.734375,
+            "left": 40.5
+          },
+          {
+            "x": 169.6875,
+            "y": 410.734375,
+            "width": 66.484375,
+            "height": 34,
+            "top": 410.734375,
+            "right": 236.171875,
+            "bottom": 444.734375,
+            "left": 169.6875
+          },
+          {
+            "x": 296.015625,
+            "y": 410.734375,
+            "width": 53.484375,
+            "height": 34,
+            "top": 410.734375,
+            "right": 349.5,
+            "bottom": 444.734375,
+            "left": 296.015625
+          }
+        ],
+        "actions": {
+          "x": 40.5,
+          "y": 524.734375,
+          "width": 309,
+          "height": 142,
+          "top": 524.734375,
+          "right": 349.5,
+          "bottom": 666.734375,
+          "left": 40.5
+        }
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px fine look stays within 6 degrees yaw and 3.5 degrees pitch",
+        "rotating preserves pixel gain and clears the previous gesture",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "compact boss strip leaves the aiming aperture clear",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions",
+        "arranged assisted victory keeps results and fresh-score exclusion visible"
+      ],
+      "failures": [],
+      "hip20pxDegrees": {
+        "yaw": 5.497646010250778,
+        "pitch": 3.0924258807660623
+      },
+      "ads20pxDegrees": {
+        "yaw": 2.748823005125389,
+        "pitch": 1.5462129403830303
+      },
+      "utility": {
+        "before": {
+          "yaw": -0.23988005997001502,
+          "pitch": -0.1349325337331334,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        },
+        "moved": {
+          "yaw": -0.25790637151606943,
+          "pitch": -0.1247927334884778,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 35.18888888888889,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 383.3203125,
+        "y": 193,
+        "width": 33.734375,
+        "height": 32,
+        "top": 193,
+        "right": 417.0546875,
+        "bottom": 225,
+        "left": 383.3203125
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 84,
+          "width": 643,
+          "height": 25,
+          "top": 84,
+          "right": 655,
+          "bottom": 109,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 311.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 311.8125,
+          "right": 250,
+          "bottom": 363,
+          "left": 150
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 84,
+          "width": 643,
+          "height": 44,
+          "top": 84,
+          "right": 655,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 311.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 311.8125,
+          "right": 250,
+          "bottom": 363,
+          "left": 150
+        },
+        "hud": {
+          "x": 150,
+          "y": 310,
+          "width": 332,
+          "height": 53,
+          "top": 310,
+          "right": 482,
+          "bottom": 363,
+          "left": 150
+        },
+        "bearing": {
+          "x": 258.5,
+          "y": 62,
+          "width": 150,
+          "height": 14,
+          "top": 62,
+          "right": 408.5,
+          "bottom": 76,
+          "left": 258.5
+        },
+        "status": "ARMORED · WAIT FOR OPENING",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 150,
+              "y": 261,
+              "width": 332,
+              "height": 28,
+              "top": 261,
+              "right": 482,
+              "bottom": 289,
+              "left": 150
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 239,
+            "width": 116,
+            "height": 116,
+            "top": 239,
+            "right": 136,
+            "bottom": 355,
+            "left": 20
+          },
+          {
+            "x": 491,
+            "y": 158,
+            "width": 50,
+            "height": 46,
+            "top": 158,
+            "right": 541,
+            "bottom": 204,
+            "left": 491
+          },
+          {
+            "x": 548,
+            "y": 158,
+            "width": 50,
+            "height": 46,
+            "top": 158,
+            "right": 598,
+            "bottom": 204,
+            "left": 548
+          },
+          {
+            "x": 491,
+            "y": 211,
+            "width": 50,
+            "height": 46,
+            "top": 211,
+            "right": 541,
+            "bottom": 257,
+            "left": 491
+          },
+          {
+            "x": 548,
+            "y": 211,
+            "width": 50,
+            "height": 46,
+            "top": 211,
+            "right": 598,
+            "bottom": 257,
+            "left": 548
+          },
+          {
+            "x": 491,
+            "y": 264,
+            "width": 50,
+            "height": 46,
+            "top": 264,
+            "right": 541,
+            "bottom": 310,
+            "left": 491
+          },
+          {
+            "x": 548,
+            "y": 264,
+            "width": 50,
+            "height": 46,
+            "top": 264,
+            "right": 598,
+            "bottom": 310,
+            "left": 548
+          },
+          {
+            "x": 605,
+            "y": 264,
+            "width": 50,
+            "height": 46,
+            "top": 264,
+            "right": 655,
+            "bottom": 310,
+            "left": 605
+          },
+          {
+            "x": 491,
+            "y": 317,
+            "width": 50,
+            "height": 46,
+            "top": 317,
+            "right": 541,
+            "bottom": 363,
+            "left": 491
+          },
+          {
+            "x": 605,
+            "y": 158,
+            "width": 50,
+            "height": 99,
+            "top": 158,
+            "right": 655,
+            "bottom": 257,
+            "left": 605
+          },
+          {
+            "x": 553,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 599,
+            "bottom": 56,
+            "left": 553
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 343.5,
+            "y": 57.8125,
+            "width": 69.34375,
+            "height": 34,
+            "top": 57.8125,
+            "right": 412.84375,
+            "bottom": 91.8125,
+            "left": 343.5
+          },
+          {
+            "x": 454.765625,
+            "y": 57.8125,
+            "width": 66.484375,
+            "height": 34,
+            "top": 57.8125,
+            "right": 521.25,
+            "bottom": 91.8125,
+            "left": 454.765625
+          },
+          {
+            "x": 563.171875,
+            "y": 57.8125,
+            "width": 53.484375,
+            "height": 34,
+            "top": 57.8125,
+            "right": 616.65625,
+            "bottom": 91.8125,
+            "left": 563.171875
+          }
+        ],
+        "actions": {
+          "x": 50.359375,
+          "y": 222.1875,
+          "width": 566.296875,
+          "height": 118,
+          "top": 222.1875,
+          "right": 616.65625,
+          "bottom": 340.1875,
+          "left": 50.359375
+        }
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px fine look stays within 6 degrees yaw and 3.5 degrees pitch",
+        "rotating preserves pixel gain and clears the previous gesture",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "compact boss strip leaves the aiming aperture clear",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions"
+      ],
+      "failures": [],
+      "hip20pxDegrees": {
+        "yaw": 4.007573649002479,
+        "pitch": 2.254260177563894
+      },
+      "ads20pxDegrees": {
+        "yaw": 2.0037868245012396,
+        "pitch": 1.1271300887819475
+      },
+      "utility": {
+        "before": {
+          "yaw": -0.17486338797814208,
+          "pitch": -0.09836065573770492,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        },
+        "moved": {
+          "yaw": -0.188003879564173,
+          "pitch": -0.09096912922056252,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 29.63333333333333,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 532.1328125,
+        "y": 215.1875,
+        "width": 33.734375,
+        "height": 32,
+        "top": 215.1875,
+        "right": 565.8671875,
+        "bottom": 247.1875,
+        "left": 532.1328125
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 84,
+          "width": 891,
+          "height": 25,
+          "top": 84,
+          "right": 903,
+          "bottom": 109,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 348.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 348.8125,
+          "right": 250,
+          "bottom": 400,
+          "left": 150
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 84,
+          "width": 891,
+          "height": 44,
+          "top": 84,
+          "right": 903,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 150,
+          "y": 348.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 348.8125,
+          "right": 250,
+          "bottom": 400,
+          "left": 150
+        },
+        "hud": {
+          "x": 150,
+          "y": 347,
+          "width": 580,
+          "height": 53,
+          "top": 347,
+          "right": 730,
+          "bottom": 400,
+          "left": 150
+        },
+        "bearing": {
+          "x": 382.5,
+          "y": 62,
+          "width": 150,
+          "height": 14,
+          "top": 62,
+          "right": 532.5,
+          "bottom": 76,
+          "left": 382.5
+        },
+        "status": "ARMORED · WAIT FOR OPENING",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 150,
+              "y": 298,
+              "width": 580,
+              "height": 28,
+              "top": 298,
+              "right": 730,
+              "bottom": 326,
+              "left": 150
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 276,
+            "width": 116,
+            "height": 116,
+            "top": 276,
+            "right": 136,
+            "bottom": 392,
+            "left": 20
+          },
+          {
+            "x": 739,
+            "y": 195,
+            "width": 50,
+            "height": 46,
+            "top": 195,
+            "right": 789,
+            "bottom": 241,
+            "left": 739
+          },
+          {
+            "x": 796,
+            "y": 195,
+            "width": 50,
+            "height": 46,
+            "top": 195,
+            "right": 846,
+            "bottom": 241,
+            "left": 796
+          },
+          {
+            "x": 739,
+            "y": 248,
+            "width": 50,
+            "height": 46,
+            "top": 248,
+            "right": 789,
+            "bottom": 294,
+            "left": 739
+          },
+          {
+            "x": 796,
+            "y": 248,
+            "width": 50,
+            "height": 46,
+            "top": 248,
+            "right": 846,
+            "bottom": 294,
+            "left": 796
+          },
+          {
+            "x": 739,
+            "y": 301,
+            "width": 50,
+            "height": 46,
+            "top": 301,
+            "right": 789,
+            "bottom": 347,
+            "left": 739
+          },
+          {
+            "x": 796,
+            "y": 301,
+            "width": 50,
+            "height": 46,
+            "top": 301,
+            "right": 846,
+            "bottom": 347,
+            "left": 796
+          },
+          {
+            "x": 853,
+            "y": 301,
+            "width": 50,
+            "height": 46,
+            "top": 301,
+            "right": 903,
+            "bottom": 347,
+            "left": 853
+          },
+          {
+            "x": 739,
+            "y": 354,
+            "width": 50,
+            "height": 46,
+            "top": 354,
+            "right": 789,
+            "bottom": 400,
+            "left": 739
+          },
+          {
+            "x": 853,
+            "y": 195,
+            "width": 50,
+            "height": 99,
+            "top": 195,
+            "right": 903,
+            "bottom": 294,
+            "left": 853
+          },
+          {
+            "x": 801,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 847,
+            "bottom": 56,
+            "left": 801
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 467.5,
+            "y": 76.3125,
+            "width": 69.34375,
+            "height": 34,
+            "top": 76.3125,
+            "right": 536.84375,
+            "bottom": 110.3125,
+            "left": 467.5
+          },
+          {
+            "x": 634.5625,
+            "y": 76.3125,
+            "width": 66.484375,
+            "height": 34,
+            "top": 76.3125,
+            "right": 701.046875,
+            "bottom": 110.3125,
+            "left": 634.5625
+          },
+          {
+            "x": 798.765625,
+            "y": 76.3125,
+            "width": 53.484375,
+            "height": 34,
+            "top": 76.3125,
+            "right": 852.25,
+            "bottom": 110.3125,
+            "left": 798.765625
+          }
+        ],
+        "actions": {
+          "x": 62.75,
+          "y": 240.6875,
+          "width": 789.5,
+          "height": 118,
+          "top": 240.6875,
+          "right": 852.25,
+          "bottom": 358.6875,
+          "left": 62.75
+        }
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px fine look stays within 6 degrees yaw and 3.5 degrees pitch",
+        "rotating preserves pixel gain and clears the previous gesture",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "compact boss strip leaves the aiming aperture clear",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions"
+      ],
+      "failures": [],
+      "hip20pxDegrees": {
+        "yaw": 5.729577951308232,
+        "pitch": 3.22288759761088
+      },
+      "ads20pxDegrees": {
+        "yaw": 2.8647889756541156,
+        "pitch": 1.6114437988054409
+      },
+      "utility": {
+        "before": {
+          "yaw": -0.25,
+          "pitch": -0.140625,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        },
+        "moved": {
+          "yaw": -0.2687867965644036,
+          "pitch": -0.13005742693252298,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.46916076845298277
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 29.622222222222167,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 175.1328125,
+        "y": 352,
+        "width": 33.734375,
+        "height": 32,
+        "top": 352,
+        "right": 208.8671875,
+        "bottom": 384,
+        "left": 175.1328125
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 84,
+          "width": 296,
+          "height": 40,
+          "top": 84,
+          "right": 308,
+          "bottom": 124,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 358.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 358.8125,
+          "right": 112,
+          "bottom": 410,
+          "left": 12
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 84,
+          "width": 296,
+          "height": 44,
+          "top": 84,
+          "right": 308,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 358.8125,
+          "width": 100,
+          "height": 51.1875,
+          "top": 358.8125,
+          "right": 112,
+          "bottom": 410,
+          "left": 12
+        },
+        "hud": {
+          "x": 12,
+          "y": 357,
+          "width": 296,
+          "height": 53,
+          "top": 357,
+          "right": 308,
+          "bottom": 410,
+          "left": 12
+        },
+        "bearing": {
+          "x": 85,
+          "y": 62,
+          "width": 150,
+          "height": 14,
+          "top": 62,
+          "right": 235,
+          "bottom": 76,
+          "left": 85
+        },
+        "status": "ARMORED · WAIT FOR OPENING",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 12,
+              "y": 264,
+              "width": 296,
+              "height": 28,
+              "top": 264,
+              "right": 308,
+              "bottom": 292,
+              "left": 12
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 504,
+            "width": 116,
+            "height": 116,
+            "top": 504,
+            "right": 136,
+            "bottom": 620,
+            "left": 20
+          },
+          {
+            "x": 144,
+            "y": 423,
+            "width": 50,
+            "height": 46,
+            "top": 423,
+            "right": 194,
+            "bottom": 469,
+            "left": 144
+          },
+          {
+            "x": 201,
+            "y": 423,
+            "width": 50,
+            "height": 46,
+            "top": 423,
+            "right": 251,
+            "bottom": 469,
+            "left": 201
+          },
+          {
+            "x": 144,
+            "y": 476,
+            "width": 50,
+            "height": 46,
+            "top": 476,
+            "right": 194,
+            "bottom": 522,
+            "left": 144
+          },
+          {
+            "x": 201,
+            "y": 476,
+            "width": 50,
+            "height": 46,
+            "top": 476,
+            "right": 251,
+            "bottom": 522,
+            "left": 201
+          },
+          {
+            "x": 144,
+            "y": 529,
+            "width": 50,
+            "height": 46,
+            "top": 529,
+            "right": 194,
+            "bottom": 575,
+            "left": 144
+          },
+          {
+            "x": 201,
+            "y": 529,
+            "width": 50,
+            "height": 46,
+            "top": 529,
+            "right": 251,
+            "bottom": 575,
+            "left": 201
+          },
+          {
+            "x": 258,
+            "y": 529,
+            "width": 50,
+            "height": 46,
+            "top": 529,
+            "right": 308,
+            "bottom": 575,
+            "left": 258
+          },
+          {
+            "x": 144,
+            "y": 582,
+            "width": 50,
+            "height": 46,
+            "top": 582,
+            "right": 194,
+            "bottom": 628,
+            "left": 144
+          },
+          {
+            "x": 258,
+            "y": 423,
+            "width": 50,
+            "height": 99,
+            "top": 423,
+            "right": 308,
+            "bottom": 522,
+            "left": 258
+          },
+          {
+            "x": 206,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 252,
+            "bottom": 56,
+            "left": 206
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 37,
+            "y": 309.15625,
+            "width": 69.34375,
+            "height": 34,
+            "top": 309.15625,
+            "right": 106.34375,
+            "bottom": 343.15625,
+            "left": 37
+          },
+          {
+            "x": 134.6875,
+            "y": 309.15625,
+            "width": 66.484375,
+            "height": 34,
+            "top": 309.15625,
+            "right": 201.171875,
+            "bottom": 343.15625,
+            "left": 134.6875
+          },
+          {
+            "x": 229.515625,
+            "y": 309.15625,
+            "width": 53.484375,
+            "height": 34,
+            "top": 309.15625,
+            "right": 283,
+            "bottom": 343.15625,
+            "left": 229.515625
+          }
+        ],
+        "actions": {
+          "x": 37,
+          "y": 441.15625,
+          "width": 246,
+          "height": 142,
+          "top": 441.15625,
+          "right": 283,
+          "bottom": 583.15625,
+          "left": 37
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

@@ -1,0 +1,111 @@
+{
+  "build": "SOULFALL Build75",
+  "reviewer": "independent mobile reviewer 1",
+  "date": "2026-11-03",
+  "url": "http://127.0.0.1:61471/",
+  "method": {
+    "attempts": 1,
+    "fresh_attempt": true,
+    "viewport_css": {"width": 844, "height": 390},
+    "screenshot_scale": 3,
+    "input": "Authorized mobile-playtest helper; native CDP touch only; at most two contacts. Screenshots inspected before adaptive inputs.",
+    "disclosure": "Synthetic paused phone emulation with software WebGL rendering. Most actions captured the live scene and then paused; deliberation between captures was outside mission time. This does not establish real-time human playability or physical-phone performance.",
+    "restrictions_observed": "No source, tests, docs, earlier reviews, hidden state, game handles, arbitrary evaluation, test URL, resource manipulation, keyboard, mouse, custom bot, retry, runtime edit, build, commit or publishing. Helper --help was read first. Only new owned media/logs and this report were written."
+  },
+  "assessment": {
+    "scale": "0 = unusable or absent, 5 = functional with substantial friction, 8 = strong with limited friction, 10 = exceptional within the observed scope. Scores are reviewer judgments, not measured performance or human enjoyment.",
+    "overall_mobile": {
+      "score": 6.5,
+      "reason": "A complete touch-only loss attempt was possible, with three successful recoveries, readable objective transitions and a meaningful boss encounter. Dense overlays, difficult fine aim and unclear safe sightlines substantially complicated the small landscape view. Overall is a holistic judgment of this one attempt."
+    },
+    "controls": {
+      "score": 6,
+      "reason": "Movement, reload, USE, map, crouch, dash and fire/drag all produced visible responses. Vaulting cleared the obstructing archive counter. Fine tracking was difficult: multiple patrol and coil volleys missed, and a large attempted look gesture starting on the left half did not rotate the view. Fire-drag corrections eventually disabled coil III. These misses are evidence of this reviewer's control difficulty, not proof of an input defect."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "Patrol movement, shield regeneration, recoveries that restored resources, a successful phase-break message, and armored/exposed boss cycles supported meaningful decisions. Reaching all three memories was feasible. The boss punished sustained exposure sharply; only one coil was disabled before death. Encounter balance beyond this loss remains uncertain."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Consistent teal/amber styling, rainy industrial spaces, the large illuminated relay, weapon view and distinct recovery/end panels gave the observed slice a coherent identity. Dark geometry and large opaque overlays sometimes competed with targets. Rendering quality was judged only from software-rendered still captures."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "The paused map clearly named receivers and showed recovered status. Interaction messages distinguished nearby, HOLD USE and 0.1 m outside reach, enabling correction. However, desktop HOLD TAB guidance appeared during touch play; finding a safe boss firing face required detours, and apparent wall cover failed to prevent the final death. The latter's exact cause is unverified."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Major objectives, health, ammo, recovery confirmations and SIGNAL LOST were legible. Compact compass, distance, coil percentages and end-screen secondary statistics are small at 844x390. Stacked full-width boss, guidance and stance/threat strips obscured a material part of the upper scene. Enlarged evidence images improve inspection but do not represent physical phone readability."
+    }
+  },
+  "terminal_result": {
+    "status": "LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:30",
+    "time_label": "CUMULATIVE PLAY TIME",
+    "recoveries": 3,
+    "recovered_names": ["Mara Solberg", "Sera Nord", "Elian Vale"],
+    "eliminations": 3,
+    "accuracy_percent": 11,
+    "score": 3300,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "custodian": "Coil III OFF; I and II last visibly 100%. Custodian not defeated.",
+    "extraction_completed": false,
+    "terminal_evidence": "docs/media/build75-mobile-review1/sheltered-recharge.jpg",
+    "note": "No retry or fresh-start button was used. The visible phase-break announcement is distinct from the terminal phase-evades statistic, which remained zero."
+  },
+  "evidence_sequence": [
+    {"file": "initial-menu.jpg", "observation": "Normal Build75 title screen before the single fresh deployment."},
+    {"file": "how-to-play.jpg", "observation": "Visible handbook's opening touch instructions inspected. No handbook scrolling was performed; later manual sections were not visually covered."},
+    {"file": "briefing-or-play.jpg", "time": "00:00", "observation": "Opening guard, touch controls, West Archive marker and induction advice visible."},
+    {"file": "guard-first-fire.jpg", "time": "00:02", "observation": "Opening guard no longer visible after a held volley; health/shield 100/60 and ammo 7. Final elimination count later confirms three total, not a separate per-guard counter."},
+    {"file": "archive-fire-strafe.jpg", "time": "00:16", "observation": "Moving patrol remained active after aim/fire; shield fell to 41; JUMP/Vault prompt at intervening counter."},
+    {"file": "first-recovery-hold.jpg", "time": "00:20", "observation": "Moving USE attempt failed to recover Mara while movement was obstructed; vault prompt persisted and shield fell to 3."},
+    {"file": "vault-toward-receiver.jpg", "time": "00:24", "observation": "Vault/movement brought the receiver within HOLD TO RECOVER range; health was 65."},
+    {"file": "mara-recovered.jpg", "time": "00:26", "observation": "Stationary USE hold confirmed Mara recovered and changed objective to Sera."},
+    {"file": "ads-patrol-fire.jpg", "time": "00:32", "observation": "Patrol disappeared and supply-shaped marker visible after further aim/fire; health 44. Precise individual shot hits were not independently counted."},
+    {"file": "route-map.jpg", "time": "00:35", "observation": "Paused map showed recovered west receiver and remaining Heart/east targets."},
+    {"file": "toward-heart.jpg", "time": "00:39", "observation": "Heart HOLD USE prompt and nearby amber charging enemy visible."},
+    {"file": "heart-defense-and-hold.jpg", "time": "00:42", "observation": "Dash/fire/USE combination produced PHASE BREAK / SHOT CANCELED / ARMOR OPEN 3s. Recovery was not complete: message said 0.1 m outside reach."},
+    {"file": "heart-step-back-hold.jpg", "time": "00:45", "observation": "Short backward step plus continued USE recovered Sera; health/shield 70/60."},
+    {"file": "east-archive-route.jpg", "time": "00:48", "observation": "Attempted look drag began in left half and did not change heading; forward movement ended at the Heart wall. Retained as a routing/control mistake."},
+    {"file": "east-archive-crossing.jpg", "time": "00:53", "observation": "Subsequent right-side turns overshot intended east/south direction to south; East Archive marker required a lateral detour."},
+    {"file": "elian-hold.jpg", "time": "00:59", "observation": "Third recovery confirmed; objective switched to disable Custodian, all coils at 100%."},
+    {"file": "coil-fire-over-cover.jpg", "time": "01:07", "observation": "Volley hit intervening cover; no coil percentage decrease. Health/shield dropped to 86/0."},
+    {"file": "custodian-flank-left.jpg", "time": "01:09", "observation": "Flank moved away from initial obstruction; visible guidance included HOLD TAB FOR GROUND TRACE on mobile."},
+    {"file": "around-hall-opening.jpg", "time": "01:14", "observation": "Detour around hall side wall encountered more cover; health 73 and charging warning visible."},
+    {"file": "custodian-south-face.jpg", "time": "01:14", "observation": "Clearer view of numbered coils; INERT HOUSING / AIM AT NUMBERED COILS explained central aim failure."},
+    {"file": "numbered-coil-volley.jpg", "time": "01:17", "observation": "Another held volley failed to lower any displayed coil percentage; crosshair was between components."},
+    {"file": "coil-three-aim-correction.jpg", "time": "01:23", "observation": "Fine aim correction disabled coil III; health fell to 1 during the exposure."},
+    {"file": "critical-health-cover-attempt.jpg", "time": "01:24", "observation": "Dashed laterally, then moved toward tall wall cover and reloaded rather than abandoning the fight."},
+    {"file": "cover-shield-recovery.jpg", "time": "01:29", "observation": "Crouched near tall wall with health 1 and shield 6; attempted regeneration, with charge and directional threat warnings still present."},
+    {"file": "sheltered-recharge.jpg", "time": "01:30", "observation": "Actual loss screen after continued shelter attempt; terminal statistics visible."}
+  ],
+  "concrete_issues": [
+    {"type": "observed", "issue": "Desktop HOLD TAB FOR GROUND TRACE instruction appeared during mobile touch play.", "evidence": "custodian-flank-left.jpg", "suggestion": "Show an available touch equivalent or omit the unavailable binding."},
+    {"type": "observed", "issue": "Boss status, route guidance, stance and threat strips stacked across the upper scene, competing with small numbered coil targets.", "evidence": ["custodian-south-face.jpg", "cover-shield-recovery.jpg"], "suggestion": "Reduce banner height and consolidate transient messages on short landscape screens."},
+    {"type": "observed difficulty", "issue": "Multiple sustained volleys consumed ammunition without damaging a visible boss component; cover and gaps between small targets complicated precise aim.", "evidence": ["coil-fire-over-cover.jpg", "numbered-coil-volley.jpg", "coil-three-aim-correction.jpg"], "suggestion": "Consider clearer obstruction feedback and stronger component hit confirmation; validate fine aim with physical touch users."},
+    {"type": "observed difficulty, cause uncertain", "issue": "Crouching near apparent tall wall cover allowed brief shield recovery but did not prevent death.", "evidence": ["cover-shield-recovery.jpg", "sheltered-recharge.jpg"], "inference": "A flank, projectile angle or insufficient shelter may explain it. No cover/collision bug is established.", "suggestion": "Assess whether threat direction and cover-height feedback make this failure understandable at phone size."}
+  ],
+  "coverage": {
+    "observed": ["title", "opening handbook viewport", "native movement and look", "held fire and fire-drag", "aim toggle", "reload", "USE holds including failures", "vault", "dash and phase-break feedback", "crouch", "shield recovery", "paused map", "all three memory recoveries", "Custodian charging/exposure cycles", "one coil disabled", "actual loss and terminal statistics"],
+    "not_assessed": ["successful Custodian completion", "extraction", "suit service", "checkpoint retry", "fresh retry", "shotgun/swap", "capacitor interactions", "full handbook scrolling", "settings", "recovered memory reading", "physical-phone performance", "Safari", "audio", "human enjoyment"],
+    "uncertainty": "One attempt with synthetic pauses cannot establish difficulty distribution, responsiveness under continuous human play, touch ergonomics, browser compatibility or frame rate. Misses may reflect reviewer execution and emulation. Recovery coverage is not mission completion. No win is claimed."
+  },
+  "cleanup": {
+    "driver_pid": 26859,
+    "chrome_pid": 26869,
+    "explicit_close_sent": true,
+    "close_response": {"reason": "input ended or close requested", "browserLaunched": true, "browserClosed": true},
+    "driver_exit_awaited": true,
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 26859,26869 -o pid=,ppid=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Exact owned driver and Chrome PIDs absent after exit. No unrelated process or server killed."
+  },
+  "media_directory": "docs/media/build75-mobile-review1"
+}

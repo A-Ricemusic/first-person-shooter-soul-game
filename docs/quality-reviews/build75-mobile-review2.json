@@ -1,0 +1,74 @@
+{
+  "review": "Independent SOULFALL Build75 mobile review 2",
+  "date": "2026-11-03",
+  "url": "http://127.0.0.1:61471/",
+  "method": {
+    "attempts": 1,
+    "fresh_attempt": true,
+    "viewport_css": {"width": 390, "height": 844},
+    "orientation": "portrait",
+    "input": "Authorized mobile-playtest.mjs helper only; native CDP touch, maximum two contacts; no keyboard or mouse",
+    "decisions": "Adapted from inspected screenshots, visible HUD, handbook and planning map. No source, tests, docs, earlier reviews, hidden state, test URL, game handles or arbitrary evaluation read or used.",
+    "disclosure": "Synthetic paused phone emulation with software WebGL rendering. Each action captured the live screen then paused; planning map also paused. This provides substantially more deliberation than continuous human play. Physical-phone performance, Safari, audio and human enjoyment are unassessed.",
+    "screenshot_scale": 3,
+    "media_prefix": "docs/media/build75-mobile-review2/"
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:24",
+    "memories_recovered": 3,
+    "names": ["Mara Solberg", "Sera Nord", "Elian Vale"],
+    "eliminations": 2,
+    "accuracy_percent": 18,
+    "critical_eliminations": 1,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "game_score": 3280,
+    "custodian_last_observed": "Coils I and III OFF; coil II 100% at 01:23. Custodian not defeated; extraction not reached.",
+    "terminal_evidence": "docs/media/build75-mobile-review2/last-coil-window.jpg"
+  },
+  "scores": {
+    "scale": "0 = unusable or failed in observed use; 5 = functional with substantial friction; 10 = exceptionally clear and effective in observed use. Subjective reviewer assessments, not objective benchmarks; overall is a holistic judgment of this limited mobile attempt.",
+    "overall_mobile": {"value": 6, "reason": "Native touch supported a real attempt through all three recoveries and two boss coils, but repeated positioning corrections, difficult aim acquisition, dense information and a desktop-only hint reduced confidence."},
+    "controls": {"value": 6, "reason": "Movement, simultaneous MOVE plus USE, FIRE drag, reload, map, jump and dash were usable. Fine aim took multiple bursts; accuracy was 18%. Some look drags produced no immediate visible heading change, while FIRE drag worked. Emulation and action timing prevent attributing all aim difficulty to the game."},
+    "gameplay": {"value": 7, "reason": "Recoveries, shield regeneration, patrol pressure, cover and exposed coil windows offered meaningful choices. A failed hold could be corrected, and two coils could be disabled. The last fight punished the exposed position heavily; this is one loss, not evidence of general balance or unfairness."},
+    "presentation": {"value": 8, "reason": "Strong cyan/amber visual identity, atmospheric rain, industrial silhouettes, illuminated floor rings and a coherent title/end screen. Coils visibly darkened after disabling. Software rendering limits any performance or fidelity assessment."},
+    "usability": {"value": 6, "reason": "Paused map and explicit outside-reach distances helped recover from mistakes. Holds failed at 0.7 m, 0.1 m and 1.2 m outside reach before corrections succeeded. Navigation around pillars and walls needed detours. A phone HUD hint instructed HOLD TAB."},
+    "readability": {"value": 6, "reason": "Health, ammo, objective names, recovery banners and terminal totals were readable. Small tracked labels and dense handbook copy burden the narrow screen; architecture sometimes dominated the view and concealed targets. Directional threats were visible but did not let me confidently identify the source of the largest damage burst."}
+  },
+  "observations": [
+    {"fact": "The first forward burst removed the induction guard without visible health or shield loss.", "evidence": ["deployed.jpg", "first-fire.jpg"]},
+    {"fact": "A forward movement ran into cover; a left strafe detour opened the west archive approach.", "evidence": ["west-wall.jpg", "west-detour.jpg", "archive-approach.jpg"]},
+    {"fact": "First Mara hold failed 0.7 m outside reach; a lateral correction recovered Mara at 00:25.", "evidence": ["first-hold.jpg", "adjust-hold.jpg"]},
+    {"fact": "The first archive burst was off target; a second aimed burst removed the visible sentinel. Shield fell from 60 to 22 across those bursts.", "inference": "The terminal total of two eliminations is consistent with the induction guard and this sentinel, but the end screen does not identify victims.", "evidence": ["archive-fire-miss.jpg", "archive-second-burst.jpg"]},
+    {"fact": "Leaving the west archive required backing away from a wall and strafing into the yard; shield subsequently regenerated.", "evidence": ["east-service.jpg", "exit-detour.jpg"]},
+    {"fact": "Sera hold failed 0.1 m outside reach, then completed after a short forward adjustment. Elian hold failed 1.2 m outside reach, then completed after a right strafe.", "evidence": ["heart-hold.jpg", "heart-recovery.jpg", "east-hold.jpg", "east-adjust.jpg"]},
+    {"fact": "All three memory indicators lit. Custodian HUD displayed three coil percentages, armored/charging/exposed states, then OFF for I and III.", "evidence": ["east-adjust.jpg", "coil-burst.jpg", "coil-three-hit-check.jpg"]},
+    {"fact": "Health fell from 67 to 12 during the second successful coil attack. Retreat and reload succeeded; a later last-coil attempt ended in loss.", "inference": "The exact mix of boss and patrol damage was not identifiable from the inspected screens.", "evidence": ["coil-three-fire.jpg", "coil-three-hit-check.jpg", "critical-retreat.jpg", "last-coil-window.jpg"]}
+  ],
+  "concrete_issues": [
+    {"severity": "medium", "issue": "Desktop instruction in phone HUD", "observed": "DISABLE CUSTODIAN hint said HOLD TAB FOR GROUND TRACE while native phone controls were displayed.", "suggestion": "Use the touch MAP instruction or an explicit touch-accessible trace action.", "evidence": "coil-burst.jpg"},
+    {"severity": "medium", "issue": "Receiver alignment required repeated failed holds", "observed": "Three holds failed just outside reach, including 0.1 m at the Heart while under fire. The distance message was useful and all recoveries remained possible.", "suggestion": "Make the active reach boundary and current in-range state more prominent near HOLD USE.", "evidence": ["first-hold.jpg", "heart-hold.jpg", "east-hold.jpg"]},
+    {"severity": "medium", "issue": "Portrait target acquisition and occlusion friction", "observed": "Several screenshots were dominated by walls, pillars or dark cover; acquiring remaining coils required map consultation, detours and missed bursts.", "suggestion": "Review touch camera responsiveness and portrait route/target cues with continuous physical-phone play before changing mechanics.", "evidence": ["east-service.jpg", "custodian-face.jpg", "coil-three-fire.jpg", "last-coil-burst.jpg"]},
+    {"severity": "low", "issue": "Dense onboarding and tiny secondary text", "observed": "The phone handbook placed long paragraphs in a scrolling panel, and HUD secondary labels were small at 390 CSS pixels.", "suggestion": "Prioritize a short touch-specific briefing and enlarge key contextual prompts.", "evidence": ["how-to.jpg", "coil-burst.jpg"]}
+  ],
+  "coverage": {
+    "observed": ["title menu", "visible opening handbook section", "deployment", "induction combat", "west archive combat", "three receiver holds and corrections", "planning map", "rifle fire and drag aim", "reload", "movement and wall detours", "jump/vault input", "run toggle input", "dash input", "shield regeneration", "Custodian telegraphs and two disabled coils", "terminal loss UI"],
+    "not_assessed": ["win", "extraction upload", "emergency suit service", "uplink retry", "start fresh retry", "shotgun", "crouch", "ADS effectiveness", "capacitor banks", "full handbook via scrolling", "settings", "recovered memory prose", "physical-phone performance", "Safari", "audio", "human enjoyment"],
+    "uncertainty": "One attempt only. No completion claim: recovering all memories and disabling two coils did not complete the mission. Paused synthetic interaction does not establish continuous play difficulty, frame rate, input latency, touch ergonomics or broader balance. No benchmark measurements made. Not all fired rounds can be classified individually as misses or hits from screenshots. All action captures and helper logs are retained under the unique media prefix."
+  },
+  "cleanup": {
+    "close_command": {"op": "close"},
+    "owned_driver_pid": 75104,
+    "owned_chrome_pid": 75132,
+    "driver_closed_message": "input ended or close requested; browserLaunched true; browserClosed true",
+    "driver_exit_code": 0,
+    "awaited_driver_exit": true,
+    "verification_command": "ps -p 75104,75132 -o pid=,ppid=,stat=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Exact owned driver and Chrome PIDs absent. No unrelated processes or servers killed."
+  }
+}

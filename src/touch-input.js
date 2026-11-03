@@ -45,17 +45,25 @@ export function installTouch(game,{map,onSensitivity}){
   p.x=e.clientX;p.y=e.clientY;
  }
  root.addEventListener('pointermove',move);
- function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use')game.touchUse=false;}
+ function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use')game.touchUse=false;if(p.looking&&game.phase==='playing')game.emit();}
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  root.querySelector('#touch-map').onclick=map;
  const notices=document.createElement('div');notices.id='touch-notices';notices.append(document.querySelector('#memory-card'),document.querySelector('#announcement'));document.querySelector('#hud').append(notices);
- document.querySelector('#pointer-help').textContent='Left stick moves · drag the right side or held action buttons to look · AIM gives finer control. RUN toggles sprint. Landscape recommended.';
- const help=document.createElement('p');help.textContent='TOUCH: Left stick moves proportionally. Drag the right side to look. Hold FIRE and drag the same thumb to aim while moving. AIM and RUN toggle. DASH follows the stick direction, or goes forward when the stick is centered; JUMP vaults low cover. Hold USE while entering a receiver ring or suit service. MAP pauses and selects a route. Held action buttons can also drag the view.';document.querySelector('#controls-dialog h2').after(help);
+ document.querySelector('#pointer-help').textContent='Left stick moves · drag the scene or held action buttons to look · AIM gives finer control. RUN toggles sprint. Landscape recommended.';
+ const help=document.createElement('p');help.textContent='TOUCH: Left stick moves proportionally. Drag the scene outside the movement stick to look. Hold FIRE and drag the same thumb to aim while moving. AIM and RUN toggle. DASH follows the stick direction, or goes forward when the stick is centered; JUMP vaults low cover. Hold USE while entering a receiver ring or suit service. MAP pauses and selects a route. Held action buttons can also drag the view.';document.querySelector('#controls-dialog h2').after(help);
  // Keep the full tactical handbook while translating its keyboard instructions.
  for(const panel of document.querySelectorAll('#controls-dialog,#briefing-dialog')){
   const walker=document.createTreeWalker(panel,NodeFilter.SHOW_TEXT);let node;
   while(node=walker.nextNode())node.textContent=node.textContent.replace(/Press 1 for the precision rifle or 2 for the pump breacher\./g,'Tap SWAP to switch between precision rifle and pump breacher.').replace(/R inserts/g,'RELOAD inserts').replace(/Shift close/g,'DASH close').replace(/C toggles/g,'CROUCH toggles').replace(/Ctrl requests standing/g,'Tap CROUCH again to request standing').replace(/C changes/g,'Stance changes').replace(/Press Space/g,'Tap JUMP').replace(/Hold Tab while moving for a short ground approach to the selected objective; M selects on the paused map\./g,'Tap MAP to pause and select an objective.').replace(/Press M for paused facility planning\./g,'Tap MAP for paused facility planning.').replace(/M or Close resumes; Escape opens the pause menu\./g,'CLOSE MAP resumes; Pause opens the pause menu.').replace(/held Tab trace/g,'selected route').replace(/hold E/gi,'hold USE').replace(/WASD/g,'the left stick').replace(/mouse/gi,'right drag').replace(/\bShift\b/gi,'DASH').replace(/Soul DASH/gi,'Soul Shift');
  }
+ // Keep the full handbook available without making it the first phone lesson.
+ const handbook=document.querySelector('#controls-dialog'),details=document.createElement('details');
+ details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
+ for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
+ const lesson=document.createElement('ol');lesson.id='touch-quickstart';
+ for(const text of ['MOVE with the left stick. Drag the scene to look; hold FIRE and drag to shoot. AIM gives finer control.', 'MAP pauses to plan. Approach each floor ring; HOLD TO RECOVER lights up when ready. Stay still and hold it.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ help.replaceWith(lesson);lesson.after(details);
+ document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Tap an approach · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
  document.querySelector('#route-help').closest('label').nextElementSibling.textContent='After blocked walking, marks walkable ground toward the selected destination. Tap MAP to plan. Patrols still matter.';
  const setting=document.createElement('div');setting.className='touch-aim-setting';

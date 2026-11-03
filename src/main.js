@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 75</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 76</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -133,6 +133,9 @@ function renderMobileHUD(s,service){
  const use=$('touch-use');if(use){
   const ss=s.suitService,repair=ss?.valid&&ss.near&&ss.powered&&!ss.spent&&!ss.full;
   use.dataset.ready=String(!!(s.recoveryReady||repair));
+  const gap=s.localRecovery?Math.max(.1,Math.ceil(s.localRecovery.remaining*10)/10):null;
+  use.textContent=s.recoveryReady?'HOLD TO RECOVER':repair?'HOLD TO REPAIR':gap!=null&&s.localRecovery.remaining>0?`${gap.toFixed(1)}m CLOSER`:'HOLD USE';
+  use.dataset.near=String(!!s.localRecovery);
   const progress=Math.max(0,Math.min(1,repair?ss.progress:s.coreProgress||0));
   use.style.setProperty('--hold-progress',`${progress*100}%`);
   use.setAttribute('aria-label',s.recoveryReady?`Hold to recover ${CORE_SITES[s.localRecovery.id].person}`:repair?'Hold to service suit':'Hold to use');
@@ -241,6 +244,16 @@ function drawMarkers(markers){
   if(!m.suppressed&&spot.rect)placed.push(spot.rect);
   el.style.left=`${spot.x}px`;el.style.top=`${spot.y}px`;
   if(m.kind==='enemy')el.querySelector('i').style.width=`${Math.max(0,m.health*100)}%`;
+ }
+ if(game?.touchMode){
+  const boss=current.phase==='playing'&&current.cores===current.totalCores&&current.custodian?.active&&!current.custodian.dead;
+  if(boss){
+   // One status strip owns the upper fight view; controls carry posture/vault.
+   const status=$('extraction-status');
+   status.textContent=uploadStatus(current,{compact:true})+(blocked?' · MAP: APPROACH':'');
+   note.classList.add('hidden');
+  }
+  const jump=$('touch-jump');if(jump)jump.textContent=current.interaction==='Space · Vault'?'VAULT':'JUMP';
  }
  for(const [id,el]of markerPool)if(!active.has(id)){el.remove();markerPool.delete(id)}
 }
