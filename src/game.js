@@ -50,6 +50,7 @@ function wardenEmission(material,opened,charging,hit=false){
 export class Game {
   constructor({ canvas, onState = () => {}, onEvent = () => {}, onMarkers = () => {} }) {
     this.canvas = canvas; this.onState = onState; this.onEvent = onEvent; this.onMarkers = onMarkers;
+    this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
     this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
@@ -283,6 +284,7 @@ export class Game {
   }
 
   requestLock() {
+    if (this.touchMode) return;
     try { const result = this.canvas.requestPointerLock?.(); if (result?.catch) result.catch(() => this.enableFallback()); if (!this.canvas.requestPointerLock) this.enableFallback(); }
     catch (_) { this.enableFallback(); }
   }

@@ -1,0 +1,126 @@
+{
+  "status": "RESUMED BY USER. Build72 content plus verified parent touch pointer-lock guard. Full mobile controls/rendering/UI implementation pending.",
+  "baselineCommit": "8a73b7609c8be89de1620944638e1c3710928a88",
+  "newUserInstructions": [
+    "Game is ok; optimize for a mobile player. All playtests from now on happen on mobile.",
+    "Continue until both reviewers independently give10/10."
+  ],
+  "qualityPolicy": "The requested goal is two honest10/10 overall mobile-experience ratings. Do not pass a target score, desired result or parent findings to reviewers; do not inflate/average scores, call checks perfection, or certify all phones/AAA readiness from emulation. Below-target outcomes keep the broader mission active for fixes.",
+  "scope": "Resume with mobile controls, usable responsive UI and measured rendering budgets, retaining accepted game content and original Blender assets. Do not complete the interrupted desktop Build72 review or resume desktop playtests.",
+  "baselineEvidence": {
+    "file": "build73-parent-mobile-baseline.json",
+    "profiles": [
+      {
+        "name": "landscape",
+        "viewport": {
+          "width": 844,
+          "height": 390,
+          "dpr": 3
+        },
+        "virtualControls": 0,
+        "pauseVisible": false,
+        "pointerLockTarget": "game-canvas",
+        "canvasSize": [
+          1266,
+          585
+        ]
+      },
+      {
+        "name": "portrait",
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 3
+        },
+        "virtualControls": 0,
+        "pauseVisible": false,
+        "pointerLockTarget": "game-canvas",
+        "canvasSize": [
+          585,
+          1266
+        ]
+      },
+      {
+        "name": "small-landscape",
+        "viewport": {
+          "width": 667,
+          "height": 375,
+          "dpr": 2
+        },
+        "virtualControls": 0,
+        "pauseVisible": false,
+        "pointerLockTarget": "game-canvas",
+        "canvasSize": [
+          1000,
+          562
+        ]
+      }
+    ],
+    "interpretation": "No touch movement/look/fire controls. All3native tap pause attempts failed with canvas intercepting events while mouse pointer lock was active. These are Chromium-emulated phone results, not physical-device or Safari claims.",
+    "sourceRainLines": 1700,
+    "sourceDefaultBalancedDPR": 1.5
+  },
+  "deviceAccess": "T3device_list returned: Agent device access is turned off for this environment. No physical phone test connection is available through that tool. WebKit browser binaries were not installed at audit time. Use honest mobile browser emulation; install/test WebKit if feasible and label synthetic/engine limits.",
+  "controls": [
+    "Implement actual touch/pointer input with per-finger ownership and capture/fallback; no fake keyboard or mouse control underneath mobile gestures. Detect coarse/touch capabilities with suitable explicit input-mode fallback. Centralize game actions so existing physics/combat are shared.",
+    "Left analog movement stick with dead zone and proportional walking; choose a discoverable two-thumb sprint affordance. Preserve analog magnitude for walking but normalize a nonzero dash direction so a small stick tilt does not shorten Soul Shift or weaken its interruption dot test.",
+    "Right drag-look zone plus a hold-fire button that also supports drag aiming with the same finger. Walking, looking and firing must work with just two thumbs. An ADS toggle, reload, dash, jump/vault, crouch, weapon swap, hold-recover/service, map, pause/resume and restart/anchor must all be touch reachable.",
+    "Hold-use may start outside reach and begin recovery on entering the real ring, just as held E does. Keep original2.8m/.9s recovery and service interruption rules. Do not add autoaim, damage/resource boosts, automatic mission completion or hidden difficulty changes.",
+    "No mouse pointer-lock request in touch mode. Preserve per-finger pointer capture, prevent compatibility-mouse duplicate fire/actions, and keep menus tappable. Clear movement/fire/aim/use and gesture ownership on pause/map/dialog/background/blur/visibility/context loss/orientation/resize/end/restart/anchor. Held old fingers cannot reactivate controls after resume without a new down.",
+    "Viewport-normalized touch look sensitivity, independent accessible setting if needed, stable ADS feel and no camera jump on initial touch or resize. Tune mobile FOV/viewmodel size if useful for acquisition, but verify reticle/rays/ADS/weapon framing and document visual changes."
+  ],
+  "layout": [
+    "Mobile gameplay first, landscape recommended with a usable portrait fallback and responsive menus/map/end/dialogs. Cover844x390,667x375 and390x844 CSS viewports at highDPR, plus an Android-wide phone. Use100dvh, viewport-fit=cover and safe-area padding; never require fullscreen/orientation-lock APIs to play.",
+    "Readable restrained phone HUD with44px-or-larger actual touch targets and separation. Keep central aim/combat view open; reduce oversized radar/cards/announcements, hide keyboard-only hints in touch mode and provide short touch instructions. No overlapping buttons or offscreen critical content.",
+    "Reserve visible stick/button/HUD rectangles in marker composition, not the whole invisible look zone/container. Preserve truthful target/receiver visibility. Facility route selection and close/pause/settings controls must work by tap and support scrolling where needed.",
+    "Browser scrolling/zoom gestures should not steal active gameplay contacts; ordinary menus/dialog scrolling must remain usable. Avoid disabling zoom globally as an input workaround."
+  ],
+  "rendering": [
+    "Define a touch/mobile rendering profile before expensive renderer/world allocation. Default to bounded render scale and no expensive shadow map, lower rain/effect/light cost where justified; preserve collision, shelter and all combat/mission simulation rules. Respect explicit quality choice and provide recoverable settings.",
+    "Current balanced canvas uses1.5DPR (2.25CSS pixel count),1700rain lines and2048shadow map. Measure before/after canvas pixels, active rain/lights/shadow and actual render calls. These are budgets/emulated measurements, not evidence of physical-phone FPS or thermal performance.",
+    "Avoid large fallback parsing on normal asset loads, needless per-frame allocation and redraw when paused/backgrounded. Preserve material/geometry ownership and original Blender assets. Do not lower simulation frequency or damage to hide slow rendering.",
+    "The shipped dossier should avoid eagerly loading its thousands of historical images on phones. A documented output-only lazy-image transform is allowed while keeping historical source sections byte-identical. Tests should check visible lazy images and resource existence, not require every offscreen image decoded."
+  ],
+  "mobileOnlyTesting": [
+    "All new game playtests, smoke and production gameplay checks use mobile contexts/touch input. Pure logic/geometry unit checks may run without a device. Do not run old desktop keyboard mission/smoke and rename it a mobile test. Make default test/test:production mobile suites; retain historical desktop sources/evidence without rerunning their playtests.",
+    "Build a visible-only mobile ordinary driver (e.g.tools/mobile-playtest.mjs) with native CDP touch contacts, touch taps/joystick/swipes/hold-fire/drag-look, mobile UA/isMobile/hasTouch/DPR and CSS-coordinate metadata. No keyboard/mouse/eval/game-handle command. Selector geometry/visible UI only. Default ordinary two-thumb contact limit, clear API/help, actual mobile taps to pause/resume, real cleanup/owned-PID lock.",
+    "Parent transport proof build73-parent-touch-transport.json uses native trusted touch/pointer events on mobile scratch UI. In installed Chrome156.0.8078.76 partial touchEnd lists the ENDED contact (not remaining contacts); empty touchEnd releases all. Initial wrong-contact fixture is retained. Unit-test this version-specific behavior before using driver so releasing fire does not cancel movement. Start/move may include active contacts; verify ownership and all releases. Do not mistake Chrome transport for physical-device support.",
+    "Test simultaneous move+look+fire, independent contact release/cancel/lost capture, fire dragging out of button, compatibility events, ADS/reload/swap, sprint/dash direction, hold-use, map/pause/modal/orientation/background/reset/anchor cleanup and no scroll or pointer lock. Include actual geometry/ray/health/ammo/progress effects, not source-string assertions.",
+    "New mobile production checks include touch deployment, real movement/aim/fire/reload/dash/vault or jump/crouch/use/map/settings/end/retry, actual GLB/fallback and error health, normal URL isolation, safe layout across phone sizes/orientations and working source/shipped dossier resources.",
+    "A fresh privileged touch-only mission controller must actually finish three recoveries, boss and upload with no errors using normal resources and real touch controls. It may read exact internals for decisions, but no teleport/boost/simulation advance or direct action calls. Keep arranged unit fixtures separate from ordinary results.",
+    "Implementer ordinary normal-URL touch-only phone trial with retained misses/failures, then stable commit and exactly two fresh sequential Sol mobile reviewers with two terminal attempts each. Different phone sizes and at least one portrait attempt. Default settings, no source/prior evidence/routes/controller/arrangement; mobile helper help and own visible captures only. Ask overall mobile experience plus full named dimensional scores0\u201310 with reasons/coverage, not target score.",
+    "Physical-device tool access is disabled. Test mobile Chromium native touch now; WebKit functional phone smoke if feasible, disclose native vs synthetic-event support and actual engine. Never claim real Safari/iPhone/Android hardware FPS, audio quality or continuous human enjoyment from emulated paused input."
+  ],
+  "historyAndPublishing": [
+    "Archive interrupted Build72 evidence as history without completing desktop playtests; preserve old stop report and all old dossier sections/assets byte-identical. New resumed section supersedes stop only by latest explicit user request. New Build73 prefixes, preserve failures, no overwriting previous outputs.",
+    "Update docs/human.html with all creative/input/rendering decisions, why/like, tests, raw mobile outcomes/scores and limitations. No perfection claim or quality uplift inferred from passing tests. User goal stays unfinished below honest acceptance.",
+    "Commit/push public main authorized. Preserve local Build72 snapshot/server61468 and current Tailnet5174 link while implementing; do not mutate snapshot files or change Serve bindings during development. Protected Build23 files/route5173 remain unchanged (old61467backend was unavailable at stop). Parent will publish a reviewed mobile candidate to the user after readiness, preserving old snapshots.",
+    "Exactly two fresh sequential GPT-6.1 Sol reviewers after stable implementation. No concurrent browser/test/Blender while ordinary driver owns device session. Explicit close, exit and exact owned PIDs absent before the next review/check. No global kill, no new top-level thread/worktree/PR/deploy watch or schedules."
+  ],
+  "references": [
+    "https://playwright.dev/docs/emulation",
+    "https://chromedevtools.github.io/devtools-protocol/tot/Input/",
+    "node_modules/playwright-core/types/protocol.d.ts",
+    "build73-parent-touch-transport.json"
+  ],
+  "statusAtDesign": "Mobile baseline/transport and pointer-lock correctness fix complete; full mobile controls/profile pending. No mobile reviewer score or physical-phone validation. Phone/browser clarification optional and pending; proceed with common phone layouts.",
+  "parentImplementedFix": {
+    "change": "Game detects coarse touch input and requestLock returns without mouse capture in touch mode.",
+    "sourceTest": "build73-parent-pointer-lock-after.json",
+    "nativePhoneProfiles": 3,
+    "results": "All three native touch Pause taps now succeed and document.pointerLockElement is null. No virtual movement/look/fire controls implemented yet.",
+    "integration": "Reuse/unify this.touchMode with the full mobile input profile rather than adding divergent detection."
+  },
+  "parentBuildFix": {
+    "problem": "Repeated full copying of3.8GB dossier exhausted disk. Node forced clone probe returnedENOSYS, so clone-hint mode still copied all data. An overlapping cleanup/build attempt was corrected with sequential cleanup.",
+    "solution": "tools/ship-dossier.mjs links immutable media as regular hardlinked files, copies editable reports/text independently, rejects overlapping paths and symlinks, and falls back to copy when links unsupported. Never modify linked evidence through generated output; skip same-file media copies after packaging.",
+    "unitCheck": "tests/dossier-packaging.mjs passed source/output text independence, media identity, safe rebuild/cleanup and path guards.",
+    "failedLogs": [
+      "build73-parent-mobile-build.txt",
+      "build73-parent-mobile-build-clone.txt",
+      "build73-parent-mobile-build-clone-sequential.txt"
+    ],
+    "successfulBuild": "build73-parent-mobile-build-linked.txt",
+    "runtimeReadiness": "Only touch pointer-lock correctness fix in parent; full mobile implementation and production touch suite still pending."
+  }
+}

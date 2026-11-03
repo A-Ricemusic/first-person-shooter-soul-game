@@ -1,0 +1,162 @@
+{
+  "method": "Native Chromium CDP multi-touch transport probe on a synthetic two-zone page in a mobile context. No game state/keyboard/mouse injection, not a game playtest or physical-phone test.",
+  "calls": [
+    {
+      "name": "first-down",
+      "type": "touchStart",
+      "points": [
+        1
+      ],
+      "ok": true
+    },
+    {
+      "name": "second-down",
+      "type": "touchStart",
+      "points": [
+        1,
+        2
+      ],
+      "ok": true
+    },
+    {
+      "name": "both-move",
+      "type": "touchMove",
+      "points": [
+        1,
+        2
+      ],
+      "ok": true
+    },
+    {
+      "name": "second-up-first-still-held",
+      "type": "touchEnd",
+      "points": [
+        1
+      ],
+      "ok": true
+    },
+    {
+      "name": "first-keeps-moving",
+      "type": "touchMove",
+      "points": [
+        1
+      ],
+      "ok": true
+    },
+    {
+      "name": "all-up",
+      "type": "touchEnd",
+      "points": [],
+      "ok": true
+    }
+  ],
+  "events": [
+    {
+      "type": "pointerdown",
+      "target": "a",
+      "pointerId": 2,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchstart",
+      "target": "a",
+      "touches": [
+        1
+      ]
+    },
+    {
+      "type": "pointerdown",
+      "target": "b",
+      "pointerId": 3,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchstart",
+      "target": "b",
+      "touches": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "pointermove",
+      "target": "b",
+      "pointerId": 3,
+      "pointerType": "touch"
+    },
+    {
+      "type": "pointermove",
+      "target": "a",
+      "pointerId": 2,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchmove",
+      "target": "b",
+      "touches": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "touchmove",
+      "target": "a",
+      "touches": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "pointerup",
+      "target": "a",
+      "pointerId": 2,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchend",
+      "target": "a",
+      "touches": [
+        2
+      ]
+    },
+    {
+      "type": "pointerdown",
+      "target": "a",
+      "pointerId": 4,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchstart",
+      "target": "a",
+      "touches": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "pointerup",
+      "target": "a",
+      "pointerId": 4,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchend",
+      "target": "a",
+      "touches": [
+        2
+      ]
+    },
+    {
+      "type": "pointerup",
+      "target": "b",
+      "pointerId": 3,
+      "pointerType": "touch"
+    },
+    {
+      "type": "touchend",
+      "target": "b",
+      "touches": []
+    }
+  ],
+  "partialReleaseWorks": false
+}

@@ -1,0 +1,33 @@
+
+> soulfall-the-last-signal@1.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 51 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                         0.68 kB │ gzip:   0.41 kB
+dist/assets/index-DPD5A4My.css                         29.68 kB │ gzip:   7.36 kB
+dist/assets/index-BhIHMqfy.js                         298.80 kB │ gzip:  86.44 kB
+dist/assets/build72-sentinel-fallback-D4X4f6I0.js     474.09 kB │ gzip:  68.33 kB
+dist/assets/three-CkrzA8c1.js                         563.61 kB │ gzip: 143.63 kB
+dist/assets/build69-custodian-surfaces-CJr5upgj.js  4,320.79 kB │ gzip: 243.78 kB
+
+(!) Some chunks are larger than 650 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.35s
+error during build:
+Error: ENOSPC, No space left on device 'dist/docs/media'
+    at copyDir (node:internal/fs/cp/cp-sync:145:22)
+    at onDir (node:internal/fs/cp/cp-sync:136:25)
+    at getStats (node:internal/fs/cp/cp-sync:68:12)
+    at cpSyncFn (node:internal/fs/cp/cp-sync:58:10)
+    at cpSync (node:fs:3158:3)
+    at Object.closeBundle (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/node_modules/.vite-temp/vite.config.js.timestamp-1793680568880-1973ba48cb259.mjs:7:5)
+    at Object.handler (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/node_modules/vite/dist/node/chunks/config.js:33994:13)
+    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/node_modules/rollup/dist/es/shared/node-entry.js:24026:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 0)

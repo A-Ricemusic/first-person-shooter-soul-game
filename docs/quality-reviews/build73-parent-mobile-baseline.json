@@ -1,0 +1,312 @@
+{
+  "method": "Engineering baseline on normal URL with mobile browser contexts and native touch taps only. Chromium mobile emulation/software WebGL, not physical phones or Safari; no desktop playtest, keyboard or mouse control.",
+  "profiles": [
+    {
+      "name": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390,
+        "dpr": 3
+      },
+      "coarse": true,
+      "maxTouchPoints": 1,
+      "canvas": {
+        "width": 1266,
+        "height": 585,
+        "css": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390,
+          "right": 844,
+          "bottom": 390
+        }
+      },
+      "virtualControlCount": 0,
+      "visibleButtons": [
+        {
+          "label": "Pause game",
+          "x": 745.53125,
+          "y": 30,
+          "width": 63.46875,
+          "height": 40,
+          "right": 809,
+          "bottom": 70
+        }
+      ],
+      "hud": [
+        {
+          "selector": ".hud-top",
+          "shown": true,
+          "x": 35,
+          "y": 30,
+          "width": 774,
+          "height": 85,
+          "right": 809,
+          "bottom": 115
+        },
+        {
+          "selector": ".hud-bottom",
+          "shown": true,
+          "x": 35,
+          "y": 252.0625,
+          "width": 774,
+          "height": 91.9375,
+          "right": 809,
+          "bottom": 344
+        },
+        {
+          "selector": ".signal-scan",
+          "shown": true,
+          "x": 649,
+          "y": 105,
+          "width": 160,
+          "height": 215,
+          "right": 809,
+          "bottom": 320
+        },
+        {
+          "selector": "#field-controls",
+          "shown": true,
+          "x": -29.1328125,
+          "y": 232,
+          "width": 902.265625,
+          "height": 38,
+          "right": 873.1328125,
+          "bottom": 270
+        },
+        {
+          "selector": "#announcement",
+          "shown": true,
+          "x": 6.2734375,
+          "y": 89.6875,
+          "width": 831.453125,
+          "height": 52,
+          "right": 837.7265625,
+          "bottom": 141.6875
+        },
+        {
+          "selector": ".ability",
+          "shown": true,
+          "x": 332.703125,
+          "y": 295,
+          "width": 233.59375,
+          "height": 49,
+          "right": 566.296875,
+          "bottom": 344
+        }
+      ],
+      "fieldText": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+      "normalURLDebugExposed": false,
+      "pointerLockTarget": "game-canvas",
+      "pauseFailure": "locator.tap: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pause-button')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"pause-button\" class=\"pause-button\" aria-label=\"Pause game\">…</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1266\" height=\"585\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1266\" height=\"585\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    4 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1266\" height=\"585\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+      "pauseVisible": false,
+      "coverage": "Native tap deployment and attempted pause only; failed taps retained without force or keyboard escape. No movement/aim/fire mobile controls exist; no mission or enjoyment assessment."
+    },
+    {
+      "name": "portrait",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 3
+      },
+      "coarse": true,
+      "maxTouchPoints": 1,
+      "canvas": {
+        "width": 585,
+        "height": 1266,
+        "css": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "right": 390,
+          "bottom": 844
+        }
+      },
+      "virtualControlCount": 0,
+      "visibleButtons": [
+        {
+          "label": "Pause game",
+          "x": 306.53125,
+          "y": 20,
+          "width": 63.46875,
+          "height": 40,
+          "right": 370,
+          "bottom": 60
+        }
+      ],
+      "hud": [
+        {
+          "selector": ".hud-top",
+          "shown": true,
+          "x": 20,
+          "y": 20,
+          "width": 350,
+          "height": 81,
+          "right": 370,
+          "bottom": 101
+        },
+        {
+          "selector": ".hud-bottom",
+          "shown": true,
+          "x": 20,
+          "y": 707.0625,
+          "width": 350,
+          "height": 91.9375,
+          "right": 370,
+          "bottom": 799
+        },
+        {
+          "selector": ".signal-scan",
+          "shown": true,
+          "x": 255,
+          "y": 88,
+          "width": 115,
+          "height": 165,
+          "right": 370,
+          "bottom": 253
+        },
+        {
+          "selector": "#field-controls",
+          "shown": true,
+          "x": 19.5,
+          "y": 589,
+          "width": 351,
+          "height": 80,
+          "right": 370.5,
+          "bottom": 669
+        },
+        {
+          "selector": "#announcement",
+          "shown": true,
+          "x": 97.5,
+          "y": 194.109375,
+          "width": 195,
+          "height": 126,
+          "right": 292.5,
+          "bottom": 320.109375
+        },
+        {
+          "selector": ".ability",
+          "shown": true,
+          "x": 107.5,
+          "y": 618,
+          "width": 175,
+          "height": 81,
+          "right": 282.5,
+          "bottom": 699
+        }
+      ],
+      "fieldText": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+      "normalURLDebugExposed": false,
+      "pointerLockTarget": "game-canvas",
+      "pauseFailure": "locator.tap: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pause-button')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"pause-button\" class=\"pause-button\" aria-label=\"Pause game\">…</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"585\" height=\"1266\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"585\" height=\"1266\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"585\" height=\"1266\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+      "pauseVisible": false,
+      "coverage": "Native tap deployment and attempted pause only; failed taps retained without force or keyboard escape. No movement/aim/fire mobile controls exist; no mission or enjoyment assessment."
+    },
+    {
+      "name": "small-landscape",
+      "viewport": {
+        "width": 667,
+        "height": 375,
+        "dpr": 2
+      },
+      "coarse": true,
+      "maxTouchPoints": 1,
+      "canvas": {
+        "width": 1000,
+        "height": 562,
+        "css": {
+          "x": 0,
+          "y": 0,
+          "width": 667,
+          "height": 375,
+          "right": 667,
+          "bottom": 375
+        }
+      },
+      "virtualControlCount": 0,
+      "visibleButtons": [
+        {
+          "label": "Pause game",
+          "x": 583.53125,
+          "y": 20,
+          "width": 63.46875,
+          "height": 40,
+          "right": 647,
+          "bottom": 60
+        }
+      ],
+      "hud": [
+        {
+          "selector": ".hud-top",
+          "shown": true,
+          "x": 20,
+          "y": 20,
+          "width": 627,
+          "height": 81,
+          "right": 647,
+          "bottom": 101
+        },
+        {
+          "selector": ".hud-bottom",
+          "shown": true,
+          "x": 20,
+          "y": 238.0625,
+          "width": 627,
+          "height": 91.9375,
+          "right": 647,
+          "bottom": 330
+        },
+        {
+          "selector": ".signal-scan",
+          "shown": true,
+          "x": 532,
+          "y": 88,
+          "width": 115,
+          "height": 165,
+          "right": 647,
+          "bottom": 253
+        },
+        {
+          "selector": "#field-controls",
+          "shown": true,
+          "x": 33.3515625,
+          "y": 138,
+          "width": 600.296875,
+          "height": 62,
+          "right": 633.6484375,
+          "bottom": 200
+        },
+        {
+          "selector": "#announcement",
+          "shown": true,
+          "x": 166.75,
+          "y": 86.25,
+          "width": 333.5,
+          "height": 78,
+          "right": 500.25,
+          "bottom": 164.25
+        },
+        {
+          "selector": ".ability",
+          "shown": true,
+          "x": 216.703125,
+          "y": 181,
+          "width": 233.59375,
+          "height": 49,
+          "right": 450.296875,
+          "bottom": 230
+        }
+      ],
+      "fieldText": "WASD MOVE MOUSE LOOK C CROUCH CTRL SPRINT R RELOAD SPACE VAULT / JUMP SHIFT PHASE DASH HOLD E RECOVER",
+      "normalURLDebugExposed": false,
+      "pointerLockTarget": "game-canvas",
+      "pauseFailure": "locator.tap: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pause-button')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"pause-button\" class=\"pause-button\" aria-label=\"Pause game\">…</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1000\" height=\"562\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1000\" height=\"562\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing tap action\u001b[22m\n\u001b[2m      - <canvas width=\"1000\" height=\"562\" tabindex=\"-1\" id=\"game-canvas\" data-engine=\"three.js r180\" aria-label=\"SOULFALL three dimensional game world\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+      "pauseVisible": false,
+      "coverage": "Native tap deployment and attempted pause only; failed taps retained without force or keyboard escape. No movement/aim/fire mobile controls exist; no mission or enjoyment assessment."
+    }
+  ],
+  "errors": []
+}
