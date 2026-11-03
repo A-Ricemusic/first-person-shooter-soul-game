@@ -1,0 +1,191 @@
+{
+  "build": "SOULFALL Build77",
+  "reviewer": "Independent mobile review sub-agent",
+  "url": "http://127.0.0.1:61473/",
+  "attempts": 1,
+  "fresh_attempt": true,
+  "retry_used": false,
+  "method": {
+    "viewport_css": [
+      844,
+      390
+    ],
+    "orientation": "landscape",
+    "input": "Authorized mobile-playtest.mjs native CDP touch only; maximum two contacts",
+    "observation": "Screenshots inspected with view_image before adaptive inputs; visible UI and map used for decisions",
+    "environment": "Synthetic paused Chromium phone emulation, screenshot scale 3; Software-WebGL fallback enabled, renderer not certified",
+    "pauses": "Driver captured live scenes and paused after acts; visible Resume and CLOSE MAP used to continue. Mission time excludes deliberation pauses.",
+    "restrictions_observed": [
+      "No source, tests, docs, previous reviews or game internals read",
+      "No test URL, evaluation, hidden-state access or resource/simulation manipulation",
+      "No keyboard or mouse; no custom bot; no other agents",
+      "Only new review media/logs and this report written"
+    ]
+  },
+  "assessment": "Playable and visually coherent on this emulated landscape viewport, with useful objective guidance and successful touch recovery/combat interactions. Precision aiming and close receiver positioning required repeated correction; the dense right-side controls and information overlays reduce the small scene area. This one loss supports a moderate mobile score, not a completion or physical-device claim.",
+  "score_scale": {
+    "range": [
+      0,
+      10
+    ],
+    "anchors": {
+      "0": "Unusable",
+      "2": "Severe failures",
+      "4": "Major friction",
+      "6": "Playable with meaningful friction",
+      "8": "Strong with minor friction",
+      "10": "Exceptional within assessed scope"
+    },
+    "overall_method": "Holistic judgment from this single observed attempt; not a statistical benchmark or enjoyment rating"
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 6,
+      "reason": "Reached all recoveries and disabled all coils using touch, but repeated aim/position corrections and a crowded viewport made the experience demanding."
+    },
+    "controls": {
+      "score": 5.5,
+      "reason": "Move, hold recovery, reload, fire-drag, scene turn, dash and jump all produced visible responses. Long scene swipe overshot from 027 to 216 degrees, while smaller/fire drags were more precise. Strafe-fire missed; short movement corrections overshot reach. These are observed handling difficulties, not proof of faulty touch registration."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "Distinct recovery, exposed-coil and dash phase-break decisions were legible and functional. One phase evade and two eliminations registered. Sustained stationary firing was punished; recovery restored resources. Upload survival was not reached."
+    },
+    "presentation": {
+      "score": 7,
+      "reason": "Consistent cyan/amber industrial identity, rain, signage, weapon model and recovery/end-screen styling. Close cover sometimes filled much of the scene; no physical-device frame-rate or audio assessment."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "Paused map, ground path, automatic next objective, reach-distance prompt and explicit OFF coil states supported progress. Handbook needed scrolling; repeated failed near-receiver holds and map corrections interrupted flow."
+    },
+    "readability": {
+      "score": 6,
+      "reason": "Main objectives, health/ammo and final result are readable at 844x390. Map labels, explanatory text and end-screen accuracy line are small; stacked objective/threat/recovery banners and control grid compete with targets."
+    }
+  },
+  "terminal": {
+    "observed": true,
+    "outcome": "LOSS \u2014 OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:25",
+    "recoveries": 3,
+    "recovered": [
+      "MARA SOLBERG",
+      "SERA NORD",
+      "ELIAN VALE"
+    ],
+    "eliminations": 2,
+    "accuracy_percent": 11,
+    "score": 3275,
+    "critical_eliminations": 0,
+    "phase_evades": 1,
+    "uplink_retries": 0,
+    "custodian": "All three coils disabled; objective changed to RETURN TO EXTRACTION",
+    "upload": "Not reached; no win claimed",
+    "last_live_health": 4,
+    "evidence": "docs/media/build77-mobile-review1/extraction-escape.jpg"
+  },
+  "observed_sequence": [
+    "Read and touch-scrolled the operator handbook, then deployed once.",
+    "Held fire at initial centered guard; guard disappeared. Terminal later reported two eliminations; no unsupported per-enemy kill attribution.",
+    "Moved northwest using visible path/map; fired imprecisely at sentinel. Recovered Mara at 00:19.",
+    "Reloaded and strafed while firing, missed repeatedly and lost shield/health. Dashed toward Heart.",
+    "At Heart, moved the wrong direction, made two failed holds, consulted map, backtracked and recovered Sera at 00:41.",
+    "Long scene turn overshot; corrected and detoured toward East Archive. Recovered Elian at 00:52.",
+    "Reached cover on custodian route; jump plus forward movement cleared it. Consulted map after overshooting approach.",
+    "Disabled coil 2 at 01:04. Flanked/reloaded and spent bursts during alignment/armor windows. Disabled coil 1 at 01:20 with health reduced to 38.",
+    "Close dash triggered CUSTODIAN PHASE BREAK. First close burst missed coil 3; corrected fire-drag disabled it at 01:25 with health 4.",
+    "Attempted turn and dash toward extraction; actual SIGNAL LOST screen appeared at 01:25. Did not retry."
+  ],
+  "issues": [
+    {
+      "observation": "Large scene swipe rotated 189 degrees (027 to 216), requiring correction; fire-drag moved smaller angles.",
+      "impact": "Coarse turning can lose orientation in a small viewport.",
+      "inference": "Sensitivity acceleration may contribute; not inspected or diagnosed.",
+      "evidence": [
+        "turn-east.jpg",
+        "east-route.jpg"
+      ]
+    },
+    {
+      "observation": "Two Heart hold attempts failed while outside reach; distance changed sharply after short full-deflection movements. Map and backsteps eventually resolved it.",
+      "impact": "Close positioning required trial and correction under fire.",
+      "inference": "Floor ring/receiver depth was difficult to judge around cover; reviewer input error also contributed.",
+      "evidence": [
+        "heart-approach.jpg",
+        "sera-hold.jpg",
+        "sera-recovery.jpg",
+        "heart-hold-third.jpg"
+      ]
+    },
+    {
+      "observation": "Multiple wide status banners occupy upper/middle scene while a large control grid covers the right side.",
+      "impact": "Less unobstructed scene area for tracking enemies and coils.",
+      "inference": "Likely more occlusion under real thumbs, untested.",
+      "evidence": [
+        "passage-fight.jpg",
+        "mara-hold.jpg",
+        "last-coil-burst.jpg"
+      ]
+    },
+    {
+      "observation": "Handbook text and map details require scrolling or close reading at this size.",
+      "impact": "Guidance exists, but scanning costs attention.",
+      "inference": "Physical-screen readability may differ.",
+      "evidence": [
+        "how-to.jpg",
+        "handbook-scroll.jpg",
+        "handbook-bottom.jpg",
+        "custodian-map.jpg"
+      ]
+    }
+  ],
+  "coverage": {
+    "covered": [
+      "Title and handbook touch scrolling",
+      "Fresh deployment",
+      "Movement, scene turning, fire-drag, firing, reload",
+      "Two-contact movement/fire",
+      "Dash and visible phase break",
+      "Jump across route cover",
+      "Planning map and route correction",
+      "All three memory recoveries",
+      "All three coil destruction states",
+      "Actual loss screen"
+    ],
+    "not_covered": [
+      "Extraction upload survival or victory",
+      "Retry/checkpoint functionality",
+      "Settings, full tactical handbook, recovered-memory reading",
+      "Deliberate AIM, SWAP, CROUCH or RUN testing",
+      "Physical phone performance, Safari, audio, human enjoyment"
+    ],
+    "uncertainty": "Single synthetic attempt with frequent deliberate pauses. Low accuracy reflects this reviewer\u2019s observed misses and timing as well as possible handling friction; it is not a population usability result. No runtime or implementation diagnosis made."
+  },
+  "artifacts": {
+    "directory": "docs/media/build77-mobile-review1",
+    "touch_log": "docs/media/build77-mobile-review1/actions.jsonl",
+    "screenshots": "All captures retained, including failed holds, misses, detours and terminal scene"
+  },
+  "cleanup": {
+    "explicit_close_sent": true,
+    "close_command": {
+      "op": "close"
+    },
+    "driver_session": 99674,
+    "driver_pid": 67756,
+    "chrome_pid": 67794,
+    "driver_closed_record": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "awaited_driver_exit": true,
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 67756,67794 -o pid=,ppid=,stat=,command=",
+    "verification_output": "",
+    "verification_exit_code": 1,
+    "owned_driver_and_chrome_absent": true,
+    "unrelated_processes_or_servers_killed": false
+  }
+}

@@ -203,6 +203,8 @@ export class Game {
     const sorted=available.map(c=>({key:`core-${c.id}`,d:this.playerRoute.distance(this.player,`core-${c.id}`)})).sort((a,b)=>a.d-b.d);
     this.routeGoal=sorted[0].key;this.routeManual=false;this.routeNext=0;
   }
+  planningPath() { this.updateRouteGoal();return this.playerRoute.path(this.player,this.routeGoal,this.grounded&&!this.vault,profileOf(this)); }
+
   updateRouteTrace() {
     this.updateRouteGoal();this.routeTrace.visible=false;this.routeWaypoint=null;
     const explicit=this.keys.has('Tab');
@@ -631,7 +633,11 @@ export class Game {
     if(sprint&&this.grounded&&!this.vault&&!(this.dashTime>0))this.crouchRequested=false;
     updatePosture(this,this.world,dt);
     if(this.crouchRequested&&profileOf(this).eyeHeight<=1.05+1e-6)this.crouchLearned=true;
-    const speed = profileOf(this).eyeHeight<1.7-1e-6 ? 3 : this.aim ? 3.1 : sprint ? 8 : 5.5;
+    const baseSpeed = profileOf(this).eyeHeight<1.7-1e-6 ? 3 : this.aim ? 3.1 : sprint ? 8 : 5.5;
+    // Held interaction asks for careful approach; direction and release stay
+    // under the player's control. Phase/vault use their existing movement.
+    const careful=this.touchMode&&this.touchUse&&this.grounded&&this.coreNodes.some(c=>!c.collected&&recoveryDistance(this.player,c.position,profileOf(this))<6);
+    const speed = careful?Math.min(baseSpeed,2.2):baseSpeed;
     const routeSpecial=!!this.vault||this.dashTime>0;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
     else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }

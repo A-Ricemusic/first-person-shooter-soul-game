@@ -1,0 +1,205 @@
+{
+  "build": "SOULFALL Build77",
+  "reviewer": "independent mobile review2",
+  "url": "http://127.0.0.1:61473/",
+  "attempts": 1,
+  "retries": 0,
+  "method": {
+    "viewport_css": {
+      "width": 390,
+      "height": 844
+    },
+    "orientation": "portrait",
+    "input": "Authorized mobile-playtest helper; native CDP touch only; maximum two contacts",
+    "observation": "Every adaptive action followed inspection of the preceding screenshot. Visible handbook, HUD and map informed decisions. No source, tests, docs, earlier reviews, game handles, hidden state, query overrides or simulation/resource manipulation used.",
+    "capture": "Synthetic phone emulation; live scene captured then automatically paused between acts. Screenshot scale 3.",
+    "rendering": "Helper reported Software-WebGL fallback; renderer not certified.",
+    "unassessed": [
+      "Physical-phone performance",
+      "Safari behavior",
+      "Audio",
+      "Human enjoyment",
+      "Continuous unpaused human play difficulty"
+    ]
+  },
+  "scale": {
+    "range": "0-10",
+    "anchors": {
+      "0": "Unusable or no functioning experience",
+      "2": "Major blockers dominate",
+      "4": "Substantial friction",
+      "5": "Functional with frequent friction",
+      "6": "Competent but material friction",
+      "7": "Good with noticeable issues",
+      "8": "Very good with minor issues",
+      "10": "Exceptional within directly observed scope"
+    },
+    "overall_method": "Judgment of observed mobile experience, not a completion percentage or arithmetic average. Provisional from one loss; no physical hardware claims."
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 6,
+      "reason": "A complete touch-driven attempt reached a legitimate loss with all three recoveries. Strong atmosphere and explicit objectives coexist with difficult portrait navigation, dense controls, and obstructed combat views."
+    },
+    "controls": {
+      "score": 6,
+      "reason": "Movement, turning, held fire, fire-drag aiming, reload, map and recovery responded sufficiently to progress. Simultaneous fire and recovery succeeded. Fine positioning and aiming demanded several corrections; one dash displaced the view substantially. This does not establish an input defect."
+    },
+    "gameplay": {
+      "score": 6,
+      "reason": "Recovery objectives, enemies, replenishment and timed coil exposure created visible progression and decisions. Threat pressure remained active during recovery and the custodian fight. Low accuracy, repeated obstruction and a fatal burst limited successful combat; later phases unassessed."
+    },
+    "presentation": {
+      "score": 7,
+      "reason": "Cohesive teal/amber visual language, rain, industrial structures, a striking circular relay, designed title screen and clear terminal card. Close views often became flat wall surfaces or black cover shapes, reducing scene legibility."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "Concise handbook, paused map with named destinations, proximity numbers and changing HOLD TO RECOVER control supported independent progress. Finding a usable firing face and exact ring approach still required detours and repeated checks."
+    },
+    "readability": {
+      "score": 6,
+      "reason": "Primary health/ammo and final results read clearly. Secondary HUD, map labels, threat indicators and custodian percentages are small at 390 CSS pixels; dense overlays compete with the scene."
+    }
+  },
+  "terminal": {
+    "status": "LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:14",
+    "recoveries": 3,
+    "recovered": [
+      "Mara Solberg",
+      "Sera Nord",
+      "Elian Vale"
+    ],
+    "eliminations": 2,
+    "accuracy_percent": 14,
+    "score": 3200,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "custodian_last_observed_before_loss": {
+      "coil_1_percent": 100,
+      "coil_2_percent": 47,
+      "coil_3_percent": 100
+    },
+    "custodian_disabled": false,
+    "upload_reached": false,
+    "evidence": "docs/media/build77-mobile-review2/second-coil-burst.jpg",
+    "note": "Terminal card labels time cumulative play time; this was the only fresh attempt and no retry was activated. No later coil values inferred."
+  },
+  "observed_sequence": [
+    "Read visible operator handbook, then entered storm once.",
+    "Held opening fire: ammunition 30 to 09 and opening guard disappeared. Final card, rather than inferred individual kills, supplies elimination count.",
+    "Reloaded and moved toward west archive. Overshot into wall/storage views, lost shield, consulted map and backtracked.",
+    "At 00:24 health 65 and control said 2.2m closer. Corrections reached near-ring prompt, but an early recovery hold failed out of reach; no recovery was credited.",
+    "At 00:29 reached active recovery control with health 41. Held recovery while firing/dragging; Mara recovered at 00:33 and health read 58.",
+    "Turned through visible scene swipes, moved toward Heart and fired at visible relay guard. Several short corrections, including a side step, reached Sera ring; recovery confirmed at 00:47.",
+    "Traversed toward east archive under fire; fired, reloaded and corrected position. Elian recovery confirmed at 00:59; all three numbered memory boxes illuminated.",
+    "Approached custodian, dashed and fired into obstructing cover; all coils initially remained 100%. Strafed to a clearer view, dragged fire aim; coil 2 fell to 47% at 01:10, health 41.",
+    "Reloaded and dashed sideways to evade lane, consulted map, reoriented and attempted another coil burst. Actual SIGNAL LOST screen appeared with 01:14 mission time. No retry."
+  ],
+  "issues": [
+    {
+      "id": "navigation-occlusion",
+      "severity": "moderate",
+      "observed": "West approach and around-storage captures show walls filling nearly the entire scene; player overshot and backtracked while losing shield/health.",
+      "impact": "Hard to combine route finding with active threat awareness in portrait.",
+      "evidence": [
+        "west-approach.jpg",
+        "around-storage.jpg",
+        "map-position.jpg"
+      ],
+      "inference": "A more prominent ground route/obstacle cue could reduce disorientation; this run cannot isolate geometry design from reviewer movement errors."
+    },
+    {
+      "id": "recovery-edge",
+      "severity": "moderate",
+      "observed": "An early hold produced no recovery. Later Heart approach read 0.7m then 0.4m outside reach before a side step activated HOLD TO RECOVER.",
+      "impact": "Recovery requires careful positioning while exposed; numerical feedback helped but multiple adjustments were needed.",
+      "evidence": [
+        "recovery-hold.jpg",
+        "heart-ring.jpg",
+        "heart-ready.jpg",
+        "heart-side-step.jpg"
+      ],
+      "inference": "A clearer visible reachable region may help; no failed valid hold or broken interaction was established."
+    },
+    {
+      "id": "combat-sightlines",
+      "severity": "moderate",
+      "observed": "First custodian burst struck cover; columns and black low cover obscured coil faces. Repositioned burst reduced only coil 2 to 47%.",
+      "impact": "Selecting a clear firing angle was difficult; substantial ammunition went into misses or obstruction.",
+      "evidence": [
+        "custodian-burst.jpg",
+        "clear-coil-face.jpg",
+        "coil-window-burst.jpg"
+      ],
+      "inference": "Portrait field of view and aim skill may both contribute. No hit-registration defect established."
+    },
+    {
+      "id": "small-secondary-type",
+      "severity": "moderate",
+      "observed": "Map labels, percentages and secondary status copy are markedly smaller than primary ammo/health; status and directional markers share the busy scene.",
+      "impact": "Readable when paused and inspected, but likely demands attention during combat.",
+      "evidence": [
+        "custodian-map.jpg",
+        "coil-window-burst.jpg",
+        "east-traverse.jpg"
+      ],
+      "inference": "Actual human real-time readability needs physical-device testing."
+    }
+  ],
+  "coverage": {
+    "covered": [
+      "Title and short handbook",
+      "Native movement and scene turning",
+      "Fire hold and fire-drag aim",
+      "Two-contact fire/recovery",
+      "Reload",
+      "Map planning and automatic objective changes",
+      "All three memory recoveries",
+      "Damage, shield loss/regeneration and recovery replenishment",
+      "Dash",
+      "Custodian armor/exposure and partial coil damage",
+      "Actual loss and terminal statistics"
+    ],
+    "not_covered": [
+      "Custodian completion",
+      "Uplink deck upload",
+      "Win screen",
+      "Retry flow",
+      "Full tactical handbook",
+      "Settings",
+      "AIM toggle",
+      "Weapon swap",
+      "Crouch",
+      "Run toggle",
+      "Jump/vault",
+      "Recovered memory reading"
+    ],
+    "uncertainty": "One paused synthetic attempt supports a limited assessment. Failure and 14% accuracy reflect reviewer execution as well as interface demands. No completion inferred from three recovered memories."
+  },
+  "artifacts": {
+    "directory": "docs/media/build77-mobile-review2",
+    "action_log": "docs/media/build77-mobile-review2/actions.jsonl",
+    "screenshots": 35,
+    "retention": "All screenshots, misses, failed hold, detours and final loss retained."
+  },
+  "cleanup": {
+    "close_command": {
+      "op": "close"
+    },
+    "driver_pid": 38416,
+    "chrome_pid": 38466,
+    "helper_confirmed_browser_closed": true,
+    "awaited_driver_exit": true,
+    "exit_code": 0,
+    "verification_command": "ps -p 38416,38466 -o pid=,ppid=,stat=,command=",
+    "verification_output": "",
+    "verification_exit_code": 1,
+    "verified_exact_owned_pids_absent": true,
+    "unrelated_processes_or_servers_killed": false
+  },
+  "write_scope": "Only new own media/action log and this review JSON written. No runtime edits, builds, commits, publication or existing document changes."
+}

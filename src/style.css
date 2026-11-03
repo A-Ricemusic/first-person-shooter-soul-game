@@ -244,3 +244,16 @@ body.touch-mode .bearing{font-size:14px}
 body.touch-mode #extraction-panel #custodian-cells span{font-size:13px;line-height:16px}
 body.touch-mode .touch-aim-setting .checkbox-label{min-height:44px;font-size:13px;margin:0}
 body.touch-mode #touch-fast-turns{min-width:22px;min-height:22px;accent-color:var(--cyan)}
+
+#map-tools{display:none}
+body.touch-mode #map-tools{display:flex;gap:8px;margin:4px 0 8px}
+body.touch-mode #map-tools button{flex:1;min-height:44px;background:#18343f;border:1px solid #72909b;color:#deeeee;font-size:12px}
+body.touch-mode #map-tools button[aria-pressed="true"]{border-color:#9ffff0;background:#285453;color:#b9fff0}
+@media(orientation:landscape){
+ body.touch-mode #facility-map{grid-template-rows:auto auto 1fr auto auto}
+ body.touch-mode #map-tools{grid-column:1 / -1;grid-row:2}
+ body.touch-mode #facility-canvas{grid-row:3 / 6;max-height:calc(100dvh - 172px)}
+ body.touch-mode #route-selection{grid-row:3}
+ body.touch-mode #facility-map footer{grid-row:4}
+ body.touch-mode #facility-map>p{grid-row:5}
+}

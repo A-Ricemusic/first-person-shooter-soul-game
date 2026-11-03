@@ -11,9 +11,9 @@ export function touchLookGain(width,height,sensitivity=1,aim=false){
 // same result with one coalesced event or many, and reversing returns to zero.
 // Small corrections and all FIRE/AIM gestures retain the linear gain above.
 export function sceneTurnDisplacement(pixels,width,height){
- const axis=Math.max(1,Number(width)||1,Number(height)||1),fine=.045*axis,ramp=.2*axis;
+ const axis=Math.max(1,Number(width)||1,Number(height)||1),fine=.08*axis,ramp=.3*axis;
  const distance=Math.abs(pixels),excess=Math.max(0,distance-fine),r=Math.min(excess,ramp);
- return Math.sign(pixels)*(distance+r*r/ramp+Math.max(0,excess-ramp)*2);
+ return Math.sign(pixels)*(distance+.5*r*r/ramp+Math.max(0,excess-ramp));
 }
 
 // Each pointer owns one role until release; phase changes invalidate all ownership.
@@ -73,10 +73,10 @@ export function installTouch(game,{map,onSensitivity,onFastTurns}){
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE gently for small steps. Swipe RIGHT to turn right, LEFT to turn left. Long scene swipes turn faster; FIRE-drag and AIM stay precise.', 'MAP pauses to plan. Walking shows the next clear ground step. Approach each floor ring; HOLD TO RECOVER lights up when ready. Stay still and hold it.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
- help.replaceWith(lesson);lesson.after(details);
+ for(const text of ['MOVE gently for small steps. Swipe RIGHT to turn right, LEFT to turn left. Long scene swipes turn faster; FIRE-drag and AIM stay precise.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ help.replaceWith(lesson);lesson.after(details);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps; release it to move at normal speed. You still need to enter the ring.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
- document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Tap an approach · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
+ document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
  document.querySelector('#route-help').closest('label').nextElementSibling.textContent='Shows the next clear ground step while walking. Stops during aiming or firing. Tap MAP to choose a destination. Patrols still matter.';
  const setting=document.createElement('div');setting.className='touch-aim-setting';
  const label=document.createElement('label');label.htmlFor='touch-sensitivity';label.textContent='TOUCH LOOK SENSITIVITY ';
