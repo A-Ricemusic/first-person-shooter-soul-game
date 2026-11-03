@@ -1,0 +1,200 @@
+{
+  "build": "SOULFALL Build79",
+  "source_commit_supplied": "6c1b6a0ea33cd47263fa98fd1f98a0d6c31c2461",
+  "source_verification": "Not independently inspected; source access prohibited. Visible menu says Build 79.",
+  "reviewer": "Independent visible-only native mobile touch review; no subagents",
+  "url": "http://127.0.0.1:61475/",
+  "method": {
+    "attempts": 1,
+    "fresh_deployment": true,
+    "retries": 0,
+    "css_viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "orientation": "landscape",
+    "driver": "tools/mobile-playtest.mjs",
+    "input": "native-cdp-touch, Chromium phone emulation, maximum two contacts",
+    "graphics": "Software-WebGL fallback enabled; renderer not certified",
+    "paused_inspection": true,
+    "inspection_disclosure": "Each action captured live then safely paused by default. Captures were viewed before choosing the next action. Map planning remained paused until CLOSE MAP. This gives substantially more planning time than continuous human play.",
+    "prohibited_access": "No game source, tests, docs, prior reviews/recordings, internal handles, evaluation, keyboard/mouse, custom controller, simulation advancement or state/resource mutations used. Only driver help, own captures and own evidence filenames read. Three geometry requests while paused returned Not visible; subsequent input used capture coordinates."
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "LOSS",
+    "terminal_ui": [
+      "OPERATOR LOST",
+      "SIGNAL LOST",
+      "Memories cached. Retry at the uplink with a fresh suit and a full Custodian, or start fresh."
+    ],
+    "mission_time": "01:34",
+    "eliminations": 2,
+    "score": 3200,
+    "accuracy_percent": 18,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "time_label": "CUMULATIVE PLAY TIME",
+    "memories_recovered": [
+      "MARA SOLBERG \u2014 Station medic",
+      "ELIAN VALE \u2014 Relay engineer",
+      "SERA NORD \u2014 Night operator"
+    ],
+    "mission_coverage": "All three memories recovered; custodian reached and two coils disabled. Last preterminal capture: 1 OFF, 2 100%, 3 OFF. No confirmed custodian defeat or upload/extraction.",
+    "terminal_evidence": "coil-two-pressure.jpg"
+  },
+  "scale": {
+    "range": "0\u201310",
+    "anchors": {
+      "0": "Unusable or nonfunctional in this method",
+      "5": "Playable with substantial friction",
+      "7": "Good with noticeable rough edges",
+      "10": "Exceptional clarity and execution across assessed coverage"
+    },
+    "interpretation": "Independent subjective ratings of this attempt, not a target score, market benchmark, AAA readiness claim or physical-device enjoyment validation."
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 6.5,
+      "reason": "Native two-thumb play supported three recoveries and boss progress, but navigation and precise combat took substantial paused inspection. Limited to one loss."
+    },
+    "controls": {
+      "score": 6.5,
+      "reason": "Movement, scene turning and simultaneous held FIRE-drag worked. DASH, AIM, reload and USE responded visibly. Dense right-side controls and fine aim corrections were demanding; 18% accuracy is this reviewer\u2019s result, not proof of an input defect."
+    },
+    "gameplay": {
+      "score": 7.0,
+      "reason": "Recoveries, guarded lanes, shields and exposed coil windows created distinct tasks and tactical choices. Coil shutdown gave tangible progress. Unseen upload and final completion limit confidence."
+    },
+    "presentation": {
+      "score": 7.5,
+      "reason": "Rain, wet surfaces, cyan/amber contrast, industrial architecture and large location signs establish a cohesive mood. Software rendering and still inspection cannot establish phone performance or audio quality."
+    },
+    "usability": {
+      "score": 6.5,
+      "reason": "Handbook, paused overview/local route maps, distance-to-reach prompt and clear terminal stats help. Archive exit routing and columns obscuring the custodian repeatedly interrupted progress."
+    },
+    "readability": {
+      "score": 6.0,
+      "reason": "Health/ammo, recovered memories, and armored/exposed/numbered-coil states were clear. Small threat text, compact compass and PATH cues were harder to interpret; a close wall could fill nearly all scene space."
+    }
+  },
+  "controls_exercised": [
+    "Native menu taps: HOW TO PLAY, UNDERSTOOD, ENTER THE STORM",
+    "Virtual move stick: forward, backward, strafe, diagonal",
+    "Scene swipe turning",
+    "Held FIRE and held FIRE-drag aiming",
+    "Simultaneous movement with held FIRE-drag, at most two contacts",
+    "AIM toggle on/off",
+    "RELOAD and automatic reload",
+    "DASH including while moving and during custodian fight",
+    "JUMP tap near wall; successful vault not confirmed",
+    "HOLD USE for all three memories; slight movement while holding USE",
+    "MAP open, CLOSE MAP, OVERVIEW and LOCAL 2\u00d7",
+    "Resume through resume:true"
+  ],
+  "moments": [
+    {
+      "time": "00:00\u201300:02",
+      "evidence": "guard-fire.jpg",
+      "observation": "Opening guard disappeared after held fire; clear starting threat and immediate combat response."
+    },
+    {
+      "time": "00:13",
+      "evidence": "moving-fire-drag.jpg",
+      "observation": "Both thumbs worked concurrently: heading changed 321 to 290 while moving/firing. Shield fell 60 to 41 and view ended facing wall, illustrating adjustment cost."
+    },
+    {
+      "time": "00:19",
+      "evidence": "mara-recovery.jpg",
+      "observation": "First recovery clearly filled memory 01, displayed recovered-name banner and changed objective."
+    },
+    {
+      "time": "00:26\u201300:44",
+      "evidence": [
+        "north-service.jpg",
+        "north-around-corner.jpg",
+        "local-route.jpg",
+        "exit-local-map.jpg"
+      ],
+      "observation": "Repeated wall/corner encounters in archive. Local map revealed route south around room wall before north; eventual exit succeeded. Reviewer route choices contributed; no collision bug established."
+    },
+    {
+      "time": "00:51\u201300:55",
+      "evidence": [
+        "sera-recovery.jpg",
+        "sera-secured.jpg"
+      ],
+      "observation": "Holding USE just outside ring did not recover: explicit 0.1 M OUTSIDE REACH. Small step with USE held completed memory, while enemies applied damage."
+    },
+    {
+      "time": "00:58\u201301:10",
+      "evidence": [
+        "warden-optic.jpg",
+        "heart-south.jpg",
+        "east-dash-escape.jpg",
+        "interceptor-retreat-fire.jpg"
+      ],
+      "observation": "AIM/FIRE and DASH exercised, health reached 2. Continued movement and retreat-fire reached Elian without arranging loss."
+    },
+    {
+      "time": "01:13",
+      "evidence": "elian-recovery.jpg",
+      "observation": "All memories recovered; objective changed to DISABLE UPLINK CUSTODIAN and health rose to 22."
+    },
+    {
+      "time": "01:19\u201301:22",
+      "evidence": [
+        "custodian-face.jpg",
+        "coils-clear-face.jpg",
+        "custodian-backstep.jpg"
+      ],
+      "observation": "Structural columns obscured firing face; backstep revealed coils. HUD status remained legible."
+    },
+    {
+      "time": "01:26\u201301:30",
+      "evidence": [
+        "coils-first-fire.jpg",
+        "coils-second-fire.jpg"
+      ],
+      "observation": "Coil 3 then coil 1 visibly OFF, accompanied by BROADCAST COIL DISABLED / ONE LESS FIRING LANE. Continued fire and movement into final-coil effort led to actual loss."
+    },
+    {
+      "time": "01:34",
+      "evidence": "coil-two-pressure.jpg",
+      "observation": "Actual end screen inspected. No retry, fresh start or further mission begun."
+    }
+  ],
+  "missing_coverage": [
+    "Custodian defeat, final upload survival, extraction and victory",
+    "Recovered memory prose, full tactical handbook, menu/handbook scrolling",
+    "CROUCH, RUN, SWAP and confirmed successful vault",
+    "Settings and alternate layouts/orientations",
+    "Physical phone performance, thermal/battery behavior and touch ergonomics",
+    "Safari",
+    "Audio",
+    "Continuous human enjoyment"
+  ],
+  "uncertainty": "One screenshot-guided attempt by an agent is a narrow subjective sample. Repeated safe pauses change difficulty and pacing; low accuracy and route errors may reflect reviewer execution. No performance benchmark or causal input/collision defect is established.",
+  "evidence": {
+    "directory": "docs/media/build79-mobile-review1",
+    "action_log": "docs/media/build79-mobile-review1/actions.jsonl",
+    "screenshots": "39 JPG captures retained, including menu/handbook, live actions/planning, and terminal screen"
+  },
+  "cleanup": {
+    "driver_pid": 18815,
+    "chrome_pid": 18850,
+    "close_sent": true,
+    "driver_close_result": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 18815,18850 -o pid=,comm=",
+    "verification_exit_code": 1,
+    "verification_stdout": "",
+    "conclusion": "Both exact owned PIDs absent. No broad process killing."
+  }
+}

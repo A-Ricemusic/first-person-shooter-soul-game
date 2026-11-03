@@ -1,0 +1,194 @@
+{
+  "build": "SOULFALL Build79",
+  "source_commit_supplied": "6c1b6a0ea33cd47263fa98fd1f98a0d6c31c2461",
+  "source_commit_independently_verified": false,
+  "method": {
+    "url": "http://127.0.0.1:61475/",
+    "css_viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "screenshot_pixels": {
+      "width": 390,
+      "height": 844
+    },
+    "driver": "tools/mobile-playtest.mjs",
+    "input": "native-cdp-touch; Chromium phone emulation; maximum two contacts",
+    "graphics": "Software-WebGL fallback enabled; renderer not certified",
+    "attempts": 1,
+    "retries": 0,
+    "paused_inspection": true,
+    "inspection_note": "Each action capture was viewed with view_image before adapting the next action. Driver safely paused after live captures; map planning stayed paused until CLOSE MAP. This was segmented play, not continuous human play.",
+    "constraints": "No source, tests, docs, internal handles, earlier reviews or recordings inspected. No scripts/evaluation, keyboard, mouse, state changes, simulation advancement or server changes. Only driver help and visible UI/captures used."
+  },
+  "outcome": {
+    "classification": "TERMINAL_LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:06",
+    "memories_recovered": 3,
+    "memories": [
+      "MARA SOLBERG \u2014 Station medic",
+      "ELIAN VALE \u2014 Relay engineer",
+      "SERA NORD \u2014 Night operator"
+    ],
+    "eliminations": 1,
+    "score": 3100,
+    "accuracy_percent": 11,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "terminal_note": "Memories cached. Retry at the uplink with a fresh suit and a full Custodian, or start fresh.",
+    "terminal_evidence": "jammer-route.jpg",
+    "coverage": "Recovered all three memories and entered DISABLE UPLINK CUSTODIAN phase. Last live inspection showed all three coils at 100%; custodian not disabled and upload not reached. Loss occurred during active movement toward custodian, not deliberate idling. Exact lethal attack was not observed between captures."
+  },
+  "scale": {
+    "range": "0\u201310",
+    "anchors": {
+      "0": "unusable",
+      "3": "major recurring barriers",
+      "5": "functional with substantial friction",
+      "7": "good with noticeable limitations",
+      "9": "excellent with minor issues",
+      "10": "exceptional in assessed conditions"
+    },
+    "interpretation": "Independent subjective scores for this single emulated portrait attempt; no target rating. Confidence limited by one attempt, segmented interaction and incomplete mission coverage."
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 6,
+      "reason": "A complete memory loop works in portrait with clear objectives and a useful planning map, but repeated wall-facing navigation and hard-to-track threats weakened the session."
+    },
+    "controls": {
+      "score": 6,
+      "reason": "Held fire, stick movement, reload, USE, scene turns and simultaneous movement/FIRE-drag registered. Many closely packed right-side buttons and repeated orientation corrections add load; fine aim remains uncertain after only one fight with drag."
+    },
+    "gameplay": {
+      "score": 6,
+      "reason": "Distinct receiver objectives, replenishment on recovery and armored custodian escalation give direction and stakes. Navigation dominated my attention; only one elimination and no completed boss/upload limit judgment of combat depth and balance."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Cohesive rain, cyan/amber palette, industrial silhouettes, receiver fan and restrained title/debrief create a strong atmosphere at this viewport. Audio was not assessed."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Concise handbook, paused route map, recovery prompts, objective changes and explicit debrief support progress. Routes near cover required backtracking and the cause of sudden final damage was unclear."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Health/ammo, objective, memory slots and large terminal stats are legible. Compass and small threat/damage indicators are harder to parse, while close geometry can obscure nearly the whole scene."
+    }
+  },
+  "controls_exercised": [
+    "Native taps on handbook, deploy, reload, map and close map",
+    "Left stick forward/backward/strafe and direction changes",
+    "Held FIRE",
+    "Two simultaneous contacts: movement plus held FIRE-drag aiming",
+    "Scene swipes for large and small yaw turns",
+    "Held USE for three receiver recoveries",
+    "DASH tap while moving (cooldown 0.1 visible afterward)",
+    "Visible Resume via driver resume:true"
+  ],
+  "controls_not_covered": [
+    "AIM toggle",
+    "SWAP",
+    "JUMP/VAULT",
+    "CROUCH",
+    "RUN",
+    "Native handbook scrolling",
+    "Settings"
+  ],
+  "moments": [
+    {
+      "time": "00:00\u201300:03",
+      "evidence": [
+        "deployment.jpg",
+        "guard-fire.jpg"
+      ],
+      "finding": "Guard centered in reticle fell to held fire; ammo 30 to 07, no health/shield loss. Clear optic/amber tutorial."
+    },
+    {
+      "time": "00:09",
+      "evidence": [
+        "north-approach.jpg"
+      ],
+      "finding": "Induction structure filled scene after forward movement; had to route around it."
+    },
+    {
+      "time": "00:18\u201300:23",
+      "evidence": [
+        "west-lane.jpg",
+        "map-west.jpg",
+        "mara-approach.jpg"
+      ],
+      "finding": "Map clarified a 10m receiver approach; Mara recovered while shield dropped to 22. Wall proximity made scene navigation difficult."
+    },
+    {
+      "time": "00:29\u201300:35",
+      "evidence": [
+        "archive-exit.jpg",
+        "map-exit-position.jpg",
+        "east-service.jpg"
+      ],
+      "finding": "Initial east/north exit movement left me facing wall; map revealed position and I backed south before routing east/north. Hint was useful, but geometry-to-map translation required effort."
+    },
+    {
+      "time": "00:43\u201300:46",
+      "evidence": [
+        "sera-fight.jpg",
+        "sera-recovered-map.jpg"
+      ],
+      "finding": "Moving while dragging FIRE shifted heading 000 to 352; nearby guard remained visibly alive. HOLD TO RECOVER prompt clearly identified receiver range, and Sera recovered."
+    },
+    {
+      "time": "00:53\u201300:57",
+      "evidence": [
+        "elian-approach.jpg",
+        "elian-use.jpg"
+      ],
+      "finding": "2.1m CLOSER label enabled small correction; recovery completed and objective changed to custodian."
+    },
+    {
+      "time": "00:57\u201301:06",
+      "evidence": [
+        "turn-custodian.jpg",
+        "custodian-advance.jpg",
+        "map-custodian.jpg",
+        "jammer-route.jpg"
+      ],
+      "finding": "Large scene swipes turned toward route; approach was obstructed, and shield fell to 2 by 01:03. After map planning and active movement, actual loss UI appeared at 01:06. Cannot establish precise damage source or rate from these segmented captures."
+    }
+  ],
+  "missing_coverage": [
+    "Custodian exposed coil damage/destruction",
+    "Upload/extraction defense and victory",
+    "Recovered-memory prose",
+    "Settings and accessibility options",
+    "Other viewport sizes and landscape",
+    "Physical phone performance and thermal/touch ergonomics",
+    "Safari",
+    "Audio",
+    "Continuous human enjoyment"
+  ],
+  "evidence": {
+    "directory": "docs/media/build79-mobile-review2",
+    "action_log": "actions.jsonl",
+    "screenshots": "All 22 JPG captures preserved; final terminal screenshot jammer-route.jpg. Two geometry requests while paused returned Not visible and no geometry was used from them."
+  },
+  "cleanup": {
+    "driver_pid": 96770,
+    "chrome_pid": 96823,
+    "explicit_close_sent": true,
+    "driver_exit_code": 0,
+    "closed_output": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 96770,96823 -o pid=,ppid=,stat=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Both exact owned PIDs absent. No broad process killing."
+  },
+  "limits": "Does not establish AAA readiness or physical-device enjoyment. Single loss with pause-assisted inspection supports only the observations above. Build/source identity supplied by task, not verified by source inspection."
+}

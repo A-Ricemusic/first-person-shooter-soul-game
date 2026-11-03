@@ -1,0 +1,1255 @@
+{
+  "method": "Mobile native-touch engineering fixtures. Starting poses, active phase, objective selection and one collected state are arranged; no played recoveries or mission win. Route lengths, swept physics, real input crossings, renderer rays and roof rain checked. One forced-asset-failure case checks fallback.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "fallback": false,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333328,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333328,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": false,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333303,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333303,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "fallback": false,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333318,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333318,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "fallback": false,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333342,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333342,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "fallback": false,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- true\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333325,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333325,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": true,
+      "checks": [
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [
+        {
+          "name": "third aperture, expected renderer mode and matching structural colliders",
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- false\n"
+        },
+        {
+          "name": "north-side route detours are short and every preview segment is clear",
+          "error": "[{\"start\":[-24,-13],\"count\":6,\"length\":36.00884862518064,\"clear\":true},{\"start\":[-20,-26],\"count\":6,\"length\":34.120479906458186,\"clear\":true},{\"start\":[-24,-26.5],\"count\":6,\"length\":38.785381593141125,\"clear\":true},{\"start\":[-20,-25],\"count\":6,\"length\":33.12129490076141,\"clear\":true}]"
+        },
+        {
+          "name": "actual geometry and capsules leave the exit clear but retain cheek cover",
+          "error": "{\"crossings\":[{\"z\":-26.2,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-25,\"player\":false,\"enemy\":false,\"hits\":[3.200000762939453]},{\"z\":-23.25,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-21,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]},{\"z\":-20.3,\"player\":false,\"enemy\":false,\"hits\":[3.177000045776367,3.197000503540039,3.200000762939453]}],\"covered\":[3.200000762939453],\"headroom\":[3.200000762939453],\"stoppedByHeader\":[3.200000762939453]}"
+        },
+        {
+          "name": "native forward walking crosses outward and back without jump or dash",
+          "error": "[-14.700133333333333,1.7,-23.25]"
+        }
+      ],
+      "structure": {
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Archive rear wall",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "East rear return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 36.00884862518064,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 6,
+          "length": 34.120479906458186,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 6,
+          "length": 38.785381593141125,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 6,
+          "length": 33.12129490076141,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -23.25,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -21,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          },
+          {
+            "z": -20.3,
+            "player": false,
+            "enemy": false,
+            "hits": [
+              3.177000045776367,
+              3.197000503540039,
+              3.200000762939453
+            ]
+          }
+        ],
+        "covered": [
+          3.200000762939453
+        ],
+        "headroom": [
+          3.200000762939453
+        ],
+        "stoppedByHeader": [
+          3.200000762939453
+        ]
+      },
+      "nativeOut": [
+        -14.700133333333333,
+        1.7,
+        -23.25
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

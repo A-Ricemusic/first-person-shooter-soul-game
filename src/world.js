@@ -3,7 +3,8 @@ import {createCapacitors} from './capacitors.js';
 import terminalParts from './build70-access-terminal-parts.json';
 import ACCESS from './build70-access-layout.json';
 import * as THREE from 'three';
-import MEDICAL from './medical-layout.json';
+import MEDICAL from './build80-medical-layout.json';
+import MEDICAL_SURFACES from './build80-medical-surfaces.json';
 import WORKSHOP from './workshop-layout.json';
 import INDUCTION from './induction-layout.json';
 import UPLINK from './uplink-layout.json' with {type:'json'};
@@ -235,15 +236,24 @@ export async function buildWorld(scene,{mobile=false}={}) {
   if(workshopAsset){workshopAsset.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});group.add(workshopAsset);}
   sign('ENGINEERING / MAINTENANCE','ISOLATED BUS / MANUAL REPAIR',29,6.2,-8.87,8,.85,'#c4c7b1');
   for(const z of [-11,-27])point(29,6.3,z,0xd9d1ae,24,12);
-  const triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage.glb`);
-  triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);
+  let triage;
+  try{triage=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/west-triage-build80.glb`)}catch(_){}
+  if(triage){triage.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Reinforced slate concrete')o.material=concrete;if(o.material.name==='Canopy concrete')o.material=darkConcrete;}});group.add(triage.scene);}
+  else{
+    const materials={'Reinforced slate concrete':concrete,'Canopy concrete':darkConcrete};
+    for(const [name,m]of Object.entries(MEDICAL_SURFACES.materials))materials[name]??=new THREE.MeshStandardMaterial({color:new THREE.Color().setRGB(...m.color),metalness:m.metalness,roughness:m.roughness,emissive:new THREE.Color().setRGB(...m.emissive),emissiveIntensity:m.emissiveIntensity});
+    for(const p of MEDICAL_SURFACES.surfaces){const m=box(...p.center,...p.size,materials[p.material]);m.name=p.name;m.rotation.y=p.rotationY;}
+  }
   for(const p of MEDICAL.parts)if(p.solid){const c=new THREE.Vector3(...p.center),half=new THREE.Vector3(...p.size).multiplyScalar(.5);colliders.push(new THREE.Box3(c.clone().sub(half),c.clone().add(half)));}
   sign('TRIAGE / EVACUATION','LAST FERRY · INTAKE → ARCHIVE',-25,5.1,-8.66,7,1.1,'#b5d2c2');
   const service=MEDICAL.openings.find(o=>o.name==='service');
   const serviceSign=sign('MEDICAL / SERVICE','EAST ACCESS',service.center[0]+.34,5.2,service.center[1],4,.9,'#b5d2c2');serviceSign.rotation.y=Math.PI/2;
   const wayfinding=MEDICAL.wayfinding;
   const exitSign=sign('EXIT','COURTYARD',...wayfinding.serviceSign,3.7,.7,'#c0d9ad');exitSign.rotation.y=-Math.PI/2;
-  const wallExit=sign('EXIT →','COURTYARD / LAST FERRY',...wayfinding.wallSign,3.6,.78,'#c0d9ad');wallExit.rotation.y=-Math.PI/2;
+  const wallExit=sign('EXIT →','NORTH SERVICE / RELAY',...wayfinding.wallSign,1.9,.78,'#c0d9ad');wallExit.rotation.y=-Math.PI/2;
+  const northExit=sign('NORTH EXIT','RELAY / THE HEART',...wayfinding.northSign,6.7,.7,'#c0d9ad');northExit.rotation.y=-Math.PI/2;
+  const northOutside=sign('TRIAGE / NORTH SERVICE','MARA / STATION MEDIC',...wayfinding.northOutsideSign,6.7,.7,'#c0d9ad');northOutside.rotation.y=Math.PI/2;
+  sign('RELAY EXIT →','NORTH SERVICE / THE HEART',...wayfinding.northTurnSign,4,.78,'#c0d9ad');
   const intakeExit=sign('EXIT / INTAKE','LAST FERRY',...wayfinding.intakeSign,3.9,.7,'#c0d9ad');intakeExit.rotation.y=Math.PI;
   for(const z of [-12,-22]){for(const x of [-27,-23])box(x,7.02,z,.05,.34,.05,steel);box(-25,6.8,z,5,.1,.3,weakCyan);point(-25,5.7,z,0xc2ddcf,42,14);}
   // Warm, restrained intake lamp; overhead lighting reveals silhouettes under canopy.
@@ -270,7 +280,7 @@ export async function buildWorld(scene,{mobile=false}={}) {
   }
   if(accessAsset){accessAsset.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});group.add(accessAsset);}
   sign('INDUCTION','ACTIVE FIELD',-3.5,2.05,23.056,1.02,.54,'#ffc078');
-  const cover=[[-22,0,.35],[22,0,-.35],[-10,-23,.15],[10,-23,-.15],[-29,-32,0],[29,-32,0]];
+  const cover=[[-22,0,.35],[22,0,-.35],MEDICAL.yardCover,[10,-23,-.15],[-29,-32,0],[29,-32,0]];
   for(const [x,z,rot]of cover){const object=prop(barricadeAsset,x,z,rot);object.updateMatrixWorld(true);object.traverse(o=>{if(o.isMesh)if(o.name!=='Progress')colliders.push(new THREE.Box3().setFromObject(o));});}
   // Split defense: fixed physical cover, open 2.8m center and exposed flanks.
   // Register the authored envelope before any navigation or route cache exists.
@@ -401,7 +411,7 @@ export async function buildWorld(scene,{mobile=false}={}) {
   }
   // Ground-level mist cards are omitted to preserve targets and contrast.
   return {
-    capacitors, colliders, medical:MEDICAL, workshop:WORKSHOP, induction:INDUCTION, shelters, rainPositions,
+    capacitors, colliders, medical:MEDICAL, medicalAssetLoaded:!!triage, medicalSurfaceCount:MEDICAL_SURFACES.surfaces.length, workshop:WORKSHOP, induction:INDUCTION, shelters, rainPositions,
     receivers, uplink, routeLights, suit, suitBounds, setSuitServiceState,
     setUplinkState(powered,progress){if(uplink.userData.powered===powered&&uplink.userData.progress===progress)return;routeLights.visible=powered;uplink.userData.powered=powered;uplink.userData.progress=progress;for(const c of cells){const on=powered&&(c.name==='Beacon'||Number(c.name.slice(-2))<Math.floor(progress*12));c.material.emissiveIntensity=on?1.4:.02;c.material.color.setHex(on?0x83e6aa:0x29463b);}},
     setReceiverState(id,progress,recovered){const r=receivers[id];if(!r)return;if(r.model.userData.progress===progress&&r.model.userData.recovered===recovered)return;

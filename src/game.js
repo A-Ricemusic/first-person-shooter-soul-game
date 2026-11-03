@@ -14,7 +14,7 @@ import * as THREE from 'three';
 import {attachLegs,animateLegs,fallbackDrone} from './drone-motion.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { attachWarden, animateWarden, steerWarden } from './warden.js';
-import MEDICAL from './medical-layout.json';
+import MEDICAL from './build80-medical-layout.json';
 import { createRole, dutyGoal, hearShot } from './enemy-roles.js';
 import { RouteHelp } from './route-help.js';
 import { PlayerRoute } from './player-route.js';
@@ -674,7 +674,7 @@ export class Game {
     stage('ingress',this.player.z<13,'PERIMETER PATROL · Two contacts beyond the entry. Side lanes remain open.',[[-22,-5,'sentinel'],[22,-5,'sentinel']]);
     for(const c of this.coreNodes){
       const near=Math.hypot(this.player.x-c.position.x,this.player.z-c.position.z)<14;
-      if(c.id===0)stage('medical',near,'WEST TRIAGE · South intake / east service. Storage blocks sightlines.',MEDICAL.spawns);
+      if(c.id===0)stage('medical',near,'WEST TRIAGE · North service leads to the relay.',MEDICAL.spawns);
       if(c.id===1)stage('engineering',near,'EAST / MAINTENANCE · Interceptors track movement. Change direction after their charge.',[[31,-25,'stalker'],[16,-25,'stalker']]);
       if(c.id===2)stage('heart',near,'HEART / RELAY GUARD · Break the warden to open armor, or fire precisely at its optic.',[[0,-40.5,'warden'],[-16,-35,'sentinel']]);
     }
@@ -959,7 +959,7 @@ export class Game {
       const distance=recoveryDistance(this.player,c.position,profileOf(this));
       const ready=distance<RECOVERY_RADIUS&&this.grounded&&!this.vault;
       const sight=receiverSight(this.world,this.player,c.id);
-      const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE SOUTH INTAKE / EAST SERVICE':'FIND AN OPEN APPROACH');
+      const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':c.id===2?'USE NORTH RELAY EXIT':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE NORTH SERVICE / SOUTH INTAKE':'FIND AN OPEN APPROACH');
       return {id:`core-${c.id}`,kind:'core',suppressed:c.id===local?.id&&ready,approach:c.id===local?.id&&distance<4.5&&!ready,approachHint,occluded:!sight,label:CORE_SITES[c.id].name,...project(sight||c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:ready};
     });
     if(this.cores===this.coreNodes.length){
@@ -975,7 +975,7 @@ export class Game {
     // local aperture guidance, never a cached route through unseen architecture.
     const west=markers.find(m=>m.id==='core-0');
     if(west?.occluded&&!(this.player.x<-14&&this.player.z<-9)){
-      const doors=[{x:-25,z:-7,label:'WEST / SOUTH INTAKE'},{x:-12,z:-15.25,label:'WEST / EAST SERVICE'}];
+      const doors=[{x:-25,z:-7,label:'WEST / SOUTH INTAKE'},{x:-12,z:-15.25,label:'WEST / EAST SERVICE'},{x:-12,z:-23.25,label:'WEST / NORTH SERVICE'}];
       const door=doors.filter(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)<25&&this.navigation.clear(this.player,p)&&this.hasLineOfSight(this.player,new THREE.Vector3(p.x,1.7,p.z),0)).sort((a,b)=>Math.hypot(a.x-this.player.x,a.z-this.player.z)-Math.hypot(b.x-this.player.x,b.z-this.player.z))[0];
       if(door)markers.push({id:'west-door',kind:'core',doorway:true,label:door.label,...project(new THREE.Vector3(door.x,1.7,door.z))});
     }
