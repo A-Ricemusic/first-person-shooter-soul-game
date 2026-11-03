@@ -1,0 +1,204 @@
+{
+  "build": "SOULFALL Build82",
+  "review": "build82-mobile-review2",
+  "reviewer": "Independent mobile reviewer, GPT-6.1 Sol",
+  "date": "2026-11-03",
+  "identity": {
+    "expected_frozen_source": "dda4351c7fe587debde7d7b80f4f6aeaab6e1dbc",
+    "observed_title": "SOUL FALL / THE LAST SIGNAL / BUILD 82",
+    "identity_difference_observed": false,
+    "source_hash_verified": false,
+    "note": "Build number observed on title screen; source deliberately not inspected."
+  },
+  "method": {
+    "attempts": 1,
+    "fresh": true,
+    "url": "http://127.0.0.1:61478/",
+    "viewport_css": [
+      390,
+      844
+    ],
+    "orientation": "portrait",
+    "input": "Helper JSON-lines native-CDP touch, at most two contacts; visible selectors and normalized geometry only",
+    "inspected": "Only helper --help and own visible screenshots/UI output; no game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. Own evidence directory names listed for reporting.",
+    "capture_policy": "Every returned screenshot viewed before adaptive input. Captures generally paused play for inspection; planning map remained open until visibly closed with #close-map. This substantially reduces uninterrupted pressure and does not assess continuous enjoyment.",
+    "renderer": "Synthetic paused Chromium emulation with software-WebGL fallback; not certified physical-device experience",
+    "unassessed": [
+      "physical phones",
+      "Safari",
+      "audio",
+      "hardware performance",
+      "continuous enjoyment"
+    ]
+  },
+  "result": {
+    "status": "TERMINAL_LOSS",
+    "visible_heading": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "00:48",
+    "score": 2180,
+    "eliminations": 1,
+    "accuracy_percent": 4,
+    "critical_eliminations": 1,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "recovered_memories": [
+      "Mara Solberg \u2014 Station medic",
+      "Sera Nord \u2014 Night operator"
+    ],
+    "memories_recovered": 2,
+    "memories_total": 3,
+    "last_objective": "RECOVER ELIAN VALE",
+    "terminal_health": null,
+    "terminal_shield": null,
+    "note": "End UI labels time as cumulative play time. This was the only attempt; no retry. Last pre-loss capture showed 33 health, 22 shield, 30/251 ammunition at 00:45; terminal UI does not show health/ammunition."
+  },
+  "coverage": {
+    "experienced": [
+      "title",
+      "compact operator handbook",
+      "deployment",
+      "opening guard combat",
+      "hold-fire drag aiming",
+      "two-contact move/fire",
+      "manual reload",
+      "movement and strafing",
+      "planning overview and auto-nearest route",
+      "receiver proximity prompt",
+      "careful movement while holding USE",
+      "Mara recovery",
+      "Sera recovery",
+      "jump attempt",
+      "dash",
+      "incoming damage cues",
+      "shield recovery",
+      "terminal loss screen"
+    ],
+    "not_reached": [
+      "Elian recovery",
+      "three-memory completion",
+      "jammer copper coil combat",
+      "uplink upload",
+      "terminal win"
+    ],
+    "not_exercised": [
+      "settings",
+      "full tactical handbook",
+      "map local zoom or manual target selection",
+      "TOOLS swap/crouch/run",
+      "AIM fine-correction button",
+      "post-loss memory reading"
+    ]
+  },
+  "observations": [
+    {
+      "kind": "helpful",
+      "evidence": "guard-fire.jpg",
+      "detail": "Opening guard was centered and its optic was visually distinct. A roughly 2.5-second FIRE hold with a small upward drag cleared it without losing health or shield; terminal UI later confirmed one critical elimination."
+    },
+    {
+      "kind": "helpful",
+      "evidence": "map-west.jpg",
+      "detail": "Map showed a clear cyan walking route and receiver reach circles. Near Mara, visible prompt said 1.5 m outside reach; holding USE with a short northward movement then stopping recovered her."
+    },
+    {
+      "kind": "helpful",
+      "evidence": "sera-recovered.jpg",
+      "detail": "Objective text, numbered memory chips and MEMORY RECOVERED SERA NORD banner confirmed progress. Health rose from 13 to 33 after this recovery, giving a welcome reprieve."
+    },
+    {
+      "kind": "helpful",
+      "evidence": "menu.jpg",
+      "detail": "Strong stormy teal art direction, large title and prominent deployment button made the start clear at 390 px width."
+    },
+    {
+      "kind": "frustrating",
+      "evidence": "route-check.jpg",
+      "detail": "At the archive exit, north/east movement and a jump attempt left a similar pillar/wall-obstructed view and the same 22 m map route. Health dropped from 100/22 shield to 70/0 and then 13/0 while I tried to escape. Cannot establish whether collision, my route execution or touch placement caused the failure."
+    },
+    {
+      "kind": "frustrating",
+      "evidence": "north-exit-try.jpg",
+      "detail": "Threat chevrons signaled damage, but enemies often remained outside the forward view. I spent attention on movement/map rather than acquiring them. A nearby enemy became visible on the left while I was at 13 health."
+    },
+    {
+      "kind": "attempt",
+      "evidence": "escape-under-fire.jpg",
+      "detail": "Backpedaled while firing and dragging aim left, then strafed right and tapped DASH. This changed the view and got clear enough to reach Sera; no phase evade was credited."
+    },
+    {
+      "kind": "failure",
+      "evidence": "sera-route.jpg",
+      "detail": "Firing while moving toward Sera exhausted the magazine without a visible kill. Reload restored 30 rounds. Final accuracy was only 4%; this reflects my attempt, not an isolated weapon accuracy measurement."
+    },
+    {
+      "kind": "failure",
+      "evidence": "outcome.jpg",
+      "detail": "After Sera, attempted east/southeast movement for 4.5 seconds toward Elian. Follow-up map tap returned Selector must be visible because play had ended; the next capture visibly confirmed SIGNAL LOST. No retry or extra gameplay followed."
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable, 2 severe barriers, 5 workable with substantial friction, 7 good with noticeable issues, 9 excellent, 10 exceptional. Subjective scores limited to this single emulated attempt; overall is holistic, not a completion grade or arithmetic average.",
+    "overall_mobile": 6.0,
+    "controls": {
+      "score": 6.0,
+      "reason": "Two-contact firing/movement, USE and map worked. Fine navigation around the archive was difficult; aim and movement under unseen fire demanded more coordination than I managed."
+    },
+    "gameplay": {
+      "score": 6.0,
+      "reason": "Immediate guard encounter and two recoveries provided clear progress and a recovery reprieve. Patrol pressure during navigation was punishing; late mission mechanics were not reached."
+    },
+    "presentation": {
+      "score": 8.0,
+      "reason": "Cohesive teal storm atmosphere, weapon and enemy silhouettes, strong title and loss-screen hierarchy. Audio and hardware rendering quality unassessed."
+    },
+    "usability": {
+      "score": 6.0,
+      "reason": "Compact handbook, explicit proximity guidance and paused route map helped. Needed repeated planning interruptions to navigate; dense controls and obstructed views made live decisions difficult."
+    },
+    "readability": {
+      "score": 7.0,
+      "reason": "Health, ammunition, objectives and action buttons were readable. Small map legend, secondary text and competing spatial markers required deliberate inspection at portrait width."
+    }
+  },
+  "uncertainties": [
+    "Navigation failure is an observed experience, not a confirmed collision defect.",
+    "Off-screen attackers and exact damage sources were not identified reliably.",
+    "Software rendering and capture pauses prevent conclusions about real phone performance, touch feel or sustained pacing.",
+    "Frozen hash supplied by user; no source inspection used to verify it."
+  ],
+  "evidence": {
+    "directory": "docs/media/build82-mobile-review2",
+    "raw_actions": "docs/media/build82-mobile-review2/actions.jsonl",
+    "terminal_screenshot": "docs/media/build82-mobile-review2/outcome.jpg",
+    "screenshots": [
+      "deployed.jpg",
+      "escape-under-fire.jpg",
+      "guard-fire.jpg",
+      "heart-navigation.jpg",
+      "how-to-play.jpg",
+      "map-west.jpg",
+      "mara-use.jpg",
+      "menu.jpg",
+      "north-exit-try.jpg",
+      "north-route.jpg",
+      "outcome.jpg",
+      "planning-map.jpg",
+      "route-check.jpg",
+      "sera-approach.jpg",
+      "sera-recovered.jpg",
+      "sera-route.jpg",
+      "understood.jpg"
+    ]
+  },
+  "cleanup": {
+    "close_command_sent": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 49881,
+    "chrome_pid": 49927,
+    "verification_command": "ps -p 49881,49927 -o pid=,ppid=,comm=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Exact owned driver and Chrome PIDs absent after helper exit; no kill commands used."
+  }
+}

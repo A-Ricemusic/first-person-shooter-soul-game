@@ -1,0 +1,51 @@
+{
+  "build": 82,
+  "review": "Landscape review1 interrupted before report/rating",
+  "status": "INTERRUPTED_UNRATED",
+  "sourceCommit": "dda4351c7fe587debde7d7b80f4f6aeaab6e1dbc",
+  "outcomeObserved": "SIGNAL LOST",
+  "missionTime": "01:10",
+  "memoriesObserved": [
+    "Mara"
+  ],
+  "eliminations": 1,
+  "score": 1175,
+  "accuracyPercent": 5,
+  "phaseEvades": 1,
+  "uplinkRetries": 0,
+  "ratings": null,
+  "terminalEvidence": "../media/build82-mobile-review1/sera-ring.jpg",
+  "actionLog": "../media/build82-mobile-review1/actions.jsonl",
+  "driverPid": 86925,
+  "chromePid": 86984,
+  "exactPidsAbsent": true,
+  "frozenFilesUnchanged": 443,
+  "note": "Reviewer reached a terminal loss and closed its helper, then its provider turn was interrupted before saving the review. No rating is inferred. Original media/logs preserved. The first restoration check found connection refused on61478; the same frozen snapshot was restored in a detached server, with no game-file changes. A fresh replacement review uses a separate prefix.",
+  "limits": [
+    "Paused synthetic Chromium native touch emulation/software WebGL",
+    "No physical-phone, Safari, audio, hardware-performance or continuous-enjoyment certification"
+  ],
+  "restorationProbeInitialUrlError": {
+    "http://127.0.0.1:61478/": {
+      "error": "nonnumeric port: '61478.'"
+    },
+    "http://bonnies-macbook-air.tail21e865.ts.net:5174/": {
+      "error": "nonnumeric port: '5174.'"
+    }
+  },
+  "serverRestorationChecks": {
+    "http://127.0.0.1:61478/": {
+      "http": 200,
+      "bytes": 698,
+      "bundleHttp": 200,
+      "build82InBundle": true
+    },
+    "http://bonnies-macbook-air.tail21e865.ts.net:5174/": {
+      "http": 200,
+      "bytes": 698,
+      "bundleHttp": 200,
+      "build82InBundle": true
+    }
+  },
+  "restorationProbeCorrection": "Fixed the check to resolve the relative bundle URL with urljoin. No game change."
+}

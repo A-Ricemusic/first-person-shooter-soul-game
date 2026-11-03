@@ -17,7 +17,7 @@ export function sceneTurnDisplacement(pixels,width,height){
 }
 
 // Each pointer owns one role until release; phase changes invalidate all ownership.
-export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
+export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onAutoVault}){
  if(!game.touchMode)return;
  document.body.classList.add('touch-mode');
  const root=document.createElement('div');root.id='touch-controls';root.className='hidden';
@@ -32,7 +32,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
  const phasePress=(e,open)=>{e.preventDefault();phaseTouch=e.pointerId;open()};
  const more=root.querySelector('#touch-more'),extra=root.querySelector('#touch-extra');
  const setTools=open=>{extra.classList.toggle('hidden',!open);more.setAttribute('aria-expanded',String(open));};
- const clear=()=>{for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
+ const clear=()=>{game.touchVaultContact=null;for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
  game.touchInput={clear,root};
  root.addEventListener('pointerdown',e=>{
   if(game.phase!=='playing'||e.pointerType==='mouse')return;
@@ -40,6 +40,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
   const role=el.dataset.action||(el===stick?'move':'look');if([...owners.values()].some(p=>p.role===role))return;
   e.preventDefault();el.setPointerCapture(e.pointerId);const r=stick.getBoundingClientRect();owners.set(e.pointerId,{el,role,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,looking:role==='look'||role==='fire',cx:r.x+r.width/2,cy:r.y+r.height/2});
   if(['fire','ads','reload','dash','jump','use'].includes(role))setTools(false);
+  if(!['move','look'].includes(role))game.touchVaultContact=null;
   game.audio.wake();if(role==='tools')setTools(more.getAttribute('aria-expanded')!=='true');else if(role==='fire')game.mouseDown=true;else if(role==='use'){game.touchUse=true;game.interact()}else if(!['move','look'].includes(role)){game.action(role);el.setAttribute('aria-pressed',String(role==='ads'?game.aim:role==='sprint'?game.touchSprint:role==='crouch'?game.crouchRequested:false))}
   if(role==='move')move(e);
  });
@@ -67,7 +68,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
   p.x=e.clientX;p.y=e.clientY;
  }
  root.addEventListener('pointermove',move);
- function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use')game.touchUse=false;if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
+ function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use')game.touchUse=false;if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  // Touch-down also works while the movement thumb is held. Keyboard activation
  // remains available; suppress a second action from the later touch click.
@@ -75,7 +76,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
  document.querySelector('#pause-button').addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'&&game.phase==='playing')phasePress(e,()=>game.pause())});
  const notices=document.createElement('div');notices.id='touch-notices';notices.append(document.querySelector('#memory-card'),document.querySelector('#announcement'));document.querySelector('#hud').append(notices);
  document.querySelector('#pointer-help').textContent='Left stick moves · swipe RIGHT to turn right, LEFT to turn left · steady scene turning · faster turns optional in Settings. TOOLS holds SWAP, CROUCH and RUN. Landscape recommended.';
- const help=document.createElement('p');help.textContent='TOUCH: Left stick moves proportionally. Drag the scene outside the movement stick to look. Hold FIRE and drag the same thumb to aim while moving. AIM toggles. TOOLS opens SWAP, CROUCH and RUN; actions close the tray and play continues. RUN toggles sprint. DASH follows the stick direction, or goes forward when the stick is centered; JUMP vaults low cover. Hold USE while entering a receiver ring or suit service. MAP pauses and selects a route. Held action buttons can also drag the view.';document.querySelector('#controls-dialog h2').after(help);
+ const help=document.createElement('p');help.textContent='TOUCH: Left stick moves proportionally. Drag the scene outside the movement stick to look. Hold FIRE and drag the same thumb to aim while moving. AIM toggles. TOOLS opens SWAP, CROUCH and RUN; actions close the tray and play continues. RUN toggles sprint. DASH follows the stick direction, or goes forward when the stick is centered. Hold MOVE forward against low cover to vault automatically; JUMP also vaults. Auto vault pauses while aiming, firing or holding USE. Hold USE while entering a receiver ring or suit service. MAP pauses and selects a route. Held action buttons can also drag the view.';document.querySelector('#controls-dialog h2').after(help);
  // Keep the full tactical handbook while translating its keyboard instructions.
  for(const panel of document.querySelectorAll('#controls-dialog,#briefing-dialog')){
   const walker=document.createTreeWalker(panel,NodeFilter.SHOW_TEXT);let node;
@@ -86,7 +87,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE gently for small steps. Hold FIRE and drag to aim; AIM slows fine corrections. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ for(const text of ['MOVE gently for small steps. Hold FIRE and drag to aim; AIM slows fine corrections. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN. Hold MOVE forward against low cover to vault.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
  help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps; release it to move at normal speed. You still need to enter the ring.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
@@ -103,5 +104,6 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist}){
  turnLabel.append(turn,document.createTextNode(' Faster long scene turns'));
  const note=document.createElement('p');note.className='setting-note';note.textContent='Small corrections stay precise. Long scene swipes turn faster when enabled. FIRE-drag stays linear; AIM halves speed. Lower sensitivity for finer aim.';
  const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Helps near misses reach visible targets. Cover still blocks shots. Rifle only; a cyan reticle ring marks an assisted shot. Assisted scores have a separate personal best.';
- setting.append(label,input,turnLabel,note,assistLabel,assistNote);document.querySelector('#settings-dialog h2').after(setting);
+ const vaultLabel=document.createElement('label');vaultLabel.className='checkbox-label';const vault=document.createElement('input');vault.id='touch-auto-vault';vault.type='checkbox';vault.checked=game.options.touchAutoVault!==false;vault.onchange=()=>{game.options.touchAutoVault=vault.checked;game.touchVaultContact=null;onAutoVault?.(vault.checked)};vaultLabel.append(vault,document.createTextNode(' Hold-forward auto vault'));const vaultNote=document.createElement('p');vaultNote.className='setting-note';vaultNote.textContent='Hold MOVE forward against low cover to vault. Release MOVE before it starts, or use AIM, to stay behind cover. Auto vault pauses during firing, reload, crouch and held USE. JUMP still vaults manually.';
+ setting.append(label,input,turnLabel,note,assistLabel,assistNote,vaultLabel,vaultNote);document.querySelector('#settings-dialog h2').after(setting);
 }

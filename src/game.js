@@ -1,3 +1,4 @@
+import {updateTouchVault} from './touch-vault.js';
 import {touchRifleTarget} from './touch-assist.js';
 import {serviceStatus,resetService,updateService} from './suit-service.js';
 import {nearbyReceiver} from './recovery-feedback.js';
@@ -54,7 +55,7 @@ export class Game {
     this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
     this.touchMove={x:0,z:0}; this.touchUse=false; this.touchSprint=false;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
-    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchAimAssist: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
+    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchAimAssist: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
     this.mouseDown = false; this.aim = false; this.dragging = false; this.pointerFallback = false;
     this.yaw = 0; this.pitch = 0; this.animTime = 0; this.runTime = 0; this.lastFrame = 0; this.emitTimer = 0;
@@ -63,7 +64,7 @@ export class Game {
     this.player = new THREE.Vector3(); this.velocityY = 0; this.grounded = true; this.vault=null;
     this.dashVector = new THREE.Vector3(); this.dashTime = 0; this.dashCooldown = 0;
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180;
-    this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0; this.assistedShots=0;this.touchAssistUntil=-1;
+    this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0; this.assistedShots=0;this.touchAssistUntil=-1;this.autoVaults=0;this.touchVaultContact=null;
     this.reloading = false; this.reloadTimer = 0; this.fireTimer = 0; this.lastDamage = -100;
     this.recoil = 0; this.kick = 0; this.aimBlend = 0; this.stepDistance = 0; this.footTimer = 0;
     this.ray = new THREE.Ray(); this.raycaster = new THREE.Raycaster(); this.wallPoint = new THREE.Vector3();
@@ -315,7 +316,7 @@ export class Game {
   canRetryAnchor() { return this.phase==='lost' && !!this.finaleAnchor && !this.anchorInvalidated && this.activeDifficulty===this.options.difficulty; }
   earnAnchor() {
     if(this.finaleAnchor || this.anchorInvalidated)return;
-    const stats={};for(const k of ['kills','score','phaseDodges','dashCount','phaseInterrupts','headshots','shotsFired','shotsHit','assistedShots'])stats[k]=this[k];
+    const stats={};for(const k of ['kills','score','phaseDodges','dashCount','phaseInterrupts','headshots','shotsFired','shotsHit','assistedShots','autoVaults'])stats[k]=this[k];
     const snapshot={difficulty:this.activeDifficulty,stats,cores:this.coreNodes.map(c=>c.collected),encounters:[...this.encounters],caps:this.world.capacitors.map(b=>b.state==='intact'?'intact':'spent'),actors:this.enemies.map(e=>({id:e.id,type:e.type,role:e.role,home:e.home.toArray(),health:e.health,maxHealth:e.maxHealth}))};
     const freeze=o=>{Object.values(o).forEach(v=>{if(v&&typeof v==='object')freeze(v)});return Object.freeze(o)};
     this.finaleAnchor=freeze(snapshot);
@@ -339,7 +340,7 @@ export class Game {
     this.routeGoal=null;this.routeManual=false;this.routePath=[];this.routeNext=0; this.setSettings(options); if(!retry){this.finaleAnchor=null;this.anchorInvalidated=false;this.anchorRetries=0;} this.audio.clearTransient();this.audio.wake(); this.clearRun(); resetCapacitors(this.world.capacitors); this.canvas.tabIndex = -1; this.canvas.focus({ preventScroll: true });
     this.activeDifficulty = this.options.difficulty; this.extractionSeconds=this.activeDifficulty==='story'?4:this.activeDifficulty==='veteran'?8:EXTRACTION_SECONDS; this.difficulty = DIFFICULTIES[this.activeDifficulty] || DIFFICULTIES.standard;
     this.activeWeapon='rifle';this.weaponSlots.rifle={ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0};this.dashVector.set(0,0,0);this.weaponSlots.breacher={ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0};
-    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0; this.assistedShots=0;this.touchAssistUntil=-1;
+    this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180; this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0; this.assistedShots=0;this.touchAssistUntil=-1;this.autoVaults=0;this.touchVaultContact=null;
     resetService(this); this.serviceDamaged=false; this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true; this.vault=null;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
@@ -379,7 +380,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
@@ -557,7 +558,7 @@ export class Game {
 
   action(name) {
     if(this.phase!=='playing')return;
-    this.audio.wake();
+    this.audio.wake();this.touchVaultContact=null;
     if(name==='reload')this.reload();
     if(name==='dash')this.dash();
     if(name==='crouch')toggleCrouch(this);
@@ -647,6 +648,7 @@ export class Game {
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
     else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
     else movePlayer(this, this.world, direction.x * speed * dt, direction.z * speed * dt, dt);
+    updateTouchVault(this,direction,dt,direction.length()*speed*dt,Math.hypot(this.player.x-previousPlayer.x,this.player.z-previousPlayer.z));
     this.routeHelp.tick(dt,{eligible:this.options.contextualRouteHelp!==false&&this.grounded&&Math.abs(feetY(this.player,profileOf(this)))<.025&&profileOf(this).eyeHeight>=1.7-1e-6&&!routeSpecial&&!this.vault&&!this.aim&&!this.mouseDown&&!this.keys.has('Tab'),intended:direction.length()*speed*dt,progress:Math.hypot(this.player.x-previousPlayer.x,this.player.z-previousPlayer.z),goal:this.routeCacheGoal||this.routeGoal});
     if (direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
@@ -1017,7 +1019,7 @@ export class Game {
       routeHelp:this.routeWaypoint?.label||'',routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       anchorEligible:this.canRetryAnchor(),anchorRetries:this.anchorRetries||0,checkpointAssisted:(this.anchorRetries||0)>0,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
-      assistedShots:this.assistedShots||0,touchAssistActive:this.phase==='playing'&&this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil,
+      autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,touchAssistActive:this.phase==='playing'&&this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
