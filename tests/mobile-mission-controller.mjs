@@ -29,7 +29,7 @@ const navigationAudit={bodyHeight:STANDING.bodyHeight,radius:PLAYER_RADIUS,oldIg
 await t.tap('#deploy');
 let pathCache=[],routeGoal='',held='',shooting=false,steps=0;const start=Date.now();
 while(Date.now()-start<Number(process.env.CONTROL_TIMEOUT_MS||360000)){
-const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;const {facilityLayout,...state}=g.captureState();return {...state,pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),boss:!g.custodian.dead&&g.custodian.active?g.custodian.coils.filter(n=>n.hp>0).map(n=>({x:g.custodian.group.position.x+n.metadata.target[0],y:n.metadata.target[1],z:g.custodian.group.position.z+n.metadata.target[2],health:n.hp})):[],inv:g.invulnerable}});
+const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;const {facilityLayout,...state}=g.captureState();return {...state,fastSceneTurns:g.options.fastSceneTurns!==false,pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),boss:!g.custodian.dead&&g.custodian.active?g.custodian.coils.filter(n=>n.hp>0).map(n=>({x:g.custodian.group.position.x+n.metadata.target[0],y:n.metadata.target[1],z:g.custodian.group.position.z+n.metadata.target[2],health:n.hp})):[],inv:g.invulnerable}});
 if(s.phase!=='playing'){log.push({at:Date.now()-start,state:s.phase,kills:s.kills,cores:s.cores,health:s.health});break}
 if(steps%10===0)log.push({at:Date.now()-start,time:s.time,x:s.player.x,z:s.player.z,health:s.health,shield:s.shield,kills:s.kills,cores:s.cores,ammo:s.ammo,targets:s.targets.length});
 const goals=s.coreMarkers.filter(c=>!c.collected).sort((a,b)=>a.distance-b.distance);const goal=goals[0]?{...goals[0],z:goals[0].z+1.5}:s.boss.length?{x:11,z:22}:s.exit;
@@ -45,7 +45,7 @@ const stop=recovering||(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1
 const aligned=Math.abs(delta)<.18;
 const a=target&&aligned&&!s.reloading?await t.center('#touch-fire'):{x:500,y:160};await t.down(2,a.x,a.y);
 const gain=touchLookGain(844,390);let pixels=Math.max(-1.4,Math.min(1.4,delta))/gain.x;
-if(!(target&&aligned&&!s.reloading)){
+if(s.fastSceneTurns&&!(target&&aligned&&!s.reloading)){
  // Invert the shared scene displacement ramp; the test still supplies exact
  // intended angles and reads internal state. FIRE-drag remains linear.
  const sign=Math.sign(pixels),wanted=Math.abs(pixels);let lo=0,hi=wanted;
@@ -60,6 +60,6 @@ const travel=nav?Math.min(120,Math.max(25,Math.hypot(nav.x-s.player.x,nav.z-s.pl
 await p.waitForTimeout(recovering?1400:travel);await t.clear();steps++;
 }
 await t.clear();const final=await p.evaluate(()=>{const {facilityLayout,...s}=window.__SOULFALL__.game.captureState();return s});console.log(JSON.stringify({navigationAudit,method:'Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. All actions use native CDP touch; exact privileged state and geometry for decisions.',steps,log,final,errors},null,2));await p.screenshot({path:process.env.CONTROLLER_IMAGE||'docs/media/build73-controller-final.png',timeout:15000});
-writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/quality-reviews/build73-mobile-controller.json',JSON.stringify({navigationAudit,method:'Exact-information automated normal controls: reads colliders, authored Custodian target metadata, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage, including inversion of the shared scene-turn ramp; not independent discovery or human play. Planning uses the actual standing player occupancy predicate including low feet and1.9m clearance, half-metre nodes and swept edges. Movement is calculated after turning and released before the next observation; boss aiming waits for the known firing position.',steps,log,final,errors},null,2));
+writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/quality-reviews/build73-mobile-controller.json',JSON.stringify({navigationAudit,method:'Exact-information automated normal controls: reads colliders, authored Custodian target metadata, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage, including the current scene-turn preference; not independent discovery or human play. Planning uses the actual standing player occupancy predicate including low feet and1.9m clearance, half-metre nodes and swept edges. Movement is calculated after turning and released before the next observation; boss aiming waits for the known firing position.',steps,log,final,errors},null,2));
 assert.equal(final.phase,'won','Controller must actually finish extraction');assert.equal(final.cores,3);assert.equal(final.extractionProgress,1);assert.equal(final.custodian.dead,true);assert(final.custodian.coils.every(n=>n===0));assert.equal(final.anchorRetries,0);assert.equal(final.checkpointAssisted,false);assert.deepEqual(errors,[]);
 }finally{await b.close()}

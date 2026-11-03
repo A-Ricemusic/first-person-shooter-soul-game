@@ -11,7 +11,7 @@ import { CORE_SITES, serviceRouteAt } from './mission.js';
 
 const $ = (id) => document.getElementById(id);
 const saved = (()=>{try{return JSON.parse(localStorage.getItem('soulfall-settings')||'{}')}catch{return {}}})();
-let settings = {contextualRouteHelp:true,fastSceneTurns:true,quality:'balanced',difficulty:'standard',sensitivity:1,volume:0.65,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,...saved};
+let settings = {contextualRouteHelp:true,fastSceneTurns:false,quality:'balanced',difficulty:'standard',sensitivity:1,volume:0.65,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,...saved};
 let game, current = {}, loaded = false, previousPhase = '', activePanel = null;
 const icon = `<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 28 9v14l-12 7L4 23V9Z" stroke="currentColor"/><path d="m16 7 6 9-6 9-6-9Z" fill="currentColor"/></svg>`;
 document.querySelector('#app').innerHTML = `
@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> PLAYABLE VERTICAL SLICE <span> / </span> BUILD 80</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 81</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -130,6 +130,7 @@ function renderMobileHUD(s,service){
  $('extraction-status').textContent=uploadStatus(s,{compact:true});
  $('touch-notices')?.classList.toggle('has-memory',!$('memory-card').classList.contains('hidden'));
  const reload=$('touch-reload');if(reload){reload.textContent=s.reloading?'LOADING':'RELOAD';reload.setAttribute('aria-busy',String(!!s.reloading))}
+ const more=$('touch-more');if(more){more.textContent=game.crouchRequested?'TOOLS · LOW':game.touchSprint?'TOOLS · RUN':'TOOLS';more.classList.toggle('active-tools',!!(game.crouchRequested||game.touchSprint));more.setAttribute('aria-label',`Tools: weapon swap, crouch and run${game.crouchRequested?'; crouched':''}${game.touchSprint?'; running':''}`)}
  const use=$('touch-use');if(use){
   const ss=s.suitService,repair=ss?.valid&&ss.near&&ss.powered&&!ss.spent&&!ss.full;
   use.dataset.ready=String(!!(s.recoveryReady||repair));

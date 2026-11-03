@@ -1,0 +1,232 @@
+{
+  "review_id": "build80-mobile-review2",
+  "reviewer": "Independent mobile review sub-agent; GPT-6.1 Sol",
+  "attempts": 1,
+  "result": "LOSS",
+  "terminal_observed": true,
+  "retry_used": false,
+  "identity": {
+    "requested_frozen_source": "da43bbbc2565e629133865a34d2fa5e7fad87b0f",
+    "source_verified": false,
+    "reason": "Source and metadata inspection prohibited; no repository inspection performed.",
+    "expected_title": "BUILD80",
+    "visible_title": "SOUL FALL \u2014 THE LAST SIGNAL; VESPER INTERACTIVE",
+    "build80_label_observed": false,
+    "observation": "The visible title screen did not display BUILD80. Build identity cannot be certified from the inspected UI."
+  },
+  "method": {
+    "url": "http://127.0.0.1:61476/",
+    "viewport_css": {
+      "width": 390,
+      "height": 844
+    },
+    "orientation": "portrait",
+    "helper": "node tools/mobile-playtest.mjs",
+    "input": "JSON-lines native CDP touch, at most two contacts; visible geometry/selectors",
+    "allowed_read": "tools/mobile-playtest.mjs --help only; own screenshots viewed after every capture before adaptive input",
+    "planning": "Opened repeatedly and closed using visible #close-map control before play resumed.",
+    "pauses": "Helper captured live play then paused between action batches for screenshot inspection. Planning map itself paused play. This gives substantial thinking time and does not assess continuous play pressure.",
+    "forbidden_inspection_performed": false
+  },
+  "terminal_stats": {
+    "screen": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "01:23",
+    "score": 3100,
+    "eliminations": 1,
+    "accuracy_percent": 5,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "memories": [
+      "MARA SOLBERG \u2014 Station medic",
+      "ELIAN VALE \u2014 Relay engineer",
+      "SERA NORD \u2014 Night operator"
+    ],
+    "terminal_copy": "Memories cached. Retry at the uplink with a fresh suit and a full Custodian, or start fresh.",
+    "time_footer": "CUMULATIVE PLAY TIME",
+    "health_at_terminal": "not displayed",
+    "last_preterminal_observation": {
+      "mission_time": "01:17",
+      "health": 47,
+      "shield": 29,
+      "ammo": 16,
+      "reserve": 271,
+      "coils": {
+        "1": "OFF",
+        "2": "100%",
+        "3": "79%"
+      }
+    }
+  },
+  "coverage": {
+    "completed": [
+      "Title and operator handbook",
+      "Fresh deployment",
+      "Opening induction guard defeated with FIRE hold",
+      "Movement and scene-swipe turning",
+      "Two-contact movement with FIRE-drag",
+      "Planning map overview and route guidance",
+      "Mara recovery",
+      "Sera recovery",
+      "Elian recovery",
+      "Custodian approach, exposure/armor/charge messaging",
+      "One coil disabled and third coil damaged",
+      "Jump/vault attempts",
+      "Actual terminal loss UI"
+    ],
+    "not_reached": [
+      "Custodian defeat",
+      "Upload survival",
+      "Terminal win"
+    ],
+    "not_exercised": [
+      "Settings",
+      "Map local zoom/manual target selection",
+      "AIM",
+      "SWAP",
+      "CROUCH",
+      "RUN",
+      "DASH",
+      "Manual reload button",
+      "Recovered-memory reading",
+      "Retry flows"
+    ]
+  },
+  "helpful_moments": [
+    {
+      "moment": "Opening guard disappeared after a stationary FIRE hold with no initial health/shield loss.",
+      "evidence": "guard-fire.jpg"
+    },
+    {
+      "moment": "Map route and player marker revealed I had overshot Mara; backing up brought up HOLD USE and enabled recovery.",
+      "evidence": [
+        "route-check.jpg",
+        "return-mara.jpg",
+        "recover-mara.jpg"
+      ]
+    },
+    {
+      "moment": "Contextual recovery button and numbered memory markers made collection progress explicit; Sera recovery visibly restored health to 100.",
+      "evidence": [
+        "sera-use.jpg",
+        "elian-use.jpg"
+      ]
+    },
+    {
+      "moment": "Jump/vault attempts got me past an obstructed approach to a close coil view; coil 1 OFF gave unambiguous damage feedback.",
+      "evidence": [
+        "custodian-approach.jpg",
+        "vault-approach.jpg",
+        "coil-fire-one.jpg"
+      ]
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "moment": "Forward movement ended with an enormous wall/sign filling the screen. After strafing and advancing I overshot Mara while damage arrived from offscreen.",
+      "evidence": [
+        "advance-north.jpg",
+        "west-lane.jpg",
+        "route-check.jpg"
+      ]
+    },
+    {
+      "moment": "Portrait view made hostile identification difficult while navigating. Damage arrows were visible but I rarely had attackers in view. Recovered all memories while largely bypassing combat.",
+      "evidence": [
+        "recover-mara.jpg",
+        "sera-use.jpg"
+      ]
+    },
+    {
+      "moment": "Close coils and structural cover occluded remaining targets. Tried firing/dragging, strafing, backing away and map-assisted reorientation; struggled to retain a clear face and died during the final firing hold.",
+      "evidence": [
+        "coil-fire-one.jpg",
+        "coil-two-flank.jpg",
+        "face-coils.jpg",
+        "wider-coil-view.jpg",
+        "distant-coil-fire.jpg"
+      ]
+    },
+    {
+      "moment": "Many small adjacent lower-screen buttons demand movement, aiming and defensive decisions in a crowded portrait layout. I did not successfully use DASH or phase evades.",
+      "evidence": [
+        "deploy-view.jpg",
+        "distant-coil-fire.jpg"
+      ]
+    }
+  ],
+  "failures_and_uncertainties": [
+    "5% terminal accuracy indicates poor shot placement in this attempt; it does not isolate aim tuning from reviewer skill, occlusion or the synthetic input method.",
+    "A tap at the visible RELOAD button was attempted before opening the first map; a later capture showed full ammo, but automatic behavior and pickup timing prevent attributing that result to the tap.",
+    "Jump/vault taps improved approach position; exact individual vault triggering was not independently verified.",
+    "Final shot placement and exact lethal attacker were not visible enough to identify reliably.",
+    "No observed helper page errors in returned captures; no claim about unobserved errors.",
+    "No BUILD80 label was visible on the title screenshot; requested commit remains unverified."
+  ],
+  "scoring": {
+    "scale": "0 unusable, 5 playable with substantial friction, 7 good with noticeable issues, 10 exceptional. Scores describe only this one paused synthetic portrait attempt, not a physical-device certification.",
+    "overall_mobile": 6.0,
+    "controls": 5.5,
+    "gameplay": 6.0,
+    "presentation": 7.5,
+    "usability": 6.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Playable through all memory objectives with useful planning, but combat aiming and spatial awareness remained difficult and the attempt ended in loss.",
+      "controls": "Basic move/fire and contextual use worked; precise aiming, avoiding geometry and coordinating defense were difficult. Dense buttons increase thumb workload; no physical touch ergonomics measured.",
+      "gameplay": "Clear recovery progression and coil phase variation, with recoverable navigation mistakes. Offscreen pressure and occluded targets made combat less satisfying in this run.",
+      "presentation": "Cohesive dark teal/amber visual identity, atmospheric station and strong title/end panels. Close geometry sometimes reduced the view to walls or black structural surfaces.",
+      "usability": "Pausing map, marked routes, changing objectives and contextual use rescued navigation. Frequent map checks were needed and encounter sightlines were hard to maintain.",
+      "readability": "Main objectives, health, ammo and terminal stats readable at 390x844. Smaller compass/coil text and lower-screen control density required inspection; visual scene clarity varied."
+    }
+  },
+  "limitations": [
+    "Synthetic native touch emulation in Chromium at 390x844, not a physical phone.",
+    "Software-WebGL fallback explicitly reported; renderer not certified.",
+    "Live captures can add damage; default pauses between captures allow prolonged inspection.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment remain unassessed.",
+    "Single attempt; no rescore or repeat."
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "owned_driver_pid": 25560,
+    "owned_chrome_pid": 25596,
+    "ps_verification": "ps -p 25560,25596 -o pid=,ppid=,stat=,comm= returned no rows, exit 1; both exact owned PIDs absent.",
+    "broad_kills": false
+  },
+  "evidence": {
+    "directory": "docs/media/build80-mobile-review2",
+    "raw_log": "docs/media/build80-mobile-review2/actions.jsonl",
+    "terminal_screenshot": "docs/media/build80-mobile-review2/distant-coil-fire.jpg",
+    "screenshots": [
+      "advance-north.jpg",
+      "coil-fire-one.jpg",
+      "coil-two-flank.jpg",
+      "custodian-approach.jpg",
+      "custodian-map.jpg",
+      "deploy-view.jpg",
+      "distant-coil-fire.jpg",
+      "east-archive-approach.jpg",
+      "elian-route.jpg",
+      "elian-use.jpg",
+      "face-coils.jpg",
+      "guard-fire.jpg",
+      "heart-route.jpg",
+      "how-to.jpg",
+      "planning.jpg",
+      "recover-mara.jpg",
+      "reposition-coils.jpg",
+      "return-mara.jpg",
+      "route-check.jpg",
+      "sera-use.jpg",
+      "title.jpg",
+      "toward-sera.jpg",
+      "turn-custodian.jpg",
+      "vault-approach.jpg",
+      "west-lane.jpg",
+      "wider-coil-view.jpg"
+    ]
+  }
+}

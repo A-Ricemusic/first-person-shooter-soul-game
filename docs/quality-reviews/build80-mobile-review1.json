@@ -1,0 +1,216 @@
+{
+  "review_id": "build80-mobile-review1",
+  "role": "independent visible-only mobile reviewer",
+  "model": "GPT-6.1 Sol",
+  "date": "2026-11-03",
+  "identity": {
+    "expected_frozen_source": "da43bbbc2565e629133865a34d2fa5e7fad87b0f",
+    "source_verified": false,
+    "reason": "Source and metadata inspection prohibited; commit supplied by requester only.",
+    "visible_title": "SOULFALL / THE LAST SIGNAL / BUILD 80",
+    "visible_identity_matches_expected": true
+  },
+  "method": {
+    "url": "http://127.0.0.1:61476/",
+    "viewport_css": {
+      "width": 844,
+      "height": 390
+    },
+    "orientation": "landscape",
+    "attempts": 1,
+    "fresh_attempt": true,
+    "input": "JSON-lines helper native CDP touch, at most two contacts; visible coordinates and selectors",
+    "inspection": "Only helper --help read; no game source, tests, docs, prior reviews, recordings, internal handles or target metadata inspected. Each captured screenshot viewed before adaptive input.",
+    "planning_maps": "Opened four times; remained open during inspection and closed with visible #close-map. Final close was followed by terminal loss.",
+    "pause_limitation": "Helper captures live view then automatically taps Pause during play. Inspection and planning were paused, materially easing decision time and interrupting continuous play. No simulation advance or resource modifications.",
+    "graphics": "Synthetic Chromium touch emulation; helper reported Software-WebGL fallback enabled, renderer not certified."
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "LOSS",
+    "visible_labels": [
+      "OPERATOR LOST",
+      "SIGNAL LOST"
+    ],
+    "mission_time": "01:05",
+    "score": 2100,
+    "eliminations": 1,
+    "accuracy_percent": 16,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "recovered_memories": [
+      "Mara Solberg \u2014 Station medic",
+      "Sera Nord \u2014 Night operator"
+    ],
+    "memories_recovered": 2,
+    "memories_total": 3,
+    "last_live_health": 12,
+    "last_live_shield": 0,
+    "terminal_health": "Not displayed",
+    "terminal_ammo": "Not displayed",
+    "time_label_note": "End screen says CUMULATIVE PLAY TIME; this was one fresh attempt.",
+    "terminal_evidence": "docs/media/build80-mobile-review1/post-return-command-error.jpg"
+  },
+  "coverage": {
+    "experienced": [
+      "Title and Build 80 identity",
+      "Operator handbook",
+      "Opening induction guard",
+      "Movement and scene turning",
+      "Sustained fire and FIRE drag while simultaneously strafing",
+      "Reload",
+      "Map routing and receiver selection defaults",
+      "Mara and Sera recovery using HOLD USE",
+      "East Archive approach",
+      "DASH with phase-break feedback",
+      "Contextual VAULT attempt",
+      "Damage, shield recovery and low-health feedback",
+      "Terminal loss screen"
+    ],
+    "not_reached": [
+      "Elian recovery",
+      "Three-memory completion",
+      "Jammer coil combat",
+      "Uplink upload",
+      "Win screen"
+    ],
+    "not_exercised": [
+      "Settings",
+      "AIM button",
+      "Weapon swap",
+      "Crouch",
+      "Run",
+      "Recovered-memory reader",
+      "Full tactical handbook"
+    ]
+  },
+  "observations": {
+    "helpful": [
+      {
+        "moment": "Opening guard, 00:03",
+        "detail": "A sustained centered burst removed the opening guard while health/shield stayed 100/60; terminal screen later confirmed one elimination.",
+        "evidence": "induction-fire.jpg"
+      },
+      {
+        "moment": "Mara, 00:18\u201300:22",
+        "detail": "Map route and exact 0.4 m outside-reach prompt supported a small correction and successful USE recovery.",
+        "evidence": "receiver-position.jpg / mara-use.jpg"
+      },
+      {
+        "moment": "Sera, 00:37\u201300:41",
+        "detail": "Holding USE while making a small two-contact movement let me enter reach and recover the second memory.",
+        "evidence": "sera-north.jpg / sera-use.jpg"
+      },
+      {
+        "moment": "DASH, 00:45",
+        "detail": "PHASE BREAK / SHOT CANCELED / ARMOR OPEN 3s clearly explained the successful interruption. This did not produce a terminal phase-evade credit.",
+        "evidence": "warden-strafe-fire.jpg"
+      },
+      {
+        "moment": "Presentation",
+        "detail": "Rain, cool cyan lighting, oversized relay machinery and restrained title typography establish a coherent industrial atmosphere.",
+        "evidence": "initial-menu.jpg / north-exit-turn.jpg"
+      }
+    ],
+    "frustrating": [
+      {
+        "moment": "Turning toward Sera",
+        "detail": "A long left swipe overshot my intended west heading to 218 degrees. Shorter corrections and repeated map checks were needed; nonlinear long-swipe behavior was disclosed in handbook.",
+        "evidence": "sera-approach.jpg / west-correction.jpg / sera-route-recheck.jpg"
+      },
+      {
+        "moment": "Moving combat",
+        "detail": "A full magazine fired during strafing did not confirm a kill. FIRE drag worked, but maintaining target alignment while moving was difficult for me; 16% terminal accuracy supports that limitation.",
+        "evidence": "warden-strafe-fire.jpg"
+      },
+      {
+        "moment": "East Archive, 00:50\u201301:05",
+        "detail": "I mistook nearby scenery for the receiver, moved the wrong direction, held USE out of range, then ran into cover. Distance feedback helped, but the ring/open approach was hard to locate. Health dropped from 100 to 12 during these attempts.",
+        "evidence": "east-traverse.jpg / elian-use.jpg / elian-recovery-try.jpg / east-vault-recovery.jpg"
+      },
+      {
+        "moment": "Screen density",
+        "detail": "Right-side button grid occupies much of the combat view; small threat text and ground/path markers need close inspection at 844x390. Main health, ammo and handbook text remain legible.",
+        "evidence": "mission-start.jpg / sera-use.jpg"
+      }
+    ],
+    "failures_and_uncertainties": [
+      "No confirmed elimination beyond the opening guard; did not resolve patrol pressure before recovery attempts.",
+      "VAULT was tapped after its visible prompt, but subsequent view does not establish whether a useful vault occurred.",
+      "Sequence 23 returned Selector must be visible after final map close. Subsequent capture showed actual terminal loss at 01:05; cannot establish which later touch actions in that command executed.",
+      "No pageErrors were reported in successful capture results. This is not a source-level or general stability certification.",
+      "Loss reflects this reviewer\u2019s first-attempt navigation and combat mistakes as well as observed usability friction; it does not prove the game is unwinnable."
+    ]
+  },
+  "scores": {
+    "scale": "0 = unusable; 5 = mixed but playable with substantial friction; 8 = strong with minor friction; 10 = exceptional within observed scope. Subjective first-attempt emulated mobile scores, not completion or physical-device certification.",
+    "overall_mobile": 6.0,
+    "controls": 5.5,
+    "gameplay": 6.0,
+    "presentation": 8.0,
+    "usability": 6.0,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Playable and atmospheric; two memories recovered, but turning, moving aim and East Archive approach caused repeated friction and terminal loss.",
+      "controls": "Two-contact movement/fire and USE worked; long-swipe overshoot, moving aim and dense button placement hindered precision.",
+      "gameplay": "Receiver objectives, patrol pressure and DASH interruption provide understandable tactical choices; later jammer/uplink loop unassessed.",
+      "presentation": "Coherent lighting, rain, relay landmarks and polished title/end panels; score excludes audio and physical hardware smoothness.",
+      "usability": "Good handbook, paused routing, reach distances and feedback; open approach around East cover remained confusing to this first-time reviewer.",
+      "readability": "Large health/ammo and handbook readable; fine map details, threat labels and floor markers are less comfortable at this landscape size."
+    }
+  },
+  "limits": [
+    "Physical phones unassessed",
+    "Safari unassessed",
+    "Audio unassessed",
+    "Hardware performance and thermal/battery behavior unassessed",
+    "Continuous enjoyment, pacing and reaction-time demands unassessed because captures pause play",
+    "Software-WebGL synthetic Chromium results must not certify physical-device experience",
+    "Single loss attempt; jammer, uplink and win experience unassessed"
+  ],
+  "evidence": {
+    "directory": "docs/media/build80-mobile-review1",
+    "raw_action_log": "docs/media/build80-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "east-cover-map.jpg",
+      "east-traverse.jpg",
+      "east-vault-recovery.jpg",
+      "elian-recovery-try.jpg",
+      "elian-ring-approach.jpg",
+      "elian-use.jpg",
+      "how-to-play.jpg",
+      "induction-fire.jpg",
+      "initial-menu.jpg",
+      "mara-use.jpg",
+      "mission-start.jpg",
+      "north-exit-turn.jpg",
+      "north-route-map.jpg",
+      "planning-map.jpg",
+      "post-return-command-error.jpg",
+      "receiver-position.jpg",
+      "sera-approach.jpg",
+      "sera-north.jpg",
+      "sera-route-recheck.jpg",
+      "sera-use.jpg",
+      "warden-strafe-fire.jpg",
+      "west-approach.jpg",
+      "west-correction.jpg"
+    ]
+  },
+  "cleanup": {
+    "close_requested": true,
+    "helper_closed_event": {
+      "reason": "input ended or close requested",
+      "driverPid": 68596,
+      "chromePid": 68640,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "helper_exit_code": 0,
+    "verification_command": "ps -p 68596,68640 -o pid=,ppid=,stat=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "result": "Exact owned driver and Chrome PIDs absent; no processes killed."
+  }
+}
