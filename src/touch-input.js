@@ -16,6 +16,15 @@ export function sceneTurnDisplacement(pixels,width,height){
  return Math.sign(pixels)*(distance+.5*r*r/ramp+Math.max(0,excess-ramp));
 }
 
+// A firing thumb needs fine corrections before a broad turn. Integrate the
+// gain ramp over raw travel so event coalescing and reversal stay predictable.
+// Each axis is independent: vertical correction never introduces yaw.
+export function fireAimDisplacement(pixels,width,height){
+ const axis=Math.max(1,Number(width)||1,Number(height)||1),fine=.06*axis,ramp=.12*axis;
+ const distance=Math.abs(pixels),excess=Math.max(0,distance-fine),r=Math.min(excess,ramp);
+ return Math.sign(pixels)*(.55*distance+.45*(.5*r*r/ramp+Math.max(0,excess-ramp)));
+}
+
 // Each pointer owns one role until release; phase changes invalidate all ownership.
 export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onAutoVault}){
  if(!game.touchMode)return;
@@ -32,7 +41,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  const phasePress=(e,open)=>{e.preventDefault();phaseTouch=e.pointerId;open()};
  const more=root.querySelector('#touch-more'),extra=root.querySelector('#touch-extra');
  const setTools=open=>{extra.classList.toggle('hidden',!open);more.setAttribute('aria-expanded',String(open));};
- const clear=()=>{game.touchVaultContact=null;for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
+ const clear=()=>{game.touchVaultContact=null;game.touchRecoveryBraked=false;for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
  game.touchInput={clear,root};
  root.addEventListener('pointerdown',e=>{
   if(game.phase!=='playing'||e.pointerType==='mouse')return;
@@ -59,6 +68,10 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
     if(distance>=6){p.looking=true;dx*=1-6/distance;dy*=1-6/distance}else dx=dy=0;
    }
    const gain=touchLookGain(innerWidth,innerHeight,game.options.touchSensitivity,game.aim);
+   if(p.role==='fire'){
+    dx=fireAimDisplacement(e.clientX-p.startX,innerWidth,innerHeight)-fireAimDisplacement(p.x-p.startX,innerWidth,innerHeight);
+    dy=fireAimDisplacement(e.clientY-p.startY,innerWidth,innerHeight)-fireAimDisplacement(p.y-p.startY,innerWidth,innerHeight);
+   }
    if(p.role==='look'&&!game.aim&&game.options.fastSceneTurns!==false){
     dx=sceneTurnDisplacement(e.clientX-p.startX,innerWidth,innerHeight)-sceneTurnDisplacement(p.x-p.startX,innerWidth,innerHeight);
    }
@@ -68,7 +81,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
   p.x=e.clientX;p.y=e.clientY;
  }
  root.addEventListener('pointermove',move);
- function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use')game.touchUse=false;if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
+ function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use'){game.touchUse=false;game.touchRecoveryBraked=false;}if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  // Touch-down also works while the movement thumb is held. Keyboard activation
  // remains available; suppress a second action from the later touch click.
@@ -87,8 +100,8 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE gently for small steps. Hold FIRE and drag to aim; AIM slows fine corrections. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN. Hold MOVE forward against low cover to vault.', 'MAP pauses to plan. Near a receiver, hold USE for careful steps. Stop inside its ring to recover; release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
- help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps; release it to move at normal speed. You still need to enter the ring.';details.append(recoveryHelp);
+ for(const text of ['MOVE gently for small steps. Hold FIRE: small drags aim precisely, longer drags turn farther. AIM slows corrections further. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN. Hold MOVE forward against low cover to vault.', 'MAP pauses to plan. Near a receiver, hold USE and steer into its ring. Your suit brakes to recover, even with MOVE held. Release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps. Inside its existing ring, your suit brakes until USE is released. Damage and incoming attacks remain active. Release USE or DASH to reposition.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
  document.querySelector('#route-help').closest('label').nextElementSibling.textContent='Shows the next clear ground step while walking. Stops during aiming or firing. Tap MAP to choose a destination. Patrols still matter.';
@@ -102,7 +115,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  const turn=document.createElement('input');turn.id='touch-fast-turns';turn.type='checkbox';turn.checked=game.options.fastSceneTurns!==false;
  turn.onchange=()=>{game.options.fastSceneTurns=turn.checked;onFastTurns?.(turn.checked)};
  turnLabel.append(turn,document.createTextNode(' Faster long scene turns'));
- const note=document.createElement('p');note.className='setting-note';note.textContent='Small corrections stay precise. Long scene swipes turn faster when enabled. FIRE-drag stays linear; AIM halves speed. Lower sensitivity for finer aim.';
+ const note=document.createElement('p');note.className='setting-note';note.textContent='FIRE uses finer small drags and ramps up for longer turns. Scene turning stays steady; optional long scene swipes turn faster. AIM halves speed. Lower sensitivity for finer aim.';
  const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Helps near misses reach visible targets. Cover still blocks shots. Rifle only; a cyan reticle ring marks an assisted shot. Assisted scores have a separate personal best.';
  const vaultLabel=document.createElement('label');vaultLabel.className='checkbox-label';const vault=document.createElement('input');vault.id='touch-auto-vault';vault.type='checkbox';vault.checked=game.options.touchAutoVault!==false;vault.onchange=()=>{game.options.touchAutoVault=vault.checked;game.touchVaultContact=null;onAutoVault?.(vault.checked)};vaultLabel.append(vault,document.createTextNode(' Hold-forward auto vault'));const vaultNote=document.createElement('p');vaultNote.className='setting-note';vaultNote.textContent='Hold MOVE forward against low cover to vault. Release MOVE before it starts, or use AIM, to stay behind cover. Auto vault pauses during firing, reload, crouch and held USE. JUMP still vaults manually.';
  setting.append(label,input,turnLabel,note,assistLabel,assistNote,vaultLabel,vaultNote);document.querySelector('#settings-dialog h2').after(setting);

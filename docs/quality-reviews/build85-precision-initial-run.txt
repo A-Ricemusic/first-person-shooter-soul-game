@@ -1,0 +1,362 @@
+{
+  "method": "Native-touch phone engineering fixtures. Player/receiver poses and suppressed encounters are arranged via the test handle; native contacts drive aiming, approach, recovery, release, dash and pause. Not independent play or enjoyment proof.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "20px FIRE corrections have 55 percent of scene gain on independent axes",
+        "coalesced and segmented FIRE travel match across precision ramp",
+        "AIM halves FIRE precision while scene turning remains unchanged",
+        "USE outside original reach never starts recovery or brakes an away step",
+        "held movement enters ring, brakes and completes original 0.9s recovery",
+        "pause and resume clear USE, brake and movement ownership"
+      ],
+      "failures": [
+        {
+          "name": "FIRE reversal restores angle and vertical travel cannot steer yaw",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((await angles()).yaw-before.yaw)<1e-8)\n"
+        },
+        {
+          "name": "braking grants no invulnerability and DASH explicitly repositions",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!after.braked)\n"
+        }
+      ],
+      "fine": {
+        "x": 0.04170616113744076,
+        "y": 0.023459715639810426
+      },
+      "scene": {
+        "x": 0.07582938388625593,
+        "y": 0.04265402843601895
+      },
+      "coalesced": {
+        "x": 0.5096644549763034,
+        "y": 0
+      },
+      "segmented": {
+        "x": 0.5096644549763033,
+        "y": 0
+      },
+      "ads": {
+        "x": 0.020853080568720372,
+        "y": 0.01172985781990521
+      },
+      "entry": {
+        "x": -24,
+        "z": -12.216666666666633,
+        "d": 2.783333333333367,
+        "cores": 0,
+        "progress": 0.008366666666667395,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "completed": {
+        "x": -24,
+        "z": -12.216666666666633,
+        "d": 2.783333333333367,
+        "cores": 1,
+        "progress": 0,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "20px FIRE corrections have 55 percent of scene gain on independent axes",
+        "coalesced and segmented FIRE travel match across precision ramp",
+        "AIM halves FIRE precision while scene turning remains unchanged",
+        "USE outside original reach never starts recovery or brakes an away step",
+        "held movement enters ring, brakes and completes original 0.9s recovery",
+        "pause and resume clear USE, brake and movement ownership"
+      ],
+      "failures": [
+        {
+          "name": "FIRE reversal restores angle and vertical travel cannot steer yaw",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((await angles()).yaw-before.yaw)<1e-8)\n"
+        },
+        {
+          "name": "braking grants no invulnerability and DASH explicitly repositions",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!after.braked)\n"
+        }
+      ],
+      "fine": {
+        "x": 0.04170616113744076,
+        "y": 0.023459715639810426
+      },
+      "scene": {
+        "x": 0.07582938388625593,
+        "y": 0.04265402843601895
+      },
+      "coalesced": {
+        "x": 0.5096644549763034,
+        "y": 0
+      },
+      "segmented": {
+        "x": 0.5096644549763033,
+        "y": 0
+      },
+      "ads": {
+        "x": 0.020853080568720372,
+        "y": 0.01172985781990521
+      },
+      "entry": {
+        "x": -24,
+        "z": -12.216739999999968,
+        "d": 2.7832600000000323,
+        "cores": 0,
+        "progress": 0.02486666666666558,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "completed": {
+        "x": -24,
+        "z": -12.216739999999968,
+        "d": 2.7832600000000323,
+        "cores": 1,
+        "progress": 0,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "20px FIRE corrections have 55 percent of scene gain on independent axes",
+        "coalesced and segmented FIRE travel match across precision ramp",
+        "AIM halves FIRE precision while scene turning remains unchanged",
+        "USE outside original reach never starts recovery or brakes an away step",
+        "held movement enters ring, brakes and completes original 0.9s recovery",
+        "pause and resume clear USE, brake and movement ownership"
+      ],
+      "failures": [
+        {
+          "name": "FIRE reversal restores angle and vertical travel cannot steer yaw",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((await angles()).yaw-before.yaw)<1e-8)\n"
+        },
+        {
+          "name": "braking grants no invulnerability and DASH explicitly repositions",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!after.braked)\n"
+        }
+      ],
+      "fine": {
+        "x": 0.052773613193403304,
+        "y": 0.029685157421289354
+      },
+      "scene": {
+        "x": 0.095952023988006,
+        "y": 0.05397301349325337
+      },
+      "coalesced": {
+        "x": 0.6907682158920542,
+        "y": 0
+      },
+      "segmented": {
+        "x": 0.6907682158920538,
+        "y": 0
+      },
+      "ads": {
+        "x": 0.026386806596701673,
+        "y": 0.014842578710644677
+      },
+      "entry": {
+        "x": -24,
+        "z": -12.216519999999967,
+        "d": 2.783480000000033,
+        "cores": 0,
+        "progress": 0.024966666666667758,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "completed": {
+        "x": -24,
+        "z": -12.216519999999967,
+        "d": 2.783480000000033,
+        "cores": 1,
+        "progress": 0,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "20px FIRE corrections have 55 percent of scene gain on independent axes",
+        "coalesced and segmented FIRE travel match across precision ramp",
+        "AIM halves FIRE precision while scene turning remains unchanged",
+        "USE outside original reach never starts recovery or brakes an away step",
+        "held movement enters ring, brakes and completes original 0.9s recovery",
+        "pause and resume clear USE, brake and movement ownership"
+      ],
+      "failures": [
+        {
+          "name": "FIRE reversal restores angle and vertical travel cannot steer yaw",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((await angles()).yaw-before.yaw)<1e-8)\n"
+        },
+        {
+          "name": "braking grants no invulnerability and DASH explicitly repositions",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!after.braked)\n"
+        }
+      ],
+      "fine": {
+        "x": 0.03846994535519126,
+        "y": 0.021639344262295083
+      },
+      "scene": {
+        "x": 0.06994535519125683,
+        "y": 0.039344262295081964
+      },
+      "coalesced": {
+        "x": 0.45670819672131147,
+        "y": 0
+      },
+      "segmented": {
+        "x": 0.4567081967213117,
+        "y": 0
+      },
+      "ads": {
+        "x": 0.019234972677595552,
+        "y": 0.01081967213114754
+      },
+      "entry": {
+        "x": -24,
+        "z": -12.216739999999966,
+        "d": 2.783260000000034,
+        "cores": 0,
+        "progress": 0.02496666666666685,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "completed": {
+        "x": -24,
+        "z": -12.216739999999966,
+        "d": 2.783260000000034,
+        "cores": 1,
+        "progress": 0,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "20px FIRE corrections have 55 percent of scene gain on independent axes",
+        "coalesced and segmented FIRE travel match across precision ramp",
+        "AIM halves FIRE precision while scene turning remains unchanged",
+        "USE outside original reach never starts recovery or brakes an away step",
+        "held movement enters ring, brakes and completes original 0.9s recovery",
+        "pause and resume clear USE, brake and movement ownership"
+      ],
+      "failures": [
+        {
+          "name": "FIRE reversal restores angle and vertical travel cannot steer yaw",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((await angles()).yaw-before.yaw)<1e-8)\n"
+        },
+        {
+          "name": "braking grants no invulnerability and DASH explicitly repositions",
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!after.braked)\n"
+        }
+      ],
+      "fine": {
+        "x": 0.055,
+        "y": 0.0309375
+      },
+      "scene": {
+        "x": 0.1,
+        "y": 0.05625
+      },
+      "coalesced": {
+        "x": 0.7272,
+        "y": 0
+      },
+      "segmented": {
+        "x": 0.7272000000000006,
+        "y": 0
+      },
+      "ads": {
+        "x": 0.02750000000000008,
+        "y": 0.015468750000000003
+      },
+      "entry": {
+        "x": -24,
+        "z": -12.216519999999967,
+        "d": 2.783480000000033,
+        "cores": 0,
+        "progress": 0.02496666666666685,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "completed": {
+        "x": -24,
+        "z": -12.216519999999967,
+        "d": 2.783480000000033,
+        "cores": 1,
+        "progress": 0,
+        "braked": true,
+        "move": -1,
+        "use": true,
+        "hp": 100
+      },
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

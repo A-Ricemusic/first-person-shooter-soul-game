@@ -1,0 +1,263 @@
+{
+  "build": "BUILD 84 observed on title",
+  "requested_frozen_source": "637627f413c75f4d1d2cbe837a89ecbde328a2b6 (not inspected)",
+  "status": "complete: exactly two fresh attempts, both actual terminal losses; no third attempt",
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "url": "http://127.0.0.1:61480/",
+  "method": "Visible-only native two-contact Chromium touch via mobile-playtest. Screenshots viewed before adaptive inputs. Captures pause gameplay; software WebGL. No source inspection.",
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 1,
+        "mission_time": "00:55",
+        "score": 2100,
+        "accuracy_percent": 8,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "time_label": "CUMULATIVE PLAY TIME"
+      },
+      "terminal_recovered_names": [
+        "MARA SOLBERG \u2014 Station medic",
+        "SERA NORD \u2014 Night operator"
+      ],
+      "coverage": [
+        "handbook",
+        "opening guard defeated with held fire",
+        "reload",
+        "map opened and visibly closed three times",
+        "Mara receiver recovered",
+        "heart/relay guard encounter",
+        "dash",
+        "Sera approach and hold use; terminal lists Sera recovered"
+      ],
+      "failures": [
+        "Long movement overshot Mara; map corrected orientation",
+        "Stopped 0.2m outside receiver reach while taking damage",
+        "Repeated fire largely missed later threats",
+        "Lost during Sera recovery approach"
+      ],
+      "evidence": "docs/media/build84-mobile-review1/attempt1-sera.jpg",
+      "last_playing_stats": {
+        "health": 16,
+        "shield": 27,
+        "time": "00:49"
+      },
+      "uncertainty": "Sera recovery transition not captured in live view; terminal lists her. No end health shown."
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "fresh_start_method": "Visible START FRESH tapped on attempt 1 terminal at normalized (0.5,0.63); attempt2-start-fresh.jpg shows timer 00:00, 100 health, 60 shield, no recovered memories.",
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:03",
+        "score": 2300,
+        "accuracy_percent": 14,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "time_label": "CUMULATIVE PLAY TIME"
+      },
+      "terminal_recovered_names": [
+        "MARA SOLBERG \u2014 Station medic",
+        "SERA NORD \u2014 Night operator"
+      ],
+      "coverage": [
+        "Opening guard held-fire defeat",
+        "Patrol FIRE-drag aim corrections and reload",
+        "Mara recovered at approximately 00:25",
+        "Overview and LOCAL 2x map; each map visibly closed",
+        "North opening and close-cover navigation",
+        "Jump/vault attempted without obvious traversal success",
+        "Backed away and crossed around cover successfully",
+        "Dash toward heart guard and held fire; guard disappeared",
+        "Sera recovered; objective changed to Elian",
+        "East maintenance interceptor warning",
+        "Elian approach and hold-use attempt; lost before recovery"
+      ],
+      "failures": [
+        "Initial patrol aim undershot target in repeated corrections; lost shield and health",
+        "Several forward/diagonal moves ended against cover or wall",
+        "Jump did not visibly resolve obstruction",
+        "Stationary firing/receiver approach left exposure to offscreen attacks",
+        "Elian remained 1.8m out of reach at 7 health; lost on final approach"
+      ],
+      "evidence": "docs/media/build84-mobile-review1/attempt2-elian-use.jpg",
+      "last_playing_stats": {
+        "health": 7,
+        "shield": 0,
+        "mission_time": "01:02",
+        "receiver": "Elian, 1.8m closer prompt"
+      },
+      "uncertainties": [
+        "Guard disappearance plus terminal 3 eliminations supports additional kills, but precise allocation of each kill is not independently shown.",
+        "attempt2-sera-use helper metadata says health 72; captured visible HUD says 53. Capture/pause timing can allow additional damage. Preserve both observations; terminal stats are authoritative for outcome."
+      ]
+    }
+  ],
+  "between_attempt_learning": [
+    "Use shorter movement holds and map earlier",
+    "Use precise receiver-distance prompt and HOLD USE for final approach",
+    "Prioritize threats and aiming instead of broad firing while moving"
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable rough edges, 10 exceptional. Holistic judgments of these two observed emulated attempts, not win/loss grades or arithmetic claims.",
+    "overall_mobile": 6.0,
+    "controls": 5.5,
+    "gameplay": 6.0,
+    "presentation": 7.5,
+    "usability": 6.0,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Strong atmosphere and useful planning/reach feedback support a playable touch adaptation, but aiming and cover navigation demanded repeated corrections and created significant exposure.",
+      "controls": "Two contacts supported simultaneous movement and fire or careful USE; clear large targets. Fine aim and short positional corrections were difficult for this reviewer; dash helped.",
+      "gameplay": "Recovering memories and combining dash/fire gave clear progress and tactical possibilities. Threat pressure while resolving navigation and reach was frustrating. Later mission systems unassessed.",
+      "presentation": "Coherent restrained cyan/amber palette, rain, relay architecture and strong typography. Close surfaces sometimes dominated the view; no audio judgment.",
+      "usability": "Helpful handbook, pause map, route line, zoom, receiver checkmarks, proximity instructions and visible fresh restart. Passage finding still took repeated failed moves.",
+      "readability": "Health/ammo, objectives and touch labels were readable; small terminal detail/world signage and overlapping transient information weakened clarity."
+    }
+  },
+  "cleanup": {
+    "status": "complete",
+    "close_command": "JSON op close",
+    "helper_exit_code": 0,
+    "helper_report": {
+      "browserClosed": true,
+      "driverPid": 22195,
+      "chromePid": 22217
+    },
+    "verification_command": "ps -p 22195,22217 -o pid=,ppid=,stat=,command=",
+    "verification_result": "No rows; exit 1, both exact owned PIDs absent. No kill commands used."
+  },
+  "observations": {
+    "helpful": [
+      {
+        "moment": "Opening guard, both attempts",
+        "detail": "Centered enemy, amber optic and immediate induction hint made held FIRE understandable; enemy disappeared after firing."
+      },
+      {
+        "moment": "Mara final approach",
+        "detail": "Explicit outside-reach distance and HOLD USE slow movement enabled small two-contact corrections; attempt 2 recovery was earlier and with more health."
+      },
+      {
+        "moment": "Planning maps",
+        "detail": "Paused route line, receiver selection, completed check marks, YOU arrow and local zoom helped correct overshoot and locate a path around cover."
+      },
+      {
+        "moment": "Attempt 2 heart",
+        "detail": "Backing off a blocking surface, crossing around it, then dash and centered held fire was a satisfying successful sequence."
+      },
+      {
+        "moment": "Presentation",
+        "detail": "Cyan/amber accents, rainy relay setting, large SOULFALL title, strong headings and legible large touch labels establish a coherent mood."
+      }
+    ],
+    "frustrating": [
+      {
+        "moment": "Patrol aiming",
+        "detail": "Small enemies remained difficult to align with FIRE-drag, particularly while moving. Corrections consumed ammunition and exposure time; attempts ended at 8% and 14% accuracy. This is observed reviewer difficulty, not proof of a broken control."
+      },
+      {
+        "moment": "North passage",
+        "detail": "Repeated close wall/cover views obscured orientation. Route line and north-opening hint did not immediately translate into a clear ground-level passage. Jump attempt gave no obvious solution."
+      },
+      {
+        "moment": "Receiver exposure",
+        "detail": "Being almost in range while taking fire felt punishing, particularly the 0.2m miss in attempt 1 and 1.8m miss near death in attempt 2."
+      },
+      {
+        "moment": "HUD readability",
+        "detail": "Large health/ammo and button labels read well at 844x390, but compass, terminal accuracy line and some world signage are small. Simultaneous threat banners, objective markers and controls compete with the scene."
+      }
+    ],
+    "settings_changes": [],
+    "not_covered": [
+      "Elian recovery",
+      "jammer coils/firing windows",
+      "uplink upload/extraction",
+      "checkpoint retry",
+      "tools submenu, swap, crouch, run and AIM button",
+      "recovered-memory reader",
+      "settings menus",
+      "full tactical handbook"
+    ],
+    "assessment_boundary": "Only observed opening/receiver combat and navigation are assessed. No inferred enjoyment of later content."
+  },
+  "limitations": [
+    "Synthetic native touch emulation in landscape Chromium 844x390; not a physical-device certification.",
+    "Software-WebGL fallback enabled by helper; hardware performance and frame pacing unassessed.",
+    "Captures inspected between actions and generally auto-paused mission. This provides substantial planning time and prevents judging continuous enjoyment, ordinary reaction load, or sustained touch comfort.",
+    "Some live damage may occur during screenshot/pause transition.",
+    "Physical phones, Safari, audio and continuous enjoyment remain unassessed.",
+    "Frozen source SHA supplied by task only; not verified because source and target metadata inspection prohibited. BUILD 84 visibly matched expected title."
+  ],
+  "raw_evidence": {
+    "directory": "docs/media/build84-mobile-review1",
+    "actions_log": "docs/media/build84-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build84-mobile-review1/attempt1-cross.jpg",
+      "docs/media/build84-mobile-review1/attempt1-dash-fight.jpg",
+      "docs/media/build84-mobile-review1/attempt1-forward.jpg",
+      "docs/media/build84-mobile-review1/attempt1-guard.jpg",
+      "docs/media/build84-mobile-review1/attempt1-heart-fight.jpg",
+      "docs/media/build84-mobile-review1/attempt1-left.jpg",
+      "docs/media/build84-mobile-review1/attempt1-map.jpg",
+      "docs/media/build84-mobile-review1/attempt1-map2.jpg",
+      "docs/media/build84-mobile-review1/attempt1-map3.jpg",
+      "docs/media/build84-mobile-review1/attempt1-receiver-approach.jpg",
+      "docs/media/build84-mobile-review1/attempt1-recover.jpg",
+      "docs/media/build84-mobile-review1/attempt1-sera.jpg",
+      "docs/media/build84-mobile-review1/attempt1-start.jpg",
+      "docs/media/build84-mobile-review1/attempt1-use.jpg",
+      "docs/media/build84-mobile-review1/attempt1-westlane.jpg",
+      "docs/media/build84-mobile-review1/attempt2-around-cover.jpg",
+      "docs/media/build84-mobile-review1/attempt2-cross-north.jpg",
+      "docs/media/build84-mobile-review1/attempt2-east-map.jpg",
+      "docs/media/build84-mobile-review1/attempt2-elian-approach.jpg",
+      "docs/media/build84-mobile-review1/attempt2-elian-use.jpg",
+      "docs/media/build84-mobile-review1/attempt2-heart-map.jpg",
+      "docs/media/build84-mobile-review1/attempt2-map-local.jpg",
+      "docs/media/build84-mobile-review1/attempt2-map-stuck.jpg",
+      "docs/media/build84-mobile-review1/attempt2-mara-lane.jpg",
+      "docs/media/build84-mobile-review1/attempt2-mara-near.jpg",
+      "docs/media/build84-mobile-review1/attempt2-mara-use.jpg",
+      "docs/media/build84-mobile-review1/attempt2-north-opening.jpg",
+      "docs/media/build84-mobile-review1/attempt2-opening-wall.jpg",
+      "docs/media/build84-mobile-review1/attempt2-patrol-aim.jpg",
+      "docs/media/build84-mobile-review1/attempt2-patrol-burst.jpg",
+      "docs/media/build84-mobile-review1/attempt2-patrol-correction.jpg",
+      "docs/media/build84-mobile-review1/attempt2-sentinel-east.jpg",
+      "docs/media/build84-mobile-review1/attempt2-sera-use.jpg",
+      "docs/media/build84-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build84-mobile-review1/attempt2-vault.jpg",
+      "docs/media/build84-mobile-review1/attempt2-warden.jpg",
+      "docs/media/build84-mobile-review1/attempt2-west-approach.jpg",
+      "docs/media/build84-mobile-review1/how-to.jpg",
+      "docs/media/build84-mobile-review1/initial-menu.jpg"
+    ],
+    "first_terminal": "docs/media/build84-mobile-review1/attempt1-sera.jpg",
+    "second_terminal": "docs/media/build84-mobile-review1/attempt2-elian-use.jpg"
+  },
+  "compliance": {
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "game_source_tests_docs_prior_reviews_recordings_internal_state_read": false,
+    "helper_learning": "Only tools/mobile-playtest.mjs --help read",
+    "other_edits": "Only owned report and helper evidence/logs",
+    "agents_spawned": 0,
+    "builds_commits_publication_server_changes": false,
+    "all_captures_viewed_before_adaptive_input": true
+  }
+}
