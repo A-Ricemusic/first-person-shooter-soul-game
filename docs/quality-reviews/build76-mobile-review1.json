@@ -1,0 +1,231 @@
+{
+  "review": "Independent mobile visible-play review of SOULFALL Build76",
+  "attempts": 1,
+  "url": "http://127.0.0.1:61472/",
+  "method": {
+    "viewport_css": {
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "input": "Authorized mobile-playtest helper, native Chromium CDP touch only, maximum two contacts; no keyboard or mouse.",
+    "inspection": "Screenshots inspected before adaptive inputs. Visible handbook, HUD, map and terminal UI only; no source, tests, docs, earlier reviews, hidden state, game handles, test URL or arbitrary evaluation.",
+    "conditions": "Synthetic paused phone emulation. Each live action captured the scene and paused; the map also paused play. Software-WebGL fallback enabled; renderer not certified. Screenshot scale 3.",
+    "unassessed": [
+      "Physical-phone performance",
+      "Safari",
+      "Audio",
+      "Human enjoyment",
+      "Uninterrupted real-time touch ergonomics"
+    ]
+  },
+  "scale": {
+    "range": "0-10",
+    "anchors": {
+      "0": "Unusable or absent",
+      "2": "Severely impaired",
+      "4": "Major friction",
+      "6": "Functional with noticeable friction",
+      "8": "Strong with minor friction",
+      "10": "Exceptional across tested coverage"
+    },
+    "overall_rule": "Equal-weight mean of the five category scores; subjective assessment of this observed run, not a completion or performance certification."
+  },
+  "scores": {
+    "overall_mobile": 6.4,
+    "controls": {
+      "score": 5,
+      "reason": "Movement, scene drag, fire drag, reload, dash, hold-use and vault responded. Precise positioning was difficult: short strafes overshot Mara, multiple recovery holds failed outside reach, and aim corrections consumed substantial ammunition. The run ended at 10% accuracy. These are observed difficulties for this reviewer under stepped emulation, not proof of an input defect."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "A complete loss was reachable through meaningful combat, navigation, recovery and boss decisions. All three recoveries succeeded; shield regeneration and recovery-related health increases enabled survival at low health. Custodian armor/exposure and a close-dash phase break provided visible tactical feedback. Enemy pressure punished stationary aiming and navigation detours. Extraction was not reached."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Cohesive rainy industrial setting, cyan/amber visual language, clear receiver signage, animated weapon/reload and a composed terminal screen. Scene geometry and dark silhouettes could obscure enemies and firing faces; software rendering prevents performance conclusions."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "Map paused planning and showed recovered objectives; reach messages gave actionable distances; objective transitions and terminal statistics were explicit. The route to the Heart still involved cover collisions, a failed direct north approach and a wall detour. Many right-side buttons competed with scene visibility and attention. The handbook required a native swipe to read later steps."
+    },
+    "readability": {
+      "score": 6,
+      "reason": "Main objective, health, ammo and terminal headline were readable. Map labels, coil percentages, helper text and terminal accuracy/details were small at 844x390 CSS. The two-line right-thumb FIRE drag-aim label and dense notification banners added visual load; enlarged screenshot viewing may make fine text easier than on a physical phone."
+    }
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "LOSS",
+    "visible_headlines": [
+      "OPERATOR LOST",
+      "SIGNAL LOST"
+    ],
+    "mission_time": "01:44",
+    "recoveries": 3,
+    "recovered": [
+      "Mara Solberg",
+      "Sera Nord",
+      "Elian Vale"
+    ],
+    "eliminations": 2,
+    "accuracy_percent": 10,
+    "score": 3200,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "custodian": "Broadcast coil disabled; visible status 3 OFF, 1 100%, 2 100% at 01:42. Loss followed during the next firing attempt.",
+    "extraction_completed": false,
+    "retry_used": false,
+    "time_note": "Terminal displays cumulative play time. This was exactly one fresh attempt with zero uplink retries; wall-clock review time includes pauses and is not the mission timer."
+  },
+  "observations": [
+    {
+      "fact": "Handbook initially showed only the first steps; a native swipe exposed coil and upload instructions.",
+      "evidence": "handbook-scroll.jpg"
+    },
+    {
+      "fact": "Opening guard disappeared after a 17-round forward burst; terminal later reported two total eliminations.",
+      "inference": "The opening burst killed the guard; no per-enemy kill counter was visible.",
+      "evidence": "guard-burst.jpg"
+    },
+    {
+      "fact": "Initial westward route met low cover. A left strafe plus jump and forward movement reached Mara.",
+      "evidence": [
+        "west-approach.jpg",
+        "past-cover.jpg"
+      ]
+    },
+    {
+      "fact": "Mara hold attempts failed at 1.4m and 1.0m outside reach. A forward-left adjustment followed by a stationary hold recovered her at 00:38.",
+      "evidence": [
+        "first-recovery-hold.jpg",
+        "recover-mara.jpg",
+        "receiver-adjust.jpg"
+      ]
+    },
+    {
+      "fact": "Several aim corrections missed while shield and then health fell. At 00:49 health was 27 and a perimeter-discharge warning was visible.",
+      "evidence": [
+        "archive-return-fire.jpg",
+        "aim-correction.jpg",
+        "seek-heart-route.jpg"
+      ]
+    },
+    {
+      "fact": "A vault prompt changed to ordinary JUMP after use, but further forward travel faced a wall. Eastward movement also reached a wall; turning south opened the route. Health reached 2, then shield regenerated while repositioning.",
+      "evidence": [
+        "fight-through-service.jpg",
+        "vault-route.jpg",
+        "last-route-push.jpg",
+        "south-detour.jpg"
+      ]
+    },
+    {
+      "fact": "A hold from the first Heart approach did not recover Sera; button still read 2.0m CLOSER. A short advance, burst and stationary hold recovered Sera at 01:20. Health visibly rose from 2 to 22 across this recovery.",
+      "evidence": [
+        "heart-recovery-approach.jpg",
+        "heart-hold-under-fire.jpg"
+      ]
+    },
+    {
+      "fact": "Eastward dash/run took damage; direction changed toward the archive after a visible interceptor instruction. At 0.5m outside reach, a short backward adjustment and hold recovered Elian at 01:29.",
+      "evidence": [
+        "east-archive-run.jpg",
+        "east-direction-change.jpg",
+        "east-recovery-hold.jpg"
+      ]
+    },
+    {
+      "fact": "First Custodian volley hit no registered coil damage with a pillar obstructing the view. A strafe cleared more of the face. A close dash then announced a phase break, but movement passed the firing face. Turning back and correcting aim disabled coil 3.",
+      "evidence": [
+        "custodian-first-volley.jpg",
+        "clear-coil-face.jpg",
+        "custodian-close-interrupt.jpg",
+        "close-coil-burst.jpg"
+      ]
+    },
+    {
+      "fact": "The next aim/reload/wait/fire sequence ended at the actual loss UI. No retry or new attempt followed.",
+      "evidence": "second-coil-window.jpg"
+    }
+  ],
+  "concrete_issues": [
+    {
+      "issue": "Fine receiver positioning was difficult under these touch inputs.",
+      "impact": "Multiple failed holds and exposure to enemy fire.",
+      "suggestion": "Consider a gentler low-deflection movement range or clearer receiver approach guidance.",
+      "confidence": "Observed friction; cause may include stepped-input technique."
+    },
+    {
+      "issue": "Route guidance pointed toward destinations through cover and wall geometry from several positions.",
+      "impact": "Direct movement led to collisions, overshoots and damaging detours.",
+      "suggestion": "Make the next navigable opening more visually distinct from the destination marker.",
+      "confidence": "Observed route confusion; no claim that pathfinding was broken."
+    },
+    {
+      "issue": "Small labels and percentages at this landscape size.",
+      "impact": "Map and boss-state details required close inspection.",
+      "suggestion": "Increase mobile map label and coil-status text size.",
+      "confidence": "Direct visual observation."
+    },
+    {
+      "issue": "Dense controls and notification banners occupy substantial combat space.",
+      "impact": "Reduced unobstructed view and competing visual demands during aim and movement.",
+      "suggestion": "Consider a compact mobile control layout and stronger prioritization of urgent messages.",
+      "confidence": "Direct visual observation; physical thumb occlusion was not tested."
+    }
+  ],
+  "coverage": {
+    "tested": [
+      "Fresh start",
+      "Scrollable handbook",
+      "Two-contact move/fire",
+      "Scene look",
+      "Fire drag",
+      "Reload",
+      "Dash",
+      "Jump/vault",
+      "Map planning and close",
+      "All three recovery holds",
+      "Reach failures",
+      "Damage and shield regeneration",
+      "Custodian armor/exposure",
+      "Close-dash phase break",
+      "One coil disable",
+      "Actual loss screen"
+    ],
+    "not_tested": [
+      "Win screen",
+      "Upload/extraction survival",
+      "Disabling all three coils",
+      "Retry checkpoint behavior",
+      "AIM mode",
+      "Weapon swap",
+      "Crouch",
+      "Run toggle",
+      "Settings",
+      "Audio",
+      "Portrait layout"
+    ],
+    "uncertainty": "One subjective attempt; low accuracy and navigation trouble reflect this reviewer in paused software emulation. No inference of full game completion, physical performance, or broader reliability from partial phase coverage."
+  },
+  "media_directory": "docs/media/build76-mobile-review1",
+  "cleanup": {
+    "close_command": {
+      "op": "close"
+    },
+    "driver_pid": 61601,
+    "chrome_pid": 61631,
+    "driver_closed_message": {
+      "reason": "input ended or close requested",
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "driver_exit_code": 0,
+    "ps_command": "ps -p 61601,61631 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "verified": "Exact owned driver and Chrome PIDs absent after driver exit. No unrelated processes or servers killed."
+  }
+}

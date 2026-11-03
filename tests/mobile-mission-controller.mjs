@@ -1,5 +1,5 @@
 import {canPlayerOccupy,STANDING,PLAYER_RADIUS} from '../src/movement.js';
-import {touchLookGain} from '../src/touch-input.js';
+import {touchLookGain,sceneTurnDisplacement} from '../src/touch-input.js';
 import {mobileTouch} from '../tools/mobile-touch.mjs';
 import {chromium} from '@playwright/test';
 import {writeFileSync,mkdirSync} from 'node:fs';
@@ -44,7 +44,15 @@ if(s.ammo<5&&!s.reloading)await t.tap('#touch-reload');
 const stop=recovering||(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8)||(s.cores===3&&!s.boss.length&&s.exitDistance<2.2);
 const aligned=Math.abs(delta)<.18;
 const a=target&&aligned&&!s.reloading?await t.center('#touch-fire'):{x:500,y:160};await t.down(2,a.x,a.y);
-const gain=touchLookGain(844,390);await t.move(2,Math.max(350,Math.min(820,a.x-Math.max(-1.4,Math.min(1.4,delta))/gain.x)),Math.max(70,Math.min(360,a.y-(pitch-s.pitch)/gain.y)));
+const gain=touchLookGain(844,390);let pixels=Math.max(-1.4,Math.min(1.4,delta))/gain.x;
+if(!(target&&aligned&&!s.reloading)){
+ // Invert the shared scene displacement ramp; the test still supplies exact
+ // intended angles and reads internal state. FIRE-drag remains linear.
+ const sign=Math.sign(pixels),wanted=Math.abs(pixels);let lo=0,hi=wanted;
+ for(let n=0;n<32;n++){const mid=(lo+hi)/2;if(sceneTurnDisplacement(mid,844,390)<wanted)lo=mid;else hi=mid}
+ pixels=sign*(lo+hi)/2;
+}
+await t.move(2,Math.max(350,Math.min(820,a.x-pixels)),Math.max(70,Math.min(360,a.y-(pitch-s.pitch)/gain.y)));
 const currentYaw=await p.evaluate(()=>window.__SOULFALL__.game.yaw);
 if(recovering){const u=await t.center('#touch-use');await t.down(1,u.x,u.y)}
 else if(!stop&&nav){const m=await t.center('#touch-stick');await t.down(1,m.x,m.y);const vx=nav.x-s.player.x,vz=nav.z-s.player.z,f=vx*-Math.sin(currentYaw)+vz*-Math.cos(currentYaw),r=vx*Math.cos(currentYaw)+vz*-Math.sin(currentYaw),len=Math.hypot(f,r)||1;await t.move(1,m.x+r/len*46,m.y-f/len*46)}
@@ -52,6 +60,6 @@ const travel=nav?Math.min(120,Math.max(25,Math.hypot(nav.x-s.player.x,nav.z-s.pl
 await p.waitForTimeout(recovering?1400:travel);await t.clear();steps++;
 }
 await t.clear();const final=await p.evaluate(()=>{const {facilityLayout,...s}=window.__SOULFALL__.game.captureState();return s});console.log(JSON.stringify({navigationAudit,method:'Automated real-time combat exercise; no teleport, killAll, resource changes or simulation advance. All actions use native CDP touch; exact privileged state and geometry for decisions.',steps,log,final,errors},null,2));await p.screenshot({path:process.env.CONTROLLER_IMAGE||'docs/media/build73-controller-final.png',timeout:15000});
-writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/quality-reviews/build73-mobile-controller.json',JSON.stringify({navigationAudit,method:'Exact-information automated normal controls: reads colliders, authored Custodian target metadata, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage; not independent discovery or human play. Planning uses the actual standing player occupancy predicate including low feet and1.9m clearance, half-metre nodes and swept edges. Movement is calculated after turning and released before the next observation; boss aiming waits for the known firing position.',steps,log,final,errors},null,2));
+writeFileSync(process.env.CONTROLS_OUTPUT||root+'/docs/quality-reviews/build73-mobile-controller.json',JSON.stringify({navigationAudit,method:'Exact-information automated normal controls: reads colliders, authored Custodian target metadata, player/target positions, LOS, health and goals for path/aim decisions; ordinary input only. Strong source/internal-state advantage, including inversion of the shared scene-turn ramp; not independent discovery or human play. Planning uses the actual standing player occupancy predicate including low feet and1.9m clearance, half-metre nodes and swept edges. Movement is calculated after turning and released before the next observation; boss aiming waits for the known firing position.',steps,log,final,errors},null,2));
 assert.equal(final.phase,'won','Controller must actually finish extraction');assert.equal(final.cores,3);assert.equal(final.extractionProgress,1);assert.equal(final.custodian.dead,true);assert(final.custodian.coils.every(n=>n===0));assert.equal(final.anchorRetries,0);assert.equal(final.checkpointAssisted,false);assert.deepEqual(errors,[]);
 }finally{await b.close()}

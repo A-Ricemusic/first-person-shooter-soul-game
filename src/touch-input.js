@@ -7,8 +7,17 @@ export function touchLookGain(width,height,sensitivity=1,aim=false){
  return {x:3.2/axis*factor,y:1.8/axis*factor};
 }
 
+// Integrate a bounded gain ramp over displacement. The same swipe has the
+// same result with one coalesced event or many, and reversing returns to zero.
+// Small corrections and all FIRE/AIM gestures retain the linear gain above.
+export function sceneTurnDisplacement(pixels,width,height){
+ const axis=Math.max(1,Number(width)||1,Number(height)||1),fine=.045*axis,ramp=.2*axis;
+ const distance=Math.abs(pixels),excess=Math.max(0,distance-fine),r=Math.min(excess,ramp);
+ return Math.sign(pixels)*(distance+r*r/ramp+Math.max(0,excess-ramp)*2);
+}
+
 // Each pointer owns one role until release; phase changes invalidate all ownership.
-export function installTouch(game,{map,onSensitivity}){
+export function installTouch(game,{map,onSensitivity,onFastTurns}){
  if(!game.touchMode)return;
  document.body.classList.add('touch-mode');
  const root=document.createElement('div');root.id='touch-controls';root.className='hidden';
@@ -27,7 +36,7 @@ export function installTouch(game,{map,onSensitivity}){
  function move(e){
   const p=owners.get(e.pointerId);if(!p||game.phase!=='playing')return;e.preventDefault();
   if(p.role==='move'){
-   const dx=(e.clientX-p.cx)/46,dy=(e.clientY-p.cy)/46,len=Math.hypot(dx,dy),mag=Math.min(1,Math.max(0,(len-.14)/.86));
+   const dx=(e.clientX-p.cx)/46,dy=(e.clientY-p.cy)/46,len=Math.hypot(dx,dy),mag=Math.min(1,Math.max(0,(len-.14)/.86))**1.5;
    game.touchMove.x=len?dx/len*mag:0;game.touchMove.z=len?dy/len*mag:0;
    knob.style.transform=`translate(${game.touchMove.x*36}px,${game.touchMove.z*36}px)`;
   }else{
@@ -39,6 +48,9 @@ export function installTouch(game,{map,onSensitivity}){
     if(distance>=6){p.looking=true;dx*=1-6/distance;dy*=1-6/distance}else dx=dy=0;
    }
    const gain=touchLookGain(innerWidth,innerHeight,game.options.touchSensitivity,game.aim);
+   if(p.role==='look'&&!game.aim&&game.options.fastSceneTurns!==false){
+    dx=sceneTurnDisplacement(e.clientX-p.startX,innerWidth,innerHeight)-sceneTurnDisplacement(p.x-p.startX,innerWidth,innerHeight);
+   }
    game.yaw-=dx*gain.x;
    game.pitch=Math.max(-1.44,Math.min(1.44,game.pitch-dy*gain.y));
   }
@@ -49,7 +61,7 @@ export function installTouch(game,{map,onSensitivity}){
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  root.querySelector('#touch-map').onclick=map;
  const notices=document.createElement('div');notices.id='touch-notices';notices.append(document.querySelector('#memory-card'),document.querySelector('#announcement'));document.querySelector('#hud').append(notices);
- document.querySelector('#pointer-help').textContent='Left stick moves · drag the scene or held action buttons to look · AIM gives finer control. RUN toggles sprint. Landscape recommended.';
+ document.querySelector('#pointer-help').textContent='Left stick moves · swipe RIGHT to turn right, LEFT to turn left · long scene swipes turn faster · FIRE/AIM stays precise. RUN toggles sprint. Landscape recommended.';
  const help=document.createElement('p');help.textContent='TOUCH: Left stick moves proportionally. Drag the scene outside the movement stick to look. Hold FIRE and drag the same thumb to aim while moving. AIM and RUN toggle. DASH follows the stick direction, or goes forward when the stick is centered; JUMP vaults low cover. Hold USE while entering a receiver ring or suit service. MAP pauses and selects a route. Held action buttons can also drag the view.';document.querySelector('#controls-dialog h2').after(help);
  // Keep the full tactical handbook while translating its keyboard instructions.
  for(const panel of document.querySelectorAll('#controls-dialog,#briefing-dialog')){
@@ -61,17 +73,21 @@ export function installTouch(game,{map,onSensitivity}){
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE with the left stick. Drag the scene to look; hold FIRE and drag to shoot. AIM gives finer control.', 'MAP pauses to plan. Approach each floor ring; HOLD TO RECOVER lights up when ready. Stay still and hold it.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ for(const text of ['MOVE gently for small steps. Swipe RIGHT to turn right, LEFT to turn left. Long scene swipes turn faster; FIRE-drag and AIM stay precise.', 'MAP pauses to plan. Walking shows the next clear ground step. Approach each floor ring; HOLD TO RECOVER lights up when ready. Stay still and hold it.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
  help.replaceWith(lesson);lesson.after(details);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Tap an approach · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
- document.querySelector('#route-help').closest('label').nextElementSibling.textContent='After blocked walking, marks walkable ground toward the selected destination. Tap MAP to plan. Patrols still matter.';
+ document.querySelector('#route-help').closest('label').nextElementSibling.textContent='Shows the next clear ground step while walking. Stops during aiming or firing. Tap MAP to choose a destination. Patrols still matter.';
  const setting=document.createElement('div');setting.className='touch-aim-setting';
  const label=document.createElement('label');label.htmlFor='touch-sensitivity';label.textContent='TOUCH LOOK SENSITIVITY ';
  const value=document.createElement('output');label.append(value);
  const input=document.createElement('input');input.id='touch-sensitivity';input.type='range';input.min='.25';input.max='2.5';input.step='.05';input.value=game.options.touchSensitivity||1;input.setAttribute('aria-label','Touch look sensitivity');
  const update=()=>{value.textContent=Number(input.value).toFixed(2)+'×';input.setAttribute('aria-valuetext',value.textContent)};update();
  input.oninput=()=>{update();game.options.touchSensitivity=Number(input.value);onSensitivity?.(Number(input.value));try{const s=JSON.parse(localStorage.getItem('soulfall-settings')||'{}');s.touchSensitivity=Number(input.value);localStorage.setItem('soulfall-settings',JSON.stringify(s))}catch{}};
- const note=document.createElement('p');note.className='setting-note';note.textContent='Lower for fine aim. AIM halves look speed. You can drag held action buttons to look, too.';
- setting.append(label,input,note);document.querySelector('#settings-dialog h2').after(setting);
+ const turnLabel=document.createElement('label');turnLabel.className='checkbox-label';
+ const turn=document.createElement('input');turn.id='touch-fast-turns';turn.type='checkbox';turn.checked=game.options.fastSceneTurns!==false;
+ turn.onchange=()=>{game.options.fastSceneTurns=turn.checked;onFastTurns?.(turn.checked)};
+ turnLabel.append(turn,document.createTextNode(' Faster long scene turns'));
+ const note=document.createElement('p');note.className='setting-note';note.textContent='Small corrections stay precise. Long scene swipes turn faster when enabled. FIRE-drag stays linear; AIM halves speed. Lower sensitivity for finer aim.';
+ setting.append(label,input,turnLabel,note);document.querySelector('#settings-dialog h2').after(setting);
 }

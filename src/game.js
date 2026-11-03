@@ -211,7 +211,10 @@ export class Game {
     const goal=!explicit&&!this.routeManual&&local?`core-${local.id}`:this.routeGoal;
     if(this.routeCacheGoal!==goal){this.routeCacheGoal=goal;this.routeNext=0;this.routePath=[];}
     if(this.routeHelp.goal&&this.routeHelp.goal!==goal)this.routeHelp.reset();
-    const automatic=this.options.contextualRouteHelp!==false&&this.routeHelp.remaining>0&&!this.aim&&!this.mouseDown&&!this.channelCore&&!(local&&local.distance<RECOVERY_RADIUS)&&!(serviceStatus(this).valid&&serviceStatus(this).powered&&!serviceStatus(this).spent);
+    const walkingTrace=this.touchMode&&Math.hypot(this.touchMove.x,this.touchMove.z)>.025&&!this.touchUse;
+    if(walkingTrace)this.touchRouteUntil=this.runTime+.8;
+    const mobileTrace=this.touchMode&&this.runTime<(this.touchRouteUntil||0);
+    const automatic=this.options.contextualRouteHelp!==false&&(mobileTrace||this.routeHelp.remaining>0)&&!(this.touchMode&&this.touchUse)&&!this.aim&&!this.mouseDown&&!this.channelCore&&!(local&&local.distance<RECOVERY_RADIUS)&&!(serviceStatus(this).valid&&serviceStatus(this).powered&&!serviceStatus(this).spent);
     if(this.phase!=='playing'||(!explicit&&!automatic))return;
     if(this.vault||this.dashTime>0||profileOf(this).eyeHeight<1.7-1e-6||!this.grounded||Math.abs(feetY(this.player,profileOf(this)))>.025){this.routeStatus='Return to floor for ground trace';return;}
     if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,goal,this.grounded,profileOf(this));this.routeNext=this.runTime+.35;}
@@ -222,7 +225,7 @@ export class Game {
     if(automatic){
       const to=path.slice(join).find(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)>.5);
       if(to&&this.playerRoute.clear(this.player,to)){
-        const d=Math.hypot(to.x-this.player.x,to.z-this.player.z),t=Math.min(1,2/d);
+        const d=Math.hypot(to.x-this.player.x,to.z-this.player.z),t=Math.min(1,(this.touchMode?5:2)/d);
         this.routeWaypoint={x:this.player.x+(to.x-this.player.x)*t,z:this.player.z+(to.z-this.player.z)*t,goal,label:goal.startsWith('core-')?CORE_SITES[Number(goal.split('-')[1])].name:goal==='custodian'?'CUSTODIAN':'EXTRACTION'};
       }
     }
@@ -235,6 +238,7 @@ export class Game {
       spacing=.45;remaining-=limit;from=to;
     }
     a.needsUpdate=true;this.routeTrace.geometry.setDrawRange(0,count);this.routeTrace.visible=count>0;
+    this.routeTrace.material.opacity=this.touchMode&&!walkingTrace&&this.routeHelp.remaining<=0?.72*Math.min(1,Math.max(0,(this.touchRouteUntil-this.runTime)/.8)):.72;
   }
 
   bindInput() {
@@ -372,7 +376,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();

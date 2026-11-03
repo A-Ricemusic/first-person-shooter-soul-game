@@ -1,0 +1,205 @@
+{
+  "build": "SOULFALL Build76",
+  "reviewer": "Independent mobile review sub-agent",
+  "date": "2026-11-03",
+  "url": "http://127.0.0.1:61472/",
+  "method": {
+    "attempts": 1,
+    "fresh_attempt": true,
+    "viewport_css": {
+      "width": 390,
+      "height": 844
+    },
+    "orientation": "portrait",
+    "input": "Authorized mobile-playtest helper; native CDP touches only, maximum two contacts",
+    "inspection": "Actual screenshots inspected before adaptive inputs; visible handbook, HUD and map only",
+    "environment": "Synthetic paused Chromium phone emulation with software WebGL fallback; renderer not certified",
+    "pausing": "Each action captured the live scene then paused; map planning paused mission; Resume and Close Map used visibly",
+    "prohibited_access_used": false,
+    "unassessed": [
+      "Physical-phone performance",
+      "Safari",
+      "Audio",
+      "Human enjoyment"
+    ]
+  },
+  "scale": {
+    "range": "0\u201310",
+    "anchors": {
+      "0": "Unusable or wholly unsuccessful within observed coverage",
+      "5": "Functional with substantial friction",
+      "10": "Exceptional with no meaningful observed friction"
+    },
+    "scope": "Subjective assessment of this single observed attempt, not a completion rating or physical-device certification"
+  },
+  "scores": {
+    "overall_mobile": {
+      "score": 6,
+      "reason": "Readable, polished mobile shell and working touch combat/recovery, but navigation around cover and turning under attack dominated this short loss. Limited early-game coverage."
+    },
+    "controls": {
+      "score": 6,
+      "reason": "Movement, reload, fire, scene drag, map and recovery responded. Opening burst eliminated guard. Fire drag moved heading only from 000 to 344 during an attempted right-side engagement; subsequent two scene drags reached 086. Turning while threatened required considerable input. Vault and dash were tapped, but successful traversal was not visually established."
+    },
+    "gameplay": {
+      "score": 5,
+      "reason": "The opening guard and stationary recovery gave clear immediate goals. One memory was recovered, then navigation detours under patrol fire exhausted health. This attempt did not establish whether later stages sustain the experience."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Strong restrained cyan/amber art direction, rain, relay scenery, typography and consistent menu/end-screen styling. Close dark walls and large cover faces reduced scene legibility during movement."
+    },
+    "usability": {
+      "score": 6,
+      "reason": "Native-tap handbook, paused planning map, recovery distance and terminal statistics were useful. Repeated map checks were needed to escape geometry; the map contained small labels and the Heart route hint named entrances without making the route immediately obvious to this reviewer."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Objective, health, ammunition, handbook and loss statistics were readable at 390x844. Tiny map labels, compass text, low-contrast geometry and offscreen path cues required closer inspection. Controls occupy much of the lower portrait view."
+    }
+  },
+  "outcome": {
+    "terminal": true,
+    "result": "LOSS",
+    "visible_title": "OPERATOR LOST / SIGNAL LOST",
+    "mission_time": "00:53",
+    "recoveries": 1,
+    "recovered_names": [
+      "Mara Solberg \u2014 Station medic"
+    ],
+    "eliminations": 1,
+    "accuracy_percent": 15,
+    "score": 1100,
+    "critical_eliminations": 0,
+    "phase_evades": 0,
+    "uplink_retries": 0,
+    "terminal_evidence": "docs/media/build76-mobile-review2/south-intake-detour.jpg",
+    "completion_claim": "Actual loss screen reached; mission not completed; no retry"
+  },
+  "observations": [
+    {
+      "fact": "Opening 1.8-second fire hold removed the guard from the next scene; end screen reported one elimination.",
+      "evidence": [
+        "deploy.jpg",
+        "guard-fire.jpg",
+        "south-intake-detour.jpg"
+      ]
+    },
+    {
+      "fact": "Five seconds of forward movement left West Archive distance at 29 m and essentially the same scene; later map showed player at central cover.",
+      "inference": "Movement was obstructed by cover, rather than necessarily unresponsive touch.",
+      "evidence": [
+        "west-approach.jpg",
+        "west-lane.jpg",
+        "map-position.jpg"
+      ]
+    },
+    {
+      "fact": "Recovery prompt progressed from 2.8 m closer to 1.0 m outside reach; another short movement and stationary hold recovered Mara. No failed recovery hold was observed.",
+      "evidence": [
+        "archive-ring-approach.jpg",
+        "recovery-reach.jpg",
+        "first-recovery-hold.jpg"
+      ]
+    },
+    {
+      "fact": "Health/shield progressed from 100/60 to 100/41, 100/24, 67/0, 29/0, then loss while trying to detour.",
+      "evidence": [
+        "first-recovery-hold.jpg",
+        "heart-approach.jpg",
+        "exit-west-archive.jpg",
+        "fight-and-vault.jpg",
+        "south-intake-detour.jpg"
+      ]
+    },
+    {
+      "fact": "The later fire-and-drag burst did not produce another visible elimination; terminal accuracy was 15%. Those misses and detours remain in the action log.",
+      "inference": "My mistaken initial drag direction and route choices materially contributed to the loss; this is not proof of broken aiming or impossible difficulty.",
+      "evidence": [
+        "fight-and-vault.jpg",
+        "reposition-under-fire.jpg",
+        "south-intake-detour.jpg"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "issue": "Obstacle and route legibility",
+      "observed": "Several movement holds ended against nearly featureless wall/cover faces. The map was necessary to reinterpret position repeatedly.",
+      "suggestion": "Improve close-cover edge contrast and make entrance/path guidance more spatially explicit.",
+      "evidence": [
+        "west-lane.jpg",
+        "around-entry-cover.jpg",
+        "heart-approach.jpg",
+        "reposition-under-fire.jpg"
+      ]
+    },
+    {
+      "severity": "medium",
+      "issue": "Learning touch turning under pressure",
+      "observed": "My fire drag turned away from the right-side patrol; two large scene drags then turned about 102 degrees. I took heavy damage during the sequence.",
+      "suggestion": "Make drag direction/sensitivity clearer in the touch tutorial, potentially with a safe turning demonstration.",
+      "uncertainty": "One novice emulated attempt cannot establish ideal sensitivity or physical-thumb behavior."
+    },
+    {
+      "severity": "low",
+      "issue": "Portrait information density",
+      "observed": "The tactical map has small labels; many lower-screen buttons surround the weapon and nearby geometry.",
+      "suggestion": "Consider larger map labels or a zoom option and optional touch layout sizing."
+    }
+  ],
+  "coverage": {
+    "observed": [
+      "Title and how-to dialog",
+      "Deployment",
+      "Opening guard combat",
+      "Reload",
+      "Joystick movement and collision detours",
+      "Fire drag and scene drag",
+      "Paused map planning",
+      "One successful stationary recovery",
+      "Vault and dash input attempts",
+      "Damage feedback",
+      "Actual terminal loss screen"
+    ],
+    "not_reached": [
+      "Elian recovery",
+      "Sera recovery",
+      "Numbered coil/jammer combat",
+      "Uplink upload",
+      "Win screen"
+    ],
+    "uncertainties": [
+      "Vault traversal success was not visually established",
+      "No comparison to other builds or reviews",
+      "Single short attempt cannot establish balance or complete-game quality",
+      "Screenshot pauses and software rendering differ materially from continuous physical-phone play"
+    ]
+  },
+  "artifacts": {
+    "directory": "docs/media/build76-mobile-review2",
+    "action_log": "docs/media/build76-mobile-review2/actions.jsonl",
+    "screenshots": 19,
+    "retention": "All attempt screenshots, misses, detours and native-input timings retained"
+  },
+  "cleanup": {
+    "close_command": {
+      "op": "close"
+    },
+    "closed_event": {
+      "reason": "input ended or close requested",
+      "driverPid": 1288,
+      "chromePid": 1319,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "awaited_driver_exit": true,
+    "driver_exit_code": 0,
+    "verification_command": "ps -p 1288,1319 -o pid=,ppid=,command=",
+    "verification_exit_code": 1,
+    "verification_output": "",
+    "exact_owned_pids_absent": true,
+    "unrelated_processes_or_servers_killed": false
+  }
+}
