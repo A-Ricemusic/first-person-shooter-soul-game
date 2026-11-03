@@ -1,0 +1,120 @@
+{
+  "reviewer": "build73-mobile-review2",
+  "platform": "MOBILE",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "orientation": "portrait"
+  },
+  "url": "http://127.0.0.1:5173/",
+  "ratings": {
+    "overall": 5.5,
+    "controls": 6,
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 3.5,
+    "readability": 5
+  },
+  "reasons": {
+    "overall": "Atmospheric and playable enough to recover all memories, but portrait map failure and crowded information materially interrupt mobile play.",
+    "controls": "Held fire, movement, USE, reload, jump and DASH responded. Precise touch aiming required substantial corrections; my low accuracy is a reviewer limitation as well as evidence of the challenge.",
+    "gameplay": "Recovery rewards and phase-break feedback support progress. Patrol pressure remained dangerous while navigating, culminating in a legitimate loss. Boss combat was not meaningfully tested.",
+    "presentation": "Strong title, lighting, rain and cohesive cyan/amber industrial setting. Tall plain surfaces dominate when close to cover.",
+    "usability": "Map opened largely offscreen and its normal close control could not be reached with supplied transport. Recovery required a fresh session. Receiver distance prompts were useful.",
+    "readability": "Main health, ammo and buttons readable. Small tracked text and contextual notices compete; service hints overlap health/controls and boss/cache notices overlap at three-memory transition."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "blocked_nonterminal",
+      "terminal": false,
+      "missionTime": "00:19",
+      "kills": 1,
+      "memories": 0,
+      "actions": "Read visible handbook; deployed; held FIRE to eliminate induction guard; reloaded; moved west; jumped low service grate; looked and navigated toward archive; opened MAP; attempted native swipe and CLOSE MAP.",
+      "blocker": "Map rendered above and left of viewport, CLOSE MAP unreachable. Driver command error: Target outside viewport; scroll with native down/move/up gesture before tapping",
+      "evidence": [
+        "docs/media/build73-mobile-review2/map1.jpg",
+        "docs/media/build73-mobile-review2/map-scroll.jpg"
+      ],
+      "recovery": "Explicit close, waited for exit code 0, ps -p 73311,73325 returned no processes (exit 1). Relaunched normal URL at same portrait size in distinct prefix. Parent Pause-button recovery hint arrived after this driver had already closed and was not used."
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "terminal": true,
+      "missionTime": "01:23",
+      "kills": 1,
+      "memories": 3,
+      "score": 3100,
+      "accuracy": "5%",
+      "uplinkRetries": 0,
+      "actions": "Killed induction guard with held FIRE; reload; flank via west triage; DASH canceled discharge; corrected position using outside-reach prompt and held USE to recover Mara. Navigated back through exit and across courtyard. Recovered Elian with DASH/USE, then Sera with DASH and movement/USE. Attempted to advance toward Custodian; patrol pressure killed suit before meaningful coil combat.",
+      "evidence": [
+        "docs/media/build73-mobile-review2-attempt2/recover-mara.jpg",
+        "docs/media/build73-mobile-review2-attempt2/elian-approach.jpg",
+        "docs/media/build73-mobile-review2-attempt2/heart-push.jpg",
+        "docs/media/build73-mobile-review2-attempt2/custodian-route.jpg"
+      ],
+      "closure": "Explicit close, waited for exit code 0, ps -p 77410,77420 returned no processes (exit 1)."
+    }
+  ],
+  "coverage": {
+    "sessions": 2,
+    "actualTerminalOutcomes": 1,
+    "requiredTwoTerminalAttemptsSatisfied": false,
+    "reason": "First run blocked in portrait planning UI; authorized transport recovery used. No third run.",
+    "tested": [
+      "title",
+      "handbook",
+      "native movement and look",
+      "held fire and fire-drag",
+      "reload",
+      "jump",
+      "DASH interrupt",
+      "three memory interactions",
+      "map open and failed close",
+      "death summary"
+    ],
+    "untested": [
+      "meaningful Custodian coil combat",
+      "extraction",
+      "suit service",
+      "shotgun",
+      "crouch",
+      "settings",
+      "successful win"
+    ]
+  },
+  "actionableIssues": [
+    {
+      "priority": "high",
+      "issue": "Portrait map partly offscreen; close and header outside viewport",
+      "action": "Constrain and center map to portrait visual viewport; keep Close Map reachable and verify native touch scrolling.",
+      "evidence": "docs/media/build73-mobile-review2/map1.jpg"
+    },
+    {
+      "priority": "medium",
+      "issue": "Contextual service hints overlap health and controls",
+      "action": "Reserve a portrait prompt lane above touch controls; avoid health/ammo overlap.",
+      "evidence": "docs/media/build73-mobile-review2/west-walk.jpg"
+    },
+    {
+      "priority": "medium",
+      "issue": "Three-memory cache announcement, memory card and boss panel overlap",
+      "action": "Queue notices or allocate separate portrait slots.",
+      "evidence": "docs/media/build73-mobile-review2-attempt2/heart-push.jpg"
+    }
+  ],
+  "limitations": [
+    "Emulated mobile Chromium with software graphics; not physical phone or Safari certification.",
+    "Pause-assisted screenshots and discrete native touch actions; no performance, audio or human-feel certification.",
+    "Exactly two sessions; first blocked nonterminal and second actual loss. No third attempt.",
+    "Navigation and aim mistakes preserved; 5% accuracy should not be treated as a controlled balance measurement.",
+    "Only normal URL and visible UI text/geometry used; no source, hidden state, tests or other reviews read."
+  ],
+  "logs": [
+    "docs/media/build73-mobile-review2/actions.jsonl",
+    "docs/media/build73-mobile-review2-attempt2/actions.jsonl"
+  ]
+}

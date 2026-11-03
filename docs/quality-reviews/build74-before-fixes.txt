@@ -1,0 +1,109 @@
+{
+  "method": "Mobile Chromium emulation, native touch. Tests inspect visible DOM/storage and count hidden-canvas drawing. Only the end-state fixture uses a privileged finish call; no mission victory is implied.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [],
+      "failures": [
+        {
+          "name": "hidden mobile radar is not painted",
+          "error": "Expected values to be strictly equal:\n\n10 !== 0\n"
+        },
+        {
+          "name": "map close and route buttons fit without helper scroll",
+          "error": "#close-map must be entirely in the viewport, without automatic scrolling: {\"x\":327.578125,\"y\":-166,\"width\":81.421875,\"height\":44}"
+        },
+        {
+          "name": "fresh restart action fits on the initial loss screen",
+          "error": "#play-again must be entirely in the viewport, without automatic scrolling: {\"x\":178,\"y\":441.578125,\"width\":488,\"height\":44}"
+        },
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "Apply & Close must retain touch sensitivity\n+ actual - expected\n\n+ undefined\n- 0.85\n"
+        }
+      ],
+      "radarPaints": 10
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "fresh restart action fits on the initial loss screen"
+      ],
+      "failures": [
+        {
+          "name": "hidden mobile radar is not painted",
+          "error": "Expected values to be strictly equal:\n\n10 !== 0\n"
+        },
+        {
+          "name": "map close and route buttons fit without helper scroll",
+          "error": "#close-map must be entirely in the viewport, without automatic scrolling: {\"x\":100.578125,\"y\":-393,\"width\":81.421875,\"height\":44}"
+        },
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "Apply & Close must retain touch sensitivity\n+ actual - expected\n\n+ undefined\n- 0.85\n"
+        }
+      ],
+      "radarPaints": 10
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [],
+      "failures": [
+        {
+          "name": "hidden mobile radar is not painted",
+          "error": "Expected values to be strictly equal:\n\n11 !== 0\n"
+        },
+        {
+          "name": "map close and route buttons fit without helper scroll",
+          "error": "#close-map must be entirely in the viewport, without automatic scrolling: {\"x\":239.078125,\"y\":-158.5,\"width\":81.421875,\"height\":44}"
+        },
+        {
+          "name": "fresh restart action fits on the initial loss screen",
+          "error": "#play-again must be entirely in the viewport, without automatic scrolling: {\"x\":89.5,\"y\":418.046875,\"width\":488,\"height\":44}"
+        },
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "Apply & Close must retain touch sensitivity\n+ actual - expected\n\n+ undefined\n- 0.85\n"
+        }
+      ],
+      "radarPaints": 11
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [],
+      "failures": [
+        {
+          "name": "hidden mobile radar is not painted",
+          "error": "Expected values to be strictly equal:\n\n10 !== 0\n"
+        },
+        {
+          "name": "map close and route buttons fit without helper scroll",
+          "error": "#close-map must be entirely in the viewport, without automatic scrolling: {\"x\":363.078125,\"y\":-177,\"width\":81.421875,\"height\":44}"
+        },
+        {
+          "name": "fresh restart action fits on the initial loss screen",
+          "error": "#play-again must be entirely in the viewport, without automatic scrolling: {\"x\":213.5,\"y\":441.578125,\"width\":488,\"height\":44}"
+        },
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "Apply & Close must retain touch sensitivity\n+ actual - expected\n\n+ undefined\n- 0.85\n"
+        }
+      ],
+      "radarPaints": 10
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

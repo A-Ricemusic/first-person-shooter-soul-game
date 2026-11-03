@@ -1,0 +1,168 @@
+{
+  "reviewer": "build73-mobile-review1",
+  "build": 73,
+  "url": "http://127.0.0.1:5173/",
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "method": "Native Chromium touch emulation; software WebGL; pause-assisted screenshots. Not physical-device performance or human-feel evidence.",
+  "completion": "Completed exactly two actual terminal attempts, both losses. Parent authorized new normal browser session for attempt2 after supplied driver blocked end-menu scrolling.",
+  "ratings": {
+    "overall_mobile": 4,
+    "controls": 6,
+    "gameplay": 5,
+    "presentation": 7,
+    "usability": 2,
+    "readability": 5
+  },
+  "rating_reasons": {
+    "overall_mobile": "Attractive FPS with usable touch movement, firing and receiver interactions; two memories recovered on second attempt. Offscreen map and restart controls materially undermine landscape usability.",
+    "controls": "Movement, fire, reload and jump responded; aim and movement coordination remained difficult for this reviewer. No physical-thumb ergonomics claim.",
+    "gameplay": "Memory recovery gives tangible health/ammo relief and second run progressed substantially farther. Patrol pressure punished navigation mistakes; boss and final balance untested.",
+    "presentation": "Strong rainy station atmosphere, weapon silhouette and consistent cyan/amber language.",
+    "usability": "Map close control and terminal restart outside 844x390 viewport. Map recoverable via pause; end screen not recoverable using supplied touch driver.",
+    "readability": "Health/ammo and objective labels readable; small instruction/HUD text and clipped panels reduce useful landscape information."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "00:34",
+      "eliminations": 1,
+      "score": 100,
+      "accuracy_percent": 16,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "uplink_retries": 0,
+      "memories_recovered": 0,
+      "observations": "Held FIRE to kill induction guard. Reloaded, advanced toward west archive; repeatedly met rail/wall geometry. Tried jump and lateral movement. Opened map, recovered via visible pause button, resumed movement and attempted aim/fire escape before death.",
+      "recoveries": [
+        "Reload restored 30 rounds from 6.",
+        "Visible top-right pause button dismissed planning view into pause; Resume restored play."
+      ],
+      "mistakes": [
+        "Tried act on menu; rejected.",
+        "Approached west archive too directly and met cover/walls.",
+        "Did not successfully turn and address flanking attackers before death."
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "OPERATOR LOST",
+      "mission_time": "01:09",
+      "eliminations": 1,
+      "score": 2100,
+      "accuracy_percent": 7,
+      "critical_eliminations": 0,
+      "phase_evades": 0,
+      "uplink_retries": 0,
+      "memories_recovered": [
+        "MARA SOLBERG",
+        "SERA NORD"
+      ],
+      "fresh_run": "Normal title Deploy in new browser session after explicit close, exit and exact PID absence verified for prior session. Parent authorized workaround.",
+      "observations": "Flanked farther left successfully into west archive. Overshot receiver, aimed and fired unsuccessfully at sentinel, returned and recovered Mara. Shield regenerated while moving away from attackers. Moved to Heart and recovered Sera with held USE. Turned east toward final archive; met vaultable cover, attempted jump and forward movement, died from incoming fire before reaching Elian.",
+      "recoveries": [
+        "Mara restored health from38 to58 and shield to30, plus ammo.",
+        "Sera restored health58 to78 and shield60.",
+        "Reload restored rifle after near-empty magazine.",
+        "Moved away from attackers to regenerate shield."
+      ],
+      "mistakes": [
+        "Overshot receiver by several metres and spent time returning.",
+        "Fired poorly at sentinel (only one elimination total).",
+        "Moved into cover blocking direct eastward passage.",
+        "Did not eliminate warden/patrol threats before crossing exposed area."
+      ]
+    }
+  ],
+  "coverage": [
+    "Title screen",
+    "Operator handbook visible DOM text",
+    "Initial guard combat",
+    "Native left-stick forward/lateral movement",
+    "Fire hold",
+    "Reload",
+    "Jump attempt near cover",
+    "Right-side look gesture attempted just before death",
+    "West archive approach",
+    "Map opening and pause recovery",
+    "Loss screen",
+    "Restart geometry and native swipe blocker",
+    "Fresh normal browser session for second deployment",
+    "Successful right-side look",
+    "FIRE drag aim while moving",
+    "Dash activation (no phase evade credit)",
+    "Vault prompt and jump attempt",
+    "Two receiver interactions with held USE",
+    "Mara and Sera recovery and supply restoration",
+    "Shield regeneration",
+    "Heart arena",
+    "East archive approach",
+    "Second loss screen"
+  ],
+  "not_covered": [
+    "Elian recovery",
+    "Weapon swap",
+    "Aim toggle",
+    "Run toggle",
+    "Crouch",
+    "Successful dash interruption",
+    "Boss",
+    "Engineering capacitor",
+    "Suit service",
+    "Extraction",
+    "Settings"
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "title": "Landscape map largely offscreen",
+      "evidence": "map1.jpg: panel visible only in upper-left, title/routes/close unavailable. #close-map rect x327.578125 y-166 width81.421875 height44.",
+      "action": "Fit map panel and controls within landscape visual viewport; permit internal native scrolling.",
+      "recovery": "Top-right pause tap then Resume."
+    },
+    {
+      "severity": "high",
+      "title": "Loss restart below landscape viewport",
+      "evidence": "fight-escape1.jpg and START FRESH geometry y441.578125 beyond height390.",
+      "action": "Make end panel height-constrained and natively scrollable, keeping restart reachable."
+    },
+    {
+      "severity": "medium",
+      "title": "Provided touch driver blocks end-screen scrolling",
+      "evidence": "act native swipe sequence25: Action requires the playing or planning view.",
+      "action": "Allow menu/dialog/end native touch swipes; currently documented scrolling cannot be used at terminal UI."
+    },
+    {
+      "severity": "medium",
+      "title": "Near-wall navigation difficult under incoming fire",
+      "evidence": "vault1.jpg, around1.jpg, recover-map1.jpg; objective marker visible but direct path blocked.",
+      "action": "Ensure route/map is accessible and clearly indicates passages around cover.",
+      "uncertainty": "Reviewer navigation errors contributed; not established collision defect."
+    }
+  ],
+  "errors_and_limits": [
+    "Initial launch without TTY closed stdin before deployment. No driver remained in ps; relaunched with TTY.",
+    "Map capture auto-pause emitted Target outside viewport after screenshot; screenshots preserved.",
+    "Early capture beforePause health46 differed from screenshot27 because live capture can add damage.",
+    "No game source, tests, prior reports, hidden state, keyboard/mouse, or runtime changes used.",
+    "Two actual terminal losses observed; new browser session workaround required between them because end-menu scroll unsupported by supplied transport."
+  ],
+  "artifacts": "docs/media/build73-mobile-review1/ and docs/media/build73-mobile-review1-attempt2/ (screenshots and actions.jsonl)",
+  "cleanup": {
+    "close_explicit": true,
+    "process_exit_code": 0,
+    "driverPid": 29192,
+    "chromePid": 29213,
+    "ps_verification": "ps -p 29192,29213 -o pid,ppid,command returned header only, exit1; both absent",
+    "attempt2": {
+      "close_explicit": true,
+      "process_exit_code": 0,
+      "driverPid": 53536,
+      "chromePid": 53567,
+      "ps_verification": "ps -p 53536,53567 -o pid,ppid,command returned header only, exit1; both absent"
+    }
+  }
+}

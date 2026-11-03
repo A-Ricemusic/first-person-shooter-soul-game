@@ -19,7 +19,7 @@ JSON lines:
 {"op":"act","resume":true,"steps":[{"type":"down","id":1,"selector":"#touch-stick"},{"type":"move","id":1,"x":0.09,"y":0.73},{"type":"down","id":2,"selector":"#touch-fire"},{"type":"move","id":2,"x":0.8,"y":0.45},{"type":"wait","ms":500},{"type":"up","id":2}],"capture":"walk-fire"}
 {"op":"capture","label":"view"}
 {"op":"close"}
-Coordinates x/y are normalized CSS viewport coordinates (0..1). Selectors resolve visible center geometry only. Menus scroll by down/move/up swipes (use several move steps). down/move/up/cancel/tap/wait; at most two contacts. tap may use selector or coordinates. Each act releases contacts then captures LIVE before tapping Pause by default. pauseAfter:false leaves play running; screenshots can add live damage. resume:true taps visible Resume. Use #touch-map and #close-map for map. No keyboard, mouse, arbitrary evaluation, game handles or hidden state. Use FIRE hold + drag with right thumb while left moves. Each ended contact is sent individually. EOF/error/close releases all contacts; project lock and exact owned PIDs recorded. Capture metadata reports CSS and screenshot scale. Two terminal attempts means play to the actual win/loss UI twice, using play-again for a fresh second run.
+Coordinates x/y are normalized CSS viewport coordinates (0..1). Selectors resolve visible center geometry only. Menu, paused, dialog, planning and end views accept act swipes without resume:true; use several down/move/up steps to scroll. down/move/up/cancel/tap/wait; at most two contacts. tap may use selector or coordinates. Each act releases contacts then captures LIVE before tapping Pause by default. pauseAfter:false leaves play running; screenshots can add live damage. resume:true taps visible Resume. Use #touch-map and #close-map for map. No keyboard, mouse, arbitrary evaluation, game handles or hidden state. Use FIRE hold + drag with right thumb while left moves. Each ended contact is sent individually. EOF/error/close releases all contacts; project lock and exact owned PIDs recorded. Capture metadata reports CSS and screenshot scale. Two terminal attempts means play to the actual win/loss UI twice, using play-again for a fresh second run.
 `);process.exit(0)}
 const root=fileURLToPath(new URL('../',import.meta.url));
 const url=new URL(values.url);
@@ -114,7 +114,7 @@ try{
     if(!Array.isArray(command.steps)||command.steps.length>200)throw Error('steps array max200');
     if(command.capture&&!/^[a-zA-Z0-9_-]{1,80}$/.test(command.capture))throw Error('Capture label must use letters, digits, underscore or hyphen.');
     if(command.resume){const state=await ui();if(state.phase==='paused')await tap('#resume');else if(!['playing','planning'].includes(state.phase))throw new Error(`Cannot resume from visible ${state.phase}; use its normal UI.`);}
-    if(!['playing','planning'].includes((await ui()).phase))throw new Error('Action requires the playing or planning view.');
+    if(!['playing','planning','menu','paused','dialog','end'].includes((await ui()).phase))throw new Error('Touch gestures require an interactive view.');
     let timings=[],heldCapture,inputBatchMs;
     try{
      for(const action of command.steps||[]){const t=performance.now();await step(action);timings.push({action,clientMs:performance.now()-t});}
