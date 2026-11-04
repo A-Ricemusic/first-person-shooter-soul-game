@@ -1,3 +1,4 @@
+import {worldVerticalFov} from './projection.js';
 import {updateTouchVault} from './touch-vault.js';
 import {touchRifleTarget} from './touch-assist.js';
 import {touchTapTarget} from './touch-targeting.js';
@@ -90,7 +91,7 @@ export class Game {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 1.12;
     this.scene = new THREE.Scene(); this.combatFeedback=new CombatFeedback(this.scene); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
-    this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
+    this.referenceFov=75;this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
     this.world = await buildWorld(this.scene,{mobile:this.touchMode});
     this.custodian=await createCustodian(this);
     this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
@@ -312,7 +313,7 @@ export class Game {
   }
   resize() {
     const w = this.canvas.clientWidth || window.innerWidth, h = this.canvas.clientHeight || window.innerHeight;
-    this.renderer.setSize(w, h, false); this.camera.aspect = w / Math.max(1, h); this.camera.updateProjectionMatrix(); this.renderDirty=true;
+    this.renderer.setSize(w, h, false); this.camera.aspect = w / Math.max(1, h); this.camera.fov=worldVerticalFov(this.referenceFov??75,this.camera.aspect,this.touchMode);this.camera.updateProjectionMatrix(); this.renderDirty=true;
   }
 
   setSettings(options = {}) {
@@ -353,7 +354,7 @@ export class Game {
     resetService(this); this.serviceDamaged=false; this.nextWarning=0; this.coreProgress = 0; this.channelCore = null; this.extractionProgress = 0; this.extractionBuffer = 0; this.extractionWave = false; this.playerVelocity.set(0, 0, 0);
     this.damageSource=null; this.damageOrigin=null; this.runTime = 0; this.lastDamage = -100; this.dashCooldown = 0; this.dashTime = 0; this.invulnerable = 0; this.reloading = false; this.fireTimer = 0; this.velocityY = 0; this.grounded = true; this.vault=null;
     this.aimBlend = 0; this.recoil = 0; this.kick = 0; this.stepDistance = 0; this.footTimer = 0; this.flashTimer = 0; this.flashJustTriggered = false;
-    this.muzzle.visible = false; this.flashLight.intensity = 0; this.camera.fov = 75;
+    this.muzzle.visible = false; this.flashLight.intensity = 0; this.referenceFov=75;this.camera.fov=worldVerticalFov(75,this.camera.aspect,this.touchMode);this.camera.updateProjectionMatrix();
     this.player.copy(this.world.playerSpawn); this.player.y = 1.7; this.profile=STANDING; this.crouchRequested=false; this.standBlocked=false;
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = 0;
     this.coreNodes.forEach(core => { core.collected = false; core.group.visible = true; this.world.setCoreState?.(core.id, false); });
@@ -938,7 +939,7 @@ export class Game {
     const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
     this.syncCamera();
     const desiredFov = this.aim && !this.reloading && !this.vault ? 56 : this.dashTime > 0 ? 86 : 75;
-    this.camera.fov = THREE.MathUtils.damp(this.camera.fov, desiredFov, 12, dt); this.camera.updateProjectionMatrix();
+    this.referenceFov=THREE.MathUtils.damp(this.referenceFov??75,desiredFov,12,dt);this.camera.fov=worldVerticalFov(this.referenceFov,this.camera.aspect,this.touchMode);this.camera.updateProjectionMatrix();
     this.weapon.visible = !['ready', 'won', 'lost'].includes(this.phase);
     const ads = this.aimBlend;
     const progress=this.reloading?1-this.reloadTimer/1.65:0;

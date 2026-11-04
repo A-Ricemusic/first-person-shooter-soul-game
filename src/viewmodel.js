@@ -16,7 +16,7 @@ export function poseHandling(g,{ads,progress,bob}){
  for(const [side,x,y,z] of [['Support',-.27,-.34,-.06],['Grip',.23,-.36,.10]]){
   const sleeve=g.handsAsset?.getObjectByName(side+'Sleeve'),anchor=g.handsAsset?.getObjectByName(side+'Wrist');
   if(!sleeve||!anchor)continue;
-  g.handsAsset.updateWorldMatrix(true,true);anchor.getWorldPosition(wrist);g.handsAsset.worldToLocal(wrist);elbow.set(x,y,z);direction.copy(wrist).sub(elbow);
+  g.handsAsset.updateWorldMatrix(true,true);anchor.getWorldPosition(wrist);g.handsAsset.worldToLocal(wrist);elbow.set(x,g.touchMode&&g.camera.aspect<1?Math.min(y,-.62):y,z);direction.copy(wrist).sub(elbow);
   sleeve.position.copy(elbow);sleeve.quaternion.setFromUnitVectors(up,direction.clone().normalize());sleeve.scale.set(1,direction.length(),1);
  }
 }

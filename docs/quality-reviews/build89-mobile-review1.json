@@ -1,0 +1,239 @@
+{
+  "status": "complete",
+  "buildObserved": "BUILD 89",
+  "sourceFreezeProvided": "f8873e2f7d349f24d254c5ad27f8097161adf92c",
+  "sourceInspected": false,
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61485/",
+  "method": "Visible-only native two-contact touch in synthetic paused Chromium, software WebGL. Every screenshot viewed before adaptive input. No settings changed.",
+  "limitations": [
+    "Captures pause play for inspection",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Synthetic native-touch emulation is not a physical-device certification",
+    "Software-WebGL fallback enabled by helper; hardware frame rate, latency and thermal behavior unassessed",
+    "Inspection pauses materially reduce continuous cognitive/time pressure; resumed capture can still incur damage",
+    "No claim about enjoyment of unplayed jammer destruction, upload, win, or memory prose"
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "terminal": "OPERATOR LOST / SIGNAL LOST",
+      "missionTime": "00:50",
+      "eliminations": 5,
+      "score": 2820,
+      "accuracyPercent": 19,
+      "criticalEliminations": 4,
+      "phaseEvades": 0,
+      "uplinkRetries": 0,
+      "assistedShots": 4,
+      "tapAims": 3,
+      "approachAssists": 2,
+      "autoVaults": 1,
+      "recovered": [
+        "Mara Solberg",
+        "Sera Nord"
+      ],
+      "coverage": [
+        "Opening guard",
+        "West triage",
+        "Heart relay",
+        "Overview planning map",
+        "Tap aim and held fire",
+        "Two-contact strafe/fire",
+        "Approach assist",
+        "Dash escape attempted"
+      ],
+      "failures": [
+        "Initial swipe went opposite intended direction",
+        "Walked into large sign/cover; wall-filled views obscured orientation",
+        "Lost shield while recovering Mara",
+        "Strafe/fire led into wall; escape and Sera recovery under fire left almost no health",
+        "Died trying eastward escape"
+      ],
+      "uncertainties": [
+        "Dash attempt effectiveness not established; terminal reports zero phase evades",
+        "No jammer or upload coverage"
+      ],
+      "evidence": "docs/media/build89-mobile-review1/attempt1-east-escape.jpg"
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "freshMethod": "Visible START FRESH after first terminal, sequence 19; opening timer 00:00 and health/shield/ammo 100/60/30",
+      "terminal": "OPERATOR LOST / SIGNAL LOST",
+      "missionTime": "00:44",
+      "eliminations": 3,
+      "score": 3455,
+      "accuracyPercent": 19,
+      "criticalEliminations": 1,
+      "phaseEvades": 1,
+      "uplinkRetries": 0,
+      "tapAims": 4,
+      "approachAssists": 1,
+      "autoVaults": 1,
+      "assistedShots": "Not displayed on terminal screen; do not infer a count",
+      "recovered": [
+        "Mara Solberg",
+        "Elian Vale",
+        "Sera Nord"
+      ],
+      "coverage": [
+        "Opening guard with simultaneous movement/fire",
+        "West triage, Heart relay and East archive",
+        "Direct hold-to-recover and approach assist",
+        "Tap aim at drone and warden",
+        "Manual reload",
+        "Overview Custodian approach map; visibly closed",
+        "Armored Custodian phase, three coils displayed at 100%",
+        "Dash with visible PHASE EVADE +75"
+      ],
+      "failures": [
+        "Close drone and additional patrols remained difficult to keep in view",
+        "Mara pillar blocked attempted movement until eastward reposition",
+        "During route to Custodian, shield and health collapsed under offscreen attacks",
+        "Reached 6 health after phase evade; next resumed tap reached terminal before planned fire/movement, which helper skipped"
+      ],
+      "uncertainties": [
+        "Did not destroy any coil; all last visible percentages 100%",
+        "No exposed cyan firing window assessed",
+        "Did not reach upload or win",
+        "Cannot confirm which enemy delivered final hit"
+      ],
+      "evidence": "docs/media/build89-mobile-review1/attempt2-final-defense.jpg"
+    }
+  ],
+  "learningForAttempt2": "Use learned swipe direction, shorter route steps, avoid prolonged wall contact, prioritize firing at nearby threats and approach quickly when in range.",
+  "cleanup": {
+    "status": "complete",
+    "closeCommand": {
+      "op": "close"
+    },
+    "helperExitCode": 0,
+    "closedEvent": {
+      "reason": "input ended or close requested",
+      "driverPid": 17547,
+      "chromePid": 17557,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verificationCommand": "ps -p 17547,17557 -o pid=,ppid=,stat=,command=",
+    "verificationExitCode": 1,
+    "verificationOutput": "",
+    "result": "Exact owned driver and Chrome PIDs absent; no kill used.",
+    "evidence": "docs/media/build89-mobile-review1/cleanup.json"
+  },
+  "scores": {
+    "scale": "0 unusable, 5 mixed but playable with substantial friction, 7 good with clear shortcomings, 10 exceptional in the assessed scope. Scores are holistic judgments of observed interaction, not outcome rewards or averages; unplayed content earns no assumed enjoyment.",
+    "overallMobile": 6,
+    "controls": 6,
+    "gameplay": 6,
+    "presentation": 8,
+    "usability": 6,
+    "readability": 6,
+    "reasons": {
+      "overallMobile": "Coherent atmospheric shooter with useful touch assistance, but navigation, occlusion and rear-threat management consumed much of the observed experience. The second run improved markedly through learned inputs, yet the Custodian transition overwhelmed my ability to orient and defend.",
+      "controls": "Two-contact move/fire worked, tap aim removed the initial guard reliably, contextual recovery worked, and a dash registered. Scene swipe direction/calibration took practice; dense right-side actions and aim changes while moving made threat tracking awkward. No claim that emulated input friction equals a physical touchscreen.",
+      "gameplay": "Recovery objectives and escalating encounters gave clear purpose. Successful second-run recovery of all three memories felt more manageable. Offscreen charge pressure while navigating and holding recovery was frustrating; little room remained to learn the Custodian firing windows. Neither loss alone determines this grade.",
+      "presentation": "Strong cyan/amber visual language, rainy reflective facility, distinctive relay landmark and polished title/results gave the observed area a cohesive identity. Audio unassessed.",
+      "usability": "Handbook, paused planning map, relative PATH cues, recovery prompts and explicit fresh/retry choices were helpful. Route cues did not prevent me walking into cover or losing orientation. Changing use prompts required repeated reading under pressure.",
+      "readability": "Health, ammo, objectives and large recovery/result labels were readable. Small terminal telemetry, environmental labels and stacked status/threat/recovery text were harder at 844x390. Large cover/sign surfaces sometimes filled the whole view."
+    }
+  },
+  "helpfulMoments": [
+    {
+      "evidence": "attempt1-first-fire.jpg",
+      "observation": "Tap guard then hold FIRE cleared opening threat; simple actionable onboarding."
+    },
+    {
+      "evidence": "attempt1-map.jpg",
+      "observation": "Overview route, wall/cover legend and receiver labels supported planning; map remained open until visibly closed."
+    },
+    {
+      "evidence": "attempt1-mara-approach.jpg",
+      "observation": "Hold approach recovered Mara with no precise walking alignment."
+    },
+    {
+      "evidence": "attempt2-warden-fire.jpg",
+      "observation": "Moving while firing at warden brought me into Sera recovery range with health intact."
+    },
+    {
+      "evidence": "attempt2-custodian-face.jpg",
+      "observation": "PHASE EVADE +75 provided explicit dash success feedback."
+    }
+  ],
+  "frustratingMoments": [
+    {
+      "evidence": "attempt1-forward.jpg",
+      "observation": "Close sign filled scene; forward hold had not produced a useful orientation."
+    },
+    {
+      "evidence": "attempt1-sera-near.jpg",
+      "observation": "Wall corner dominated view while rear charges continued; had to back out and strafe."
+    },
+    {
+      "evidence": "attempt2-north-exit.jpg",
+      "observation": "Receiver pillar blocked attempted onward movement after recovery."
+    },
+    {
+      "evidence": "attempt2-jammer-route.jpg",
+      "observation": "Turning and moving toward new objective left attacks out of view and rapidly depleted health. Snapshot metadata health 64 differs from screenshot 51, demonstrating live capture timing damage."
+    }
+  ],
+  "settingsChanges": [],
+  "scopeCompliance": {
+    "attemptCount": 2,
+    "bothActualTerminal": true,
+    "checkpointRetries": 0,
+    "thirdAttempt": false,
+    "sourceTestsDocsPriorReviewsRecordingsInspected": false,
+    "inspection": "Only helper --help and newly generated own screenshots; enumerated own evidence filenames for report manifest. Did not verify frozen SHA through source access.",
+    "identity": "BUILD 89 visible on title; supplied SHA recorded without independent source inspection.",
+    "input": "Native helper JSON-lines touch only; no keyboard, mouse, evaluation, internal state, alternate URL or controller. All captured screenshots viewed before adaptive input.",
+    "planningMaps": "Each opened map visibly closed with #close-map before further gameplay."
+  },
+  "rawEvidence": {
+    "directory": "docs/media/build89-mobile-review1",
+    "log": "docs/media/build89-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build89-mobile-review1/attempt1-clear-wall.jpg",
+      "docs/media/build89-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build89-mobile-review1/attempt1-east-escape.jpg",
+      "docs/media/build89-mobile-review1/attempt1-escape.jpg",
+      "docs/media/build89-mobile-review1/attempt1-final-approach.jpg",
+      "docs/media/build89-mobile-review1/attempt1-first-fire.jpg",
+      "docs/media/build89-mobile-review1/attempt1-forward.jpg",
+      "docs/media/build89-mobile-review1/attempt1-left-route.jpg",
+      "docs/media/build89-mobile-review1/attempt1-map.jpg",
+      "docs/media/build89-mobile-review1/attempt1-mara-approach.jpg",
+      "docs/media/build89-mobile-review1/attempt1-rear-defense.jpg",
+      "docs/media/build89-mobile-review1/attempt1-route-sera.jpg",
+      "docs/media/build89-mobile-review1/attempt1-sera-defense.jpg",
+      "docs/media/build89-mobile-review1/attempt1-sera-near.jpg",
+      "docs/media/build89-mobile-review1/attempt1-strafe-fire.jpg",
+      "docs/media/build89-mobile-review1/attempt1-westward.jpg",
+      "docs/media/build89-mobile-review1/attempt2-custodian-face.jpg",
+      "docs/media/build89-mobile-review1/attempt2-custodian-map.jpg",
+      "docs/media/build89-mobile-review1/attempt2-drone-clear.jpg",
+      "docs/media/build89-mobile-review1/attempt2-east-archive.jpg",
+      "docs/media/build89-mobile-review1/attempt2-east-opening.jpg",
+      "docs/media/build89-mobile-review1/attempt2-elian-near.jpg",
+      "docs/media/build89-mobile-review1/attempt2-elian-recover.jpg",
+      "docs/media/build89-mobile-review1/attempt2-final-defense.jpg",
+      "docs/media/build89-mobile-review1/attempt2-heart-route.jpg",
+      "docs/media/build89-mobile-review1/attempt2-jammer-route.jpg",
+      "docs/media/build89-mobile-review1/attempt2-mara-close.jpg",
+      "docs/media/build89-mobile-review1/attempt2-mara-range.jpg",
+      "docs/media/build89-mobile-review1/attempt2-north-exit.jpg",
+      "docs/media/build89-mobile-review1/attempt2-opening-advance.jpg",
+      "docs/media/build89-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build89-mobile-review1/attempt2-warden-fire.jpg",
+      "docs/media/build89-mobile-review1/attempt2-west-route.jpg",
+      "docs/media/build89-mobile-review1/how-to-play.jpg",
+      "docs/media/build89-mobile-review1/initial-menu.jpg"
+    ]
+  }
+}

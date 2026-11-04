@@ -1,0 +1,81 @@
+{
+  "method": "ENGINEERING projection and native-input fixtures. An isolated20m platform, actor/cover positions, resource resets, suppressed AI and some terminal/pose states are arranged. Pure math, actual camera matrices, authored mesh taps and normal FIRE/ADS/map/pause/fresh controls are checked. No mission outcomes, enjoyment or hardware performance claims.",
+  "contracts": [
+    "desktop and landscape reference lenses remain exact",
+    "ordinary portrait keeps75deg normal and56deg ADS horizontal reference",
+    "very tall viewport projection is bounded at120deg vertical",
+    "ADS zooms and phase widens without reversing lens order"
+  ],
+  "profiles": [
+    {
+      "width": 390,
+      "height": 844,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": false,
+          "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'group')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:54)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+        }
+      ],
+      "normal": {
+        "vertical": 117.88718899603417,
+        "aspect": 0.46208530805687204,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 76.49772552673727,
+        "y": 438.9419298469356
+      },
+      "focus": {
+        "vertical": 117.88718899603417,
+        "aspect": 0.46208530805687204,
+        "reference": 75,
+        "yaw": 0.43633231004535217,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 117.88718899603417,
+          "aspect": 0.46208530805687204,
+          "reference": 75,
+          "yaw": 0.43633231004535217,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 117.88718899603417,
+          "aspect": 0.46208530805687204,
+          "reference": 75,
+          "yaw": 0.43633231004535217,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 28,
+          "health": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 27732,
+  "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'group')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:54)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at target (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-projection.mjs:19:21)\n    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-projection.mjs:23:320\n    at async check (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-projection.mjs:20:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-projection.mjs:23:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

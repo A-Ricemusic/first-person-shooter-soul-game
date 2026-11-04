@@ -1,0 +1,242 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts; no checkpoint retries or third attempt",
+  "buildObserved": "BUILD 89",
+  "sourceFreezeUserProvided": "f8873e2f7d349f24d254c5ad27f8097161adf92c (not independently inspected)",
+  "viewport": [
+    390,
+    844
+  ],
+  "url": "http://127.0.0.1:61485/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS: OPERATOR LOST / SIGNAL LOST",
+      "terminalStats": {
+        "eliminations": 2,
+        "missionTime": "01:13",
+        "score": 3200,
+        "accuracyPercent": 20,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "tapAims": 3,
+        "approachAssist": 1,
+        "assistedShots": "not displayed",
+        "timeLabel": "CUMULATIVE PLAY TIME (visible terminal qualifier)"
+      },
+      "coverage": [
+        "opening guard",
+        "Mara recovered",
+        "Sera recovered",
+        "Elian recovered",
+        "planning map",
+        "Custodian: coil 3 OFF, coils 1 and 2 still 100% at 01:09",
+        "terminal loss"
+      ],
+      "evidence": "docs/media/build89-mobile-review2/a1-coil2-push.jpg",
+      "failures": [
+        "initial swipe direction misread and corrected",
+        "walked into walls repeatedly",
+        "lost shield and health while stationary firing at Custodian",
+        "second coil push ended in death"
+      ],
+      "helpful": [
+        "handbook explains tap aim and approach",
+        "map route and selected receiver",
+        "resource restoration on recovery",
+        "clear OFF coil feedback"
+      ],
+      "frustrating": [
+        "close walls fill portrait scene",
+        "needed map to translate relative cues into route",
+        "very small upper HUD text"
+      ],
+      "uncertainties": [
+        "did not reach upload/extraction",
+        "no continuous-play or physical-device assessment"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "startedVia": "Visible START FRESH on attempt 1 terminal screen; a2-fresh-start.jpg shows reset 00:00, 100 health, 60 shield, 30/180 ammo and empty memories",
+      "outcome": "LOSS: OPERATOR LOST / SIGNAL LOST",
+      "terminalStats": {
+        "eliminations": 2,
+        "missionTime": "01:01",
+        "score": 3200,
+        "accuracyPercent": 24,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 2,
+        "tapAims": 5,
+        "approachAssists": 3,
+        "timeLabel": "CUMULATIVE PLAY TIME (visible terminal qualifier)"
+      },
+      "coverage": [
+        "opening movement and simultaneous two-contact move/fire",
+        "Mara recovered",
+        "Sera recovered",
+        "Elian recovered",
+        "planning maps for Elian and Custodian approach; closed visibly",
+        "Custodian coil 3 OFF at 00:45; coil 1 OFF at 00:55; coil 2 still 100% at 00:59",
+        "JUMP and DASH inputs, visible DASH cooldown",
+        "actual terminal loss"
+      ],
+      "evidence": "docs/media/build89-mobile-review2/a2-final-coil-fire.jpg",
+      "helpful": [
+        "learned route reached Mara around 00:11 with full health/shield",
+        "hold approach recovered all three memories",
+        "numbered OFF status verifies coil progress",
+        "repositioning briefly prevented additional health damage and allowed coil 1 destruction",
+        "clear terminal stats and distinct START FRESH choice"
+      ],
+      "frustrating": [
+        "moving away after tap aim reduced effective firing",
+        "close walls and coil structures repeatedly hid useful scene information",
+        "finding a clear face required repeated turns and planning map",
+        "health dropped from 96 to 45 during short coil firing batch",
+        "final coil burst ended in death before a post-burst gameplay screenshot"
+      ],
+      "tried": [
+        "shorter movement batches",
+        "simultaneous native two-contact movement/fire",
+        "hold approach instead of manual final receiver positioning",
+        "reloading",
+        "jump and dash repositioning",
+        "map-guided flank",
+        "tap aim on final visible copper coil"
+      ],
+      "failures": [
+        "opening moving fire did not remove guard immediately",
+        "backward movement near Elian produced little apparent progress; turning south and walking forward resolved it",
+        "geometry request while paused returned Not visible; no workaround or hidden inspection used",
+        "could not finish Custodian before dying"
+      ],
+      "uncertainties": [
+        "final coil damage unknown: no surviving gameplay frame after burst",
+        "DASH inputs had visible cooldown, but interruption success not established; terminal phase evades were 0",
+        "JUMP input used; no verified vault completion",
+        "upload, extraction and victory unassessed"
+      ]
+    }
+  ],
+  "settingsChanges": [],
+  "betweenAttemptsLearning": "Swipe right increases heading; use map and shorter movement batches; reposition during Custodian instead of prolonged stationary firing.",
+  "limitations": [
+    "Synthetic native two-contact Chromium touch emulation",
+    "Captures pause play for inspection, giving planning time",
+    "Software-WebGL fallback; renderer not certified",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 playable with substantial recurring friction; 7 good with noticeable rough edges; 10 exceptional observed mobile experience. Scores judge observed quality, not win/loss; overall is holistic, not an arithmetic average.",
+    "overallMobile": 6.5,
+    "controls": {
+      "score": 6,
+      "reason": "Large separated buttons, tap aim and approach assist enabled useful play. Swipe direction required learning; moving fire and precise flanking were difficult in this paused synthetic session."
+    },
+    "gameplay": {
+      "score": 6,
+      "reason": "Recovery objectives and staged coil destruction gave understandable progress and tactical choices. Both fights became dominated by occlusion, incoming fire and finding a firing face; upload and later content unassessed."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Strong teal/amber visual identity, atmospheric rainy station, consistent menus and clear memory/coil feedback. Walls often dominated the actual portrait view."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Readable handbook, paused planning map with route and receiver selection, assisted approach, distinct fresh/retry actions. Repeated map consultation was necessary for this reviewer."
+    },
+    "readability": {
+      "score": 6,
+      "reason": "Health, ammunition and main objectives are legible; upper status percentages, compass, cues and terminal detail text are small at 390x844, while dark geometry and close structures reduce scene comprehension."
+    }
+  },
+  "cleanup": {
+    "helperCloseRequested": true,
+    "awaitedExit": true,
+    "exitCode": 0,
+    "helperReportedBrowserClosed": true,
+    "exactPidCheck": "ps -p 21322,21332 -o pid=,ppid=,stat=,command=",
+    "psExitCode": 1,
+    "psOutput": "",
+    "result": "Owned driver 21322 and Chrome 21332 absent; no processes killed"
+  },
+  "evidenceDirectory": "docs/media/build89-mobile-review2",
+  "ownedPids": {
+    "driver": 21322,
+    "chrome": 21332
+  },
+  "holisticAssessment": "Promising and playable portrait shooter with strong atmosphere and useful assistance, but recurring spatial/occlusion and firing-position friction kept the observed mobile experience from feeling consistently fluent. Two losses do not determine the grade. No claim of enjoyment for unassessed content.",
+  "scopeCompliance": {
+    "sourceOrTestsOrDocsInspected": false,
+    "onlyHelperHelpRead": true,
+    "normalUrlOnly": true,
+    "keyboardMouseEvaluationInternalHandlesUsed": false,
+    "customControllerOrSimulationAdvanceUsed": false,
+    "newToolsInstalled": false,
+    "checkpointRetries": 0,
+    "freshAttempts": 2,
+    "agentsUsed": false,
+    "buildsCommitsPublicationServerChanges": false,
+    "identity": "BUILD 89 seen on title; commit identity supplied by user, not verified via source inspection"
+  },
+  "rawEvidence": {
+    "actionLog": "docs/media/build89-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build89-mobile-review2/a1-all-memories.jpg",
+      "docs/media/build89-mobile-review2/a1-approach.jpg",
+      "docs/media/build89-mobile-review2/a1-coil2-push.jpg",
+      "docs/media/build89-mobile-review2/a1-coil3-fire.jpg",
+      "docs/media/build89-mobile-review2/a1-east-route.jpg",
+      "docs/media/build89-mobile-review2/a1-east-strafe.jpg",
+      "docs/media/build89-mobile-review2/a1-elian-near.jpg",
+      "docs/media/build89-mobile-review2/a1-forward.jpg",
+      "docs/media/build89-mobile-review2/a1-guard.jpg",
+      "docs/media/build89-mobile-review2/a1-jammer-route.jpg",
+      "docs/media/build89-mobile-review2/a1-map-position.jpg",
+      "docs/media/build89-mobile-review2/a1-map.jpg",
+      "docs/media/build89-mobile-review2/a1-near-mara.jpg",
+      "docs/media/build89-mobile-review2/a1-north-exit.jpg",
+      "docs/media/build89-mobile-review2/a1-north.jpg",
+      "docs/media/build89-mobile-review2/a1-route-west.jpg",
+      "docs/media/build89-mobile-review2/a1-sera-map.jpg",
+      "docs/media/build89-mobile-review2/a1-sera-near.jpg",
+      "docs/media/build89-mobile-review2/a1-sera-recover.jpg",
+      "docs/media/build89-mobile-review2/a1-sera-route.jpg",
+      "docs/media/build89-mobile-review2/a1-turn-left.jpg",
+      "docs/media/build89-mobile-review2/a1-west.jpg",
+      "docs/media/build89-mobile-review2/a2-all-memories.jpg",
+      "docs/media/build89-mobile-review2/a2-clear-face.jpg",
+      "docs/media/build89-mobile-review2/a2-coil-face.jpg",
+      "docs/media/build89-mobile-review2/a2-coil-flank.jpg",
+      "docs/media/build89-mobile-review2/a2-coil1-dash.jpg",
+      "docs/media/build89-mobile-review2/a2-coil3-burst.jpg",
+      "docs/media/build89-mobile-review2/a2-coils-centered.jpg",
+      "docs/media/build89-mobile-review2/a2-east-move-fire.jpg",
+      "docs/media/build89-mobile-review2/a2-elian-map.jpg",
+      "docs/media/build89-mobile-review2/a2-elian-near.jpg",
+      "docs/media/build89-mobile-review2/a2-final-coil-fire.jpg",
+      "docs/media/build89-mobile-review2/a2-find-coil2.jpg",
+      "docs/media/build89-mobile-review2/a2-fresh-start.jpg",
+      "docs/media/build89-mobile-review2/a2-jammer-approach.jpg",
+      "docs/media/build89-mobile-review2/a2-jammer-map.jpg",
+      "docs/media/build89-mobile-review2/a2-last-coil-view.jpg",
+      "docs/media/build89-mobile-review2/a2-mara-near.jpg",
+      "docs/media/build89-mobile-review2/a2-mara-recovered.jpg",
+      "docs/media/build89-mobile-review2/a2-relay-route.jpg",
+      "docs/media/build89-mobile-review2/a2-reposition-vault.jpg",
+      "docs/media/build89-mobile-review2/a2-sera-recovered.jpg",
+      "docs/media/build89-mobile-review2/a2-south-to-elian.jpg",
+      "docs/media/build89-mobile-review2/a2-turn-to-coils.jpg",
+      "docs/media/build89-mobile-review2/a2-west-cover.jpg",
+      "docs/media/build89-mobile-review2/a2-west-opening.jpg",
+      "docs/media/build89-mobile-review2/attempt1-start.jpg",
+      "docs/media/build89-mobile-review2/how-to.jpg",
+      "docs/media/build89-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}

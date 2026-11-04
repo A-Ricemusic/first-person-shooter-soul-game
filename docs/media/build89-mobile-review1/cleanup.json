@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "closeCommand": {
+    "op": "close"
+  },
+  "helperExitCode": 0,
+  "closedEvent": {
+    "reason": "input ended or close requested",
+    "driverPid": 17547,
+    "chromePid": 17557,
+    "browserLaunched": true,
+    "browserClosed": true
+  },
+  "verificationCommand": "ps -p 17547,17557 -o pid=,ppid=,stat=,command=",
+  "verificationExitCode": 1,
+  "verificationOutput": "",
+  "result": "Exact owned driver and Chrome PIDs absent; no kill used.",
+  "evidence": "docs/media/build89-mobile-review1/cleanup.json"
+}
