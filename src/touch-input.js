@@ -46,9 +46,15 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  // A phase-opening touch can release over a newly revealed button. Consume
  // only its compatibility click; a new gesture or keyboard activation is free.
  let phaseTouch=null;
- document.addEventListener('pointerdown',()=>{phaseTouch=null},true);
- document.addEventListener('pointercancel',e=>{if(e.pointerId===phaseTouch)phaseTouch=null},true);
- document.addEventListener('click',e=>{if(e.pointerId===phaseTouch){phaseTouch=null;e.preventDefault();e.stopImmediatePropagation()}},true);
+ const touchPhases=new Map();
+ document.addEventListener('pointerdown',e=>{phaseTouch=null;if(e.pointerType!=='mouse')touchPhases.set(e.pointerId,game.phase)},true);
+ document.addEventListener('pointercancel',e=>{touchPhases.delete(e.pointerId);if(e.pointerId===phaseTouch)phaseTouch=null},true);
+ document.addEventListener('click',e=>{
+  const began=touchPhases.get(e.pointerId);touchPhases.delete(e.pointerId);
+  // Chromium can retarget a held contact's release to a result-screen button
+  // after the playing controls disappear. Only a fresh gesture may act there.
+  if(e.pointerId===phaseTouch||(began!==undefined&&began!==game.phase)){phaseTouch=null;e.preventDefault();e.stopImmediatePropagation()}
+ },true);
  const phasePress=(e,open)=>{e.preventDefault();phaseTouch=e.pointerId;open()};
  const more=root.querySelector('#touch-more'),extra=root.querySelector('#touch-extra');
  const setTools=open=>{extra.classList.toggle('hidden',!open);more.setAttribute('aria-expanded',String(open));};

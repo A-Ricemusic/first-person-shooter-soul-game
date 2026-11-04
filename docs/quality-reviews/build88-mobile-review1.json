@@ -1,0 +1,162 @@
+{
+  "review": "build88-mobile-review1",
+  "status": "NONTERMINAL",
+  "complete": false,
+  "requested_attempts": 2,
+  "verified_terminal_attempts": 0,
+  "identity": {
+    "expected_source": "c8e030310e12491cff623ded68ed86d4a8178fea",
+    "source_verified": false,
+    "source_verification_note": "Source inspection prohibited; hash supplied by requester only.",
+    "visible_title": "SOULFALL / THE LAST SIGNAL",
+    "visible_build": "BUILD 88",
+    "evidence": "docs/media/build88-mobile-review1/initial-menu.jpg"
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61484/",
+    "viewport_css": [
+      844,
+      390
+    ],
+    "screenshot_pixels": [
+      844,
+      390
+    ],
+    "input": "native-cdp-touch JSON-lines, maximum two contacts",
+    "limitations": [
+      "Synthetic Chromium touch emulation with paused inspection between action segments.",
+      "Software-WebGL fallback; renderer and hardware performance not certified.",
+      "Physical phones, Safari, audio and continuous enjoyment unassessed."
+    ]
+  },
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "NONTERMINAL",
+      "outcome": null,
+      "terminal_stats": null,
+      "last_verified_progress": {
+        "timer": "02:01",
+        "health": 2,
+        "shield": 0,
+        "ammo": 19,
+        "reserve": 139,
+        "objective": "DISABLE CUSTODIAN",
+        "memories": 3,
+        "coils": [
+          "1 OFF",
+          "2 100%",
+          "3 100%"
+        ],
+        "evidence": "docs/media/build88-mobile-review1/attempt1-second-face.jpg"
+      },
+      "coverage": [
+        "Opening menu and operator handbook",
+        "Opening guard combat",
+        "Movement, scene swipe turning, tap-to-target, two-contact movement plus FIRE, reload",
+        "Paused overview planning maps opened and visibly closed",
+        "Mara, Sera and Elian recoveries using HOLD APPROACH",
+        "Custodian armored/charging/exposed phases; first coil disabled",
+        "DASH and JUMP tried near cover; successful vault not established"
+      ],
+      "helpful_moments": [
+        "Opening guard targeting was straightforward.",
+        "HOLD APPROACH recovered receivers without precise final manual alignment.",
+        "Map displayed route, selected receiver, recovered checkmarks and walking distance.",
+        "Threat direction cues identified pressure outside the view.",
+        "Recovery replenished visible resources.",
+        "Numbered coil health and armored/exposed messages made successful first-coil damage observable."
+      ],
+      "frustrating_moments": [
+        "Relative PATH cues changed while moving; I doubled back and reopened the map.",
+        "Cover and pillars obstructed both walking and target visibility.",
+        "Tap-to-target centers aim but moving targets or player movement required subsequent corrections; long FIRE holds spent ammunition on stale aim.",
+        "Flank attacks during Custodian fire consumed health quickly.",
+        "Dense HUD and long horizontal messages compete with the small landscape scene."
+      ],
+      "failures": [
+        "Direct #touch-map click while paused returned Selector must be visible; resumed and tapped the visible map successfully.",
+        "Early moving-fire segment against archive cover left position visually unchanged and health fell to 65.",
+        "JUMP near Custodian cover did not establish a successful crossing.",
+        "Initial close coil firing left all three coils at 100%; stepping back and targeting the visible coil later disabled coil 1.",
+        "Terminal capture and mandatory first-result report gate were not achieved."
+      ],
+      "interruption": {
+        "sequence": 41,
+        "preceding_sequence": 40,
+        "command": {
+          "op": "act",
+          "resume": true,
+          "steps": [
+            {
+              "type": "tap",
+              "x": 0.463,
+              "y": 0.49
+            },
+            {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            {
+              "type": "wait",
+              "ms": 3000
+            },
+            {
+              "type": "up",
+              "id": 2
+            }
+          ],
+          "capture": "attempt1-coil2-fire"
+        },
+        "observation": "Returned screenshot and visible HUD unexpectedly show opening guard, RECOVER MARA SOLBERG, 00:00, health 100, shield 60, ammo 30/180 and no recovered memories. No terminal screen or terminal stats captured.",
+        "evidence": "docs/media/build88-mobile-review1/attempt1-coil2-fire.jpg",
+        "cause": "Unknown. A terminal transition and accidental UI activation during the live action is possible but unverified. No outcome inferred."
+      }
+    },
+    {
+      "attempt": 2,
+      "status": "NOT_ASSESSED",
+      "outcome": null,
+      "terminal_stats": null,
+      "coverage": [],
+      "note": "Unexpected opening state was captured after sequence 41. No deliberate visible START FRESH selection after a preserved terminal result occurred. No additional adaptive gameplay followed; cannot certify whether this reset constituted another attempt."
+    }
+  ],
+  "between_attempt_learning": "No valid between-attempt boundary reached. During attempt 1, learned to reopen map for orientation, release MOVE and hold APPROACH near receivers, and step back to see and target a coil. No second-attempt improvement assessed.",
+  "blocker": "Unobserved transition/reset across a live resume-and-input action destroyed the ability to preserve an actual first terminal outcome before any fresh start. Continuing would not satisfy exactly two verified fresh terminal attempts with the required reporting gate. Stopped without inferring win/loss or starting another run.",
+  "scores": {
+    "overall_mobile": null,
+    "controls": null,
+    "gameplay": null,
+    "presentation": null,
+    "usability": null,
+    "readability": null,
+    "scale": "0 unusable, 5 mixed with substantial friction, 10 exceptional observed mobile experience; outcome alone is not a quality grade.",
+    "reason_withheld": "Requested holistic scores only after both attempts. Neither terminal outcome was verified; no final score or rescore fabricated. Observations above cover only assessed content."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build88-mobile-review1/",
+    "actions_log": "docs/media/build88-mobile-review1/actions.jsonl",
+    "screenshots": "All named JPG captures in this directory; every returned screenshot was viewed before subsequent adaptive input."
+  },
+  "cleanup": {
+    "explicit_close": true,
+    "helper_exit_code": 0,
+    "helper_closed": {
+      "driverPid": 2770,
+      "chromePid": 2780,
+      "browserClosed": true,
+      "reason": "input ended or close requested"
+    },
+    "ps_verification": {
+      "command": "ps -p 2770,2780 -o pid=,ppid=,command=",
+      "exit_code": 1,
+      "output": "",
+      "result": "Both exact owned PIDs absent"
+    },
+    "broad_kill_used": false
+  },
+  "scope": "No source/tests/docs/prior reviews/recordings/internal state inspected. Only helper --help read before launch. No builds, server changes, commits, publication, installed tooling, agents or other project file edits."
+}

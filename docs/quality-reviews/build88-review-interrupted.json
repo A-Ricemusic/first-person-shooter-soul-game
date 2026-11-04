@@ -1,0 +1,24 @@
+{
+  "build": 88,
+  "sourceCommit": "c8e030310e12491cff623ded68ed86d4a8178fea",
+  "frozenFilesVerified": 461,
+  "verificationMethod": "Tracked files checked against frozen HEAD, ignored Blender backups against their unchanged on-disk bytes. Working source main/touch/title test are now being corrected for Build89.",
+  "ignoredFiles": [
+    "public/assets/custodian.blend1"
+  ],
+  "mismatches": [],
+  "review": "build88-mobile-review1.json",
+  "status": "INCOMPLETE / NONTERMINAL; no score or terminal outcome inferred.",
+  "unexpectedReset": "Reviewer had all3, one coil off, health2 at02:01. Held FIRE then returned opening state.",
+  "rootDiagnosis": {
+    "report": "build88-held-transition-probe.json",
+    "observed": "Three arranged fatal timing cases produced pointerdown during playing then pointerup/click on play-again after loss. Native click restarted the game. Initial coordinate-tap-only diagnostic did not reproduce it.",
+    "limitation": "This reproduces a mechanism matching the interruption. It does not recover or certify the original missing terminal stats."
+  },
+  "cleanup": {
+    "driverPid": 2770,
+    "chromePid": 2780,
+    "reviewerReportsExit0AndPidsAbsent": true
+  },
+  "decision": "Stop reviewing this candidate, preserve partial evidence, fix cross-phase click behavior and start fresh reviews on corrected Build89."
+}

@@ -1,0 +1,24 @@
+import {createServer} from 'node:http';
+import {spawn} from 'node:child_process';
+import {createInterface} from 'node:readline';
+import {EventEmitter} from 'node:events';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const prefix=process.env.MOBILE_DRIVER_END_PREFIX||'build89-driver-terminal';
+const report={method:'Synthetic DOM-only runner regression, NOT the game or a mission. Fixture changes visible views on a timed Resume event. Native helper gestures must stop at visible end and preserve its text. No game internals are exposed to the runner.',cases:[]};
+const fixture=delay=>`<!doctype html><style>body{margin:0;background:#123;color:white}.hidden{display:none}section{position:fixed;inset:0}button{width:180px;height:60px}#touch-fire,#play-again{position:absolute;left:600px;top:250px}</style><section id="menu"><button id="deploy">DEPLOY</button></section><section id="hud" class="hidden"><b id="objective">RUN 1</b><button id="pause-button">PAUSE</button><button id="touch-fire">FIRE</button></section><section id="pause" class="hidden"><button id="resume">RESUME</button></section><section id="end" class="hidden">SIGNAL LOST · fixture terminal result<button id="play-again">START FRESH</button></section><script>let run=1,timer;const show=id=>{for(const s of document.querySelectorAll('section'))s.classList.toggle('hidden',s.id!==id)};deploy.onclick=()=>show('hud');document.getElementById('pause-button').onclick=()=>show('pause');resume.onclick=()=>{show('hud');timer=setTimeout(()=>show('end'),${delay})};document.getElementById('play-again').onclick=()=>{clearTimeout(timer);document.getElementById('objective').textContent='RUN '+(++run);show('hud')};</script>`;
+const server=createServer((req,res)=>{res.writeHead(200,{'Content-Type':'text/html'});res.end(fixture(Number(new URL(req.url,'http://fixture').searchParams.get('delay'))||0))});await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const all=[];
+try{for(const delay of [0,250]){
+ const out=`docs/media/${prefix}-${delay}`;mkdirSync(out,{recursive:true});
+ const child=spawn(process.execPath,['tools/mobile-playtest.mjs','--url',`http://127.0.0.1:${server.address().port}/?delay=${delay}`,'--width','844','--height','390','--out',out],{stdio:['pipe','pipe','pipe']});all.push(child);
+ const events=[],emitter=new EventEmitter();let stderr='',ended;
+ child.stderr.on('data',d=>stderr+=d);createInterface({input:child.stdout}).on('line',l=>{events.push(JSON.parse(l));emitter.emit('change')});
+ const exit=new Promise(resolve=>child.once('exit',(code,signal)=>{ended={code,signal};emitter.emit('change');resolve(ended)}));
+ const get=(type,sequence)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>done(Error('Runner timeout '+type+' '+stderr.slice(-500))),45000);const check=()=>{const v=events.find(e=>e.type===type&&(sequence===undefined||e.sequence===sequence));if(v)done(null,v);else if(ended)done(Error('Exited before '+type+': '+stderr.slice(-500)))};const done=(e,v)=>{clearTimeout(timer);emitter.off('change',check);e?reject(e):resolve(v)};emitter.on('change',check);check()});
+ const send=v=>child.stdin.write(JSON.stringify(v)+'\n');
+ const ready=await get('ready');send({op:'click',selector:'#deploy',capture:'first-run',pauseAfter:true});const first=await get('result',1);assert.equal(first.after.phase,'paused');
+ send({op:'act',resume:true,steps:[{type:'wait',ms:650},{type:'tap',selector:'#play-again'}],capture:'preserved-terminal'});const terminal=await get('result',2);assert.equal(terminal.beforePause.phase,'end');assert.match(terminal.beforePause.outcome,/fixture terminal result/);assert(terminal.stoppedAtEnd&&terminal.stoppedAtEnd.skippedActions>=1);
+ send({op:'click',selector:'#play-again'});const deliberate=await get('result',3);assert.equal(deliberate.ui.phase,'playing');assert.equal(deliberate.ui.objective,'RUN 2');
+ send({op:'close'});const closed=await get('closed');const exitResult=await exit;assert.equal(exitResult.code,0);assert(closed.browserClosed);const absent=[ready.driverPid,ready.chromePid].map(pid=>{try{process.kill(pid,0);return false}catch(e){return e.code==='ESRCH'}});assert(absent.every(Boolean));assert(!events.some(e=>['fatal','command-error'].includes(e.type)));report.cases.push({delay,events,stderr,exit:exitResult,ownedPids:[ready.driverPid,ready.chromePid],ownedPidsAbsent:absent,passed:true});
+}report.passed=true;}catch(e){report.failure=e.stack;process.exitCode=1}finally{for(const c of all)if(c.exitCode===null&&c.signalCode===null){c.stdin.write(JSON.stringify({op:'close'})+'\n');await new Promise(r=>c.once('exit',r))}await new Promise(r=>server.close(r));writeFileSync(`docs/quality-reviews/${prefix}.json`,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,failure:report.failure,cases:report.cases.length}));}

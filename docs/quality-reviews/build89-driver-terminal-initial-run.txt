@@ -1,0 +1,8 @@
+/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-driver-terminal.mjs:23
+ send({op:'close'});const closed=await get('closed');const ended=await exit;assert.equal(ended.code,0);assert(closed.browserClosed);const absent=[ready.driverPid,ready.chromePid].map(pid=>{try{process.kill(pid,0);return false}catch(e){return e.code==='ESRCH'}});assert(absent.every(Boolean));assert(!events.some(e=>['fatal','command-error'].includes(e.type)));report.cases.push({delay,events,stderr,exit:ended,ownedPids:[ready.driverPid,ready.chromePid],ownedPidsAbsent:absent,passed:true});
+                                                           ^
+
+SyntaxError: Identifier 'ended' has already been declared
+    at checkSyntax (node:internal/main/check_syntax:72:5)
+
+Node.js v24.16.0
