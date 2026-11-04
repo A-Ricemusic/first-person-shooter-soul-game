@@ -372,3 +372,32 @@ body.touch-mode #reload-label[data-impact="hit"],body.touch-mode #reload-label[d
 body.touch-mode #reload-label{display:block!important;visibility:hidden;min-height:15px;font:700 13px/15px 'Barlow',Arial,sans-serif;letter-spacing:.2px;margin-top:4px}
 body.touch-mode #reload-label[data-reloading="true"],body.touch-mode #reload-label[data-impact]:not([data-impact=""]){visibility:visible}
 @media(orientation:landscape){body.touch-mode #touch-notices{bottom:calc(var(--touch-bottom) + 92px)}}
+
+/* Build102: readable phone labels within the existing control footprints. */
+body.touch-mode #touch-controls button{font-size:13px;line-height:16px;letter-spacing:0}
+body.touch-mode #touch-fire small{font-size:12px;line-height:15px}
+body.touch-mode #touch-use{font-size:13px;line-height:15px}
+body.touch-mode .bearing #timer{font-size:12px;line-height:14px;letter-spacing:.5px;color:#d2e8e1}
+body.touch-mode .touch-compass-cue small{font-size:12px;line-height:13px}
+body.touch-mode #touch-threat-cue small{font-size:12px;line-height:15px}
+body.touch-mode .shield-line{font-size:12px;letter-spacing:.4px;gap:7px;color:#d2e8e1}
+body.touch-mode .weapon-info .micro-label{font-size:12px;letter-spacing:.7px;color:#d2e8e1}
+body.touch-mode #touch-notices #announcement{font-size:12px;line-height:15px;max-height:38px}
+body.touch-mode #touch-notices #memory-card .micro-label{font-size:12px;letter-spacing:0}
+body.touch-mode #interaction small,body.touch-mode #service-hint span{font-size:12px;line-height:15px}
+body.touch-mode #extraction-panel #custodian-cells .coil-cell b{font-size:12px;line-height:13px}
+body.touch-mode .end-panel .end-stats span,body.touch-mode .end-panel #end-manifest span{font-size:12px;line-height:15px;letter-spacing:0}
+body.touch-mode .end-panel #end-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 12px;font-size:12px;line-height:16px;letter-spacing:0;color:#d2e8e1}
+body.touch-mode #end-details>span{min-width:0;overflow-wrap:break-word}
+body.touch-mode .end-panel #personal-best{font-size:12px;line-height:16px;letter-spacing:0}
+body.touch-mode .end-actions button{font-size:12px;line-height:16px;letter-spacing:.3px}
+
+/* Keep fresh/retry actions visible while expanded statistics scroll behind them. */
+body.touch-mode .end-panel .end-actions{position:sticky;bottom:0;z-index:2;background:#0b1920;box-shadow:0 -8px 16px #0b1920;padding-top:8px}
+body.touch-mode .end-panel{overscroll-behavior:contain;scrollbar-color:#8ee8e0 #18343f}
+
+body.touch-mode .end-panel .end-actions::after{content:'';position:absolute;left:0;right:0;top:100%;height:20px;background:#0b1920;pointer-events:none}
+@media(orientation:landscape){
+ body.touch-mode .end-panel .end-actions:not(.anchor-available){grid-template-columns:repeat(3,minmax(0,1fr))}
+ body.touch-mode .end-panel .end-actions:not(.anchor-available) #play-again{grid-column:auto}
+}
