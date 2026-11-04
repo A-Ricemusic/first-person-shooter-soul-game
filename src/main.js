@@ -4,6 +4,7 @@ import {recoveryApproachText} from './recovery-feedback.js';
 import { mapTransform, planningTransform, paintPlanningRoute, paintPlanningSites, paintArchitecture, paintSites, paintPlayer } from './facility-map.js';
 import { uploadStatus } from './upload.js';
 import { threatVisor } from './threat-visor.js';
+import {mobileCompassCues} from './mobile-cues.js';
 import { placeMarker } from './marker-layout.js';
 import './style.css';
 import { Game } from './game.js';
@@ -20,7 +21,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 87</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 88</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -108,7 +109,7 @@ function renderState(s){
  $('shield').textContent=Math.ceil(Math.max(0,s.shield||0));$('shield-bar').style.width=`${Math.max(0,(s.shield||0)/(s.maxShield||60)*100)}%`;
  $('weapon-name').textContent=s.weapon==='breacher'?'PUMP BREACHER':'COIL RIFLE';$('ammo').textContent=String(s.ammo??30).padStart(2,'0');$('reserve').textContent=s.reserve??180;
  $('ammo').classList.toggle('low',s.ammo<7);$('reload-label').innerHTML=s.reloading?'RELOADING…':'<kbd>R</kbd> RELOAD <span>•</span> <kbd>RMB</kbd> AIM';
- $('objective').textContent=s.localRecovery?`${s.recoveryReady?(game?.touchMode?'HOLD USE':'HOLD E'):'NEARBY'} / ${CORE_SITES[s.localRecovery.id].person}`:s.cores<3&&s.routeGoal?`RECOVER ${CORE_SITES[Number(s.routeGoal.split('-')[1])]?.person||'THE SIGNAL'}`:(game?.touchMode?s.objective?.replace('HOLD E','HOLD USE'):s.objective)||'RECOVER THE THREE SOUL CORES';$('kills').textContent=`${s.kills||0} ELIMINATED`;$('timer').textContent=clock(s.time);
+ $('objective').textContent=s.localRecovery?`${s.recoveryReady?(game?.touchMode?'HOLD USE':'HOLD E'):'NEARBY'} / ${CORE_SITES[s.localRecovery.id].person}`:s.cores<3&&s.routeGoal?`RECOVER ${CORE_SITES[Number(s.routeGoal.split('-')[1])]?.person||'THE SIGNAL'}`:(game?.touchMode?s.objective?.replace('HOLD E','HOLD USE').replace('DISABLE UPLINK CUSTODIAN','DISABLE CUSTODIAN').replace('HOLD THE EXTRACTION ZONE','HOLD UPLINK DECK').replace('RETURN TO EXTRACTION','RETURN TO DECK'):s.objective)||'RECOVER THE THREE SOUL CORES';$('kills').textContent=`${s.kills||0} ELIMINATED`;$('timer').textContent=clock(s.time);
  const count=typeof s.cores==='number'?s.cores:0;[...$('core-slots').children].forEach((el,i)=>el.classList.toggle('recovered',s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count));
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
  if(s.heading!==undefined){const bearing=compassReadout(s.heading);$('heading').textContent=bearing.heading;$('compass-direction').textContent=bearing.direction;document.querySelector('.bearing').setAttribute('aria-label',bearing.spoken);}
@@ -137,11 +138,11 @@ function renderMobileHUD(s,service){
   use.dataset.ready=String(!!(s.recoveryReady||repair));
   const gap=s.localRecovery?Math.max(.1,Math.ceil(s.localRecovery.remaining*10)/10):null;
   const release=s.touchRecoveryBraked&&!s.recoveryReady;
-  use.textContent=release?'RELEASE USE TO MOVE':s.recoveryReady?'HOLD TO RECOVER':repair?'HOLD TO REPAIR':s.touchApproachActive?'APPROACHING':s.touchApproachStatus?'ROUTE BLOCKED':gap!=null&&s.localRecovery.remaining>0?(s.touchApproachAvailable?'HOLD APPROACH':'RETURN TO FLOOR'):'HOLD USE';
+  use.textContent=release?'RELEASE USE TO MOVE':s.recoveryReady?'HOLD TO RECOVER':repair?'HOLD TO REPAIR':s.touchApproachActive?'APPROACHING':s.touchApproachStatus?'ROUTE BLOCKED':gap!=null&&s.localRecovery.remaining>0?(s.touchApproachAvailable?'HOLD APPROACH':'RETURN TO FLOOR'):s.cores<s.totalCores?'MOVE WITHIN 8m':'HOLD USE';
   use.dataset.near=String(!!s.localRecovery);
   const progress=Math.max(0,Math.min(1,repair?ss.progress:s.coreProgress||0));
   use.style.setProperty('--hold-progress',`${progress*100}%`);
-  use.setAttribute('aria-label',release?'Release use to move':s.recoveryReady?`Hold to recover ${CORE_SITES[s.localRecovery.id].person}`:repair?'Hold to service suit':s.localRecovery?'Hold to approach nearby receiver; release move first':'Hold to use');
+  use.setAttribute('aria-label',release?'Release use to move':s.recoveryReady?`Hold to recover ${CORE_SITES[s.localRecovery.id].person}`:repair?'Hold to service suit':s.localRecovery?'Hold to approach nearby receiver; release move first':s.cores<s.totalCores?'Move within eight metres of a receiver, then hold to approach':'Hold to use');
  }
 }
 
@@ -195,7 +196,7 @@ const markerPool=new Map();
 let visorFocus;
 function drawMarkers(markers){
  const active=new Set(), placed=[];
- if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button,.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint')){if(el.getClientRects().length){const r=el.getBoundingClientRect();placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
+ if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button,.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint,.bearing,#timer,#touch-route-cue,#touch-threat-cue')){if(el.getClientRects().length){const r=el.getBoundingClientRect();placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
  const blocked=nearest?.occluded?nearest:null;
  let note=$('blocked-signal');if(!note){note=document.createElement('div');note.id='blocked-signal';$('waypoints').append(note)}
@@ -204,13 +205,23 @@ function drawMarkers(markers){
  markers=markers.filter(m=>!m.occluded);
  const visor=threatVisor(markers,visorFocus);
  visorFocus=visor.focused?.id;
+ if(game?.touchMode){
+  const hitOrigin=game.phase==='playing'&&game.runTime-game.lastDamage<1.1?game.damageCuePosition():null;
+  const hitBearing=hitOrigin?Math.atan2(hitOrigin.x-game.player.x,-(hitOrigin.z-game.player.z))+game.yaw:null;
+  const cues=mobileCompassCues(markers,visor,hitBearing);
+  for(const [id,cue,prefix] of [['touch-route-cue',cues.route,'PATH'],['touch-threat-cue',cues.threat,cues.threat?.kind]]){
+   const el=$(id);if(!el)continue;el.classList.toggle('hidden',!cue);
+   if(cue){const signature=[prefix,cue.direction,cue.sector,cue.otherDirections||0].join('|');if(el.dataset.signature!==signature){el.dataset.signature=signature;el.querySelector('small').textContent=prefix+(cue.otherDirections?' +'+cue.otherDirections:'');el.querySelector('b').textContent=cue.direction;el.dataset.kind=cue.kind||'PATH';el.dataset.sector=String(cue.sector);el.setAttribute('aria-label',`${prefix}: ${cue.direction.toLowerCase()}, relative to your view${cue.otherDirections?'; '+cue.otherDirections+' other alerted directions':''}`);}}
+  }
+ }
+
  document.body.classList.toggle('combat-priority',visor.cues.some(m=>m.charging||m.recent));
  let focus=$('threat-focus');if(!focus){focus=document.createElement('div');focus.id='threat-focus';$('waypoints').append(focus)}
  focus.textContent=visor.focused?(visor.focused.aimed?visor.focused.label:`${visor.focused.label} · ${visor.focused.charging?'CHARGING':visor.focused.recent?'RECENT FIRE':visor.focused.health<.35?'DAMAGED':'TRACKING'}`):'';
  if(game?.touchMode)focus.textContent=focus.textContent.replace(/\bSHIFT\b/g,'DASH');
  focus.dataset.target=visor.focused?.id||'';
  focus.classList.toggle('charging',!!visor.focused?.charging);
- markers=[...markers.filter(m=>m.kind!=='enemy'),...visor.cues];
+ markers=[...markers.filter(m=>m.kind!=='enemy'),...(game?.touchMode?visor.cues.filter(m=>m.onscreen):visor.cues)];
  const memory=$('memory-card');if(!memory.classList.contains('hidden'))placed.push(memory.getBoundingClientRect());
  for(const panel of [focus,note,$('interaction')])if(!panel.classList.contains('hidden'))placed.push(panel.getBoundingClientRect());
  if(!game?.touchMode)placed.push({left:innerWidth-205,right:innerWidth,top:90,bottom:315});

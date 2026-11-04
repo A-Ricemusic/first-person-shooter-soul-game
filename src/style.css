@@ -290,3 +290,16 @@ body.touch-mode .build-label .build-description{display:none}
 
 body.touch-mode #crosshair::after{content:'';position:absolute;inset:-4px;border:1px solid #91f5e8;border-radius:50%;opacity:0}
 body.touch-mode #crosshair.touch-assisted::after{opacity:.9}
+
+/* Build88: direction words share the compass row; keep the scene aperture clear. */
+body.touch-mode .bearing{min-width:0;width:110px}
+body.touch-mode .bearing #timer{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);width:70px;margin:0;font:10px/12px monospace;letter-spacing:1px;color:#a5c4bc}
+body.touch-mode .touch-compass-cue{position:absolute;top:48px;height:24px;max-width:180px;pointer-events:none;overflow:hidden;background:#07181ed9;text-shadow:0 1px 2px #000;letter-spacing:.2px}
+body.touch-mode #touch-route-cue{left:0;width:calc(50% - 60px);color:#b5fff0;text-align:left}
+body.touch-mode #touch-threat-cue{right:0;width:calc(50% - 60px);color:#ffd0a5;text-align:right}
+body.touch-mode .touch-compass-cue small{display:block;font:10px/12px monospace;white-space:nowrap}
+body.touch-mode .touch-compass-cue b{display:block;font:700 12px/12px 'Barlow',Arial,sans-serif;white-space:nowrap}
+body.touch-mode #touch-threat-cue[data-kind="CHARGE"]{color:#ffbd78}
+body.touch-mode .world-marker.enemy.visor.edge{display:none}
+
+body.touch-mode .hud-mission strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

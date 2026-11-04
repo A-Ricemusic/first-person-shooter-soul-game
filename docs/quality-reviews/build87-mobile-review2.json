@@ -1,0 +1,187 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "identity": {
+    "visible": "BUILD 87",
+    "requested_frozen_commit": "7d2485df87b48324706e1941768e2813aebb1b43",
+    "commit_verified": false,
+    "reason": "source inspection prohibited"
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61483/",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": "native two-contact Chromium touch emulation",
+    "limits": [
+      "captures pause play for inspection",
+      "synthetic Chromium",
+      "software-WebGL fallback",
+      "physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "terminal": "loss",
+      "terminal_text": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 1,
+        "mission_time": "00:36",
+        "score": 1100,
+        "accuracy_percent": 12,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aim": 1,
+        "approach_assists": 2
+      },
+      "recovered_memories": [
+        "MARA SOLBERG / Station medic"
+      ],
+      "coverage": [
+        "handbook",
+        "opening guard tap aim and held fire",
+        "planning map opened and visibly closed",
+        "movement and scene swipe",
+        "Mara approach/recovery",
+        "two-contact move and fire",
+        "attempted retreat from wall"
+      ],
+      "evidence": "docs/media/build87-mobile-review2/attempt1-reposition.jpg",
+      "observations": [
+        "Opening guard defeated; health/shield initially intact.",
+        "Map route helpful; forward movement put camera against geometry.",
+        "Hold approach recovered Mara but health fell to 46, then 17 while moving/firing into wall.",
+        "Offscreen attacker direction was difficult to resolve."
+      ],
+      "failures": [
+        "16000ms wait rejected: wait 0..12000ms; capture confirmed paused; retried at 12000ms.",
+        "Long forward hold while facing NE met wall; reposition ended in actual loss."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH on first loss screen; sequence 14 reset timer 00:00, health 100, shield 60, ammo 30/180 and memories empty. No checkpoint retry.",
+      "terminal": "loss",
+      "terminal_text": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "02:03",
+        "score": 3740,
+        "accuracy_percent": 14,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "tap_aims": 7,
+        "approach_assists": 2
+      },
+      "recovered_memories": [
+        "MARA SOLBERG / Station medic",
+        "ELIAN VALE / Relay engineer",
+        "SERA NORD / Night operator"
+      ],
+      "coverage": [
+        "opening guard",
+        "low barrier and JUMP",
+        "multiple map consultations, each visibly closed",
+        "Mara approach assist",
+        "Sera direct recovery and heart guard",
+        "Elian approach assist",
+        "manual reload and observed automatic reload",
+        "DASH reposition",
+        "two-contact movement/fire and movement/look",
+        "custodian armored/charging/exposed phases",
+        "coils 3 and 1 disabled; coil 2 remained 100% at last playing capture",
+        "loss UI with retry option observed but not used"
+      ],
+      "evidence": "docs/media/build87-mobile-review2/attempt2-threat-clear.jpg",
+      "observations": [
+        "Defeating nearby sentinel before Mara recovery preserved health; Mara recovered at health 100 shield 38.",
+        "Sera and Elian recovered; objective visibly advanced to custodian.",
+        "Map exposed overshoot to north boundary and helped correct route.",
+        "Repeated wall/counter collisions and turns around custodian made finding a clear face slow.",
+        "Coil 3 OFF at 01:49; coil 1 OFF at 01:58; clear numbered OFF feedback helped.",
+        "Last coil attempt did not change coil 2 health. Health fell 65 to 39 while stationary fire and nearby threats persisted.",
+        "Final attempt to tap sentinel and strafe/fire ended in loss."
+      ],
+      "failures": [
+        "Diagonal holds against barrier made no visible progress. JUMP/forward eventually progressed.",
+        "geometry #touch-stick while paused rejected Not visible; used already viewed on-screen geometry afterward.",
+        "Shots at remaining coil from obstructed face had no visible effect.",
+        "Could not complete custodian or reach upload."
+      ]
+    }
+  ],
+  "settings_changes": [],
+  "between_attempt_learning": "Use shorter movement/approach intervals, inspect threats sooner, use map for orientation; held fire without a visible target wasted ammo.",
+  "scores": {
+    "scale": "0 unusable; 5 mixed with substantial friction; 10 exceptional in the observed mobile context. Holistic judgment, not win/loss or completion percentage; limited to assessed content.",
+    "overall_mobile": 6.0,
+    "controls": 5.5,
+    "gameplay": 6.0,
+    "presentation": 7.5,
+    "usability": 6.0,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Coherent atmospheric shooter with useful mobile assists and legible progress feedback; repeated route execution/collision and offscreen-threat friction dominated these attempts. Second run improved substantially with learning, but paused synthetic play cannot establish continuous enjoyment.",
+      "controls": "Large thumb controls, tap-to-aim and two-contact move/fire worked. Scene turning and precise movement around barriers needed frequent inspection/correction; held fire without a clear target wasted ammo. No claim of physical touch feel.",
+      "gameplay": "Memory objectives and exposed-coil windows gave understandable progression; preparing for nearby threats improved recovery. Offscreen pressure while navigating and finding a clear coil face felt punishing. Upload and full victory loop unassessed.",
+      "presentation": "Strong cyan/amber industrial identity, rain, relay visual and restrained menu/terminal typography; dark tight views and close geometry sometimes dominated screen. Audio unassessed.",
+      "usability": "Handbook, paused route map, approach assist, clear recovery banners and separate fresh/checkpoint actions helped. Mapping the overhead route to doorways/counters still required repeated corrections. No settings changed.",
+      "readability": "Health/ammo/objective and numbered coil status were readable at 390x844. Small tracking-heavy secondary text and dense terminal stats required deliberate paused inspection; threat arrows were hard to convert into useful turns."
+    }
+  },
+  "cleanup": {
+    "close_requested": true,
+    "helper_closed": {
+      "driverPid": 65038,
+      "chromePid": 65057,
+      "browserClosed": true
+    },
+    "helper_exit_code": 0,
+    "ps_verification": {
+      "command": "ps -p 65038,65057 -o pid=,ppid=,comm=",
+      "exit_code": 1,
+      "stdout": "",
+      "result": "Both exact owned driver/Chrome PIDs absent."
+    },
+    "broad_kill_used": false,
+    "evidence": "docs/media/build87-mobile-review2/cleanup.json"
+  },
+  "helpful_moments": [
+    "Opening prompt explained tap guard then FIRE.",
+    "Handbook explained map pause, hold USE, coil colors and upload goal.",
+    "Map showed walls, low cover, receiver reach and current walking route.",
+    "Hold approach recovered Mara and Elian without exact manual positioning.",
+    "Numbered OFF statuses confirmed coil destruction.",
+    "Terminal UI gave actual stats and distinct START FRESH."
+  ],
+  "frustrating_moments": [
+    "Repeated movement against low cover, door posts and custodian counters.",
+    "Large close geometry occluded the scene.",
+    "Offscreen fire while approaching/recovering or aiming at coils was hard to locate.",
+    "Remaining coil stayed undamaged from the attempted face."
+  ],
+  "uncertainties": [
+    "No source or commit verification; only visible BUILD 87 identity confirmed.",
+    "Exact collision causes and exact final damage sources cannot be established from screenshots.",
+    "Aim precision and turning were mediated by synthetic touches and paused inspection.",
+    "Upload, victory, recovered-memory prose, tools submenu and settings options were not assessed.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment remain unassessed."
+  ],
+  "protocol": {
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "source_tests_docs_prior_reviews_recordings_internal_state_target_metadata_inspected": false,
+    "settings_changes": [],
+    "screenshots": "Every generated screenshot viewed before subsequent adaptive gameplay input. Captures pause active play; planning map remains open until visibly closed.",
+    "driver_pid": 65038,
+    "chrome_pid": 65057,
+    "graphics": "helper reported Software-WebGL fallback enabled; renderer not certified"
+  },
+  "raw_evidence_directory": "docs/media/build87-mobile-review2",
+  "raw_action_log": "docs/media/build87-mobile-review2/actions.jsonl"
+}

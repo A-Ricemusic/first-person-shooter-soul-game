@@ -1,0 +1,47 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.scrollIntoViewIfNeeded: Timeout 29997.687000000005ms exceeded.
+Call log:
+[2m  - attempting scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+[2m    - element is not stable[22m
+[2m  - retrying scroll into view action[22m
+[2m    - waiting for element to be stable[22m
+[2m    - element is not visible[22m
+[2m  - retrying scroll into view action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be stable[22m
+[2m      - element is not visible[22m
+[2m    - retrying scroll into view action[22m
+[2m      - waiting 100ms[22m
+[2m    56 × waiting for element to be stable[22m
+[2m       - element is not visible[22m
+[2m     - retrying scroll into view action[22m
+[2m       - waiting 500ms[22m
+
+    at Object.center (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tools/mobile-touch.mjs:5:570)
+    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-mission-controller.mjs:65:29 {
+  log: [
+    '  - attempting scroll into view action',
+    '    - waiting for element to be stable',
+    '    - element is not stable',
+    '  - retrying scroll into view action',
+    '    - waiting for element to be stable',
+    '    - element is not visible',
+    '  - retrying scroll into view action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be stable',
+    '      - element is not visible',
+    '    - retrying scroll into view action',
+    '      - waiting 100ms',
+    '    56 × waiting for element to be stable',
+    '       - element is not visible',
+    '     - retrying scroll into view action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.16.0

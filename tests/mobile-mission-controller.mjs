@@ -27,6 +27,15 @@ function path(pos,goal){
 }
 const navigationAudit={bodyHeight:STANDING.bodyHeight,radius:PLAYER_RADIUS,oldIgnoredLowColliders:world.boxes.filter(b=>b.max[1]>1e-6&&b.max[1]<=.32).length,blockedProbe:!walkable(8.4,18),routeFromPriorStall:path({x:8.099943,z:18},{x:11,z:22})};
 await t.tap('#deploy');
+// Fixed viewport controls need no scroll/stability wait. A mission may finish
+// between an observation and control lookup; preserve its terminal result.
+async function activeControlCenter(selector){
+ const l=p.locator(selector),r=await l.isVisible()?await l.boundingBox():null;
+ if(r&&r.width>0&&r.height>0)return{x:r.x+r.width/2,y:r.y+r.height/2};
+ const phase=await p.evaluate(()=>window.__SOULFALL__.game.phase);
+ if(phase!=='playing')return null;
+ throw Error('Active mission control unavailable: '+selector);
+}
 let pathCache=[],routeGoal='',held='',shooting=false,steps=0;const start=Date.now();
 while(Date.now()-start<Number(process.env.CONTROL_TIMEOUT_MS||360000)){
 const s=await p.evaluate(()=>{const g=window.__SOULFALL__.game;const {facilityLayout,...state}=g.captureState();return {...state,fastSceneTurns:g.options.fastSceneTurns!==false,pitch:g.pitch,targets:g.enemies.filter(e=>g.hasLineOfSight(g.player,e.group.position.clone().add({x:0,y:1.3,z:0}))).map(e=>({x:e.group.position.x,z:e.group.position.z,y:1.3,health:e.health})),boss:!g.custodian.dead&&g.custodian.active?g.custodian.coils.filter(n=>n.hp>0).map(n=>({x:g.custodian.group.position.x+n.metadata.target[0],y:n.metadata.target[1],z:g.custodian.group.position.z+n.metadata.target[2],health:n.hp})):[],inv:g.invulnerable}});
@@ -43,7 +52,7 @@ await t.clear();
 if(s.ammo<5&&!s.reloading)await t.tap('#touch-reload');
 const stop=recovering||(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8)||(s.cores===3&&!s.boss.length&&s.exitDistance<2.2);
 const aligned=Math.abs(delta)<.18;
-const a=target&&aligned&&!s.reloading?await t.center('#touch-fire'):{x:500,y:160};await t.down(2,a.x,a.y);
+const a=target&&aligned&&!s.reloading?await activeControlCenter('#touch-fire'):{x:500,y:160};if(!a)break;await t.down(2,a.x,a.y);
 const gain=touchLookGain(844,390);let pixels=Math.max(-1.4,Math.min(1.4,delta))/gain.x;
 if(s.fastSceneTurns&&!(target&&aligned&&!s.reloading)){
  // Invert the shared scene displacement ramp; the test still supplies exact
@@ -61,8 +70,8 @@ await t.move(2,Math.max(350,Math.min(820,a.x-pixels)),Math.max(70,Math.min(360,a
 const inputState=await p.evaluate(()=>{const g=window.__SOULFALL__.game;return{yaw:g.yaw,phase:g.phase}});
 if(inputState.phase!=='playing'){await t.clear();log.push({at:Date.now()-start,state:inputState.phase,moment:'after aim'});break;}
 const currentYaw=inputState.yaw;
-if(recovering){const u=await t.center('#touch-use');await t.down(1,u.x,u.y)}
-else if(!stop&&nav){const m=await t.center('#touch-stick');await t.down(1,m.x,m.y);const vx=nav.x-s.player.x,vz=nav.z-s.player.z,f=vx*-Math.sin(currentYaw)+vz*-Math.cos(currentYaw),r=vx*Math.cos(currentYaw)+vz*-Math.sin(currentYaw),len=Math.hypot(f,r)||1;await t.move(1,m.x+r/len*46,m.y-f/len*46)}
+if(recovering){const u=await activeControlCenter('#touch-use');if(!u)break;await t.down(1,u.x,u.y)}
+else if(!stop&&nav){const m=await activeControlCenter('#touch-stick');if(!m)break;await t.down(1,m.x,m.y);const vx=nav.x-s.player.x,vz=nav.z-s.player.z,f=vx*-Math.sin(currentYaw)+vz*-Math.cos(currentYaw),r=vx*Math.cos(currentYaw)+vz*-Math.sin(currentYaw),len=Math.hypot(f,r)||1;await t.move(1,m.x+r/len*46,m.y-f/len*46)}
 const travel=nav?Math.min(120,Math.max(25,Math.hypot(nav.x-s.player.x,nav.z-s.player.z)/5.5*650)):120;
 await p.waitForTimeout(recovering?1400:travel);await t.clear();steps++;
 }

@@ -228,12 +228,16 @@ export class Game {
     if(approaching)this.routePath=approaching.path;
     else if(this.runTime>=this.routeNext){this.routePath=this.playerRoute.path(this.player,goal,this.grounded,profileOf(this));this.routeNext=this.runTime+.35;}
     const path=this.routePath||[];let join=-1;
-    for(let i=Math.min(path.length-1,12);i>=0;i--)if(Math.hypot(path[i].x-this.player.x,path[i].z-this.player.z)<3&&this.playerRoute.clear(this.player,path[i])){join=i;break;}
+    // A cached start or passed corner must never win over a reachable future step.
+    // Held approach uses its actual next walking segment; manual tracing can
+    // safely shortcut to the furthest remaining point with a clear capsule.
+    if(approaching){const i=approaching.index;if(path[i]&&this.playerRoute.clear(this.player,path[i]))join=i;}
+    else for(let i=Math.min(path.length-1,12);i>=1;i--)if(this.playerRoute.clear(this.player,path[i])){join=i;break;}
     if(join<0){this.routeStatus='No ground route from this position';return;}
     this.routeStatus='';
     if(automatic){
-      const to=path.slice(join).find(p=>Math.hypot(p.x-this.player.x,p.z-this.player.z)>.5);
-      if(to&&this.playerRoute.clear(this.player,to)){
+      const to=path[join];
+      if(to&&Math.hypot(to.x-this.player.x,to.z-this.player.z)>.5&&this.playerRoute.clear(this.player,to)){
         const d=Math.hypot(to.x-this.player.x,to.z-this.player.z),t=Math.min(1,(this.touchMode?5:2)/d);
         this.routeWaypoint={x:this.player.x+(to.x-this.player.x)*t,z:this.player.z+(to.z-this.player.z)*t,goal,label:goal.startsWith('core-')?CORE_SITES[Number(goal.split('-')[1])].name:goal==='custodian'?'CUSTODIAN':'EXTRACTION'};
       }
