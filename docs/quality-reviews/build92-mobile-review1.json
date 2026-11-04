@@ -1,0 +1,220 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh terminal attempts",
+  "build": {
+    "expected_source": "55067d9d0e80e778b5fef7f5e8d6aaafedc40802",
+    "observed_title": "BUILD 92",
+    "source_verified": false
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61488/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native two-contact synthetic Chromium touch",
+    "limitations": [
+      "Captures pause gameplay for inspection",
+      "Software-WebGL fallback",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS \u2014 OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 2,
+        "mission_time": "01:20",
+        "score": 3200,
+        "accuracy_percent": 13,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 4,
+        "route_assists": 5,
+        "approach_assists": 4,
+        "time_label": "CUMULATIVE PLAY TIME (verbatim result qualifier)"
+      },
+      "coverage": [
+        "opening guard",
+        "map opened and visibly closed",
+        "Mara, Sera, Elian recovered",
+        "Custodian combat; coils 1 and 3 OFF, coil 2 still 100% in last live capture",
+        "terminal loss"
+      ],
+      "terminal_evidence": "docs/media/build92-mobile-review1/attempt1-middle-coil-fire.jpg",
+      "failures": [
+        "Stationary sustained coil fire allowed nearby enemies to close and kill operator",
+        "15-second helper wait rejected: wait 0..12000ms; capture confirmed paused before continuing"
+      ],
+      "observations": [
+        "Tap-to-aim quickly acquired guard and coils",
+        "Hold route and approach reduced navigation effort",
+        "Threat direction cues helpful",
+        "Small percentages and stacked banners harder to scan",
+        "Sustained fire through armored periods wasted ammunition"
+      ],
+      "uncertainties": [
+        "Coil numbering on geometry was not obvious; first tapped left coil registered as coil 3 OFF. No claim that aiming/obstruction behavior is an implementation defect.",
+        "No final live health reading at death; terminal UI determines loss."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "start_method": "Visible START FRESH from attempt-one terminal screen; no checkpoint retry",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 2,
+        "mission_time": "01:26",
+        "score": 5370,
+        "accuracy_percent": 18,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 4,
+        "route_assists": 5,
+        "approach_assists": 4,
+        "time_label": "CUMULATIVE PLAY TIME (verbatim result qualifier)",
+        "badge": "NEW TOUCH ASSIST PERSONAL BEST"
+      },
+      "coverage": [
+        "opening guard with shorter burst",
+        "route/approach recovery of Mara, Sera, Elian",
+        "Custodian exposed and armored phases",
+        "manual left-stick strafe plus simultaneous second-contact dash",
+        "all three coils disabled",
+        "route return to green uplink deck",
+        "72% upload at 31 health",
+        "actual terminal win"
+      ],
+      "terminal_evidence": "docs/media/build92-mobile-review1/attempt2-upload-result.jpg",
+      "helpful_moments": [
+        "Saved/release-use banner made the receiver transition explicit",
+        "A 2.5-second coil burst produced BROADCAST COIL DISABLED feedback",
+        "Left strafe plus dash visibly changed position and gave another firing angle; next burst disabled coil 2",
+        "RETURN TO DECK and green upload bar clearly communicated the final task; holding route reached the zone"
+      ],
+      "frustrating_moments": [
+        "Attempt to fire toward presumed east guard position hit no clearly confirmed target; heading stayed 090 and ammunition fell. This was reviewer targeting error/uncertainty, not a confirmed game bug.",
+        "Second coil tap/fire stayed at heading 184 and left both remaining coil percentages at 100%; could not establish exact obstruction or tap acquisition cause from visible play",
+        "Shield fell during route travel; threat cues often referred outside current field of view",
+        "Six-second last-coil burst achieved objective but health fell to 62; return reached upload at 31 health"
+      ],
+      "failures": [
+        "Unproductive eastward fire",
+        "Unproductive covered-angle coil fire",
+        "Did not successfully clear nearby pursuers despite intended strategy"
+      ],
+      "uncertainties": [
+        "Final health at successful upload not shown by terminal screen",
+        "Terminal tap-aim count reflects game-reported successful assists, not every tap attempted",
+        "Dash was visibly used with cooldown afterward, but terminal phase evades remained zero"
+      ]
+    }
+  ],
+  "settings_changes": [],
+  "learning_for_attempt2": "Use shorter firing bursts, clear nearby threats and reposition rather than remaining stationary at coils. Route and approach can recover memories; release between objectives.",
+  "scores": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable friction; 10 exceptional across assessed content. Scores are holistic judgments of observed mobile-emulated interaction, not win/loss grades or physical-device certification.",
+    "overall_mobile": 7.0,
+    "controls": 7.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.0,
+    "reasons": {
+      "overall_mobile": "A complete short mission was achievable with readable objectives, useful navigation assistance and coherent atmosphere. Combat visibility and firing-angle uncertainty required deliberate inspection and repositioning.",
+      "controls": "Large fire/move targets, tap aim and hold route/approach substantially eased play. Two-contact strafe plus dash worked visibly. Some taps on covered coils did not acquire; sustained turning and combat flow were not tested continuously.",
+      "gameplay": "Observed recovery-to-coils-to-upload progression provided distinct tasks and pressure. Movement to a clear face paid off. Stationary firing was punished, but enemy/obstruction diagnosis was difficult in the crowded coil arena.",
+      "presentation": "Cohesive teal/amber industrial station, rain, lighting, signage and clear terminal screens support the atmosphere at this emulated viewport. Audio unassessed.",
+      "usability": "Map pauses reliably and visibly closes; route and recovery assistance were practical. Saved/release-use and upload feedback helped. The instructional dialog clipped lower instructions behind its scrolling region and required scanning several control concepts.",
+      "readability": "Main objective, health and ammo were legible. Small coil percentages, narrow threat labels and stacked status/service banners reduced world visibility; coil-face distinction took inspection."
+    }
+  },
+  "evidence_directory": "docs/media/build92-mobile-review1",
+  "cleanup": {
+    "status": "COMPLETE",
+    "close_command": {
+      "op": "close"
+    },
+    "helper_result": "closed; browserClosed true",
+    "session_exit_code": 0,
+    "owned_driver_pid": 11510,
+    "owned_chrome_pid": 11520,
+    "verification_command": "ps -p 11510,11520 -o pid=,ppid=,stat=,command=",
+    "verification_output": "No rows: both exact owned PIDs absent after awaited helper exit",
+    "broad_kill_used": false
+  },
+  "reviewer": {
+    "role": "independent mobile review sub-agent",
+    "model": "GPT-6.1 Sol",
+    "method": "Visible UI only; helper --help was the only project material read besides own report. No source, tests, docs, prior reviews, recordings, internal state or target metadata inspected."
+  },
+  "assessment_boundaries": {
+    "assessed": "Only the two fresh attempts and visible instruction/menu/map screens described above",
+    "unassessed": [
+      "physical phones",
+      "Safari",
+      "audio",
+      "hardware performance",
+      "continuous enjoyment",
+      "full recovered-memory prose",
+      "full tactical handbook",
+      "settings menu",
+      "tools menu",
+      "jump/vault",
+      "aim-slow control",
+      "critical eliminations",
+      "successful phase evades"
+    ],
+    "no_inference": "No enjoyment judgment about unassessed content. Paused inspection affords more planning than continuous play. Software-WebGL renders do not certify mobile GPU behavior."
+  },
+  "identity_note": "BUILD 92 visible on title; supplied frozen SHA recorded as expectation only, deliberately not verified through repository/source access.",
+  "protocol_notes": [
+    "Exactly two fresh starts, both to terminal UI.",
+    "First terminal report saved as incomplete before tapping START FRESH.",
+    "Planning map stayed open until visible CLOSE MAP was tapped.",
+    "Every returned screenshot was viewed before the next adaptive input.",
+    "All gameplay used helper native JSON-line touch gestures; no keyboard, mouse, evaluation, custom controller or simulation advance.",
+    "No settings changes.",
+    "One rejected helper wait command is preserved in actions.jsonl; no outcome inferred from it."
+  ],
+  "raw_evidence": {
+    "actions_log": "docs/media/build92-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build92-mobile-review1/attempt1-after-wait-rejection.jpg",
+      "docs/media/build92-mobile-review1/attempt1-coil-facing.jpg",
+      "docs/media/build92-mobile-review1/attempt1-coil1-fire.jpg",
+      "docs/media/build92-mobile-review1/attempt1-coil2-fire.jpg",
+      "docs/media/build92-mobile-review1/attempt1-custodian-route.jpg",
+      "docs/media/build92-mobile-review1/attempt1-guard.jpg",
+      "docs/media/build92-mobile-review1/attempt1-map.jpg",
+      "docs/media/build92-mobile-review1/attempt1-mara-recovery.jpg",
+      "docs/media/build92-mobile-review1/attempt1-middle-coil-fire.jpg",
+      "docs/media/build92-mobile-review1/attempt1-route-elian.jpg",
+      "docs/media/build92-mobile-review1/attempt1-route-mara.jpg",
+      "docs/media/build92-mobile-review1/attempt1-route-sera-12s.jpg",
+      "docs/media/build92-mobile-review1/attempt1-start.jpg",
+      "docs/media/build92-mobile-review1/attempt1-turn-to-coils.jpg",
+      "docs/media/build92-mobile-review1/attempt2-clear-angle-fire.jpg",
+      "docs/media/build92-mobile-review1/attempt2-clear-east-guard.jpg",
+      "docs/media/build92-mobile-review1/attempt2-coil-burst.jpg",
+      "docs/media/build92-mobile-review1/attempt2-coil-view.jpg",
+      "docs/media/build92-mobile-review1/attempt2-custodian-route.jpg",
+      "docs/media/build92-mobile-review1/attempt2-elian.jpg",
+      "docs/media/build92-mobile-review1/attempt2-first-route.jpg",
+      "docs/media/build92-mobile-review1/attempt2-last-coil.jpg",
+      "docs/media/build92-mobile-review1/attempt2-mara.jpg",
+      "docs/media/build92-mobile-review1/attempt2-reposition-left.jpg",
+      "docs/media/build92-mobile-review1/attempt2-return-route.jpg",
+      "docs/media/build92-mobile-review1/attempt2-second-coil.jpg",
+      "docs/media/build92-mobile-review1/attempt2-sera.jpg",
+      "docs/media/build92-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build92-mobile-review1/attempt2-upload-result.jpg",
+      "docs/media/build92-mobile-review1/how-to-play.jpg",
+      "docs/media/build92-mobile-review1/initial-menu.jpg"
+    ]
+  }
+}

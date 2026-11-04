@@ -1,3 +1,4 @@
+import {updateTouchRouteView} from './touch-route-view.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
@@ -675,11 +676,7 @@ export class Game {
     const approach=touchApproachStep(this,direction,dt);
     const routeFollow=touchRouteStep(this,direction,dt,!!approach),guided=approach||routeFollow;
     if(guided)direction.set(guided.x,0,guided.z);
-    if(routeFollow&&!this.touchRouteManualLook){
-      const target=Math.atan2(-routeFollow.x,-routeFollow.z),delta=Math.atan2(Math.sin(target-this.yaw),Math.cos(target-this.yaw));
-      this.yaw+=Math.max(-1.8*dt,Math.min(1.8*dt,delta));
-      this.pitch+=Math.max(-.7*dt,Math.min(.7*dt,-this.pitch));
-    }
+    updateTouchRouteView(this,routeFollow||(this.touchUseGoal?approach:null),dt);
     const speed = touchRecoveryBrake(this,receiverInReach)?0:guided?Math.min(baseSpeed,approach?3.1:5.5,guided.distance/Math.max(dt,1e-6)):careful?Math.min(baseSpeed,2.2):baseSpeed;
     const routeSpecial=!!this.vault||this.dashTime>0;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
@@ -1069,7 +1066,7 @@ export class Game {
       anchorEligible:this.canRetryAnchor(),anchorRetries:this.anchorRetries||0,checkpointAssisted:(this.anchorRetries||0)>0,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       mobileCadence:mobileCadence(this),mobileAttackRecovery:this.mobileAttackRecovery||0,
-      autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
+      autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteArrived:!!this.touchRouteArrived,touchRouteFraming:!!this.touchRouteFraming,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',

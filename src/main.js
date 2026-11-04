@@ -21,7 +21,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 92</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 93</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -69,7 +69,7 @@ $('close-map').onclick=closeMap;
 document.addEventListener('keydown',e=>{if(e.code!=='KeyM'||e.repeat||!['playing','planning'].includes(current.phase)||activePanel||!$('menu').classList.contains('hidden')||e.target.closest('input,select,textarea,dialog,[contenteditable]'))return;e.preventDefault();if(current.phase==='planning')closeMap();else game.openPlanning();});
 
 let messageTimer,hitTimer,flashTimer,shiftTimer,memoryTimer,directionTimer;
-function notify(text){if(game?.touchMode)text=text.replace(/\bShift\b/gi,'DASH').replace(/Soul DASH/gi,'Soul Shift').replace(/hold E/gi,'hold USE');$('announcement').textContent=text;$('announcement').classList.add('visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>$('announcement').classList.remove('visible'),2800)}
+function notify(text){if(game?.touchMode)text=text.replace(/\bShift\b/gi,'DASH').replace(/Soul DASH/gi,'Soul Shift').replace(/hold E/gi,'hold USE');$('announcement').dataset.mobileDuplicate=String(/^(CUSTODIAN LOCKING LANES|BROADCAST COIL DISABLED)\b/.test(text));$('announcement').textContent=text;$('announcement').classList.add('visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>$('announcement').classList.remove('visible'),2800)}
 function onEvent(e){
  // The live optic/bearing state owns charge warnings; a timed tutorial notice
  // would keep claiming CHARGING after the shot or a successful interrupt.
@@ -97,7 +97,7 @@ function drawFieldControls(s,service){
 }
 function renderState(s){
  $('damage-direction').classList.toggle('visible',s.damageDirection!=null);if(s.damageDirection!=null)$('damage-direction').style.transform=`rotate(${s.damageDirection}rad)`;
- current=s;if(game?.touchMode){for(const [name,value] of [['ads',game.aim],['sprint',game.touchSprint],['crouch',game.crouchRequested]])document.querySelector('#touch-'+name)?.setAttribute('aria-pressed',String(!!value));const dash=document.querySelector('#touch-dash');if(dash)dash.textContent=s.dashCooldown>0?`DASH ${s.dashCooldown.toFixed(1)}`:'DASH';}hide('custodian-cells',!s.custodian?.active||s.custodian.dead);$('uplink-title').textContent=s.custodian?.active&&!s.custodian.dead?'CUSTODIAN / BROADCAST COILS':'EXTRACTION UPLINK';if(s.custodian?.active&&!s.custodian.dead)$('custodian-cells').innerHTML=s.custodian.coils.map((hp,i)=>`<span style="opacity:${hp>0?1:.35}">${i+1} ${hp>0?Math.ceil(hp*100)+'%':'OFF'}</span>`).join(' · ');mapOpen=s.phase==='planning';if(mapOpen)renderRouteSelection(s);hide('facility-map',!mapOpen);drawRadar(s);if(mapOpen)drawFacility(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player,{eyeHeight:s.player.eyeHeight});hide('service-hint',!service);drawFieldControls(s,service);hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;const zoneEdge=s.insideExtraction&&s.extractionMargin<.65;$('extraction-panel').classList.toggle('zone-edge',zoneEdge);$('extraction-status').textContent=uploadStatus(s);$('recovery-progress').style.width=`${(s.suitService?.valid&&s.suitService?.near?s.suitService.progress:s.coreProgress||0)*100}%`;
+ current=s;if(game?.touchMode){for(const [name,value] of [['ads',game.aim],['sprint',game.touchSprint],['crouch',game.crouchRequested]])document.querySelector('#touch-'+name)?.setAttribute('aria-pressed',String(!!value));const dash=document.querySelector('#touch-dash');if(dash)dash.textContent=s.dashCooldown>0?`DASH ${s.dashCooldown.toFixed(1)}`:'DASH';}hide('custodian-cells',!s.custodian?.active||s.custodian.dead);$('uplink-title').textContent=s.custodian?.active&&!s.custodian.dead?'CUSTODIAN / BROADCAST COILS':'EXTRACTION UPLINK';if(s.custodian?.active&&!s.custodian.dead)renderCoilStates(s);mapOpen=s.phase==='planning';if(mapOpen)renderRouteSelection(s);hide('facility-map',!mapOpen);drawRadar(s);if(mapOpen)drawFacility(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player,{eyeHeight:s.player.eyeHeight});hide('service-hint',!service);drawFieldControls(s,service);hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;const zoneEdge=s.insideExtraction&&s.extractionMargin<.65;$('extraction-panel').classList.toggle('zone-edge',zoneEdge);$('extraction-status').textContent=uploadStatus(s);$('recovery-progress').style.width=`${(s.suitService?.valid&&s.suitService?.near?s.suitService.progress:s.coreProgress||0)*100}%`;
  if(phase!==previousPhase){
   game?.touchInput?.root.classList.toggle('hidden',phase!=='playing');
   const playing=['playing','planning'].includes(phase);hide('hud',!playing);hide('pause',phase!=='paused'||!$('menu').classList.contains('hidden'));hide('end',!['won','lost'].includes(phase));
@@ -118,6 +118,14 @@ function renderState(s){
  document.body.classList.toggle('critical-health',s.health<30&&phase==='playing');
 }
 
+function renderCoilStates(s){
+ const cells=$('custodian-cells'),touch=!!game?.touchMode,values=s.custodian.coils.map(hp=>hp>0?Math.ceil(hp*100):0);
+ const signature=(touch?'touch':'desktop')+'|'+values.join(',');if(cells.dataset.signature===signature)return;cells.dataset.signature=signature;
+ cells.innerHTML=touch?values.map((hp,i)=>`<span class="coil-cell" data-live="${hp>0}" role="img" aria-label="Coil ${['I','II','III'][i]}, ${hp>0?hp+' percent remaining':'disabled'}" style="--coil-health:${hp}%"><b>${['I','II','III'][i]}</b><strong>${hp>0?hp+'%':'OFF'}</strong><i aria-hidden="true"></i></span>`).join(''):values.map((hp,i)=>`<span style="opacity:${hp>0?1:.35}">${i+1} ${hp>0?hp+'%':'OFF'}</span>`).join(' · ');
+}
+
+function mobileBossStatus(s,blocked=false){return s.custodian.charging?'CHARGE · COVER':blocked?'MAP · FIND ENTRY':s.custodian.open?'EXPOSED · FIRE':'ARMORED · WAIT';}
+
 function renderMobileHUD(s,service){
  if(!game?.touchMode)return;
  $('crosshair').classList.toggle('touch-assisted',!!s.touchAssistActive);
@@ -129,7 +137,7 @@ function renderMobileHUD(s,service){
  document.body.classList.toggle('touch-boss-stage',!!boss);
  $('uplink-title').textContent=boss?'CUSTODIAN':'UPLINK';
  $('extraction-panel').dataset.mode=boss?(s.custodian.open?'open':s.custodian.charging?'charging':'armored'):'upload';
- $('extraction-status').textContent=uploadStatus(s,{compact:true});
+ $('extraction-status').textContent=boss?mobileBossStatus(s):uploadStatus(s,{compact:true});
  $('touch-notices')?.classList.toggle('has-memory',!$('memory-card').classList.contains('hidden'));
  const reload=$('touch-reload');if(reload){reload.textContent=s.reloading?'LOADING':'RELOAD';reload.setAttribute('aria-busy',String(!!s.reloading))}
  const more=$('touch-more');if(more){more.textContent=game.crouchRequested?'TOOLS · LOW':game.touchSprint?'TOOLS · RUN':'TOOLS';more.classList.toggle('active-tools',!!(game.crouchRequested||game.touchSprint));more.setAttribute('aria-label',`Tools: weapon swap, crouch and run${game.crouchRequested?'; crouched':''}${game.touchSprint?'; running':''}`)}
@@ -280,7 +288,7 @@ function drawMarkers(markers){
   if(boss){
    // One status strip owns the upper fight view; controls carry posture/vault.
    const status=$('extraction-status');
-   status.textContent=uploadStatus(current,{compact:true})+(blocked?' · MAP: APPROACH':'');
+   status.textContent=mobileBossStatus(current,blocked);
    note.classList.add('hidden');
   }
   const jump=$('touch-jump');if(jump)jump.textContent=current.interaction==='Space · Vault'?'VAULT':'JUMP';
