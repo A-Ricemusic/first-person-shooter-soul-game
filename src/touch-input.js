@@ -1,3 +1,4 @@
+import {clearTouchApproach} from './touch-approach.js';
 // Use the long axis for stable pixel gain across rotation; vertical correction
 // is deliberately finer. Neither gesture speed nor event batching changes gain.
 export function touchLookGain(width,height,sensitivity=1,aim=false){
@@ -49,7 +50,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  const phasePress=(e,open)=>{e.preventDefault();phaseTouch=e.pointerId;open()};
  const more=root.querySelector('#touch-more'),extra=root.querySelector('#touch-extra');
  const setTools=open=>{extra.classList.toggle('hidden',!open);more.setAttribute('aria-expanded',String(open));};
- const clear=()=>{game.touchVaultContact=null;game.touchRecoveryBraked=false;for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
+ const clear=()=>{clearTouchApproach(game);game.touchVaultContact=null;game.touchRecoveryBraked=false;for(const [id,p]of owners){try{p.el.releasePointerCapture(id)}catch{}}owners.clear();setTools(false);knob.style.transform='';game.touchMove.x=game.touchMove.z=0;game.mouseDown=false;game.touchUse=false;root.querySelectorAll('[aria-pressed]').forEach(e=>e.setAttribute('aria-pressed','false'));};
  game.touchInput={clear,root};
  root.addEventListener('pointerdown',e=>{
   if(game.phase!=='playing'||e.pointerType==='mouse')return;
@@ -58,7 +59,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
   e.preventDefault();el.setPointerCapture(e.pointerId);const r=stick.getBoundingClientRect();owners.set(e.pointerId,{el,role,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,started:performance.now(),travel:0,sceneDragging:false,appliedX:0,appliedY:0,looking:role==='look'||role==='fire',cx:r.x+r.width/2,cy:r.y+r.height/2});
   if(['fire','ads','reload','dash','jump','use'].includes(role))setTools(false);
   if(!['move','look'].includes(role))game.touchVaultContact=null;
-  game.audio.wake();if(role==='tools')setTools(more.getAttribute('aria-expanded')!=='true');else if(role==='fire')game.mouseDown=true;else if(role==='use'){game.touchUse=true;game.interact()}else if(!['move','look'].includes(role)){game.action(role);el.setAttribute('aria-pressed',String(role==='ads'?game.aim:role==='sprint'?game.touchSprint:role==='crouch'?game.crouchRequested:false))}
+  game.audio.wake();if(role==='tools')setTools(more.getAttribute('aria-expanded')!=='true');else if(role==='fire')game.mouseDown=true;else if(role==='use'){clearTouchApproach(game);game.touchUse=true;game.interact()}else if(!['move','look'].includes(role)){game.action(role);el.setAttribute('aria-pressed',String(role==='ads'?game.aim:role==='sprint'?game.touchSprint:role==='crouch'?game.crouchRequested:false))}
   if(role==='move')move(e);
  });
  function move(e){
@@ -105,7 +106,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  }
  function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);
   if(e.type==='pointerup'&&p.role==='look'&&!p.sceneDragging&&Math.max(p.travel,Math.hypot(e.clientX-p.startX,e.clientY-p.startY))<=6&&performance.now()-p.started<=350&&game.phase==='playing'&&unblockedTap(e.clientX,e.clientY))game.tapAimAt(e.clientX,e.clientY);
-  if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use'){game.touchUse=false;game.touchRecoveryBraked=false;}if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
+  if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use'){game.touchUse=false;game.touchRecoveryBraked=false;clearTouchApproach(game);}if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  // Touch-down also works while the movement thumb is held. Keyboard activation
  // remains available; suppress a second action from the later touch click.
@@ -124,8 +125,8 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE with the left thumb. Swipe the scene to turn quickly. Tap a visible enemy or coil to center your aim, then hold FIRE. FIRE drags make fine corrections; AIM slows them further.', 'MAP pauses to plan. Hold USE and steer into a receiver ring; the suit brakes to recover. Release USE to move.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
- help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps. Inside its existing ring, your suit brakes until USE is released. Damage and incoming attacks remain active. Release USE or DASH to reposition.';details.append(recoveryHelp);
+ for(const text of ['MOVE with the left thumb. Swipe the scene to turn quickly. Tap a visible enemy or coil to center your aim, then hold FIRE. FIRE drags make fine corrections; AIM slows them further.', 'MAP pauses to plan. Near a receiver, release MOVE and hold USE to follow a short clear route and recover. Release USE to stop; MOVE overrides.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Near a receiver, HOLD APPROACH follows a short capsule-clear walking route when MOVE is released. MOVE, AIM and FIRE override walking; release USE stops it. DASH or JUMP cancels approach until a new USE hold. It avoids architecture, not enemy fire. Inside the original ring, the suit brakes for recovery until USE is released.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
  document.querySelector('#route-help').closest('label').nextElementSibling.textContent='Shows the next clear ground step while walking. Stops during aiming or firing. Tap MAP to choose a destination. Patrols still matter.';

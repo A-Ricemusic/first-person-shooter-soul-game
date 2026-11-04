@@ -1,0 +1,287 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh terminal attempts; no retry or third attempt",
+  "build_observed": "BUILD 86",
+  "source_frozen_user_supplied": "ea132c931c5991dcb7f2fab2b859243085b50af6",
+  "source_verified": false,
+  "url": "http://127.0.0.1:61482/",
+  "viewport": [
+    844,
+    390
+  ],
+  "method": "Visible-only native two-contact touch; every screenshot inspected before adaptive input. Synthetic Chromium, paused captures, software-WebGL. No source inspection.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 1,
+        "mission_time": "00:36",
+        "score": 1100,
+        "accuracy": "14%",
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aim": 1,
+        "time_label": "CUMULATIVE PLAY TIME"
+      },
+      "memories": [
+        "MARA SOLBERG / Station medic"
+      ],
+      "evidence": "docs/media/build86-mobile-review1/attempt1-escape-fight.jpg",
+      "coverage": [
+        "Entry Warden combat",
+        "Movement and reload",
+        "Planning map opened and visibly closed",
+        "West Archive approach and vault",
+        "Mara receiver recovered",
+        "Two-contact movement and fire",
+        "Patrol combat, attempted dash escape, terminal loss"
+      ],
+      "failures": [
+        "Two receiver use attempts outside reach (0.9m then 1.3m)",
+        "Patrol firing while receiver positioning depleted shield",
+        "Fire while moving near pillar emptied magazine without another elimination",
+        "Reload and dash escape attempt did not prevent loss"
+      ],
+      "uncertainties": [
+        "Tap on distant patrol did not visibly produce reliable lock; possible range or obstruction",
+        "No claim about content beyond first recovered memory"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "fresh_method": "Tapped visible START FRESH after attempt 1 terminal, after partial report saved",
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 5,
+        "mission_time": "01:45",
+        "score": 3660,
+        "accuracy": "18%",
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 4,
+        "tap_aims": 5,
+        "time_label": "CUMULATIVE PLAY TIME"
+      },
+      "memories": [
+        "MARA SOLBERG / Station medic",
+        "ELIAN VALE / Relay engineer",
+        "SERA NORD / Night operator"
+      ],
+      "evidence": "docs/media/build86-mobile-review1/attempt2-upload.jpg",
+      "coverage": [
+        "Fresh entry Warden",
+        "Patrol combat with tap and FIRE drag aiming",
+        "Two-contact movement and fire",
+        "Reload and cover strafing",
+        "Mara, Sera and Elian receiver recovery",
+        "Planning maps for Sera, Elian, Custodian and extraction; each visibly closed",
+        "Custodian armored/charging/exposed cycle",
+        "Dash at close range and all three coils disabled",
+        "Extraction deck approach and attempted upload",
+        "Actual terminal loss; no checkpoint retry"
+      ],
+      "failures": [
+        "Distant patrol taps did not visibly center aim; wasted ammunition",
+        "Reload and FIRE overlap initially delayed shooting",
+        "Moved against Mara receiver pillar for about four mission seconds",
+        "Multiple obstructions while locating Custodian firing position",
+        "First Custodian volley caused no visible coil damage",
+        "Repeated receiver use outside reach: Sera 0.4m, Elian 1.6m",
+        "Exposed stationary firing and nearby patrols reduced health to 12 before extraction",
+        "Final movement and HOLD USE attempt ended in loss at 01:45 before upload completed"
+      ],
+      "uncertainties": [
+        "Exact source of final damage not isolated",
+        "Whether upload began before loss not established",
+        "No successful extraction or victory UI assessed",
+        "No causal claim that tap aiming is defective; Warden and coil taps worked, patrol taps less clear"
+      ]
+    }
+  ],
+  "settings_changes": [],
+  "between_attempt_learning": "Use shorter receiver positioning corrections; clear patrol with unobstructed aim before holding USE; use fire drag to aim instead of assuming taps always track.",
+  "scores": {
+    "scale": "0 unusable; 5 playable with substantial friction; 7 good with meaningful rough edges; 10 exceptional within observed scope. Holistic judgments, not win/loss grades or arithmetic averages.",
+    "overall_mobile": 6.5,
+    "controls": 6.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 6.0,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Functional and learnable with coherent atmosphere and useful navigation, held back by repeated fine-positioning, obstruction and aiming friction under fire. Second attempt showed real improvement and progression; no claim of sustained enjoyment.",
+      "controls": "Native two-contact movement and FIRE drag worked; tap aim helped Wardens and coils; reload and dash accessible. Large turns and fine receiver positioning required repeated corrections. Patrol tap feedback was hard to interpret.",
+      "gameplay": "Recovering memories supplies clear intermediate progress and replenishment. Custodian exposure cycles and individually disabled coils offer visible tactical feedback. Patrol pressure during interaction and navigation mistakes left little recovery margin in these attempts.",
+      "presentation": "Consistent cyan industrial storm setting, luminous relay and clear terminal presentation. Atmosphere assessed visually only; audio unassessed.",
+      "usability": "Planning map with route length, selected target, completed checks and visible close is useful; objective changes and fresh start clear. Receiver reach thresholds and cover detours repeatedly interrupted progress.",
+      "readability": "Large health/ammo, objective, target markers and phase banners legible at 844x390. Small compass, terminal detail text, map labels and distant enemies require attention; large banners and weapon/control overlays occupy substantial scene area."
+    }
+  },
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 44500,
+    "chrome_pid": 44511,
+    "ps_command": "ps -p 44500,44511 -o pid=,ppid=,command=",
+    "ps_result": "No matching process rows; both exact owned PIDs absent",
+    "broad_kill_used": false
+  },
+  "limitations": [
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Pauses allow inspection and planning between short live segments; software WebGL not performance certification"
+  ],
+  "helpful_moments": [
+    {
+      "attempt": 1,
+      "moment": "Opening tutorial explicitly teaches tap guard then hold FIRE; guard cleared with simple input.",
+      "evidence": "attempt1-guard-fire.jpg"
+    },
+    {
+      "attempt": 1,
+      "moment": "Map provides 29m route, wall/low-cover legend and selected receiver; remains open for planning.",
+      "evidence": "attempt1-map.jpg"
+    },
+    {
+      "attempt": 1,
+      "moment": "Precise outside-reach messages enabled correction and actual Mara recovery.",
+      "evidence": "attempt1-reach-correction.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Short correction after learning receiver reach recovered Mara at full health/shield.",
+      "evidence": "attempt2-mara-recovery.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Completed memory checks and new objective clearly convey progress.",
+      "evidence": "attempt2-elian-correction.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Coil OFF indicators, phase cues and extraction objective confirm boss progress.",
+      "evidence": "attempt2-final-coil-fight.jpg"
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "attempt": 1,
+      "moment": "Two near-receiver holds failed while patrol damage continued.",
+      "evidence": [
+        "attempt1-mara-use.jpg",
+        "attempt1-receiver.jpg"
+      ]
+    },
+    {
+      "attempt": 1,
+      "moment": "Pillar obstructed movement and firing while magazine emptied.",
+      "evidence": "attempt1-patrol-fight.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Distant patrol tap did not visibly aim; FIRE spent ammunition forward.",
+      "evidence": "attempt2-left-patrol.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Custodian route involved repeated pillar/wall/cover collisions and missed firing opportunities.",
+      "evidence": [
+        "attempt2-custodian-turn.jpg",
+        "attempt2-custodian-south.jpg",
+        "attempt2-custodian-west-flank.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "moment": "After disabling boss, low health prevented completing extraction. Damage source and upload start uncertain.",
+      "evidence": "attempt2-upload.jpg"
+    }
+  ],
+  "unassessed": [
+    "Victory UI and completed upload",
+    "Checkpoint retry (visible but deliberately unused)",
+    "Recovered memory reading screens",
+    "Settings and alternate control configurations",
+    "Full narrative content",
+    "Physical phones",
+    "Safari",
+    "Audio",
+    "Hardware performance",
+    "Continuous enjoyment"
+  ],
+  "identity": "Visible menu BUILD 86 matches expectation; frozen SHA supplied by requester, not independently inspected.",
+  "raw_evidence": {
+    "directory": "docs/media/build86-mobile-review1",
+    "action_log": "docs/media/build86-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build86-mobile-review1/attempt1-escape-fight.jpg",
+      "docs/media/build86-mobile-review1/attempt1-guard-fire.jpg",
+      "docs/media/build86-mobile-review1/attempt1-map.jpg",
+      "docs/media/build86-mobile-review1/attempt1-mara-use.jpg",
+      "docs/media/build86-mobile-review1/attempt1-north.jpg",
+      "docs/media/build86-mobile-review1/attempt1-patrol-fight.jpg",
+      "docs/media/build86-mobile-review1/attempt1-reach-correction.jpg",
+      "docs/media/build86-mobile-review1/attempt1-receiver.jpg",
+      "docs/media/build86-mobile-review1/attempt1-start.jpg",
+      "docs/media/build86-mobile-review1/attempt1-west-approach.jpg",
+      "docs/media/build86-mobile-review1/attempt1-west.jpg",
+      "docs/media/build86-mobile-review1/attempt2-aim-correction.jpg",
+      "docs/media/build86-mobile-review1/attempt2-archive-approach.jpg",
+      "docs/media/build86-mobile-review1/attempt2-around-pillar.jpg",
+      "docs/media/build86-mobile-review1/attempt2-boss-lane.jpg",
+      "docs/media/build86-mobile-review1/attempt2-close-patrol-aim.jpg",
+      "docs/media/build86-mobile-review1/attempt2-coil-one.jpg",
+      "docs/media/build86-mobile-review1/attempt2-coils-front.jpg",
+      "docs/media/build86-mobile-review1/attempt2-coils-volley.jpg",
+      "docs/media/build86-mobile-review1/attempt2-cover-strafe.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-approach.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-fire.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-map.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-side-route.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-south.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-turn.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-wall-end.jpg",
+      "docs/media/build86-mobile-review1/attempt2-custodian-west-flank.jpg",
+      "docs/media/build86-mobile-review1/attempt2-east-route.jpg",
+      "docs/media/build86-mobile-review1/attempt2-east-south.jpg",
+      "docs/media/build86-mobile-review1/attempt2-elian-correction.jpg",
+      "docs/media/build86-mobile-review1/attempt2-elian-map.jpg",
+      "docs/media/build86-mobile-review1/attempt2-elian-use.jpg",
+      "docs/media/build86-mobile-review1/attempt2-entry-advance.jpg",
+      "docs/media/build86-mobile-review1/attempt2-extraction-map.jpg",
+      "docs/media/build86-mobile-review1/attempt2-extraction-run.jpg",
+      "docs/media/build86-mobile-review1/attempt2-final-coil-fight.jpg",
+      "docs/media/build86-mobile-review1/attempt2-fire-drag.jpg",
+      "docs/media/build86-mobile-review1/attempt2-fresh-start.jpg",
+      "docs/media/build86-mobile-review1/attempt2-left-patrol.jpg",
+      "docs/media/build86-mobile-review1/attempt2-mara-recovery.jpg",
+      "docs/media/build86-mobile-review1/attempt2-north-exit.jpg",
+      "docs/media/build86-mobile-review1/attempt2-north-route.jpg",
+      "docs/media/build86-mobile-review1/attempt2-pillar-strafe-fight.jpg",
+      "docs/media/build86-mobile-review1/attempt2-relay-route.jpg",
+      "docs/media/build86-mobile-review1/attempt2-relay-warden.jpg",
+      "docs/media/build86-mobile-review1/attempt2-sera-map.jpg",
+      "docs/media/build86-mobile-review1/attempt2-sera-recovery.jpg",
+      "docs/media/build86-mobile-review1/attempt2-sera-use.jpg",
+      "docs/media/build86-mobile-review1/attempt2-upload.jpg",
+      "docs/media/build86-mobile-review1/initial-menu.jpg"
+    ]
+  },
+  "compliance": {
+    "attempt_count": 2,
+    "terminal_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "settings_changes": [],
+    "browser_input": "Helper JSON-lines native touch only",
+    "screenshots_inspected_before_adaptive_input": true,
+    "source_tests_docs_prior_reviews_recordings_internal_state_inspected": false,
+    "helper_learning": "tools/mobile-playtest.mjs --help only",
+    "files_created": "Own report and own evidence/log directory only",
+    "agents_used": false
+  }
+}
