@@ -1,0 +1,221 @@
+{
+  "build_observed": "BUILD 97",
+  "source_frozen_user_supplied": "606d0aeffcab59ebc3e27c7967d36ab3ae8ac51f",
+  "complete": true,
+  "status": "complete: exactly two fresh terminal attempts, both wins; helper closed and exact owned PIDs absent",
+  "url": "http://127.0.0.1:61493/",
+  "viewport": [
+    844,
+    390
+  ],
+  "method": "Visible-only native two-contact touch in synthetic Chromium; captures pause and clear contacts; software WebGL. No source inspection.",
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "win: OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 4,
+        "mission_time": "01:50",
+        "score": 5893,
+        "accuracy_percent": 10,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 3,
+        "tap_aims": 5,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "coverage": [
+        "opening guard",
+        "all three memory receivers via ROUTE",
+        "all three Custodian coils tapped and fired upon",
+        "planning map opened and visibly closed",
+        "return to deck and terminal success"
+      ],
+      "evidence": "docs/media/build97-mobile-review1/attempt1-return.jpg",
+      "observations": [
+        "Tap guard then hold FIRE cleared opening without health loss.",
+        "Long route hold recovered Mara but health fell to 65 with no shield.",
+        "ROUTE plus FIRE recovered Sera and Elian; health recovered at receivers.",
+        "Holding fire through armor consumed ammunition; 4 rounds and zero reserve remained before returning.",
+        "Coil OFF indicators and map route to extraction were helpful.",
+        "Uplink completion occurred within final 12-second route batch; continuous upload combat not individually inspected."
+      ],
+      "failures_and_uncertainties": [
+        "No terminal failure. Took avoidable damage during unattended route holds.",
+        "Long fire holds wasted ammunition through armored phases and left only four rounds.",
+        "Did not individually inspect upload survival; terminal result is direct evidence of completion."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "start": "Visible START FRESH tapped after first terminal result and after saving partial report; fresh 00:00 / 100 health / 60 shield / 30+180 ammo observed.",
+      "outcome": "win: OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 2,
+        "mission_time": "01:23",
+        "score": 6076,
+        "accuracy_percent": 13,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "tap_aims": 4,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "evidence": "docs/media/build97-mobile-review1/attempt2-return.jpg",
+      "coverage": [
+        "fresh reset",
+        "opening guard with shorter burst",
+        "brief manual forward stick movement and PATH FRONT cue",
+        "threat TURN taps",
+        "ROUTE travel and all three memory recoveries",
+        "two-contact FIRE and ROUTE",
+        "all three coils with five-second fire holds",
+        "return to deck and terminal completion"
+      ],
+      "observations": [
+        "900ms opening burst left 21/180 ammunition and full health/shield.",
+        "One-second manual forward movement visibly changed position with useful PATH FRONT text/arrows.",
+        "First receiver captured at health 84 / shield 0; recovery and further travel restored health.",
+        "Shorter fire attempts did not eliminate all travel damage; second receiver checkpoint showed 85 health / 41 shield.",
+        "No ammunition spent during the long FIRE plus ROUTE batch from Sera to Elian despite 7 rounds remaining at its start; next capture showed 0/324 and LOADING. Possible interrupted reload or control interaction, cause unverified from visible evidence.",
+        "Five-second coil holds each disabled one coil, with 26/204 ammo and 100 health / 9 shield before returning.",
+        "Uplink completion occurred within final 12-second route batch; no separate continuous upload-combat assessment."
+      ],
+      "failures_and_uncertainties": [
+        "No terminal failure. Repeated route travel damage and empty magazine despite larger reserve.",
+        "Threat-turn aim could not be tracked continuously across paused captures.",
+        "No claim that shorter firing alone caused the faster finish; timing and enemy conditions also differed."
+      ]
+    }
+  ],
+  "between_attempt_learning": "Tap-to-aim works for coils; ROUTE carries movement/recovery. Avoid long blind FIRE holds through armor; use shorter inspection windows, consider supplies.",
+  "limitations": [
+    "Synthetic native-touch Chromium at 844x390, not a physical device.",
+    "Software-WebGL fallback; no hardware-performance certification.",
+    "Captures pause gameplay and clear contacts, allowing inspection time and disrupting continuous flow; each screenshot inspected before adaptive input.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment remain unassessed.",
+    "No enjoyment inferred from uninspected memories, tools or other unassessed content.",
+    "No game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. Only helper --help read, helper visible UI used, and own report/evidence managed."
+  ],
+  "cleanup": {
+    "status": "success",
+    "explicit_close": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 46238,
+    "chrome_pid": 46248,
+    "verification": "ps -p 46238,46248 -o pid=,ppid=,comm= returned no rows, exit 1; both exact owned PIDs absent. No broad kill."
+  },
+  "scores": {
+    "overall_mobile": 7.0,
+    "controls": 7.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5
+  },
+  "identity": {
+    "visible_title": "SOULFALL: THE LAST SIGNAL",
+    "visible_build": "BUILD 97",
+    "matches_expected_title_build": true,
+    "source_verification": "Frozen SHA supplied by user; not independently inspected under visible-only restriction."
+  },
+  "helpful_moments": [
+    {
+      "evidence": "attempt1-guard.jpg",
+      "detail": "The visible tap-guard instruction translated directly into a successful full-health opening."
+    },
+    {
+      "evidence": "attempt1-map.jpg",
+      "detail": "Paused map shows receiver checkmarks, JAMMER OFF, selected Extraction, and 23m walking route; visibly closed before travel."
+    },
+    {
+      "evidence": "attempt2-manual-move.jpg",
+      "detail": "PATH FRONT with ground arrows gave useful orientation after direct stick movement."
+    },
+    {
+      "evidence": "attempt2-coil2-short.jpg",
+      "detail": "Roman numerals, copper coils and OFF status together made remaining boss work readable."
+    },
+    {
+      "evidence": "attempt2-return.jpg",
+      "detail": "Terminal summary clearly separates assisted statistics and offers an unambiguous fresh start."
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "evidence": "attempt1-route-west.jpg",
+      "detail": "Long route travel exposed the player to rear attacks; receiver access did not imply safety."
+    },
+    {
+      "evidence": "attempt1-coil3.jpg",
+      "detail": "Holding fire against alternating armor burned nearly all ammo; choosing the next coil and watching flank warnings competed for attention."
+    },
+    {
+      "evidence": "attempt2-east.jpg",
+      "detail": "Empty magazine and LOADING interrupted fire intent while threats continued; cause of sustained non-firing not resolved."
+    },
+    {
+      "evidence": "attempt1-return.jpg",
+      "detail": "Detailed end statistics are tightly packed small text at 844x390, although headline results remain clear."
+    }
+  ],
+  "score_scale": "0 unusable; 5 functional with substantial friction; 7 good with clear rough edges; 9 excellent with little observed friction; 10 exceptional across assessed coverage. Holistic overall is judgment, not an arithmetic mean or reward for winning.",
+  "score_reasons": {
+    "overall_mobile": "A coherent, navigable mobile mission with useful touch assistance, readable goals and strong atmosphere. Dense touch/HUD demands and ammo/phase management create friction. Grade applies only to observed assisted emulation.",
+    "controls": "Tap-to-aim, a workable forward stick and simultaneous route/fire make combat reachable with two contacts. Frequent threat-turn and target changes still demand attention; sustained fire behavior during travel was not always clear.",
+    "gameplay": "Memory recovery, changing objectives, alternating boss windows and extraction form a complete short loop. Recovery gives useful respite, but long holds permit significant damage and indiscriminate fire wastes ammo. Manual movement/combat depth only lightly sampled.",
+    "presentation": "Distinct rain-dark industrial scene, cyan/amber accents, signage, rifle and numbered coils give a consistent identity. Audio and physical rendering quality unassessed.",
+    "usability": "Handbook, paused map, route assistance, progress checkmarks and explicit fresh-start/result flow worked. Holding route through recovery and handling reload/threat changes requires learning.",
+    "readability": "Large objective, health and numbered OFF states work well. Small compass, handbook copy, world labels and packed result metrics are demanding at landscape 844x390; dark world silhouettes can blend."
+  },
+  "unassessed_coverage": [
+    "DASH and phase evade",
+    "JUMP/VAULT",
+    "AIM slow corrections and sustained fire-drag aiming",
+    "TOOLS actions",
+    "supply selection/use",
+    "manual reload choice",
+    "local map and supply-map modes",
+    "recovered memory prose",
+    "settings panels",
+    "loss UI and checkpoint retry (not attempted)",
+    "continuous uplink defense details"
+  ],
+  "raw_evidence": {
+    "directory": "docs/media/build97-mobile-review1",
+    "log": "docs/media/build97-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build97-mobile-review1/attempt1-coil1.jpg",
+      "docs/media/build97-mobile-review1/attempt1-coil2.jpg",
+      "docs/media/build97-mobile-review1/attempt1-coil3.jpg",
+      "docs/media/build97-mobile-review1/attempt1-custodian-approach.jpg",
+      "docs/media/build97-mobile-review1/attempt1-defend-route.jpg",
+      "docs/media/build97-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build97-mobile-review1/attempt1-east.jpg",
+      "docs/media/build97-mobile-review1/attempt1-guard.jpg",
+      "docs/media/build97-mobile-review1/attempt1-map.jpg",
+      "docs/media/build97-mobile-review1/attempt1-return.jpg",
+      "docs/media/build97-mobile-review1/attempt1-route-west.jpg",
+      "docs/media/build97-mobile-review1/attempt2-coil1-short.jpg",
+      "docs/media/build97-mobile-review1/attempt2-coil2-short.jpg",
+      "docs/media/build97-mobile-review1/attempt2-coil3-short.jpg",
+      "docs/media/build97-mobile-review1/attempt2-custodian-approach.jpg",
+      "docs/media/build97-mobile-review1/attempt2-east.jpg",
+      "docs/media/build97-mobile-review1/attempt2-fresh.jpg",
+      "docs/media/build97-mobile-review1/attempt2-heart.jpg",
+      "docs/media/build97-mobile-review1/attempt2-manual-move.jpg",
+      "docs/media/build97-mobile-review1/attempt2-return.jpg",
+      "docs/media/build97-mobile-review1/attempt2-west.jpg",
+      "docs/media/build97-mobile-review1/how-to-play.jpg",
+      "docs/media/build97-mobile-review1/initial-menu.jpg"
+    ]
+  }
+}

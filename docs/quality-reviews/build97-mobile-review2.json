@@ -1,0 +1,216 @@
+{
+  "status": "complete",
+  "identity": {
+    "expected_source": "606d0aeffcab59ebc3e27c7967d36ab3ae8ac51f",
+    "visible_title": "BUILD 97",
+    "source_verified": false,
+    "method": "Visible UI only; source not inspected"
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61493/",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": "native two-contact Chromium touch",
+    "limitations": [
+      "Captures pause play and clear contacts; adaptive play is discontinuous.",
+      "Synthetic Chromium and software WebGL; physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+    ]
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "fresh": true,
+      "outcome": "SIGNAL LOST / OPERATOR LOST",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:35",
+        "score": 3380,
+        "accuracy_percent": 5,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "tap_aims": 5,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "coverage": [
+        "Opening guard",
+        "All three memories",
+        "All three Custodian coils disabled",
+        "Return to deck started; died before upload"
+      ],
+      "evidence": "docs/media/build97-mobile-review2/attempt1-return.jpg",
+      "tried": [
+        "Tap guard then hold FIRE",
+        "Hold ROUTE to receivers and recover",
+        "Route and FIRE with two contacts",
+        "Tap numbered coils and hold FIRE",
+        "Route plus DASH after boss"
+      ],
+      "failures": [
+        "Stationary sustained fire depleted reserve to zero and health to 16",
+        "Died on return at 01:35"
+      ],
+      "uncertainties": [
+        "Recovery transitions occurred during held waits",
+        "No upload observed"
+      ]
+    },
+    {
+      "number": 2,
+      "fresh": true,
+      "fresh_entry": "Visible START FRESH on first loss screen; no checkpoint retry",
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:24",
+        "score": 6123,
+        "accuracy_percent": 14,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "tap_aims": 4,
+        "route_assists": 5,
+        "approach_assists": 3,
+        "personal_best_label": "NEW TOUCH ASSIST PERSONAL BEST"
+      },
+      "coverage": [
+        "Opening guard",
+        "All three memories",
+        "All three Custodian coils disabled",
+        "Planning map overview, selected Extraction, 23m route; visibly closed with CLOSE MAP",
+        "Return route",
+        "Uplink upload at 54%",
+        "Terminal win"
+      ],
+      "evidence": "docs/media/build97-mobile-review2/attempt2-upload.jpg",
+      "tried": [
+        "Opening tap aim plus 1500ms FIRE burst",
+        "TURN warning plus 2000ms FIRE bursts before route travel",
+        "Manual RELOAD",
+        "2500ms coil I burst; 6000ms bursts for coils II and III",
+        "MAP then visible CLOSE MAP",
+        "Route back to deck and tap visible sentinel then FIRE during upload"
+      ],
+      "helpful_moments": [
+        "Coil I OFF after short burst verified progress without prolonged wasted fire",
+        "Map showed clear remaining extraction path and explicitly warned patrols still matter",
+        "UPLOADING 54% / STAY ON DECK and IN ZONE made position and task clear"
+      ],
+      "frustrating_moments": [
+        "Shield still fell during armored/charge waiting",
+        "Simultaneous boss status, threat directions and ammunition demanded divided attention"
+      ],
+      "failures": [
+        "Fired across armor phases; some ammunition was wasted",
+        "No phase evades achieved"
+      ],
+      "uncertainties": [
+        "Last upload seconds occurred during held wait",
+        "Win does not establish long-session enjoyment"
+      ]
+    }
+  ],
+  "between_attempts_learning": "Use shorter firing windows, defend against visible threats, and reposition rather than spending prolonged stationary fire. Route assists navigation/recovery; releasing after SAVED is instructed.",
+  "scores": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable friction; 10 exceptional clarity, control and consistency across assessed content. Scores are subjective observations of these two assisted, paused emulation attempts, not a completion grade or physical-device certification.",
+    "overall_mobile": 7,
+    "controls": 7,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 7,
+    "reasons": {
+      "overall_mobile": "Accessible route/tap assistance and coherent objective feedback supported a complete mission, while dense controls, divided attention and costly stationary combat limited comfort.",
+      "controls": "Tap aim, TURN and simultaneous route/fire worked. Layout is crowded; manual precision movement and aiming remain untested.",
+      "gameplay": "Memory-to-coil-to-upload progression and timing/resource consequences were understandable; shorter bursts gave a meaningful improvement. Threat management during coil windows was taxing.",
+      "presentation": "Strong consistent industrial atmosphere and cyan/amber identity in observed scenes; audio and physical motion/performance unassessed.",
+      "usability": "Concise handbook, paused planning and clear terminal choices helped. Timing/defense and several simultaneous HUD demands add learning friction.",
+      "readability": "Primary health, ammo, objective, OFF and upload status readable; secondary uppercase telemetry and map details small."
+    }
+  },
+  "cleanup": {
+    "status": "complete",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 50265,
+    "chrome_pid": 50275,
+    "verification": "ps -p 50265,50275 -o pid=,ppid=,stat=,command= returned no process rows after exit",
+    "exact_owned_pids_absent": true,
+    "broad_kill_used": false
+  },
+  "settings_changes": [],
+  "observations": {
+    "helpful": [
+      "Readable initial mobile handbook explains movement, tap aim, route hold, coil windows and deck upload in one screen",
+      "Tap aim and hold FIRE killed the opening guard without fine thumb precision",
+      "HOLD ROUTE traversed the facility and recovered receivers, reducing navigation burden",
+      "Numbered memory tiles and coil OFF status made progress visible",
+      "Both terminal screens fit portrait and clearly separated START FRESH from checkpoint retry"
+    ],
+    "frustrating": [
+      "At 390px wide, controls occupy much of the lower view; FIRE/AIM/RELOAD/DASH/JUMP/ROUTE/TOOLS and TURN create a dense attention area",
+      "Stationary coil firing caused a steep health/ammo penalty; first attempt reached return with 16 health and zero reserve, then died",
+      "Boss status and offscreen threat cue compete for attention; a clear warning still requires interrupting another task",
+      "Small uppercase secondary HUD text, fine map legend and dense terminal telemetry need deliberate inspection"
+    ],
+    "presentation": [
+      "Consistent cyan/amber visual language, industrial rain scene, receiver signage and restrained typography gave a coherent atmosphere",
+      "Dark geometry and some thin labels reduced immediate legibility; screenshots alone do not establish motion quality"
+    ],
+    "coverage_limits": [
+      "No manual joystick movement, free-look swipes, FIRE drag corrections, AIM, JUMP/VAULT, TOOLS, supply selection, local map zoom, full tactical handbook, recovered memory prose or settings tested",
+      "DASH tapped once in attempt one; no successful phase evade recorded",
+      "No audio assessment or conclusions about unvisited narrative content",
+      "No source/hash verification performed: frozen hash supplied by task, only BUILD 97 visible identity verified"
+    ]
+  },
+  "protocol": {
+    "attempt_count": 2,
+    "third_attempt": false,
+    "checkpoint_retries": 0,
+    "wait_step_max_ms": 12000,
+    "all_adaptive_screenshots_viewed_before_next_input": true,
+    "image_views_separate_from_dependent_inputs": true,
+    "source_tests_docs_prior_reviews_recordings_internal_state_inspected": false,
+    "helper_help_only_read": true,
+    "input": "JSON-lines native touch only; no keyboard, mouse, evaluation or alternate URL",
+    "only_owned_report_and_evidence_written": true
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build97-mobile-review2",
+    "actions": "docs/media/build97-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build97-mobile-review2/attempt1-coil1.jpg",
+      "docs/media/build97-mobile-review2/attempt1-coil2.jpg",
+      "docs/media/build97-mobile-review2/attempt1-coil3.jpg",
+      "docs/media/build97-mobile-review2/attempt1-custodian.jpg",
+      "docs/media/build97-mobile-review2/attempt1-guard.jpg",
+      "docs/media/build97-mobile-review2/attempt1-memory1.jpg",
+      "docs/media/build97-mobile-review2/attempt1-return.jpg",
+      "docs/media/build97-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build97-mobile-review2/attempt1-route2.jpg",
+      "docs/media/build97-mobile-review2/attempt1-route3.jpg",
+      "docs/media/build97-mobile-review2/attempt1-start.jpg",
+      "docs/media/build97-mobile-review2/attempt2-coil1-short.jpg",
+      "docs/media/build97-mobile-review2/attempt2-coil2.jpg",
+      "docs/media/build97-mobile-review2/attempt2-coil3.jpg",
+      "docs/media/build97-mobile-review2/attempt2-custodian.jpg",
+      "docs/media/build97-mobile-review2/attempt2-deck.jpg",
+      "docs/media/build97-mobile-review2/attempt2-fresh.jpg",
+      "docs/media/build97-mobile-review2/attempt2-map.jpg",
+      "docs/media/build97-mobile-review2/attempt2-memory1.jpg",
+      "docs/media/build97-mobile-review2/attempt2-memory2.jpg",
+      "docs/media/build97-mobile-review2/attempt2-memory3.jpg",
+      "docs/media/build97-mobile-review2/attempt2-upload.jpg",
+      "docs/media/build97-mobile-review2/attempt2-window.jpg",
+      "docs/media/build97-mobile-review2/how-to.jpg",
+      "docs/media/build97-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}

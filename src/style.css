@@ -348,3 +348,16 @@ body.touch-mode #map-tools button{min-width:0;font-size:11px;white-space:nowrap}
 body.touch-mode #map-supplies:disabled{opacity:.55}
 body.touch-mode #touch-use[data-resupplied="true"]{border:2px solid #b5fff0;background:#276958;color:#f3fff9;box-shadow:0 0 0 2px #8ee8e030;font-weight:700;letter-spacing:0}
 body.touch-mode .world-marker.supply{color:#b5fff0}
+
+/* Build98: left-thumb travel, a shorter firing cluster and explicit reload state. */
+body.touch-mode #touch-more{grid-column:3;grid-row:1}
+body.touch-mode #touch-use{position:fixed;left:max(20px,var(--touch-left));bottom:calc(max(20px,var(--touch-bottom)) + 128px);width:116px;height:46px;z-index:105;font-size:11px;line-height:13px}
+body.touch-mode #touch-extra{width:164px;grid-template-columns:repeat(2,minmax(0,1fr))}
+body.touch-mode #touch-extra button{grid-column:auto;grid-row:auto;width:auto;min-height:46px}
+body.touch-mode #touch-threat-cue{bottom:calc(var(--touch-bottom) + 111px)}
+body.touch-mode #reload-label[data-reloading="true"]{display:block!important;font:700 12px/14px 'Barlow',Arial,sans-serif;letter-spacing:.4px;margin-top:4px;color:#b5fff0}
+@media(orientation:landscape){body.touch-mode.touch-reloading #touch-notices{bottom:calc(var(--touch-bottom) + 92px)}}
+
+/* Keep downward FIRE correction space after reducing the right cluster height. */
+body.touch-mode #touch-actions{bottom:calc(var(--touch-bottom) + 20px)}
+body.touch-mode #touch-threat-cue{bottom:calc(var(--touch-bottom) + 131px)}

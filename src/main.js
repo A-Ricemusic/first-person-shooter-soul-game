@@ -21,7 +21,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 97</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 98</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -108,7 +108,7 @@ function renderState(s){
  $('health').textContent=Math.ceil(Math.max(0,s.health||0));$('health-bar').style.width=`${Math.max(0,s.health/(s.maxHealth||100)*100)}%`;
  $('shield').textContent=Math.ceil(Math.max(0,s.shield||0));$('shield-bar').style.width=`${Math.max(0,(s.shield||0)/(s.maxShield||60)*100)}%`;
  $('weapon-name').textContent=s.weapon==='breacher'?'PUMP BREACHER':'COIL RIFLE';$('ammo').textContent=String(s.ammo??30).padStart(2,'0');$('reserve').textContent=s.reserve??180;
- $('ammo').classList.toggle('low',s.ammo<7);$('reload-label').innerHTML=s.reloading?'RELOADING…':'<kbd>R</kbd> RELOAD <span>•</span> <kbd>RMB</kbd> AIM';
+ $('ammo').classList.toggle('low',s.ammo<7);$('reload-label').dataset.reloading=String(!!s.reloading);$('reload-label').innerHTML=s.reloading?'RELOADING…':'<kbd>R</kbd> RELOAD <span>•</span> <kbd>RMB</kbd> AIM';
  $('objective').textContent=s.routeGoal?.startsWith('supply-')?'RECOVER SUPPLIES':s.touchRouteActive&&s.touchRouteGoal?.startsWith('core-')?`RECOVER ${CORE_SITES[Number(s.touchRouteGoal.split('-')[1])]?.person||'THE SIGNAL'}`:s.localRecovery?`${s.recoveryReady?(game?.touchMode?'RECOVER':'HOLD E'):'NEARBY'} / ${CORE_SITES[s.localRecovery.id].person}`:s.cores<3&&s.routeGoal?`RECOVER ${CORE_SITES[Number(s.routeGoal.split('-')[1])]?.person||'THE SIGNAL'}`:(game?.touchMode?s.objective?.replace('HOLD E','HOLD USE').replace('DISABLE UPLINK CUSTODIAN','DISABLE CUSTODIAN').replace('HOLD THE EXTRACTION ZONE','HOLD UPLINK DECK').replace('RETURN TO EXTRACTION','RETURN TO DECK'):s.objective)||'RECOVER THE THREE SOUL CORES';$('kills').textContent=`${s.kills||0} ELIMINATED`;$('timer').textContent=clock(s.time);
  const count=typeof s.cores==='number'?s.cores:0;[...$('core-slots').children].forEach((el,i)=>el.classList.toggle('recovered',s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count));
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
@@ -132,6 +132,7 @@ function renderMobileHUD(s,service){
  if(!game?.touchMode)return;
  if(!s.touchRecoveryBraked||!game.touchUse)touchSavedPerson=null;
  $('crosshair').classList.toggle('touch-assisted',!!s.touchAssistActive);
+ document.body.classList.toggle('touch-reloading',s.phase==='playing'&&!!s.reloading);
  const playing=s.phase==='playing',uplink=playing&&s.cores===s.totalCores;
  const boss=uplink&&s.custodian?.active&&!s.custodian.dead;
  document.body.classList.toggle('touch-interacting',playing&&!!s.interaction);
@@ -143,7 +144,7 @@ function renderMobileHUD(s,service){
  $('extraction-status').textContent=mobileUplinkStatus(s);
  $('touch-notices')?.classList.toggle('has-memory',!$('memory-card').classList.contains('hidden'));
  const reload=$('touch-reload');if(reload){reload.textContent=s.reloading?'LOADING':'RELOAD';reload.setAttribute('aria-busy',String(!!s.reloading))}
- const more=$('touch-more');if(more){more.textContent=game.crouchRequested?'TOOLS · LOW':game.touchSprint?'TOOLS · RUN':'TOOLS';more.classList.toggle('active-tools',!!(game.crouchRequested||game.touchSprint));more.setAttribute('aria-label',`Tools: weapon swap, crouch and run${game.crouchRequested?'; crouched':''}${game.touchSprint?'; running':''}`)}
+ const more=$('touch-more');if(more){more.textContent=game.crouchRequested?'TOOLS · LOW':game.touchSprint?'TOOLS · RUN':'TOOLS';more.classList.toggle('active-tools',!!(game.crouchRequested||game.touchSprint));more.setAttribute('aria-label',`Tools: manual reload, weapon swap, crouch and run${game.crouchRequested?'; crouched':''}${game.touchSprint?'; running':''}`)}
  const use=$('touch-use');if(use){
   const supplySelected=s.routeGoal?.startsWith('supply-'),resupplied=s.touchSupplyCollected&&game.touchUse;
   const ss=s.suitService,repair=!supplySelected&&ss?.valid&&ss.near&&ss.powered&&!ss.spent&&!ss.full;

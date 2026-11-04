@@ -49,7 +49,7 @@ let nav;for(let i=Math.min(6,pathCache.length-1);i>=0;i--)if(segmentWalkable(s.p
 const aim=target||{...(nav||goal),y:1.7};let desired=Math.atan2(s.player.x-aim.x,s.player.z-aim.z),delta=desired-s.player.yaw;delta=Math.atan2(Math.sin(delta),Math.cos(delta));const pitch=Math.atan2(aim.y-1.7,Math.hypot(aim.x-s.player.x,aim.z-s.player.z));
 // All observations above read state; every control below is a native touch contact.
 await t.clear();
-if(s.ammo<5&&!s.reloading)await t.tap('#touch-reload');
+if(s.ammo<5&&!s.reloading){await t.tap('#touch-more');await t.tap('#touch-reload');}
 const stop=recovering||(s.boss.length&&Math.hypot(s.player.x-11,s.player.z-22)<1.8)||(s.cores===3&&!s.boss.length&&s.exitDistance<2.2);
 const aligned=Math.abs(delta)<.18;
 const a=target&&aligned&&!s.reloading?await activeControlCenter('#touch-fire'):{x:500,y:160};if(!a)break;await t.down(2,a.x,a.y);

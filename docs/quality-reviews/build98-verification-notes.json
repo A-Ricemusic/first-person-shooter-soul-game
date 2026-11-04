@@ -1,0 +1,23 @@
+{
+  "reloadObservation": "Same reserve before/after travel does not establish non-firing because recovering a memory restores reserve. Original reviewer uncertainty is retained.",
+  "baselineTrace": "build98-reload-baseline.json",
+  "baselineResult": "Both native phone formats completed3 automatic reloads, fired69 shots and received60 rounds. Ammunition accounting balanced; no reload defect reproduced. Exact original timing/combat conditions were not isolated.",
+  "initialControlCheck": "build98-controls-initial.json",
+  "fixtureCorrection": "Wait for the displayed reload state after the existing periodic HUD refresh, rather than asserting hidden immediately when the internal timer completes.",
+  "correctedCheck": "build98-controls-corrected.json",
+  "cutoutCheck": "build98-controls-insets.json",
+  "finalControlCheck": "build98-controls-final.json",
+  "finalFocusedChecks": 70,
+  "finalAdjustment": "Raise the shorter right grid20px above its old bottom margin to preserve at least80px downward FIRE travel; warning remains12px above the grid.",
+  "layoutComparison": "build98-layout-comparison.json",
+  "tradeoffs": [
+    "Manual reload now needs TOOLS then RELOAD rather than one tap.",
+    "Expanded TOOLS has two rows instead of one.",
+    "Left ROUTE and manual MOVE are separate explicit targets; release ROUTE before changing the left-thumb action.",
+    "No change to reload timers, firing, recovery, movement or other game rules."
+  ],
+  "limits": [
+    "Geometry and arranged fixtures are not physical ergonomics or independent quality scores.",
+    "Physical phones,Safari,audio,hardware performance and continuous enjoyment unassessed."
+  ]
+}

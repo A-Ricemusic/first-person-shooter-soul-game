@@ -1,0 +1,982 @@
+{
+  "method": "Native-touch phone engineering fixtures. Actual authored receiver positions and collision routes retained. Starts, encounter suppression, one rejected path, direct damage and result/cache states are arranged through the test handle. Actual animation frames and native contacts drive approach/recovery/cancel. Not ordinary mission wins or independent enjoyment evidence.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "fallback": false,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222773793267717,
+            1.7,
+            -14.99625312233027
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.99546136250811,
+            1.7,
+            -12.393064397080728
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.777155081384698,
+            1.7,
+            -32.996234424278455
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4429",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": false,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222773793267727,
+            1.7,
+            -14.99625312233027
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.99542381124634,
+            1.7,
+            -12.393074097776147
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.777226206732437,
+            1.7,
+            -32.9962531223302
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4430",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "fallback": false,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222870401991976,
+            1.7,
+            -14.996310710812352
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.995459044406687,
+            1.7,
+            -12.392754405747938
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.777058466826888,
+            1.7,
+            -32.99629200901986
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4430",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "fallback": false,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222844918615152,
+            1.7,
+            -14.996234424278475
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.995496615784518,
+            1.7,
+            -12.392744688026832
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.7772262067324363,
+            1.7,
+            -32.99625312233022
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4430",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "fallback": false,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222631536702295,
+            1.7,
+            -14.996290529769395
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.99545904440666,
+            1.7,
+            -12.39275440574794
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.7768450850236004,
+            1.7,
+            -32.99623592631428
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4430",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": true,
+      "checks": [
+        "authored nearby starts include a real detour with capsule-clear bounded paths",
+        "held USE follows physical route to receiver0, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver1, retains original ring/hold and stops after recovery",
+        "held USE follows physical route to receiver2, retains original ring/hold and stops after recovery",
+        "release cancels walking immediately and a new hold can explicitly resume",
+        "manual MOVE overrides held USE, including moving away from the receiver",
+        "AIM and FIRE suppress approach walking while the held USE contact remains",
+        "DASH cancels an approach for the rest of that USE hold",
+        "JUMP interrupts approach without a delayed restart on landing",
+        "pause clears held approach and resumes without delayed movement",
+        "unavailable or excessive routes do not move and do not repeatedly search",
+        "near approach stays separate from far route following and rejects raised starts",
+        "approaching grants no invulnerability and records movement assistance separately"
+      ],
+      "failures": [],
+      "candidates": [
+        {
+          "id": 0,
+          "start": {
+            "x": -17.07090350616535,
+            "y": 1.7,
+            "z": -12.129874257261827
+          },
+          "path": [
+            {
+              "x": -17.07090350616535,
+              "z": -12.129874257261827
+            },
+            {
+              "x": -18,
+              "z": -15
+            },
+            {
+              "x": -22,
+              "z": -15
+            }
+          ],
+          "length": 7.016760194974766,
+          "detour": 1.3129356863962123
+        },
+        {
+          "id": 1,
+          "start": {
+            "x": 21.129874257261825,
+            "y": 1.7,
+            "z": -8.07090350616535
+          },
+          "path": [
+            {
+              "x": 21.129874257261825,
+              "z": -8.07090350616535
+            },
+            {
+              "x": 23,
+              "z": -8
+            },
+            {
+              "x": 23,
+              "z": -13
+            }
+          ],
+          "length": 6.871469369463083,
+          "detour": 1.5995283095511779
+        },
+        {
+          "id": 2,
+          "start": {
+            "x": 6.929096493834651,
+            "y": 1.7,
+            "z": -30.129874257261825
+          },
+          "path": [
+            {
+              "x": 6.929096493834651,
+              "z": -30.129874257261825
+            },
+            {
+              "x": 6,
+              "z": -33
+            },
+            {
+              "x": 2,
+              "z": -33
+            }
+          ],
+          "length": 7.016760194974768,
+          "detour": 1.3129356863962123
+        }
+      ],
+      "recoveries": [
+        {
+          "id": 0,
+          "start": [
+            -17.07090350616535,
+            1.7,
+            -12.129874257261827
+          ],
+          "end": [
+            -21.222844918615138,
+            1.7,
+            -14.996234424278475
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974766,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        },
+        {
+          "id": 1,
+          "start": [
+            21.129874257261825,
+            1.7,
+            -8.07090350616535
+          ],
+          "end": [
+            22.99545904440667,
+            1.7,
+            -12.392754405747944
+          ],
+          "assists": 1,
+          "routeLength": 6.871469369463083,
+          "detour": 1.5995283095511779,
+          "queries": 1
+        },
+        {
+          "id": 2,
+          "start": [
+            6.929096493834651,
+            1.7,
+            -30.129874257261825
+          ],
+          "end": [
+            2.7774650777457826,
+            1.7,
+            -32.99623292224263
+          ],
+          "assists": 1,
+          "routeLength": 7.016760194974768,
+          "detour": 1.3129356863962123,
+          "queries": 1
+        }
+      ],
+      "damage": {
+        "before": 100,
+        "after": 90,
+        "invulnerable": 0
+      },
+      "scoring": {
+        "cached": 1,
+        "normal": null,
+        "assisted": "4430",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "0% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 APPROACH ASSIST"
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 69532,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
