@@ -19,7 +19,9 @@ export function updateTouchRouteView(g,guide,dt){
  g.touchRouteFraming=false;
  if(!g.touchMode||!g.touchUse||!g.touchUseGoal||g.phase!=='playing'||g.touchRouteManualLook||g.aim||g.mouseDown||!g.grounded||g.vault||g.dashTime>0)return;
  if(g.touchRouteCancelled&&!g.touchRouteArrived)return;
- const arrived=g.touchRouteArrived&&g.touchRouteCounted;
+ // A fresh hold at a completed boss approach may deliberately face the static
+ // landmark without walking again. FIRE, ADS and manual look retain priority.
+ const arrived=g.touchRouteArrived&&(g.touchRouteCounted||g.touchUseGoal==='custodian');
  const braked=g.touchRecoveryBraked&&g.touchRouteCounted;
  const state=g.touchRouteActive?g.touchRoute:g.touchApproachActive?g.touchApproach:null;
  const landmark=(arrived||braked||nearEnd(g,state))?touchRouteLandmark(g):null;

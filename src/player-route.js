@@ -1,6 +1,6 @@
 import {canPlayerOccupy,feetY,STANDING} from './movement.js';
 import {recoveryDistance,isInsideExtraction} from './mission.js';
-import CUSTODIAN from './custodian-layout.json';
+import {clearCustodianApproach} from './custodian-approach.js';
 
 // Separate from enemy navigation. Static reverse distance fields have no search
 // truncation and never consult enemies or combat state. Segment/box distance
@@ -18,8 +18,7 @@ export class PlayerRoute {
       if(this.clear(this.point(i),this.point(j))){this.edges[i]|=1<<k;this.edges[j]|=1<<(k+1);}
     }
     cores.forEach(c=>this.field(`core-${c.id}`,p=>recoveryDistance({...p,y:1.7},c.position)<=2.3));
-    const [x,,z]=CUSTODIAN.origin;
-    this.field('custodian',p=>Math.abs(p.x-x)<=2&&((p.z>=z+5&&p.z<=z+6)||(p.z<=z-4&&p.z>=z-5)));
+    this.field('custodian',p=>clearCustodianApproach(world,p));
     this.field('extraction',p=>isInsideExtraction({...p,y:1.7},world.playerSpawn)&&Math.abs(p.x)<5&&p.z>29&&p.z<36);
   }
   point(i){return {x:this.b.minX+(i%this.w)*this.step,z:this.b.minZ+Math.floor(i/this.w)*this.step};}

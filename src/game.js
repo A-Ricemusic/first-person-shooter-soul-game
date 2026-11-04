@@ -1,6 +1,7 @@
 import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRoute,removeSupplyRoute,emptyAmmoAdvice} from './supply-route.js';
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
+import {inCustodianApproach} from './custodian-approach.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
@@ -1072,6 +1073,7 @@ export class Game {
       crouchHint:!(closest?.distance<4.5)&&nearLowCover(this,this.world),
       damageDirection:this.phase==='playing'&&this.runTime-this.lastDamage<1.1&&damagePoint ? Math.atan2(damagePoint.x-this.player.x,-(damagePoint.z-this.player.z))+this.yaw : null,
       routeHelp:this.routeWaypoint?.label||'',routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
+      touchBossApproach:this.touchMode&&this.custodian?.active&&!this.custodian.dead&&this.grounded&&!this.vault&&profileOf(this).eyeHeight>=1.7&&Math.abs(feetY(this.player,profileOf(this)))<.025&&inCustodianApproach(this.player,.05),
       anchorEligible:this.canRetryAnchor(),anchorRetries:this.anchorRetries||0,checkpointAssisted:(this.anchorRetries||0)>0,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       mobileCadence:mobileCadence(this),mobileAttackRecovery:this.mobileAttackRecovery||0,

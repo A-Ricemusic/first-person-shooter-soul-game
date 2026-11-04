@@ -21,7 +21,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 98</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 99</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -149,14 +149,18 @@ function renderMobileHUD(s,service){
   const supplySelected=s.routeGoal?.startsWith('supply-'),resupplied=s.touchSupplyCollected&&game.touchUse;
   const ss=s.suitService,repair=!supplySelected&&ss?.valid&&ss.near&&ss.powered&&!ss.spent&&!ss.full;
   use.dataset.ready=String(!!(!supplySelected&&s.recoveryReady||repair));use.dataset.resupplied=String(!!resupplied);
+  const face=boss&&!supplySelected&&s.touchBossApproach&&s.routeGoal==='custodian';
+  const faceLabel=face?(!game.touchUse?'HOLD FACE COILS':s.touchRouteArrived?(s.touchRouteFraming?'COILS · RELEASE':'RELEASE · FACE COILS'):null):null;
   const gap=s.localRecovery?Math.max(.1,Math.ceil(s.localRecovery.remaining*10)/10):null;
   const release=s.touchRecoveryBraked&&!s.recoveryReady,saved=release&&!!touchSavedPerson;
   use.dataset.saved=String(saved);
   use.textContent=resupplied?'RESUPPLIED · RELEASE USE':s.touchRouteStatus?.startsWith('SUPPLY GONE')?'SUPPLY GONE · RELEASE USE':supplySelected&&(!s.touchRouteStatus||s.touchRouteActive)?(s.touchRouteActive?'FOLLOWING SUPPLY':'HOLD SUPPLY ROUTE'):saved?'SAVED · RELEASE USE':release?'RELEASE USE TO MOVE':s.recoveryReady?'HOLD TO RECOVER':repair?'HOLD TO REPAIR':s.touchRouteActive?'FOLLOWING':s.touchRouteStatus&&!s.touchApproachActive?(s.touchRouteStatus.includes('BLOCKED')?'ROUTE BLOCKED':'RELEASE USE'):s.touchApproachActive?'APPROACHING':s.touchApproachStatus?'ROUTE BLOCKED':gap!=null&&s.localRecovery.remaining>0?(s.touchApproachAvailable?'HOLD APPROACH':'RETURN TO FLOOR'):s.touchApproachAvailable?'HOLD ROUTE':'RETURN TO FLOOR';
+  if(faceLabel)use.textContent=faceLabel;
   use.dataset.near=String(!!s.localRecovery);
   const progress=Math.max(0,Math.min(1,resupplied||saved?1:repair?ss.progress:s.coreProgress||0));
   use.style.setProperty('--hold-progress',`${progress*100}%`);
   use.setAttribute('aria-label',resupplied?'Supply collected; release USE before the next route':supplySelected?'Hold to walk to the selected existing supply; release to stop':saved?`${touchSavedPerson} saved; release USE before the next route`:release?'Release use to move':s.recoveryReady?`Hold to recover ${CORE_SITES[s.localRecovery.id].person}`:repair?'Hold to service suit':s.touchRouteActive?'Following selected route; release use to stop':s.touchRouteStatus?s.touchRouteStatus:s.localRecovery?'Hold to approach nearby receiver; release move first':'Hold to walk the selected map route; release to stop; manual movement, DASH or JUMP cancels');
+  if(faceLabel)use.setAttribute('aria-label',game.touchUse?'Release route; release FIRE or AIM, then hold FACE COILS to face the static machine':'Hold to face the Custodian landmark from this standing approach; release FIRE and AIM first; does not fire or select a live coil');
  }
 }
 
