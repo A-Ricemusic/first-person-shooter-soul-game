@@ -1,0 +1,3370 @@
+{
+  "method": "Mobile native-touch engineering fixtures. Starting poses, active phase, objective selection and one collected state are arranged; no played recoveries or mission win. Route lengths, swept physics, real input crossings, renderer rays and roof rain checked. Two profiles additionally stage a hunter with firing suppressed to isolate live pursuit through the aperture. One forced-asset-failure case checks fallback.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "fallback": false,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "a live hunter pursues through the service opening",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "live hunter crosses the new rear opening in normal animation frames",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": true,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.197000503540039,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125,
+          3.875
+        ]
+      },
+      "nativeOut": [
+        -10.625550000000066,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.374449999999957,
+        1.7,
+        -23.25
+      ],
+      "pursuit": {
+        "position": [
+          -12.953003835332972,
+          0,
+          -21.668590576375983
+        ],
+        "player": [
+          -1,
+          1.7,
+          -23.25
+        ],
+        "method": "Arranged hunter/player poses; firing suppressed on fixture actor; normal animation-frame AI movement, no manual simulation advance."
+      },
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007,
+          1.6750000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          0.980000305175782,
+          0.993000793457032,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.32445000000034
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.14129999999993
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.45815000000012
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.296366666666835
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rearPursuit": {
+        "position": [
+          -19.960021974720327,
+          0,
+          -30.514228637489577
+        ],
+        "player": [
+          -24,
+          1.7,
+          -35
+        ],
+        "crossing": {
+          "x": -22.082063642002563,
+          "z": -29,
+          "from": [
+            -22.09879012980897,
+            -28.96802695719088
+          ],
+          "to": [
+            -22.0814153273531,
+            -29.001239267458956
+          ]
+        },
+        "trace": [
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -23.972377282275637,
+            -27.026653504059013
+          ],
+          [
+            -23.91925805548488,
+            -27.026926001395676
+          ],
+          [
+            -23.865821857322292,
+            -27.027557042634175
+          ],
+          [
+            -23.812391088603075,
+            -27.028546204587972
+          ],
+          [
+            -23.758968149266103,
+            -27.02989343882052
+          ],
+          [
+            -23.70587524587633,
+            -27.03158758167026
+          ],
+          [
+            -23.652475080530067,
+            -27.033648607830095
+          ],
+          [
+            -23.59940955718217,
+            -27.036052093323402
+          ],
+          [
+            -23.54604170165562,
+            -27.038826527445853
+          ],
+          [
+            -23.493013034103598,
+            -27.041938910569844
+          ],
+          [
+            -23.43968701781879,
+            -27.045426241319383
+          ],
+          [
+            -23.386385569349937,
+            -27.049270858318142
+          ],
+          [
+            -23.333111082186015,
+            -27.053472584909304
+          ],
+          [
+            -23.280184704693422,
+            -27.058003045953154
+          ],
+          [
+            -23.227289679507315,
+            -27.062885957225614
+          ],
+          [
+            -23.173791721075244,
+            -27.06818666057344
+          ],
+          [
+            -23.120648760801082,
+            -27.07381260608934
+          ],
+          [
+            -23.06786258129014,
+            -27.079757836539
+          ],
+          [
+            -23.01479953682265,
+            -27.086093355606245
+          ],
+          [
+            -22.962097506440834,
+            -27.09274335609096
+          ],
+          [
+            -22.909123849598238,
+            -27.099787301795942
+          ],
+          [
+            -22.85651537540631,
+            -27.107140869390015
+          ],
+          [
+            -22.803640561415907,
+            -27.114891968422604
+          ],
+          [
+            -22.75081887150989,
+            -27.122997186888927
+          ],
+          [
+            -22.69836850012802,
+            -27.13140462737903
+          ],
+          [
+            -22.645659815258135,
+            -27.140214850450143
+          ],
+          [
+            -22.59301134546517,
+            -27.149378044211947
+          ],
+          [
+            -22.540425453724048,
+            -27.158893793337924
+          ],
+          [
+            -22.488218831651384,
+            -27.1687017047444
+          ],
+          [
+            -22.43576476330564,
+            -27.1789191509018
+          ],
+          [
+            -22.38338033009705,
+            -27.189487814468908
+          ],
+          [
+            -22.33138094835119,
+            -27.200340962075522
+          ],
+          [
+            -22.279142382435904,
+            -27.21160851387952
+          ],
+          [
+            -22.227292632475237,
+            -27.223155372512487
+          ],
+          [
+            -22.175209254095044,
+            -27.23511978597109
+          ],
+          [
+            -22.12320720276612,
+            -27.247432874562836
+          ],
+          [
+            -22.071599488705797,
+            -27.2600174033688
+          ],
+          [
+            -22.019456582005596,
+            -27.27310351422906
+          ],
+          [
+            -21.968331829547196,
+            -27.28629790309663
+          ],
+          [
+            -21.91667728089945,
+            -27.29999582621659
+          ],
+          [
+            -21.864807330506828,
+            -27.314125131345705
+          ],
+          [
+            -21.81364946278697,
+            -27.328428945069145
+          ],
+          [
+            -21.79542803070114,
+            -27.36146117968291
+          ],
+          [
+            -21.810157881239515,
+            -27.41249808694733
+          ],
+          [
+            -21.792047843353462,
+            -27.445590795741776
+          ],
+          [
+            -21.806907411251192,
+            -27.496812364090616
+          ],
+          [
+            -21.788819738167767,
+            -27.529659178764973
+          ],
+          [
+            -21.80389638104963,
+            -27.58059471880739
+          ],
+          [
+            -21.78610551194273,
+            -27.614115829968053
+          ],
+          [
+            -21.80135760720009,
+            -27.66499910806863
+          ],
+          [
+            -21.783590357778664,
+            -27.69827484592844
+          ],
+          [
+            -21.7989794549082,
+            -27.749339819361904
+          ],
+          [
+            -21.78123557638559,
+            -27.782371314133332
+          ],
+          [
+            -21.763608363962895,
+            -27.81546495235783
+          ],
+          [
+            -21.746194635645303,
+            -27.848925737468328
+          ],
+          [
+            -21.762258391198884,
+            -27.899894250861554
+          ],
+          [
+            -21.778322146752465,
+            -27.95086276425478
+          ],
+          [
+            -21.79428971215303,
+            -28.001526076968993
+          ],
+          [
+            -21.810353467706612,
+            -28.05249459036222
+          ],
+          [
+            -21.826417223260194,
+            -28.103463103755445
+          ],
+          [
+            -21.84238478866076,
+            -28.15412641646966
+          ],
+          [
+            -21.85844854421434,
+            -28.205094929862884
+          ],
+          [
+            -21.87451229976792,
+            -28.25606344325611
+          ],
+          [
+            -21.890576055321503,
+            -28.30703195664933
+          ],
+          [
+            -21.90654362072207,
+            -28.35769526936355
+          ],
+          [
+            -21.922511186122634,
+            -28.40835858207777
+          ],
+          [
+            -21.938574941676215,
+            -28.45932709547099
+          ],
+          [
+            -21.954638697229797,
+            -28.510295608864215
+          ],
+          [
+            -21.970702452783378,
+            -28.56126412225744
+          ],
+          [
+            -21.986670018183943,
+            -28.611927434971655
+          ],
+          [
+            -22.002733773737525,
+            -28.66289594836488
+          ],
+          [
+            -22.01870133913809,
+            -28.7135592610791
+          ],
+          [
+            -22.03476509469167,
+            -28.76452777447232
+          ],
+          [
+            -22.050732660092237,
+            -28.81519108718654
+          ],
+          [
+            -22.06679641564582,
+            -28.866159600579767
+          ],
+          [
+            -22.0828601711994,
+            -28.917128113972986
+          ],
+          [
+            -22.09879012980897,
+            -28.96802695719088
+          ],
+          [
+            -22.0814153273531,
+            -29.001239267458956
+          ],
+          [
+            -22.097560610003374,
+            -29.05207021935212
+          ],
+          [
+            -22.080426707522317,
+            -29.085659717807367
+          ],
+          [
+            -22.063328163861545,
+            -29.119357458661174
+          ],
+          [
+            -22.046374917497552,
+            -29.15312853008406
+          ],
+          [
+            -22.0297360090383,
+            -29.186803991192114
+          ],
+          [
+            -22.013075023941656,
+            -29.220720199519192
+          ],
+          [
+            -21.996728812025058,
+            -29.25453870497897
+          ],
+          [
+            -21.98036749141106,
+            -29.288258343995548
+          ],
+          [
+            -21.929723350921435,
+            -29.306294245815607
+          ],
+          [
+            -21.879841097815568,
+            -29.324555723258655
+          ],
+          [
+            -21.864392316516792,
+            -29.358793496433005
+          ],
+          [
+            -21.814157898630715,
+            -29.377940972758534
+          ],
+          [
+            -21.76469089951895,
+            -29.397299087657107
+          ],
+          [
+            -21.715099773875934,
+            -29.417212391813614
+          ],
+          [
+            -21.665982440460684,
+            -29.437441286316254
+          ],
+          [
+            -21.616750799767587,
+            -29.458227459141938
+          ],
+          [
+            -21.56770522694572,
+            -29.479448939137534
+          ],
+          [
+            -21.51914163818845,
+            -29.500973308193338
+          ],
+          [
+            -21.47018803493678,
+            -29.523191933775472
+          ],
+          [
+            -21.422013384887556,
+            -29.54557325880201
+          ],
+          [
+            -21.37403766662963,
+            -29.568377887180457
+          ],
+          [
+            -21.325977324515403,
+            -29.59174502104936
+          ],
+          [
+            -21.278125843372077,
+            -29.61553693527096
+          ],
+          [
+            -21.230486973330493,
+            -29.639751754941
+          ],
+          [
+            -21.183347871635313,
+            -29.664239011042152
+          ],
+          [
+            -21.136144077556942,
+            -29.689291381313268
+          ],
+          [
+            -21.08944477654678,
+            -29.714607303303715
+          ],
+          [
+            -21.042690764368196,
+            -29.740489377754994
+          ],
+          [
+            -20.996445811878047,
+            -29.76662603766634
+          ],
+          [
+            -20.949880025158986,
+            -29.793491444935547
+          ],
+          [
+            -20.904105254852656,
+            -29.820443087308714
+          ],
+          [
+            -20.858295811126066,
+            -29.847962431420846
+          ],
+          [
+            -20.813004093009553,
+            -29.875718167662832
+          ],
+          [
+            -20.76768772169641,
+            -29.90404211383939
+          ],
+          [
+            -20.72262394950873,
+            -29.93276624781717
+          ],
+          [
+            -20.678083973054047,
+            -29.96171294233151
+          ],
+          [
+            -20.633534400472996,
+            -29.991228277676104
+          ],
+          [
+            -20.58924793180505,
+            -30.02113694082132
+          ],
+          [
+            -20.54549095924306,
+            -30.05125417807357
+          ],
+          [
+            -20.501739452274556,
+            -30.081940088151285
+          ],
+          [
+            -20.458261367257894,
+            -30.113012190802213
+          ],
+          [
+            -20.415060107559658,
+            -30.14446804241847
+          ],
+          [
+            -20.372651959581482,
+            -30.17592238045449
+          ],
+          [
+            -20.329757002908803,
+            -30.208328325907793
+          ],
+          [
+            -20.287657580386842,
+            -30.24072214096604
+          ],
+          [
+            -20.24559371866599,
+            -30.273683496820183
+          ],
+          [
+            -20.20407271447558,
+            -30.306815457866914
+          ],
+          [
+            -20.162597272956003,
+            -30.340514229275826
+          ],
+          [
+            -20.12142179450329,
+            -30.374578865167877
+          ],
+          [
+            -20.08079348694613,
+            -30.408799637491583
+          ],
+          [
+            -20.040225730563385,
+            -30.443585792603024
+          ],
+          [
+            -19.99996751019628,
+            -30.478729712970484
+          ],
+          [
+            -19.960021974720327,
+            -30.514228637489577
+          ]
+        ],
+        "method": "Arranged hunter/player starts, fixture firing suppressed; sampled actual animation-frame pursuit and interpolated rear-wall crossing"
+      },
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": false,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": true,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.197000503540039,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125,
+          3.875
+        ]
+      },
+      "nativeOut": [
+        -10.625550000000057,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.37444999999997,
+        1.7,
+        -23.25
+      ],
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007,
+          1.6750000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          0.980000305175782,
+          0.993000793457032,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.324450000000226
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.14184999999992
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.457600000000106
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.2947666666668
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "fallback": false,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": true,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.197000503540039,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125,
+          3.875
+        ]
+      },
+      "nativeOut": [
+        -10.625000000000068,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.37389999999995,
+        1.7,
+        -23.25
+      ],
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007,
+          1.6750000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          0.980000305175782,
+          0.993000793457032,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.32445000000021
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.141849999999916
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.45815000000011
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.29691666666677
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "fallback": false,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": true,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.197000503540039,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125,
+          3.875
+        ]
+      },
+      "nativeOut": [
+        -10.625550000000064,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.374999999999975,
+        1.7,
+        -23.25
+      ],
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007,
+          1.6750000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          0.980000305175782,
+          0.993000793457032,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.323900000000236
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.141299999999923
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.45815000000012
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.29581666666683
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "fallback": false,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": true,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.197000503540039,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125,
+          3.875
+        ]
+      },
+      "nativeOut": [
+        -10.62500000000007,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.374449999999968,
+        1.7,
+        -23.25
+      ],
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007,
+          1.6750000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          0.980000305175782,
+          0.993000793457032,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.32390000000023
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.141849999999913
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.458150000000124
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.29636666666682
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": true,
+      "checks": [
+        "four apertures, expected renderer mode and matching structural colliders",
+        "north-side route detours are short and every preview segment is clear",
+        "actual geometry and capsules leave the exit clear but retain cheek cover",
+        "native forward walking crosses outward and back without jump or dash",
+        "a live hunter pursues through the service opening",
+        "rear opening has clear player/enemy/mesh paths, jump headroom and retained pier cover",
+        "normal forward touch from the baseline memory pose exits north without jump/dash",
+        "native jump and phase cross the rear frame with swept clearance",
+        "live hunter crosses the new rear opening in normal animation frames",
+        "roof shelter remains authoritative and masks below-canopy rain"
+      ],
+      "failures": [],
+      "structure": {
+        "loaded": false,
+        "surfaces": 150,
+        "openings": [
+          {
+            "name": "evacuation",
+            "center": [
+              -21.025,
+              -9
+            ],
+            "width": 15.95
+          },
+          {
+            "name": "service",
+            "center": [
+              -14,
+              -14
+            ],
+            "width": 10
+          },
+          {
+            "name": "north relay",
+            "center": [
+              -14,
+              -23.25
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "z"
+          },
+          {
+            "name": "rear relay",
+            "center": [
+              -24,
+              -29
+            ],
+            "width": 7,
+            "height": 3.6,
+            "axis": "x"
+          }
+        ],
+        "parts": [
+          {
+            "name": "Floodwall west",
+            "matched": true
+          },
+          {
+            "name": "Rear wall west pier",
+            "matched": true
+          },
+          {
+            "name": "Rear wall east pier",
+            "matched": true
+          },
+          {
+            "name": "Rear relay concrete header",
+            "matched": true
+          },
+          {
+            "name": "Rear relay steel lintel",
+            "matched": true
+          },
+          {
+            "name": "Rear relay west jamb",
+            "matched": true
+          },
+          {
+            "name": "Rear relay east jamb",
+            "matched": true
+          },
+          {
+            "name": "Front west return",
+            "matched": true
+          },
+          {
+            "name": "Canopy roof",
+            "matched": true
+          },
+          {
+            "name": "Evacuation entrance lintel",
+            "matched": true
+          },
+          {
+            "name": "Service door lintel",
+            "matched": true
+          },
+          {
+            "name": "Triage storage spine",
+            "matched": true
+          },
+          {
+            "name": "Intake desk",
+            "matched": true
+          },
+          {
+            "name": "Evacuation locker",
+            "matched": true
+          },
+          {
+            "name": "Southeast canopy column",
+            "matched": true
+          },
+          {
+            "name": "North service rear cheek",
+            "matched": true
+          },
+          {
+            "name": "North service intake cheek",
+            "matched": true
+          },
+          {
+            "name": "North service concrete header",
+            "matched": true
+          },
+          {
+            "name": "North service steel lintel",
+            "matched": true
+          },
+          {
+            "name": "North service rear jamb",
+            "matched": true
+          },
+          {
+            "name": "North service intake jamb",
+            "matched": true
+          }
+        ]
+      },
+      "paths": [
+        {
+          "start": [
+            -24,
+            -13
+          ],
+          "count": 6,
+          "length": 37.8309518948453,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -26
+          ],
+          "count": 4,
+          "length": 20.48528137423857,
+          "clear": true
+        },
+        {
+          "start": [
+            -24,
+            -26.5
+          ],
+          "count": 4,
+          "length": 24.27817459305202,
+          "clear": true
+        },
+        {
+          "start": [
+            -20,
+            -25
+          ],
+          "count": 4,
+          "length": 20.556349186104047,
+          "clear": true
+        }
+      ],
+      "clearance": {
+        "crossings": [
+          {
+            "z": -26.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -23.25,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -21,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "z": -20.3,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "covered": [
+          3.177000045776367,
+          3.1999998092651367
+        ],
+        "headroom": [],
+        "stoppedByHeader": [
+          3.125
+        ]
+      },
+      "nativeOut": [
+        -10.62555000000007,
+        1.7,
+        -23.25
+      ],
+      "nativeIn": [
+        -18.374449999999953,
+        1.7,
+        -23.25
+      ],
+      "pursuit": {
+        "position": [
+          -12.952709738941664,
+          0,
+          -21.668465743338775
+        ],
+        "player": [
+          -1,
+          1.7,
+          -23.25
+        ],
+        "method": "Arranged hunter/player poses; firing suppressed on fixture actor; normal animation-frame AI movement, no manual simulation advance."
+      },
+      "rearClearance": {
+        "crossings": [
+          {
+            "x": -26.8,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -25.4,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -24,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -22.6,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          },
+          {
+            "x": -21.2,
+            "player": true,
+            "enemy": true,
+            "hits": []
+          }
+        ],
+        "jumpHeadroom": [],
+        "header": [
+          0.9250000000000007
+        ],
+        "westCover": [
+          1.0000007629394538
+        ],
+        "eastCover": [
+          0.8699996948242195,
+          0.8999984741210945,
+          0.9749992370605476,
+          1.0000007629394538
+        ]
+      },
+      "rearRoute": {
+        "start": [
+          -24,
+          1.7,
+          -17
+        ],
+        "path": [
+          [
+            -24,
+            -17
+          ],
+          [
+            -23.5,
+            -29
+          ],
+          [
+            -14.5,
+            -32
+          ],
+          [
+            -2.5,
+            -32
+          ],
+          [
+            -2,
+            -32
+          ]
+        ],
+        "length": 33.99724512996945,
+        "clear": true,
+        "straightDepartureClear": true
+      },
+      "rearOut": {
+        "position": [
+          -24,
+          1.7,
+          -34.32445000000032
+        ],
+        "grounded": true,
+        "autoVaults": 0
+      },
+      "rearIn": [
+        -24,
+        1.7,
+        -26.14184999999993
+      ],
+      "rearTraversal": [
+        {
+          "action": "jump",
+          "position": [
+            -24,
+            1.7,
+            -33.45870000000011
+          ],
+          "grounded": true,
+          "vault": false
+        },
+        {
+          "action": "dash",
+          "position": [
+            -24,
+            1.7,
+            -38.29421666666681
+          ],
+          "grounded": true,
+          "vault": false
+        }
+      ],
+      "rearPursuit": {
+        "position": [
+          -19.96009836170836,
+          0,
+          -30.51387201617306
+        ],
+        "player": [
+          -24,
+          1.7,
+          -35
+        ],
+        "crossing": {
+          "x": -22.081793060827277,
+          "z": -29,
+          "from": [
+            -22.098517279207936,
+            -28.967554415205015
+          ],
+          "to": [
+            -22.081240575224015,
+            -29.00107184192891
+          ]
+        },
+        "trace": [
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -24,
+            -27
+          ],
+          [
+            -23.972491486099795,
+            -27.02643993452488
+          ],
+          [
+            -23.91905226577651,
+            -27.02671419463715
+          ],
+          [
+            -23.86593604915993,
+            -27.0273419227514
+          ],
+          [
+            -23.812505265785273,
+            -27.028330292976637
+          ],
+          [
+            -23.759082306245773,
+            -27.029676726024952
+          ],
+          [
+            -23.705669569920783,
+            -27.031381157417457
+          ],
+          [
+            -23.65258918134573,
+            -27.033430269339902
+          ],
+          [
+            -23.599203990244494,
+            -27.035848297367018
+          ],
+          [
+            -23.546155722737936,
+            -27.038606526119953
+          ],
+          [
+            -23.492807609186183,
+            -27.041737703101013
+          ],
+          [
+            -23.439800934596725,
+            -27.045204540365592
+          ],
+          [
+            -23.38618037170311,
+            -27.049072905271796
+          ],
+          [
+            -23.333224921386932,
+            -27.053249841207936
+          ],
+          [
+            -23.279979712029466,
+            -27.057807600527926
+          ],
+          [
+            -23.22676624017349,
+            -27.062722059069262
+          ],
+          [
+            -23.17390524537764,
+            -27.06796054565649
+          ],
+          [
+            -23.12108031587998,
+            -27.07355101399759
+          ],
+          [
+            -23.06765809727428,
+            -27.079567289628635
+          ],
+          [
+            -23.014912831574527,
+            -27.085865182873242
+          ],
+          [
+            -22.961893313900074,
+            -27.092555193051986
+          ],
+          [
+            -22.909236902231008,
+            -27.099557251574094
+          ],
+          [
+            -22.856311501026262,
+            -27.106955048428695
+          ],
+          [
+            -22.803436856894464,
+            -27.114707306106418
+          ],
+          [
+            -22.750615343155314,
+            -27.122813672595324
+          ],
+          [
+            -22.698165153006926,
+            -27.131222243669594
+          ],
+          [
+            -22.64577212858062,
+            -27.139979954886112
+          ],
+          [
+            -22.5931234853975,
+            -27.14914215237716
+          ],
+          [
+            -22.540537411896953,
+            -27.158656897032962
+          ],
+          [
+            -22.488330600738625,
+            -27.168463801921526
+          ],
+          [
+            -22.435876333595008,
+            -27.178680227463623
+          ],
+          [
+            -22.38349169286927,
+            -27.189247862423617
+          ],
+          [
+            -22.331492096088862,
+            -27.200099979729334
+          ],
+          [
+            -22.279253304925053,
+            -27.2113664872058
+          ],
+          [
+            -22.227403322077414,
+            -27.22291230005694
+          ],
+          [
+            -22.17500818426672,
+            -27.23494885065391
+          ],
+          [
+            -22.123317556430635,
+            -27.247188356769623
+          ],
+          [
+            -22.071398903281644,
+            -27.25984848903158
+          ],
+          [
+            -22.019876388278764,
+            -27.27277740871472
+          ],
+          [
+            -21.968131485229794,
+            -27.286129955382254
+          ],
+          [
+            -21.916786273493777,
+            -27.299745966124423
+          ],
+          [
+            -21.86491602052826,
+            -27.31387416045048
+          ],
+          [
+            -21.81375784394581,
+            -27.328176869489575
+          ],
+          [
+            -21.795446964555428,
+            -27.360901255680076
+          ],
+          [
+            -21.81013236883355,
+            -27.412173028844368
+          ],
+          [
+            -21.79202205245356,
+            -27.44526558817719
+          ],
+          [
+            -21.806881187728266,
+            -27.496487282029605
+          ],
+          [
+            -21.78879323366453,
+            -27.529333944968766
+          ],
+          [
+            -21.803827705761375,
+            -27.58050444888451
+          ],
+          [
+            -21.785945128043497,
+            -27.613719127613628
+          ],
+          [
+            -21.80119748545383,
+            -27.66460232713397
+          ],
+          [
+            -21.78343040250732,
+            -27.697878158037792
+          ],
+          [
+            -21.79881975283232,
+            -27.7489430551668
+          ],
+          [
+            -21.781036761853997,
+            -27.7822098981525
+          ],
+          [
+            -21.76341017191115,
+            -27.815303870051707
+          ],
+          [
+            -21.745997069632985,
+            -27.848764983096938
+          ],
+          [
+            -21.76196558171652,
+            -27.899427997435186
+          ],
+          [
+            -21.778030289655984,
+            -27.950396210654993
+          ],
+          [
+            -21.793998801739523,
+            -28.001059224993245
+          ],
+          [
+            -21.810063509678983,
+            -28.05202743821305
+          ],
+          [
+            -21.826128217618447,
+            -28.102995651432856
+          ],
+          [
+            -21.84219292555791,
+            -28.153963864652663
+          ],
+          [
+            -21.85825763349737,
+            -28.204932077872467
+          ],
+          [
+            -21.87422614558091,
+            -28.25559509221072
+          ],
+          [
+            -21.89019465766445,
+            -28.30625810654897
+          ],
+          [
+            -21.906355561459833,
+            -28.35753151865033
+          ],
+          [
+            -21.922324073543372,
+            -28.40819453298858
+          ],
+          [
+            -21.93829258562691,
+            -28.458857547326833
+          ],
+          [
+            -21.95435729356637,
+            -28.509825760546637
+          ],
+          [
+            -21.970422001505835,
+            -28.560793973766444
+          ],
+          [
+            -21.986390513589374,
+            -28.611456988104695
+          ],
+          [
+            -22.002455221528834,
+            -28.6624252013245
+          ],
+          [
+            -22.018519929468297,
+            -28.713393414544306
+          ],
+          [
+            -22.03458463740776,
+            -28.764361627764114
+          ],
+          [
+            -22.050553149491297,
+            -28.81502464210236
+          ],
+          [
+            -22.06661785743076,
+            -28.86599285532217
+          ],
+          [
+            -22.0825863695143,
+            -28.91665586966042
+          ],
+          [
+            -22.098517279207936,
+            -28.967554415205015
+          ],
+          [
+            -22.081240575224015,
+            -29.00107184192891
+          ],
+          [
+            -22.097423394645087,
+            -29.051666809619235
+          ],
+          [
+            -22.080289526676722,
+            -29.085256331870948
+          ],
+          [
+            -22.063360562745412,
+            -29.118786916950366
+          ],
+          [
+            -22.04650757570137,
+            -29.152860924818523
+          ],
+          [
+            -22.029867516699696,
+            -29.18653581742379
+          ],
+          [
+            -22.0132053677771,
+            -29.2204514540214
+          ],
+          [
+            -21.996555524717103,
+            -29.254373866841107
+          ],
+          [
+            -21.980194806287045,
+            -29.288093801245306
+          ],
+          [
+            -21.929851728170053,
+            -29.306021267148815
+          ],
+          [
+            -21.87996882886495,
+            -29.324280979391826
+          ],
+          [
+            -21.864219223760507,
+            -29.358630615803637
+          ],
+          [
+            -21.814581988777004,
+            -29.377547949579302
+          ],
+          [
+            -21.764518466557348,
+            -29.397137904520463
+          ],
+          [
+            -21.715224182129393,
+            -29.416931694905237
+          ],
+          [
+            -21.66581066438465,
+            -29.437281724158627
+          ],
+          [
+            -21.616873694609044,
+            -29.45794312791819
+          ],
+          [
+            -21.567827327859078,
+            -29.479162772973062
+          ],
+          [
+            -21.518970851152496,
+            -29.50081604321108
+          ],
+          [
+            -21.470308094312823,
+            -29.522901231131907
+          ],
+          [
+            -21.42213258597352,
+            -29.545280708662304
+          ],
+          [
+            -21.373867479491597,
+            -29.56822191451829
+          ],
+          [
+            -21.32609473515225,
+            -29.59144874205983
+          ],
+          [
+            -21.278242319307964,
+            -29.615238776292802
+          ],
+          [
+            -21.230602490359463,
+            -29.639451709391704
+          ],
+          [
+            -21.18317898134939,
+            -29.664085633667376
+          ],
+          [
+            -21.136257611326233,
+            -29.68898755440967
+          ],
+          [
+            -21.08955728405699,
+            -29.71430158322742
+          ],
+          [
+            -21.04280221458452,
+            -29.740181747684467
+          ],
+          [
+            -20.996278178716555,
+            -29.766474969640107
+          ],
+          [
+            -20.950265414140517,
+            -29.79301825729858
+          ],
+          [
+            -20.90421292247578,
+            -29.820128909205607
+          ],
+          [
+            -20.858402320070873,
+            -29.847646324476806
+          ],
+          [
+            -20.81310942461017,
+            -29.875400139458645
+          ],
+          [
+            -20.76779184296848,
+            -29.903722149118252
+          ],
+          [
+            -20.722726834313175,
+            -29.932444343192863
+          ],
+          [
+            -20.677917927407204,
+            -29.961564461668036
+          ],
+          [
+            -20.633634742822487,
+            -29.990902494840746
+          ],
+          [
+            -20.589346958513282,
+            -30.0208092098091
+          ],
+          [
+            -20.545588651684348,
+            -30.050924508445235
+          ],
+          [
+            -20.501575002715064,
+            -30.081793932019668
+          ],
+          [
+            -20.45835683103807,
+            -30.11267936979294
+          ],
+          [
+            -20.415412154253218,
+            -30.143943972236087
+          ],
+          [
+            -20.37248796322098,
+            -30.17577686821172
+          ],
+          [
+            -20.32984729089146,
+            -30.207988550965155
+          ],
+          [
+            -20.287746372366705,
+            -30.240380421721
+          ],
+          [
+            -20.245680978082177,
+            -30.273339821705044
+          ],
+          [
+            -20.203909025245224,
+            -30.30667033925821
+          ],
+          [
+            -20.162433782075183,
+            -30.34036935480338
+          ],
+          [
+            -20.12150430216545,
+            -30.3742293357271
+          ],
+          [
+            -20.080630364003607,
+            -30.408655207175315
+          ],
+          [
+            -20.04030493350529,
+            -30.4432323714609
+          ],
+          [
+            -19.999805331565785,
+            -30.47858636497151
+          ],
+          [
+            -19.96009836170836,
+            -30.51387201617306
+          ]
+        ],
+        "method": "Arranged hunter/player starts, fixture firing suppressed; sampled actual animation-frame pursuit and interpolated rear-wall crossing"
+      },
+      "rain": {
+        "shelter": {
+          "minX": -37.1,
+          "maxX": -12.2,
+          "minZ": -29.3,
+          "maxZ": -8.7,
+          "ceiling": 7.3
+        },
+        "below": 0
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

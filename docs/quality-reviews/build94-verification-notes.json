@@ -1,0 +1,31 @@
+{
+  "initialFocusedFailure": {
+    "record": "build94-defense-initial.json",
+    "reason": "The fixture compared firing yaw with a snapshot taken before USE contact. The view legitimately turned during native input transport before FIRE was pressed.",
+    "correction": "Compare with the snapshot immediately after FIRE contact; then verify the view remains fixed through actual firing. Only test setup changed."
+  },
+  "diagnostics": [
+    "build94-route-before.json",
+    "build94-route-after.json"
+  ],
+  "geometryFinding": "Current Build84-authored triage already contains7m north and northeast openings; no new doorway or collision change made. Manual cover navigation remains unresolved.",
+  "limits": [
+    "Engineering states and synthetic native touch.",
+    "Real-time waits include native transport/setup latency; not a speed benchmark.",
+    "No independent enjoyment or hardware certification."
+  ],
+  "postRootAudit": {
+    "finding": "Canceled far routes could still resume near APPROACH after manual stick release.",
+    "fix": "Near approach respects latched touchRouteCancelled; native near-handoff MOVE test added.",
+    "rootCoverage": "Root mission preceded this small guard; final focused/production checks and fresh independent reviews cover the final candidate."
+  },
+  "finalFocused": "build94-defense.json",
+  "productionFixtureFailure": {
+    "record": "build94-initial-destination.json",
+    "originalPipeline": "build94-final-checks.json",
+    "reason": "The test forced the service hint visible at a pose outside its actual service-approach area. A render frame correctly hid it, producing a race on320x640.",
+    "correction": "Fixture now uses the real14/12 grounded north-facing service approach for both boss suppression and postboss visibility. No application edits.",
+    "rerun": "build94-affected-rerun.json",
+    "result": "All30 destination checks passed across six phone/inset profiles. All22 final production groups passed; original production exit1 retained."
+  }
+}

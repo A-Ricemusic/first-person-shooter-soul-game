@@ -3,7 +3,8 @@ import CUSTODIAN from './custodian-layout.json';
 // The selected map landmark is static. No enemy selection, shot ray or health lookup.
 export function touchRouteLandmark(g,key=g.touchUseGoal){
  if(key==='custodian')return{x:CUSTODIAN.origin[0],z:CUSTODIAN.origin[2]};
- if(key==='extraction')return{x:g.world.playerSpawn.x,z:g.world.playerSpawn.z};
+ // The uplink is defended toward the courtyard, twenty metres north of spawn.
+ if(key==='extraction')return{x:g.world.playerSpawn.x,z:g.world.playerSpawn.z-20};
  const core=g.coreNodes.find(c=>`core-${c.id}`===key);
  return core?{x:core.position.x,z:core.position.z}:null;
 }
