@@ -16,7 +16,7 @@ export function clearTouchApproach(g,cancel=false){
 export function touchApproachStep(g,manual,dt){
  g.touchApproachActive=false;g.touchApproachStatus='';
  const profile=profileOf(g);
- if(!g.touchMode||!g.touchUse||g.phase!=='playing'||g.touchRouteCancelled||g.touchApproachCancelled||g.touchRecoveryBraked){g.touchApproach=null;return null;}
+ if((g.touchUseGoal||g.routeGoal)?.startsWith('supply-')||!g.touchMode||!g.touchUse||g.phase!=='playing'||g.touchRouteCancelled||g.touchApproachCancelled||g.touchRecoveryBraked){g.touchApproach=null;return null;}
  if(!g.grounded||g.vault||g.dashTime>0||Math.abs(feetY(g.player,profile))>.025){clearTouchApproach(g,true);return null;}
  const combatRoute=!!g.touchUseGoal&&g.touchRouteCounted&&!g.touchRouteCancelled;
  if(manual.lengthSq()>.000625||((g.mouseDown||g.aim)&&!combatRoute)){g.touchApproach=null;return null;}

@@ -342,3 +342,9 @@ body.touch-mode.touch-threat-alert #threat-focus,body.touch-mode.touch-threat-al
 body.touch-mode.touch-tools-open #touch-threat-cue{display:none}
 
 @media(orientation:landscape){body.touch-mode.touch-threat-alert #service-hint{right:auto;max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 180px)}}
+
+/* Build97: supply planning reuses the map toolbar; no extra live HUD panel. */
+body.touch-mode #map-tools button{min-width:0;font-size:11px;white-space:nowrap}
+body.touch-mode #map-supplies:disabled{opacity:.55}
+body.touch-mode #touch-use[data-resupplied="true"]{border:2px solid #b5fff0;background:#276958;color:#f3fff9;box-shadow:0 0 0 2px #8ee8e030;font-weight:700;letter-spacing:0}
+body.touch-mode .world-marker.supply{color:#b5fff0}

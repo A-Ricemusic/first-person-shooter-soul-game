@@ -5,7 +5,7 @@ import {serviceStatus} from './suit-service.js';
 export function clearTouchRoute(g,cancel=false){
  g.touchRoute=null;g.touchRouteActive=false;g.touchRouteArrived=false;g.touchRouteFraming=false;g.touchRouteStatus=cancel&&g.touchUse?'RELEASE USE TO RESUME':'';
  if(cancel&&g.touchUse)g.touchRouteCancelled=true;
- else{g.touchRouteCancelled=false;g.touchRouteCounted=false;g.touchUseGoal=null;g.touchRouteManualLook=false;}
+ else{g.touchSupplyCollected=false;g.touchRouteCancelled=false;g.touchRouteCounted=false;g.touchUseGoal=null;g.touchRouteManualLook=false;}
 }
 
 // Explicit held-USE navigation uses only the already-visible static map field.
@@ -21,9 +21,10 @@ export function touchRouteStep(g,manual,dt,approaching=false){
  if(g.touchRecoveryBraked||approaching){g.touchRoute=null;g.touchRouteStatus='';return null;}
  // A nearby receiver keeps the existing precise held approach. Once a far
  // route is requested, passing a different receiver cannot redirect the hold.
- if(!g.touchRoute&&g.coreNodes.some(c=>!c.collected&&recoveryDistance(g.player,c.position,profileOf(g))<8)){g.touchRouteStatus='';return null;}
+ const supply=(g.touchUseGoal||g.routeGoal)?.startsWith('supply-');
+ if(!supply&&!g.touchRoute&&g.coreNodes.some(c=>!c.collected&&recoveryDistance(g.player,c.position,profileOf(g))<8)){g.touchRouteStatus='';return null;}
  const service=serviceStatus(g);
- if(service.valid&&service.powered&&!service.spent&&!service.full){clearTouchRoute(g,true);return null;}
+ if(!supply&&service.valid&&service.powered&&!service.spent&&!service.full){clearTouchRoute(g,true);return null;}
  if(!g.touchRoute){
   g.updateRouteGoal();const key=g.routeGoal;g.touchUseGoal=key;
   const path=g.playerRoute.path(g.player,key,g.grounded,profileOf(g));

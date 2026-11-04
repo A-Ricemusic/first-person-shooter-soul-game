@@ -46,3 +46,9 @@ export function paintPlanningSites(ctx,s,t,font=24){
  if(s.exit){const b=extractionBounds(s.exit),a=t.point(b.xMin,b.zMin);const ready=s.cores===s.totalCores&&s.custodian?.dead,color=ready?'#9cffbd':'#d8c59d';ctx.strokeStyle=color;ctx.lineWidth=2;ctx.strokeRect(...a,(b.xMax-b.xMin)*t.scale,(b.zMax-b.zMin)*t.scale);const c=extractionCenter(s.exit);label('UPLINK',c.x,c.z,color)}
  ctx.restore();
 }
+
+// Drops were left by defeated enemies; no live-enemy locations are exposed.
+export function paintPlanningSupplies(ctx,s,t,font=24){
+ ctx.save();ctx.font=`bold ${font}px sans-serif`;
+ for(const p of s.supplies||[]){const [x,y]=t.point(p.x,p.z);if(x<24||x>616||y<24||y>616)continue;const selected=s.routeGoal===`supply-${p.id}`,size=selected?10:7;ctx.fillStyle=selected?'#fff4bb':'#7fffe0';ctx.strokeStyle='#071b23';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x,y-size);ctx.lineTo(x+size,y);ctx.lineTo(x,y+size);ctx.lineTo(x-size,y);ctx.closePath();ctx.fill();ctx.stroke();if(selected){const label='SUPPLY',w=ctx.measureText(label).width,px=Math.max(28,Math.min(612-w,x+14)),py=Math.max(28+font,y-14);ctx.fillStyle='#071b23';ctx.fillRect(px-3,py-font,w+6,font+5);ctx.fillStyle='#fff4bb';ctx.fillText(label,px,py)}}ctx.restore();
+}

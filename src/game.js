@@ -1,3 +1,4 @@
+import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRoute,removeSupplyRoute,emptyAmmoAdvice} from './supply-route.js';
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
@@ -204,9 +205,11 @@ export class Game {
   selectRoute(key='auto') {
     if(this.phase!=='planning')return;
     if(key!=='auto'&&!this.coreNodes.some(c=>`core-${c.id}`===key&&!c.collected))return;
-    this.routeHelp.reset();this.routeWaypoint=null;this.routeGoal=key==='auto'?null:key;this.routeManual=key!=='auto';this.routeNext=0;this.updateRouteGoal();this.emit();
+    clearSupplyFields(this);this.supplyRouteStatus='';this.routeHelp.reset();this.routeWaypoint=null;this.routeGoal=key==='auto'?null:key;this.routeManual=key!=='auto';this.routeNext=0;this.updateRouteGoal();this.emit();
   }
+  selectSupplyRoute(){return selectSupplyRoute(this);}
   updateRouteGoal() {
+    if(this.touchMode&&selectedSupply(this))return;
     const available=this.coreNodes.filter(c=>!c.collected);
     if(!available.length){const key=this.custodian.dead?'extraction':'custodian';if(this.routeGoal!==key){this.routeGoal=key;this.routeNext=0;}return;}
     if(available.some(c=>`core-${c.id}`===this.routeGoal))return;
@@ -245,7 +248,7 @@ export class Game {
       const to=path[join];
       if(to&&Math.hypot(to.x-this.player.x,to.z-this.player.z)>.5&&this.playerRoute.clear(this.player,to)){
         const d=Math.hypot(to.x-this.player.x,to.z-this.player.z),t=Math.min(1,(this.touchMode?5:2)/d);
-        this.routeWaypoint={x:this.player.x+(to.x-this.player.x)*t,z:this.player.z+(to.z-this.player.z)*t,goal,label:goal.startsWith('core-')?CORE_SITES[Number(goal.split('-')[1])].name:goal==='custodian'?'CUSTODIAN':'EXTRACTION'};
+        this.routeWaypoint={x:this.player.x+(to.x-this.player.x)*t,z:this.player.z+(to.z-this.player.z)*t,goal,label:goal.startsWith('core-')?CORE_SITES[Number(goal.split('-')[1])].name:goal.startsWith('supply-')?'SUPPLY':goal==='custodian'?'CUSTODIAN':'EXTRACTION'};
       }
     }
     const a=this.routeTrace.geometry.attributes.position;let count=0,remaining=12,spacing=.8,from=this.player;
@@ -405,7 +408,7 @@ export class Game {
       const object = item.mesh || item.group;
       if (object) { this.scene.remove(object); object.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); if (Array.isArray(node.material)) node.material.forEach(m => m.dispose()); else node.material?.dispose(); }); }
     });
-    this.enemies = []; this.projectiles = []; this.effects = []; this.pickups = [];
+    this.enemies = []; this.projectiles = []; this.effects = []; this.pickups = [];clearSupplyFields(this);this.supplyRouteStatus='';
   }
 
   spawnWave(count) {
@@ -527,7 +530,7 @@ export class Game {
     if(this.vault)return;
     if(this.activeWeapon==='breacher'){shootBreacher(this);return;}
     if (this.fireTimer > 0 || this.reloading || this.phase !== 'playing') return;
-    if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', 'No ammunition. Recover a core or collect a fallen sentinel’s supply.'); } return; }
+    if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', emptyAmmoAdvice(this)); } return; }
     this.ammo--; this.shotsFired++; this.fireTimer = 0.105; this.recoil = Math.min(0.1, this.recoil + 0.018); this.kick = 1;
     this.emitShotNoise(this.player);
     this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045; this.flashJustTriggered = true;
@@ -581,7 +584,7 @@ export class Game {
     for (let i = 0; i < 12; i++) this.particle(enemy.group.position.clone().add(new THREE.Vector3(0, 0.9, 0)), i % 2 ? 0x73efff : 0xff9a57, 0.8, 0.08);
     // Every enemy leaves a guaranteed supply; aggressive play sustains the fight.
     const pickup = mesh(new THREE.OctahedronGeometry(0.18), new THREE.MeshStandardMaterial({ color: 0x80ffff, emissive: 0x21b7c5, emissiveIntensity: 2 }), enemy.group.position.x, 0.5, enemy.group.position.z);
-    this.scene.add(pickup); this.pickups.push({ mesh: pickup, life: 90 });
+    this.scene.add(pickup); this.pickups.push({ id:this.pickupSerial=(this.pickupSerial||0)+1,mesh: pickup, life: 90 });
     this.scene.remove(enemy.group); enemy.group.traverse(node => { if (node.isInstancedMesh) node.dispose(); if (!node.userData.sharedGeometry) node.geometry?.dispose(); node.material?.dispose(); });
     this.emit();
   }
@@ -695,7 +698,7 @@ export class Game {
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
-    updateService(this,dt);
+    if(this.touchMode&&this.touchUseGoal?.startsWith('supply-'))this.suitService.progress=0;else updateService(this,dt);
     const nearby=this.coreNodes.find(c=>!c.collected&&(!this.touchUseGoal||this.touchUseGoal===`core-${c.id}`)&&recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
     if(nearby&&this.grounded&&!this.vault&&this.useHeld()) { if(this.channelCore!==nearby){this.channelCore=nearby;this.coreProgress=0;} this.coreProgress+=dt; if(this.coreProgress>=RECOVERY_SECONDS)this.recoverCore(nearby); }
     else {this.channelCore=null;this.coreProgress=0;}
@@ -910,8 +913,9 @@ export class Game {
       const distance = p.mesh.position.distanceTo(torso);
       const reachable = this.hasLineOfSight(p.mesh.position, torso, 0);
       if (reachable && distance < 4) { p.mesh.position.x = THREE.MathUtils.damp(p.mesh.position.x, this.player.x, 3, dt); p.mesh.position.z = THREE.MathUtils.damp(p.mesh.position.z, this.player.z, 3, dt); }
-      if (reachable && distance < 1.2) { this.supply(24,4); this.health = Math.min(100, this.health + 6); this.shield = Math.min(60, this.shield + 10); p.life = 0; this.audio.tone(640, 0.15, 'sine', 0.07, 940); this.event('supply', '+24 rounds · +6 health · +10 armor'); }
-      if (p.life <= 0) { this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.pickups.splice(i, 1); }
+      const collected=p.life>0&&reachable&&distance<1.2;
+      if (collected) { this.supply(24,4); this.health = Math.min(100, this.health + 6); this.shield = Math.min(60, this.shield + 10); p.life = 0; this.audio.tone(640, 0.15, 'sine', 0.07, 940); this.event('supply', '+24 rounds · +6 health · +10 armor'); }
+      if (p.life <= 0) { removeSupplyRoute(this,p,collected);this.scene.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); this.pickups.splice(i, 1); }
     }
   }
 
@@ -1016,7 +1020,9 @@ export class Game {
       const approachHint=inMedicalBay?(c.id===0?'GO AROUND TRIAGE STORAGE':c.id===2?'USE THE NORTH OPENING':'USE EAST SERVICE / SOUTH INTAKE'):(c.id===0?'USE A MARKED TRIAGE ENTRY':'FIND AN OPEN APPROACH');
       return {id:`core-${c.id}`,kind:'core',suppressed:c.id===local?.id&&ready,approach:c.id===local?.id&&distance<4.5&&!ready,approachHint,occluded:!sight,label:CORE_SITES[c.id].name,...project(sight||c.position.clone().add(new THREE.Vector3(0,.75,0))),distance,inRange:ready};
     });
-    if(this.cores===this.coreNodes.length){
+    const supply=this.touchMode&&selectedSupply(this);
+    if(supply){markers.length=0;const point=supply.mesh.position;markers.push({id:supplyKey(supply),kind:'supply',label:'SUPPLY / 24 ROUNDS + 4 SHELLS',occluded:!this.hasLineOfSight(this.player,point,0),...project(point)});}
+    if(!supply&&this.cores===this.coreNodes.length){
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
       if(!this.custodian.dead){
         const target=focusedCustodianTarget(this);
@@ -1058,7 +1064,8 @@ export class Game {
     if(this.playerRoute&&['playing','planning'].includes(this.phase))this.updateRouteGoal();
     const damagePoint=this.damageCuePosition();
     const coreMarkers = this.coreNodes.map(c => ({ x: c.position.x, z: c.position.z, id: c.id, collected: c.collected, distance: recoveryDistance(this.player,c.position,profileOf(this)) }));
-    const usableMarkers=coreMarkers.filter(c=>!this.touchUseGoal||this.touchUseGoal===`core-${c.id}`);
+    const usableGoal=this.touchUseGoal||(this.touchMode&&this.routeGoal?.startsWith('supply-')?this.routeGoal:null);
+    const usableMarkers=coreMarkers.filter(c=>!usableGoal||usableGoal===`core-${c.id}`);
     const closest = usableMarkers.filter(c => !c.collected).sort((a, b) => a.distance - b.distance)[0];
     return {
       localRecovery:nearbyReceiver(usableMarkers)?{id:closest.id,distance:closest.distance,remaining:Math.max(0,closest.distance-RECOVERY_RADIUS)}:null,
@@ -1069,6 +1076,7 @@ export class Game {
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
       mobileCadence:mobileCadence(this),mobileAttackRecovery:this.mobileAttackRecovery||0,
       autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteArrived:!!this.touchRouteArrived,touchRouteFraming:!!this.touchRouteFraming,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
+      supplies:this.touchMode?liveSupplies(this).map(p=>({id:p.id,x:p.mesh.position.x,z:p.mesh.position.z,life:Math.ceil(p.life)})):[],supplyRouteStatus:this.supplyRouteStatus||'',touchSupplyCollected:!!this.touchSupplyCollected,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',

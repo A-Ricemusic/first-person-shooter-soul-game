@@ -1,0 +1,202 @@
+{
+  "status": "COMPLETE: exactly two fresh attempts reached actual terminal UI",
+  "identity": {
+    "expected_source": "279b21c50ad752f1fa698dedd49dd427630a2e08",
+    "source_verified": false,
+    "visible_title": "SOULFALL / BUILD 96",
+    "url": "http://127.0.0.1:61492/",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "limits": [
+    "Synthetic native-touch Chromium emulation; captures pause for inspection",
+    "Software-WebGL fallback; physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+  ],
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 6,
+        "mission_time": "03:22",
+        "score": 6325,
+        "accuracy_percent": 8,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 7,
+        "tap_aims": 5,
+        "route_assists": 6,
+        "approach_assists": 3
+      },
+      "evidence": "docs/media/build96-mobile-review2/attempt1-uplink.jpg",
+      "coverage": [
+        "initial guard tap aim and fire",
+        "all three memories via ROUTE",
+        "TURN warnings",
+        "all three coils",
+        "empty ammunition and supply search",
+        "movement stick",
+        "map opened and visibly closed",
+        "TOOLS and unsuccessful visible SWAP attempt",
+        "return deck and terminal completion"
+      ],
+      "failures": [
+        "Long fire holds depleted ammunition with final coil at 15%; no reserve",
+        "SWAP produced no visible weapon change",
+        "Movement ended against walls during supply search"
+      ],
+      "helpful": [
+        "Tap aim disabled coils",
+        "ROUTE recovered memories and returned to objectives",
+        "Numbered coil status made progress clear",
+        "Supply search eventually yielded 24 reserve rounds"
+      ],
+      "frustrating": [
+        "No clear supply location on map or empty-ammo message",
+        "Long holds spent ammo during armor cycles",
+        "Dense portrait HUD"
+      ],
+      "uncertainties": [
+        "Exact supply pickup not visually identified during movement",
+        "Uplink completion happened within route hold; detailed upload combat not inspected"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "start_method": "Visible START FRESH on first terminal screen; new timer 00:00 and initial resources observed",
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 1,
+        "mission_time": "00:35",
+        "score": 1100,
+        "accuracy_percent": 33,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 1,
+        "route_assists": 1,
+        "approach_assists": 1,
+        "assisted_shots": "not displayed",
+        "touch_assist_personal_best": 6325
+      },
+      "evidence": "docs/media/build96-mobile-review2/attempt2-memory-route.jpg",
+      "coverage": [
+        "fresh restart",
+        "initial guard tap aim with shorter 1.5s fire hold",
+        "route travel to Mara",
+        "visible HOLD TO RECOVER progress",
+        "Mara recovered",
+        "terminal loss"
+      ],
+      "tried": [
+        "Conserved ammunition: released FIRE after initial guard instead of firing throughout route travel",
+        "Continued holding route to finish recovery and travel"
+      ],
+      "helpful": [
+        "Fresh reset visibly restored timer and resources",
+        "Recovery prompt and progress bar were readable",
+        "Terminal screen clearly distinguished loss and retained personal best"
+      ],
+      "failures": [
+        "Undefended route hold ended in death at 00:35 after one memory"
+      ],
+      "frustrating": [
+        "Offscreen CHARGE +1 RIGHT warning competed with recovery task",
+        "Long route hold without defending was unsafe despite full health/shield at 00:14"
+      ],
+      "uncertainties": [
+        "Exact attack sequence and location of death were not inspected between captures",
+        "No assisted-shot value displayed; not assumed zero"
+      ]
+    }
+  ],
+  "learning_for_attempt2": "Conserve ammunition by avoiding unnecessary route firing; use tap aim on coils and inspect shorter bursts. Route recovery works, supplies can restore ammunition.",
+  "scores": {
+    "scale": "0 unusable; 5 mixed with substantial friction; 7 good with meaningful rough edges; 10 exceptional observed mobile experience. Subjective holistic assessment of only these emulated attempts, not an outcome-based grade or physical-device certification.",
+    "overall_mobile": 6.5,
+    "controls": 6.5,
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 6,
+    "readability": 7,
+    "reasons": {
+      "overall_mobile": "Playable to completion with useful touch assists and clear goals; ammunition recovery and offscreen pressure imposed substantial friction. Winning once and losing once do not determine the grade.",
+      "controls": "Tap-to-aim, large FIRE target and two-contact ROUTE plus FIRE worked. Manual stick movement worked but led into walls; SWAP gave no visible change. Fine aim dragging, AIM and dash/vault were not meaningfully assessed.",
+      "gameplay": "Recovery-to-coils-to-return provided visible progression; numbered coil destruction was satisfying progress feedback. Long firing spent ammo through armor windows; stopping defense on route resulted in rapid loss. Exact damage balance cannot be judged from paused intervals.",
+      "presentation": "Coherent cyan/amber industrial storm setting, distinct copper coils and polished title/end cards. Dark angular scenery and close walls sometimes obscured useful world context. Audio unassessed.",
+      "usability": "Handbook, map pause, ROUTE, TURN warnings, automatic reload behavior and explicit fresh restart helped. Supply advice lacked a clear location, secondary controls were behind TOOLS, and return/upload resolved inside a route interval without detailed inspection.",
+      "readability": "Objective, health/ammo, recovery progress and coil percentages readable at 390x844. Dense upper/lower HUD leaves a narrow combat view; result detail text is small but readable in captures."
+    }
+  },
+  "cleanup": {
+    "status": "PASS",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "browserClosed": true,
+    "driverPid": 22387,
+    "chromePid": 22397,
+    "verification": "ps -p 22387,22397 -o pid=,ppid=,command= returned no rows and exit 1; exact owned driver and Chrome PIDs absent. No kill used."
+  },
+  "protocol": {
+    "helper_help_only": true,
+    "source_tests_docs_prior_reviews_recordings_internal_state_not_inspected": true,
+    "inputs": "visible UI geometry/selectors via JSON-lines native CDP touch; maximum two contacts",
+    "wait_steps_ms_max": 12000,
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "map": "opened once in attempt 1 and visibly closed with #close-map",
+    "settings_changes": [],
+    "no_builds_commits_publication_server_changes": true
+  },
+  "unassessed": [
+    "physical phone ergonomics and touch latency",
+    "Safari",
+    "audio",
+    "hardware performance and sustained frame rate",
+    "continuous enjoyment",
+    "full recovered-memory prose",
+    "full tactical handbook",
+    "settings alternatives",
+    "fine aim drag/AIM mastery",
+    "dash/jump/vault combat use",
+    "detailed uplink combat",
+    "unvisited content"
+  ],
+  "raw_evidence": {
+    "directory": "docs/media/build96-mobile-review2",
+    "actions": "docs/media/build96-mobile-review2/actions.jsonl",
+    "captures": [
+      "docs/media/build96-mobile-review2/attempt1-coil-fire.jpg",
+      "docs/media/build96-mobile-review2/attempt1-coil1.jpg",
+      "docs/media/build96-mobile-review2/attempt1-custodian-approach.jpg",
+      "docs/media/build96-mobile-review2/attempt1-final-coil.jpg",
+      "docs/media/build96-mobile-review2/attempt1-guard.jpg",
+      "docs/media/build96-mobile-review2/attempt1-last-ammo.jpg",
+      "docs/media/build96-mobile-review2/attempt1-map.jpg",
+      "docs/media/build96-mobile-review2/attempt1-return-coil.jpg",
+      "docs/media/build96-mobile-review2/attempt1-route-defense.jpg",
+      "docs/media/build96-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build96-mobile-review2/attempt1-search-under-fire.jpg",
+      "docs/media/build96-mobile-review2/attempt1-seek-supply.jpg",
+      "docs/media/build96-mobile-review2/attempt1-start.jpg",
+      "docs/media/build96-mobile-review2/attempt1-supply-search-forward.jpg",
+      "docs/media/build96-mobile-review2/attempt1-supply-search-right.jpg",
+      "docs/media/build96-mobile-review2/attempt1-swap.jpg",
+      "docs/media/build96-mobile-review2/attempt1-third-memory.jpg",
+      "docs/media/build96-mobile-review2/attempt1-tools.jpg",
+      "docs/media/build96-mobile-review2/attempt1-uplink.jpg",
+      "docs/media/build96-mobile-review2/attempt2-first-route.jpg",
+      "docs/media/build96-mobile-review2/attempt2-memory-route.jpg",
+      "docs/media/build96-mobile-review2/attempt2-start-fresh.jpg",
+      "docs/media/build96-mobile-review2/how-to.jpg",
+      "docs/media/build96-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "status": "complete",
+  "identity": {
+    "expected_source": "279b21c50ad752f1fa698dedd49dd427630a2e08",
+    "source_verified": false,
+    "visible_title": "SOULFALL \u2014 BUILD 96"
+  },
+  "method": {
+    "url": "http://127.0.0.1:61492/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native two-contact Chromium touch",
+    "limits": [
+      "Captures pause gameplay for inspection.",
+      "Synthetic Chromium with software-WebGL; physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+    ],
+    "settings_changes": [],
+    "attempt_count": 2,
+    "no_checkpoint_retries": true,
+    "map_behavior": "Opened once in attempt 1, remained planning until visible CLOSE MAP tapped.",
+    "scope": "Only helper --help read; no source, tests, docs, previous reviews, recordings or internal game state inspected. Requested source SHA recorded as supplied, not independently verified."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "terminal": true,
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 4,
+        "mission_time": "01:58",
+        "score": 6018,
+        "accuracy_percent": 9,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 6,
+        "tap_aims": 5,
+        "route_assists": 6,
+        "approach_assists": 3
+      },
+      "terminal_evidence": "docs/media/build96-mobile-review1/attempt1-uplink.jpg",
+      "coverage": [
+        "Opening guard tap aim and held fire",
+        "All three receiver recoveries with ROUTE",
+        "Planning overview map opened and visibly closed",
+        "All three Custodian coils disabled",
+        "Manual left-stick strafe and threat-turn tap",
+        "Return route and successful uplink with zero ammunition"
+      ],
+      "failures": [
+        "Fired through armored phases, exhausted ammunition",
+        "Third coil initially remained at 100% while shooting from obstructed face; strafed and used route to reposition"
+      ],
+      "uncertainties": [
+        "No damage attribution beyond visible threat warnings",
+        "Memory prose not assessed"
+      ],
+      "helpful_moments": [
+        "Tap guard then hold FIRE removed initial threat without manual fine aiming.",
+        "Context button and recovered memory chips made objective progress clear.",
+        "Map showed all recovered receivers, route and walking distance.",
+        "Repositioning and tapping coil I advanced to RETURN TO DECK.",
+        "Zero-ammo warning explained supply options; route still enabled a successful finish."
+      ],
+      "frustrating_moments": [
+        "Final coil stayed at 100% despite a long firing attempt; visibility of the firing face was difficult to judge.",
+        "Threat-turn cues and numbered coils competed for attention.",
+        "Ammunition reached zero after prolonged fire during armored cycles."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "fresh_method": "Visible START FRESH tapped after attempt 1 terminal result and partial report saved; no checkpoint retry.",
+      "terminal": true,
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:30",
+        "score": 6538,
+        "accuracy_percent": 15,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "tap_aims": 5,
+        "route_assists": 6,
+        "approach_assists": 3
+      },
+      "terminal_evidence": "docs/media/build96-mobile-review1/attempt2-uplink.jpg",
+      "coverage": [
+        "Fresh reset to initial guard, 00:00 and 100 health / 60 shield",
+        "Short opening burst",
+        "First receiver recovery and stationary exposure after saving",
+        "Threat turn plus two-contact ROUTE and FIRE",
+        "All three memories recovered",
+        "Four-second coil fire holds",
+        "Left-stick strafe and route re-approach",
+        "Last visible coil tap successfully disabled Custodian",
+        "Return route and successful upload"
+      ],
+      "failures": [
+        "Held recovery contact after SAVED, stayed at receiver under attacks; health fell to 65",
+        "Long travel fire holds still emptied magazines",
+        "Strafe followed by route re-approach did not provide an obviously different face; final higher coil tap succeeded"
+      ],
+      "uncertainties": [
+        "Cannot isolate tap placement versus exposure timing as reason final coil succeeded",
+        "Damage and aim behavior not measured beyond visible feedback"
+      ],
+      "helpful_moments": [
+        "Prior learning reduced coil firing to short holds and left 174 reserve at final coil completion.",
+        "Recovery restored health on later objectives.",
+        "Tap-to-center reached the last coil without precise continuous thumb tracking.",
+        "Terminal summary separately disclosed touch assists and accuracy."
+      ],
+      "frustrating_moments": [
+        "Recovery-to-travel required release and another hold; the penalty for lingering was substantial.",
+        "Dense HUD and small secondary text at 844x390 demanded inspection pauses.",
+        "Map/route wording at uplink did not itself explain the visible approach, although holding ROUTE worked."
+      ]
+    }
+  ],
+  "between_attempt_learning": [
+    "ROUTE continues through receiver recovery and can advance objectives without a separate tap.",
+    "Tap the remaining visible coil and reposition when its percentage does not change.",
+    "Long fire holds waste ammunition during armored phases."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "browserClosed": true,
+    "driver_pid": 18338,
+    "chrome_pid": 18348,
+    "ps_command": "ps -p 18338,18348 -o pid=,ppid=,stat=,command=",
+    "ps_output": "",
+    "exact_owned_pids_absent": true,
+    "broad_kills": false
+  },
+  "scores": {
+    "scale": "0 unusable; 5 playable with substantial friction; 7 good with noticeable friction; 9 excellent with minor friction; 10 exceptional. Scores assess only observed emulated mobile play, independent of wins.",
+    "overall_mobile": 7.0,
+    "controls": 7.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Two complete, understandable missions with useful touch assists and a coherent atmosphere; crowded landscape UI, recovery handoff and coil-face uncertainty limit fluency.",
+      "controls": "Two-contact route/fire, contextual hold, tap aim and threat turn were effective. Manual strafe worked. Recovery needs release/re-hold; fine continuous aim, AIM, DASH, JUMP and tools were not thoroughly assessed.",
+      "gameplay": "Recoveries, numbered armored/exposed coils and upload provided a readable progression with pressure and recovery opportunities. Offscreen threats and wasted armored-phase fire created friction. Route assistance carried much navigation, limiting assessment of unassisted traversal depth.",
+      "presentation": "Strong rain-soaked station identity, teal/amber vocabulary, distinct receiver signage and clear terminal composition. Software rendering and absent audio assessment limit the judgment.",
+      "usability": "Concise visible handbook, pausing planning map, context labels, supplies warning and explicit START FRESH were helpful. The save-to-travel handoff caused a costly misunderstanding.",
+      "readability": "Primary health, ammo, objectives and terminal totals readable; dark machinery, small coil numbers, compact warning text and dense result details need attention at this size."
+    }
+  },
+  "unassessed": [
+    "Physical-device touch comfort and finger occlusion",
+    "Safari compatibility",
+    "Audio",
+    "Hardware performance / frame rate",
+    "Continuous uninterrupted enjoyment",
+    "Recovered memory prose and narrative payoff",
+    "Settings options",
+    "Detailed AIM/DASH/JUMP/tools behavior",
+    "Unassisted full-map navigation"
+  ],
+  "evidence": {
+    "raw_actions": "docs/media/build96-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build96-mobile-review1/attempt1-coil1-fire.jpg",
+      "docs/media/build96-mobile-review1/attempt1-coil2-fire.jpg",
+      "docs/media/build96-mobile-review1/attempt1-coil3-fire.jpg",
+      "docs/media/build96-mobile-review1/attempt1-custodian-approach.jpg",
+      "docs/media/build96-mobile-review1/attempt1-first-guard.jpg",
+      "docs/media/build96-mobile-review1/attempt1-last-coil.jpg",
+      "docs/media/build96-mobile-review1/attempt1-map.jpg",
+      "docs/media/build96-mobile-review1/attempt1-memory1.jpg",
+      "docs/media/build96-mobile-review1/attempt1-reposition.jpg",
+      "docs/media/build96-mobile-review1/attempt1-return-face.jpg",
+      "docs/media/build96-mobile-review1/attempt1-route-east.jpg",
+      "docs/media/build96-mobile-review1/attempt1-route-heart.jpg",
+      "docs/media/build96-mobile-review1/attempt1-route-west.jpg",
+      "docs/media/build96-mobile-review1/attempt1-start.jpg",
+      "docs/media/build96-mobile-review1/attempt1-uplink.jpg",
+      "docs/media/build96-mobile-review1/attempt2-clear-face.jpg",
+      "docs/media/build96-mobile-review1/attempt2-coil-short.jpg",
+      "docs/media/build96-mobile-review1/attempt2-coil2-short.jpg",
+      "docs/media/build96-mobile-review1/attempt2-custodian.jpg",
+      "docs/media/build96-mobile-review1/attempt2-east.jpg",
+      "docs/media/build96-mobile-review1/attempt2-final-coil-try.jpg",
+      "docs/media/build96-mobile-review1/attempt2-heart-travel.jpg",
+      "docs/media/build96-mobile-review1/attempt2-second-receiver.jpg",
+      "docs/media/build96-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build96-mobile-review1/attempt2-uplink.jpg",
+      "docs/media/build96-mobile-review1/attempt2-west.jpg",
+      "docs/media/build96-mobile-review1/how-to-play.jpg",
+      "docs/media/build96-mobile-review1/initial-menu.jpg"
+    ],
+    "cleanup_evidence": "docs/media/build96-mobile-review1/cleanup.json"
+  }
+}
