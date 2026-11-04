@@ -361,3 +361,14 @@ body.touch-mode #reload-label[data-reloading="true"]{display:block!important;fon
 /* Keep downward FIRE correction space after reducing the right cluster height. */
 body.touch-mode #touch-actions{bottom:calc(var(--touch-bottom) + 20px)}
 body.touch-mode #touch-threat-cue{bottom:calc(var(--touch-bottom) + 131px)}
+
+/* Build100: one resolved rifle result in the existing weapon status line. */
+body.touch-mode #reload-label[data-impact]:not([data-impact=""]){display:block!important;font:700 13px/15px 'Barlow',Arial,sans-serif;letter-spacing:.2px;margin-top:4px;color:var(--impact-color,#e0e8e4)}
+body.touch-mode #reload-label[data-impact="armor"]{--impact-color:#ffd39a}
+body.touch-mode #reload-label[data-impact="hit"],body.touch-mode #reload-label[data-impact="damage"],body.touch-mode #reload-label[data-impact="critical"],body.touch-mode #reload-label[data-impact="kill"]{--impact-color:#b5fff0}
+@media(orientation:landscape){body.touch-mode.touch-impact-readout #touch-notices{bottom:calc(var(--touch-bottom) + 92px)}}
+
+/* Reserve one quiet status line so ammunition does not jump after each burst. */
+body.touch-mode #reload-label{display:block!important;visibility:hidden;min-height:15px;font:700 13px/15px 'Barlow',Arial,sans-serif;letter-spacing:.2px;margin-top:4px}
+body.touch-mode #reload-label[data-reloading="true"],body.touch-mode #reload-label[data-impact]:not([data-impact=""]){visibility:visible}
+@media(orientation:landscape){body.touch-mode #touch-notices{bottom:calc(var(--touch-bottom) + 92px)}}

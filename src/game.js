@@ -2,6 +2,7 @@ import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRout
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
 import {inCustodianApproach} from './custodian-approach.js';
+import {recordRifleImpact,rifleReadout} from './rifle-readout.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
@@ -87,7 +88,7 @@ export class Game {
   get fireTimer(){return this.weaponSlots[this.activeWeapon].fireTimer} set fireTimer(v){this.weaponSlots[this.activeWeapon].fireTimer=v}
   selectWeapon(name){
     if(this.phase!=='playing'||!this.weaponSlots[name]||name===this.activeWeapon)return;
-    this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
+    this.rifleImpact=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
@@ -401,6 +402,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
+    this.rifleImpact=null;
     this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
@@ -565,14 +567,21 @@ export class Game {
     if(bossHit&&bossHit.distance<distance){distance=bossHit.distance;hit=null;}else bossHit=null;
     const end = this.player.clone().addScaledVector(direction, distance);
     const muzzle = new THREE.Vector3(); this.muzzle.getWorldPosition(muzzle); this.tracer(muzzle, end, 0x9cfaff, 0.055);
-    if(bossHit) { hitCustodian(this,bossHit);  } else if (hit) {
+    if(bossHit) {
+      const index=bossHit.object.userData.coil,coil=this.custodian.coils[index];
+      const live=this.custodian.active&&!this.custodian.dead&&coil?.hp>0;
+      const exposed=this.custodian.open>0&&!bossHit.object.userData.shutter;
+      hitCustodian(this,bossHit);
+      recordRifleImpact(this,live?(coil.hp<=0?'kill':exposed?'hit':'armor'):'cover',live?`COIL ${['I','II','III'][index]} ${coil.hp<=0?'OFF':exposed?'HIT':'ARMOR'}`:'INERT COVER');
+    } else if (hit) {
       const damage=headshot ? 82 : hit.type==='warden' && !(hit.armorOpen>0) ? 17 : 34;
       this.shotsHit++; hit.lastHit=this.runTime; this.audio.hit(headshot); hit.health -= damage;
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
       hit.feedbackKind=headshot?'critical':hit.type==='warden'&&!(hit.armorOpen>0)?'armor':'damage';this.combatFeedback.impact(end,actorNormal,hit.health<=0?'kill':hit.feedbackKind,this.options.reducedMotion);
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
+      recordRifleImpact(this,hit.health<=0?'kill':hit.feedbackKind,hit.health<=0?'TARGET DOWN':hit.feedbackKind==='armor'?'ARMOR HIT':headshot?'OPTIC HIT':'TARGET HIT');
       if (hit.health <= 0) this.killEnemy(hit, headshot);
-    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion); }
+    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion);recordRifleImpact(this,propHit.point?'cover':'miss',propHit.bank?'CAPACITOR':propHit.point?'COVER':'NO IMPACT'); }
     this.event('shot', '', { ammo: this.ammo });
   }
 
@@ -1080,6 +1089,7 @@ export class Game {
       autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteArrived:!!this.touchRouteArrived,touchRouteFraming:!!this.touchRouteFraming,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
       supplies:this.touchMode?liveSupplies(this).map(p=>({id:p.id,x:p.mesh.position.x,z:p.mesh.position.z,life:Math.ceil(p.life)})):[],supplyRouteStatus:this.supplyRouteStatus||'',touchSupplyCollected:!!this.touchSupplyCollected,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
+      rifleReadout:rifleReadout(this),
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       suitService:this.suitService?serviceStatus(this):null,

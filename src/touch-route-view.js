@@ -31,6 +31,9 @@ export function updateTouchRouteView(g,guide,dt){
  }else if(guide)target=Math.atan2(-guide.x,-guide.z);
  else return;
  const delta=Math.atan2(Math.sin(target-g.yaw),Math.cos(target-g.yaw));
- g.yaw+=Math.max(-1.8*dt,Math.min(1.8*dt,delta));
+ // Deliberate stationary boss facing is quicker than the walking camera.
+ // It still stops on release and yields to FIRE, ADS and manual view.
+ const turnRate=arrived&&g.touchUseGoal==='custodian'?6:1.8;
+ g.yaw+=Math.max(-turnRate*dt,Math.min(turnRate*dt,delta));
  g.pitch+=Math.max(-.7*dt,Math.min(.7*dt,-g.pitch));
 }
