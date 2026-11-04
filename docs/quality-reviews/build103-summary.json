@@ -1,0 +1,39 @@
+{
+  "build": 103,
+  "status": "Six affected production groups passed; exactly two fresh sequential independent mobile reviews pending. Overall mission open.",
+  "changes": [
+    "AIM SET/AIM UNCHANGED acknowledges a scene-tap request in the existing weapon-status line for up to one gameplay second.",
+    "New tap replaces old status; drag, firing, weapon switch, deliberate threat turn and phase cleanup clear the acknowledgement. Reload and actual shots retain priority."
+  ],
+  "priorReviews": {
+    "build": 102,
+    "overallMobile": [
+      6.8,
+      7
+    ],
+    "attempts": 4,
+    "wins": 4,
+    "losses": 0,
+    "reports": [
+      "build102-mobile-review1.json",
+      "build102-mobile-review2.json"
+    ]
+  },
+  "parentPlay": "build103-parent-play.json",
+  "releaseChecks": "build103-release-checks.json",
+  "mechanicsAudit": "build103-mechanics-audit.json",
+  "limits": [
+    "No selection-ray, hit-volume, recoil, correction-cone, damage, AI, resource, physics, render-asset or driver-cadence changes.",
+    "Acknowledgement is neither tracking nor a hit prediction; it does not identify why a target was rejected. HUD-occluded and ineligible gestures still do not request selection.",
+    "No causal benefit for the reviewers previous misses established.",
+    "Parent spot check is nonterminal; later priority correction is covered by final focused/production contracts.",
+    "Small/dark targets, foreground weapon footprint, moving-target tracking, cover discovery and mission depth remain open.",
+    "Paused synthetic Chromium/software WebGL does not certify phones, Safari, audio, hardware performance or continuous enjoyment.",
+    "No root quality rating, perfection or AAA certification."
+  ],
+  "publication": {
+    "record": "build103-publication.json",
+    "playLink": "http://bonnies-macbook-air.tail21e865.ts.net:5174/",
+    "build": 103
+  }
+}

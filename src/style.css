@@ -401,3 +401,6 @@ body.touch-mode .end-panel .end-actions::after{content:'';position:absolute;left
  body.touch-mode .end-panel .end-actions:not(.anchor-available){grid-template-columns:repeat(3,minmax(0,1fr))}
  body.touch-mode .end-panel .end-actions:not(.anchor-available) #play-again{grid-column:auto}
 }
+
+/* Build103: tap acknowledgement shares the already reserved weapon status line. */
+body.touch-mode #reload-label[data-impact="aim-set"]{--impact-color:#b5fff0}

@@ -3,6 +3,7 @@ import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
 import {inCustodianApproach} from './custodian-approach.js';
 import {recordRifleImpact,rifleReadout} from './rifle-readout.js';
+import {recordTouchAim,touchAimReadout} from './touch-aim-readout.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
@@ -77,7 +78,7 @@ export class Game {
     this.health = 100; this.shield = 60; this.ammo = 30; this.reserve = 180;
     this.kills = 0; this.cores = 0; this.score = 0; this.phaseDodges = 0; this.dashCount = 0; this.phaseInterrupts = 0; this.headshots = 0; this.shotsFired = 0; this.shotsHit = 0; this.assistedShots=0;this.tapAims=0;this.approachAssists=0;this.routeAssists=0;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchAssistUntil=-1;this.autoVaults=0;this.touchVaultContact=null;
     this.reloading = false; this.reloadTimer = 0; this.fireTimer = 0; this.lastDamage = -100;
-    this.recoil = 0; this.kick = 0; this.aimBlend = 0; this.stepDistance = 0; this.footTimer = 0;
+    this.touchAimNotice=null;this.recoil = 0; this.kick = 0; this.aimBlend = 0; this.stepDistance = 0; this.footTimer = 0;
     this.ray = new THREE.Ray(); this.raycaster = new THREE.Raycaster(); this.wallPoint = new THREE.Vector3();
   }
 
@@ -88,7 +89,7 @@ export class Game {
   get fireTimer(){return this.weaponSlots[this.activeWeapon].fireTimer} set fireTimer(v){this.weaponSlots[this.activeWeapon].fireTimer=v}
   selectWeapon(name){
     if(this.phase!=='playing'||!this.weaponSlots[name]||name===this.activeWeapon)return;
-    this.rifleImpact=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
+    this.rifleImpact=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
@@ -400,7 +401,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.rifleImpact=null;
     this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
@@ -517,20 +518,22 @@ export class Game {
   touchRifleTarget(direction) { return touchRifleTarget(this,direction); }
 
   tapAimAt(clientX,clientY) {
+    if(!this.touchMode||this.options.touchTapAim===false||this.phase!=='playing'||this.vault)return false;
     const r=this.canvas.getBoundingClientRect();
     if(!r.width||!r.height||clientX<r.left||clientX>r.right||clientY<r.top||clientY>r.bottom)return false;
     const target=touchTapTarget(this,new THREE.Vector2((clientX-r.left)/r.width*2-1,1-(clientY-r.top)/r.height*2));
-    if(!target)return false;
+    if(!target){recordTouchAim(this,false);this.emit();return false;}
     const delta=target.point.sub(this.player),pitch=Math.atan2(delta.y,Math.hypot(delta.x,delta.z));
     // syncCamera adds current recoil; compensate so the rendered centre, not
     // only the stored base pitch, points at the actual tapped surface.
-    const basePitch=pitch-this.recoil*(this.options.reducedMotion?0:1);if(Math.abs(basePitch)>1.44)return false;
+    const basePitch=pitch-this.recoil*(this.options.reducedMotion?0:1);if(Math.abs(basePitch)>1.44){recordTouchAim(this,false);this.emit();return false;}
     this.yaw=Math.atan2(-delta.x,-delta.z);this.pitch=basePitch;
-    this.tapAims++;this.touchFocusUntil=this.runTime+.25;this.syncCamera();this.emit();return true;
+    recordTouchAim(this,true);this.tapAims++;this.touchFocusUntil=this.runTime+.25;this.syncCamera();this.emit();return true;
   }
 
   shoot() {
     if(this.vault)return;
+    this.touchAimNotice=null;
     if(this.activeWeapon==='breacher'){shootBreacher(this);return;}
     if (this.fireTimer > 0 || this.reloading || this.phase !== 'playing') return;
     if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', emptyAmmoAdvice(this)); } return; }
@@ -1089,7 +1092,7 @@ export class Game {
       autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteArrived:!!this.touchRouteArrived,touchRouteFraming:!!this.touchRouteFraming,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
       supplies:this.touchMode?liveSupplies(this).map(p=>({id:p.id,x:p.mesh.position.x,z:p.mesh.position.z,life:Math.ceil(p.life)})):[],supplyRouteStatus:this.supplyRouteStatus||'',touchSupplyCollected:!!this.touchSupplyCollected,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
-      rifleReadout:rifleReadout(this),
+      rifleReadout:rifleReadout(this),touchAimReadout:touchAimReadout(this),
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       suitService:this.suitService?serviceStatus(this):null,

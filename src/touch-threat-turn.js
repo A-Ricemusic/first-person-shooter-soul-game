@@ -2,7 +2,7 @@
 // No actor identity, exact bearing, prediction, aim pitch or shot is selected.
 export function requestThreatTurn(g,heading,sampledAt){
  if(!g.touchMode||g.phase!=='playing'||!Number.isFinite(heading)||!Number.isFinite(sampledAt)||g.runTime-sampledAt<0||g.runTime-sampledAt>.35)return false;
- g.touchRouteManualLook=!!g.touchUse;
+ g.touchAimNotice=null;g.touchRouteManualLook=!!g.touchUse;
  if(g.options.reducedMotion){g.yaw=heading;g.touchThreatTurn=null;g.syncCamera();}
  else g.touchThreatTurn={heading};
  g.emit();return true;
