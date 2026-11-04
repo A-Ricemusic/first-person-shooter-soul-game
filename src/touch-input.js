@@ -7,6 +7,14 @@ export function touchLookGain(width,height,sensitivity=1,aim=false){
  return {x:3.2/axis*factor,y:1.8/axis*factor};
 }
 
+// Scene turning uses the horizontal space actually available to the thumb.
+// FIRE/utility corrections retain the finer long-axis pixel gain above.
+export function touchSceneGain(width,height,sensitivity=1,aim=false){
+ const gain=touchLookGain(width,height,sensitivity,aim);
+ gain.x*=Math.max(1,Number(width)||1,Number(height)||1)/Math.max(1,Number(width)||1);
+ return gain;
+}
+
 // Integrate a bounded gain ramp over displacement. The same swipe has the
 // same result with one coalesced event or many, and reversing returns to zero.
 // Small corrections and all FIRE/AIM gestures retain the linear gain above.
@@ -26,7 +34,7 @@ export function fireAimDisplacement(pixels,width,height){
 }
 
 // Each pointer owns one role until release; phase changes invalidate all ownership.
-export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onAutoVault}){
+export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onAutoVault,onTapAim}){
  if(!game.touchMode)return;
  document.body.classList.add('touch-mode');
  const root=document.createElement('div');root.id='touch-controls';root.className='hidden';
@@ -47,7 +55,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
   if(game.phase!=='playing'||e.pointerType==='mouse')return;
   const el=e.target.closest('button,#touch-stick,#touch-look');if(!el)return;if(el.id==='touch-map'){phasePress(e,map);return;}
   const role=el.dataset.action||(el===stick?'move':'look');if([...owners.values()].some(p=>p.role===role))return;
-  e.preventDefault();el.setPointerCapture(e.pointerId);const r=stick.getBoundingClientRect();owners.set(e.pointerId,{el,role,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,looking:role==='look'||role==='fire',cx:r.x+r.width/2,cy:r.y+r.height/2});
+  e.preventDefault();el.setPointerCapture(e.pointerId);const r=stick.getBoundingClientRect();owners.set(e.pointerId,{el,role,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,started:performance.now(),travel:0,sceneDragging:false,appliedX:0,appliedY:0,looking:role==='look'||role==='fire',cx:r.x+r.width/2,cy:r.y+r.height/2});
   if(['fire','ads','reload','dash','jump','use'].includes(role))setTools(false);
   if(!['move','look'].includes(role))game.touchVaultContact=null;
   game.audio.wake();if(role==='tools')setTools(more.getAttribute('aria-expanded')!=='true');else if(role==='fire')game.mouseDown=true;else if(role==='use'){game.touchUse=true;game.interact()}else if(!['move','look'].includes(role)){game.action(role);el.setAttribute('aria-pressed',String(role==='ads'?game.aim:role==='sprint'?game.touchSprint:role==='crouch'?game.crouchRequested:false))}
@@ -61,19 +69,26 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
    knob.style.transform=`translate(${game.touchMove.x*36}px,${game.touchMove.z*36}px)`;
   }else{
    let dx=e.clientX-p.x,dy=e.clientY-p.y;
+   p.travel=Math.max(p.travel,Math.hypot(e.clientX-p.startX,e.clientY-p.startY));
    if(!p.looking){
     dx=e.clientX-p.startX;dy=e.clientY-p.startY;const distance=Math.hypot(dx,dy);
     // Apply only travel beyond the tap dead zone, even if native move events
     // coalesce. A utility tap acts once and small tap jitter never turns view.
     if(distance>=6){p.looking=true;dx*=1-6/distance;dy*=1-6/distance}else dx=dy=0;
    }
-   const gain=touchLookGain(innerWidth,innerHeight,game.options.touchSensitivity,game.aim);
+   const gain=(p.role==='look'?touchSceneGain:touchLookGain)(innerWidth,innerHeight,game.options.touchSensitivity,game.aim);
    if(p.role==='fire'){
     dx=fireAimDisplacement(e.clientX-p.startX,innerWidth,innerHeight)-fireAimDisplacement(p.x-p.startX,innerWidth,innerHeight);
     dy=fireAimDisplacement(e.clientY-p.startY,innerWidth,innerHeight)-fireAimDisplacement(p.y-p.startY,innerWidth,innerHeight);
    }
-   if(p.role==='look'&&!game.aim&&game.options.fastSceneTurns!==false){
-    dx=sceneTurnDisplacement(e.clientX-p.startX,innerWidth,innerHeight)-sceneTurnDisplacement(p.x-p.startX,innerWidth,innerHeight);
+   if(p.role==='look'){
+    const x=e.clientX-p.startX,y=e.clientY-p.startY;
+    if(p.travel>6||game.options.touchTapAim===false)p.sceneDragging=true;
+    if(!p.sceneDragging)dx=dy=0;
+    else{
+     dx=!game.aim&&game.options.fastSceneTurns!==false?sceneTurnDisplacement(x,innerWidth,innerHeight)-sceneTurnDisplacement(p.appliedX,innerWidth,innerHeight):x-p.appliedX;
+     dy=y-p.appliedY;p.appliedX=x;p.appliedY=y;
+    }
    }
    game.yaw-=dx*gain.x;
    game.pitch=Math.max(-1.44,Math.min(1.44,game.pitch-dy*gain.y));
@@ -81,7 +96,16 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
   p.x=e.clientX;p.y=e.clientY;
  }
  root.addEventListener('pointermove',move);
- function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use'){game.touchUse=false;game.touchRecoveryBraked=false;}if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
+ function unblockedTap(x,y){
+  for(const el of document.querySelectorAll('.hud-mission,.bearing,.vitals,.weapon-info,#extraction-panel,#announcement,#memory-card,#interaction,#service-hint,#field-controls,#event-feed')){
+   const css=getComputedStyle(el);if(css.display==='none'||css.visibility==='hidden'||Number(css.opacity)===0)continue;
+   const r=el.getBoundingClientRect();if(r.width&&r.height&&x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom)return false;
+  }
+  return true;
+ }
+ function up(e){const p=owners.get(e.pointerId);if(!p)return;owners.delete(e.pointerId);
+  if(e.type==='pointerup'&&p.role==='look'&&!p.sceneDragging&&Math.max(p.travel,Math.hypot(e.clientX-p.startX,e.clientY-p.startY))<=6&&performance.now()-p.started<=350&&game.phase==='playing'&&unblockedTap(e.clientX,e.clientY))game.tapAimAt(e.clientX,e.clientY);
+  if(p.role==='move'){game.touchVaultContact=null;game.touchMove.x=game.touchMove.z=0;knob.style.transform=''}if(p.role==='fire')game.mouseDown=false;if(p.role==='use'){game.touchUse=false;game.touchRecoveryBraked=false;}if(['swap','crouch','sprint'].includes(p.role))setTools(false);if(p.looking&&game.phase==='playing')game.emit();}
  for(const type of ['pointerup','pointercancel','lostpointercapture'])root.addEventListener(type,up);
  // Touch-down also works while the movement thumb is held. Keyboard activation
  // remains available; suppress a second action from the later touch click.
@@ -100,7 +124,7 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  details.id='touch-handbook';const summary=document.createElement('summary');summary.textContent='FULL TACTICAL HANDBOOK';details.append(summary);
  for(const child of [...(handbook.querySelector('.handbook-content')||handbook).children])if(child!==help&&child.matches('p,.control-list'))details.append(child);
  const lesson=document.createElement('ol');lesson.id='touch-quickstart';
- for(const text of ['MOVE gently for small steps. Hold FIRE: small drags aim precisely, longer drags turn farther. AIM slows corrections further. Swipe the scene to turn. TOOLS holds SWAP, CROUCH and RUN. Hold MOVE forward against low cover to vault.', 'MAP pauses to plan. Near a receiver, hold USE and steer into its ring. Your suit brakes to recover, even with MOVE held. Release USE to move freely.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
+ for(const text of ['MOVE with the left thumb. Swipe the scene to turn quickly. Tap a visible enemy or coil to center your aim, then hold FIRE. FIRE drags make fine corrections; AIM slows them further.', 'MAP pauses to plan. Hold USE and steer into a receiver ring; the suit brakes to recover. Release USE to move.', 'After three memories, destroy the numbered copper coils. Amber means cover; cyan means an exposed firing window. Move to a clear face.', 'When the jammer falls, return to the marked uplink deck and survive the upload. DASH helps reposition; JUMP becomes VAULT near low cover.']){const item=document.createElement('li');item.textContent=text;lesson.append(item)}
  help.replaceWith(lesson);lesson.after(details);const scrollHint=document.createElement('span');scrollHint.id='handbook-scroll-hint';scrollHint.textContent='SWIPE INSTRUCTIONS ↑';scrollHint.setAttribute('aria-hidden','true');handbook.querySelector('.dialog-header').append(scrollHint);const recoveryHelp=document.createElement('p');recoveryHelp.textContent='Hold USE near a receiver for careful steps. Inside its existing ring, your suit brakes until USE is released. Damage and incoming attacks remain active. Release USE or DASH to reposition.';details.append(recoveryHelp);
  document.querySelector('.menu-footer>span:last-child').textContent='TOUCH · WEBGL 2';
  document.querySelector('#close-map').textContent='CLOSE MAP';document.querySelector('#facility-map > p').textContent='MISSION PAUSED · Plan a route · CLOSE MAP resumes';document.querySelector('#controls-dialog .control-list').style.display='none';
@@ -115,8 +139,8 @@ export function installTouch(game,{map,onSensitivity,onFastTurns,onAimAssist,onA
  const turn=document.createElement('input');turn.id='touch-fast-turns';turn.type='checkbox';turn.checked=game.options.fastSceneTurns!==false;
  turn.onchange=()=>{game.options.fastSceneTurns=turn.checked;onFastTurns?.(turn.checked)};
  turnLabel.append(turn,document.createTextNode(' Faster long scene turns'));
- const note=document.createElement('p');note.className='setting-note';note.textContent='FIRE uses finer small drags and ramps up for longer turns. Scene turning stays steady; optional long scene swipes turn faster. AIM halves speed. Lower sensitivity for finer aim.';
- const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Helps near misses reach visible targets. Cover still blocks shots. Rifle only; a cyan reticle ring marks an assisted shot. Assisted scores have a separate personal best.';
+ const note=document.createElement('p');note.className='setting-note';note.textContent='FIRE uses finer small drags and ramps up for longer turns. Scene swipes scale with screen width for quick portrait turns; optional long swipes turn faster. AIM halves speed. Lower sensitivity for finer aim.';
+ const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Helps near misses reach visible targets. Cover still blocks shots. Rifle only; a cyan reticle ring acknowledges assisted aim or a shot. Assisted scores have a separate personal best.';
  const vaultLabel=document.createElement('label');vaultLabel.className='checkbox-label';const vault=document.createElement('input');vault.id='touch-auto-vault';vault.type='checkbox';vault.checked=game.options.touchAutoVault!==false;vault.onchange=()=>{game.options.touchAutoVault=vault.checked;game.touchVaultContact=null;onAutoVault?.(vault.checked)};vaultLabel.append(vault,document.createTextNode(' Hold-forward auto vault'));const vaultNote=document.createElement('p');vaultNote.className='setting-note';vaultNote.textContent='Hold MOVE forward against low cover to vault. Release MOVE before it starts, or use AIM, to stay behind cover. Auto vault pauses during firing, reload, crouch and held USE. JUMP still vaults manually.';
- setting.append(label,input,turnLabel,note,assistLabel,assistNote,vaultLabel,vaultNote);document.querySelector('#settings-dialog h2').after(setting);
+ const tapLabel=document.createElement('label');tapLabel.className='checkbox-label';const tap=document.createElement('input');tap.id='touch-tap-aim';tap.type='checkbox';tap.checked=game.options.touchTapAim!==false;tap.onchange=()=>{game.options.touchTapAim=tap.checked;onTapAim?.(tap.checked)};tapLabel.append(tap,document.createTextNode(' Tap visible targets to aim'));const tapNote=document.createElement('p');tapNote.className='setting-note';tapNote.textContent='A short scene tap centers the actual visible enemy or coil surface within 36 m. It does not fire or track. Cover blocks selection. Drags still turn normally. Both weapons; using this joins touch-assisted personal bests.';setting.append(label,input,turnLabel,note,tapLabel,tapNote,assistLabel,assistNote,vaultLabel,vaultNote);document.querySelector('#settings-dialog h2').after(setting);
 }

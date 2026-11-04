@@ -1,0 +1,242 @@
+{
+  "method": "Native-touch mobile engineering. Isolated platform20m above the station, player/enemy/cover poses, suppressed AI and synchronous component/shutter states are arranged. Actual rifle input, ammo/damage, camera, visibility and UI/storage tested. Arranged victory tests scoring only; no played mission or human enjoyment proof.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "fallback": false,
+      "checks": [
+        "near miss selects an actual visible body surface within5 degrees",
+        "phase, device, weapon, option and angle/range exclusions",
+        "existing direct hits are preserved",
+        "a manually aimed optic keeps its normal precision hit",
+        "foreign cover blocks both corrected and original centre paths",
+        "a foreground actor cannot be bypassed to assist a rear actor",
+        "real native near-miss fire consumes ammunition and damage without steering the camera",
+        "disabling assistance leaves the same native near miss uncorrected",
+        "pause clears assisted reticle state",
+        "component assistance requires a live, exposed, visible winding",
+        "assisted scores use separate storage even after the option is disabled"
+      ],
+      "failures": [
+        {
+          "name": "native assistance preference survives apply and reload",
+          "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+        }
+      ],
+      "selection": {
+        "key": "enemy-1",
+        "angle": 3.49124981030697,
+        "point": [
+          0,
+          20.859739583346528,
+          -11.862499999813735
+        ]
+      },
+      "exclusions": {
+        "off": true,
+        "desktop": true,
+        "breacher": true,
+        "paused": true,
+        "outsideCone": true,
+        "range": true,
+        "behind": true,
+        "dead": true
+      },
+      "cover": {
+        "corrected": true,
+        "original": true
+      },
+      "occlusion": {
+        "selected": "enemy-2",
+        "rear": "enemy-1"
+      },
+      "shot": {
+        "yaw": 0.061086523819801536,
+        "pitch": -0.07071522321994635,
+        "ammo": 29,
+        "hp": 66,
+        "assisted": 1,
+        "shots": 2,
+        "hits": 2,
+        "ring": true
+      },
+      "disabled": {
+        "health": 100,
+        "assisted": 0,
+        "ammo": 29
+      },
+      "coils": {
+        "open": true,
+        "armored": true,
+        "deadComponent": true
+      },
+      "scoring": {
+        "base": null,
+        "assisted": "4627",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "80% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 ASSISTED SHOT",
+        "finalScore": 4627,
+        "assistedCount": 1
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": false,
+      "checks": [
+        "near miss selects an actual visible body surface within5 degrees",
+        "phase, device, weapon, option and angle/range exclusions",
+        "existing direct hits are preserved",
+        "a manually aimed optic keeps its normal precision hit",
+        "foreign cover blocks both corrected and original centre paths",
+        "a foreground actor cannot be bypassed to assist a rear actor",
+        "real native near-miss fire consumes ammunition and damage without steering the camera",
+        "disabling assistance leaves the same native near miss uncorrected",
+        "pause clears assisted reticle state",
+        "component assistance requires a live, exposed, visible winding",
+        "assisted scores use separate storage even after the option is disabled",
+        "native assistance preference survives apply and reload"
+      ],
+      "failures": [],
+      "selection": {
+        "key": "enemy-1",
+        "angle": 3.49124981030697,
+        "point": [
+          0,
+          20.859739583346528,
+          -11.862499999813735
+        ]
+      },
+      "exclusions": {
+        "off": true,
+        "desktop": true,
+        "breacher": true,
+        "paused": true,
+        "outsideCone": true,
+        "range": true,
+        "behind": true,
+        "dead": true
+      },
+      "cover": {
+        "corrected": true,
+        "original": true
+      },
+      "occlusion": {
+        "selected": "enemy-2",
+        "rear": "enemy-1"
+      },
+      "shot": {
+        "yaw": 0.061086523819801536,
+        "pitch": -0.07071522321994635,
+        "ammo": 29,
+        "hp": 66,
+        "assisted": 1,
+        "shots": 2,
+        "hits": 2,
+        "ring": true
+      },
+      "disabled": {
+        "health": 100,
+        "assisted": 0,
+        "ammo": 29
+      },
+      "coils": {
+        "open": true,
+        "armored": true,
+        "deadComponent": true
+      },
+      "scoring": {
+        "base": null,
+        "assisted": "4628",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "80% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 ASSISTED SHOT",
+        "finalScore": 4628,
+        "assistedCount": 1
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": true,
+      "checks": [
+        "near miss selects an actual visible body surface within5 degrees",
+        "phase, device, weapon, option and angle/range exclusions",
+        "existing direct hits are preserved",
+        "a manually aimed optic keeps its normal precision hit",
+        "foreign cover blocks both corrected and original centre paths",
+        "a foreground actor cannot be bypassed to assist a rear actor",
+        "real native near-miss fire consumes ammunition and damage without steering the camera",
+        "disabling assistance leaves the same native near miss uncorrected",
+        "pause clears assisted reticle state",
+        "component assistance requires a live, exposed, visible winding",
+        "assisted scores use separate storage even after the option is disabled",
+        "native assistance preference survives apply and reload"
+      ],
+      "failures": [],
+      "selection": {
+        "key": "enemy-1",
+        "angle": 3.49124981030697,
+        "point": [
+          0,
+          20.859739583346528,
+          -11.862499999813735
+        ]
+      },
+      "exclusions": {
+        "off": true,
+        "desktop": true,
+        "breacher": true,
+        "paused": true,
+        "outsideCone": true,
+        "range": true,
+        "behind": true,
+        "dead": true
+      },
+      "cover": {
+        "corrected": true,
+        "original": true
+      },
+      "occlusion": {
+        "selected": "enemy-2",
+        "rear": "enemy-1"
+      },
+      "shot": {
+        "yaw": 0.061086523819801536,
+        "pitch": -0.07071522321994635,
+        "ammo": 29,
+        "hp": 66,
+        "assisted": 1,
+        "shots": 2,
+        "hits": 2,
+        "ring": true
+      },
+      "disabled": {
+        "health": 100,
+        "assisted": 0,
+        "ammo": 29
+      },
+      "coils": {
+        "open": true,
+        "armored": true,
+        "deadComponent": true
+      },
+      "scoring": {
+        "base": null,
+        "assisted": "4628",
+        "label": "NEW TOUCH ASSIST PERSONAL BEST",
+        "detail": "80% ACCURACY · 0 CRITICAL ELIMINATIONS · 0 PHASE EVADES · 0 UPLINK RETRIES · CUMULATIVE PLAY TIME · 1 ASSISTED SHOT",
+        "finalScore": 4628,
+        "assistedCount": 1
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

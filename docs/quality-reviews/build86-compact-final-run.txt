@@ -1,0 +1,743 @@
+{
+  "method": "Native-touch mobile control engineering. Actor removal isolates input; reads camera/state and DOM only on test URL. No played mission or human ergonomics claim. Baseline mode measures frozen Build80 without asserting new controls.",
+  "baseline": false,
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "compact primary controls fit three rows with clear touch targets",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 86",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 668,
+          "y": 226,
+          "width": 164,
+          "height": 152,
+          "top": 226,
+          "right": 832,
+          "bottom": 378,
+          "left": 668
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 725,
+              "y": 226,
+              "width": 50,
+              "height": 46,
+              "top": 226,
+              "right": 775,
+              "bottom": 272,
+              "left": 725
+            }
+          },
+          {
+            "id": "touch-reload",
+            "rect": {
+              "x": 782,
+              "y": 226,
+              "width": 50,
+              "height": 46,
+              "top": 226,
+              "right": 832,
+              "bottom": 272,
+              "left": 782
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 725,
+              "y": 279,
+              "width": 50,
+              "height": 46,
+              "top": 279,
+              "right": 775,
+              "bottom": 325,
+              "left": 725
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 782,
+              "y": 279,
+              "width": 50,
+              "height": 46,
+              "top": 279,
+              "right": 832,
+              "bottom": 325,
+              "left": 782
+            }
+          },
+          {
+            "id": "touch-use",
+            "rect": {
+              "x": 668,
+              "y": 332,
+              "width": 107,
+              "height": 46,
+              "top": 332,
+              "right": 775,
+              "bottom": 378,
+              "left": 668
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 668,
+              "y": 226,
+              "width": 50,
+              "height": 99,
+              "top": 226,
+              "right": 718,
+              "bottom": 325,
+              "left": 668
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 782,
+              "y": 332,
+              "width": 50,
+              "height": 46,
+              "top": 332,
+              "right": 832,
+              "bottom": 378,
+              "left": 782
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -52.13644557449049,
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "compact primary controls fit three rows with clear touch targets",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 86",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 214,
+          "y": 680,
+          "width": 164,
+          "height": 152,
+          "top": 680,
+          "right": 378,
+          "bottom": 832,
+          "left": 214
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 271,
+              "y": 680,
+              "width": 50,
+              "height": 46,
+              "top": 680,
+              "right": 321,
+              "bottom": 726,
+              "left": 271
+            }
+          },
+          {
+            "id": "touch-reload",
+            "rect": {
+              "x": 328,
+              "y": 680,
+              "width": 50,
+              "height": 46,
+              "top": 680,
+              "right": 378,
+              "bottom": 726,
+              "left": 328
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 271,
+              "y": 733,
+              "width": 50,
+              "height": 46,
+              "top": 733,
+              "right": 321,
+              "bottom": 779,
+              "left": 271
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 328,
+              "y": 733,
+              "width": 50,
+              "height": 46,
+              "top": 733,
+              "right": 378,
+              "bottom": 779,
+              "left": 328
+            }
+          },
+          {
+            "id": "touch-use",
+            "rect": {
+              "x": 214,
+              "y": 786,
+              "width": 107,
+              "height": 46,
+              "top": 786,
+              "right": 321,
+              "bottom": 832,
+              "left": 214
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 214,
+              "y": 680,
+              "width": 50,
+              "height": 99,
+              "top": 680,
+              "right": 264,
+              "bottom": 779,
+              "left": 214
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 328,
+              "y": 786,
+              "width": 50,
+              "height": 46,
+              "top": 786,
+              "right": 378,
+              "bottom": 832,
+              "left": 328
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -112.82861196422365,
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "compact primary controls fit three rows with clear touch targets",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 86",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 491,
+          "y": 211,
+          "width": 164,
+          "height": 152,
+          "top": 211,
+          "right": 655,
+          "bottom": 363,
+          "left": 491
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 548,
+              "y": 211,
+              "width": 50,
+              "height": 46,
+              "top": 211,
+              "right": 598,
+              "bottom": 257,
+              "left": 548
+            }
+          },
+          {
+            "id": "touch-reload",
+            "rect": {
+              "x": 605,
+              "y": 211,
+              "width": 50,
+              "height": 46,
+              "top": 211,
+              "right": 655,
+              "bottom": 257,
+              "left": 605
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 548,
+              "y": 264,
+              "width": 50,
+              "height": 46,
+              "top": 264,
+              "right": 598,
+              "bottom": 310,
+              "left": 548
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 605,
+              "y": 264,
+              "width": 50,
+              "height": 46,
+              "top": 264,
+              "right": 655,
+              "bottom": 310,
+              "left": 605
+            }
+          },
+          {
+            "id": "touch-use",
+            "rect": {
+              "x": 491,
+              "y": 317,
+              "width": 107,
+              "height": 46,
+              "top": 317,
+              "right": 598,
+              "bottom": 363,
+              "left": 491
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 491,
+              "y": 211,
+              "width": 50,
+              "height": 99,
+              "top": 211,
+              "right": 541,
+              "bottom": 310,
+              "left": 491
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 605,
+              "y": 317,
+              "width": 50,
+              "height": 46,
+              "top": 317,
+              "right": 655,
+              "bottom": 363,
+              "left": 605
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -65.97174792863831,
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "compact primary controls fit three rows with clear touch targets",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 86",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 739,
+          "y": 248,
+          "width": 164,
+          "height": 152,
+          "top": 248,
+          "right": 903,
+          "bottom": 400,
+          "left": 739
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 796,
+              "y": 248,
+              "width": 50,
+              "height": 46,
+              "top": 248,
+              "right": 846,
+              "bottom": 294,
+              "left": 796
+            }
+          },
+          {
+            "id": "touch-reload",
+            "rect": {
+              "x": 853,
+              "y": 248,
+              "width": 50,
+              "height": 46,
+              "top": 248,
+              "right": 903,
+              "bottom": 294,
+              "left": 853
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 796,
+              "y": 301,
+              "width": 50,
+              "height": 46,
+              "top": 301,
+              "right": 846,
+              "bottom": 347,
+              "left": 796
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 853,
+              "y": 301,
+              "width": 50,
+              "height": 46,
+              "top": 301,
+              "right": 903,
+              "bottom": 347,
+              "left": 853
+            }
+          },
+          {
+            "id": "touch-use",
+            "rect": {
+              "x": 739,
+              "y": 354,
+              "width": 107,
+              "height": 46,
+              "top": 354,
+              "right": 846,
+              "bottom": 400,
+              "left": 739
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 739,
+              "y": 248,
+              "width": 50,
+              "height": 99,
+              "top": 248,
+              "right": 789,
+              "bottom": 347,
+              "left": 739
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 853,
+              "y": 354,
+              "width": 50,
+              "height": 46,
+              "top": 354,
+              "right": 903,
+              "bottom": 400,
+              "left": 853
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -48.09088378802975,
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "compact primary controls fit three rows with clear touch targets",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 86",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 144,
+          "y": 476,
+          "width": 164,
+          "height": 152,
+          "top": 476,
+          "right": 308,
+          "bottom": 628,
+          "left": 144
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 476,
+              "width": 50,
+              "height": 46,
+              "top": 476,
+              "right": 251,
+              "bottom": 522,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-reload",
+            "rect": {
+              "x": 258,
+              "y": 476,
+              "width": 50,
+              "height": 46,
+              "top": 476,
+              "right": 308,
+              "bottom": 522,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 529,
+              "width": 50,
+              "height": 46,
+              "top": 529,
+              "right": 251,
+              "bottom": 575,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 529,
+              "width": 50,
+              "height": 46,
+              "top": 529,
+              "right": 308,
+              "bottom": 575,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-use",
+            "rect": {
+              "x": 144,
+              "y": 582,
+              "width": 107,
+              "height": 46,
+              "top": 582,
+              "right": 251,
+              "bottom": 628,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 476,
+              "width": 50,
+              "height": 99,
+              "top": 476,
+              "right": 194,
+              "bottom": 575,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 582,
+              "width": 50,
+              "height": 46,
+              "top": 582,
+              "right": 308,
+              "bottom": 628,
+              "left": 258
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -137.50987083139756,
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 18,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

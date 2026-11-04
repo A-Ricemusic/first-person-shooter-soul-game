@@ -1,0 +1,255 @@
+{
+  "status": "COMPLETE: exactly two fresh attempts, both actual terminal losses",
+  "build": {
+    "expected_commit": "6af5056f795c01526fdde3bd0c0f3003c60e9e74",
+    "observed_title": "SOULFALL / BUILD 85",
+    "commit_verified": false,
+    "reason": "Source inspection prohibited"
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61481/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native CDP two-contact touch",
+    "limits": [
+      "Synthetic Chromium emulation",
+      "Captures pause play for inspection",
+      "Software-WebGL fallback",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ]
+  },
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "02:17",
+        "score": 3460,
+        "accuracy_percent": 2,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "time_label": "CUMULATIVE PLAY TIME"
+      },
+      "coverage": [
+        "opening induction guard",
+        "Mara recovery",
+        "overview and local map; AUTO NEAREST",
+        "Elian recovery",
+        "Sera recovery",
+        "Custodian exposed/armored cycle; all three coils last seen at 100%"
+      ],
+      "terminal_evidence": "docs/media/build85-mobile-review1/a1-coil-aim-correction.jpg",
+      "failures": [
+        "Repeated wall/cover collisions and route overshoots",
+        "Fired while turning or obstructed; poor accuracy",
+        "Failed to damage coils before death"
+      ],
+      "helpful": [
+        "Receiver reach prompts and hold-use brake",
+        "Map pauses, route line and nearest selection",
+        "Compass, shield recovery, phase banner"
+      ],
+      "frustrating": [
+        "Close wall surfaces obscure route",
+        "Precision aim and firing-window alignment difficult with touch",
+        "Turning while firing wastes ammunition"
+      ],
+      "what_tried": [
+        "Opening fire hold",
+        "Reload and diagonal west approach",
+        "Hold USE plus sideways movement into Mara ring",
+        "Forward/side movement around walls, jump attempt",
+        "Overview map, AUTO NEAREST, local map",
+        "Scene swipes and fire drag",
+        "Elian and Sera hold recovery",
+        "South/east lane flank to Custodian",
+        "Repeated firing and final aim correction at coils"
+      ],
+      "uncertainties": [
+        "Coils last visibly read 100% each at 02:12; terminal did not show coil stats",
+        "No reliable separation of navigation mistakes from collision affordance problems",
+        "Opening guard disappearance observed; kill count confirmed only by terminal totals"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "started_via": "Visible START FRESH on attempt 1 terminal screen; no checkpoint retry",
+      "outcome": "LOSS / OPERATOR LOST / SIGNAL LOST",
+      "terminal_stats": {
+        "eliminations": 1,
+        "mission_time": "00:30",
+        "score": 1180,
+        "accuracy_percent": 42,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "time_label": "CUMULATIVE PLAY TIME",
+        "assisted_shots": "not displayed"
+      },
+      "coverage": [
+        "opening induction guard",
+        "west lane and Mara recovery",
+        "north-opening approach",
+        "local planning map",
+        "unsuccessful east route toward Sera"
+      ],
+      "terminal_evidence": "docs/media/build85-mobile-review1/a2-after-input-error.jpg",
+      "helpful": [
+        "Learned opening route worked again",
+        "Shorter opening fire hold preserved ammunition",
+        "Local map showed route around cover"
+      ],
+      "frustrating": [
+        "Repeated blocked movement near archive despite route line",
+        "Rapid damage while trying to navigate, without a clear view of attackers"
+      ],
+      "what_tried": [
+        "Shorter opening fire hold and reload",
+        "Straight north approach after Mara",
+        "East strafe with hold USE",
+        "Local map then north/east movement",
+        "Final scene turn, attempted dash and return fire"
+      ],
+      "failures": [
+        "Only Mara recovered",
+        "Lost health from 97 to 21 while apparently blocked",
+        "Sequence 46 failed with Selector must be visible; subsequent capture verified actual terminal loss"
+      ],
+      "uncertainties": [
+        "Exact point within sequence 46 when death occurred and which selector failed are unknown",
+        "Cannot attribute failed route solely to game or thumb geometry; reviewer navigation errors contributed"
+      ]
+    }
+  ],
+  "learned_between_attempts": [
+    "Use scene swipes instead of firing to turn",
+    "Use local map earlier and shorter movement bursts",
+    "Hold USE again once inside ring; initial approach did not always finish recovery"
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with clear rough edges, 10 exceptional in assessed scope. Scores reflect observed interaction quality, not winning, losing or unvisited content.",
+    "overall_mobile": 5.5,
+    "controls": 5,
+    "gameplay": 5.5,
+    "presentation": 7,
+    "usability": 5.5,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "Functional touch shooter with useful planning and recovery feedback, undermined in these attempts by sustained navigation and aiming friction.",
+      "controls": "Two contacts moved and fired together; reload and use responded. Fine aiming, turning and choosing escape actions under fire were difficult; frequent movement overshoots and obstruction. No physical thumb ergonomics tested.",
+      "gameplay": "Guard cue, recoveries, shield regeneration and armor windows gave understandable tactical goals. Recovering all three memories felt achievable, but route stalls and poor shot alignment dominated combat. Upload and victory unassessed.",
+      "presentation": "Strong rain-soaked industrial atmosphere, coherent cyan/amber language, readable weapon and copper coils. Repetitive close wall surfaces made spatial understanding harder. Audio unassessed.",
+      "usability": "Map pause, local zoom, nearest target and explicit fresh-start choice help. Route hints did not resolve repeated cover obstruction; handbook content visibly clipped below its scroll area on first view. No settings were changed.",
+      "readability": "Large health/ammo and objective labels readable at 844x390. Small map labels, phase statistics and dense handbook text need more attention; banners compete with scene information. UI can update between sampled metadata and screenshot."
+    }
+  },
+  "cleanup": {
+    "status": "VERIFIED CLOSED",
+    "close_command": "JSON op close",
+    "helper_exit_code": 0,
+    "helper_reported_browserClosed": true,
+    "driver_pid": 86523,
+    "chrome_pid": 86534,
+    "verification": "ps -p 86523,86534 -o pid=,ppid=,stat=,command= returned no rows, exit 1; both exact PIDs absent",
+    "broad_kill_used": false
+  },
+  "assessment_scope": {
+    "assessed": [
+      "visible handbook first screen",
+      "menu identity",
+      "native touch movement/fire/reload/use/jump attempt/dash attempt",
+      "planning maps",
+      "three receiver recoveries across attempt 1",
+      "Custodian phase before death",
+      "two terminal screens"
+    ],
+    "unassessed": [
+      "successful coil destruction",
+      "upload survival",
+      "victory",
+      "recovered memory reading",
+      "settings behavior",
+      "tools submenu",
+      "physical phones",
+      "Safari",
+      "audio",
+      "hardware performance",
+      "continuous enjoyment"
+    ],
+    "no_inferred_enjoyment": true,
+    "limitation": "Synthetic paused Chromium with software WebGL. Screenshot inspection breaks continuous action and may aid planning; capture timing can permit live damage. No physical-device certification."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build85-mobile-review1",
+    "actions_log": "docs/media/build85-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build85-mobile-review1/a1-clear-wall.jpg",
+      "docs/media/build85-mobile-review1/a1-coil-aim-correction.jpg",
+      "docs/media/build85-mobile-review1/a1-coil-one-fire.jpg",
+      "docs/media/build85-mobile-review1/a1-coils-fire.jpg",
+      "docs/media/build85-mobile-review1/a1-custodian-approach.jpg",
+      "docs/media/build85-mobile-review1/a1-custodian-flank.jpg",
+      "docs/media/build85-mobile-review1/a1-east-along-north.jpg",
+      "docs/media/build85-mobile-review1/a1-east-combat.jpg",
+      "docs/media/build85-mobile-review1/a1-elian-approach.jpg",
+      "docs/media/build85-mobile-review1/a1-elian-recover.jpg",
+      "docs/media/build85-mobile-review1/a1-escape-cover.jpg",
+      "docs/media/build85-mobile-review1/a1-find-coil-face.jpg",
+      "docs/media/build85-mobile-review1/a1-first-fire.jpg",
+      "docs/media/build85-mobile-review1/a1-flank-return-fire.jpg",
+      "docs/media/build85-mobile-review1/a1-local-route.jpg",
+      "docs/media/build85-mobile-review1/a1-map.jpg",
+      "docs/media/build85-mobile-review1/a1-map3.jpg",
+      "docs/media/build85-mobile-review1/a1-mara-use.jpg",
+      "docs/media/build85-mobile-review1/a1-nearest-map.jpg",
+      "docs/media/build85-mobile-review1/a1-north-opening.jpg",
+      "docs/media/build85-mobile-review1/a1-north-retreat-fire.jpg",
+      "docs/media/build85-mobile-review1/a1-relay-push.jpg",
+      "docs/media/build85-mobile-review1/a1-route-map2.jpg",
+      "docs/media/build85-mobile-review1/a1-route-north.jpg",
+      "docs/media/build85-mobile-review1/a1-sera-recovered.jpg",
+      "docs/media/build85-mobile-review1/a1-sera-ring.jpg",
+      "docs/media/build85-mobile-review1/a1-sera-southwest.jpg",
+      "docs/media/build85-mobile-review1/a1-sera-use.jpg",
+      "docs/media/build85-mobile-review1/a1-south-lane.jpg",
+      "docs/media/build85-mobile-review1/a1-turn-from-wall.jpg",
+      "docs/media/build85-mobile-review1/a1-vault-use.jpg",
+      "docs/media/build85-mobile-review1/a1-warden-fight.jpg",
+      "docs/media/build85-mobile-review1/a1-west-approach.jpg",
+      "docs/media/build85-mobile-review1/a1-west-to-custodian.jpg",
+      "docs/media/build85-mobile-review1/a2-after-input-error.jpg",
+      "docs/media/build85-mobile-review1/a2-local-map.jpg",
+      "docs/media/build85-mobile-review1/a2-map-route-east.jpg",
+      "docs/media/build85-mobile-review1/a2-mara-near.jpg",
+      "docs/media/build85-mobile-review1/a2-mara-recovered.jpg",
+      "docs/media/build85-mobile-review1/a2-north-opening.jpg",
+      "docs/media/build85-mobile-review1/a2-sera-approach.jpg",
+      "docs/media/build85-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build85-mobile-review1/a2-west-run.jpg",
+      "docs/media/build85-mobile-review1/how-to-play.jpg",
+      "docs/media/build85-mobile-review1/initial-menu.jpg",
+      "docs/media/build85-mobile-review1/mission-entry.jpg"
+    ]
+  },
+  "protocol": {
+    "help_only_inspection": true,
+    "source_tests_docs_prior_reviews_recordings_internal_state_inspected": false,
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "input": "JSON-lines native touch only; visible selectors/geometry",
+    "screenshots_viewed_before_adaptive_input": true,
+    "maps_closed_visibly": true,
+    "settings_changes": [],
+    "source_freeze": "Expected commit supplied by requester; not independently inspected",
+    "identity_discrepancy": "None observed in visible BUILD 85 title"
+  }
+}
