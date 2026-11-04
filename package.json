@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs && node tests/mobile-aim-hud.mjs && node tests/mobile-insets.mjs && node tests/mobile-scene-controls.mjs && node tests/mobile-turn-route.mjs && node tests/mobile-planning-recovery.mjs && node tests/mobile-thumb-layout.mjs && node tests/mobile-north-exit.mjs && node tests/mobile-compact-controls.mjs && node tests/mobile-rifle-assist.mjs && node tests/mobile-auto-vault.mjs && node tests/mobile-precision-recovery.mjs && node tests/mobile-tap-aim.mjs && node tests/mobile-approach-assist.mjs && node tests/mobile-compass-cues.mjs && node tests/mobile-result-touch.mjs && node tests/mobile-projection.mjs && node tests/mobile-route-follow.mjs && node tests/mobile-combat-cadence.mjs && node tests/mobile-supply-route.mjs && node tests/mobile-route-reload.mjs && node tests/mobile-custodian-approach.mjs && node tests/mobile-rifle-readout.mjs",
+    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs && node tests/mobile-aim-hud.mjs && node tests/mobile-insets.mjs && node tests/mobile-scene-controls.mjs && node tests/mobile-turn-route.mjs && node tests/mobile-planning-recovery.mjs && node tests/mobile-thumb-layout.mjs && node tests/mobile-north-exit.mjs && node tests/mobile-compact-controls.mjs && node tests/mobile-rifle-assist.mjs && node tests/mobile-auto-vault.mjs && node tests/mobile-precision-recovery.mjs && node tests/mobile-tap-aim.mjs && node tests/mobile-approach-assist.mjs && node tests/mobile-compass-cues.mjs && node tests/mobile-result-touch.mjs && node tests/mobile-projection.mjs && node tests/mobile-route-follow.mjs && node tests/mobile-combat-cadence.mjs && node tests/mobile-supply-route.mjs && node tests/mobile-route-reload.mjs && node tests/mobile-custodian-approach.mjs && node tests/mobile-rifle-readout.mjs && node tests/mobile-driver-observation.mjs && node tests/mobile-driver-terminal.mjs",
     "test:production": "npm run build && node tests/mobile-production.mjs",
     "test:playtest": "node tests/playtest-regressions.mjs",
     "playtest:controls": "node tests/normal-controls-playtest.mjs",
@@ -76,7 +76,8 @@
     "test:mobile-supplies": "node tests/mobile-supply-route.mjs",
     "test:mobile-route-reload": "node tests/mobile-route-reload.mjs",
     "test:mobile-custodian-approach": "node tests/mobile-custodian-approach.mjs",
-    "test:mobile-rifle-readout": "node tests/mobile-rifle-readout.mjs"
+    "test:mobile-rifle-readout": "node tests/mobile-rifle-readout.mjs",
+    "test:mobile-observation": "node tests/mobile-driver-observation.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

@@ -1,0 +1,130 @@
+{
+  "method": "Inspection of preserved Build100 ordinary-driver command logs. Counts requested waits in batches that contain a FIRE down selector; this is not exact shot/contact duration, actual game time or a claim that every long batch was incorrect.",
+  "sources": [
+    {
+      "review": 1,
+      "log": "docs/media/build100-mobile-review1/actions.jsonl",
+      "SHA256": "45de63a4b0fa04143172d58b34720abbd7caa6617f5725d3ca76625d672c01cd",
+      "longFireBatches": [
+        {
+          "sequence": 4,
+          "capture": "attempt1-route1",
+          "requestedWaitMs": 16000
+        },
+        {
+          "sequence": 6,
+          "capture": "attempt1-route2",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 7,
+          "capture": "attempt1-route3",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 9,
+          "capture": "attempt1-coil1",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 10,
+          "capture": "attempt1-coil2",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 11,
+          "capture": "attempt1-coil3",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 14,
+          "capture": "attempt2-route1",
+          "requestedWaitMs": 20000
+        },
+        {
+          "sequence": 17,
+          "capture": "attempt2-run-route",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 18,
+          "capture": "attempt2-route3",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 25,
+          "capture": "attempt2-return",
+          "requestedWaitMs": 12000
+        }
+      ]
+    },
+    {
+      "review": 2,
+      "log": "docs/media/build100-mobile-review2/actions.jsonl",
+      "SHA256": "29aaf5ecf071fdf949e7262ecbab9d15693a4f4bf8e6bd84b450b4e97f92701a",
+      "longFireBatches": [
+        {
+          "sequence": 4,
+          "capture": "a1-route-fire1",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 5,
+          "capture": "a1-recover",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 6,
+          "capture": "a1-route2",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 7,
+          "capture": "a1-route3",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 8,
+          "capture": "a1-custodian-approach",
+          "requestedWaitMs": 12000
+        },
+        {
+          "sequence": 10,
+          "capture": "a1-coil-fire",
+          "requestedWaitMs": 24000
+        },
+        {
+          "sequence": 12,
+          "capture": "a1-shotgun-coil",
+          "requestedWaitMs": 24000
+        },
+        {
+          "sequence": 13,
+          "capture": "a1-last-coil",
+          "requestedWaitMs": 24000
+        },
+        {
+          "sequence": 16,
+          "capture": "a2-mara",
+          "requestedWaitMs": 15000
+        },
+        {
+          "sequence": 17,
+          "capture": "a2-next-memories",
+          "requestedWaitMs": 24000
+        },
+        {
+          "sequence": 18,
+          "capture": "a2-evade-route",
+          "requestedWaitMs": 12000
+        }
+      ]
+    }
+  ],
+  "decision": "Bound driver observations to approximately 3 seconds of live input or 1.2 seconds of cumulative FIRE contact, preserving normal game controls/mechanics.",
+  "limits": [
+    "More frequent screenshot pauses afford more inspection and can alter outcomes; scores are not directly comparable or causal evidence of game improvement.",
+    "Keep prior raw scores and findings; no rescore is implied.",
+    "This fixes an evaluation weakness, not a demonstrated aiming-physics defect."
+  ]
+}

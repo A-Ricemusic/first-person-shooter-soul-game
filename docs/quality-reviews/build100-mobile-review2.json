@@ -1,0 +1,177 @@
+{
+  "status": "complete",
+  "build": {
+    "expected_source": "d37e7b30d5d4c814a3c4f3dd7954be4c1fc5cd5b",
+    "visible_title": "BUILD 100",
+    "source_verified": false
+  },
+  "method": {
+    "viewport": [
+      390,
+      844
+    ],
+    "url": "http://127.0.0.1:61496/",
+    "input": "native two-contact touch",
+    "limits": [
+      "Synthetic paused Chromium with software-WebGL",
+      "Captures pause gameplay and clear contacts; TOOLS closes",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ],
+    "settings_changes": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "terminal": "loss",
+      "terminal_label": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "02:15",
+        "score": 3580,
+        "accuracy_percent": 6,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 8,
+        "tap_aims": 5,
+        "route_assists": 4,
+        "approach_assists": 3
+      },
+      "coverage": [
+        "All three memories recovered",
+        "Custodian: coils I and II OFF; III 100% at last preterminal capture",
+        "No upload or extraction reached"
+      ],
+      "evidence": [
+        "docs/media/build100-mobile-review2/a1-last-coil.jpg",
+        "docs/media/build100-mobile-review2/a1-shotgun-coil.jpg"
+      ],
+      "tried": [
+        "Tap aim and hold FIRE alongside ROUTE",
+        "TURN threat cue",
+        "TOOLS then SWAP in same batch",
+        "Shotgun aimed at remaining coil"
+      ],
+      "failures": [
+        "Rifle exhausted while firing through armor cycles",
+        "Lost while trying final coil; only 6% accuracy"
+      ],
+      "helpful": [
+        "ROUTE navigation and recovery",
+        "TURN cue",
+        "Explicit no-ammo swap/supply prompt",
+        "Numbered coil OFF indicators"
+      ],
+      "frustrating": [
+        "Small targets and cover in narrow portrait view",
+        "Sustained firing consumed reserve rapidly"
+      ],
+      "uncertainties": [
+        "Cause of final damage not established from paused screenshots"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "started_via": "Visible START FRESH on attempt 1 terminal screen; no checkpoint retry",
+      "terminal": "loss",
+      "terminal_label": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 2,
+        "mission_time": "00:47",
+        "score": 2200,
+        "accuracy_percent": 6,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 3,
+        "tap_aims": 1,
+        "route_assists": 2,
+        "approach_assists": 2
+      },
+      "coverage": [
+        "Planning overview map opened, inspected and visibly closed",
+        "Mara and Sera recovered",
+        "Died en route to Elian; no Custodian or upload reached"
+      ],
+      "evidence": [
+        "docs/media/build100-mobile-review2/attempt2-start.jpg",
+        "docs/media/build100-mobile-review2/a2-map.jpg",
+        "docs/media/build100-mobile-review2/a2-mara.jpg",
+        "docs/media/build100-mobile-review2/a2-next-memories.jpg",
+        "docs/media/build100-mobile-review2/a2-evade-route.jpg"
+      ],
+      "tried": [
+        "Initial tap aim with shorter FIRE hold followed by route travel",
+        "Map inspection without changing destination",
+        "TURN cue followed by DASH and route/fire on final batch"
+      ],
+      "failures": [
+        "Health fell to 46 and shield 0 by 00:39",
+        "Died despite attempted TURN/DASH; terminal recorded 0 phase evades",
+        "Second plan did not reach coils, so ammunition-conservation idea not tested there"
+      ],
+      "helpful": [
+        "Map route and receiver labels readable while paused",
+        "SAVED confirmation made recovery evident",
+        "Fresh restart unambiguous and reset timer/health/shield"
+      ],
+      "frustrating": [
+        "Offscreen attacks while navigating remained hard to manage",
+        "RELEASE USE wording mismatches touch control wording",
+        "6% terminal accuracy suggests my long fire batches were ineffective; it does not establish inherent control precision"
+      ],
+      "uncertainties": [
+        "Exact killing attack and DASH effectiveness not established",
+        "Cannot attribute outcome difference to one change"
+      ]
+    }
+  ],
+  "between_attempts_learning": [
+    "Conserve rifle fire until coil exposure",
+    "Use map for planning and supplies",
+    "Use TURN and reposition instead of standing through attacks"
+  ],
+  "cleanup": {
+    "status": "complete",
+    "method": "Sent helper close, awaited process exit, then ps -p 21951,21964 -o pid=,ppid=,stat=,command= returned no rows",
+    "driver_pid": 21951,
+    "chrome_pid": 21964,
+    "helper_exit_code": 0,
+    "helper_browser_closed": true,
+    "exact_owned_pids_absent": true,
+    "broad_kill_used": false
+  },
+  "scores": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable friction; 10 exceptional. Subjective observed mobile-emulation quality, not a win/loss grade or physical-device certification. Overall is holistic, not an arithmetic average.",
+    "overall_mobile": 6,
+    "controls": 6,
+    "gameplay": 6,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "Useful touch assistance and strong atmosphere made objective progress possible, but portrait combat/target visibility and threat management caused substantial friction.",
+      "controls": "Large route/fire controls and tap aim support two-thumb play; TURN is useful. Fine aiming, timing and repositioning were not reliably mastered. No physical thumb ergonomics assessed.",
+      "gameplay": "Recovery-to-coil sequence and armor windows provide visible structure. Combat pressure and ammo consumption complicated engaging that structure. Upload and later content unassessed.",
+      "presentation": "Cohesive cyan/amber visual language, atmospheric architecture, distinct title and clear terminal layout in observed screens. Audio unassessed.",
+      "usability": "Handbook, map pause, route assist, explicit ammo fallback prompt and separate fresh/checkpoint choices are helpful. Dense control set and RELEASE USE wording add friction.",
+      "readability": "Major objectives and health/ammo readable; dark scenery, narrow view, small coil targets and tiny secondary text require careful paused inspection."
+    }
+  },
+  "coverage_limits": [
+    "Exactly two fresh terminal losses; no third attempt or checkpoint retry",
+    "No upload, successful extraction, recovered-memory reading, settings exploration, AIM, JUMP, movement-stick/free-look drag or supplies navigation assessed",
+    "No game source, tests, docs, prior reviews, recordings, target metadata or hidden state inspected; source SHA supplied by task not independently verified",
+    "Visible UI summaries from helper used only as visible evidence; each screenshot viewed separately before subsequent adaptive input",
+    "Long held-contact batches and inspection pauses differ from continuous human play; no inference of continuous enjoyment or unassessed content enjoyment"
+  ],
+  "evidence": {
+    "directory": "docs/media/build100-mobile-review2",
+    "raw_log": "docs/media/build100-mobile-review2/actions.jsonl",
+    "first_terminal": "docs/media/build100-mobile-review2/a1-last-coil.jpg",
+    "second_terminal": "docs/media/build100-mobile-review2/a2-evade-route.jpg",
+    "identity": "docs/media/build100-mobile-review2/initial-menu.jpg"
+  }
+}
