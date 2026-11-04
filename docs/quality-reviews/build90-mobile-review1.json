@@ -1,0 +1,245 @@
+{
+  "status": "complete \u2014 exactly two fresh terminal attempts",
+  "identity": {
+    "expectedSource": "640976b01c30e6da7397f0d6c9cf707bfca829d6",
+    "sourceVerified": false,
+    "visibleTitle": "SOULFALL \u2014 BUILD 90",
+    "url": "http://127.0.0.1:61486/",
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  "method": "Visible-only native two-contact Chromium touch helper; screenshots inspected before adaptive input; gameplay paused between batches. Software-WebGL fallback. No source inspection.",
+  "limitations": [
+    "Synthetic paused emulation; physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "settingsChanges": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "LOSS \u2014 OPERATOR LOST / SIGNAL LOST",
+      "terminalStats": {
+        "eliminations": 1,
+        "missionTime": "00:30",
+        "score": 1100,
+        "accuracyPercent": 13,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "tapAims": 2,
+        "approachAssist": 1,
+        "timeLabel": "CUMULATIVE PLAY TIME"
+      },
+      "memories": [
+        "MARA SOLBERG \u2014 Station medic"
+      ],
+      "terminalEvidence": "docs/media/build90-mobile-review1/a1-escape.jpg",
+      "coverage": [
+        "Opening guard",
+        "Planning overview map, visibly closed",
+        "Central induction and east maintenance",
+        "West triage",
+        "Mara approach and recovery",
+        "Simultaneous moving and firing",
+        "Reload",
+        "Death screen"
+      ],
+      "observations": [
+        "Opening tap aim and FIRE cleared guard.",
+        "Map route and labels useful.",
+        "Initially swiped wrong direction; corrected using compass.",
+        "Reached nearby Mara and held approach; recovered her while rear threats depleted health to 33. Escape while firing ended in death.",
+        "Large USE button changes action context; offscreen charge labels helpful."
+      ],
+      "failures": [
+        "Map tap while helper-paused returned Selector must be visible (sequence 5); resumed and opened map successfully.",
+        "Spent full magazine while moving without eliminating close triage enemy.",
+        "Failed to survive receiver approach."
+      ],
+      "uncertainties": [
+        "Exact enemy damage sources and close enemy aim failure not established."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "startMethod": "Visible START FRESH from attempt 1 terminal screen (sequence 13); no checkpoint retry.",
+      "outcome": "LOSS \u2014 OPERATOR LOST / SIGNAL LOST",
+      "terminalStats": {
+        "eliminations": 7,
+        "missionTime": "01:36",
+        "score": 3940,
+        "accuracyPercent": 14,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 3,
+        "tapAims": 9,
+        "approachAssists": 2,
+        "timeLabel": "CUMULATIVE PLAY TIME"
+      },
+      "memories": [
+        "MARA SOLBERG \u2014 Station medic",
+        "ELIAN VALE \u2014 Relay engineer",
+        "SERA NORD \u2014 Night operator"
+      ],
+      "terminalEvidence": "docs/media/build90-mobile-review1/a2-upload-final.jpg",
+      "coverage": [
+        "Fresh opening guard",
+        "Sentinel charging encounter",
+        "Dash and reload",
+        "Mara approach/recovery at full health and shield",
+        "Planning overview selected Sera; map visibly closed",
+        "Wall/counter navigation and jump attempt",
+        "Relay guard optic tap and moving fire",
+        "Sera recovery",
+        "East maintenance/interceptor and pursuer encounters",
+        "Elian recovery",
+        "Custodian armored/charging/exposed phases",
+        "All three numbered coils disabled",
+        "Return to green deck",
+        "Uplink upload observed at 7%, 14%, 58%",
+        "Terminal loss with checkpoint option visible; no retry used"
+      ],
+      "observations": [
+        "Shorter initial bursts and clearing visible threats before Mara yielded safe recovery with 100 health/60 shield.",
+        "Specific outside-reach distances and context-sensitive APPROACH helped.",
+        "Memory cards, objective boxes and numbered coil OFF statuses made progression clear.",
+        "Route cues required interpretation around walls/counters; moving sideways, jumping and turning were tried.",
+        "Tap optic plus moving fire appeared to remove relay guard; individual elimination attribution remains uncertain.",
+        "Coils 3 and 1 were disabled after aiming at visible copper faces.",
+        "First burst at remaining coil left it at 100%; corrected tap and another burst disabled it.",
+        "Reached uplink at 54 health; firing toward a distant sentinel did not prevent health falling to 22. Tried retargeting and a sideways dash, then firing; terminal loss followed."
+      ],
+      "failures": [
+        "Navigation collided with wall/cover despite route cue; jump did not directly resolve route.",
+        "Repeated burst at last coil caused no visible reduction, wasting ammunition while exposed.",
+        "Some moving-enemy bursts failed to visibly clear threats.",
+        "Failed to survive upload after clearing all coils."
+      ],
+      "uncertainties": [
+        "Exact maximum upload percentage before death was not captured; last inspected gameplay view was 58%.",
+        "Dash was tapped several times, but terminal UI reports 0 phase evades; no successful phase evade claimed.",
+        "Do not attribute all damage or eliminations to specific enemies from these captures."
+      ]
+    }
+  ],
+  "learningForAttempt2": "Clear pursuing threats before holding approach; turn left with negative scene swipe; use shorter shooting bursts and dash when pressured.",
+  "cleanup": {
+    "status": "verified clean",
+    "closeCommandSent": true,
+    "helperExitCode": 0,
+    "helperReportedBrowserClosed": true,
+    "driverPid": 46569,
+    "chromePid": 46579,
+    "verification": "ps -p 46569,46579 -o pid=,ppid=,stat=,command= returned no rows, exit 1 after helper exited.",
+    "broadKillUsed": false
+  },
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with clear rough edges; 10 exceptional with minimal observed friction. Scores judge observed experience, not win/loss, and are not physical-device certification.",
+    "overallMobile": 6.5,
+    "controls": 6.0,
+    "gameplay": 6.5,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "reasons": {
+      "overallMobile": "A coherent, atmospheric mobile shooter with useful assists and understandable objectives, held back by navigation friction and inconsistent targeting feedback under pressure. Second-attempt learning improved progress substantially; two losses alone do not determine this grade.",
+      "controls": "Two-contact moving/fire worked; tap aim, reload and approach useful. Moving targets, distant defense and correcting failed coil aim were less reliable. Synthetic inputs cannot establish physical ergonomics.",
+      "gameplay": "Threat clearing and coil timing/repositioning offer tactical decisions; three memories and boss were achievable in second attempt. Rear pressure during holds and uncertain hit outcomes frustrated. Continuous enjoyment unassessed.",
+      "presentation": "Strong teal/amber identity, rain, reflective floor, large typography and distinct relay landmark. No audio or hardware performance assessment.",
+      "usability": "Clear handbook, pausing planning map, contextual receiver instructions, progress feedback and fresh-start button. Route guidance around geometry required trial and error.",
+      "readability": "Main health/ammo/buttons and phase states readable. Smaller labels, summary microtext and distant dark enemies were harder to parse at this viewport."
+    }
+  },
+  "reviewer": {
+    "model": "GPT-6.1 Sol",
+    "role": "independent mobile reviewer",
+    "agentsUsed": false
+  },
+  "helpfulMoments": [
+    "Opening tap aim plus held FIRE was immediately effective.",
+    "Paused map shows receiver names, selected target, route length and route line.",
+    "Receiver approach assist reduced fine positioning burden.",
+    "Explicit coil phase banner, numbered health/OFF states and disabled-coil announcement supported boss progress.",
+    "Fresh-start and terminal statistics were legible and unambiguous."
+  ],
+  "frustratingMoments": [
+    "Wall and counter navigation required repeated corrective moves and a jump attempt.",
+    "Target acquisition was less dependable against moving/distant enemies than the opening guard.",
+    "Stationary approach/upload exposed the player to rear attacks; warnings named direction but did not solve acquiring attackers.",
+    "Magazine bursts could be spent without obvious damage to the intended target.",
+    "Some small signage/stat text and dark silhouettes need closer inspection at 844x390."
+  ],
+  "unassessedContent": [
+    "Successful extraction/win presentation",
+    "Recovered-memory reading content",
+    "Settings options and altered settings",
+    "AIM mode and TOOLS menu",
+    "Checkpoint retry gameplay",
+    "Local 2x map mode"
+  ],
+  "evidence": {
+    "rawLog": "docs/media/build90-mobile-review1/actions.jsonl",
+    "directory": "docs/media/build90-mobile-review1",
+    "screenshots": [
+      "docs/media/build90-mobile-review1/a1-approach.jpg",
+      "docs/media/build90-mobile-review1/a1-escape.jpg",
+      "docs/media/build90-mobile-review1/a1-forward.jpg",
+      "docs/media/build90-mobile-review1/a1-guard.jpg",
+      "docs/media/build90-mobile-review1/a1-left-route.jpg",
+      "docs/media/build90-mobile-review1/a1-map-open.jpg",
+      "docs/media/build90-mobile-review1/a1-triage-fight.jpg",
+      "docs/media/build90-mobile-review1/a1-west-turn.jpg",
+      "docs/media/build90-mobile-review1/a2-around-east-cover.jpg",
+      "docs/media/build90-mobile-review1/a2-around-wall.jpg",
+      "docs/media/build90-mobile-review1/a2-circle-coils.jpg",
+      "docs/media/build90-mobile-review1/a2-coil-burst.jpg",
+      "docs/media/build90-mobile-review1/a2-coil-next-face.jpg",
+      "docs/media/build90-mobile-review1/a2-coil-one.jpg",
+      "docs/media/build90-mobile-review1/a2-coil-two-correction.jpg",
+      "docs/media/build90-mobile-review1/a2-coils-face.jpg",
+      "docs/media/build90-mobile-review1/a2-cover-threat.jpg",
+      "docs/media/build90-mobile-review1/a2-custodian-approach.jpg",
+      "docs/media/build90-mobile-review1/a2-deck-defense-view.jpg",
+      "docs/media/build90-mobile-review1/a2-east-along-wall.jpg",
+      "docs/media/build90-mobile-review1/a2-east-archive.jpg",
+      "docs/media/build90-mobile-review1/a2-east-entry.jpg",
+      "docs/media/build90-mobile-review1/a2-east-fire-strafe.jpg",
+      "docs/media/build90-mobile-review1/a2-east-interceptor.jpg",
+      "docs/media/build90-mobile-review1/a2-elian-use.jpg",
+      "docs/media/build90-mobile-review1/a2-entry.jpg",
+      "docs/media/build90-mobile-review1/a2-final-coil.jpg",
+      "docs/media/build90-mobile-review1/a2-mara-recovered.jpg",
+      "docs/media/build90-mobile-review1/a2-near-mara.jpg",
+      "docs/media/build90-mobile-review1/a2-north-block.jpg",
+      "docs/media/build90-mobile-review1/a2-north-exit.jpg",
+      "docs/media/build90-mobile-review1/a2-pursuer.jpg",
+      "docs/media/build90-mobile-review1/a2-relay-receiver.jpg",
+      "docs/media/build90-mobile-review1/a2-return-deck.jpg",
+      "docs/media/build90-mobile-review1/a2-sentinel.jpg",
+      "docs/media/build90-mobile-review1/a2-sera-map.jpg",
+      "docs/media/build90-mobile-review1/a2-sera-use.jpg",
+      "docs/media/build90-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build90-mobile-review1/a2-upload-defense.jpg",
+      "docs/media/build90-mobile-review1/a2-upload-final.jpg",
+      "docs/media/build90-mobile-review1/a2-warden-fight.jpg",
+      "docs/media/build90-mobile-review1/a2-west-route.jpg",
+      "docs/media/build90-mobile-review1/attempt1-start.jpg",
+      "docs/media/build90-mobile-review1/how-to-play.jpg",
+      "docs/media/build90-mobile-review1/initial-menu.jpg"
+    ],
+    "firstResultSavedBeforeSecondAttempt": true
+  },
+  "scopeCompliance": {
+    "attempts": 2,
+    "terminalAttempts": 2,
+    "checkpointRetries": 0,
+    "thirdAttempt": false,
+    "sourceInspection": false,
+    "settingsChanges": [],
+    "notes": "Only helper --help read to learn controls. No source/hash inspection; expected commit supplied by requester, visible BUILD 90 confirmed. No game source, tests, docs, prior reviews or recordings inspected. Only own report and helper evidence/logs written. No build, commit, publication or server change."
+  }
+}

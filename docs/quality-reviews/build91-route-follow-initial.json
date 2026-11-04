@@ -1,0 +1,40 @@
+{
+  "method": "ENGINEERING native-touch navigation fixtures. Starts, selected goals, encounter suppression, blockers and some recovery/boss/result states are arranged. Actual map fields, collision-resolved real-time walking and native USE/manual overrides are used. No simulation advance, teleport during an exercised route, mission win or enjoyment certification.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "checks": [
+        {
+          "name": "held far ROUTE follows real architecture, hands off near approach, recovers and never launches next objective",
+          "passed": true
+        },
+        {
+          "name": "selected destination cannot be stolen by a different nearby receiver",
+          "passed": false,
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!v.mara)\n"
+        }
+      ],
+      "recovery": {
+        "start": [
+          0,
+          1.7,
+          31
+        ],
+        "end": [
+          -21.653632533846114,
+          1.7,
+          -13.485662949827928
+        ],
+        "routeQueries": 2,
+        "routeAssists": 1,
+        "nearAssists": 1
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 56975,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(!v.mara)\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-follow.mjs:16:558\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-follow.mjs:14:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-follow.mjs:16:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

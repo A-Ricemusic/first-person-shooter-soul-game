@@ -18,7 +18,7 @@ export function touchApproachStep(g,manual,dt){
  if(!g.touchMode||!g.touchUse||g.phase!=='playing'||g.touchApproachCancelled||g.touchRecoveryBraked){g.touchApproach=null;return null;}
  if(!g.grounded||g.vault||g.dashTime>0||Math.abs(feetY(g.player,profile))>.025){clearTouchApproach(g,true);return null;}
  if(manual.lengthSq()>.000625||g.mouseDown||g.aim){g.touchApproach=null;return null;}
- const near=g.coreNodes.filter(c=>!c.collected).map(c=>({core:c,d:recoveryDistance(g.player,c.position,profile)})).filter(c=>c.d<TOUCH_APPROACH_RANGE).sort((a,b)=>a.d-b.d)[0];
+ const near=g.coreNodes.filter(c=>!c.collected).map(c=>({core:c,d:recoveryDistance(g.player,c.position,profile)})).filter(c=>c.d<TOUCH_APPROACH_RANGE&&(!g.touchUseGoal||g.touchUseGoal===`core-${c.core.id}`)).sort((a,b)=>a.d-b.d)[0];
  if(!near||near.d<RECOVERY_RADIUS){g.touchApproach=null;return null;}
  let s=g.touchApproach;
  if(!s||s.id!==near.core.id){

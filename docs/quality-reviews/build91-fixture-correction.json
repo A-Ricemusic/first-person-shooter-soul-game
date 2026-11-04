@@ -1,0 +1,16 @@
+{
+  "initialReport": "build91-approach-initial.json",
+  "failure": "All six profiles passed every other near-approach contract, then timed out expecting RETURN TO FLOOR while holding a contact canceled by the new far-route policy.",
+  "correction": "Assert latched route cancellation/no assist/no movement. Release the held contact, then verify the existing RETURN TO FLOOR prompt and no delayed route after landing. Reset the new route-assist count between arranged cases.",
+  "runtimeChanges": "None; source application and built bundle unchanged. Only tests/mobile-approach-assist.mjs changed.",
+  "retest": {
+    "exit": 0,
+    "passed": true,
+    "profiles": 6,
+    "browserClosed": true,
+    "chromePid": 74208,
+    "chromePidAbsent": true,
+    "report": "build91-production-approach.json"
+  },
+  "originalManifest": "build91-runtime-before-fixture-correction.json"
+}
