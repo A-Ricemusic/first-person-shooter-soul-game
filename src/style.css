@@ -323,3 +323,12 @@ body.touch-mode #extraction-panel #custodian-cells .coil-cell i{position:absolut
 body.touch-mode #extraction-panel #custodian-cells .coil-cell[data-live="false"]{color:#a8c6bd;border-color:#476c63;background:#142b29;opacity:1}
 body.touch-mode #touch-notices #announcement[data-mobile-duplicate="true"]{display:none}
 body.touch-mode.touch-boss-stage #service-hint{display:none}
+
+/* Build95: keep mission feedback compact and recovery completion by the thumb. */
+body.touch-mode #extraction-panel{width:calc(100% - var(--touch-left) - var(--touch-right));max-width:300px;right:auto}
+body.touch-mode.touch-uplink-stage #threat-focus{width:calc(100% - var(--touch-left) - var(--touch-right));max-width:300px;right:auto;font-size:12px;line-height:16px;letter-spacing:0}
+body.touch-mode #touch-use[data-saved="true"]{border:2px solid #b5fff0;background:#276958;color:#f3fff9;box-shadow:0 0 0 2px #8ee8e030;font-weight:700;letter-spacing:0}
+@media(orientation:landscape){
+ body.touch-mode.touch-uplink-stage #threat-focus{left:auto;right:var(--touch-right);top:calc(var(--touch-top) + 78px);width:max-content;max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 316px);max-height:40px;overflow:hidden;text-align:right}
+}
+body.touch-mode.touch-service-route #threat-focus{display:none}

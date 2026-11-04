@@ -1,0 +1,12 @@
+{
+  "initialDiagnostic": "build95-hud-after-initial.json",
+  "finding": "Marker rendering wrote MAP guidance, but periodic state rendering could restore the prior uploadStatus text between frames.",
+  "correction": "One mobile uplink status function uses the last eligible blocked-marker presentation flag in both render paths; phase changes clear it.",
+  "scope": "UI layout, completion feedback and wording only; no gameplay, physics, route, damage, mission, asset or balance edits.",
+  "verification": "Affected existing native phone groups; a repeated state/marker composition checks stable guidance and nonoverlap, and a held recovery check outlasts the temporary memory card.",
+  "limits": [
+    "Arranged layout/actor/mission states explicitly disclosed.",
+    "Paused ordinary helper releases contacts before capture, limiting independent held-button cue usefulness conclusions.",
+    "Physical phones,Safari,audio,hardwareperformance and continuousenjoyment remain unassessed."
+  ]
+}

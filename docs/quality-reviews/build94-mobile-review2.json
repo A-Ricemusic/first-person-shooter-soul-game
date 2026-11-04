@@ -1,0 +1,211 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh terminal attempts",
+  "buildObserved": "BUILD 94",
+  "sourceFreezeProvided": "57817ddca9cfb9dbb66f50b23345715496432c11 (not independently inspected)",
+  "viewport": [
+    390,
+    844
+  ],
+  "url": "http://127.0.0.1:61490/",
+  "method": "Visible-only native two-contact touch; screenshots viewed before adaptive inputs; captures pause Chromium between batches. Software WebGL.",
+  "settingsChanges": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 3,
+        "missionTime": "01:34",
+        "score": 5586,
+        "accuracyPercent": 6,
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 2,
+        "tapAims": 4,
+        "routeAssists": 6,
+        "approachAssists": 3,
+        "labels": [
+          "CUMULATIVE PLAY TIME",
+          "NEW TOUCH ASSIST PERSONAL BEST"
+        ]
+      },
+      "terminalEvidence": "docs/media/build94-mobile-review2/attempt1-extract.jpg",
+      "coverage": [
+        "opening guard tap aim/fire",
+        "reload",
+        "three receivers via HOLD ROUTE/recover",
+        "planning map opened and visibly closed",
+        "three numbered coils disabled",
+        "return deck and completed upload",
+        "two-contact route plus fire"
+      ],
+      "failures": [
+        "Rejected 15000ms wait: wait 0..12000ms. Screenshot confirmed paused; corrected to 12000ms.",
+        "Held fire across armored intervals; poor accuracy and rear damage. Health screenshot fell to 28 at return-deck transition."
+      ],
+      "helpful": [
+        "Tap aiming centers guard/coil",
+        "HOLD ROUTE travels and recovers",
+        "Map route and receiver labels",
+        "Coil OFF status and numbered progress",
+        "Directional threat cues"
+      ],
+      "frustrating": [
+        "Narrow view hides rear attackers during coil targeting",
+        "Long holds expend ammunition while coil armor cycles",
+        "Small tracked end-stat text"
+      ],
+      "uncertainties": [
+        "Screenshot capture can allow live damage before pause: return-deck metadata health 41 versus screenshot 28",
+        "No assessment of recovered narrative text or optional full tactical handbook"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "entry": "Visible START FRESH tapped on attempt-one terminal screen; no checkpoint retry",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 2,
+        "missionTime": "01:16",
+        "score": 6247,
+        "accuracyPercent": 14,
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 2,
+        "tapAims": 4,
+        "routeAssists": 5,
+        "approachAssists": 3,
+        "labels": [
+          "CUMULATIVE PLAY TIME",
+          "NEW TOUCH ASSIST PERSONAL BEST"
+        ]
+      },
+      "terminalEvidence": "docs/media/build94-mobile-review2/attempt2-extract.jpg",
+      "coverage": [
+        "fresh reset visibly observed at 00:00, health100/shield60/ammo30/reserve180",
+        "opening guard with 800ms fire burst",
+        "three memory recoveries",
+        "two-contact route plus fire",
+        "reload",
+        "three numbered coils using shorter bursts",
+        "return deck and completed upload"
+      ],
+      "settingsChanges": [],
+      "whatTried": [
+        "800ms opening burst rather than three seconds",
+        "HOLD ROUTE travel/recover, release/repress after saved",
+        "2000ms,1100ms,2200ms coil bursts with reload between second and third",
+        "route and fire held simultaneously for return/upload"
+      ],
+      "failures": [
+        "Held recovery twelve seconds at Mara; stayed there after saved and took damage to health84/shield0 before release/repress",
+        "Still expended fire without an aimed visible enemy during travel",
+        "Planned manual movement/dash experiment was not performed; no claims about its quality"
+      ],
+      "helpful": [
+        "Short coil bursts each disabled a coil with less stationary exposure",
+        "Numbered OFF indicators and return-to-deck transition clearly communicated completion",
+        "Recovery supplied health/shield/ammunition as visibly reflected in HUD",
+        "Fresh button performed full reset without accidental checkpoint retry"
+      ],
+      "frustrating": [
+        "One hold serves travel and recovery but requires releasing after saved; overholding wastes time under fire",
+        "Enemies outside portrait view remain difficult to attend while targeting coils"
+      ],
+      "uncertainties": [
+        "No causal claim that burst length alone explains better final stats: timings and enemy behavior also differed",
+        "No final health shown on terminal UI"
+      ]
+    }
+  ],
+  "learningForAttempt2": "Use route for navigation/recovery, but try manual movement/dash and shorter fire bursts around the coil phase; avoid stationary sustained fire into armor.",
+  "limits": [
+    "Synthetic paused Chromium with software WebGL",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Captures pause for inspection; this is not continuous real-time thumb play. Live capture may add damage before pause.",
+    "Manual movement, scene/FIRE drag precision, AIM, DASH, JUMP/VAULT, TOOLS, settings, optional full handbook and recovered narrative content unassessed.",
+    "No conclusion about continuous enjoyment beyond observed mechanics; no assessment of unplayed content."
+  ],
+  "cleanup": {
+    "status": "PASS",
+    "closeCommandSent": true,
+    "helperExitCode": 0,
+    "helperReportedBrowserClosed": true,
+    "driverPid": 75332,
+    "chromePid": 75342,
+    "verificationCommand": "ps -p 75332,75342 -o pid=,ppid=,stat=,command=",
+    "verificationExitCode": 1,
+    "verificationOutput": "empty \u2014 both exact owned PIDs absent",
+    "broadKillUsed": false
+  },
+  "scores": {
+    "scale": "0 unusable; 2 severe barriers; 5 mixed and materially frustrating; 7 good with noticeable friction; 9 excellent with minor issues; 10 exceptional within assessed scope. Holistic judgement, not a win-rate or arithmetic score.",
+    "overallMobile": 7,
+    "controls": {
+      "score": 7,
+      "reasons": "Large separated buttons, successful tap-to-aim and simultaneous route/fire. HOLD ROUTE made the mission accessible in portrait. Recovery re-press behavior and aiming versus rear threats create friction. Manual stick, look drag, AIM, dash, jump and tools not tested."
+    },
+    "gameplay": {
+      "score": 7,
+      "reasons": "Observed loop has clear escalating goals: recover three people, disable three timed coils, return and upload. Short bursts rewarded learning. Assisted travel reduces navigation burden but much of observed play became holding a button, and offscreen pressure competes with coil attention. No assessment of optional combat depth or unseen content."
+    },
+    "presentation": {
+      "score": 8,
+      "reasons": "Cohesive dark teal industrial scene, strong title typography, copper coils and cyan progress accents, readable terminal hierarchy. Some dark silhouettes merge into the scene. Audio unassessed."
+    },
+    "usability": {
+      "score": 7,
+      "reasons": "Useful in-game handbook, explicit objective strip, paused map with route, visible fresh reset and honest assist statistics. Recovery mode switching needs attentive release timing. No settings changes or alternate systems assessed."
+    },
+    "readability": {
+      "score": 7,
+      "reasons": "Health, ammunition, objectives and major buttons legible at 390x844; detailed terminal statistics and map legend are small and tracked. Narrow scene makes rear threats rely heavily on directional text."
+    },
+    "holisticReason": "Good assisted mobile mission flow with useful guidance and strong visual identity; portrait attention management, recovery hold semantics and small secondary text prevent a higher grade. Two wins do not by themselves establish quality or sustained enjoyment."
+  },
+  "methodCompliance": {
+    "sourceInspection": "None; only helper --help read. No source, tests, docs, previous reviews, recordings, hidden state or target metadata inspected. Own captures viewed.",
+    "input": "Native JSON-lines touch only, max two contacts; no keyboard/mouse/evaluation/custom controller.",
+    "planningMap": "Opened attempt1 and closed visibly with #close-map before continuing.",
+    "attemptCount": 2,
+    "checkpointRetries": 0,
+    "thirdAttempt": false,
+    "identity": "BUILD 94 visible on initial title; provided source freeze not independently verified.",
+    "settingsChanges": [],
+    "scoringScope": "Observed assisted portrait play only; no physical-device certification."
+  },
+  "rawEvidence": {
+    "actionLog": "docs/media/build94-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build94-mobile-review2/attempt1-coil1-fire.jpg",
+      "docs/media/build94-mobile-review2/attempt1-coil2-fire.jpg",
+      "docs/media/build94-mobile-review2/attempt1-coil3-fire.jpg",
+      "docs/media/build94-mobile-review2/attempt1-custodian-approach.jpg",
+      "docs/media/build94-mobile-review2/attempt1-extract.jpg",
+      "docs/media/build94-mobile-review2/attempt1-guard.jpg",
+      "docs/media/build94-mobile-review2/attempt1-map.jpg",
+      "docs/media/build94-mobile-review2/attempt1-memory1.jpg",
+      "docs/media/build94-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build94-mobile-review2/attempt1-route2.jpg",
+      "docs/media/build94-mobile-review2/attempt1-route3.jpg",
+      "docs/media/build94-mobile-review2/attempt1-start.jpg",
+      "docs/media/build94-mobile-review2/attempt1-wait-error.jpg",
+      "docs/media/build94-mobile-review2/attempt2-coil1-burst.jpg",
+      "docs/media/build94-mobile-review2/attempt2-coil2-burst.jpg",
+      "docs/media/build94-mobile-review2/attempt2-coil3-burst.jpg",
+      "docs/media/build94-mobile-review2/attempt2-custodian.jpg",
+      "docs/media/build94-mobile-review2/attempt2-elian.jpg",
+      "docs/media/build94-mobile-review2/attempt2-extract.jpg",
+      "docs/media/build94-mobile-review2/attempt2-fresh.jpg",
+      "docs/media/build94-mobile-review2/attempt2-north.jpg",
+      "docs/media/build94-mobile-review2/attempt2-sera.jpg",
+      "docs/media/build94-mobile-review2/attempt2-west.jpg",
+      "docs/media/build94-mobile-review2/how-to.jpg",
+      "docs/media/build94-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}
