@@ -1,0 +1,58 @@
+{
+  "method": "ENGINEERING native-touch phone fixtures, not played missions. An isolated elevated floor, target positions, exact camera aim, one-round inventory, zero spread, suppressed AI and explicit closed armor are arranged. Actual native FIRE and production ray/damage resolution checked for normal, failed and malformed GLB downloads. No acquisition, enjoyment or hardware-performance claims.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "fallback": false,
+      "blocked": [],
+      "checks": [
+        {
+          "name": "candidate loaded/fallback paths are actually exercised",
+          "passed": true
+        },
+        {
+          "name": "warden body retains actual damage 17",
+          "passed": true
+        },
+        {
+          "name": "warden optic retains actual damage 82",
+          "passed": true
+        },
+        {
+          "name": "sentinel body retains actual damage 34",
+          "passed": false,
+          "error": "{\"before\":100,\"after\":18,\"damage\":82,\"ammo\":0,\"shots\":1,\"label\":\"OPTIC HIT\",\"actors\":1}\n\n82 !== 34\n"
+        }
+      ],
+      "assets": {
+        "sentinel": true,
+        "warden": true,
+        "interceptor": true
+      },
+      "warden-body": {
+        "before": 150,
+        "after": 133,
+        "damage": 17,
+        "ammo": 0,
+        "shots": 1,
+        "label": "ARMOR HIT",
+        "actors": 1
+      },
+      "warden-optic": {
+        "before": 150,
+        "after": 68,
+        "damage": 82,
+        "ammo": 0,
+        "shots": 1,
+        "label": "OPTIC HIT",
+        "actors": 1
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 88498,
+  "failure": "AssertionError [ERR_ASSERTION]: {\"before\":100,\"after\":18,\"damage\":82,\"ammo\":0,\"shots\":1,\"label\":\"OPTIC HIT\",\"actors\":1}\n\n82 !== 34\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/[eval1]:14:268\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/[eval1]:8:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/[eval1]:14:146",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

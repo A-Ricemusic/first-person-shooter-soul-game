@@ -31,7 +31,7 @@ try {
  // Clone ownership: no duplicate geometry allocations, separate state materials.
  const clones=await page.evaluate(()=>{const g=window.__SOULFALL__.game;const a=g.enemies[0];g.spawnEnemy(a.group.position.clone(),'warden',0);const b=g.enemies.at(-1);return{geometry:a.wardenRig.model.getObjectByName('Frame').geometry===b.wardenRig.model.getObjectByName('Frame').geometry,material:a.red!==b.red}});assert.deepEqual(clones,{geometry:true,material:true});assert.deepEqual(errors,[]);
  const fallbackPage=await browser.newPage();
- await fallbackPage.route('**/assets/induction-warden.glb',route=>route.abort());
+ await fallbackPage.route('**/assets/build104-warden.glb',route=>route.abort());
  await fallbackPage.goto('http://127.0.0.1:5173/?test=1');
  await fallbackPage.waitForFunction(()=>window.__SOULFALL__?.game.loaded);
  await fallbackPage.click('#deploy');

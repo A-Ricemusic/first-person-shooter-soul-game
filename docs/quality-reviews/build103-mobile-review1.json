@@ -1,0 +1,228 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "build_observed": "BUILD 103",
+  "source_freeze_user_provided": "7f938bba079527f60b5415b354f1e0fdfc6ef787; not inspected",
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61499/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 2,
+        "mission_time": "01:00",
+        "score": 6359,
+        "accuracy_percent": 32,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 4,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "cumulative_play_time": "label visible without numeric value"
+      },
+      "terminal_evidence": "docs/media/build103-mobile-review1/a1-terminal.jpg",
+      "coverage": [
+        "opening guard tap + FIRE",
+        "manual forward MOVE with simultaneous FIRE drag (heading 000 to 002)",
+        "assisted route and approach for all three memories",
+        "map opened and visibly closed",
+        "three Custodian coils disabled",
+        "uplink held through completion",
+        "automatic reload observed"
+      ],
+      "failures_uncertainties": [
+        "East enemy scene tap and shooting did not clearly eliminate target",
+        "NO IMPACT / COVER / INERT COVER feedback sometimes followed successful progress",
+        "No dash, jump, tool use, standalone AIM, or sustained manual traversal assessed"
+      ],
+      "settings_changes": [],
+      "helpful": [
+        "route/approach labels and path arrows",
+        "map saved-memory marker",
+        "numbered coils with OFF state",
+        "uplink percent and in-zone marker"
+      ],
+      "frustrating": [
+        "small environmental labels",
+        "ambiguous firing feedback",
+        "threats often behind while following route"
+      ],
+      "coverage_notes": "Manual MOVE and FIRE drag were brief samples, not full control validation. Opening guard disappeared; later terminal showed 2 eliminations total, without attribution of each elimination."
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH tapped after attempt 1 terminal stats and evidence saved in this report",
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 2,
+        "mission_time": "01:04",
+        "score": 6343,
+        "accuracy_percent": 34,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "touch_assist_personal_best": 6359,
+        "cumulative_play_time": "label visible without numeric value"
+      },
+      "terminal_evidence": "docs/media/build103-mobile-review1/a2-terminal.jpg",
+      "settings_changes": [],
+      "coverage": [
+        "manual left-forward MOVE with simultaneous short FIRE drag",
+        "opening guard body tap, then separate optic tap and DASH + FIRE",
+        "visible PHASE BREAK / DISCHARGE CANCELED / ARMOR OPEN 3s announcement",
+        "assisted route and approach for all three memories",
+        "Custodian coils I, II, III disabled by visible scene taps and FIRE",
+        "automatic reload after coil I left at 5%",
+        "waited for visible OPEN before third coil shot",
+        "assisted return to deck and held upload to completion"
+      ],
+      "failures_uncertainties": [
+        "Initial strafe/FIRE drag left guard alive with COVER feedback; sampled drag did not visibly change heading from 000",
+        "First coil burst depleted magazine with coil I at 5%; subsequent open-phase burst finished it",
+        "Shield fell to 9 during Custodian wait; no health loss visible at inspected frames",
+        "PHASE BREAK announcement occurred, but terminal phase evades remained 0; these are recorded without equating them",
+        "No manual full-route traversal, standalone AIM, JUMP, TOOLS, weapon switch, or settings assessed"
+      ],
+      "helpful": [
+        "Dash cancellation announcement provided clear feedback",
+        "Coil 5% and OFF states exposed partial damage and completion",
+        "Memory saved cards and numbered objective chips",
+        "Upload progress and extraction IN ZONE marker"
+      ],
+      "frustrating": [
+        "COVER/NO IMPACT/INERT COVER feedback can obscure whether prior shots succeeded",
+        "Assisted route leaves several threat cues pointing behind player",
+        "Small signs and multi-line instructional text need close inspection"
+      ],
+      "what_changed_from_attempt1": "Used a manual strafe plus drag and sampled DASH against opening guard; used learned route/approach and coil states; did not take the east-enemy shooting detour or reopen map."
+    }
+  ],
+  "limitations": [
+    "Synthetic native-touch Chromium, software WebGL; not physical-device certification",
+    "Captures pause and clear contacts; approximately 3s live or 1.2s FIRE boundaries shorten waits; no human reaction-time or causal quality benefit inferred",
+    "Physical phones, Safari, audio, hardware performance, continuous enjoyment unassessed"
+  ],
+  "learning_for_attempt2": "Route hold changes to approach, then recover; face-coils assistance centers the three numbered targets; shoot open coils and return to deck.",
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with clear limitations; 10 exceptional within assessed scope. Subjective holistic scores after both attempts, not derived from wins or game score.",
+    "overall_mobile": 7.0,
+    "controls": 6.5,
+    "gameplay": 6.5,
+    "presentation": 7.5,
+    "usability": 7.5,
+    "readability": 7.0,
+    "reasons": {
+      "overall_mobile": "A coherent, finishable mission with helpful touch assists and clear major HUD states; combat feedback, crowded controls, and limited manual-control evidence keep confidence moderate.",
+      "controls": "Native two-contact MOVE + FIRE was usable in brief samples. Tap targeting and DASH produced visible responses. Dense right-side buttons and ambiguous drag result in attempt 2 limit precision confidence; assisted completion does not validate manual aiming or traversal.",
+      "gameplay": "Three memory recoveries, phased coils, and timed deck hold give understandable progression. Assisted route often bypassed threats; coil timing involved stationary waiting and rear damage. Sustained combat depth and continuous enjoyment remain unassessed.",
+      "presentation": "Cohesive dark teal industrial scene, rain, weapon silhouette, and restrained terminal card create a consistent visual identity. Repeated blocky structures and dark surfaces can blend. Audio unassessed.",
+      "usability": "Dynamic HOLD ROUTE / APPROACH / FACE COILS, map markers, auto reload, numbered coil progress and fresh restart reduce getting lost. Threat messages behind the assisted view compete with mission guidance.",
+      "readability": "Health, ammo, objective, coil percentages, and upload percentage are legible at 844x390. Smaller environmental signs and explanatory copy are harder to read; overlays occupy appreciable landscape space."
+    }
+  },
+  "protocol": {
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "input": "helper JSON-lines native two-contact touch only",
+    "visible_ui_only": true,
+    "source_tests_docs_prior_reviews_recordings_internal_state_target_metadata_inspected": false,
+    "helper_read": "--help only",
+    "screenshots": "Each returned capture viewed in a separate call before adaptive input; no blind capture loops",
+    "observation_boundaries": "Requested waits <=3000ms (all <=12000ms). Live/fire boundaries and shortened executed waits inspected; not bypassed. Captures paused and cleared contacts. No human reaction-time or causal game-quality benefit inferred.",
+    "planning_map": "Opened once in attempt 1 and explicitly closed visibly with #close-map",
+    "tools": "Not sampled",
+    "settings_changes": [],
+    "identity": "Visible title BUILD 103; supplied frozen SHA not independently verified under visible-only scope."
+  },
+  "unassessed": [
+    "Physical phones",
+    "Safari",
+    "Audio",
+    "Hardware performance",
+    "Continuous enjoyment",
+    "Recovered-memory prose beyond saved-name cards",
+    "Settings",
+    "Tools",
+    "Jump",
+    "Standalone AIM",
+    "Full manual navigation",
+    "Long-duration manual aim precision"
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "browser_closed_reported": true,
+    "driver_pid": 75779,
+    "chrome_pid": 75789,
+    "ps_command": "ps -p 75779,75789 -o pid=,ppid=,stat=,command=",
+    "ps_result": "No rows: both exact owned PIDs absent",
+    "broad_kill_used": false
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build103-mobile-review1",
+    "log": "docs/media/build103-mobile-review1/actions.jsonl",
+    "images": [
+      "docs/media/build103-mobile-review1/a1-approach.jpg",
+      "docs/media/build103-mobile-review1/a1-bossroute1.jpg",
+      "docs/media/build103-mobile-review1/a1-bossroute2.jpg",
+      "docs/media/build103-mobile-review1/a1-coil1.jpg",
+      "docs/media/build103-mobile-review1/a1-coil2.jpg",
+      "docs/media/build103-mobile-review1/a1-coil3.jpg",
+      "docs/media/build103-mobile-review1/a1-deck1.jpg",
+      "docs/media/build103-mobile-review1/a1-deck2.jpg",
+      "docs/media/build103-mobile-review1/a1-east1.jpg",
+      "docs/media/build103-mobile-review1/a1-east2.jpg",
+      "docs/media/build103-mobile-review1/a1-eastfight.jpg",
+      "docs/media/build103-mobile-review1/a1-elian.jpg",
+      "docs/media/build103-mobile-review1/a1-face.jpg",
+      "docs/media/build103-mobile-review1/a1-guard.jpg",
+      "docs/media/build103-mobile-review1/a1-manual-drag.jpg",
+      "docs/media/build103-mobile-review1/a1-map-closed.jpg",
+      "docs/media/build103-mobile-review1/a1-map.jpg",
+      "docs/media/build103-mobile-review1/a1-route1.jpg",
+      "docs/media/build103-mobile-review1/a1-route2.jpg",
+      "docs/media/build103-mobile-review1/a1-route3.jpg",
+      "docs/media/build103-mobile-review1/a1-route4.jpg",
+      "docs/media/build103-mobile-review1/a1-route5.jpg",
+      "docs/media/build103-mobile-review1/a1-sera.jpg",
+      "docs/media/build103-mobile-review1/a1-terminal.jpg",
+      "docs/media/build103-mobile-review1/a1-upload1.jpg",
+      "docs/media/build103-mobile-review1/a2-bossroute1.jpg",
+      "docs/media/build103-mobile-review1/a2-bossroute2.jpg",
+      "docs/media/build103-mobile-review1/a2-coil1-off.jpg",
+      "docs/media/build103-mobile-review1/a2-coil1.jpg",
+      "docs/media/build103-mobile-review1/a2-coil2.jpg",
+      "docs/media/build103-mobile-review1/a2-coil3.jpg",
+      "docs/media/build103-mobile-review1/a2-dash-optic.jpg",
+      "docs/media/build103-mobile-review1/a2-deck1.jpg",
+      "docs/media/build103-mobile-review1/a2-deck2.jpg",
+      "docs/media/build103-mobile-review1/a2-east1.jpg",
+      "docs/media/build103-mobile-review1/a2-east2.jpg",
+      "docs/media/build103-mobile-review1/a2-elian.jpg",
+      "docs/media/build103-mobile-review1/a2-face1.jpg",
+      "docs/media/build103-mobile-review1/a2-face3.jpg",
+      "docs/media/build103-mobile-review1/a2-fresh.jpg",
+      "docs/media/build103-mobile-review1/a2-heart1.jpg",
+      "docs/media/build103-mobile-review1/a2-heart2.jpg",
+      "docs/media/build103-mobile-review1/a2-manual.jpg",
+      "docs/media/build103-mobile-review1/a2-mara.jpg",
+      "docs/media/build103-mobile-review1/a2-opening.jpg",
+      "docs/media/build103-mobile-review1/a2-route1.jpg",
+      "docs/media/build103-mobile-review1/a2-route2.jpg",
+      "docs/media/build103-mobile-review1/a2-route3.jpg",
+      "docs/media/build103-mobile-review1/a2-sera.jpg",
+      "docs/media/build103-mobile-review1/a2-terminal.jpg",
+      "docs/media/build103-mobile-review1/a2-upload1.jpg",
+      "docs/media/build103-mobile-review1/brief.jpg",
+      "docs/media/build103-mobile-review1/menu.jpg"
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import {fallbackPaint} from './enemy-paint.js';
 import * as THREE from 'three';
 const Y=new THREE.Vector3(0,1,0);
 export function attachLegs(model,group){
@@ -39,7 +40,7 @@ export function animateLegs(r,group,delta,dt){
 // Download failure retains the same sight anchor and movement language using simple owned geometry.
 export function fallbackDrone(hover){
  const model=new THREE.Group();
- const armor=new THREE.MeshStandardMaterial({color:0x34454b,metalness:.6,roughness:.5}),dark=new THREE.MeshStandardMaterial({color:0x101b20}),optic=new THREE.MeshStandardMaterial({color:0xff693c,emissive:0xff341c,emissiveIntensity:.65});
+ const armor=new THREE.MeshStandardMaterial(fallbackPaint(hover?'interceptor':'sentinel')),dark=new THREE.MeshStandardMaterial({color:0x101b20}),optic=new THREE.MeshStandardMaterial({color:0xff693c,emissive:0xff341c,emissiveIntensity:.65});
  const box=(name,x,y,z,w,h,d,material=armor)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.name=name;m.position.set(x,y,z);model.add(m);return m;};
  box('Hull',0,1.3,.08,.38,.30,.42);box('Optic',0,1.3,.418,.22,.16,.024,optic);
  box('ShutterTop',0,1.51,.23,.38,.10,.14);box('ShutterBottom',0,1.09,.23,.38,.10,.14);

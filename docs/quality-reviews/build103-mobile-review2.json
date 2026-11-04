@@ -1,0 +1,242 @@
+{
+  "status": "COMPLETE: exactly two fresh attempts, both actual terminal wins; no checkpoint retry or third attempt",
+  "identity": {
+    "visibleBuild": "BUILD 103",
+    "requestedFrozenSource": "7f938bba079527f60b5415b354f1e0fdfc6ef787",
+    "sourceVerified": false,
+    "observation": "SOUL FALL title and BUILD 103 visible in initial.jpg. Source not inspected under visible-only restriction; no visible identity mismatch."
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61499/",
+    "viewport": "390x844 portrait",
+    "input": "native two-contact Chromium touch emulation",
+    "graphics": "software-WebGL fallback"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "01:00",
+        "score": 7078,
+        "accuracyPercent": 24,
+        "criticalEliminations": 4,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 3,
+        "tapAims": 6,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build103-mobile-review2/a1-terminal.jpg",
+      "coverage": [
+        "handbook",
+        "tap aim and FIRE",
+        "simultaneous manual MOVE and FIRE drag (brief, heading 000 to 001)",
+        "TURN warning",
+        "assisted route and recovery of all three memories",
+        "all three coils",
+        "planning map opened and visibly closed",
+        "uplink upload"
+      ],
+      "failures": [
+        "shots into cover/inert cover",
+        "shield fell to 41 during coils"
+      ],
+      "uncertainties": [
+        "short manual sample does not establish sustained manual control quality",
+        "no settings changes",
+        "DASH/JUMP/AIM/tools unassessed"
+      ],
+      "settingsChanges": [],
+      "helpfulMoments": [
+        "Opening guard disappeared after tap aim/FIRE; immediate combat feedback.",
+        "TURN exposed an offscreen sentinel that was then eliminated.",
+        "MARA, SERA and ELIAN memory-saved cards and numbered progress tiles gave clear recovery confirmation.",
+        "Map displayed Extraction selection, 23m walking route and jammer off; visibly closed with CLOSE MAP.",
+        "Coil OFF indicators and upload percentage clarified next objectives."
+      ],
+      "frustratingMoments": [
+        "Dark scenery and a large lower control area limited scene visibility in portrait.",
+        "Route briefly faced a close wall before its next turn.",
+        "COVER and INERT COVER feedback appeared after continued firing; ammunition was spent past target usefulness.",
+        "Rear threats competed with coil timing; shield reached 41."
+      ],
+      "lastLiveHUD": {
+        "health": 100,
+        "shield": 60,
+        "ammo": 18,
+        "reserve": 324,
+        "upload": "63% at 00:58; next capture actual terminal"
+      },
+      "coverageEvidence": [
+        "a1-manual-move-fire-drag.jpg",
+        "a1-turn.jpg",
+        "a1-map.jpg",
+        "a1-coil1.jpg",
+        "a1-coil2-charge.jpg",
+        "a1-coil3.jpg",
+        "a1-terminal.jpg"
+      ]
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH on attempt-one terminal screen; a2-start-fresh.jpg shows timer 00:00, health 100, shield 60, ammo 30/180 and first objective.",
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "01:00",
+        "score": 6919,
+        "accuracyPercent": 49,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 5,
+        "tapAims": 5,
+        "routeAssists": 12,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build103-mobile-review2/a2-terminal.jpg",
+      "settingsChanges": [],
+      "coverage": [
+        "Opening tap aim and FIRE",
+        "Manual MOVE forward for 1600ms requested/executed, then short scene drag: heading 000 to 347; view visibly advanced",
+        "Two-contact route plus FIRE after one visible enemy target tap",
+        "All three memories recovered by route/approach holds",
+        "All three coils disabled",
+        "Automatic reload while FIRE held",
+        "Route to deck and upload to actual win"
+      ],
+      "helpfulMoments": [
+        "Manual stick and scene drag visibly responded without menu work.",
+        "Holding FIRE through reload resumed shots; coil II then showed OFF.",
+        "Route and approach labels again led to all memories and deck.",
+        "Regenerating shield permitted continuing after rear damage; upload text clearly said stay on deck."
+      ],
+      "frustratingMoments": [
+        "Early patrol left alive; shield dropped to 41 during travel.",
+        "Route again faced close wall before turning.",
+        "Waiting 2500ms at armored coil phase exposed rear damage; shield reached 41.",
+        "COVER, INERT COVER and NO IMPACT indicated wasted shots or unavailable targets."
+      ],
+      "failures": [
+        "Did not defend against all rear attacks.",
+        "Shots continued into inert cover and no-impact space."
+      ],
+      "uncertainties": [
+        "AIM, DASH, JUMP/vault, tools, supplies selection and recovered-memory reading unassessed.",
+        "No sustained manual combat/traversal assessment.",
+        "No claim that different accuracy or score reflects improved game quality or human skill."
+      ],
+      "lastLiveHUD": {
+        "health": 100,
+        "shield": 60,
+        "ammo": 1,
+        "reserve": 330,
+        "upload": "63% at 00:58; next capture actual terminal"
+      },
+      "coverageEvidence": [
+        "a2-manual-scene-drag.jpg",
+        "a2-moving-fire.jpg",
+        "a2-coil2-reload.jpg",
+        "a2-coil-wait.jpg",
+        "a2-terminal.jpg"
+      ]
+    }
+  ],
+  "learnedForAttempt2": "Tap aim and hold FIRE handles visible guards; route labels change near receivers; numbered coil OFF states confirm destruction; map pauses and needs visible close.",
+  "limitations": [
+    "Captures pause and clear contacts; automatic observation boundaries about 3s live or 1.2s FIRE shorten waits. No human reaction-time or causal quality benefit inferred.",
+    "Synthetic Chromium/software-WebGL only; physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Each screenshot was viewed before dependent adaptive input, with view and next input in separate calls. Observation timings were inspected; requested 3000ms waits commonly executed about 2970\u20132985ms and FIRE waits about 1198\u20131199ms. These are helper boundaries, not game timing claims.",
+    "Paused observation frequency allows inspection between short bursts. No inference of human reaction-time, continuous enjoyment or causal game-quality benefit.",
+    "No source, tests, docs, prior reviews, recordings, target metadata or internal state inspected. Only helper --help and newly generated visible observations/evidence used.",
+    "No physical device certification; two wins establish only these assisted emulated runs. No assessment of unvisited menus or narrative content."
+  ],
+  "cleanup": {
+    "explicitCloseSent": true,
+    "helperExitCode": 0,
+    "browserClosedReported": true,
+    "driverPid": 80422,
+    "chromePid": 80432,
+    "verification": "ps -p 80422,80432 -o pid=,ppid=,stat=,command= returned no rows (exit 1), confirming both exact owned PIDs absent. No process kills used."
+  },
+  "review": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable limits, 10 exceptional observed mobile experience. Holistic judgment, not an arithmetic average or a win/loss grade.",
+    "scoresOutOf10": {
+      "overallMobile": 7,
+      "controls": 7,
+      "gameplay": 6.5,
+      "presentation": 8,
+      "usability": 7.5,
+      "readability": 7
+    },
+    "reasons": {
+      "overallMobile": "Coherent, completable mission with effective touch assists, clear progress and atmospheric presentation. Dark targets, control density, occasional wall-facing route motion and divided combat/phase attention create noticeable friction. Two paused synthetic attempts only.",
+      "controls": "Tap aim, TURN, held FIRE and route were effective. Brief manual MOVE plus FIRE drag and separate scene drag visibly responded. Large buttons are accessible in the emulated viewport, but crowd the lower scene. Sustained manual mastery and AIM remain unassessed.",
+      "gameplay": "Recovery, coil phases and uplink form a clear sequence with directional threats and shield recovery. Assisted travel carried much of the mission and the short final upload resolved with little defensive input. Continuous challenge, enjoyment and content beyond these attempts are unassessed.",
+      "presentation": "Distinct cyan/amber industrial rain atmosphere, cohesive title/results typography, readable weapon animation and restrained progress overlays. Scene is often very dark. Audio unassessed.",
+      "usability": "Concise handbook, changing route/approach labels, saved confirmations, paused planning map and fresh-start action worked. Some route turns temporarily face walls; multiple simultaneous instructions and warnings compete.",
+      "readability": "High-contrast HUD health/ammo and numbered OFF states are clear at 390x844. Small scene labels, dark distant targets, and stacked banners reduce scanning clarity."
+    }
+  },
+  "rawEvidence": {
+    "directory": "docs/media/build103-mobile-review2",
+    "log": "docs/media/build103-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build103-mobile-review2/a1-coil1.jpg",
+      "docs/media/build103-mobile-review2/a1-coil2-charge.jpg",
+      "docs/media/build103-mobile-review2/a1-coil3.jpg",
+      "docs/media/build103-mobile-review2/a1-custodian-route1.jpg",
+      "docs/media/build103-mobile-review2/a1-custodian-route2.jpg",
+      "docs/media/build103-mobile-review2/a1-deck1.jpg",
+      "docs/media/build103-mobile-review2/a1-face.jpg",
+      "docs/media/build103-mobile-review2/a1-guard.jpg",
+      "docs/media/build103-mobile-review2/a1-manual-move-fire-drag.jpg",
+      "docs/media/build103-mobile-review2/a1-map.jpg",
+      "docs/media/build103-mobile-review2/a1-recover1.jpg",
+      "docs/media/build103-mobile-review2/a1-recover2.jpg",
+      "docs/media/build103-mobile-review2/a1-recover3.jpg",
+      "docs/media/build103-mobile-review2/a1-route1.jpg",
+      "docs/media/build103-mobile-review2/a1-route2.jpg",
+      "docs/media/build103-mobile-review2/a1-route3.jpg",
+      "docs/media/build103-mobile-review2/a1-route4.jpg",
+      "docs/media/build103-mobile-review2/a1-route5.jpg",
+      "docs/media/build103-mobile-review2/a1-route6.jpg",
+      "docs/media/build103-mobile-review2/a1-route7.jpg",
+      "docs/media/build103-mobile-review2/a1-sentinel.jpg",
+      "docs/media/build103-mobile-review2/a1-terminal.jpg",
+      "docs/media/build103-mobile-review2/a1-turn.jpg",
+      "docs/media/build103-mobile-review2/a1-upload-fire.jpg",
+      "docs/media/build103-mobile-review2/a1-upload1.jpg",
+      "docs/media/build103-mobile-review2/a2-coil-wait.jpg",
+      "docs/media/build103-mobile-review2/a2-coil1.jpg",
+      "docs/media/build103-mobile-review2/a2-coil2-reload.jpg",
+      "docs/media/build103-mobile-review2/a2-coil3.jpg",
+      "docs/media/build103-mobile-review2/a2-custodian-route1.jpg",
+      "docs/media/build103-mobile-review2/a2-custodian-route2.jpg",
+      "docs/media/build103-mobile-review2/a2-deck1.jpg",
+      "docs/media/build103-mobile-review2/a2-guard.jpg",
+      "docs/media/build103-mobile-review2/a2-manual-scene-drag.jpg",
+      "docs/media/build103-mobile-review2/a2-moving-fire.jpg",
+      "docs/media/build103-mobile-review2/a2-recover1.jpg",
+      "docs/media/build103-mobile-review2/a2-recover2.jpg",
+      "docs/media/build103-mobile-review2/a2-recover3.jpg",
+      "docs/media/build103-mobile-review2/a2-route1.jpg",
+      "docs/media/build103-mobile-review2/a2-route2.jpg",
+      "docs/media/build103-mobile-review2/a2-route3.jpg",
+      "docs/media/build103-mobile-review2/a2-route4.jpg",
+      "docs/media/build103-mobile-review2/a2-route5.jpg",
+      "docs/media/build103-mobile-review2/a2-route6.jpg",
+      "docs/media/build103-mobile-review2/a2-route7.jpg",
+      "docs/media/build103-mobile-review2/a2-start-fresh.jpg",
+      "docs/media/build103-mobile-review2/a2-terminal.jpg",
+      "docs/media/build103-mobile-review2/a2-upload-fire.jpg",
+      "docs/media/build103-mobile-review2/a2-upload1.jpg",
+      "docs/media/build103-mobile-review2/attempt1-start.jpg",
+      "docs/media/build103-mobile-review2/initial.jpg",
+      "docs/media/build103-mobile-review2/instructions.jpg"
+    ]
+  }
+}

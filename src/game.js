@@ -1,3 +1,4 @@
+import {fallbackPaint} from './enemy-paint.js';
 import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRoute,removeSupplyRoute,emptyAmmoAdvice} from './supply-route.js';
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
@@ -107,22 +108,22 @@ export class Game {
     this.yaw = Math.atan2(this.player.x, this.player.z); this.pitch = -0.02;
     this.scene.add(new THREE.HemisphereLight(0x9cc6db, 0x1a1c20, 0.8));
     try {
-      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/build72-implementation-sentinel.glb`);
+      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/build104-sentinel.glb`);
       if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>asset.scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Sentinel rig');
       this.sentinelAsset = asset.scene;
     } catch (_) {
       // Defer exact new geometry until the new URL fails; never silently restore the old body.
-      const {default:payload}=await import('./build72-sentinel-fallback.js');
+      const {default:payload}=await import('./build104-sentinel-fallback.js');
       const bytes=Uint8Array.from(atob(payload),c=>c.charCodeAt(0));
       this.sentinelAsset=(await new GLTFLoader().parseAsync(bytes.buffer,'')).scene;
     }
     try {
-      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/induction-warden.glb`);
+      const asset = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/build104-warden.glb`);
       const required = ['ArmorLeft','ArmorRight','Fan','Emitter','WeakpointAnchor','BodyAnchor'];
       if (!required.every(name => asset.scene.getObjectByName(name))) throw new Error('Incomplete Warden rig');
       this.wardenAsset = asset.scene;
     } catch (_) { /* Original primitive Warden remains available if loading fails. */ }
-    try { const scene=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/interceptor.glb`)).scene;if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Interceptor rig');this.interceptorAsset=scene; } catch (_) { /* Sentinel remains a loading fallback. */ }
+    try { const scene=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/build104-interceptor.glb`)).scene;if(!['Optic','ShutterTop','ShutterBottom','VaneLeft','VaneRight'].every(name=>scene.getObjectByName(name)?.isMesh))throw new Error('Incomplete Interceptor rig');this.interceptorAsset=scene; } catch (_) { /* Existing primitive Interceptor geometry retains the candidate paint on download failure. */ }
     try {
       const asset=(await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/contact-discharge.glb`)).scene;
       if(!Array.from({length:6},(_,i)=>asset.getObjectByName('Shutter'+i)?.isMesh).every(Boolean)||!['DischargeAmber','DischargeSteel','DischargeInsulator'].every(n=>asset.getObjectByName(n)?.isMesh)||!asset.getObjectByName('DischargeAmber')?.material?.emissive) { disposeAsset(asset); throw Error('Incomplete discharge'); }
@@ -425,7 +426,7 @@ export class Game {
   }
   spawnEnemy(position, type = 'sentinel', offset = 0, role = 'hunter') {
     const group = new THREE.Group(); group.position.copy(position); group.position.y = 0;
-    const armor = new THREE.MeshStandardMaterial({ color: type === 'stalker' ? 0x3c3432 : 0x243640, metalness: 0.7, roughness: 0.35 });
+    const armor = new THREE.MeshStandardMaterial(fallbackPaint(type==='warden'?'warden':type==='stalker'?'interceptor':'sentinel'));
     const black = new THREE.MeshStandardMaterial({ color: 0x0e171d, roughness: 0.75, metalness: 0.45 });
     let red = new THREE.MeshStandardMaterial({ color: 0xff693c, emissive: 0xff341c, emissiveIntensity: .65 });
     let droneRig;
@@ -460,7 +461,7 @@ export class Game {
     } else if(type==='warden') {
       wardenEmission(red,false,false);
       // Broad segmented induction shoulders remain distinct from the round drones.
-      const shell=new THREE.MeshStandardMaterial({color:0xb38b51,metalness:.8,roughness:.4});
+      const shell=new THREE.MeshStandardMaterial(fallbackPaint('warden'));
       for(const x of [-.68,.68])group.add(mesh(new THREE.BoxGeometry(.38,.95,.6),shell,x,1.3,0));
       group.add(mesh(new THREE.TorusGeometry(.42,.07,8,24),red,0,1.3,.4));
       group.add(mesh(new THREE.SphereGeometry(.24,12,8),red,0,2,.3));
