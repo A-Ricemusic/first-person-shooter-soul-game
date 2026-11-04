@@ -1,3 +1,4 @@
+import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
@@ -394,7 +395,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
@@ -663,6 +664,7 @@ export class Game {
       this.reloading=shell&&this.ammo<6&&this.reserve>0;this.reloadTimer=this.reloading?.55:0;
       this.event('reloadComplete',this.reloading?'Shell seated.':'Weapon ready.');
     } }
+    updateThreatTurn(this,dt);
     const previousPlayer=this.player.clone();
     const direction = this.moveDirection(), sprint = this.touchSprint || this.keys.has('ControlLeft') || this.keys.has('ControlRight');
     if(sprint&&this.grounded&&!this.vault&&!(this.dashTime>0))this.crouchRequested=false;

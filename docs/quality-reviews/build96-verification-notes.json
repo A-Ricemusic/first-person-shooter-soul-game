@@ -1,0 +1,29 @@
+{
+  "initialFailure": {
+    "report": "build96-cues-initial.json",
+    "observation": "Warning looked like a button but the higher scene-input layer received taps; scene drags also happened instead of cancellation. Native elementFromPoint assertions failed.",
+    "correction": "Move the warning into the native touch-controls layer, keep a distinct pointer role, avoid treating it as a scene look, and require actual native hit testing."
+  },
+  "correctedFocusedRun": {
+    "report": "build96-cues-layer-fix.json",
+    "passed": true,
+    "phoneAndInsetProfiles": 7,
+    "checks": 91,
+    "errors": [],
+    "browserClosed": true,
+    "chromePidAbsent": true
+  },
+  "finalCoverageAdded": [
+    "Native reduced-motion instant heading without a queued turn.",
+    "Fresh scene contact takes over a pending turn.",
+    "Production package exercises14 affected existing phone groups."
+  ],
+  "ordinaryPlay": "build96-parent-play.json",
+  "limits": [
+    "Broad warning direction is sampled at touch-down and does not track an actor.",
+    "A turn does not guarantee clear sight, cancel committed attacks or automatically shoot.",
+    "Native fixture actor positions, health and encounters are arranged and are not independent gameplay.",
+    "Parent ordinary run is practiced, source-informed and paused; no independent quality score.",
+    "Physical-phone comfort, Safari, audio, hardware performance and continuous enjoyment remain unassessed."
+  ]
+}

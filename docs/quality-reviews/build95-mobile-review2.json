@@ -1,0 +1,269 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts; protocol caveat recorded",
+  "build": {
+    "expected": "BUILD 95",
+    "observed": "BUILD 95",
+    "supplied_frozen_commit": "c0aab1a3b6088ea74055313d5d1c837cbe3105bc",
+    "source_inspected": false
+  },
+  "method": {
+    "url": "http://127.0.0.1:61491/",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": "native two-contact touch via mobile-playtest helper",
+    "limitations": [
+      "Synthetic Chromium touch emulation",
+      "Captures pause gameplay for inspection",
+      "Software-WebGL fallback",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ],
+    "source_identity": "BUILD 95 observed on title only; supplied frozen commit was not independently checked because source/internal inspection was forbidden.",
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "max_wait_step_ms": 12000,
+    "settings_changes": "None; TOOLS expanded in attempt 1, not a settings change.",
+    "unassessed": [
+      "Physical phones",
+      "Safari",
+      "Audio",
+      "Hardware performance",
+      "Continuous enjoyment",
+      "Full tactical handbook expansion",
+      "Recovered memory text",
+      "AIM toggle",
+      "Dash/jump/vault effectiveness",
+      "Upload-defense detail"
+    ]
+  },
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "terminal": true,
+      "outcome": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "03:44",
+        "score": 3460,
+        "accuracy_percent": 5,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 3,
+        "tap_aims": 3,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "terminal_stat_note": "UI labels time as cumulative play time; no checkpoint retries used.",
+      "coverage": [
+        "Opening guard",
+        "All three memories recovered",
+        "Planning map opened and visibly closed",
+        "Custodian coils I and II OFF; III 100%",
+        "Tools expanded; SWAP tried",
+        "Manual movement and supply search"
+      ],
+      "failures": [
+        "Sustained fire depleted ammunition",
+        "Supply search did not find ammo",
+        "Died before third coil or upload"
+      ],
+      "evidence": "docs/media/build95-mobile-review2/attempt1-final-danger.jpg",
+      "uncertainties": [
+        "No recovered memory prose assessed",
+        "No upload or victory assessed"
+      ],
+      "what_tried": [
+        "Tap opening guard then hold FIRE for five seconds",
+        "Hold ROUTE through receiver travel, including simultaneous FIRE with second contact",
+        "Open planning map and close visibly",
+        "Tap copper coils and hold FIRE",
+        "Expand TOOLS, try SWAP",
+        "Move with native left stick looking for supplies",
+        "Return with ROUTE; continue amid threats until terminal loss"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "start_method": "Visible START FRESH on attempt 1 terminal screen; no checkpoint retry",
+      "terminal": true,
+      "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 2,
+        "mission_time": "01:45",
+        "score": 5836,
+        "accuracy_percent": 17,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 5,
+        "route_assists": 6,
+        "approach_assists": 3
+      },
+      "terminal_stat_note": "UI labels time as cumulative play time. No assisted-shot count displayed; not inferred as zero. NEW TOUCH ASSIST PERSONAL BEST displayed.",
+      "coverage": [
+        "Opening guard with brief burst",
+        "All three memories recovered via HOLD ROUTE",
+        "Receiver SAVED feedback and resource refill",
+        "All three Custodian coils visibly disabled",
+        "Manual reload",
+        "Tap aiming",
+        "Manual strafe",
+        "Planning map opened and visibly closed for deck route",
+        "RETURN TO DECK to actual victory"
+      ],
+      "failures": [
+        "A strafe moved the last coil out of view",
+        "Mistook objective marker area for a target and wasted a burst",
+        "Several armor-window transitions occurred during bursts",
+        "Took damage from threats outside forward view"
+      ],
+      "evidence": "docs/media/build95-mobile-review2/attempt2-deck.jpg",
+      "uncertainties": [
+        "Upload transition and any progress were not individually observed: ten-second final route hold ended at victory",
+        "No sustained upload-defense experience can be graded",
+        "No recovered memory prose assessed"
+      ],
+      "what_tried": [
+        "Brief opening FIRE burst",
+        "Keep FIRE released for most receiver travel",
+        "Hold ROUTE plus short second-contact FIRE burst",
+        "Tap each numbered coil and burst during visible OPEN windows",
+        "Reload via visible RELOAD",
+        "Strafe for positioning; return using ROUTE when it lost coil view",
+        "Open/close extraction map; hold ROUTE until victory"
+      ]
+    }
+  ],
+  "between_attempt_learning": "Conserve ammo; tap visible coil and fire shorter bursts during cyan exposed windows; defend during route travel.",
+  "helpful_moments": [
+    {
+      "observation": "Handbook fits portrait and explains tap aim, FIRE drag, ROUTE and coil colors",
+      "evidence": "docs/media/build95-mobile-review2/how-to.jpg"
+    },
+    {
+      "observation": "Planning map shows route line, walking distance, receiver checkmarks and extraction selection; it stays paused until CLOSE MAP",
+      "evidence": [
+        "docs/media/build95-mobile-review2/attempt1-map.jpg",
+        "docs/media/build95-mobile-review2/attempt2-deck-map.jpg"
+      ]
+    },
+    {
+      "observation": "Receiver SAVED cue plus health/shield/ammo refill made recovery tangible",
+      "evidence": "docs/media/build95-mobile-review2/attempt2-elian.jpg"
+    },
+    {
+      "observation": "Coil HUD explicitly switches from percentage to OFF, then objective changes to RETURN TO DECK",
+      "evidence": "docs/media/build95-mobile-review2/attempt2-last-coil-fire.jpg"
+    },
+    {
+      "observation": "Loss menu clearly separates RETRY FROM UPLINK from START FRESH and reports assist usage",
+      "evidence": "docs/media/build95-mobile-review2/attempt1-final-danger.jpg"
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "observation": "Long FIRE holds spent ammo rapidly while armor blocked useful progress; first attempt became an empty-ammo supply search",
+      "evidence": [
+        "docs/media/build95-mobile-review2/attempt1-coil1.jpg",
+        "docs/media/build95-mobile-review2/attempt1-tools.jpg"
+      ]
+    },
+    {
+      "observation": "Directional threat text helped identify danger but did not make offscreen attackers easy to engage while routing",
+      "evidence": [
+        "docs/media/build95-mobile-review2/attempt2-mara.jpg",
+        "docs/media/build95-mobile-review2/attempt2-memories.jpg"
+      ]
+    },
+    {
+      "observation": "Positioning combined with tap aim was manageable when centered, but a short strafe lost the third coil entirely; my subsequent marker-directed burst was an operator error",
+      "evidence": [
+        "docs/media/build95-mobile-review2/attempt2-coil3-position.jpg",
+        "docs/media/build95-mobile-review2/attempt2-coil3-burst.jpg"
+      ]
+    },
+    {
+      "observation": "Fine HUD labels, compass numbers and terminal assist summary are small at 390px; dark architecture can reduce target separation",
+      "evidence": [
+        "docs/media/build95-mobile-review2/attempt2-coil2-burst.jpg",
+        "docs/media/build95-mobile-review2/attempt2-deck.jpg"
+      ]
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 mixed but workable with substantial friction, 7 good with clear rough edges, 10 exceptional throughout assessed content. Scores reflect observed interaction and presentation, not win/loss, completion speed or unassessed enjoyment.",
+    "overall_mobile": 6.5,
+    "controls": 6,
+    "gameplay": 6.5,
+    "presentation": 8,
+    "usability": 6.5,
+    "readability": 7,
+    "reasons": {
+      "overall_mobile": "A coherent, attractive mission made accessible by route assistance, tap aim and planning, offset by narrow-view combat awareness, ammo friction and positioning difficulty. Paused emulation limits confidence.",
+      "controls": "Large separated action targets and two-contact route/fire work. Manual movement plus aiming lost target context; no claim about physical thumb comfort or responsiveness.",
+      "gameplay": "Receiver recovery, resource replenishment and three timed coil targets provide understandable progression; offscreen pressure and empty-ammo recovery were frustrating. Short-burst strategy improved agency. Upload defense not sufficiently observed to grade.",
+      "presentation": "Distinct teal/amber visual language, rainy industrial setting, consistent typography and polished result cards. Audio and hardware frame pacing unassessed.",
+      "usability": "Handbook, map, fresh-run choice and explicit objectives help. Running out of ammo gave guidance but locating supplies remained unresolved; assisted route travel can obscure spatial learning.",
+      "readability": "Main objectives, large resource counts, receiver names and map route readable in portrait. Small status/summary text and dark target surroundings demand closer inspection."
+    }
+  },
+  "protocol_caveat": "All screenshots were opened with view_image. However, many early image-view calls and their following adaptive input were submitted in the same orchestration call, so those inputs were selected before the newly returned image could be inspected. This does not fully satisfy the requested view-before-adaptive-input order. Later coil/deck steps separated viewing from input. Wrong marker-directed burst is preserved; no strict protocol certification is claimed.",
+  "cleanup": {
+    "close_command": "{\"op\":\"close\"}",
+    "helper_response": {
+      "type": "closed",
+      "driverPid": 99448,
+      "chromePid": 99458,
+      "browserClosed": true
+    },
+    "awaited_exit_code": 0,
+    "verification_command": "ps -p 99448,99458 -o pid=,ppid=,comm=",
+    "verification_stdout": "",
+    "verification_exit_code": 1,
+    "outcome": "Exact owned driver and Chrome PIDs absent; no kill commands used."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build95-mobile-review2",
+    "helper_log": "docs/media/build95-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build95-mobile-review2/attempt1-coil1.jpg",
+      "docs/media/build95-mobile-review2/attempt1-custodian-route.jpg",
+      "docs/media/build95-mobile-review2/attempt1-empty-danger.jpg",
+      "docs/media/build95-mobile-review2/attempt1-final-danger.jpg",
+      "docs/media/build95-mobile-review2/attempt1-guard.jpg",
+      "docs/media/build95-mobile-review2/attempt1-map.jpg",
+      "docs/media/build95-mobile-review2/attempt1-return.jpg",
+      "docs/media/build95-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build95-mobile-review2/attempt1-route2.jpg",
+      "docs/media/build95-mobile-review2/attempt1-route3.jpg",
+      "docs/media/build95-mobile-review2/attempt1-search-right.jpg",
+      "docs/media/build95-mobile-review2/attempt1-start.jpg",
+      "docs/media/build95-mobile-review2/attempt1-supply-search.jpg",
+      "docs/media/build95-mobile-review2/attempt1-tools.jpg",
+      "docs/media/build95-mobile-review2/attempt1-yard-search.jpg",
+      "docs/media/build95-mobile-review2/attempt2-coil1-burst.jpg",
+      "docs/media/build95-mobile-review2/attempt2-coil2-aim.jpg",
+      "docs/media/build95-mobile-review2/attempt2-coil2-burst.jpg",
+      "docs/media/build95-mobile-review2/attempt2-coil3-burst.jpg",
+      "docs/media/build95-mobile-review2/attempt2-coil3-position.jpg",
+      "docs/media/build95-mobile-review2/attempt2-custodian.jpg",
+      "docs/media/build95-mobile-review2/attempt2-deck-map.jpg",
+      "docs/media/build95-mobile-review2/attempt2-deck.jpg",
+      "docs/media/build95-mobile-review2/attempt2-elian.jpg",
+      "docs/media/build95-mobile-review2/attempt2-last-coil-aim.jpg",
+      "docs/media/build95-mobile-review2/attempt2-last-coil-fire.jpg",
+      "docs/media/build95-mobile-review2/attempt2-mara.jpg",
+      "docs/media/build95-mobile-review2/attempt2-memories.jpg",
+      "docs/media/build95-mobile-review2/attempt2-recenter-route.jpg",
+      "docs/media/build95-mobile-review2/attempt2-reload-wait.jpg",
+      "docs/media/build95-mobile-review2/attempt2-start.jpg",
+      "docs/media/build95-mobile-review2/how-to.jpg",
+      "docs/media/build95-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}

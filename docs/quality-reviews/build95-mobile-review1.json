@@ -1,0 +1,225 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh attempts, both actual terminal outcomes",
+  "expected_source": "c0aab1a3b6088ea74055313d5d1c837cbe3105bc (provided; source not inspected)",
+  "visible_identity": "BUILD 95",
+  "url": "http://127.0.0.1:61491/",
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "method": "Visible-only native two-contact Chromium touch helper. Captures pause gameplay for inspection. Software-WebGL fallback. No physical device certification.",
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "SIGNAL LOST / OPERATOR LOST",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:48",
+        "score": 3380,
+        "accuracy_percent": 6,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "tap_aims": 4,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "coverage": [
+        "Opening guard",
+        "Mara, Sera, Elian recovered",
+        "Planning map opened and visibly closed",
+        "All three Custodian coils disabled",
+        "Return-to-deck attempted; died before upload"
+      ],
+      "terminal_evidence": "docs/media/build95-mobile-review1/a1-return-deck.jpg",
+      "observations": [
+        "Tap-to-aim opening guard effective; initial health/shield preserved.",
+        "HOLD ROUTE navigated and recovered memories, replenishing resources.",
+        "Unattended route travel cost shield and health; rear charge cue helpful but attacker not immediately visible.",
+        "Copper coil tap targets small but usable; numbered OFF panel clearly confirmed progress.",
+        "Long FIRE holds wasted ammunition during armored windows and on disabled target; only 6% terminal accuracy.",
+        "Died while trying simultaneous ROUTE and FIRE at visible front-right threat."
+      ],
+      "uncertainties": [
+        "No upload coverage in this attempt.",
+        "Actual physical thumb reach, audio and hardware performance unassessed."
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "start_method": "Tapped visible START FRESH on attempt 1 loss screen; observed timer 00:00, health 100, shield 60, ammo 30/180 and first objective reset. No checkpoint retry.",
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:37",
+        "score": 5540,
+        "accuracy_percent": 18,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 5,
+        "route_assists": 6,
+        "approach_assists": 3,
+        "assisted_shots": "not displayed",
+        "personal_best_label": "NEW TOUCH ASSIST PERSONAL BEST"
+      },
+      "coverage": [
+        "Fresh reset",
+        "Opening guard using shorter FIRE hold",
+        "All three receiver recoveries via HOLD ROUTE",
+        "Manual RELOAD tap",
+        "All three Custodian coils disabled",
+        "DASH tried on return route",
+        "ROUTE plus FIRE with two simultaneous contacts",
+        "Reached uplink deck; observed UPLOADING 69% and IN ZONE",
+        "Stayed on deck to actual terminal win"
+      ],
+      "terminal_evidence": "docs/media/build95-mobile-review1/a2-upload-result.jpg",
+      "observations": [
+        "One-second opening fire hold preserved more ammunition than first attempt.",
+        "SAVED \u00b7 RELEASE USE feedback explains why releasing and pressing route again is needed after receiver recovery.",
+        "First receiver still cost 35 health and all shield when held beyond recovery.",
+        "Resource restoration at receivers made a damaged run recoverable.",
+        "Six-second coil holds and earlier retargeting left health 100 at Custodian defeat, versus 30 in attempt 1. This is an observed association, not an isolated causal experiment.",
+        "Tap on narrow copper edge at normalized 0.693,0.511 did not turn aim or damage coil I; next tap on larger face at 0.747,0.487 turned aim and enabled defeat.",
+        "DASH moved away from threat but took over route; repressed ROUTE afterward. Health fell to 68. No phase evade recorded.",
+        "Simultaneous ROUTE and FIRE reached deck; health 42 at 69% upload.",
+        "Deck boundary, IN ZONE marker, progress bar and STAY ON DECK instruction were immediately helpful.",
+        "No extra input after win; no third attempt."
+      ],
+      "failures": [
+        "A narrow coil-edge tap failed to retarget.",
+        "Still wasted shots through armored windows.",
+        "Rear threats caused damage during route and upload approach."
+      ],
+      "uncertainties": [
+        "DASH effectiveness not isolated; terminal phase evades remained zero.",
+        "No terminal remaining health statistic displayed.",
+        "No assisted-shot count displayed at terminal; do not assume zero."
+      ]
+    }
+  ],
+  "learning_between_attempts": "Use shorter bursts, react to threats and reposition instead of spending long stationary holds firing at coils.",
+  "evidence_directory": "docs/media/build95-mobile-review1",
+  "cleanup": {
+    "status": "PASS",
+    "close": "Explicit {op:close}; closed response browserClosed:true; helper exit code 0 awaited.",
+    "driver_pid": 95695,
+    "chrome_pid": 95717,
+    "ps_command": "ps -p 95695,95717 -o pid=,ppid=,comm=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "meaning": "Both exact owned driver and Chrome PIDs absent. No broad kill used.",
+    "evidence": "docs/media/build95-mobile-review1/cleanup.json"
+  },
+  "review": {
+    "scale": "0 = unusable; 5 = playable with substantial friction; 7 = solid and usable with clear shortcomings; 10 = exceptional across assessed mobile experience. Scores judge observed interaction and communication, not win/loss.",
+    "overall_mobile": 7.0,
+    "controls": {
+      "score": 7.0,
+      "reasons": [
+        "Tap-to-aim and simultaneous route/fire made the mission manageable with two contacts.",
+        "Large fixed buttons and route recovery reduce touch precision demands.",
+        "Small or partly covered coil targets were inconsistent to acquire; threat turning while travelling remained awkward."
+      ]
+    },
+    "gameplay": {
+      "score": 7.0,
+      "reasons": [
+        "Receiver recovery, phased coils and final deck hold provided a readable progression and a recoverable arc.",
+        "Second attempt benefited from learned release/repress and retarget behavior.",
+        "Combat often became stationary sustained fire across armor cycles; rear pressure was harder to address than the primary objective."
+      ]
+    },
+    "presentation": {
+      "score": 8.0,
+      "reasons": [
+        "Cohesive rain-soaked station, cyan/amber visual language, weapon view and terminal screens.",
+        "Large signage and distinct receiver and coil structures gave the compact level identity.",
+        "Dark structures and busy combat overlays reduced some target separation."
+      ]
+    },
+    "usability": {
+      "score": 7.0,
+      "reasons": [
+        "Concise visible handbook, paused planning map, route line, resupply and clear terminal choice were helpful.",
+        "Release-after-save was learnable but easy to miss while holding a contact; lingering left the player exposed.",
+        "DASH taking over route required another press; multi-tasking under rear fire was demanding."
+      ]
+    },
+    "readability": {
+      "score": 7.0,
+      "reasons": [
+        "Objectives, health/ammo, coil OFF states, upload percentage and result headline read clearly at 844x390.",
+        "Handbook and terminal telemetry are compact; thin tiny uppercase lines require closer inspection.",
+        "In-scene coil numbers/edges were harder to distinguish than their status panel."
+      ]
+    },
+    "helpful_moments": [
+      "Opening guard instruction immediately matched a successful action.",
+      "Map showed recovered checkmarks and remaining receiver route without mission pressure.",
+      "Receiver resupply recovered a damaged run.",
+      "Coil OFF panel and upload IN ZONE indicator removed outcome ambiguity."
+    ],
+    "frustrating_moments": [
+      "Holding at a saved receiver while threats attacked from behind.",
+      "Narrow coil tap produced no useful visible retargeting.",
+      "Ammunition spent while armor was closed or target already off.",
+      "Loss after defeating all coils because return-to-deck pressure arrived from multiple angles."
+    ],
+    "scope_of_judgment": "Holistic grade of these two assisted emulated landscape attempts only. No claim of enjoyment for unassessed content or of continuous-session enjoyment."
+  },
+  "limitations": [
+    "Synthetic native-CDP touch in paused Chromium emulation at 844x390; captures pause for inspection and allow more deliberation than continuous play.",
+    "Software-WebGL fallback reported by helper; renderer not certified.",
+    "Physical phones, Safari, audio, tactile thumb reach, hardware performance, battery/thermal behavior and continuous enjoyment remain unassessed.",
+    "No manual movement-stick travel, FIRE drag aiming, AIM slow correction, JUMP/VAULT, settings adjustments, memory-reading screen or full tactical handbook assessed.",
+    "Source hash is user-provided frozen identity; no source inspection or hash verification performed. Visible BUILD 95 matches expected title.",
+    "No game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. Help was the only helper content read; review used current screenshots and visible UI fields."
+  ],
+  "protocol": {
+    "attempt_count": 2,
+    "input": "JSON-lines native touch; at most two contacts; visible geometry and permitted selectors",
+    "max_wait_step_ms": 12000,
+    "planning_map": "Opened attempt 1, inspected, explicitly closed with visible #close-map",
+    "settings_changes": [],
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "page_errors_observed": []
+  },
+  "raw_evidence": {
+    "actions": "docs/media/build95-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build95-mobile-review1/a1-coil-fire.jpg",
+      "docs/media/build95-mobile-review1/a1-coil-three.jpg",
+      "docs/media/build95-mobile-review1/a1-custodian-approach.jpg",
+      "docs/media/build95-mobile-review1/a1-final-coil.jpg",
+      "docs/media/build95-mobile-review1/a1-first-guard.jpg",
+      "docs/media/build95-mobile-review1/a1-planning-map.jpg",
+      "docs/media/build95-mobile-review1/a1-return-deck.jpg",
+      "docs/media/build95-mobile-review1/a1-route-under-fire.jpg",
+      "docs/media/build95-mobile-review1/a1-route-west.jpg",
+      "docs/media/build95-mobile-review1/a1-third-receiver.jpg",
+      "docs/media/build95-mobile-review1/a2-coil-one-burst.jpg",
+      "docs/media/build95-mobile-review1/a2-coil-three-burst.jpg",
+      "docs/media/build95-mobile-review1/a2-coil-two-burst.jpg",
+      "docs/media/build95-mobile-review1/a2-custodian-approach.jpg",
+      "docs/media/build95-mobile-review1/a2-deck-travel.jpg",
+      "docs/media/build95-mobile-review1/a2-elian-saved.jpg",
+      "docs/media/build95-mobile-review1/a2-final-coil-retarget.jpg",
+      "docs/media/build95-mobile-review1/a2-return-route-dash.jpg",
+      "docs/media/build95-mobile-review1/a2-second-receiver.jpg",
+      "docs/media/build95-mobile-review1/a2-sera-saved.jpg",
+      "docs/media/build95-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build95-mobile-review1/a2-upload-result.jpg",
+      "docs/media/build95-mobile-review1/a2-west-approach.jpg",
+      "docs/media/build95-mobile-review1/attempt1-start.jpg",
+      "docs/media/build95-mobile-review1/how-to-play.jpg",
+      "docs/media/build95-mobile-review1/initial-menu.jpg"
+    ]
+  }
+}

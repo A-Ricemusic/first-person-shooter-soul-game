@@ -332,3 +332,13 @@ body.touch-mode #touch-use[data-saved="true"]{border:2px solid #b5fff0;backgroun
  body.touch-mode.touch-uplink-stage #threat-focus{left:auto;right:var(--touch-right);top:calc(var(--touch-top) + 78px);width:max-content;max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 316px);max-height:40px;overflow:hidden;text-align:right}
 }
 body.touch-mode.touch-service-route #threat-focus{display:none}
+
+/* Build96: a deliberate broad turn within reach of the action thumb. */
+body.touch-mode #touch-threat-cue{position:fixed;top:auto;bottom:calc(var(--touch-bottom) + 164px);right:var(--touch-right);width:164px;max-width:164px;height:48px;min-height:48px;padding:6px 10px;border:1px solid #dbac7b;border-radius:8px;background:#291f18ed;pointer-events:auto;touch-action:none;cursor:pointer;text-align:center;z-index:105;letter-spacing:0}
+body.touch-mode #touch-threat-cue:active{background:#66482c;border-color:#ffe3b4}
+body.touch-mode #touch-threat-cue small{font-size:11px;line-height:15px}
+body.touch-mode #touch-threat-cue b{font-size:14px;line-height:18px}
+body.touch-mode.touch-threat-alert #threat-focus,body.touch-mode.touch-threat-alert #field-controls{display:none}
+body.touch-mode.touch-tools-open #touch-threat-cue{display:none}
+
+@media(orientation:landscape){body.touch-mode.touch-threat-alert #service-hint{right:auto;max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 180px)}}
