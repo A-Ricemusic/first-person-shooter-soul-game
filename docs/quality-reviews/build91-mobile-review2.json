@@ -1,0 +1,193 @@
+{
+  "status": "complete",
+  "identity": {
+    "visible": "BUILD 91",
+    "requested_frozen_source": "cf32bca7e74327c58127e78841ad2a1af97ee15b",
+    "source_verification": "Not inspected; visible-only review"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "LOSS",
+      "terminal_title": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 1,
+        "mission_time": "01:06",
+        "score": 3175,
+        "accuracy_percent": 14,
+        "critical_eliminations": 0,
+        "phase_evades": 1,
+        "uplink_retries": 0,
+        "tap_aims": 3,
+        "route_assists": 5,
+        "approach_assists": 3
+      },
+      "coverage": [
+        "Opening guard",
+        "All three memories recovered",
+        "Custodian coils 3 and 2 disabled; coil 1 last observed 90%",
+        "No upload reached"
+      ],
+      "evidence": "docs/media/build91-mobile-review2/a1-last-coil-fire.jpg",
+      "failures": [
+        "15-second helper wait rejected (limit 12 seconds); captured paused screen afterward",
+        "Repositioning and firing failed to clear last coil before death"
+      ],
+      "observations": [
+        "Readable map and hold-route/recover made receivers accessible",
+        "Tap aim and phase feedback helped disable two coils",
+        "Close cover obscured final coil; off-screen attacks and narrow portrait view made orientation difficult"
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "LOSS",
+      "terminal_title": "OPERATOR LOST / SIGNAL LOST",
+      "stats": {
+        "eliminations": 1,
+        "mission_time": "00:30",
+        "score": 1100,
+        "accuracy_percent": 50,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 1,
+        "route_assists": 1,
+        "approach_assists": 1
+      },
+      "coverage": [
+        "Fresh opening guard eliminated",
+        "Mara memory recovered",
+        "Sera objective reached but not recovered",
+        "No Custodian or upload reached"
+      ],
+      "evidence": "docs/media/build91-mobile-review2/a2-escape-route.jpg",
+      "what_tried": [
+        "Shorter opening burst to conserve ammo",
+        "Hold route to Mara",
+        "Long recovery hold",
+        "Dash then renewed route hold to escape"
+      ],
+      "failures": [
+        "Continued recovery hold left player at Mara while objective changed; health fell to 27",
+        "Dash and route escape did not prevent terminal loss"
+      ],
+      "uncertainties": [
+        "No intermediate frames during long hold; exact attack sequence and reason subsequent route did not register another assist are unknown"
+      ],
+      "observations": [
+        "Short opening burst yielded 50% final accuracy versus 14% first run, but differing coverage prevents a controlled comparison",
+        "Context-changing route/recover button required releasing and reassessing; extended hold was costly"
+      ]
+    }
+  ],
+  "settings_changes": [],
+  "limits": [
+    "Synthetic Chromium native touch at 390x844",
+    "Software WebGL fallback",
+    "Captures pause for inspection",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+  ],
+  "protocol": {
+    "fresh_attempts": 2,
+    "terminal_attempts": 2,
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "orientation": "portrait"
+    },
+    "url": "http://127.0.0.1:61487/",
+    "helper": "node tools/mobile-playtest.mjs",
+    "input": "JSON-lines native two-contact touch; no keyboard, mouse or evaluation",
+    "second_attempt_start": "Visible START FRESH from attempt 1 terminal screen",
+    "checkpoint_retries": 0,
+    "screenshots": "Every screenshot viewed before adaptive input; map visibly closed",
+    "inspection": "Only helper --help and owned evidence used; source, docs, tests, previous reviews and internal state not inspected"
+  },
+  "learning_between_attempts": [
+    "Map and hold route reliably reached receivers in attempt 1",
+    "Tap aim was effective on opening guard and exposed coils",
+    "Attempt 1 highlighted danger of close cover and off-screen threats; attempted shorter burst and dash in attempt 2",
+    "Attempt 2 revealed holding through recovery did not seamlessly continue to next objective"
+  ],
+  "helpful_moments": [
+    "Opening tap aim removed a distant guard without fine manual aiming",
+    "Full-height readable handbook explained route, recover and coil phases",
+    "Planning map paused and drew a clear walking route",
+    "Recovered memory markers and objective changes made progress explicit",
+    "Cyan exposed phase and coil OFF labels confirmed successful damage",
+    "Terminal UI separated START FRESH from checkpoint retry and exposed useful stats"
+  ],
+  "frustrating_moments": [
+    "Portrait field of view left attacking threats outside the scene despite directional cues",
+    "Close Custodian cover obscured coil 1; repositioning while firing moved me far from the target",
+    "Long route/recovery holds need reassessment when button context changes; holding after recovery left me vulnerable",
+    "Small HUD text, stacked threat cues and transient announcements competed for attention during combat"
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 playable with substantial friction, 7 good with noticeable friction, 10 exceptional; holistic judgment of observed mobile emulation only, not a win/loss grade or arithmetic average",
+    "overall_mobile": 6.5,
+    "controls": 6.0,
+    "gameplay": 6.0,
+    "presentation": 8.0,
+    "usability": 6.5,
+    "readability": 7.0,
+    "reasons": {
+      "overall_mobile": "Strong atmosphere and substantial touch assistance support playable navigation and combat, but orientation, cover and contextual hold friction repeatedly disrupted control. Two losses alone do not determine this score.",
+      "controls": "Tap aim, route assist, recovery assist and simultaneous stick/fire worked; fine orientation and repositioning around close cover were difficult. Context transitions were easy to mishandle.",
+      "gameplay": "Observed recovery-to-Custodian progression and exposed-coil timing created understandable objectives and tactical choices. Off-screen pressure made recovery and repositioning punishing; final upload and later content unassessed.",
+      "presentation": "Distinctive teal/amber palette, rain, architecture, weapon and terminal/menu typography produced a coherent atmosphere in the viewed frames. Audio and motion smoothness unassessed.",
+      "usability": "Helpful handbook, paused planning map and clear fresh/retry choices. Route/recovery context required more attention than expected and long holds could leave the player stationary under attack.",
+      "readability": "Large health/ammo and objective markers were legible. Small compass/threat/coil status text and transient overlays were harder to parse on the narrow viewport."
+    }
+  },
+  "uncertainties": [
+    "Frozen source SHA supplied by task, not independently verified because source inspection was prohibited",
+    "No identity mismatch observed: menu displayed BUILD 91",
+    "No crash or page errors reported in helper results",
+    "No upload, victory, full memory prose, settings options or later content assessed",
+    "Capture pause and synthetic batch timing materially alter reaction opportunities; scores do not certify physical-device experience"
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_report": {
+      "reason": "input ended or close requested",
+      "driverPid": 81313,
+      "chromePid": 81324,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 81313,81324 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_output": "",
+    "result": "Exact owned driver and Chrome PIDs absent; no kill used"
+  },
+  "raw_evidence": {
+    "actions_log": "docs/media/build91-mobile-review2/actions.jsonl",
+    "directory": "docs/media/build91-mobile-review2",
+    "screenshots": [
+      "docs/media/build91-mobile-review2/a1-after-rejected-wait.jpg",
+      "docs/media/build91-mobile-review2/a1-coil2-fire.jpg",
+      "docs/media/build91-mobile-review2/a1-coil3-fire.jpg",
+      "docs/media/build91-mobile-review2/a1-custodian-route.jpg",
+      "docs/media/build91-mobile-review2/a1-find-last-coil.jpg",
+      "docs/media/build91-mobile-review2/a1-guard.jpg",
+      "docs/media/build91-mobile-review2/a1-last-coil-fire.jpg",
+      "docs/media/build91-mobile-review2/a1-map.jpg",
+      "docs/media/build91-mobile-review2/a1-memory1.jpg",
+      "docs/media/build91-mobile-review2/a1-reposition.jpg",
+      "docs/media/build91-mobile-review2/a1-route-elian.jpg",
+      "docs/media/build91-mobile-review2/a1-route-mara-12s.jpg",
+      "docs/media/build91-mobile-review2/a1-route-sera.jpg",
+      "docs/media/build91-mobile-review2/a1-turn-custodian.jpg",
+      "docs/media/build91-mobile-review2/a2-escape-route.jpg",
+      "docs/media/build91-mobile-review2/a2-mara-route.jpg",
+      "docs/media/build91-mobile-review2/a2-memory-route.jpg",
+      "docs/media/build91-mobile-review2/a2-start-fresh.jpg",
+      "docs/media/build91-mobile-review2/attempt1-start.jpg",
+      "docs/media/build91-mobile-review2/how-to.jpg",
+      "docs/media/build91-mobile-review2/initial-menu.jpg"
+    ]
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "method": "ENGINEERING native-touch phone fixtures, actual animation-frame combat. Elevated clear platform, actors, suppressed actor translation, exact aim coordinates, some committed attacks, health/invulnerability, mission and timer states are arranged. Real admission, windups, shots, projectiles, damage and native controls exercised. No ordinary mission, human enjoyment or hardware performance certification.",
+  "contracts": [
+    "phone Story/Standard profile; Veteran and desktop capacities/warnings preserved",
+    "bounded shared recovery resolves without adding repeated gaps",
+    "charge pose progress bounded for legacy and longer warnings"
+  ],
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "checks": [
+        {
+          "name": "multiple patrols share one warning and a real recovery gap",
+          "passed": true
+        },
+        {
+          "name": "rear-start warning stays long after native turning and pose progress remains bounded",
+          "passed": true
+        },
+        {
+          "name": "contact discharges share the same slot and native phase creates a recovery gap",
+          "passed": true
+        },
+        {
+          "name": "already committed shots still fire and deal their original damage during admission recovery",
+          "passed": false,
+          "error": "page.waitForFunction: Timeout 2000ms exceeded."
+        }
+      ],
+      "patrols": {
+        "maxCharges": 1,
+        "admissions": [
+          {
+            "time": 0.30000000000000016,
+            "id": 1,
+            "kind": "ranged",
+            "duration": 0.9
+          },
+          {
+            "time": 2.016566666666662,
+            "id": 2,
+            "kind": "ranged",
+            "duration": 1.4
+          },
+          {
+            "time": 4.224833333333333,
+            "id": 1,
+            "kind": "ranged",
+            "duration": 0.9
+          }
+        ],
+        "shots": [
+          {
+            "time": 1.2083333333333308,
+            "id": 1,
+            "duration": 0.9,
+            "type": "sentinel"
+          },
+          {
+            "time": 3.41659999999999,
+            "id": 2,
+            "duration": 1.4,
+            "type": "sentinel"
+          },
+          {
+            "time": 5.133100000000042,
+            "id": 1,
+            "duration": 0.9,
+            "type": "sentinel"
+          }
+        ],
+        "events": [
+          {
+            "time": 0.30000000000000016,
+            "active": [
+              1
+            ],
+            "recovery": 0
+          },
+          {
+            "time": 1.2083333333333308,
+            "active": [],
+            "recovery": 0.8
+          },
+          {
+            "time": 2.016566666666662,
+            "active": [
+              2
+            ],
+            "recovery": 0
+          },
+          {
+            "time": 3.41659999999999,
+            "active": [],
+            "recovery": 0.8
+          },
+          {
+            "time": 4.224833333333333,
+            "active": [
+              1
+            ],
+            "recovery": 0
+          },
+          {
+            "time": 5.133100000000042,
+            "active": [],
+            "recovery": 0.8
+          }
+        ],
+        "last": []
+      },
+      "rear": {
+        "initial": {
+          "duration": 1.4,
+          "inView": false
+        },
+        "turned": {
+          "duration": 1.4,
+          "remaining": 1.2666999999999993,
+          "inView": true,
+          "pose": [
+            0.006664999999999921,
+            -0.006664999999999921
+          ],
+          "opacity": 0.5
+        }
+      },
+      "contact": {
+        "start": {
+          "phase": 0,
+          "contacts": [
+            {
+              "id": 1,
+              "duration": 0.9,
+              "remaining": 0.8916333333333326,
+              "shutters": [
+                0.04111555555555557,
+                0.04111555555555557,
+                0.04111555555555557,
+                0.04111555555555557,
+                0.04111555555555557,
+                0.04111555555555557
+              ]
+            }
+          ]
+        },
+        "trace": {
+          "maxCharges": 1,
+          "admissions": [
+            {
+              "time": 0.008333333333333333,
+              "id": 1,
+              "kind": "contact",
+              "duration": 0.9
+            }
+          ],
+          "shots": [],
+          "events": [
+            {
+              "time": 0.008333333333333333,
+              "active": [
+                1
+              ],
+              "recovery": 0
+            },
+            {
+              "time": 0.0749333333333337,
+              "active": [],
+              "recovery": 0.7916666666666667
+            }
+          ],
+          "last": []
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 88834,
+  "failure": "page.waitForFunction: Timeout 2000ms exceeded.\n    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-combat-cadence.mjs:25:474\n    at async check (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-combat-cadence.mjs:21:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-combat-cadence.mjs:25:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

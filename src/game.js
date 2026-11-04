@@ -1,3 +1,4 @@
+import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
 import {updateTouchVault} from './touch-vault.js';
@@ -58,7 +59,7 @@ export class Game {
   constructor({ canvas, onState = () => {}, onEvent = () => {}, onMarkers = () => {} }) {
     this.canvas = canvas; this.onState = onState; this.onEvent = onEvent; this.onMarkers = onMarkers;
     this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
-    this.touchMove={x:0,z:0}; this.touchRecoveryBraked=false;this.touchUse=false; this.touchSprint=false;
+    this.mobileLastAttackId=0;this.mobileAttackRecovery=0;this.touchMove={x:0,z:0}; this.touchRecoveryBraked=false;this.touchUse=false; this.touchSprint=false;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
     this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchAimAssist: true, touchTapAim: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
@@ -394,6 +395,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
+    this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
     this.vault=null; this.combatFeedback?.clear();
     this.clearInput(); if(this.custodian){clearCustodianLines(this.custodian);this.custodian.coordination.reset();}
@@ -570,6 +572,7 @@ export class Game {
 
   killEnemy(enemy, headshot = false) {
     const index = this.enemies.indexOf(enemy); if (index === -1) return;
+    if(enemy.windup>0||enemy.contactWindup>0)resolveMobileAttack(this);
     this.enemies.splice(index, 1); this.kills++; this.score += headshot ? 180 : 100; if (headshot) this.headshots++;
     const identity = enemy.type === 'warden' ? 'WARDEN' : enemy.type === 'stalker' ? 'INTERCEPTOR' : 'SENTINEL';
     this.audio.kill(); this.event('kill', `${identity} // ${headshot ? 'CRITICAL +180' : 'NEUTRALIZED +100'}`, { headshot });
@@ -733,17 +736,25 @@ export class Game {
       // target in view. Dodges away from/across a threat keep their normal travel.
       const toward=e.group.position.clone().sub(this.player);toward.y=0;
       if(toward.lengthSq()>.01 && this.dashVector.dot(toward.normalize())>.65)this.dashTime=0;
-      const contact=e.contactWindup>0;if(contact)cancelContact(e); e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
+      const contact=e.contactWindup>0;if(contact)cancelContact(e);resolveMobileAttack(this); e.windup=0; e.stagger=.8; if(e.type==='warden')e.armorOpen=3; e.cooldown=1.6; e.light.intensity=.3;
       e.red.emissive.setHex(0x47eaff); e.red.emissiveIntensity=3;if(e.type==='warden')wardenEmission(e.red,true,false);
       this.phaseInterrupts++; this.audio.tone(680,.22,'triangle',.15,160);
       this.event('phaseInterrupt','PHASE BREAK · '+(contact?'DISCHARGE CANCELED':'SHOT CANCELED') + (e.type==='warden'?' · ARMOR OPEN 3s':''), {enemyId:e.id});
     }
   }
 
+  attackInView(enemy) {
+    const p=this.enemyOpticPosition(enemy).project(this.camera);
+    return p.z>=-1&&p.z<=1&&Math.abs(p.x)<=1&&Math.abs(p.y)<=1;
+  }
+
   updateEnemies(dt) {
+    advanceAttackRecovery(this,dt);const coordinated=mobileCadence(this);
     const patrolBlocked=prepareCustodianTurn(this,dt);
-    let charging=this.enemies.filter(e=>e.windup>0).length+(this.custodian.windup>0?1:0); const maxCharging=this.activeDifficulty==='veteran'?3:2;
-    for (const enemy of this.enemies) {
+    let charging=this.enemies.filter(e=>e.windup>0||coordinated&&e.contactWindup>0).length+(this.custodian.windup>0?1:0); const maxCharging=attackCapacity(this);
+    const first=coordinated?Math.max(0,this.enemies.findIndex(e=>e.id>(this.mobileLastAttackId||0))):0;
+    for(let slot=0;slot<this.enemies.length;slot++){
+      const enemy=this.enemies[(first+slot)%this.enemies.length];
       if(['won','lost'].includes(this.phase))break;
       const recovering=enemy.fireRecovery>0;
       enemy.fireRecovery=Math.max(0,(enemy.fireRecovery||0)-dt);
@@ -761,8 +772,8 @@ export class Game {
       // A newly armed contact never consumes this frame's elapsed time.
       const rangedCommitted=enemy.windup>0;
       const contactCommitted=enemy.contactWindup>0;
-      if(!rangedCommitted && !contactCommitted && enemy.meleeCooldown<=0 && contactReach(this,enemy)){
-        enemy.contactWindup=CONTACT_WINDUP;enemy.contactCanceled=false;enemy.contactFlash=0;
+      if(!rangedCommitted && !contactCommitted && enemy.meleeCooldown<=0 && contactReach(this,enemy)&&(!coordinated||!patrolBlocked&&attackRecoveryReady(this)&&charging<maxCharging)){
+        if(coordinated){charging++;this.mobileLastAttackId=enemy.id;}enemy.contactWindupDuration=warningDuration(this,CONTACT_WINDUP,this.attackInView(enemy));enemy.contactWindup=enemy.contactWindupDuration;enemy.contactCanceled=false;enemy.contactFlash=0;
         if(!this.contactHint){this.contactHint=true;this.event('notice','PERIMETER DISCHARGE · Back away, break cover sight, or Shift to interrupt.');}
         this.audio.tone(250,.18,'triangle',.08,420);
       }
@@ -770,7 +781,7 @@ export class Game {
       if(contactCommitted){
         enemy.contactWindup=Math.max(0,enemy.contactWindup-dt);
         if(enemy.contactWindup<=1e-8){
-          enemy.contactWindup=0;enemy.meleeCooldown=1;enemy.contactFlash=.22;enemy.contactCanceled=false;
+          enemy.contactWindup=0;if(coordinated)charging--;resolveMobileAttack(this);enemy.meleeCooldown=1;enemy.contactFlash=.22;enemy.contactCanceled=false;
           enemy.lastAttack=this.runTime;
           this.audio.tone(100,.12,'triangle',.10,55);
           if(contactReach(this,enemy))this.damage(15,position,enemy);
@@ -781,8 +792,8 @@ export class Game {
         enemy.windup -= dt; enemy.light.intensity = 1.5 + Math.sin(this.runTime * 35) * 1;
         enemy.red.emissiveIntensity = 4;
         if (enemy.windup <= 0) { charging--; this.enemyFire(enemy); enemy.cooldown = (enemy.type === 'stalker' ? 1.65 : 2.25) * this.difficulty.fire + Math.random() * 0.5; enemy.red.emissiveIntensity = 2; enemy.light.intensity = 0.5; }
-      } else if (!braced && !contactCommitted && enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && !recovering && charging<maxCharging) {
-        charging++; enemy.windup = enemy.type === 'warden' ? 1.6 : enemy.type === 'stalker' ? 0.42 : 0.65;
+      } else if (!braced && !contactCommitted && enemy.cooldown <= 0 && distance < 36 && enemy.visible && !patrolBlocked && !recovering && attackRecoveryReady(this) && charging<maxCharging) {
+        charging++;if(coordinated)this.mobileLastAttackId=enemy.id;enemy.windupDuration=warningDuration(this,enemy.type==='warden'?1.6:enemy.type==='stalker'?.42:.65,this.attackInView(enemy));enemy.windup=enemy.windupDuration;
         enemy.target.copy(this.player); // Telegraph aims at the current point; lateral movement evades it.
         if (distance < 30 && this.runTime>(this.nextWarning||0)){this.audio.warning(Math.sin(Math.atan2(position.x-this.player.x,-(position.z-this.player.z))+this.yaw),distance);this.nextWarning=this.runTime+.45;}
       }
@@ -845,7 +856,7 @@ export class Game {
     animateLegs(r,enemy.group,displacement,dt);
     r.speed=THREE.MathUtils.damp(r.speed,enemy.stagger>0?0:speed,12,dt);
     // Linkages and propulsion move independently of the stabilized precision optic.
-    const charge=enemy.windup>0 ? 1-enemy.windup/(enemy.type==='stalker'?.42:.65) : 0;
+    const charge=enemy.windup>0?rangedChargeProgress(enemy):0;
     const recoil=Math.max(0,1-(this.runTime-enemy.lastAttack)/.22);
     const settle=enemy.type==='sentinel'?Math.min(1,(enemy.fireRecovery||0)/SENTINEL_RECOVERY_SECONDS):0;
     r.top.position.y=r.topY+charge*.07+recoil*.045+settle*.035;
@@ -856,6 +867,7 @@ export class Game {
     enemy.light.intensity=enemy.windup>0?.12:.03;
   }
   enemyFire(enemy) {
+    resolveMobileAttack(this);
     if(enemy.type==='sentinel')enemy.fireRecovery=SENTINEL_RECOVERY_SECONDS;
     enemy.lastAttack=this.runTime;
     const origin = fireOrigin(enemy);
@@ -1056,6 +1068,7 @@ export class Game {
       routeHelp:this.routeWaypoint?.label||'',routeGoal:this.routeGoal,routeManual:!!this.routeManual,routeStatus:this.keys.has('Tab')?this.routeStatus:'',
       anchorEligible:this.canRetryAnchor(),anchorRetries:this.anchorRetries||0,checkpointAssisted:(this.anchorRetries||0)>0,
       phase: this.phase, health: Math.ceil(this.health), maxHealth: 100, shield: Math.ceil(this.shield), maxShield: 60,
+      mobileCadence:mobileCadence(this),mobileAttackRecovery:this.mobileAttackRecovery||0,
       autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,

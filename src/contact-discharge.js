@@ -33,7 +33,7 @@ export function animateContact(enemy,dt){
  const rig=enemy.contactRig;if(!rig)return;
  enemy.contactFlash=Math.max(0,(enemy.contactFlash||0)-dt);
  if(!enemy.contactFlash && !(enemy.contactWindup>0))enemy.contactCanceled=false;
- const charge=enemy.contactWindup>0?1-enemy.contactWindup/CONTACT_WINDUP:0;
+ const charge=enemy.contactWindup>0?Math.max(0,Math.min(1,1-enemy.contactWindup/(enemy.contactWindupDuration||CONTACT_WINDUP))):0;
  const flash=enemy.contactFlash/.22;
  const lift=enemy.contactWindup>0?.04+.12*charge:.16*flash;
  for(const s of rig.shutters)s.node.position.y=s.y+lift;

@@ -1,0 +1,716 @@
+{
+  "method": "ENGINEERING projection and native-input fixtures. An isolated20m platform, actor/cover positions, resource resets, suppressed AI and some terminal/pose states are arranged. Pure math, actual camera matrices, authored mesh taps and normal FIRE/ADS/map/pause/fresh controls are checked. No mission outcomes, enjoyment or hardware performance claims.",
+  "contracts": [
+    "desktop and landscape reference lenses remain exact",
+    "ordinary portrait keeps75deg normal and56deg ADS horizontal reference",
+    "very tall viewport projection is bounded at120deg vertical",
+    "ADS zooms and phase widens without reversing lens order"
+  ],
+  "profiles": [
+    {
+      "width": 390,
+      "height": 844,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": true
+        },
+        {
+          "name": "native ADS preserves a narrower horizontal lens and normal returns smoothly",
+          "passed": true
+        },
+        {
+          "name": "phase lens is wider and bounded",
+          "passed": true
+        },
+        {
+          "name": "portrait sleeves remain below frame during ordinary and reload poses",
+          "passed": true
+        },
+        {
+          "name": "paused and planning orientation changes update projection without advancing mission",
+          "passed": true
+        },
+        {
+          "name": "fresh start resets normal reference projection after a different lens",
+          "passed": true
+        }
+      ],
+      "normal": {
+        "vertical": 117.88718899603417,
+        "aspect": 0.46208530805687204,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 76.49772552673727,
+        "y": 438.9419298469356
+      },
+      "focus": {
+        "vertical": 117.88718899603417,
+        "aspect": 0.46208530805687204,
+        "reference": 75,
+        "yaw": 0.43633231004535217,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 117.88718899603417,
+          "aspect": 0.46208530805687204,
+          "reference": 75,
+          "yaw": 0.43633231004535217,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 117.88718899603417,
+          "aspect": 0.46208530805687204,
+          "reference": 75,
+          "yaw": 0.43633231004535217,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 28,
+          "health": 0
+        }
+      },
+      "ads": {
+        "vertical": 98.01923886946835,
+        "aspect": 0.46208530805687204,
+        "reference": 56.00350080960742,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 28,
+        "health": 100
+      },
+      "dash": {
+        "vertical": 120,
+        "aspect": 0.46208530805687204,
+        "reference": 84.5099075054,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 28,
+        "health": 100
+      },
+      "sleeves": [
+        {
+          "reload": false,
+          "points": [
+            {
+              "side": "Support",
+              "x": 0.09533408335516672,
+              "y": -1.3068903264503182,
+              "z": 0.6102515595793078
+            },
+            {
+              "side": "Grip",
+              "x": 2.7621463931233095,
+              "y": -2.1433001353785226,
+              "z": 0.3604185903354876
+            }
+          ]
+        },
+        {
+          "reload": true,
+          "points": [
+            {
+              "side": "Support",
+              "x": -0.25127443926208665,
+              "y": -1.3279985528546059,
+              "z": 0.5002650246474123
+            },
+            {
+              "side": "Grip",
+              "x": 3.0505235658619134,
+              "y": -2.431906667006201,
+              "z": 0.15558669582797408
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": true
+        },
+        {
+          "name": "native ADS preserves a narrower horizontal lens and normal returns smoothly",
+          "passed": true
+        },
+        {
+          "name": "phase lens is wider and bounded",
+          "passed": true
+        },
+        {
+          "name": "portrait sleeves remain below frame during ordinary and reload poses",
+          "passed": true
+        },
+        {
+          "name": "paused and planning orientation changes update projection without advancing mission",
+          "passed": true
+        },
+        {
+          "name": "fresh start resets normal reference projection after a different lens",
+          "passed": true
+        }
+      ],
+      "normal": {
+        "vertical": 75,
+        "aspect": 2.164102564102564,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 303.49772552673727,
+        "y": 211.94192984693564
+      },
+      "focus": {
+        "vertical": 75,
+        "aspect": 2.164102564102564,
+        "reference": 75,
+        "yaw": 0.4363323593647023,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 75,
+          "aspect": 2.164102564102564,
+          "reference": 75,
+          "yaw": 0.4363323593647023,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 75,
+          "aspect": 2.164102564102564,
+          "reference": 75,
+          "yaw": 0.4363323593647023,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 29,
+          "health": 66
+        }
+      },
+      "ads": {
+        "vertical": 56.00350080960741,
+        "aspect": 2.164102564102564,
+        "reference": 56.00350080960741,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "dash": {
+        "vertical": 84.51169454395594,
+        "aspect": 2.164102564102564,
+        "reference": 84.51169454395594,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "sleeves": [
+        {
+          "reload": false,
+          "points": [
+            {
+              "side": "Support",
+              "x": 0.04405247821799833,
+              "y": -1.9384598073113974,
+              "z": 0.6102515595793061
+            },
+            {
+              "side": "Grip",
+              "x": 1.2763472362046167,
+              "y": -3.283306021334942,
+              "z": 0.36041859033548534
+            }
+          ]
+        },
+        {
+          "reload": true,
+          "points": [
+            {
+              "side": "Support",
+              "x": -0.035131186627873894,
+              "y": -1.5870460017137007,
+              "z": 0.5478292413851946
+            },
+            {
+              "side": "Grip",
+              "x": 1.3142834762432847,
+              "y": -3.0103003748900563,
+              "z": 0.27511106270155705
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": true
+        },
+        {
+          "name": "native ADS preserves a narrower horizontal lens and normal returns smoothly",
+          "passed": true
+        },
+        {
+          "name": "phase lens is wider and bounded",
+          "passed": true
+        },
+        {
+          "name": "portrait sleeves remain below frame during ordinary and reload poses",
+          "passed": true
+        },
+        {
+          "name": "paused and planning orientation changes update projection without advancing mission",
+          "passed": true
+        },
+        {
+          "name": "fresh start resets normal reference projection after a different lens",
+          "passed": true
+        }
+      ],
+      "normal": {
+        "vertical": 113.82244830326627,
+        "aspect": 0.5,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 62.767364534758826,
+        "y": 333.90107064363946
+      },
+      "focus": {
+        "vertical": 113.82244830326627,
+        "aspect": 0.5,
+        "reference": 75,
+        "yaw": 0.4363323131278117,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 113.82244830326627,
+          "aspect": 0.5,
+          "reference": 75,
+          "yaw": 0.4363323131278117,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 113.82244830326627,
+          "aspect": 0.5,
+          "reference": 75,
+          "yaw": 0.4363323131278117,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 29,
+          "health": 18
+        }
+      },
+      "ads": {
+        "vertical": 93.52506036736496,
+        "aspect": 0.5,
+        "reference": 56.00350080960741,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "dash": {
+        "vertical": 120,
+        "aspect": 0.5,
+        "reference": 84.50990776078913,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "sleeves": [
+        {
+          "reload": false,
+          "points": [
+            {
+              "side": "Support",
+              "x": 0.0953340833644054,
+              "y": -1.414122353232951,
+              "z": 0.6102515595793069
+            },
+            {
+              "side": "Grip",
+              "x": 2.7621463931294925,
+              "y": -2.3191606593020437,
+              "z": 0.36041859033548534
+            }
+          ]
+        },
+        {
+          "reload": true,
+          "points": [
+            {
+              "side": "Support",
+              "x": -0.25130833508152617,
+              "y": -1.436962774559718,
+              "z": 0.5002537474197819
+            },
+            {
+              "side": "Grip",
+              "x": 3.050563305906388,
+              "y": -2.6314867120260312,
+              "z": 0.15556221513306925
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 667,
+      "height": 375,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": true
+        },
+        {
+          "name": "native ADS preserves a narrower horizontal lens and normal returns smoothly",
+          "passed": true
+        },
+        {
+          "name": "phase lens is wider and bounded",
+          "passed": true
+        },
+        {
+          "name": "portrait sleeves remain below frame during ordinary and reload poses",
+          "passed": true
+        },
+        {
+          "name": "paused and planning orientation changes update projection without advancing mission",
+          "passed": true
+        },
+        {
+          "name": "fresh start resets normal reference projection after a different lens",
+          "passed": true
+        }
+      ],
+      "normal": {
+        "vertical": 75,
+        "aspect": 1.7786666666666666,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 219.55550531417046,
+        "y": 203.79031716051503
+      },
+      "focus": {
+        "vertical": 75,
+        "aspect": 1.7786666666666666,
+        "reference": 75,
+        "yaw": 0.43633229229038556,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 75,
+          "aspect": 1.7786666666666666,
+          "reference": 75,
+          "yaw": 0.43633229229038556,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 75,
+          "aspect": 1.7786666666666666,
+          "reference": 75,
+          "yaw": 0.43633229229038556,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 29,
+          "health": 66
+        }
+      },
+      "ads": {
+        "vertical": 56.003496611155455,
+        "aspect": 1.7786666666666666,
+        "reference": 56.003496611155455,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "dash": {
+        "vertical": 84.50990776078913,
+        "aspect": 1.7786666666666666,
+        "reference": 84.50990776078913,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "sleeves": [
+        {
+          "reload": false,
+          "points": [
+            {
+              "side": "Support",
+              "x": 0.053598638673697435,
+              "y": -1.9384604358472801,
+              "z": 0.6102515595793061
+            },
+            {
+              "side": "Grip",
+              "x": 1.552931346801838,
+              "y": -3.283307085930276,
+              "z": 0.36041859033548534
+            }
+          ]
+        },
+        {
+          "reload": true,
+          "points": [
+            {
+              "side": "Support",
+              "x": -0.0427359031832128,
+              "y": -1.5870815588391913,
+              "z": 0.5478348222580343
+            },
+            {
+              "side": "Grip",
+              "x": 1.5990807729052425,
+              "y": -3.010321043472936,
+              "z": 0.27512039622421636
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 915,
+      "height": 412,
+      "checks": [
+        {
+          "name": "live normal camera uses actual aspect and intended lens",
+          "passed": true
+        },
+        {
+          "name": "a newly framed25deg actor accepts a physical native tap and normal shot",
+          "passed": true
+        },
+        {
+          "name": "unchanged solid cover still rejects a tap despite the wider frame",
+          "passed": true
+        },
+        {
+          "name": "native ADS preserves a narrower horizontal lens and normal returns smoothly",
+          "passed": true
+        },
+        {
+          "name": "phase lens is wider and bounded",
+          "passed": true
+        },
+        {
+          "name": "portrait sleeves remain below frame during ordinary and reload poses",
+          "passed": true
+        },
+        {
+          "name": "paused and planning orientation changes update projection without advancing mission",
+          "passed": true
+        },
+        {
+          "name": "fresh start resets normal reference projection after a different lens",
+          "passed": true
+        }
+      ],
+      "normal": {
+        "vertical": 75,
+        "aspect": 2.220873786407767,
+        "reference": 75,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 0,
+        "ammo": 30,
+        "health": 100
+      },
+      "peripheralTarget": {
+        "x": 332.3129818385019,
+        "y": 223.89762845368585
+      },
+      "focus": {
+        "vertical": 75,
+        "aspect": 2.220873786407767,
+        "reference": 75,
+        "yaw": 0.4363322932863492,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 30,
+        "health": 100
+      },
+      "shot": {
+        "before": {
+          "vertical": 75,
+          "aspect": 2.220873786407767,
+          "reference": 75,
+          "yaw": 0.4363322932863492,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 30,
+          "health": 100
+        },
+        "after": {
+          "vertical": 75,
+          "aspect": 2.220873786407767,
+          "reference": 75,
+          "yaw": 0.4363322932863492,
+          "phase": "playing",
+          "taps": 1,
+          "ammo": 29,
+          "health": 66
+        }
+      },
+      "ads": {
+        "vertical": 56.00349661115546,
+        "aspect": 2.220873786407767,
+        "reference": 56.00349661115546,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "dash": {
+        "vertical": 84.50990776078915,
+        "aspect": 2.220873786407767,
+        "reference": 84.50990776078915,
+        "yaw": 0,
+        "phase": "playing",
+        "taps": 1,
+        "ammo": 29,
+        "health": 100
+      },
+      "sleeves": [
+        {
+          "reload": false,
+          "points": [
+            {
+              "side": "Support",
+              "x": 0.042926372174007625,
+              "y": -1.9384592715195048,
+              "z": 0.6102515595793061
+            },
+            {
+              "side": "Grip",
+              "x": 1.243720187968618,
+              "y": -3.2833051138266414,
+              "z": 0.36041859033548534
+            }
+          ]
+        },
+        {
+          "reload": true,
+          "points": [
+            {
+              "side": "Support",
+              "x": -0.03423314351637449,
+              "y": -1.587046001724211,
+              "z": 0.5478292413851946
+            },
+            {
+              "side": "Grip",
+              "x": 1.2806870243243706,
+              "y": -3.0103003749099924,
+              "z": 0.27511106270155705
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "chromePid": 7307,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

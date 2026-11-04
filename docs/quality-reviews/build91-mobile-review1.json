@@ -1,0 +1,245 @@
+{
+  "status": "complete",
+  "identity": {
+    "visible": "BUILD 91",
+    "source_expected": "cf32bca7e74327c58127e78841ad2a1af97ee15b",
+    "source_verified": false,
+    "observation": "Initial title visibly BUILD 91; no observed identity mismatch. Source hash supplied by requester, deliberately not inspected."
+  },
+  "method": {
+    "url": "http://127.0.0.1:61487/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native two-contact synthetic touch",
+    "limits": [
+      "Paused between gameplay screenshots",
+      "Chromium emulation",
+      "Software WebGL",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ],
+    "rules": "Only helper --help read. Normal URL; no source, tests, docs, prior reviews, recordings, internal game state or target metadata inspected. No keyboard/mouse/evaluation, simulation advance, alternate URL, tooling install, game/resource edits or checkpoint retry. Exactly two fresh attempts. Every resulting screenshot viewed before adaptive input; planning maps closed by visible CLOSE MAP touch.",
+    "timing_caveat": "Helper captures LIVE then pauses by default. Screenshot/capture/pause can add live damage; attempt 1 reached its terminal screen after the pre-pause state. Pauses allow inspection and remove continuous pressure; these are segmented synthetic play observations, not physical-device certification."
+  },
+  "settings_changes": [],
+  "attempts": [
+    {
+      "number": 1,
+      "fresh": true,
+      "terminal": "SIGNAL LOST / OPERATOR LOST",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "01:14",
+        "score": 3380,
+        "accuracy_percent": 10,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "tap_aims": 3,
+        "route_assists": 5,
+        "approach_assists": 4
+      },
+      "coverage": [
+        "Opening guard eliminated",
+        "Mara, Sera, Elian recovered",
+        "Planning map opened and visibly closed",
+        "Custodian coil 1 OFF; 2 and 3 still 100%",
+        "Manual move, scene swipe, simultaneous move/fire, dash, reload",
+        "No upload reached"
+      ],
+      "evidence": [
+        "docs/media/build91-mobile-review1/a1-terminal.jpg",
+        "docs/media/build91-mobile-review1/a1-fight-patrol.jpg",
+        "docs/media/build91-mobile-review1/a1-coil-fire.jpg"
+      ],
+      "observations": {
+        "helpful": [
+          "Tap aim cleared opening guard without damage",
+          "Route and approach holds made memory recovery straightforward",
+          "Map route and threat direction cues useful"
+        ],
+        "frustrating": [
+          "Rear patrol fire while using route/approach",
+          "Turning and finding clear coil faces required multiple corrections",
+          "Walking forward at coils ended against a wall; wasted fire"
+        ],
+        "uncertainties": [
+          "Exact source hash not inspected by instruction",
+          "Exact timing of last damage falls between live capture and pause; terminal UI confirms loss"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "fresh": true,
+      "entry": "Visible START FRESH on attempt 1 terminal screen; fresh HUD 100 health / 60 shield, 30/180 ammo, 00:00, no memories",
+      "terminal": "SIGNAL LOST / OPERATOR LOST",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:11",
+        "score": 3660,
+        "accuracy_percent": 18,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "tap_aims": 7,
+        "route_assists": 5,
+        "approach_assists": 4,
+        "assisted_shots": "not displayed"
+      },
+      "coverage": [
+        "Opening guard",
+        "Mara, Sera, Elian recovered",
+        "Map opened and visibly closed",
+        "Patrol and close warden optic combat",
+        "Simultaneous native two-contact strafe/fire",
+        "Reload; route and approach assistance",
+        "Custodian coils 1 and 2 visibly OFF; coil 3 last confirmed 100%",
+        "No upload or victory content reached"
+      ],
+      "evidence": [
+        "docs/media/build91-mobile-review1/a2-start-fresh.jpg",
+        "docs/media/build91-mobile-review1/a2-west-patrol.jpg",
+        "docs/media/build91-mobile-review1/a2-warden.jpg",
+        "docs/media/build91-mobile-review1/a2-east-travel.jpg",
+        "docs/media/build91-mobile-review1/a2-coil-next.jpg",
+        "docs/media/build91-mobile-review1/a2-coil-hold.jpg",
+        "docs/media/build91-mobile-review1/a2-third-coil.jpg"
+      ],
+      "observations": {
+        "helpful": [
+          "Clearing a west patrol and close warden reduced pressure; reached Custodian with 100 health / 41 shield",
+          "Tap-to-aim on warden optic combined with strafe/fire gave understandable combat feedback",
+          "Receiver recovery and replenishment made progression legible",
+          "Two coil OFF states clearly recorded progress"
+        ],
+        "frustrating": [
+          "Initial travel ended with scene filled by close cover/signage; map helped reorient",
+          "First sentinel tap used wrong reviewer coordinates and missed; correction eliminated visible target",
+          "Turning toward rear-left cue initially took the long way and required correction",
+          "Continued firing at disabled coil wasted ammo while patrol damage accumulated",
+          "Holding final target under incoming fire ended in loss"
+        ],
+        "failures": [
+          "Reviewer input precision and threat management were imperfect; do not attribute all losses to controls",
+          "Did not dash to interrupt charges successfully; terminal phase evades zero",
+          "Did not eliminate all patrol threats before boss fire",
+          "Third coil not confirmed disabled; terminal result must not imply completion"
+        ],
+        "uncertainties": [
+          "Final third-coil damage unknown between last gameplay view and terminal screen",
+          "No victory, upload, memory reading, full tactical handbook, settings screen, audio or jump/vault execution assessed"
+        ]
+      }
+    }
+  ],
+  "between_attempt_learning": "Routes guide travel but do not provide combat safety. Next attempt use shorter travel segments, turn toward threat cues, and clear patrols before holding objectives. Scene drag right increases heading; avoid firing at walls.",
+  "scores": null,
+  "cleanup": {
+    "status": "complete",
+    "close_command": {
+      "op": "close"
+    },
+    "helper_closed": true,
+    "browser_closed": true,
+    "awaited_exit_code": 0,
+    "driver_pid": 76812,
+    "chrome_pid": 76822,
+    "verification": "ps -p 76812,76822 -o pid=,ppid=,stat=,command= returned no process rows after awaited helper exit. No kills performed."
+  },
+  "attempt_count": 2,
+  "first_result_preservation": "Attempt 1 terminal stats and evidence written to this report with status incomplete before the START FRESH touch for attempt 2.",
+  "holistic_assessment": {
+    "scale": "0 unusable; 5 functional with substantial recurring friction; 7 good with clear strengths and material rough edges; 10 exceptional throughout assessed scope. Subjective quality, not win rate, mission score, hardware performance or a grade for unseen content.",
+    "scores_0_to_10": {
+      "overall_mobile": 6.5,
+      "controls": 6.5,
+      "gameplay": 6,
+      "presentation": 7.5,
+      "usability": 7,
+      "readability": 6
+    },
+    "reasons": {
+      "overall_mobile": "A coherent and playable touch adaptation with strong navigation assistance and a convincing rainy station, held back by crowded short-screen combat, small targets, and repeated difficulty managing offscreen fire. Two losses inform friction, not the grade itself.",
+      "controls": "Large MOVE and FIRE targets, tap aim, right-side drag aim and two-contact strafe/fire worked. Route/approach holds are valuable. Reorientation and accurate distant taps needed several corrections; own mistaps and long firing batches also contributed. AIM button and fine FIRE dragging were not substantially assessed.",
+      "gameplay": "Memory-to-Custodian objective progression was understandable; optic and timed coil windows offered tactical distinctions. Patrol pressure during objective holds and boss aiming repeatedly competed with recovery and positioning; second run showed learnability. Upload, later pacing and continuous enjoyment unassessed.",
+      "presentation": "Rain, dark industrial architecture, cyan route language and strong typography produced a cohesive visible atmosphere. Weapon feedback and coil OFF states communicated actions. Software WebGL capture cannot establish phone performance or rendering parity. Audio unassessed.",
+      "usability": "Handbook gave relevant mobile instructions; paused planning map, selected target route, contextual HOLD APPROACH and explicit START FRESH were helpful. Route does not assure safety, and switching between travel, rear threats and objective targets remained effortful. No settings changes.",
+      "readability": "Main objective, health, ammo and large controls readable at 844x390. Compact compass/status/stat text and distant enemies required close inspection; stacked prompts and warnings consumed substantial vertical scene space. Terminal stats were readable when paused."
+    },
+    "helpful_moments": [
+      "Opening guard tap-to-aim immediate success",
+      "Paused map displayed walking route and receiver status",
+      "HOLD ROUTE becoming HOLD APPROACH recovered memories with little navigation uncertainty",
+      "Numbered coils changed to OFF visibly"
+    ],
+    "frustrating_moments": [
+      "A1 firing into a wall after forward movement",
+      "A1 rear patrol accumulation while concentrating on Custodian",
+      "A2 wrong sentinel tap followed by correction",
+      "A2 repeated fire at an already disabled coil and missed remaining-threat response"
+    ],
+    "unassessed": [
+      "Physical phones",
+      "Safari",
+      "Audio",
+      "Hardware performance",
+      "Continuous enjoyment",
+      "Upload and victory sequence",
+      "Settings behavior",
+      "Full memory prose",
+      "Jump/vault execution",
+      "Extended AIM or fire-drag precision"
+    ]
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build91-mobile-review1",
+    "action_log": "docs/media/build91-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build91-mobile-review1/a1-close-coil.jpg",
+      "docs/media/build91-mobile-review1/a1-coil-fire.jpg",
+      "docs/media/build91-mobile-review1/a1-custodian-approach.jpg",
+      "docs/media/build91-mobile-review1/a1-custodian-map.jpg",
+      "docs/media/build91-mobile-review1/a1-fight-patrol.jpg",
+      "docs/media/build91-mobile-review1/a1-find-second-coil.jpg",
+      "docs/media/build91-mobile-review1/a1-first-guard.jpg",
+      "docs/media/build91-mobile-review1/a1-map-sera.jpg",
+      "docs/media/build91-mobile-review1/a1-map.jpg",
+      "docs/media/build91-mobile-review1/a1-mara-recovery.jpg",
+      "docs/media/build91-mobile-review1/a1-reposition.jpg",
+      "docs/media/build91-mobile-review1/a1-return-to-jammer.jpg",
+      "docs/media/build91-mobile-review1/a1-route-elian.jpg",
+      "docs/media/build91-mobile-review1/a1-route-mara.jpg",
+      "docs/media/build91-mobile-review1/a1-route-sera.jpg",
+      "docs/media/build91-mobile-review1/a1-terminal.jpg",
+      "docs/media/build91-mobile-review1/a1-turn-coils.jpg",
+      "docs/media/build91-mobile-review1/a1-turn-left.jpg",
+      "docs/media/build91-mobile-review1/a1-turn-rear.jpg",
+      "docs/media/build91-mobile-review1/a2-coil-hold.jpg",
+      "docs/media/build91-mobile-review1/a2-coil-next.jpg",
+      "docs/media/build91-mobile-review1/a2-coil-one.jpg",
+      "docs/media/build91-mobile-review1/a2-custodian-approach.jpg",
+      "docs/media/build91-mobile-review1/a2-east-travel.jpg",
+      "docs/media/build91-mobile-review1/a2-find-north-threat.jpg",
+      "docs/media/build91-mobile-review1/a2-look-at-left-threat.jpg",
+      "docs/media/build91-mobile-review1/a2-map.jpg",
+      "docs/media/build91-mobile-review1/a2-mara.jpg",
+      "docs/media/build91-mobile-review1/a2-sentinel-corrected.jpg",
+      "docs/media/build91-mobile-review1/a2-sentinel-fire.jpg",
+      "docs/media/build91-mobile-review1/a2-sera-threat.jpg",
+      "docs/media/build91-mobile-review1/a2-sera.jpg",
+      "docs/media/build91-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build91-mobile-review1/a2-third-coil.jpg",
+      "docs/media/build91-mobile-review1/a2-turn-to-rear-left.jpg",
+      "docs/media/build91-mobile-review1/a2-warden.jpg",
+      "docs/media/build91-mobile-review1/a2-west-approach.jpg",
+      "docs/media/build91-mobile-review1/a2-west-patrol.jpg",
+      "docs/media/build91-mobile-review1/a2-west-travel.jpg",
+      "docs/media/build91-mobile-review1/deployment.jpg",
+      "docs/media/build91-mobile-review1/how-to-play.jpg",
+      "docs/media/build91-mobile-review1/initial-menu.jpg"
+    ]
+  }
+}

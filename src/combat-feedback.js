@@ -1,3 +1,4 @@
+import {rangedChargeProgress} from './mobile-combat.js';
 import * as T from 'three';
 const UP=new T.Vector3(0,0,1);
 export function fireOrigin(e){return e.group.position.clone().add(new T.Vector3(0,e.droneRig?1.3:1.2,e.droneRig?.43:0).applyAxisAngle(new T.Vector3(0,1,0),e.group.rotation?.y||0));}
@@ -16,7 +17,7 @@ export class CombatFeedback{
 export function updateCharge(g,e){
  if(!e.chargeLine){const geometry=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3()]);e.chargeLine=new T.Line(geometry,new T.LineBasicMaterial({color:0xffae52,transparent:true,opacity:.5,depthWrite:false}));e.chargeLine.name='PhysicalChargeRay';e.group.add(e.chargeLine);}
  const active=['playing','paused','planning'].includes(g.phase)&&e.windup>0&&!(e.stagger>0)&&e.health>0,origin=fireOrigin(e);e.chargeLine.visible=active&&g.hasLineOfSight(e.group.position.clone().setY(1.3),origin,0);
- if(e.chargeLine.visible){const end=clipCharge(origin,e.target,g.world.colliders);e.group.updateWorldMatrix(true,false);const a=e.group.worldToLocal(origin),b=e.group.worldToLocal(end),array=e.chargeLine.geometry.attributes.position;array.setXYZ(0,a.x,a.y,a.z);array.setXYZ(1,b.x,b.y,b.z);array.needsUpdate=true;e.chargeLine.geometry.computeBoundingSphere();e.chargeLine.material.opacity=g.options.reducedMotion?.42:.35+.25*(1-e.windup/(e.type==='warden'?1.6:e.type==='stalker'?.42:.65));}
+ if(e.chargeLine.visible){const end=clipCharge(origin,e.target,g.world.colliders);e.group.updateWorldMatrix(true,false);const a=e.group.worldToLocal(origin),b=e.group.worldToLocal(end),array=e.chargeLine.geometry.attributes.position;array.setXYZ(0,a.x,a.y,a.z);array.setXYZ(1,b.x,b.y,b.z);array.needsUpdate=true;e.chargeLine.geometry.computeBoundingSphere();e.chargeLine.material.opacity=g.options.reducedMotion?.42:.35+.25*rangedChargeProgress(e);}
  // Material state is derived afresh, after normal rig animation, never accumulated.
  const rig=e.droneRig||e.wardenRig;
  if(rig){const parts=e.droneRig?[rig.top,rig.bottom]:rig.shutters.map(p=>p.node);for(const o of parts){const m=o?.material;if(!m?.emissive)continue;m.userData.feedbackBase??={color:m.color.clone(),emissive:m.emissive.clone(),intensity:m.emissiveIntensity};const base=m.userData.feedbackBase;m.color.copy(base.color);m.emissive.copy(base.emissive);m.emissiveIntensity=base.intensity;if(active){m.emissive.setHex(0xff9a36);m.emissiveIntensity=.8;}if(e.hitFlash>0){m.emissive.setHex(e.feedbackKind==='armor'?0xff9a36:0x62dcea);m.emissiveIntensity=1.1;}}}

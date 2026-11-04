@@ -1,0 +1,32 @@
+{
+  "setupFailure": "The initial diagnostic left actors at ground0: spawnEnemy resets group Y to zero, so the new elevated platform hid them from the player. Zero attacks in that run are not evidence of game cadence.",
+  "retained": "build92-cadence-setup-initial.json",
+  "correction": "Place each actor group explicitly at Y20 after spawning; then use the same immutable Build91 application.",
+  "runtimeChange": "None before this corrected diagnostic.",
+  "initialFocusedFailure": {
+    "report": "build92-cadence-initial.json",
+    "issue": "The committed two-shot fixture set shield to zero but left the old last-damage clock; normal shield regeneration resumed before the shots hit. The screenshot shows68health rather than the isolated expected62.",
+    "correction": "Set lastDamage to the current arranged test time to prevent regeneration during the unshielded two-shot window. No application damage or shield behavior changed."
+  },
+  "rotationReview": {
+    "finding": "A one-slot loop could repeatedly favor early eligible array entries; identified by code review, not established causally in the incomplete ordinary trial.",
+    "change": "Rotate from the last admitted actor ID and wrap across eligible living actors.",
+    "verification": "build92-cadence-rotation-final.json requires three distinct first admissions under deterministic fastest cooldown randomness; cursor persists through pauses/planning and resets on fresh/retry starts."
+  },
+  "observationWindows": {
+    "before": {
+      "scriptedWaitMs": 4500,
+      "firstSampleTime": 0.008333333333333333,
+      "lastSampleTime": 4.849800000000022,
+      "maxCharging": 2,
+      "shots": 6
+    },
+    "after": {
+      "scriptedWaitMs": 4500,
+      "firstSampleTime": 0.008333333333333333,
+      "lastSampleTime": 4.8332000000000255,
+      "maxCharging": 1,
+      "shots": 2
+    }
+  }
+}

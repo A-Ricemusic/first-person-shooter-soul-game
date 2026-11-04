@@ -1,0 +1,818 @@
+{
+  "method": "Native-touch mobile engineering. Isolated low-cover corridor, player/cover poses, suppressed AI and phase/stats are arranged; no played recovery or mission win. Actual touch pressure, animation-frame collision/vault/landing, manual jump, option storage and lifecycle checked. A separate actual-medical-prop case arranges only its starting pose; original colliders and authored/fallback geometry are restored.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "fallback": false,
+      "checks": [
+        "sustained full forward crosses low cover and lands without JUMP",
+        "short pressure and release never schedule a delayed vault",
+        "gentle, sideways and backward pressure preserve cover",
+        "AIM, FIRE, USE, reload and crouch prevent automatic vault",
+        "tall walls, blocked overhead and deep cover cannot trigger traversal",
+        "disabled auto vault stays manual and JUMP still traverses",
+        "pause and planning clear pressure while preserving already-started vault counts",
+        "result counts actual automatic starts and fresh start clears them",
+        "native forward input vaults an original medical prop with original collision",
+        "native option is reachable and persists after apply and reload"
+      ],
+      "failures": [],
+      "crossing": {
+        "player": [
+          0,
+          1.7,
+          -4.767749999999998
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      },
+      "nonForward": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            -1.10001,
+            1.7,
+            0
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            -0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "exclusions": [
+        {
+          "role": "aim",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "fire",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 22,
+          "phase": "playing"
+        },
+        {
+          "role": "use",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "reload",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 10,
+          "phase": "playing"
+        },
+        {
+          "role": "crouch",
+          "player": [
+            0,
+            1.05,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "obstructions": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.7332333333333698
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            0.7310333333333017
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            2.40001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "lifecycle": [
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.15823333333333478,
+              "nextProbe": 0,
+              "sampleSeconds": 0.02506666666666812,
+              "intended": 0.13786666666667466,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        },
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.15006666666666812,
+              "nextProbe": 0,
+              "sampleSeconds": 0.016633333333332608,
+              "intended": 0.09148333333332934,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        }
+      ],
+      "actualProp": {
+        "start": {
+          "x": -17.9,
+          "y": 1.7,
+          "z": -13
+        },
+        "end": {
+          "x": -20.129999999999995,
+          "y": 1.7,
+          "z": -13
+        },
+        "top": 0.9600000000000001,
+        "axis": "x",
+        "sign": 1,
+        "loaded": true
+      },
+      "actualLanding": {
+        "player": [
+          -23.38785000000006,
+          1.7,
+          -13
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": false,
+      "checks": [
+        "sustained full forward crosses low cover and lands without JUMP",
+        "short pressure and release never schedule a delayed vault",
+        "gentle, sideways and backward pressure preserve cover",
+        "AIM, FIRE, USE, reload and crouch prevent automatic vault",
+        "tall walls, blocked overhead and deep cover cannot trigger traversal",
+        "disabled auto vault stays manual and JUMP still traverses",
+        "pause and planning clear pressure while preserving already-started vault counts",
+        "result counts actual automatic starts and fresh start clears them",
+        "native forward input vaults an original medical prop with original collision",
+        "native option is reachable and persists after apply and reload"
+      ],
+      "failures": [],
+      "crossing": {
+        "player": [
+          0,
+          1.7,
+          -4.721916666666669
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      },
+      "nonForward": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            -1.10001,
+            1.7,
+            0
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            -0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "exclusions": [
+        {
+          "role": "aim",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "fire",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 22,
+          "phase": "playing"
+        },
+        {
+          "role": "use",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "reload",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 10,
+          "phase": "playing"
+        },
+        {
+          "role": "crouch",
+          "player": [
+            0,
+            1.05,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "obstructions": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.7321333333333256
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            0.7326833333332878
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            2.40001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "lifecycle": [
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.1832999999999993,
+              "nextProbe": 0,
+              "sampleSeconds": 0,
+              "intended": 0,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        },
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.1417333333333348,
+              "nextProbe": 0,
+              "sampleSeconds": 0.024966666666665943,
+              "intended": 0.13731666666666267,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        }
+      ],
+      "actualProp": {
+        "start": {
+          "x": -17.9,
+          "y": 1.7,
+          "z": -13
+        },
+        "end": {
+          "x": -20.129999999999995,
+          "y": 1.7,
+          "z": -13
+        },
+        "top": 0.9600000000000001,
+        "axis": "x",
+        "sign": 1,
+        "loaded": true
+      },
+      "actualLanding": {
+        "player": [
+          -23.341650000000055,
+          1.7,
+          -13
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "fallback": true,
+      "checks": [
+        "sustained full forward crosses low cover and lands without JUMP",
+        "short pressure and release never schedule a delayed vault",
+        "gentle, sideways and backward pressure preserve cover",
+        "AIM, FIRE, USE, reload and crouch prevent automatic vault",
+        "tall walls, blocked overhead and deep cover cannot trigger traversal",
+        "disabled auto vault stays manual and JUMP still traverses",
+        "pause and planning clear pressure while preserving already-started vault counts",
+        "result counts actual automatic starts and fresh start clears them",
+        "native forward input vaults an original medical prop with original collision",
+        "native option is reachable and persists after apply and reload"
+      ],
+      "failures": [],
+      "crossing": {
+        "player": [
+          0,
+          1.7,
+          -4.813216666666662
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      },
+      "nonForward": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            -1.10001,
+            1.7,
+            0
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            -0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "exclusions": [
+        {
+          "role": "aim",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "fire",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 22,
+          "phase": "playing"
+        },
+        {
+          "role": "use",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "role": "reload",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 10,
+          "phase": "playing"
+        },
+        {
+          "role": "crouch",
+          "player": [
+            0,
+            1.05,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "obstructions": [
+        {
+          "player": [
+            0,
+            1.7,
+            0.7325000000000504
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            0.7330500000000126
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        },
+        {
+          "player": [
+            0,
+            1.7,
+            2.40001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30,
+          "phase": "playing"
+        }
+      ],
+      "lifecycle": [
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.15823333333333478,
+              "nextProbe": 0,
+              "sampleSeconds": 0.02506666666666812,
+              "intended": 0.13786666666667466,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        },
+        {
+          "phase": "playing",
+          "before": {
+            "count": 0,
+            "contact": {
+              "seconds": 0.14996666666666594,
+              "nextProbe": 0,
+              "sampleSeconds": 0.01673333333333479,
+              "intended": 0.09203333333334134,
+              "progress": 0,
+              "x": 0,
+              "z": -1
+            }
+          },
+          "coverage": "unstarted pressure canceled",
+          "player": [
+            0,
+            1.7,
+            0.70001
+          ],
+          "grounded": true,
+          "vault": false,
+          "count": 0,
+          "contact": null,
+          "ammo": 30
+        }
+      ],
+      "actualProp": {
+        "start": {
+          "x": -17.9,
+          "y": 1.7,
+          "z": -13
+        },
+        "end": {
+          "x": -20.129999999999995,
+          "y": 1.7,
+          "z": -13
+        },
+        "top": 0.9600000000000001,
+        "axis": "x",
+        "sign": 1,
+        "loaded": false
+      },
+      "actualLanding": {
+        "player": [
+          -23.387666666666696,
+          1.7,
+          -13
+        ],
+        "grounded": true,
+        "vault": false,
+        "count": 1,
+        "contact": null,
+        "ammo": 30,
+        "phase": "playing"
+      }
+    }
+  ],
+  "errors": [],
+  "partialLifecycleCovered": true,
+  "passed": true
+}
