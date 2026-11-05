@@ -21,9 +21,9 @@ function surface(model,cache){
 
 // Every probe resolves the first real surface. Geometry and shot hit volumes
 // stay unchanged; tolerance never turns a bounding rectangle into a hit.
-function query(g,ndc,cache){
+function query(g,ndc,cache,ignoreViewmodel=false){
  raycaster.setFromCamera(ndc,g.camera);
- if(surface(g.weapon,cache))return{selected:null,weapon:true};
+ if(!ignoreViewmodel&&surface(g.weapon,cache))return{selected:null,weapon:true};
  const cover=capacitorShot(raycaster.ray,raycaster,g.world.capacitors,g.world.colliders,TOUCH_TAP_RANGE);
  let distance=Math.min(TOUCH_TAP_RANGE,cover.distance),selected=null,actorSurface=false;
  for(const e of g.enemies){
@@ -84,4 +84,10 @@ export function touchTapTarget(g,ndc){
   if(hit.selected&&hit.distance<=center.distance+.001)return hit.selected;
  }
  return null;
+}
+
+// A fresh physical centre/scene ray, without the tap-tolerance search.
+export function touchDirectTarget(g,ndc={x:0,y:0},{ignoreViewmodel=false}={}){
+ if(!g.touchMode||g.phase!=='playing'||g.vault)return null;
+ g.syncCamera();return query(g,ndc,new Map(),ignoreViewmodel).selected;
 }

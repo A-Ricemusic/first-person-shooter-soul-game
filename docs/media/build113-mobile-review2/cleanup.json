@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETE",
+  "close_requested": true,
+  "helper_exit_code": 0,
+  "closed_event": {
+    "reason": "input ended or close requested",
+    "driverPid": 30664,
+    "chromePid": 30674,
+    "browserLaunched": true,
+    "browserClosed": true
+  },
+  "ps_verification": {
+    "command": "ps -p 30664,30674 -o pid=,ppid=,stat=,comm=",
+    "exit_code": 1,
+    "output": "",
+    "result": "Exact owned driver and Chrome PIDs absent"
+  },
+  "broad_kill_used": false
+}

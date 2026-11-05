@@ -1,0 +1,14 @@
+  tapAimAt(clientX,clientY) {
+    this.touchTrack=null;this.touchTrackSeed=null;
+    if(!this.touchMode||this.options.touchTapAim===false||this.phase!=='playing'||this.vault)return false;
+    const r=this.canvas.getBoundingClientRect();
+    if(!r.width||!r.height||clientX<r.left||clientX>r.right||clientY<r.top||clientY>r.bottom)return false;
+    const target=touchTapTarget(this,new THREE.Vector2((clientX-r.left)/r.width*2-1,1-(clientY-r.top)/r.height*2));
+    if(!target){recordTouchAim(this,false);this.emit();return false;}
+    const delta=target.point.sub(this.player),pitch=Math.atan2(delta.y,Math.hypot(delta.x,delta.z));
+    // syncCamera adds current recoil; compensate so the rendered centre, not
+    // only the stored base pitch, points at the actual tapped surface.
+    const basePitch=pitch-this.recoil*(this.options.reducedMotion?0:1);if(Math.abs(basePitch)>1.44){recordTouchAim(this,false);this.emit();return false;}
+    this.yaw=Math.atan2(-delta.x,-delta.z);this.pitch=basePitch;
+    seedTouchTracking(this,target);recordTouchAim(this,true);this.tapAims++;this.touchFocusUntil=this.runTime+.25;this.syncCamera();this.emit();return true;
+  }

@@ -1,0 +1,104 @@
+{
+  "method": "ENGINEERING native FIRE/MOVE with an arranged elevated1000HP Sentinel moving laterally2m/s. AI replaced by this fixed trajectory, zero spread, normal shot cadence. Physical cover and input/release cases separate; not ordinary control feel, human enjoyment or phone-performance evidence.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition"
+      ],
+      "moving": {
+        "yaw": -0.09257041907657651,
+        "pitch": -0.05503469933905074,
+        "health": 358,
+        "ammo": 21,
+        "shots": 9,
+        "hits": 9,
+        "assisted": 9,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.04289627252362826,
+          "y": -0.020882401068651184
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "yaw": -0.10442521320446535,
+        "pitch": -0.05493088592352173,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.04722419258634406,
+          "y": -0.017754024914532082
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 884,
+          "ammo": 28,
+          "shots": 2,
+          "hits": 2,
+          "assisted": 2,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015050886657776211,
+            "y": -0.018889753891252668
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015049931990215988,
+            "y": -0.01188814974548769
+          },
+          "phase": "playing"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 39853,
+  "failure": "AssertionError [ERR_ASSERTION]: reload\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-motion-assist.mjs:12:548",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

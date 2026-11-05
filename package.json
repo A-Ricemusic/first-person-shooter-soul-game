@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs && node tests/mobile-aim-hud.mjs && node tests/mobile-insets.mjs && node tests/mobile-scene-controls.mjs && node tests/mobile-turn-route.mjs && node tests/mobile-planning-recovery.mjs && node tests/mobile-thumb-layout.mjs && node tests/mobile-north-exit.mjs && node tests/mobile-compact-controls.mjs && node tests/mobile-rifle-assist.mjs && node tests/mobile-auto-vault.mjs && node tests/mobile-precision-recovery.mjs && node tests/mobile-tap-aim.mjs && node tests/mobile-approach-assist.mjs && node tests/mobile-compass-cues.mjs && node tests/mobile-result-touch.mjs && node tests/mobile-projection.mjs && node tests/mobile-route-follow.mjs && node tests/mobile-combat-cadence.mjs && node tests/mobile-supply-route.mjs && node tests/mobile-route-reload.mjs && node tests/mobile-custodian-approach.mjs && node tests/mobile-rifle-readout.mjs && node tests/mobile-driver-observation.mjs && node tests/mobile-driver-terminal.mjs && node tests/mobile-enemy-paint.mjs && node tests/mobile-confirmation.mjs && node tests/mobile-tap-tolerance.mjs && node tests/mobile-marker-legibility.mjs && node tests/mobile-focus-aim.mjs && node tests/mobile-visibility.mjs && node tests/mobile-action-flow.mjs && node tests/mobile-visor-priority.mjs && node tests/mobile-optic-cues.mjs && node tests/mobile-burst-handoff.mjs",
+    "test": "node tests/mobile-smoke.mjs && node tests/mobile-usability.mjs && node tests/mobile-aim-hud.mjs && node tests/mobile-insets.mjs && node tests/mobile-scene-controls.mjs && node tests/mobile-turn-route.mjs && node tests/mobile-planning-recovery.mjs && node tests/mobile-thumb-layout.mjs && node tests/mobile-north-exit.mjs && node tests/mobile-compact-controls.mjs && node tests/mobile-rifle-assist.mjs && node tests/mobile-auto-vault.mjs && node tests/mobile-precision-recovery.mjs && node tests/mobile-tap-aim.mjs && node tests/mobile-approach-assist.mjs && node tests/mobile-compass-cues.mjs && node tests/mobile-result-touch.mjs && node tests/mobile-projection.mjs && node tests/mobile-route-follow.mjs && node tests/mobile-combat-cadence.mjs && node tests/mobile-supply-route.mjs && node tests/mobile-route-reload.mjs && node tests/mobile-custodian-approach.mjs && node tests/mobile-rifle-readout.mjs && node tests/mobile-driver-observation.mjs && node tests/mobile-driver-terminal.mjs && node tests/mobile-enemy-paint.mjs && node tests/mobile-confirmation.mjs && node tests/mobile-tap-tolerance.mjs && node tests/mobile-marker-legibility.mjs && node tests/mobile-focus-aim.mjs && node tests/mobile-visibility.mjs && node tests/mobile-action-flow.mjs && node tests/mobile-visor-priority.mjs && node tests/mobile-optic-cues.mjs && node tests/mobile-burst-handoff.mjs && node tests/mobile-motion-assist.mjs",
     "test:production": "npm run build && node tests/mobile-production.mjs",
     "test:playtest": "node tests/playtest-regressions.mjs",
     "playtest:controls": "node tests/normal-controls-playtest.mjs",
@@ -99,7 +99,9 @@
     "test:mobile-optic-cues": "node tests/mobile-optic-cues.mjs",
     "test:mobile-optic-production": "node tools/mobile-optic-suite.mjs",
     "test:mobile-burst-handoff": "node tests/mobile-burst-handoff.mjs",
-    "test:mobile-burst-production": "node tools/mobile-burst-suite.mjs"
+    "test:mobile-burst-production": "node tools/mobile-burst-suite.mjs",
+    "test:mobile-motion-assist": "node tests/mobile-motion-assist.mjs",
+    "test:mobile-motion-production": "node tools/mobile-motion-suite.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"

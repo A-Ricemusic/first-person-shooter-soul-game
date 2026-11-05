@@ -1,0 +1,119 @@
+{
+  "build": 113,
+  "sourceCommit": "a9a9d3d85ccd67ca67e8f348bf920b6461df0a32",
+  "frozenFiles": 527,
+  "frozenMismatches": [],
+  "snapshotBundleHashesVerified": true,
+  "review1": {
+    "report": "build113-mobile-review1.json",
+    "sha256": "af58f536e1c71542338afc85030acf964eae72f397c995d2fe92fd2b325cf2e1",
+    "ratings": {
+      "scale": "Subjective holistic scores for observed emulated mobile interaction: 0 unusable, 5 playable with substantial friction, 7 good with clear friction, 9 excellent with minor friction, 10 exceptional. Wins and HUD scores are not quality grades. Overall is a judgment, not a numerical average.",
+      "overallMobile": 6.5,
+      "controls": 5.5,
+      "gameplay": 6.5,
+      "presentation": 7.5,
+      "usability": 7,
+      "readability": 6.5,
+      "reasons": {
+        "overallMobile": "Coherent, completable mission with helpful touch assistance and atmospheric presentation; repeated manual patrol tracking failures materially limit confidence in mobile combat.",
+        "controls": "Large labeled controls, touch aim, scene swipe and reload all acted visibly. Simultaneous MOVE/FIRE drag repeatedly lost target and opening bursts reported COVER/NO IMPACT; this is observed friction, not a proven implementation defect. Continuous rearming is unassessed.",
+        "gameplay": "Recovery-to-coils-to-upload provides clear progression. Coil vulnerability and OFF feedback were satisfying to understand. Mostly assisted travel and brief combat do not establish sustained challenge or enjoyment.",
+        "presentation": "Consistent teal/amber visual language, rain, lit station and restrained terminal panel communicate atmosphere; software rendering limits visual fidelity judgment.",
+        "usability": "Objective labels, route/approach affordances, progress slots, threat direction and upload instruction helped completion. Reload required an extra tray step; map overview was understandable but small.",
+        "readability": "Health/ammo and key objective text clear; smaller signs, compact map, dark enemies and multiple overlapping HUD regions made tracking harder."
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 3,
+          "missionTime": "01:08",
+          "score": 6425,
+          "accuracyPercent": 64,
+          "criticalEliminations": 0,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 2,
+          "tapAims": 6,
+          "routeAssists": 11,
+          "approachAssists": 6
+        },
+        "evidence": "docs/media/build113-mobile-review1/a1-terminal.jpg",
+        "coverage": {
+          "manualMoveFireDrag": "Opening guard twice and visible perimeter patrol once; simultaneous left MOVE and right FIRE drag. COVER then NO IMPACT at guard; patrol target left view; no confirmed manual patrol hit or kill. Ammo spent; corrections did not establish success.",
+          "sceneTurn": "Scene swipe changed heading 081 to 127; visible TURN threat cue also sampled.",
+          "boss": "Reload via TOOLS; targeted coil bursts visibly disabled III, II, I.",
+          "assistance": "Held visible ROUTE/APPROACH to collect three memories and reach uplink."
+        },
+        "settingsChanges": [],
+        "helpful": [
+          "Clear saved-memory banners and numbered progress",
+          "Directional threat cue found patrol",
+          "Distinct OPEN/ARMORED and OFF coil feedback",
+          "Reload tray readable"
+        ],
+        "frustrating": [
+          "Guard shots reported COVER / NO IMPACT",
+          "Tap and FIRE drag moved patrol outside view; uncertain hits"
+        ],
+        "protocolDeviation": "Initial deployment used an act tap at visible ENTER THE STORM coordinates with capture instead of selector #deploy. It started the first mission; no restart or extra attempt."
+      },
+      {
+        "attempt": 2,
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "freshStart": "act tap #play-again and capture from attempt-one end screen",
+        "stats": {
+          "eliminations": 3,
+          "missionTime": "01:03",
+          "score": 6526,
+          "accuracyPercent": 100,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 1,
+          "tapAims": 5,
+          "routeAssists": 12,
+          "approachAssists": 5
+        },
+        "evidence": "docs/media/build113-mobile-review1/a2-terminal.jpg",
+        "coverage": {
+          "openingGuard": "Stationary scene tap then anchored FIRE: visible TARGET DOWN. This is assisted aiming, not manual drag success.",
+          "manualMoveFireDrag": "Visible SENTINEL CHARGING patrol: scene tap, simultaneous left MOVE and small right FIRE drag; ammo 21 to 18, shield 60 to 41, heading 299 to 273 and target no longer visible. No confirmed hit or kill. Preserved failed tracking; no causal diagnosis.",
+          "sceneTurn": "Visible TURN CHARGE cue sampled; scene swipe specifically sampled in attempt one, not repeated here.",
+          "planningMap": "Opened MAP; inspected overview, selected Mara, 26m route and legend; closed with visible #close-map. No route selection changed.",
+          "tools": "Opened TOOLS and selected visible RELOAD in same batch; ammo 6 to 30.",
+          "boss": "Targeted bursts at visible OPEN coils II, I, III; individual OFF markers then RETURN TO DECK.",
+          "assistance": "ROUTE/APPROACH/RECOVER holds for three memories, coil position and deck; stayed for upload."
+        },
+        "settingsChanges": [],
+        "helpful": [
+          "TARGET DOWN confirmed guard success",
+          "Planning map explicitly showed selected receiver and walking distance",
+          "Coil OFF markers and changing objective confirmed progress",
+          "Upload percentage and STAY ON DECK made completion legible"
+        ],
+        "frustrating": [
+          "Charging patrol again escaped manual tracking and dealt shield damage",
+          "Map drawing small relative to large selection controls",
+          "Dense HUD and dark architecture compete with small moving targets"
+        ],
+        "uncertainties": [
+          "Displayed 100% accuracy is recorded verbatim; it does not confirm my manual patrol drag hit or explain aggregate accounting",
+          "No continuous combat comfort inference from released short batches"
+        ]
+      }
+    ]
+  },
+  "parentCleanup": {
+    "pids": [
+      25672,
+      25694
+    ],
+    "psExit": 1,
+    "allAbsent": true
+  },
+  "next": "Fresh independent portrait mobile reviewer on identical frozen source; no app, dossier or snapshot edits between reviews."
+}

@@ -1,0 +1,106 @@
+{
+  "method": "ENGINEERING native FIRE/MOVE with an arranged elevated1000HP Sentinel moving laterally2m/s. AI replaced by this fixed trajectory, zero spread, normal shot cadence. Physical cover and input/release cases separate; not ordinary control feel, human enjoyment or phone-performance evidence.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition",
+        "death, range, teleport, opt-out, reload and weapon change release ownership",
+        "pause clears ownership and resume cannot resurrect it"
+      ],
+      "moving": {
+        "yaw": -0.09246129719595207,
+        "pitch": -0.05503044423557968,
+        "health": 358,
+        "ammo": 21,
+        "shots": 9,
+        "hits": 9,
+        "assisted": 9,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.04295234591236232,
+          "y": -0.020893279996382217
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "yaw": -0.10076598086589997,
+        "pitch": -0.054958149791510126,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.047797497305708835,
+          "y": -0.021754978873745157
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 884,
+          "ammo": 28,
+          "shots": 2,
+          "hits": 2,
+          "assisted": 2,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015050891682793176,
+            "y": -0.018919754824680335
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015049931500428772,
+            "y": -0.01188349904058982
+          },
+          "phase": "playing"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 37975,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ -0\n- 0\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-motion-assist.mjs:14:215",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

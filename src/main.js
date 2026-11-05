@@ -25,7 +25,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 113</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 114</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -115,7 +115,7 @@ function renderState(s){
  const weaponStatus=s.touchAimReadout||s.rifleReadout;
  const confirmation=s.rifleConfirmation;
  const trigger=$('touch-fire');
- if(trigger){const label=s.touchFireLatch||'';if(trigger.dataset.latch!==label){trigger.dataset.latch=label;trigger.dataset.latched=String(!!label);trigger.innerHTML=label?'LIFT<br><small>then FIRE</small>':'FIRE<br><small>drag aim</small>';trigger.setAttribute('aria-label',label?`${label}. Lift FIRE, then press again.`:'Hold FIRE and drag to aim. Rifle eliminations end the burst; lift and press again.');}}
+ if(trigger){const label=s.touchFireLatch||'',following=!!s.touchFollowing,key=label+'|'+following;if(trigger.dataset.presentationKey!==key){trigger.dataset.presentationKey=key;trigger.dataset.latch=label;trigger.dataset.latched=String(!!label);trigger.innerHTML=label?'LIFT<br><small>then FIRE</small>':following?'FIRE<br><small>FOLLOW</small>':'FIRE<br><small>drag aim</small>';trigger.setAttribute('aria-label',label?`${label}. Lift FIRE, then press again.`:following?'FIRE with target motion assistance. Drag away or lift to release.':'Hold FIRE and drag to aim. Rifle eliminations end the burst; lift and press again.');}}
 
  $('hitmarker').classList.toggle('confirmed',!!confirmation);$('hitmarker').dataset.confirmation=confirmation?.label||'';
  $('ammo').classList.toggle('low',s.ammo<7);$('reload-label').dataset.reloading=String(!!s.reloading);$('reload-label').dataset.impact=weaponStatus?.kind||'';$('reload-label').innerHTML=s.reloading?'RELOADING…':weaponStatus?weaponStatus.label:game?.touchMode?'':'<kbd>R</kbd> RELOAD <span>•</span> <kbd>RMB</kbd> AIM';

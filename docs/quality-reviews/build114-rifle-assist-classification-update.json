@@ -1,0 +1,8 @@
+{
+  "initialReport": "build114-production-rifle-assist-initial.json",
+  "exactEarlierFixture": "build114-rifle-assist-before-classification-update.txt",
+  "reason": "The old assertion required zero assisted count for a centre optic shot. With motion ownership enabled, every followed shot is now conservatively assisted.",
+  "correction": "Assert same precision damage with assistance on and positive assisted count; separately disable assistance and assert same precision damage with zero count. No runtime or bundle changes.",
+  "beforeHash": "9c1ea624e04cd1a2fc9a7da05f43dba6af93c077056c76772daa3fd65f74f664",
+  "afterHash": "5862575afe79af3508261a9386f2a614c1ca37a7dc837a5a2cd1f513332ab2f5"
+}
