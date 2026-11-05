@@ -14,3 +14,12 @@ export function mobileMarkerAnchorVisible(anchor,viewport,occupied=[]){
  const r={left:anchor.x-10,right:anchor.x+10,top:anchor.y-10,bottom:anchor.y+10};
  return r.left>=8&&r.right<=viewport.width-8&&r.top>=8&&r.bottom<=viewport.height-8&&!occupied.some(p=>overlaps(r,p,2));
 }
+
+// Empty corner marks surround the existing optic projection. Opaque phone UI
+// can hide the cue, but never displace it onto a different scene surface.
+export function mobileOpticMarker(marker,viewport,occupied=[]){
+ const x=(marker.x+1)*viewport.width/2,y=(1-marker.y)*viewport.height/2,size=20;
+ const rect={left:x-size/2,right:x+size/2,top:y-size/2,bottom:y+size/2};
+ const visible=marker.front&&marker.onscreen&&rect.left>=8&&rect.right<=viewport.width-8&&rect.top>=8&&rect.bottom<=viewport.height-8&&!occupied.some(p=>overlaps(rect,p,2));
+ return {x,y,rect,visible};
+}

@@ -7,7 +7,8 @@ import { uploadStatus } from './upload.js';
 import { threatVisor } from './threat-visor.js';
 import {mobileCompassCues} from './mobile-cues.js';
 import { placeMarker } from './marker-layout.js';
-import { mobileMarkerCaption, mobileMarkerAnchorVisible } from './mobile-marker-layout.js';
+import { mobileMarkerCaption, mobileMarkerAnchorVisible, mobileOpticMarker } from './mobile-marker-layout.js';
+import {touchTapBlocks} from './touch-tap-regions.js';
 import './style.css';
 import { Game } from './game.js';
 import { CORE_SITES, serviceRouteAt } from './mission.js';
@@ -24,7 +25,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 111</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 112</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -275,7 +276,15 @@ function drawMarkers(markers){
  const memory=$('memory-card');if(!memory.classList.contains('hidden'))placed.push(memory.getBoundingClientRect());
  for(const panel of [focus,note,$('interaction')])if(!panel.classList.contains('hidden'))placed.push(panel.getBoundingClientRect());
  if(!game?.touchMode)placed.push({left:innerWidth-205,right:innerWidth,top:90,bottom:315});
- if(game?.touchMode)for(const m of markers.filter(m=>m.kind==='component'||m.kind==='enemy'&&m.onscreen)){const x=(m.x+1)*innerWidth/2+(m.kind==='enemy'?24:0),y=(1-m.y)*innerHeight/2;placed.push({left:x-12,right:x+12,top:y-12,bottom:y+12,markerId:m.id})}
+ const phoneOptics=new Map();
+ if(game?.touchMode){
+  const opaque=touchTapBlocks();
+  for(const m of markers.filter(m=>m.kind==='component')){const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;opaque.push({left:x-12,right:x+12,top:y-12,bottom:y+12});}
+  for(const m of markers.filter(m=>m.kind==='component'||m.kind==='enemy'&&m.onscreen)){
+   if(m.kind==='enemy'){const cue=mobileOpticMarker(m,{width:innerWidth,height:innerHeight},opaque);phoneOptics.set(m.id,cue);if(cue.visible)placed.push({...cue.rect,markerId:m.id});}
+   else{const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;placed.push({left:x-12,right:x+12,top:y-12,bottom:y+12,markerId:m.id});}
+  }
+ }
  markers.sort((a,b)=>(b.charging?4:b.recent?3:b.inRange?2:0)-(a.charging?4:a.recent?3:a.inRange?2:0));
  for(const m of markers){
   active.add(m.id);let el=markerPool.get(m.id);
@@ -298,12 +307,14 @@ function drawMarkers(markers){
    el.querySelector('small').textContent=!m.onscreen&&m.count>1?String(m.count):'';
    el.querySelector('small').style.transform='none';
    el.dataset.charges=m.charges;el.dataset.fires=m.fires;el.dataset.hits=m.hits;
-   // Optics retain their exact projection. Fixed 30-degree group slots prevent
-   // adjacent sectors from overlapping; the chevron points at the actual mean.
+   // Phone corners stay centered on the eligible optic. Desktop offset brackets
+   // and fixed 30-degree offscreen slots retain their existing presentation.
    const sectorBearing=m.sector*Math.PI/6;
    el.dataset.sector=m.onscreen?'':String(m.sector);
-   el.style.left=`${m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(sectorBearing)*.32)}px`;
-   el.style.top=`${m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(sectorBearing)*.23)}px`;
+   const cue=phoneOptics.get(m.id);
+   el.style.visibility=cue&&!cue.visible?'hidden':'';
+   el.style.left=`${cue?cue.x:m.onscreen?(m.x+1)*innerWidth/2+24:innerWidth*(.5+Math.sin(sectorBearing)*.32)}px`;
+   el.style.top=`${cue?cue.y:m.onscreen?(1-m.y)*innerHeight/2:innerHeight*(.5-Math.cos(sectorBearing)*.23)}px`;
    if(!m.onscreen)placed.push(el.getBoundingClientRect());
    continue;
   }
@@ -351,7 +362,7 @@ function showEnd(s){const won=s.phase==='won';hide('retry-anchor',!s.anchorEligi
 async function boot(){try{game=new Game({canvas:$('game-canvas'),onState:renderState,onEvent,onMarkers:drawMarkers});await game.init();game.setSettings(settings);installTouch(game,{map:()=>game.openPlanning(),onBrightness:value=>{settings.mobileBrightness=value;saveSettings()},onSensitivity:value=>{settings.touchSensitivity=value;saveSettings()},onFastTurns:value=>{settings.fastSceneTurns=value;saveSettings()},onAimAssist:value=>{settings.touchAimAssist=value;saveSettings()},onAutoVault:value=>{settings.touchAutoVault=value;saveSettings()},onTapAim:value=>{settings.touchTapAim=value;saveSettings()}});loaded=true;$('deploy').disabled=false;$('deploy-label').textContent='ENTER THE STORM';$('load-status').textContent='SYSTEMS ONLINE · READY TO DEPLOY';$('load-status').classList.add('ready');if(new URLSearchParams(location.search).has('test'))window.__SOULFALL__={game,get state(){return current},deploy,settings};}catch(e){console.error(e);hide('fatal',false);$('fatal-message').textContent=`The 3D engine could not initialize. Use a browser with WebGL 2 and hardware acceleration. ${e.message}`;}}
 boot();
 
-const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · Orange ! means a charging threat. Muted chevrons show recent fire or hits. A number counts nearby sources in that direction; one source has no number. Offscreen cues use broad direction sectors, not exact positions. Optic brackets stay beside visible emitters. The lower readout follows one target near aim. Cues require clear optic sight and expire.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);
+const visorHelp=document.createElement('p');visorHelp.textContent='THREAT VISOR · Orange ! means a charging threat. Muted chevrons show recent fire or hits. A number counts nearby sources in that direction; one source has no number. Offscreen cues use broad direction sectors, not exact positions. Phone corner marks center on visible emitters; desktop brackets stay beside them. The lower readout follows one target near aim. Cues require clear optic sight and expire.';document.querySelector('#controls-dialog .primary-button')?.before(visorHelp);
 const handbook=document.querySelector('#controls-dialog'), handbookContent=document.createElement('div');
 handbookContent.className='handbook-content';handbookContent.tabIndex=0;handbookContent.setAttribute('aria-label','Handbook details; scroll for all controls and visor guidance');
 for(const child of [...handbook.children])if(!child.matches('.dialog-header,.primary-button'))handbookContent.append(child);
