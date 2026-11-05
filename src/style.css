@@ -463,3 +463,13 @@ body.touch-mode #touch-fire[data-latched="true"]{background:#163a36;border-color
 
 /* Recent resolved outcome shares the reserved weapon line; never a target lock. */
 body.touch-mode #reload-label[data-impact="result"]:not([data-impact=""]){--impact-color:#bdddd5;font:700 14px/15px 'Barlow Condensed',Arial,sans-serif;letter-spacing:.1px;white-space:nowrap}
+
+/* Current exposure reuses the uplink strip; amber warns of little time, not armor. */
+body.touch-mode #extraction-status{font-variant-numeric:tabular-nums}
+body.touch-mode #extraction-panel[data-mode="closing"]{border-color:#d9ac65;color:#ffdb9e}
+body.touch-mode #extraction-panel[data-mode="closing"] #extraction-progress{background:#ffdb9e}
+
+/* Short landscape screens keep the mission strip beside the left action hitbox. */
+@media(orientation:landscape) and (max-height:360px) and (min-width:480px){
+ body.touch-mode.touch-uplink-stage #extraction-panel{left:calc(var(--touch-left) + 130px);right:auto;width:min(300px,calc(100vw - var(--touch-left) - var(--touch-right) - 130px))} body.touch-mode.touch-uplink-stage #threat-focus{top:calc(var(--touch-top) + 126px);max-width:140px}
+}

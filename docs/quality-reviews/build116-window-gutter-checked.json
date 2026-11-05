@@ -1,0 +1,7467 @@
+{
+  "method": "ENGINEERING: all recoveries, standing poses, suppressed patrols, projected exit visibility and timer/health states arranged. Native FIRE,DASH,pause,map and retry; actual Custodian volley resolution, phase interrupt and resolved rifle damage. No ordinary mission, human reaction-time or enjoyment claim. HUD is sampled at its existing10Hz refresh; pure formatting truncates the captured value.",
+  "baseline": false,
+  "formats": [
+    {
+      "seconds": 3,
+      "text": "OPEN · 3.0s",
+      "mode": "open",
+      "ratio": 1
+    },
+    {
+      "seconds": 2.6,
+      "text": "OPEN · 2.6s",
+      "mode": "open",
+      "ratio": 0.8666666666666667
+    },
+    {
+      "seconds": 1.29,
+      "text": "OPEN · 1.2s",
+      "mode": "open",
+      "ratio": 0.43
+    },
+    {
+      "seconds": 0.61,
+      "text": "OPEN · 0.6s",
+      "mode": "open",
+      "ratio": 0.20333333333333334
+    },
+    {
+      "seconds": 0.6,
+      "text": "OPEN · 0.6s",
+      "mode": "closing",
+      "ratio": 0.19999999999999998
+    },
+    {
+      "seconds": 0.4,
+      "text": "OPEN · 0.4s",
+      "mode": "closing",
+      "ratio": 0.13333333333333333
+    },
+    {
+      "seconds": 0.1,
+      "text": "OPEN · 0.1s",
+      "mode": "closing",
+      "ratio": 0.03333333333333333
+    },
+    {
+      "seconds": 0.09,
+      "text": "OPEN · <0.1s",
+      "mode": "closing",
+      "ratio": 0.03
+    },
+    {
+      "seconds": 0.001,
+      "text": "OPEN · <0.1s",
+      "mode": "closing",
+      "ratio": 0.0003333333333333333
+    },
+    {
+      "invalid": "undefined",
+      "safeFallback": true
+    },
+    {
+      "invalid": "NaN",
+      "safeFallback": true
+    },
+    {
+      "invalid": "-1",
+      "safeFallback": true
+    },
+    {
+      "invalid": "Infinity",
+      "safeFallback": true
+    },
+    {
+      "overRangeBounded": true,
+      "closed": true,
+      "occludedClockSuppressed": true,
+      "chargePriority": true
+    }
+  ],
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 1.6000000000000008,
+        "stateRemaining": 1.6000000000000008,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.11,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6833000000000007",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3334000000000008,
+        "actualRemaining": 0.566600000000001,
+        "stateRemaining": 0.566600000000001,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 18.8867,
+        "role": "meter",
+        "max": "3",
+        "value": "0.566600000000001",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.03339999999999964,
+        "actualRemaining": 2.5916333333333337,
+        "stateRemaining": 2.5916333333333337,
+        "text": "CHARGE · COVER",
+        "mode": "charging",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "CHARGE · COVER",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.21669999999999984,
+        "actualRemaining": 2.858333333333334,
+        "stateRemaining": 2.858333333333334,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.2778,
+        "role": "meter",
+        "max": "3",
+        "value": "2.858333333333334",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 2,
+        "healths": [
+          61,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.21660000000000032,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 47,
+          "top": 88,
+          "right": 312,
+          "bottom": 135,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 196,
+          "width": 116,
+          "height": 46,
+          "top": 196,
+          "right": 136,
+          "bottom": 242,
+          "left": 20
+        },
+        "bearing": {
+          "x": 367,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 477,
+          "bottom": 78,
+          "left": 367
+        },
+        "label": {
+          "x": 21,
+          "y": 112,
+          "width": 282,
+          "height": 16,
+          "top": 112,
+          "right": 303,
+          "bottom": 128,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 677.171875,
+        "y": 88,
+        "width": 154.828125,
+        "height": 24
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 1.6000000000000003,
+        "stateRemaining": 1.6000000000000003,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.11,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6833000000000005",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3332000000000001,
+        "actualRemaining": 0.5668000000000015,
+        "stateRemaining": 0.5668000000000015,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 18.8933,
+        "role": "meter",
+        "max": "3",
+        "value": "0.5668000000000015",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.03330000000000018,
+        "actualRemaining": 2.5916333333333337,
+        "stateRemaining": 2.5916333333333337,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.21669999999999978,
+        "actualRemaining": 2.8582333333333345,
+        "stateRemaining": 2.8582333333333345,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.2744,
+        "role": "meter",
+        "max": "3",
+        "value": "2.8582333333333345",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.18330000000000019,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 2,
+        "healths": [
+          61,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.16649999999999998,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 47,
+          "top": 88,
+          "right": 312,
+          "bottom": 135,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 112,
+          "width": 282,
+          "height": 16,
+          "top": 112,
+          "right": 303,
+          "bottom": 128,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 12,
+        "y": 140,
+        "width": 300,
+        "height": 24
+      }
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.18330000000000019,
+        "actualRemaining": 1.6167000000000002,
+        "stateRemaining": 1.6167000000000002,
+        "text": "OPEN · 1.7s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.6667,
+        "role": "meter",
+        "max": "3",
+        "value": "1.7000000000000002",
+        "valueText": "OPEN · 1.7s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 278,
+          "height": 16,
+          "top": 111.5,
+          "right": 299,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 153,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 199,
+            "bottom": 128,
+            "left": 153
+          },
+          {
+            "x": 203,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 249,
+            "bottom": 128,
+            "left": 203
+          },
+          {
+            "x": 253,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 299,
+            "bottom": 128,
+            "left": 253
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.33340000000000036,
+        "actualRemaining": 0.5666000000000013,
+        "stateRemaining": 0.5666000000000013,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 18.8867,
+        "role": "meter",
+        "max": "3",
+        "value": "0.5666000000000013",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 278,
+          "height": 16,
+          "top": 111.5,
+          "right": 299,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 153,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 199,
+            "bottom": 128,
+            "left": 153
+          },
+          {
+            "x": 203,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 249,
+            "bottom": 128,
+            "left": 203
+          },
+          {
+            "x": 253,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 299,
+            "bottom": 128,
+            "left": 253
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.033300000000000184,
+        "actualRemaining": 2.591733333333333,
+        "stateRemaining": 2.591733333333333,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 278,
+          "height": 16,
+          "top": 111.5,
+          "right": 299,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 153,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 199,
+            "bottom": 128,
+            "left": 153
+          },
+          {
+            "x": 203,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 249,
+            "bottom": 128,
+            "left": 203
+          },
+          {
+            "x": 253,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 299,
+            "bottom": 128,
+            "left": 253
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 2.858333333333334,
+        "stateRemaining": 2.858333333333334,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.2778,
+        "role": "meter",
+        "max": "3",
+        "value": "2.858333333333334",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 278,
+          "height": 16,
+          "top": 111.5,
+          "right": 299,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 153,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 199,
+            "bottom": 128,
+            "left": 153
+          },
+          {
+            "x": 203,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 249,
+            "bottom": 128,
+            "left": 203
+          },
+          {
+            "x": 253,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 299,
+            "bottom": 128,
+            "left": 253
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.1831999999999998,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 278,
+          "height": 16,
+          "top": 111.5,
+          "right": 299,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 153,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 199,
+            "bottom": 128,
+            "left": 153
+          },
+          {
+            "x": 203,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 249,
+            "bottom": 128,
+            "left": 203
+          },
+          {
+            "x": 253,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 299,
+            "bottom": 128,
+            "left": 253
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 2,
+        "healths": [
+          61,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.1666999999999998,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 47,
+          "top": 88,
+          "right": 308,
+          "bottom": 135,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "label": {
+          "x": 21,
+          "y": 112,
+          "width": 278,
+          "height": 16,
+          "top": 112,
+          "right": 299,
+          "bottom": 128,
+          "left": 21
+        },
+        "labelScroll": 278,
+        "labelClient": 278,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 12,
+        "y": 140,
+        "width": 296,
+        "height": 24
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.18329999999999974,
+        "actualRemaining": 1.616700000000001,
+        "stateRemaining": 1.616700000000001,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.11,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6833000000000007",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 442,
+          "bottom": 134,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 433,
+          "bottom": 127.5,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 287,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 333,
+            "bottom": 128,
+            "left": 287
+          },
+          {
+            "x": 337,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 383,
+            "bottom": 128,
+            "left": 337
+          },
+          {
+            "x": 387,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 433,
+            "bottom": 128,
+            "left": 387
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3500000000000003,
+        "actualRemaining": 0.5500000000000013,
+        "stateRemaining": 0.5500000000000013,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 18.3333,
+        "role": "meter",
+        "max": "3",
+        "value": "0.5500000000000013",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 442,
+          "bottom": 134,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 433,
+          "bottom": 127.5,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 287,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 333,
+            "bottom": 128,
+            "left": 287
+          },
+          {
+            "x": 337,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 383,
+            "bottom": 128,
+            "left": 337
+          },
+          {
+            "x": 387,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 433,
+            "bottom": 128,
+            "left": 387
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.03339999999999964,
+        "actualRemaining": 2.591733333333333,
+        "stateRemaining": 2.591733333333333,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 442,
+          "bottom": 134,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 433,
+          "bottom": 127.5,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 287,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 333,
+            "bottom": 128,
+            "left": 287
+          },
+          {
+            "x": 337,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 383,
+            "bottom": 128,
+            "left": 337
+          },
+          {
+            "x": 387,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 433,
+            "bottom": 128,
+            "left": 387
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 2.858433333333333,
+        "stateRemaining": 2.858433333333333,
+        "text": "OPEN · 2.9s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 98.6144,
+        "role": "meter",
+        "max": "3",
+        "value": "2.958433333333333",
+        "valueText": "OPEN · 2.9s",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 442,
+          "bottom": 134,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 433,
+          "bottom": 127.5,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 287,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 333,
+            "bottom": 128,
+            "left": 287
+          },
+          {
+            "x": 337,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 383,
+            "bottom": 128,
+            "left": 337
+          },
+          {
+            "x": 387,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 433,
+            "bottom": 128,
+            "left": 387
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.18330000000000016,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 442,
+          "bottom": 134,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 433,
+          "bottom": 127.5,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 287,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 333,
+            "bottom": 128,
+            "left": 287
+          },
+          {
+            "x": 337,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 383,
+            "bottom": 128,
+            "left": 337
+          },
+          {
+            "x": 387,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 433,
+            "bottom": 128,
+            "left": 387
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 2,
+        "healths": [
+          61,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.16660000000000036,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 142,
+          "y": 88,
+          "width": 300,
+          "height": 47,
+          "top": 88,
+          "right": 442,
+          "bottom": 135,
+          "left": 142
+        },
+        "use": {
+          "x": 20,
+          "y": 126,
+          "width": 116,
+          "height": 46,
+          "top": 126,
+          "right": 136,
+          "bottom": 172,
+          "left": 20
+        },
+        "bearing": {
+          "x": 229,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 339,
+          "bottom": 78,
+          "left": 229
+        },
+        "label": {
+          "x": 151,
+          "y": 112,
+          "width": 282,
+          "height": 16,
+          "top": 112,
+          "right": 433,
+          "bottom": 128,
+          "left": 151
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 416,
+        "y": 136,
+        "width": 140,
+        "height": 40
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "insets": true,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 1.6000000000000008,
+        "stateRemaining": 1.6000000000000008,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.1133,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6834000000000005",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3332000000000001,
+        "actualRemaining": 0.5668000000000016,
+        "stateRemaining": 0.5668000000000016,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 18.8933,
+        "role": "meter",
+        "max": "3",
+        "value": "0.5668000000000016",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.03339999999999964,
+        "actualRemaining": 2.591733333333333,
+        "stateRemaining": 2.591733333333333,
+        "text": "CHARGE · COVER",
+        "mode": "charging",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "CHARGE · COVER",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.21660000000000038,
+        "actualRemaining": 2.858333333333334,
+        "stateRemaining": 2.858333333333334,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.2778,
+        "role": "meter",
+        "max": "3",
+        "value": "2.858333333333334",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.18339999999999967,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 2,
+        "healths": [
+          61,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.16660000000000033,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 47,
+          "top": 122,
+          "right": 344,
+          "bottom": 169,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 195,
+          "width": 116,
+          "height": 46,
+          "top": 195,
+          "right": 160,
+          "bottom": 241,
+          "left": 44
+        },
+        "bearing": {
+          "x": 383,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 493,
+          "bottom": 112,
+          "left": 383
+        },
+        "label": {
+          "x": 53,
+          "y": 146,
+          "width": 282,
+          "height": 16,
+          "top": 146,
+          "right": 335,
+          "bottom": 162,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 677.171875,
+        "y": 122,
+        "width": 154.828125,
+        "height": 24
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": true,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.18329999999999974,
+        "actualRemaining": 1.6167000000000007,
+        "stateRemaining": 1.6167000000000007,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.1133,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6834000000000005",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3166000000000006,
+        "actualRemaining": 0.583400000000001,
+        "stateRemaining": 0.583400000000001,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 19.4467,
+        "role": "meter",
+        "max": "3",
+        "value": "0.583400000000001",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.033300000000000184,
+        "actualRemaining": 2.591733333333333,
+        "stateRemaining": 2.591733333333333,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.2,
+        "actualRemaining": 2.8582333333333336,
+        "stateRemaining": 2.8582333333333336,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.2744,
+        "role": "meter",
+        "max": "3",
+        "value": "2.8582333333333336",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.09990000000000053,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 46,
+          "top": 122,
+          "right": 344,
+          "bottom": 168,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 145.5,
+          "width": 282,
+          "height": 16,
+          "top": 145.5,
+          "right": 335,
+          "bottom": 161.5,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 189,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 235,
+            "bottom": 162,
+            "left": 189
+          },
+          {
+            "x": 239,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 285,
+            "bottom": 162,
+            "left": 239
+          },
+          {
+            "x": 289,
+            "y": 128,
+            "width": 46,
+            "height": 34,
+            "top": 128,
+            "right": 335,
+            "bottom": 162,
+            "left": 289
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          143,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.16659999999999944,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 44,
+          "y": 122,
+          "width": 300,
+          "height": 47,
+          "top": 122,
+          "right": 344,
+          "bottom": 169,
+          "left": 44
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "bearing": {
+          "x": 156,
+          "y": 96,
+          "width": 110,
+          "height": 16,
+          "top": 96,
+          "right": 266,
+          "bottom": 112,
+          "left": 156
+        },
+        "label": {
+          "x": 53,
+          "y": 146,
+          "width": 282,
+          "height": 16,
+          "top": 146,
+          "right": 335,
+          "bottom": 162,
+          "left": 53
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 44,
+        "y": 174,
+        "width": 300,
+        "height": 24
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": false,
+      "fallback": true,
+      "checks": [
+        {
+          "name": "current opening timer and meter fit existing strip and leave coil cells readable",
+          "passed": true
+        },
+        {
+          "name": "real-time decay enters amber short window and closes without predicting the next opening or rebuilding coil cells",
+          "passed": true
+        },
+        {
+          "name": "actual volley resolution and native phase break retain2.6/3second rules and share the fixed scale",
+          "passed": true
+        },
+        {
+          "name": "native FIRE crossing the closing boundary still resolves armor damage and the clock reports closed",
+          "passed": true
+        },
+        {
+          "name": "arranged occluded objective hides precise clock; charge warning retains priority and restores visible countdown coherently",
+          "passed": true
+        },
+        {
+          "name": "native pause and planning freeze actual timer, hide live strip and resume without a new window",
+          "passed": true
+        },
+        {
+          "name": "actual last-coil kill returns the same strip to real upload percent and removes exposure semantics",
+          "passed": true
+        },
+        {
+          "name": "native fresh and earned retry clear old window display rather than carrying the previous countdown",
+          "passed": true
+        }
+      ],
+      "sample": {
+        "phase": "playing",
+        "time": 0.18330000000000019,
+        "actualRemaining": 1.6167000000000002,
+        "stateRemaining": 1.6167000000000002,
+        "text": "OPEN · 1.6s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 56.1133,
+        "role": "meter",
+        "max": "3",
+        "value": "1.6834000000000005",
+        "valueText": "OPEN · 1.6s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "closing": {
+        "phase": "playing",
+        "time": 0.3166000000000001,
+        "actualRemaining": 0.5834000000000019,
+        "stateRemaining": 0.5834000000000019,
+        "text": "OPEN · 0.5s",
+        "mode": "closing",
+        "meter": "exposure",
+        "widthPercent": 19.4467,
+        "role": "meter",
+        "max": "3",
+        "value": "0.5834000000000019",
+        "valueText": "OPEN · 0.5s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "volley": {
+        "phase": "playing",
+        "time": 0.03330000000000018,
+        "actualRemaining": 2.5916333333333337,
+        "stateRemaining": 2.5916333333333337,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 3,
+        "rifle": "",
+        "upload": 0
+      },
+      "phaseBreak": {
+        "phase": "playing",
+        "time": 0.21680000000000021,
+        "actualRemaining": 2.8582333333333345,
+        "stateRemaining": 2.8582333333333345,
+        "text": "OPEN · 2.8s",
+        "mode": "open",
+        "meter": "exposure",
+        "widthPercent": 95.8311,
+        "role": "meter",
+        "max": "3",
+        "value": "2.8749333333333342",
+        "valueText": "OPEN · 2.8s",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 0,
+        "healths": [
+          160,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 1,
+        "projectiles": 0,
+        "rifle": "",
+        "upload": 0
+      },
+      "boundary": {
+        "phase": "playing",
+        "time": 0.15,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "ARMORED · MOVE",
+        "mode": "armored",
+        "meter": "exposure",
+        "widthPercent": 0,
+        "role": "meter",
+        "max": "3",
+        "value": "0",
+        "valueText": "ARMORED · MOVE",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 111.5,
+          "width": 282,
+          "height": 16,
+          "top": 111.5,
+          "right": 303,
+          "bottom": 127.5,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 157,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 203,
+            "bottom": 128,
+            "left": 157
+          },
+          {
+            "x": 207,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 253,
+            "bottom": 128,
+            "left": 207
+          },
+          {
+            "x": 257,
+            "y": 94,
+            "width": 46,
+            "height": 34,
+            "top": 94,
+            "right": 303,
+            "bottom": 128,
+            "left": 257
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          143,
+          160,
+          160
+        ],
+        "dead": false,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I ARMOR",
+        "upload": 0
+      },
+      "upload": {
+        "phase": "playing",
+        "time": 0.18340000000000053,
+        "actualRemaining": 0,
+        "stateRemaining": 0,
+        "text": "UPLOADING 50% · STAY ON DECK",
+        "mode": "upload",
+        "meter": "upload",
+        "widthPercent": 50,
+        "role": "progressbar",
+        "max": "100",
+        "value": "50",
+        "valueText": "50 percent uploaded",
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 47,
+          "top": 88,
+          "right": 312,
+          "bottom": 135,
+          "left": 12
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "bearing": {
+          "x": 140,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 250,
+          "bottom": 78,
+          "left": 140
+        },
+        "label": {
+          "x": 21,
+          "y": 112,
+          "width": 282,
+          "height": 16,
+          "top": 112,
+          "right": 303,
+          "bottom": 128,
+          "left": 21
+        },
+        "labelScroll": 282,
+        "labelClient": 282,
+        "font": 13,
+        "hidden": false,
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        ],
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            }
+          }
+        ],
+        "shots": 1,
+        "healths": [
+          0,
+          0,
+          0
+        ],
+        "dead": true,
+        "interrupts": 0,
+        "projectiles": 0,
+        "rifle": "COIL I OFF",
+        "upload": 0.5
+      },
+      "uploadFocus": {
+        "x": 12,
+        "y": 140,
+        "width": 300,
+        "height": 24
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 14409,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

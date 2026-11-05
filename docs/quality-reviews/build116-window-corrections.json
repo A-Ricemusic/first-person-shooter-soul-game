@@ -1,0 +1,34 @@
+{
+  "initialReport": "build116-window-initial.json",
+  "initialFixture": "build116-window-initial-fixture.txt",
+  "mainBeforeFix": "build116-main-before-status-ownership-fix.txt",
+  "failure": "After real armor damage, the expected stable mobile ARMORED caption was overwritten by legacy desktop JAMMED text. The new cache returned on identical state while the old generic renderer still wrote to the same element. This is a real presentation integration bug.",
+  "runtimeFix": "Guard the generic status write to desktop, matching the already guarded generic meter write. One mobile renderer owns both elements and marker/render-state updates use it. No simulation or damage fix.",
+  "regressionAdded": "After real expiry, wait350ms and emit identical state3 times; assert stable ARMORED \u00b7 MOVE plus unchanged geometry and meter0.",
+  "shortLandscapeVisualFinding": {
+    "retainedPassedReport": "build116-window-owner-checked.json",
+    "exactPriorFixture": "build116-window-owner-checked-fixture.txt",
+    "styleBeforeFix": "build116-style-before-short-landscape-fix.txt",
+    "evidence": "docs/media/build116-window-owner-checked/568-false-false-opening.jpg",
+    "finding": "Visual inspection of the568x320 screenshot found an existing overlap between the mission strip bottom and the left FACE COILS button. Earlier assertions checked strip/cells/button stability but did not compare these two hitboxes.",
+    "fix": "On landscape height<=360 and width>=480, place the same bounded strip beside the left action area through existing safe-area variables. Apply through boss and upload so it does not jump after boss defeat; control hitboxes unchanged.",
+    "newAssertions": "Opening and upload strips cannot overlap left action hitbox; bearing and fixed coil-cell bounds checked. This is a visual/layout fix, not a combat or targeting change."
+  },
+  "focusPolicyAndGutter": {
+    "initialDestinationReport": "build116-production-destination.json",
+    "diagnostic": "build116-focus-diagnostic.json",
+    "priorDestinationFixture": "build116-destination-before-focus-policy-fix.txt",
+    "priorWindowFixture": "build116-window-before-charge-gutter-check.txt",
+    "styleBeforeFix": "build116-style-before-charge-gutter-fix.txt",
+    "legacyFixtureIssue": "Expected a visible noncharging focus despite existing passive-panel suppression;115 and116 both suppress it. Updated to assert suppression, then arrange a visible charging contact and retain geometry checks.",
+    "newRegressionFound": "Moving the short-landscape strip produced979.875CSS square pixels overlap with a live charging caption. This is a real116 layout regression, distinct from the legacy fixture expectation.",
+    "runtimeFix": "Keep the charging caption visible in the right-side gutter beneath the strip on short landscape screens. Existing threat eligibility, markers and turn cue unchanged.",
+    "strongerChecks": "Both destination and window fixtures require visible charging caption, no overlap with strip, aiming aperture or visible touch controls. Final build and all12 groups rerun under a new prefix; initial reports/media preserved."
+  },
+  "rectangleFixtureCorrection": {
+    "exactPriorFixture": "build116-window-before-rectangle-schema-fix.txt",
+    "finding": "New charge-caption comparisons combined DOMRect objects with Playwright bounding boxes, whose properties are x/y/width/height rather than right/bottom. The new comparisons could otherwise be vacuous. Earlier panel/use comparisons used DOMRect on both sides and remain valid.",
+    "correction": "Normalize overlap comparisons to x/y/width/height, including aiming aperture. Add a568px negative control: temporarily place the live caption at the strip top, require detection, remove only that injected style and require separation again.",
+    "affectedInterimRun": "build116-window-gutter-checked.json is interim evidence and not used as final release proof. No runtime change for this fixture correction."
+  }
+}

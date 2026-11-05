@@ -1119,7 +1119,7 @@ export class Game {
       extractionMargin: this.world ? extractionMargin(this.player,this.world.playerSpawn) : 0,
       insideExtraction: this.world ? this.grounded&&!this.vault&&isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this)) : false,
       exit: this.world ? { x: this.world.playerSpawn.x, z: this.world.playerSpawn.z } : null,
-      custodian:{x:11,z:16,active:this.custodian?.active,dead:this.custodian?.dead,open:this.custodian?.open>0,charging:this.custodian?.windup>0,coils:this.custodian?.coils.map(n=>Math.max(0,n.hp/(160*(this.difficulty?.health||1))))},
+      custodian:{x:11,z:16,active:this.custodian?.active,dead:this.custodian?.dead,open:this.custodian?.open>0,openRemaining:Math.max(0,this.custodian?.open||0),charging:this.custodian?.windup>0,coils:this.custodian?.coils.map(n=>Math.max(0,n.hp/(160*(this.difficulty?.health||1))))},
       facilityLayout:this.facilityLayout, bounds: this.world?.bounds, pointerFallback: this.pointerFallback,
     };
   }
