@@ -8,6 +8,7 @@ import {recordTouchAim,touchAimReadout} from './touch-aim-readout.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
 import {worldVerticalFov} from './projection.js';
+import {desiredViewFov} from './touch-focus.js';
 import {updateTouchVault} from './touch-vault.js';
 import {touchRifleTarget} from './touch-assist.js';
 import {touchTapTarget} from './touch-targeting.js';
@@ -976,7 +977,7 @@ export class Game {
     const motion = this.options.reducedMotion ? 0 : 1;
     const bob = moving && this.grounded ? Math.sin(this.stepDistance * 2.1) * 0.025 * motion : 0;
     this.syncCamera();
-    const desiredFov = this.aim && !this.reloading && !this.vault ? 56 : this.dashTime > 0 ? 86 : 75;
+    const desiredFov = desiredViewFov(this);
     this.referenceFov=THREE.MathUtils.damp(this.referenceFov??75,desiredFov,12,dt);this.camera.fov=worldVerticalFov(this.referenceFov,this.camera.aspect,this.touchMode);this.camera.updateProjectionMatrix();
     this.weapon.visible = !['ready', 'won', 'lost'].includes(this.phase);
     const ads = this.aimBlend;

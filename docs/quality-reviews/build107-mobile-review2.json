@@ -1,0 +1,272 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "expected_commit": "7276ac1b199b66c65205abeaaa46e5a334a6bb98",
+    "commit_verified": false,
+    "visible_build": "BUILD 107",
+    "url": "http://127.0.0.1:61503/",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:03",
+        "score": 6885,
+        "accuracy_percent": 49,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 3,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 5
+      },
+      "terminal_evidence": "docs/media/build107-mobile-review2/a1-terminal.jpg",
+      "coverage": [
+        "manual MOVE forward about 2.5 seconds",
+        "FIRE drag small correction",
+        "tap aim and FIRE",
+        "TURN warning taps",
+        "ROUTE and recovery holds",
+        "all three memories",
+        "all three coils",
+        "planning map opened and visibly closed",
+        "uplink survival",
+        "automatic reload"
+      ],
+      "failures": [
+        "First TURN/FIRE batch spent 12 rounds without visible heading change or target down",
+        "Upload target tap/FIRE yielded NO IMPACT",
+        "Some target shots hit inert cover after coil destruction"
+      ],
+      "helpful": [
+        "Guard tap aim yielded TARGET DOWN",
+        "MEMORY SAVED and numbered progress confirmations",
+        "Map showed extraction route and 23m distance",
+        "Coil OFF states made progress explicit"
+      ],
+      "frustrating": [
+        "Tiny distant targets and dark cover complicate precise interpretation",
+        "Threat cues changed during short batches; first turn did not visibly orient as expected"
+      ],
+      "unassessed": [
+        "AIM hold",
+        "DASH",
+        "JUMP/VAULT",
+        "TOOLS actions",
+        "unassisted complete route"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "fresh_method": "Visible START FRESH on first terminal screen; no checkpoint retry",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "00:58",
+        "score": 6824,
+        "accuracy_percent": 37,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 6,
+        "tap_aims": 7,
+        "route_assists": 12,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build107-mobile-review2/a2-terminal.jpg",
+      "coverage": [
+        "simultaneous two-contact ROUTE + FIRE",
+        "separate TURN tap faced sentinel: heading 307 to 284",
+        "AIM hold + small FIRE drag: iron sight view observed",
+        "tap aim and FIRE",
+        "three receiver recoveries",
+        "three coils disabled",
+        "automatic reload",
+        "uplink survival"
+      ],
+      "manual_MOVE": "Not repeated in attempt 2; manual forward MOVE sampled in attempt 1 only",
+      "failures": [
+        {
+          "event": "Upper housing tap for coil III did not turn to its copper body; 12 rounds spent, INERT COVER, coil stayed 100%",
+          "evidence": "docs/media/build107-mobile-review2/a2-coil3.jpg",
+          "recovery": "Newly viewed copper-body tap then FIRE disabled it",
+          "recovery_evidence": "docs/media/build107-mobile-review2/a2-coil3-correct.jpg"
+        },
+        {
+          "event": "Two uplink tap/FIRE batches produced NO IMPACT; target movement/occlusion not isolated",
+          "evidence": [
+            "docs/media/build107-mobile-review2/a2-upload-fire.jpg",
+            "docs/media/build107-mobile-review2/a2-upload-fire2.jpg"
+          ]
+        }
+      ],
+      "helpful": [
+        "TURN visibly revealed sentinel before aiming",
+        "AIM visibly entered iron sights",
+        "Recovery holds consistently saved memories",
+        "Coil OFF states and upload percentage made objective progress clear"
+      ],
+      "frustrating": [
+        "Coil housing vs exposed-body tap precision at this viewport",
+        "Repeated NO IMPACT during upload lacked a clear visible explanation"
+      ],
+      "unassessed": [
+        "manual MOVE in this attempt",
+        "DASH",
+        "JUMP/VAULT",
+        "TOOLS actions",
+        "map in this attempt",
+        "sustained unassisted movement and aiming"
+      ]
+    }
+  ],
+  "settings_changes": [],
+  "between_attempts_learning": "Route hold handles travel and recovery; release after saved. Tap distinct visible coil then FIRE; OFF feedback confirms progress. Threat TURN may need separate observation before firing.",
+  "limitations": [
+    "Synthetic native touch Chromium portrait emulation; software WebGL fallback",
+    "Captures pause and clear contacts, producing frequent observation opportunities; waits shortened at about 3s live or 1.2s FIRE",
+    "No inference of human reaction time or causal quality benefit",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Pauses provide unlimited inspection time; no physical-device certification, frame-rate benchmark or continuous-enjoyment conclusion. Assisted completion alone does not assess all controls."
+  ],
+  "owned_processes": {
+    "driver": 75514,
+    "chrome": 75524
+  },
+  "cleanup": {
+    "helper_close_requested": true,
+    "helper_exit_code": 0,
+    "helper_closed_event": {
+      "reason": "input ended or close requested",
+      "driverPid": 75514,
+      "chromePid": 75524,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "ps_verification": {
+      "command": "ps -p 75514,75524 -o pid=,ppid=,stat=,command=",
+      "output": "",
+      "result": "Both exact owned PIDs absent after helper exit"
+    },
+    "broad_kill_used": false
+  },
+  "review": {
+    "scale": "0 unusable, 5 mixed but playable with substantial friction, 7 good with noticeable limitations, 9 excellent with minor friction, 10 exceptional across the assessed scope. Holistic judgment, not a win-rate grade or average of subscores.",
+    "scores_0_to_10": {
+      "overall_mobile": 7.0,
+      "controls": 7.0,
+      "gameplay": 6.5,
+      "presentation": 8.0,
+      "usability": 7.5,
+      "readability": 7.0
+    },
+    "reasons": {
+      "overall_mobile": "A coherent, attractive short mission with effective touch assistance and clear progress feedback. Precision/occlusion friction and limited combat depth observed on the assisted path hold the grade below excellent. Two wins alone do not determine the grade.",
+      "controls": "Manual forward stick moved visibly; tap aim, FIRE, FIRE drag, AIM and simultaneous ROUTE/FIRE worked in sampled cases. TURN worked when inspected separately, but first TURN/FIRE batch failed to visibly orient. Short samples cannot certify nuanced stick control or sustained two-thumb feel.",
+      "gameplay": "Recoveries, coil targets and upload form a clear sequence, with patrol warnings and shield damage adding pressure. Assisted travel let me pass many threats and finish both runs at last-observed health 100; observed route offered limited need to reposition. This is a scoped experience report, not a causal balance claim or judgment of unseen tactics.",
+      "presentation": "Strong teal/amber industrial art direction, rain, readable weapon silhouette and restrained end-screen layout. Some dark roof/wall regions were nearly black in these captures. Audio was not assessed.",
+      "usability": "Brief handbook taught route/recovery and coils; HOLD APPROACH/RECOVER, MEMORY SAVED, OFF and upload confirmations helped. Map selected extraction and showed a route; visible close worked. Repeated NO IMPACT/INERT COVER communicates failure but not always its cause clearly at a glance.",
+      "readability": "Core health/ammo and large controls are readable in portrait. Small compass, distant enemies, signs and compact upper HUD demand closer inspection. Announcement overlays sometimes compete with the scene."
+    },
+    "specific_observations": [
+      {
+        "evidence": "docs/media/build107-mobile-review2/a1-manual-move.jpg",
+        "note": "Manual forward MOVE yielded visible forward travel; lateral/backward/diagonal precision not sampled."
+      },
+      {
+        "evidence": "docs/media/build107-mobile-review2/a1-map.jpg",
+        "note": "Map clearly showed completed receivers, JAMMER OFF, UPLINK and extraction route. It stayed planning until visibly closed."
+      },
+      {
+        "evidence": "docs/media/build107-mobile-review2/a2-aim-fire-drag.jpg",
+        "note": "AIM produced iron sights; small FIRE drag sampled. Drag sensitivity quality remains uncertain from the brief sample."
+      }
+    ],
+    "uncertainties": [
+      "Cannot isolate why first TURN did not change heading; no source or internals inspected",
+      "Cannot distinguish all NO IMPACT causes from captures alone",
+      "No claim that frequent pauses improved game quality or represent human reaction time",
+      "No enjoyment inferred for recovered story text, other tools, alternate tactics or unassessed content"
+    ]
+  },
+  "protocol": {
+    "source_inspection": "Only tools/mobile-playtest.mjs --help read; no game source/tests/docs/prior reviews/recordings inspected",
+    "input": "Helper JSON-lines native touch only; at most two contacts; visible selectors/geometry; each screenshot viewed in a separate call before adaptive input",
+    "waits": "All requested wait steps <=3000ms (maximum allowed 12000ms); observed shortened waits respected; no skipped-action replay to bypass boundaries",
+    "attempt_count": 2,
+    "third_attempt": false,
+    "settings_changes": [],
+    "scope": "Normal URL only; no builds, commits, server changes, implementation changes or agents",
+    "identity": "Visible BUILD 107 matched; frozen commit supplied by task but intentionally not independently verified via source inspection"
+  },
+  "evidence": {
+    "directory": "docs/media/build107-mobile-review2",
+    "raw_log": "docs/media/build107-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build107-mobile-review2/a1-coil-finish.jpg",
+      "docs/media/build107-mobile-review2/a1-coil1.jpg",
+      "docs/media/build107-mobile-review2/a1-coil2.jpg",
+      "docs/media/build107-mobile-review2/a1-coil3.jpg",
+      "docs/media/build107-mobile-review2/a1-custodian-route1.jpg",
+      "docs/media/build107-mobile-review2/a1-custodian-route2.jpg",
+      "docs/media/build107-mobile-review2/a1-deck-route1.jpg",
+      "docs/media/build107-mobile-review2/a1-fire-drag.jpg",
+      "docs/media/build107-mobile-review2/a1-manual-move.jpg",
+      "docs/media/build107-mobile-review2/a1-map.jpg",
+      "docs/media/build107-mobile-review2/a1-memory1.jpg",
+      "docs/media/build107-mobile-review2/a1-memory2.jpg",
+      "docs/media/build107-mobile-review2/a1-memory3.jpg",
+      "docs/media/build107-mobile-review2/a1-patrol-fire.jpg",
+      "docs/media/build107-mobile-review2/a1-route1.jpg",
+      "docs/media/build107-mobile-review2/a1-route2.jpg",
+      "docs/media/build107-mobile-review2/a1-route3.jpg",
+      "docs/media/build107-mobile-review2/a1-route4.jpg",
+      "docs/media/build107-mobile-review2/a1-route5.jpg",
+      "docs/media/build107-mobile-review2/a1-route6.jpg",
+      "docs/media/build107-mobile-review2/a1-route7.jpg",
+      "docs/media/build107-mobile-review2/a1-terminal.jpg",
+      "docs/media/build107-mobile-review2/a1-turn-fire.jpg",
+      "docs/media/build107-mobile-review2/a1-turn-right.jpg",
+      "docs/media/build107-mobile-review2/a1-upload-fire.jpg",
+      "docs/media/build107-mobile-review2/a1-upload-fire2.jpg",
+      "docs/media/build107-mobile-review2/a1-upload1.jpg",
+      "docs/media/build107-mobile-review2/a2-aim-fire-drag.jpg",
+      "docs/media/build107-mobile-review2/a2-coil1.jpg",
+      "docs/media/build107-mobile-review2/a2-coil2.jpg",
+      "docs/media/build107-mobile-review2/a2-coil3-correct.jpg",
+      "docs/media/build107-mobile-review2/a2-coil3.jpg",
+      "docs/media/build107-mobile-review2/a2-custodian-route1.jpg",
+      "docs/media/build107-mobile-review2/a2-custodian-route2.jpg",
+      "docs/media/build107-mobile-review2/a2-deck-route1.jpg",
+      "docs/media/build107-mobile-review2/a2-memory1.jpg",
+      "docs/media/build107-mobile-review2/a2-memory2.jpg",
+      "docs/media/build107-mobile-review2/a2-memory3.jpg",
+      "docs/media/build107-mobile-review2/a2-route-fire.jpg",
+      "docs/media/build107-mobile-review2/a2-route1.jpg",
+      "docs/media/build107-mobile-review2/a2-route2.jpg",
+      "docs/media/build107-mobile-review2/a2-route3.jpg",
+      "docs/media/build107-mobile-review2/a2-route4.jpg",
+      "docs/media/build107-mobile-review2/a2-route5.jpg",
+      "docs/media/build107-mobile-review2/a2-route6.jpg",
+      "docs/media/build107-mobile-review2/a2-route7.jpg",
+      "docs/media/build107-mobile-review2/a2-start-fresh.jpg",
+      "docs/media/build107-mobile-review2/a2-terminal.jpg",
+      "docs/media/build107-mobile-review2/a2-turn.jpg",
+      "docs/media/build107-mobile-review2/a2-upload-fire.jpg",
+      "docs/media/build107-mobile-review2/a2-upload-fire2.jpg",
+      "docs/media/build107-mobile-review2/a2-upload1.jpg",
+      "docs/media/build107-mobile-review2/attempt1-start.jpg",
+      "docs/media/build107-mobile-review2/initial.jpg",
+      "docs/media/build107-mobile-review2/instructions.jpg"
+    ]
+  }
+}

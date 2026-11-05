@@ -1,0 +1,176 @@
+{
+  "method": "ENGINEERING isolated elevated platform and centered14m authored Sentinel. Position, health, AI, resources and zero spread arranged. Native touch tests deliberate zoom, physical shots, fine-drag ownership and lifecycle. Magnification is measured geometry, not an ordinary accuracy or human enjoyment claim.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "deliberate native AIM enlarges the same visible geometry without turning camera",
+          "passed": true
+        },
+        {
+          "name": "real native FIRE still resolves a physical hit through the magnified center",
+          "passed": true
+        },
+        {
+          "name": "fine FIRE drag and two-contact movement keep ownership in the zoomed view",
+          "passed": false,
+          "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs((a.yaw-b.yaw)-fireAimDisplacement(20,width,height)*gain)<1e-6)\n"
+        }
+      ],
+      "wide": {
+        "reference": 75,
+        "vertical": 75,
+        "yaw": 0,
+        "pitch": -0.03213179439340964,
+        "aim": false,
+        "phase": "playing",
+        "weapon": "rifle",
+        "health": 100,
+        "ammo": 30,
+        "move": {
+          "x": 0,
+          "z": 0
+        },
+        "firing": false,
+        "bodyPixels": {
+          "width": 12.031336621148512,
+          "height": 28.983189853836592
+        },
+        "sensitivity": 1,
+        "time": 0.13340000000000007
+      },
+      "focus": {
+        "reference": 40.106006810332886,
+        "vertical": 40.106006810332886,
+        "yaw": 0,
+        "pitch": -0.03213179439340964,
+        "aim": true,
+        "phase": "playing",
+        "weapon": "rifle",
+        "health": 100,
+        "ammo": 30,
+        "move": {
+          "x": 0,
+          "z": 0
+        },
+        "firing": false,
+        "bodyPixels": {
+          "width": 25.291803953238173,
+          "height": 60.92732493530224
+        },
+        "sensitivity": 1,
+        "time": 0.7499999999999994
+      },
+      "magnification": 2.1021607781117684,
+      "shot": {
+        "before": {
+          "reference": 40.04761288131419,
+          "vertical": 40.04761288131419,
+          "yaw": 0,
+          "pitch": -0.03213179439340964,
+          "aim": true,
+          "phase": "playing",
+          "weapon": "rifle",
+          "health": 100,
+          "ammo": 30,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "firing": false,
+          "bodyPixels": {
+            "width": 25.331872937558387,
+            "height": 61.0238501191927
+          },
+          "sensitivity": 1,
+          "time": 0.816699999999999
+        },
+        "after": {
+          "reference": 40.00289650066306,
+          "vertical": 40.00289650066306,
+          "yaw": 0,
+          "pitch": -0.03213179439340964,
+          "aim": true,
+          "phase": "playing",
+          "weapon": "rifle",
+          "health": 18,
+          "ammo": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "firing": false,
+          "bodyPixels": {
+            "width": 25.361607259082973,
+            "height": 61.1062291056499
+          },
+          "sensitivity": 1,
+          "time": 1.0499999999999983
+        }
+      },
+      "drag": {
+        "before": {
+          "reference": 40.01173649643898,
+          "vertical": 40.01173649643898,
+          "yaw": 0,
+          "pitch": -0.03213179439340964,
+          "aim": true,
+          "phase": "playing",
+          "weapon": "rifle",
+          "health": 100,
+          "ammo": 30,
+          "move": {
+            "x": 0,
+            "z": -0.24667774211189486
+          },
+          "firing": true,
+          "bodyPixels": {
+            "width": 25.42798335812506,
+            "height": 61.25162353606541
+          },
+          "sensitivity": 1,
+          "time": 0.8499999999999991
+        },
+        "after": {
+          "reference": 40.00787035634627,
+          "vertical": 40.00787035634627,
+          "yaw": 0,
+          "pitch": -0.03213179439340964,
+          "aim": true,
+          "phase": "playing",
+          "weapon": "rifle",
+          "health": 18,
+          "ammo": 29,
+          "move": {
+            "x": 0,
+            "z": -0.24667774211189486
+          },
+          "firing": true,
+          "bodyPixels": {
+            "width": 25.473793481893892,
+            "height": 61.42897242916112
+          },
+          "sensitivity": 1,
+          "time": 0.8832999999999991
+        },
+        "expectedGain": 0.0012976842695407605,
+        "expectedDelta": 0.014274526964948365,
+        "actualDelta": 0
+      }
+    }
+  ],
+  "contracts": [
+    "desktop56 ADS, wide75 and phase86 preserved; phone focus40 only while actual ADS is available",
+    "fine drag is reduced in proportion to extra perspective magnification"
+  ],
+  "errors": [],
+  "chromePid": 81483,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(Math.abs((a.yaw-b.yaw)-fireAimDisplacement(20,width,height)*gain)<1e-6)\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-focus-aim.mjs:14:635\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-focus-aim.mjs:11:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-focus-aim.mjs:14:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
