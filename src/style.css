@@ -506,3 +506,10 @@ body.touch-mode .bearing #timer{display:none}
 body.touch-mode .touch-fire-presets{display:flex;gap:8px;margin:8px 0}
 body.touch-mode .touch-fire-presets button{flex:1;min-width:44px;min-height:44px;padding:8px;border:1px solid var(--line);background:#102a31;font:700 13px/18px 'Barlow',Arial,sans-serif;touch-action:manipulation}
 body.touch-mode .touch-fire-presets button[aria-pressed=true]{background:#8ee8e0;color:#102627;border-color:#8ee8e0}
+
+/* A resolved phone cover hit briefly changes the existing reticle, not aim. */
+body.touch-mode #crosshair[data-blocked="true"] b{left:5px;top:5px;width:14px;height:14px;border:2px solid #ffd39a;border-radius:50%;background:#172226c9;box-shadow:0 0 2px #000}
+body.touch-mode #crosshair[data-blocked="true"] b::after{content:'';position:absolute;left:1px;top:4px;width:8px;height:2px;background:#ffd39a}
+body.touch-mode #crosshair[data-blocked="true"] i{opacity:.35}
+body.touch-mode #crosshair[data-blocked="true"]::after{opacity:0}
+body.touch-mode #hitmarker.cover-priority{opacity:0!important}

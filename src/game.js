@@ -94,7 +94,7 @@ export class Game {
   get fireTimer(){return this.weaponSlots[this.activeWeapon].fireTimer} set fireTimer(v){this.weaponSlots[this.activeWeapon].fireTimer=v}
   selectWeapon(name){
     if(this.phase!=='playing'||!this.weaponSlots[name]||name===this.activeWeapon)return;
-    this.rifleResult=null;this.rifleImpact=null;this.rifleConfirmation=null;this.touchTrack=null;this.touchTrackSeed=null;this.touchFireLatch=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
+    this.rifleResult=null;this.rifleImpact=null;this.rifleConfirmation=null;this.touchTrack=null;this.touchTrackSeed=null;this.touchCoverGuard=false;this.touchFireLatch=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
@@ -409,7 +409,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.touchTrack=null;this.touchTrackSeed=null;this.touchFireLatch=null;this.rifleConfirmation=null;this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.touchTrack=null;this.touchTrackSeed=null;this.touchCoverGuard=false;this.touchFireLatch=null;this.rifleConfirmation=null;this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.rifleResult=null;
     this.rifleImpact=null;
@@ -485,7 +485,7 @@ export class Game {
 
   reload() {
     if (this.phase !== 'playing' || this.reloading || this.ammo === (this.activeWeapon==='breacher'?6:30) || this.reserve <= 0) return;
-    this.reloading = true; this.reloadTimer = this.activeWeapon==='breacher'?.55:1.65; this.audio.reload(); this.event('reload', 'Reloading'); this.emit();
+    this.touchCoverGuard=false;this.reloading = true; this.reloadTimer = this.activeWeapon==='breacher'?.55:1.65; this.audio.reload(); this.event('reload', 'Reloading'); this.emit();
   }
   dash() {
     if (this.vault || this.phase !== 'playing' || this.dashCooldown > 0) return;
@@ -527,7 +527,7 @@ export class Game {
   touchRifleTarget(direction) { return touchRifleTarget(this,direction); }
 
   tapAimAt(clientX,clientY,expectedKey=null) {
-    this.touchTrack=null;this.touchTrackSeed=null;
+    this.touchTrack=null;this.touchTrackSeed=null;this.touchCoverGuard=false;
     if(!this.touchMode||this.options.touchTapAim===false||this.phase!=='playing'||this.vault)return false;
     const r=this.canvas.getBoundingClientRect();
     if(!r.width||!r.height||clientX<r.left||clientX>r.right||clientY<r.top||clientY>r.bottom)return false;

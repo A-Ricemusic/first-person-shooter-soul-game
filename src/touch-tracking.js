@@ -13,12 +13,12 @@ function ownedPoint(g,enemy,local){
 }
 // Brief tap intent is consumed at the next FIRE press and always revalidated.
 export function seedTouchTracking(g,hit){
- g.touchTrackSeed=null;if(!g.touchMode||g.options.touchAimAssist===false||g.phase!=='playing'||g.activeWeapon!=='rifle'||g.vault)return;
+ g.touchTrackSeed=null;g.touchCoverGuard=false;if(!g.touchMode||g.options.touchAimAssist===false||g.phase!=='playing'||g.activeWeapon!=='rifle'||g.vault)return;
  const enemy=g.enemies.find(e=>`enemy-${e.id}`===hit.key&&e.health>0);if(!enemy)return;
  enemy.group.updateWorldMatrix(true,true);g.touchTrackSeed={enemy,local:enemy.group.worldToLocal(hit.point.clone()),time:g.runTime};
 }
 export function beginTouchTracking(g){
- const seed=g.touchTrackSeed;g.touchTrackSeed=null;g.touchTrack=null;if(!enabled(g))return false;
+ const seed=g.touchTrackSeed;g.touchTrackSeed=null;g.touchTrack=null;g.touchCoverGuard=false;if(!enabled(g))return false;
  const hit=touchDirectTarget(g,undefined,{ignoreViewmodel:true}),enemy=hit&&g.enemies.find(e=>`enemy-${e.id}`===hit.key&&e.health>0);
  if(enemy&&hit.point.distanceTo(g.player)<=TOUCH_TRACK_RANGE){enemy.group.updateWorldMatrix(true,true);g.touchTrack={enemy,key:hit.key,local:enemy.group.worldToLocal(hit.point.clone()),...angles(hit.point.clone().sub(g.player)),source:'reticle'};return true;}
  // A different real centre target wins. No target can be stolen from it.
@@ -30,7 +30,7 @@ export function beginTouchTracking(g){
 // One current physical ray revalidates the same actor; hidden contact is never followed.
 export function updateTouchTracking(g,dt){
  const track=g.touchTrack;if(!track)return;
- const drop=()=>{g.touchTrack=null};
+ const drop=(obstructed=false)=>{g.touchTrack=null;g.touchCoverGuard=obstructed};
  if(!enabled(g)||!g.enemies.includes(track.enemy)||track.enemy.health<=0||!(dt>0))return drop();
  track.enemy.group.updateWorldMatrix(true,true);
  const point=track.enemy.group.localToWorld(track.local.clone()),d=point.clone().sub(g.player),distance=d.length();
@@ -40,7 +40,7 @@ export function updateTouchTracking(g,dt){
  const a=angles(d),dyaw=wrap(a.yaw-track.yaw),dpitch=a.pitch-track.pitch;
  if(Math.hypot(dyaw,dpitch)>TOUCH_TRACK_LEASH)return drop();
  const ndc=point.clone().project(g.camera),hit=touchDirectTarget(g,ndc,{ignoreViewmodel:true});
- if(!hit||hit.key!==track.key)return drop();
+ if(!hit||hit.key!==track.key)return drop(!hit);
  const motion=Math.hypot(dyaw,dpitch),gain=motion?Math.min(TOUCH_TRACK_GAIN,TOUCH_TRACK_SPEED*dt/motion):0;
  g.yaw+=dyaw*gain;g.pitch=T.MathUtils.clamp(g.pitch+dpitch*gain,-1.44,1.44);
  track.yaw=a.yaw;track.pitch=a.pitch;g.syncCamera();

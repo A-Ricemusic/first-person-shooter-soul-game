@@ -2,7 +2,12 @@
 // actors behind cover, or future exposure windows.
 export function recordRifleImpact(g,kind,label,identity=null){
  if(g.touchMode){
+  const blockedFollow=kind==='cover'&&label!=='CAPACITOR'&&g.touchCoverGuard&&g.options.touchAimAssist!==false&&g.phase==='playing'&&g.activeWeapon==='rifle'&&g.mouseDown;
+  g.touchCoverGuard=false;
   g.rifleImpact={kind,label,time:g.runTime};
+  // Only a real obstructed shot after lost following ends this assisted burst.
+  // A fresh manual press into cover keeps its ordinary continuous behavior.
+  if(blockedFollow){g.touchFireLatch='COVER';g.touchTrack=null;g.touchTrackSeed=null;}
   // A completion is an event acknowledgement, separate from the latest shot.
   if(kind==='kill'){
    g.rifleConfirmation={label,time:g.runTime};
@@ -16,6 +21,7 @@ export function recordRifleImpact(g,kind,label,identity=null){
 export function rifleReadout(g){
  const hit=g.rifleImpact,age=hit?g.runTime-hit.time:Infinity;
  if(!g.touchMode||g.phase!=='playing'||g.activeWeapon!=='rifle'||g.reloading)return null;
+ if(g.touchFireLatch==='COVER'&&hit?.kind==='cover')return{...hit,label:'COVER · LIFT FIRE'};
  if(age>=0&&age<.8)return hit;
  const result=g.rifleResult,resultAge=result?g.runTime-result.time:Infinity;
  return resultAge>=0&&resultAge<2.4?result:null;

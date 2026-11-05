@@ -1,0 +1,39 @@
+{
+  "build": 122,
+  "records": [
+    {
+      "kind": "pre-release hardening",
+      "report": "build122-cover-dev.json",
+      "source": "build122-cover-before-pending-reload-check.txt",
+      "finding": "Initial42 contracts passed. Strengthened native tools test holds a pending guard while shot cooldown is delayed; intentional reload now clears it immediately. Candidate checked report retains42 passing contracts."
+    },
+    {
+      "kind": "fixture failure",
+      "report": "build122-cover-final.json",
+      "source": "build122-cover-before-capacitor-ui-wait.txt",
+      "finding": "The capacitor was warning, but the HUD still showed prior OPTIC HIT when sampled immediately. Wait for warning plus actual CAPACITOR display; restore moved bank position/origin between isolated stages. Product shot/capacitor timing unchanged.",
+      "correctedReport": "build122-cover-final-checked.json"
+    },
+    {
+      "kind": "production fixture race",
+      "report": "build122-production-cover.json",
+      "source": "build122-cover-before-atomic-block.txt",
+      "finding": "The blocked snapshot was read in a second task after an actual cover shot had already stopped firing. Atomically return counters/health when inserting wall, then compare later shots. Baseline rerun with same corrected recipe. No product change.",
+      "baselineRerun": "build122-cover-baseline-atomic.json",
+      "finalReport": "build122-production-cover-final.json"
+    },
+    {
+      "kind": "intentional contract update",
+      "report": "build122-production-confirmation.json",
+      "source": "build122-confirmation-before-cover-priority.txt",
+      "finding": "Old assertion required older kill marker opacity1 after a newer real cover impact. New behaviour intentionally prioritizes blocked centre cue. Assert opacity0 and blocked cue while retaining original kill label/history and all other lifecycle/layout checks. No product change for this test update.",
+      "finalReport": "build122-production-confirmation-final.json"
+    }
+  ],
+  "limits": [
+    "Generic arranged sight-loss reproduction, not a reconstruction of either reviewer cover burst.",
+    "New trigger stop is an assisted behavior change and may feel restrictive.",
+    "Synthetic captures release contacts; independent natural use/continuous comfort remains unverified."
+  ],
+  "finalCommands": "build122-handoff-final-command.json"
+}

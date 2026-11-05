@@ -1,0 +1,89 @@
+{
+  "method": "ENGINEERING native phone fixtures: elevated floor, healthy stationary actor, suppressed AI, no spread/recoil, explicit cover inserted during a held tracked burst. Not reproduction of specific reviewer timing, ordinary play, human comfort or performance. Physical shots, ammunition and actor health measured. Baseline observations and candidate assertions are separate.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "actual loss of tracked sight resolves cover without hidden damage; subsequent held burst is measured",
+          "passed": false,
+          "error": "The expression evaluated to a falsy value:\n\n  assert(after.shots>blocked.shots)\n"
+        }
+      ],
+      "occlusion": {
+        "before": {
+          "phase": "playing",
+          "time": 0.19989999999999966,
+          "shots": 1,
+          "ammo": 29,
+          "health": 917,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": true,
+          "guard": false,
+          "latch": null,
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "",
+          "button": "FIRE\ndrag aim",
+          "aria": "Hold FIRE and drag to aim. Rifle eliminations and blocked followed shots end the burst; lift and press again."
+        },
+        "blocked": {
+          "phase": "playing",
+          "time": 0.2998999999999998,
+          "shots": 2,
+          "ammo": 28,
+          "health": 917,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "OPTIC HIT",
+          "button": "FIRE\nFOLLOW",
+          "aria": "FIRE with target motion assistance. Drag away or lift to release."
+        },
+        "after": {
+          "phase": "playing",
+          "time": 1.066499999999998,
+          "shots": 2,
+          "ammo": 28,
+          "health": 917,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "COVER · LIFT FIRE",
+          "button": "LIFT\nthen FIRE",
+          "aria": "COVER. Lift FIRE, then press again."
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 53076,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(after.shots>blocked.shots)\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:17:259\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:16:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:17:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

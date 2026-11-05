@@ -1,0 +1,620 @@
+{
+  "build": 122,
+  "sourceReview": "build121-mobile-review1.json",
+  "rawLog": "docs/media/build121-mobile-review1/actions.jsonl",
+  "method": "Read-only audit of raw native commands and visible UI results. No source-state reconstruction or causal targeting diagnosis.",
+  "observations": [
+    "Attempt1 sequence10 spent19 to7 rounds, ended COVER after target tap and FIRE.",
+    "Attempt2 sequence55 spent29 to27 rounds and ended LAST INTERCEPTOR DOWN. Sequence56 then spent27 to15 and ended COVER. Preserve this ordering alongside reviewer narrative; no raw review edits or rescore.",
+    "The camera/actors/cover may move between tap and later shot; a visible target or AIM SET does not promise subsequent clear shooting.",
+    "Separate arranged occlusion fixture demonstrates a general sustained-cover-fire pattern; it does not recreate these exact reviewer encounters."
+  ],
+  "events": [
+    {
+      "sequence": 10,
+      "command": {
+        "at": "2026-11-05T22:32:09.268Z",
+        "type": "command",
+        "sequence": 10,
+        "command": {
+          "op": "act",
+          "resume": true,
+          "steps": [
+            {
+              "type": "tap",
+              "x": 0.859,
+              "y": 0.508
+            },
+            {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            {
+              "type": "wait",
+              "ms": 1200
+            }
+          ],
+          "capture": "attempt1-second-patrol"
+        }
+      },
+      "priorResult": {
+        "at": "2026-11-05T22:32:02.467Z",
+        "type": "result",
+        "sequence": 9,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt1-warning-turn.jpg",
+        "captureMs": 27.03529200000048,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "RECOVER MARA SOLBERG",
+          "health": "100",
+          "shield": "60",
+          "ammo": "19",
+          "reserve": "204",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": "LAST \u00b7 SENTINEL DOWN",
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "315",
+          "compass-direction": "NW",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": "TURN \u00b7 CHARGE\nFRONT RIGHT"
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "tap",
+              "x": 0.871,
+              "y": 0.54
+            },
+            "clientMs": 181.11116699999548
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 181.13966700001038,
+          "fireMilliseconds": 0,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "clientMs": 569.0539160000044,
+        "pageErrors": []
+      },
+      "result": {
+        "at": "2026-11-05T22:32:11.067Z",
+        "type": "result",
+        "sequence": 10,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt1-second-patrol.jpg",
+        "captureMs": 25.231583999993745,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "RECOVER MARA SOLBERG",
+          "health": "100",
+          "shield": "60",
+          "ammo": "07",
+          "reserve": "204",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": "COVER",
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "035",
+          "compass-direction": "NE",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "tap",
+              "x": 0.859,
+              "y": 0.508
+            },
+            "clientMs": 183.47812500000873
+          },
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 12.900624999994761
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.3894160000054
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 1200
+            },
+            "clientMs": 1199.9177079999936
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1414.5698329999868,
+          "fireMilliseconds": 1216.2335420000018,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 3,
+          "skippedActions": 0,
+          "requestedWaitMs": 1200,
+          "executedWaitMs": 1198.3894160000054
+        },
+        "clientMs": 1799.076958000005,
+        "pageErrors": []
+      }
+    },
+    {
+      "sequence": 55,
+      "command": {
+        "at": "2026-11-05T22:40:50.088Z",
+        "type": "command",
+        "sequence": 55,
+        "command": {
+          "op": "act",
+          "resume": true,
+          "steps": [
+            {
+              "type": "tap",
+              "x": 0.617,
+              "y": 0.523
+            },
+            {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            {
+              "type": "wait",
+              "ms": 1200
+            }
+          ],
+          "capture": "attempt2-deck-defense1"
+        }
+      },
+      "priorResult": {
+        "at": "2026-11-05T22:40:41.693Z",
+        "type": "result",
+        "sequence": 54,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt2-upload1.jpg",
+        "captureMs": 34.23241599998437,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "HOLD UPLINK DECK",
+          "health": "100",
+          "shield": "47",
+          "ammo": "29",
+          "reserve": "330",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": null,
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "346",
+          "compass-direction": "N",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": "UPLOADING 36% \u00b7 STAY ON DECK",
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": "TURN \u00b7 HIT FROM\nFRONT RIGHT"
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "x": 0.24,
+              "y": 0.887
+            },
+            "clientMs": 15.270625000004657
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 2983.436250000028
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 3000
+            },
+            "clientMs": 2983.565834000008
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 3017.515207999968,
+          "fireMilliseconds": 0,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "live",
+          "beforeAction": 2,
+          "skippedActions": 0,
+          "requestedWaitMs": 3000,
+          "executedWaitMs": 2983.436250000028
+        },
+        "clientMs": 3435.096833999967,
+        "pageErrors": []
+      },
+      "result": {
+        "at": "2026-11-05T22:40:51.926Z",
+        "type": "result",
+        "sequence": 55,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt2-deck-defense1.jpg",
+        "captureMs": 36.21679199999198,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "HOLD UPLINK DECK",
+          "health": "100",
+          "shield": "47",
+          "ammo": "27",
+          "reserve": "330",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": "LAST \u00b7 INTERCEPTOR DOWN",
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "007",
+          "compass-direction": "N",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": "UPLOADING 62% \u00b7 STAY ON DECK",
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "tap",
+              "x": 0.617,
+              "y": 0.523
+            },
+            "clientMs": 179.37483300000895
+          },
+          {
+            "action": {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 13.907708999933675
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.454625000013
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 1200
+            },
+            "clientMs": 1200.1532500000903
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1423.3084999999264,
+          "fireMilliseconds": 1228.2169170000125,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 3,
+          "skippedActions": 0,
+          "requestedWaitMs": 1200,
+          "executedWaitMs": 1198.454625000013
+        },
+        "clientMs": 1838.4862919999287,
+        "pageErrors": []
+      }
+    },
+    {
+      "sequence": 56,
+      "command": {
+        "at": "2026-11-05T22:41:02.583Z",
+        "type": "command",
+        "sequence": 56,
+        "command": {
+          "op": "act",
+          "resume": true,
+          "steps": [
+            {
+              "type": "tap",
+              "x": 0.522,
+              "y": 0.51
+            },
+            {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            {
+              "type": "wait",
+              "ms": 1200
+            }
+          ],
+          "capture": "attempt2-deck-defense2"
+        }
+      },
+      "priorResult": {
+        "at": "2026-11-05T22:40:51.926Z",
+        "type": "result",
+        "sequence": 55,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt2-deck-defense1.jpg",
+        "captureMs": 36.21679199999198,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "HOLD UPLINK DECK",
+          "health": "100",
+          "shield": "47",
+          "ammo": "27",
+          "reserve": "330",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": "LAST \u00b7 INTERCEPTOR DOWN",
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "007",
+          "compass-direction": "N",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": "UPLOADING 62% \u00b7 STAY ON DECK",
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "tap",
+              "x": 0.617,
+              "y": 0.523
+            },
+            "clientMs": 179.37483300000895
+          },
+          {
+            "action": {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 13.907708999933675
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.454625000013
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 1200
+            },
+            "clientMs": 1200.1532500000903
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1423.3084999999264,
+          "fireMilliseconds": 1228.2169170000125,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 3,
+          "skippedActions": 0,
+          "requestedWaitMs": 1200,
+          "executedWaitMs": 1198.454625000013
+        },
+        "clientMs": 1838.4862919999287,
+        "pageErrors": []
+      },
+      "result": {
+        "at": "2026-11-05T22:41:04.393Z",
+        "type": "result",
+        "sequence": 56,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build121-mobile-review1/attempt2-deck-defense2.jpg",
+        "captureMs": 31.394249999895692,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "HOLD UPLINK DECK",
+          "health": "100",
+          "shield": "47",
+          "ammo": "15",
+          "reserve": "330",
+          "weapon-name": "COIL RIFLE",
+          "reload-label": "COVER",
+          "touch-use": "HOLD ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": "007",
+          "compass-direction": "N",
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": "UPLOADING 88% \u00b7 STAY ON DECK",
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "tap",
+              "x": 0.522,
+              "y": 0.51
+            },
+            "clientMs": 181.51974999997765
+          },
+          {
+            "action": {
+              "type": "down",
+              "id": 2,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 14.851000000024214
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.8882079999894
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 1200
+            },
+            "clientMs": 1199.8220829999773
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1414.4725420000032,
+          "fireMilliseconds": 1216.4393329999875,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 3,
+          "skippedActions": 0,
+          "requestedWaitMs": 1200,
+          "executedWaitMs": 1198.8882079999894
+        },
+        "clientMs": 1809.704834000091,
+        "pageErrors": []
+      }
+    }
+  ]
+}
