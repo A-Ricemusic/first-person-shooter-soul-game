@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "method": "Production build and10 affected native mobile groups. New camera group20 checks over6 phone/safe-area layouts, including actual real-time routes and counterfactual old-camera replay over their sampled guide/state/dt. Not full canonical suite, physical device, comfort or performance result.",
+  "runner": "tools/mobile-route-camera-suite.mjs",
+  "runtimeFilesVerified": 546,
+  "runtimeMismatches": [],
+  "commands": [
+    {
+      "exit": 0,
+      "seconds": 26.16,
+      "log": "build121-build-output.txt"
+    },
+    {
+      "exit": 1,
+      "seconds": 824.96,
+      "log": "build121-production-output.txt",
+      "runner": "tools/mobile-route-camera-suite.mjs"
+    },
+    {
+      "exit": 0,
+      "seconds": 43.05,
+      "log": "build121-turn-final-output.txt",
+      "report": "build121-production-turn-final.json",
+      "note": "Native gestures retained; obsolete half-AIM ratio replaced with existing optical constant. No product changes or rebuild."
+    }
+  ],
+  "groups": [
+    {
+      "name": "camera",
+      "report": "build121-production-camera.json",
+      "initialReport": "build121-production-camera.json",
+      "passed": true
+    },
+    {
+      "name": "route-follow",
+      "report": "build121-production-route-follow.json",
+      "initialReport": "build121-production-route-follow.json",
+      "passed": true
+    },
+    {
+      "name": "destination",
+      "report": "build121-production-destination.json",
+      "initialReport": "build121-production-destination.json",
+      "passed": true
+    },
+    {
+      "name": "defense",
+      "report": "build121-production-defense.json",
+      "initialReport": "build121-production-defense.json",
+      "passed": true
+    },
+    {
+      "name": "turn-route",
+      "report": "build121-production-turn-final.json",
+      "initialReport": "build121-production-turn-route.json",
+      "passed": true
+    },
+    {
+      "name": "scene",
+      "report": "build121-production-scene.json",
+      "initialReport": "build121-production-scene.json",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "build121-production-compact.json",
+      "initialReport": "build121-production-compact.json",
+      "passed": true
+    },
+    {
+      "name": "focus",
+      "report": "build121-production-focus.json",
+      "initialReport": "build121-production-focus.json",
+      "passed": true
+    },
+    {
+      "name": "fire-speed",
+      "report": "build121-production-fire-speed.json",
+      "initialReport": "build121-production-fire-speed.json",
+      "passed": true
+    },
+    {
+      "name": "route-reload",
+      "report": "build121-production-route-reload.json",
+      "initialReport": "build121-production-route-reload.json",
+      "passed": true
+    }
+  ],
+  "newContracts": 20,
+  "traceProfiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "trace": {
+        "frames": 4185,
+        "movingSeconds": 26.71553333333271,
+        "meanPathErrorDegrees": {
+          "candidate": 4.85321424645799,
+          "baseline": 9.02941578334113
+        },
+        "closeWallSeconds": {
+          "candidate": 0.574966666666668,
+          "baseline": 0.741633333333334
+        },
+        "earlyFraming": 0
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "trace": {
+        "frames": 4204,
+        "movingSeconds": 26.715733333332743,
+        "meanPathErrorDegrees": {
+          "candidate": 4.853261403985305,
+          "baseline": 9.029638854353502
+        },
+        "closeWallSeconds": {
+          "candidate": 0.5749666666666662,
+          "baseline": 0.741533333333332
+        },
+        "earlyFraming": 0
+      }
+    }
+  ],
+  "parentPlay": "build121-parent-play.json",
+  "mechanicsAudit": "build121-mechanics-audit.json",
+  "bundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-B4kL_Qe0.js": "484f8da3434f248e6fb259eda3f093aabfd5f2ca64344b80170802366ce5e519",
+    "dist/assets/index-DvXxKZeL.css": "e5e85498355c9f6aa36650d70e77f37d836e98a2d80ab8fc5bdb2d78b9adf9eb",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b"
+  }
+}

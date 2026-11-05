@@ -1,0 +1,22 @@
+{
+  "build": 121,
+  "records": [
+    {
+      "report": "build121-camera-dev.json",
+      "source": "build121-camera-initial-fixture.txt",
+      "finding": "Ownership fixture sampled yaw before the native FIRE press; route camera legitimately advanced during transport. Measure after native press, then compare while FIRE remains held. Counterfactual replay also now advances through stationary arrival/brake frames so it retains its own correct heading between route holds. Product source unchanged by these fixture corrections.",
+      "correctedReport": "build121-camera-checked.json"
+    },
+    {
+      "report": "build121-production-turn-route.json",
+      "source": "build121-turn-route-before-focus-assertion.txt",
+      "finding": "All five layouts retained an obsolete AIM half-sensitivity assertion from before the existing40-degree phone lens. Corrected to the existing TOUCH_FOCUS_GAIN optical constant, leaving the native gesture and fine FIRE checks intact. Test-only change after ordinary helper closed; product bundles unchanged.",
+      "finalReport": "build121-production-turn-final.json",
+      "finalCommand": "build121-turn-final-command.json"
+    }
+  ],
+  "limits": [
+    "Counterfactual120 camera replay over same sampled path states is engineering evidence, not a second physical mission.",
+    "No human comfort, performance or sensitivity benefit inferred."
+  ]
+}

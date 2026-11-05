@@ -1,0 +1,222 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "expected_source": "97db68ed07922d77d821eb0c5982f56d77fd8274",
+    "source_verified": false,
+    "visible_title": "BUILD 120",
+    "url": "http://127.0.0.1:61516/",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 6,
+        "mission_time": "00:58",
+        "score": 7005,
+        "accuracy_percent": 97,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 17,
+        "tap_aims": 9,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build120-mobile-review2/a1-terminal.jpg",
+      "coverage": {
+        "manual_move_and_fire_drag": [
+          "a1-manual-combat.jpg: entry guard TARGET DOWN, ammo 30 to 21, moved forward-left and dragged fire right",
+          "a1-patrol-manual.jpg: visible patrol target after TURN, MOVE left and FIRE drag, SENTINEL DOWN, ammo 21 to 18"
+        ],
+        "scene_turn": "a1-scene-turn.jpg: heading 013 to 046",
+        "map": "a1-map.jpg opened and visibly closed in a1-entry",
+        "coils": "III then II then I destroyed with numbered badges; I required approach and auto reload",
+        "uplink": "defended with scene tap aim and anchored FIRE"
+      },
+      "failures_uncertainties": [
+        "First TURN toward rear charge changed heading 253 to 299 but threat stayed offscreen; chose route thereafter",
+        "No per-shot miss count; terminal accuracy 97% preserves imperfect shooting",
+        "No DASH, JUMP, AIM zoom or TOOLS coverage",
+        "Automatic release per capture cannot assess held-burst rearming comfort"
+      ],
+      "settings_changes": [],
+      "start": "Initial #deploy act and capture a1-deploy.jpg",
+      "helpful_moments": [
+        "Handbook explicitly explains two-thumb FIRE drag, tap aim, route, map and coil phases",
+        "Guard and patrol down confirmations made success legible",
+        "MARA/SERA/ELIAN checkmarks and objective changes clarified progression",
+        "Numbered coil badges and OFF labels made assisted combat clear",
+        "Planning map paused and showed 14m Custodian approach; visibly closed",
+        "Reload status and upload progress visible"
+      ],
+      "frustrating_moments": [
+        "Rear warning TURN did not immediately expose the threat",
+        "Remaining coil lacked a target badge from outer angle, requiring approach",
+        "Dense small HUD and scene signage needed scrutiny on 390px width"
+      ]
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH via #play-again act and capture, a2-start-fresh.jpg; no checkpoint retry",
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 7,
+        "mission_time": "00:59",
+        "score": 7264,
+        "accuracy_percent": 100,
+        "critical_eliminations": 5,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 18,
+        "tap_aims": 10,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build120-mobile-review2/a2-terminal.jpg",
+      "coverage": {
+        "manual_move_and_fire_drag": [
+          "a2-manual-guard.jpg: tap-centered guard, MOVE forward-right and FIRE drag left/down; TARGET DOWN, ammo 30 to 21",
+          "a2-patrol-manual.jpg: visible left patrol tapped, MOVE right and FIRE drag right; SENTINEL DOWN, ammo 21 to 19"
+        ],
+        "additional_combat": "a2-close-patrol.jpg: nearer visible sentinel tapped and anchored FIRE; down, ammo 19 to 17",
+        "scene_turn": "No separate free-look swipe in attempt 2; tap aims and route changed heading. Free-look sampled in attempt 1.",
+        "receivers": "All three recovered using route/approach holds",
+        "coils": "II then III then I; followed learned approach for I, auto reload visible at zero",
+        "uplink": "Visible targets tapped once per batch followed by FIRE; final 100% upload and terminal win"
+      },
+      "settings_changes": [],
+      "failures_uncertainties": [
+        "No discrete miss observed; displayed terminal accuracy 100% is an assisted result, not unaided-aim validation",
+        "Coil I remained 37% after first batch and zero ammo; reload and another badge/FIRE batch completed it",
+        "Shield fell to 21 during upload; no health loss at last live capture",
+        "DASH, JUMP/VAULT, AIM zoom, TOOLS/manual reload, supplies and recovered memory prose unassessed",
+        "Continuous held-burst rearming and ergonomic comfort unassessed due to automatic release"
+      ],
+      "helpful_moments": [
+        "Learned route/approach sequence recovered receivers without menu detours",
+        "Tap aim and numbered coil badges gave immediate down/OFF feedback",
+        "OPEN timer and upload bar provided visible state"
+      ],
+      "frustrating_moments": [
+        "Route travel briefly faced a close wall, making location less clear until waypoint turn",
+        "Distant patrol silhouettes were small and sometimes merged with scene structures",
+        "Remaining coil still required approaching rather than shooting from outer view"
+      ]
+    }
+  ],
+  "limitations": [
+    "Native synthetic touch in paused Chromium with software WebGL",
+    "Captures release contacts and pause, close TOOLS and clear AIM; inspected each capture before adaptive input",
+    "Automatic approximately 3s live / 1.2s FIRE boundaries shorten waits; no reaction-time or causal quality inference",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "No human reaction-time benefit or causal game-quality benefit inferred from more frequent paused observation",
+    "No physical-device certification; software-WebGL fallback reported at helper launch",
+    "Assisted completion alone does not assess manual controls; manual patrol samples documented separately",
+    "No enjoyment inferred for unassessed story/memories or mechanics; sustained uninterrupted enjoyment unassessed",
+    "Frozen source hash supplied by requester, not inspected or independently verified; visible BUILD 120 matched"
+  ],
+  "cleanup": {
+    "driver_pid": 23150,
+    "chrome_pid": 23172,
+    "close": "Explicit JSON close; helper reported browserClosed true and exited code 0",
+    "verification": "ps -p 23150,23172 -o pid=,ppid=,comm= returned no rows after exit",
+    "status": "PASS: exact recorded owned driver and Chrome PIDs absent; no broad kill used"
+  },
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 9 excellent with minor friction; 10 exceptional. Holistic subjective scores for observed portrait emulation only, not win/loss grades or arithmetic average.",
+    "overall_mobile": 7.3,
+    "controls": 7.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 7.0,
+    "reasons": {
+      "overall_mobile": "Coherent, completable portrait mission with generous visible aids and atmospheric presentation; small targets, dense HUD and occasional orientation friction limit confidence. Both wins alone do not determine this grade.",
+      "controls": "Two-contact MOVE/FIRE drag and scene swipe responded; tap centering and warnings help. Manual samples were assisted, with little fine correction required; continuous ergonomics/rearming remain unknown.",
+      "gameplay": "Observed recover/coil/upload progression offers understandable changes and defensive encounters. Route and tap aids dominated these samples, limiting judgment of movement depth, challenge and sustained enjoyment.",
+      "presentation": "Strong teal/amber visual identity, rain, industrial geometry and readable terminal screen. Audio and hardware smoothness unassessed.",
+      "usability": "Handbook, changing hold labels, map, checkmarks, automatic reload and explicit START FRESH support progress; concealed coil entry and TURN orientation needed additional interpretation.",
+      "readability": "Core health/ammo/objectives and OFF/upload states clear; thin small labels, distant silhouettes and stacked threat information harder at 390x844."
+    }
+  },
+  "learning_between_attempts": [
+    "First terminal stats and evidence were saved in an explicitly incomplete report before START FRESH",
+    "Carried forward handbook guidance, route/approach recovery behavior and need for clear coil entry",
+    "Attempt 2 used learned route to expose last coil without reopening map; not a causal improvement claim",
+    "More observed kills or displayed accuracy do not establish better quality or human reaction-time benefits"
+  ],
+  "evidence": {
+    "raw_log": "docs/media/build120-mobile-review2/actions.jsonl",
+    "directory": "docs/media/build120-mobile-review2",
+    "screenshots": [
+      "docs/media/build120-mobile-review2/a1-approach.jpg",
+      "docs/media/build120-mobile-review2/a1-coil1-reload.jpg",
+      "docs/media/build120-mobile-review2/a1-coil1b.jpg",
+      "docs/media/build120-mobile-review2/a1-coil2.jpg",
+      "docs/media/build120-mobile-review2/a1-coil3.jpg",
+      "docs/media/build120-mobile-review2/a1-custodian-route.jpg",
+      "docs/media/build120-mobile-review2/a1-deck-defense.jpg",
+      "docs/media/build120-mobile-review2/a1-deck-defense2.jpg",
+      "docs/media/build120-mobile-review2/a1-deck1.jpg",
+      "docs/media/build120-mobile-review2/a1-deck2.jpg",
+      "docs/media/build120-mobile-review2/a1-deploy.jpg",
+      "docs/media/build120-mobile-review2/a1-elian1.jpg",
+      "docs/media/build120-mobile-review2/a1-elian2.jpg",
+      "docs/media/build120-mobile-review2/a1-elian3.jpg",
+      "docs/media/build120-mobile-review2/a1-entry.jpg",
+      "docs/media/build120-mobile-review2/a1-manual-combat.jpg",
+      "docs/media/build120-mobile-review2/a1-map.jpg",
+      "docs/media/build120-mobile-review2/a1-patrol-manual.jpg",
+      "docs/media/build120-mobile-review2/a1-patrol-turn.jpg",
+      "docs/media/build120-mobile-review2/a1-rear-turn.jpg",
+      "docs/media/build120-mobile-review2/a1-route1.jpg",
+      "docs/media/build120-mobile-review2/a1-route2.jpg",
+      "docs/media/build120-mobile-review2/a1-route3.jpg",
+      "docs/media/build120-mobile-review2/a1-scene-turn.jpg",
+      "docs/media/build120-mobile-review2/a1-sera1.jpg",
+      "docs/media/build120-mobile-review2/a1-sera2.jpg",
+      "docs/media/build120-mobile-review2/a1-sera3.jpg",
+      "docs/media/build120-mobile-review2/a1-terminal.jpg",
+      "docs/media/build120-mobile-review2/a2-close-patrol.jpg",
+      "docs/media/build120-mobile-review2/a2-coil1.jpg",
+      "docs/media/build120-mobile-review2/a2-coil1b.jpg",
+      "docs/media/build120-mobile-review2/a2-coil2.jpg",
+      "docs/media/build120-mobile-review2/a2-coil3.jpg",
+      "docs/media/build120-mobile-review2/a2-custodian-route.jpg",
+      "docs/media/build120-mobile-review2/a2-deck1.jpg",
+      "docs/media/build120-mobile-review2/a2-deck2.jpg",
+      "docs/media/build120-mobile-review2/a2-defense1.jpg",
+      "docs/media/build120-mobile-review2/a2-defense2.jpg",
+      "docs/media/build120-mobile-review2/a2-elian1.jpg",
+      "docs/media/build120-mobile-review2/a2-elian2.jpg",
+      "docs/media/build120-mobile-review2/a2-elian3.jpg",
+      "docs/media/build120-mobile-review2/a2-entry.jpg",
+      "docs/media/build120-mobile-review2/a2-manual-guard.jpg",
+      "docs/media/build120-mobile-review2/a2-mara1.jpg",
+      "docs/media/build120-mobile-review2/a2-mara2.jpg",
+      "docs/media/build120-mobile-review2/a2-patrol-manual.jpg",
+      "docs/media/build120-mobile-review2/a2-route1.jpg",
+      "docs/media/build120-mobile-review2/a2-route2.jpg",
+      "docs/media/build120-mobile-review2/a2-sera1.jpg",
+      "docs/media/build120-mobile-review2/a2-sera2.jpg",
+      "docs/media/build120-mobile-review2/a2-sera3.jpg",
+      "docs/media/build120-mobile-review2/a2-start-fresh.jpg",
+      "docs/media/build120-mobile-review2/a2-terminal.jpg",
+      "docs/media/build120-mobile-review2/how-to.jpg",
+      "docs/media/build120-mobile-review2/menu.jpg"
+    ]
+  },
+  "scope": {
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "inspection": "Only helper --help, visible helper outputs/screenshots and own report/evidence; no game source/tests/docs/prior reviews/recordings/internal handles or target metadata inspected",
+    "other_changes": "Only owned report and helper-owned evidence/logs; no build, commit, publication, server or settings changes",
+    "input": "Native JSON-lines touch, at most two contacts, one new scene target per batch; screenshots viewed separately before adaptive input; waits requested <=3000ms and boundaries honored"
+  }
+}

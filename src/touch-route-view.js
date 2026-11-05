@@ -9,12 +9,6 @@ export function touchRouteLandmark(g,key=g.touchUseGoal){
  const core=g.coreNodes.find(c=>`core-${c.id}`===key);
  return core?{x:core.position.x,z:core.position.z}:null;
 }
-function nearEnd(g,state){
- if(!state?.path?.[state.index])return false;
- const path=state.path;let distance=Math.hypot(path[state.index].x-g.player.x,path[state.index].z-g.player.z);
- for(let i=state.index+1;i<path.length&&distance<=3;i++)distance+=Math.hypot(path[i].x-path[i-1].x,path[i].z-path[i-1].z);
- return distance<=3;
-}
 export function updateTouchRouteView(g,guide,dt){
  g.touchRouteFraming=false;
  if(!g.touchMode||!g.touchUse||!g.touchUseGoal||g.phase!=='playing'||g.touchRouteManualLook||g.aim||g.mouseDown||!g.grounded||g.vault||g.dashTime>0)return;
@@ -23,8 +17,9 @@ export function updateTouchRouteView(g,guide,dt){
  // landmark without walking again. FIRE, ADS and manual look retain priority.
  const arrived=g.touchRouteArrived&&(g.touchRouteCounted||g.touchUseGoal==='custodian');
  const braked=g.touchRecoveryBraked&&g.touchRouteCounted;
- const state=g.touchRouteActive?g.touchRoute:g.touchApproachActive?g.touchApproach:null;
- const landmark=(arrived||braked||nearEnd(g,state))?touchRouteLandmark(g):null;
+ // Finish walking the clear path before framing its landmark. Turning toward
+ // a receiver early can point through the wall beside its final approach.
+ const landmark=(arrived||braked)?touchRouteLandmark(g):null;
  let target;
  if(landmark&&Math.hypot(landmark.x-g.player.x,landmark.z-g.player.z)>.1){
   target=Math.atan2(g.player.x-landmark.x,g.player.z-landmark.z);g.touchRouteFraming=true;
@@ -33,7 +28,10 @@ export function updateTouchRouteView(g,guide,dt){
  const delta=Math.atan2(Math.sin(target-g.yaw),Math.cos(target-g.yaw));
  // Deliberate stationary boss facing is quicker than the walking camera.
  // It still stops on release and yields to FIRE, ADS and manual view.
- const turnRate=arrived&&g.touchUseGoal==='custodian'?6:1.8;
+ // Catch up after a sharp path bend, then settle at the original gentle rate.
+ // Reduced motion keeps the original walking rate. No path/speed changes.
+ const catchup=g.options.reducedMotion?0:Math.min(1,Math.max(0,(Math.abs(delta)-.35)/.7));
+ const turnRate=arrived&&g.touchUseGoal==='custodian'?6:1.8+1.8*catchup;
  g.yaw+=Math.max(-turnRate*dt,Math.min(turnRate*dt,delta));
  g.pitch+=Math.max(-.7*dt,Math.min(.7*dt,-g.pitch));
 }

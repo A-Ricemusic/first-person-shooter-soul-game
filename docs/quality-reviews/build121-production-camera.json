@@ -1,0 +1,438 @@
+{
+  "method": "ENGINEERING: arranged healthy suit, suppressed enemies/boss attacks and selected map goals. Native held USE follows real paths/collision in real time. A test-only wrapper records actual positions and camera after each update; the frozen120 camera is replayed over the same recorded guide/state/elapsed dt. Replay is a counterfactual camera comparison, not a second physical mission, hardware benchmark or independent enjoyment result. Additional native ownership and lifecycle fixtures are isolated from the trace.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        {
+          "name": "native full receiver route traces retain safe travel and compare camera over identical inputs",
+          "passed": true
+        },
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": 0,
+          "before": {
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0,
+              1.7,
+              31
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 0,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": 0.997625500810766,
+            "pitch": 0,
+            "position": [
+              -21.65352808298929,
+              1.7,
+              -13.485466867603346
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 2,
+          "before": {
+            "yaw": 0.997625500810766,
+            "pitch": 0,
+            "position": [
+              -21.65352808298929,
+              1.7,
+              -13.485466867603346
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -1.2032065922590838,
+            "pitch": 0,
+            "position": [
+              -2.5967874246441527,
+              1.7,
+              -31.999995637568972
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 1,
+          "before": {
+            "yaw": -1.2032065922590838,
+            "pitch": 0,
+            "position": [
+              -2.5967874246441527,
+              1.7,
+              -31.999995637568972
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -2.166053882060913,
+            "pitch": 0,
+            "position": [
+              21.689065287464974,
+              1.7,
+              -16.564958420266034
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 6,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        }
+      ],
+      "trace": {
+        "frames": 4185,
+        "movingSeconds": 26.71553333333271,
+        "meanPathErrorDegrees": {
+          "candidate": 4.85321424645799,
+          "baseline": 9.02941578334113
+        },
+        "closeWallSeconds": {
+          "candidate": 0.574966666666668,
+          "baseline": 0.741633333333334
+        },
+        "earlyFraming": 0
+      },
+      "reduced": {
+        "delta": 0.3600000000000021,
+        "elapsed": 0.24999999999999992,
+        "framing": false
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": false,
+      "checks": [
+        {
+          "name": "native full receiver route traces retain safe travel and compare camera over identical inputs",
+          "passed": true
+        },
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": 0,
+          "before": {
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0,
+              1.7,
+              31
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 0,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": 0.9976271762347644,
+            "pitch": 0,
+            "position": [
+              -21.653550983541493,
+              1.7,
+              -13.485487217890265
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 2,
+          "before": {
+            "yaw": 0.9976271762347644,
+            "pitch": 0,
+            "position": [
+              -21.653550983541493,
+              1.7,
+              -13.485487217890265
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -1.2031665517589945,
+            "pitch": 0,
+            "position": [
+              -2.5964773928242977,
+              1.7,
+              -31.99999564498487
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 1,
+          "before": {
+            "yaw": -1.2031665517589945,
+            "pitch": 0,
+            "position": [
+              -2.5964773928242977,
+              1.7,
+              -31.99999564498487
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -2.166009495673035,
+            "pitch": 0,
+            "position": [
+              21.688824036856825,
+              1.7,
+              -16.564972169280566
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 6,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        }
+      ],
+      "trace": {
+        "frames": 4204,
+        "movingSeconds": 26.715733333332743,
+        "meanPathErrorDegrees": {
+          "candidate": 4.853261403985305,
+          "baseline": 9.029638854353502
+        },
+        "closeWallSeconds": {
+          "candidate": 0.5749666666666662,
+          "baseline": 0.741533333333332
+        },
+        "earlyFraming": 0
+      },
+      "reduced": {
+        "delta": 0.36000000000000254,
+        "elapsed": 0.24999999999999992,
+        "framing": false
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "insets": false,
+      "checks": [
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "reduced": {
+        "delta": 0.3598200000000005,
+        "elapsed": 0.24999999999999997,
+        "framing": false
+      }
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "insets": false,
+      "checks": [
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "reduced": {
+        "delta": 0.3600000000000012,
+        "elapsed": 0.25,
+        "framing": false
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "insets": true,
+      "checks": [
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "reduced": {
+        "delta": 0.3600000000000012,
+        "elapsed": 0.2666999999999998,
+        "framing": false
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": true,
+      "checks": [
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": true
+        },
+        {
+          "name": "scene ownership holds view, release clears walking, pause/map/rotate do not catch up",
+          "passed": true
+        },
+        {
+          "name": "reduced motion retains original bounded walking rate and suppresses early framing",
+          "passed": true
+        }
+      ],
+      "reduced": {
+        "delta": 0.3600000000000012,
+        "elapsed": 0.23339999999999964,
+        "framing": false
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 29549,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

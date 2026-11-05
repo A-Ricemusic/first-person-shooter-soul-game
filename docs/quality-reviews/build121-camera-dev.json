@@ -1,0 +1,164 @@
+{
+  "method": "ENGINEERING: arranged healthy suit, suppressed enemies/boss attacks and selected map goals. Native held USE follows real paths/collision in real time. A test-only wrapper records actual positions and camera after each update; the frozen120 camera is replayed over the same recorded guide/state/elapsed dt. Replay is a counterfactual camera comparison, not a second physical mission, hardware benchmark or independent enjoyment result. Additional native ownership and lifecycle fixtures are isolated from the trace.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        {
+          "name": "native full receiver route traces retain safe travel and compare camera over identical inputs",
+          "passed": true
+        },
+        {
+          "name": "FIRE and AIM retain camera priority while route continues",
+          "passed": false,
+          "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 0.9646703559023919\n- 1.2\n"
+        }
+      ],
+      "routes": [
+        {
+          "id": 0,
+          "before": {
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0,
+              1.7,
+              31
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 0,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": 0.9976254697173773,
+            "pitch": 0,
+            "position": [
+              -21.65352766997077,
+              1.7,
+              -13.485466497664694
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 2,
+          "before": {
+            "yaw": 0.9976254697173773,
+            "pitch": 0,
+            "position": [
+              -21.65352766997077,
+              1.7,
+              -13.485466497664694
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 2,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -1.2031356408454479,
+            "pitch": 0,
+            "position": [
+              -2.5962383371111413,
+              1.7,
+              -31.99999555748496
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        },
+        {
+          "id": 1,
+          "before": {
+            "yaw": -1.2031356408454479,
+            "pitch": 0,
+            "position": [
+              -2.5962383371111413,
+              1.7,
+              -31.99999555748496
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 4,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          },
+          "after": {
+            "yaw": -2.1660163717458065,
+            "pitch": 0,
+            "position": [
+              21.688853693720933,
+              1.7,
+              -16.56497526580992
+            ],
+            "held": false,
+            "active": false,
+            "manual": false,
+            "framing": false,
+            "aim": false,
+            "fire": false,
+            "queries": 6,
+            "phase": "playing",
+            "ammo": 30,
+            "health": 100
+          }
+        }
+      ],
+      "trace": {
+        "frames": 4199,
+        "movingSeconds": 26.71553333333272,
+        "meanPathErrorDegrees": {
+          "candidate": 4.853253347514316,
+          "baseline": 9.01776197866074
+        },
+        "closeWallSeconds": {
+          "candidate": 0.574966666666668,
+          "baseline": 0.741633333333334
+        },
+        "earlyFraming": 0
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 28326,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 0.9646703559023919\n- 1.2\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-camera.mjs:22:383\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-camera.mjs:16:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-route-camera.mjs:22:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
