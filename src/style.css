@@ -473,3 +473,16 @@ body.touch-mode #extraction-panel[data-mode="closing"] #extraction-progress{back
 @media(orientation:landscape) and (max-height:360px) and (min-width:480px){
  body.touch-mode.touch-uplink-stage #extraction-panel{left:calc(var(--touch-left) + 130px);right:auto;width:min(300px,calc(100vw - var(--touch-left) - var(--touch-right) - 130px))} body.touch-mode.touch-uplink-stage #threat-focus{top:calc(var(--touch-top) + 126px);max-width:140px}
 }
+
+/* Wide phone travel is docked beside MOVE to free the left combat sightline.
+   Compact/portrait profiles retain the vertical arrangement. */
+@media(orientation:landscape) and (min-width:760px) and (min-height:360px){
+ body.touch-mode #touch-use{left:calc(max(20px,var(--touch-left)) + 130px);bottom:max(20px,var(--touch-bottom))}
+ body.touch-mode .hud-bottom{left:calc(max(20px,var(--touch-left)) + 258px)}
+}
+/* Critical phone words stay readable without adding another live panel. */
+body.touch-mode .hud-mission strong{font-size:14px;line-height:18px;letter-spacing:.2px}
+body.touch-mode #touch-controls button,body.touch-mode #touch-use{font-size:14px;line-height:16px}
+body.touch-mode #touch-threat-cue{padding:5px 10px}
+body.touch-mode #touch-threat-cue small{font-size:13px;line-height:15px}
+body.touch-mode #touch-threat-cue b{font-size:16px;line-height:19px}

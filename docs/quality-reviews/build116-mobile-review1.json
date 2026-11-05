@@ -1,0 +1,206 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "build": {
+    "expected_source": "1c80666271b973278b0b238c4dca6924661f4711",
+    "visible_title": "BUILD 116",
+    "source_verified": false
+  },
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "url": "http://127.0.0.1:61512/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh_start": "deploy",
+      "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:03",
+        "score": 6806,
+        "accuracy_percent": 79,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 15,
+        "tap_aims": 9,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build116-mobile-review1/attempt1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Opening guard and visible right perimeter patrol: simultaneous left MOVE and right FIRE drag; target/sentinel down feedback. Second patrol tap plus anchored FIRE.",
+        "scene_turn": "Swipe heading 345 to 009; fresh capture inspected.",
+        "map": "Opened and visibly closed; Custodian approach selected by default.",
+        "misses_corrections": "Custodian fire returned INERT COVER and depleted magazine; retargeted exposed coils, waited for automatic reload, used approach route to reach coil I.",
+        "unassessed": [
+          "continuous held-burst rearming comfort",
+          "dash",
+          "jump",
+          "tool selection",
+          "aim zoom",
+          "manual navigation through entire mission"
+        ]
+      },
+      "helpful": [
+        "Explicit target-down and coil-off feedback",
+        "Contextual route/approach prompts",
+        "Map approach and upload progress"
+      ],
+      "frustrating": [
+        "Distant coil geometry difficult to separate from cover",
+        "Small distant patrol at far right",
+        "Overlays compete with scene space"
+      ],
+      "settings_changes": []
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "visible START FRESH via #play-again act plus capture; no checkpoint retry",
+      "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:05",
+        "score": 6798,
+        "accuracy_percent": 69,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 15,
+        "tap_aims": 8,
+        "route_assists": 12,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build116-mobile-review1/attempt2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Opening guard: tap then simultaneous MOVE and FIRE drag, TARGET DOWN. Visible right perimeter patrol after scene turn: tap then simultaneous MOVE and FIRE drag, LAST SENTINEL DOWN.",
+        "scene_turn": "Scene swipe changed heading 000 to 037, inspected before targeting patrol.",
+        "misses_corrections": "Left patrol tap at x=.17 y=.557 near HOLD ROUTE did not turn/acquire; FIRE spent 11 rounds with COVER feedback. Patrol not immediately corrected; left unresolved while routing. At deck a sentinel was killed; cannot establish whether same patrol. Coil III first burst depleted last 3 rounds and left it at 69%; waited through reload and retargeted fresh visible open coil to disable.",
+        "damage": "Stationary phase waits reduced shield from 60 through 41,28 to 9; health remained 100 in inspected captures. Shield recovered while returning to deck.",
+        "map": "Not opened in second attempt.",
+        "unassessed": [
+          "continuous held-burst rearming comfort",
+          "dash",
+          "jump",
+          "tool selection",
+          "aim zoom",
+          "full manual mission navigation"
+        ]
+      },
+      "helpful": [
+        "Closer entry made coil identification easier",
+        "Readable OPEN/ARMORED and coil OFF indicators",
+        "Upload percentage and stay-on-deck instruction"
+      ],
+      "frustrating": [
+        "Left UI overlay competed with patrol tap; burst hit cover",
+        "Stationary phase waiting left threats behind view",
+        "Three coils and cover visually dense"
+      ],
+      "settings_changes": []
+    }
+  ],
+  "limitations": [
+    "Synthetic native-touch Chromium at 844x390, software WebGL; no physical-phone or Safari certification.",
+    "Every capture releases contacts and pauses play; automatic approximately 3s live / 1.2s FIRE observation boundaries were respected. Cannot infer human reaction-time or causal game-quality benefit; continuous burst rearming comfort unassessed.",
+    "Audio, hardware performance and continuous enjoyment unassessed.",
+    "Only visible UI inspected; helper output is retained as raw evidence.",
+    "Capture pauses clear AIM and close TOOLS; no zoom/tool inference was made. No continuous held-burst rearming conclusion is supported by automatic contact releases.",
+    "Frequent paused observations increase inspection opportunity; this does not establish human reaction-time comfort or a causal game-quality benefit.",
+    "Recovered-memory reading and extended enjoyment not assessed. No enjoyment claim inferred from wins."
+  ],
+  "evidence_prefix": "docs/media/build116-mobile-review1",
+  "cleanup": {
+    "status": "complete",
+    "close": "Explicit helper close; closed event browserClosed=true; awaited session exit_code=0.",
+    "driver_pid": 26204,
+    "chrome_pid": 26214,
+    "verification": "ps -p 26204,26214 -o pid=,ppid=,command= returned no rows, exit code 1. Both exact owned PIDs absent; no kill used."
+  },
+  "learning_between_attempts": [
+    "Knew HOLD APPROACH transitions into memory recovery and HOLD ROUTE traverses mission waypoints.",
+    "Used closer Custodian entry before firing in second attempt; knew to seek orange exposed coils and respect phase labels.",
+    "Familiarity did not prevent a patrol targeting miss or low shield; no claim of causal improvement from captures."
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 10 exceptional. Subjective holistic scores for only observed emulated play, not derived from wins or mission score.",
+    "overall_mobile": 7,
+    "controls": 7,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "Two coherent complete mission runs, usable touch combat sample and helpful navigation; target visibility and overlay competition limited confidence.",
+      "controls": "Simultaneous native MOVE/FIRE drag and scene turn worked in both runs. Tap aim helped acquire patrols. Left patrol tap failed near overlay; sustained real-time ergonomics unassessed.",
+      "gameplay": "Observed recovery, phased coil disabling and deck defense formed a clear short objective sequence. Cover feedback and exposed windows encouraged correction. Heavy route assistance limits assessment of free traversal and long-term variety.",
+      "presentation": "Consistent teal/amber language, rain, wet ground and station structures created a cohesive mood; clear restrained completion screen. Software renderer appearance only; audio unassessed.",
+      "usability": "Contextual hold labels, map approach, memory confirmations, automatic reload and START FRESH were helpful. Multiple assistance labels and threats competed for attention; some target/cover distinctions took trial shots.",
+      "readability": "Large health/ammo and explicit feedback readable. Distant patrols/coils small, world signs small, and controls/messages obscure scene edges at 844x390."
+    }
+  },
+  "identity_note": "Visible BUILD 116 matched expected title. Frozen SHA supplied by requester, not inspected or independently verified under visible-only scope.",
+  "method": "Read helper --help only. No source/tests/docs/prior reviews/recordings/internal-state inspection. Exactly 2 fresh runs, no checkpoint retry or third run. Each returned screenshot viewed separately before adaptive input. All waits <=3000ms; observationBoundary requested/executed timings inspected. No settings changed, keyboard, mouse, evaluation, alternate URLs or game mutations.",
+  "raw_action_log": "docs/media/build116-mobile-review1/actions.jsonl",
+  "screenshots": [
+    "docs/media/build116-mobile-review1/attempt1-approach.jpg",
+    "docs/media/build116-mobile-review1/attempt1-coil1.jpg",
+    "docs/media/build116-mobile-review1/attempt1-custodian-fire1.jpg",
+    "docs/media/build116-mobile-review1/attempt1-custodian-fire2.jpg",
+    "docs/media/build116-mobile-review1/attempt1-custodian-fire3.jpg",
+    "docs/media/build116-mobile-review1/attempt1-custodian-fire4.jpg",
+    "docs/media/build116-mobile-review1/attempt1-custodian-route.jpg",
+    "docs/media/build116-mobile-review1/attempt1-deck-fire.jpg",
+    "docs/media/build116-mobile-review1/attempt1-deck-route1.jpg",
+    "docs/media/build116-mobile-review1/attempt1-deploy.jpg",
+    "docs/media/build116-mobile-review1/attempt1-entry-route.jpg",
+    "docs/media/build116-mobile-review1/attempt1-manual-fire.jpg",
+    "docs/media/build116-mobile-review1/attempt1-map.jpg",
+    "docs/media/build116-mobile-review1/attempt1-memory2.jpg",
+    "docs/media/build116-mobile-review1/attempt1-memory3.jpg",
+    "docs/media/build116-mobile-review1/attempt1-patrol-manual.jpg",
+    "docs/media/build116-mobile-review1/attempt1-patrol2.jpg",
+    "docs/media/build116-mobile-review1/attempt1-reload.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route1.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route2.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route3.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route4.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route5.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route6.jpg",
+    "docs/media/build116-mobile-review1/attempt1-route7.jpg",
+    "docs/media/build116-mobile-review1/attempt1-scene-turn.jpg",
+    "docs/media/build116-mobile-review1/attempt1-terminal.jpg",
+    "docs/media/build116-mobile-review1/attempt1-uplink1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-coil1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-coil2.jpg",
+    "docs/media/build116-mobile-review1/attempt2-coil3-off.jpg",
+    "docs/media/build116-mobile-review1/attempt2-coil3-try.jpg",
+    "docs/media/build116-mobile-review1/attempt2-custodian-entry.jpg",
+    "docs/media/build116-mobile-review1/attempt2-custodian-route1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-deck-fire1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-deck-fire2.jpg",
+    "docs/media/build116-mobile-review1/attempt2-deck-route1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-manual-opening.jpg",
+    "docs/media/build116-mobile-review1/attempt2-memory1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-memory2.jpg",
+    "docs/media/build116-mobile-review1/attempt2-memory3.jpg",
+    "docs/media/build116-mobile-review1/attempt2-open-check.jpg",
+    "docs/media/build116-mobile-review1/attempt2-patrol-manual.jpg",
+    "docs/media/build116-mobile-review1/attempt2-patrol2.jpg",
+    "docs/media/build116-mobile-review1/attempt2-phase-wait.jpg",
+    "docs/media/build116-mobile-review1/attempt2-reload.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route1.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route2.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route3.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route4.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route5.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route6.jpg",
+    "docs/media/build116-mobile-review1/attempt2-route7.jpg",
+    "docs/media/build116-mobile-review1/attempt2-start-fresh.jpg",
+    "docs/media/build116-mobile-review1/attempt2-terminal.jpg",
+    "docs/media/build116-mobile-review1/attempt2-turn.jpg",
+    "docs/media/build116-mobile-review1/attempt2-uplink1.jpg",
+    "docs/media/build116-mobile-review1/menu.jpg"
+  ]
+}
