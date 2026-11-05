@@ -1,0 +1,12 @@
+// Affected anchored phone annotations, tap/occlusion, HUD, direction and feedback contracts.
+import {spawn} from 'node:child_process';
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','61469','--strictPort'],{stdio:['ignore','pipe','inherit']});
+try{
+ await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('preview timeout')),15000);server.once('exit',code=>{clearTimeout(timer);reject(Error('preview exit '+code))});server.stdout.on('data',d=>{if(String(d).includes('61469')){clearTimeout(timer);resolve()}})});
+ const prefix=process.env.MOBILE_PREFIX||'mobile-production';
+ for(const file of ['tests/mobile-marker-legibility.mjs','tests/mobile-tap-tolerance.mjs','tests/mobile-tap-aim.mjs','tests/mobile-rifle-assist.mjs','tests/mobile-compact-controls.mjs','tests/mobile-compass-cues.mjs','tests/mobile-rifle-readout.mjs','tests/mobile-confirmation.mjs']){
+  const child=spawn(process.execPath,[file],{stdio:'inherit',env:{...process.env,MOBILE_PREFIX:prefix,MOBILE_MARKER_PREFIX:prefix+'-markers',MOBILE_TOLERANCE_PREFIX:prefix+'-tolerance',MOBILE_CONFIRM_PREFIX:prefix+'-confirmation',MOBILE_PAINT_PREFIX:prefix+'-paint',MOBILE_UI_PREFIX:prefix+'-usability',MOBILE_AIM_PREFIX:prefix+'-aim-hud',MOBILE_INSET_PREFIX:prefix+'-insets',MOBILE_SCENE_PREFIX:prefix+'-scene',MOBILE_TURN_PREFIX:prefix+'-turn-route',MOBILE_PLAN_PREFIX:prefix+'-planning-recovery',MOBILE_THUMB_PREFIX:prefix+'-thumb-layout',MOBILE_EXIT_PREFIX:prefix+'-north-exit',MOBILE_COMPACT_PREFIX:prefix+'-compact',MOBILE_ASSIST_PREFIX:prefix+'-rifle-assist',MOBILE_VAULT_PREFIX:prefix+'-auto-vault',MOBILE_PRECISION_PREFIX:prefix+'-precision-recovery',MOBILE_TAP_PREFIX:prefix+'-tap-aim',MOBILE_APPROACH_PREFIX:prefix+'-approach',MOBILE_CUES_PREFIX:prefix+'-compass-cues',MOBILE_RESULT_PREFIX:prefix+'-result-touch',MOBILE_PROJECTION_PREFIX:prefix+'-projection',MOBILE_FOLLOW_PREFIX:prefix+'-route-follow',MOBILE_CADENCE_PREFIX:prefix+'-cadence',MOBILE_DESTINATION_PREFIX:prefix+'-destination',MOBILE_DEFENSE_PREFIX:prefix+'-defense',MOBILE_SUPPLY_PREFIX:prefix+'-supplies',MOBILE_RELOAD_PREFIX:prefix+'-route-reload',MOBILE_BOSS_APPROACH_PREFIX:prefix+'-boss-approach',MOBILE_READOUT_PREFIX:prefix+'-readout',MOBILE_URL:'http://127.0.0.1:61469/'}});
+  const code=await new Promise(resolve=>child.once('exit',resolve));
+  if(code!==0)process.exitCode=code||1;
+ }
+}finally{server.kill('SIGTERM');await new Promise(resolve=>server.exitCode!==null?resolve():server.once('exit',resolve))}

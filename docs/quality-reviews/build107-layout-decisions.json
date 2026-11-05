@@ -1,0 +1,18 @@
+{
+  "baseline": "build107-layout-baseline.json",
+  "initial": "build107-layout-initial.json",
+  "connectorAndCachePass": "build107-layout-final.json",
+  "finalFocused": "build107-layout-checked.json",
+  "changesAfterInitial": [
+    "Added a short SVG leader connecting the caption and its exact symbol.",
+    "Cached caption measurements by text, marker class and viewport.",
+    "Increased the nearest-caption spacing from28 to32 pixels, preserving nearby portrait captions clear of the central aperture; added a check for that retained caption."
+  ],
+  "failedRuntimeChecks": [],
+  "limitations": [
+    "Forced marker compositions establish geometry, not human recognition or aiming improvement.",
+    "The small320px composition suppresses the near-objective caption rather than moving its symbol.",
+    "Dense annotations can yield; existing route compass/map provide offscreen guidance.",
+    "Caption positions and their leaders do not select targets or change physical hits."
+  ]
+}

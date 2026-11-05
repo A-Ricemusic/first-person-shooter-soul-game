@@ -1,0 +1,169 @@
+{
+  "status": "complete \u2014 exactly two fresh terminal attempts",
+  "build": {
+    "expected_source": "39321b17d58415da74ebaa706f80c6692f58c632",
+    "visible_title": "SOULFALL / BUILD 106",
+    "source_verified": false
+  },
+  "method": {
+    "url": "http://127.0.0.1:61502/",
+    "viewport": [
+      390,
+      844
+    ],
+    "input": "native two-contact Chromium touch",
+    "limits": [
+      "Synthetic paused Chromium with software WebGL; captures clear contacts and pause play. Approximately 3s live / 1.2s cumulative FIRE boundaries shorten waits. No human reaction-time or causal quality benefit inferred.",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+    ],
+    "fresh_attempts": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "second_start": "Visible START FRESH after first terminal screenshot was viewed and partial report written",
+    "observation_compliance": "Every new screenshot viewed separately before adaptive input. At most one new scene target per batch; fresh view after TURN or scene changes. Waits requested at most 3000ms; actual shortened waits and boundaries preserved in actions.jsonl.",
+    "pause_effect": "Captures pause play and clear contacts. This substantially segments combat and travel and gives inspection time; no human reaction-time or causal game-quality benefit inferred."
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_evidence": "docs/media/build106-mobile-review2/a1-terminal.jpg",
+      "stats": {
+        "eliminations": 7,
+        "mission_time": "01:01",
+        "score": 7013,
+        "accuracy_percent": 52,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 3,
+        "tap_aims": 9,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "coverage": [
+        "manual MOVE forward (a1-manual-move)",
+        "FIRE hold and small drag (a1-fire-drag); effect subtle, precision unassessed",
+        "scene tap aim; TURN; ROUTE; APPROACH; automatic reload; map opened and visibly closed; three memories; three coils; uplink"
+      ],
+      "settings_changes": [],
+      "helpful": [
+        "Target down and coil OFF feedback",
+        "Route/approach prompts and memory saved confirmation",
+        "Map shows extraction route and remains open for planning"
+      ],
+      "frustrating": [
+        "Small distant enemies and world labels in portrait",
+        "Shots spent on COVER / INERT COVER / NO IMPACT",
+        "Short TURN required another observed continuation; full turn not instantaneous in first capture"
+      ],
+      "uncertainties": [
+        "No AIM modifier, DASH, JUMP/VAULT, tools or independent manual route assessed",
+        "Paused synthetic sampling limits combat and control judgment"
+      ],
+      "coverage_notes": "Manual forward stick changed position and scene; a small FIRE drag was sent but isolated sensitivity cannot be established. Most travel was assisted. Map remained open until visible CLOSE MAP was tapped.",
+      "failure_details": [
+        "COVER after opening guard and patrol firing; shots continued after targets dropped.",
+        "Coil III exhausted magazine at 37%; held FIRE through automatic reload on next observed batch.",
+        "Upload shots produced COVER and NO IMPACT, even while progress continued. No death, checkpoint retry or uplink retry."
+      ]
+    },
+    {
+      "number": 2,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_evidence": "docs/media/build106-mobile-review2/a2-terminal.jpg",
+      "stats": {
+        "eliminations": 6,
+        "mission_time": "01:00",
+        "score": 6998,
+        "accuracy_percent": 39,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 6,
+        "tap_aims": 8,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "displayed_touch_assist_personal_best": 7013
+      },
+      "settings_changes": [],
+      "coverage": [
+        "Fresh start confirmed 00:00, 100 health, 60 shield, 30/180 ammo and no memories",
+        "Manual diagonal MOVE while holding FIRE with two contacts (a2-move-fire)",
+        "Scene horizontal drag visibly turned north to northwest (a2-scene-drag)",
+        "TURN plus observed wait; tap aim at opening warden optic",
+        "AIM hold plus FIRE drag with two contacts produced sight view (a2-aim-fire-drag)",
+        "ROUTE, APPROACH, three memories, three coils, auto reload and uplink defense"
+      ],
+      "helpful": [
+        "Handbook learning transferred: hold approach until memory saved, use HUD OFF to confirm coils",
+        "AIM sight visibly distinct; scene swipe visibly changes heading",
+        "Fresh-start result retained prior personal best while resetting mission",
+        "Progress stayed visible through upload and terminal screen was fully readable"
+      ],
+      "frustrating": [
+        "Manual move/fire shifted opening guard to right edge; initial firing left it alive/damaged, requiring TURN and another target attempt",
+        "COVER after aimed shot sequence; not all ammunition produced useful damage",
+        "Coil III again reached 37% as magazine emptied; continuation needed after reload",
+        "Distant upload enemies occupy few pixels among cover; final firing batch showed NO IMPACT alongside TARGET DOWN"
+      ],
+      "failures": [
+        "Opening guard not eliminated by first simultaneous move/fire batch",
+        "Repeated cover/no-impact shots; 39% terminal accuracy",
+        "Shield fell to 34 during coil route/attack; no death or retry"
+      ],
+      "uncertainties": [
+        "No isolated AIM sensitivity comparison",
+        "No sustained manual navigation or continuous combat assessed",
+        "DASH, JUMP/VAULT, TOOLS, supplies and recovered memory prose unassessed; no inference about enjoyment of these features"
+      ]
+    }
+  ],
+  "learning_between_attempts": "Hold ROUTE again after each capture; HOLD APPROACH confirms and saves memories. Coil OFF/percent HUD is more reliable to read than tiny world numerals. Second run will sample simultaneous move/fire and scene drag.",
+  "cleanup": {
+    "status": "complete",
+    "explicit_close_sent": true,
+    "helper_exit_code": 0,
+    "helper_closed_message": {
+      "driverPid": 54901,
+      "chromePid": 54911,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 54901,54911 -o pid=,ppid=,stat=,command=",
+    "verification_result": "No output; exit 1: both exact owned driver/Chrome PIDs absent. No processes killed."
+  },
+  "reviewer": "Independent mobile review; GPT-6.1 Sol; no agents",
+  "scope": "Visible-only helper help and visible game UI only. No source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. Expected frozen source supplied by requester, not independently verified.",
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good observed experience with meaningful friction; 10 exceptional and consistently clear. Subjective bounded review of observed portrait play, not a win/loss grade or physical-device certification. Overall holistic, not arithmetic mean.",
+    "overall_mobile": 7,
+    "controls": 7,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 8,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "Clear objective progression, coherent atmosphere and useful assistance made both sampled missions understandable. Portrait target size, crowded overlays and cover/no-impact feedback cost clarity. Paused assisted runs leave substantial manual-control and continuous-play uncertainty.",
+      "controls": "Large anchored buttons, tap aim, TURN and two-contact MOVE/FIRE worked in brief samples. Scene swipe visibly turned, AIM showed sights. Precision, sustained manual traversal and physical ergonomics remain unassessed; assisted travel does not establish these.",
+      "gameplay": "Observed sequence of recovery, coil disable and upload provided clear changing tasks with damage and reload decisions. Short assisted completion and segmented combat limit judgment of sustained challenge or enjoyment.",
+      "presentation": "Cohesive teal/amber industrial rain scene, strong title and terminal hierarchy, clear target/coil feedback. Dark geometry and overlapping scene text reduce visual clarity. Audio excluded.",
+      "usability": "Visible handbook, contextual HOLD APPROACH, SAVED confirmation, paused planning map and readable fresh-start results reduced uncertainty. Several competing prompts and cover states still demand interpretation.",
+      "readability": "Primary health/ammo/objective and terminal stats readable; small world lettering, Roman numerals, distant enemies and instructional overlays are harder to parse in 390px portrait."
+    }
+  },
+  "evidence": {
+    "directory": "docs/media/build106-mobile-review2",
+    "raw_action_log": "docs/media/build106-mobile-review2/actions.jsonl",
+    "attempt1_terminal": "docs/media/build106-mobile-review2/a1-terminal.jpg",
+    "attempt2_terminal": "docs/media/build106-mobile-review2/a2-terminal.jpg",
+    "identity": "docs/media/build106-mobile-review2/initial.jpg",
+    "controls": [
+      "docs/media/build106-mobile-review2/a1-manual-move.jpg",
+      "docs/media/build106-mobile-review2/a1-fire-drag.jpg",
+      "docs/media/build106-mobile-review2/a2-move-fire.jpg",
+      "docs/media/build106-mobile-review2/a2-scene-drag.jpg",
+      "docs/media/build106-mobile-review2/a2-aim-fire-drag.jpg"
+    ],
+    "map": "docs/media/build106-mobile-review2/a1-map.jpg"
+  }
+}

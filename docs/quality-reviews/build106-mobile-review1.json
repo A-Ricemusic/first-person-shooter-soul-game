@@ -1,0 +1,255 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh attempts reached actual terminal win UI",
+  "identity": {
+    "expectedCommit": "39321b17d58415da74ebaa706f80c6692f58c632",
+    "sourceInspected": false,
+    "visibleBuild": "BUILD 106",
+    "url": "http://127.0.0.1:61502/",
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "fresh": true,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "01:07",
+        "score": 6458,
+        "accuracyPercent": 37,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 7,
+        "tapAims": 8,
+        "routeAssists": 12,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build106-mobile-review1/a1-terminal.jpg",
+      "coverage": [
+        "manual MOVE forward 1500ms visibly moved",
+        "target tap + FIRE hold",
+        "small FIRE drag",
+        "simultaneous native two-contact ROUTE and FIRE",
+        "TURN warning + FIRE",
+        "MAP overview opened and visibly closed",
+        "three receiver recoveries",
+        "all three coils disabled",
+        "deck upload completed"
+      ],
+      "failures": [
+        "Rounds hit COVER during route/firing and deck defense",
+        "Waited through armor while rear damage exhausted shield; health last seen 57",
+        "No DASH/JUMP/AIM/tools sample in attempt 1"
+      ],
+      "helpful": [
+        "Target-down, MEMORY SAVED and numbered coil OFF confirmations",
+        "Route recovery and map completion markers",
+        "Clear upload percentage"
+      ],
+      "friction": [
+        "Route travel changed facing while firing",
+        "Small text and message overlays competed with combat",
+        "Stationary coil focus exposed rear damage"
+      ],
+      "settingsChanges": [],
+      "notCovered": [
+        "No AIM hold, DASH, JUMP/VAULT, TOOLS action or independent scene swipe",
+        "Manual MOVE and FIRE drag were brief samples; assisted completion does not establish manual-control proficiency"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh": true,
+      "startMethod": "Visible START FRESH tapped after first terminal result was saved to this report; a2-fresh shows 00:00, 100 health, 60 shield, 30/180 ammo and first objective",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "missionTime": "01:02",
+        "score": 6811,
+        "accuracyPercent": 26,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 4,
+        "tapAims": 8,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build106-mobile-review1/a2-terminal.jpg",
+      "coverage": [
+        "Manual MOVE diagonal forward/right concurrently with FIRE and small FIRE drag (a2-move-fire-drag)",
+        "Target tap plus DASH and FIRE; visible PHASE BREAK / DISCHARGE CANCELED / ARMOR OPEN 3s and cooldown (a2-dash-fire)",
+        "AIM hold with FIRE drag using two contacts (a2-aim-fire); target no longer visible and reload; precision effect not isolated",
+        "Stationary target taps and FIRE holds",
+        "Assisted route travel and all three receiver recoveries",
+        "Short 600ms FIRE holds disabled numbered coils individually",
+        "Held deck through terminal upload; FIRE triggered reload after empty magazine"
+      ],
+      "notCovered": [
+        "No planning map in attempt 2",
+        "No JUMP/VAULT, TOOLS action selection or independent scene swipe in either attempt",
+        "No sustained manual navigation, collision course or extensive fine-aim sensitivity assessment"
+      ],
+      "failures": [
+        "Opening simultaneous MOVE/FIRE left guard visibly damaged, rather than down, after first hold",
+        "Tap near right-side guard (a2-side-threat) left heading unchanged and COVER feedback; guard remained visible. Exact cause uncertain; no source inspected",
+        "Waiting for last coil window still allowed rear damage",
+        "Empty magazine stayed empty through route; later FIRE triggered reload; several defense shots still reported COVER"
+      ],
+      "helpful": [
+        "DASH gave explicit phase-break confirmation and cooldown",
+        "Short coil bursts left ammo for subsequent targets",
+        "Coil OFF and upload progress clearly confirmed objective state"
+      ],
+      "friction": [
+        "Target centering was not consistently apparent near right-side controls",
+        "Cover feedback explained failed shots but did not always make obstruction obvious",
+        "Combat hints and large overlays competed with the scene"
+      ],
+      "settingsChanges": []
+    }
+  ],
+  "limitations": [
+    "Synthetic Chromium native touch emulation with software-WebGL fallback",
+    "Helper pauses and clears contacts after captures; about 3s live / 1.2s FIRE boundaries frequently shorten waits",
+    "Screenshots inspected before each adaptive continuation; no human reaction-time or causal quality benefit inferred",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Frequent paused inspection and transport latency fragment play; no inferred human reaction-time, causal game-quality benefit, physical-device certification or enjoyment of unassessed content. No loss screen or checkpoint-retry experience assessed."
+  ],
+  "evidenceDirectory": "docs/media/build106-mobile-review1",
+  "scores": {
+    "overallMobile": 7.0,
+    "controls": 6.5,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable friction, 9 excellent with minor issues, 10 exceptional within assessed scope. Overall is a holistic judgment, not the mission outcome or arithmetic average.",
+    "reasons": {
+      "overallMobile": "A coherent, visually distinctive mission with useful touch assistance and objective feedback, held back by inconsistent apparent target centering, obstruction ambiguity and dense text at 844x390. Two wins do not by themselves establish quality or enjoyment.",
+      "controls": "Large anchored controls, tap aim, MOVE and two-contact FIRE worked in sampled situations. DASH feedback was clear. Route-facing changes and the right-side target tap complicated aiming. Brief drags do not establish fine control quality.",
+      "gameplay": "Receiver recovery, armor windows, numbered coils and final upload formed a legible progression; managing rear pressure while focusing forward added observed tension. Route assistance dominated navigation and enabled substantial bypass of patrol combat, limiting assessment of manual traversal and sustained encounters.",
+      "presentation": "Strong rainy industrial atmosphere, restrained cyan/amber palette and coherent title/result layouts. Judged visually only; audio unassessed.",
+      "usability": "Visible fresh restart, paused map with completion markers, recovery confirmations and progress percentages reduced uncertainty. Empty-magazine reload required a FIRE action in the observed run; cover outcomes were sometimes difficult to diagnose.",
+      "readability": "Core health/ammo/buttons and coil states readable; small environmental signage, compact hints, dense handbook and overlay competition strained the narrow landscape view. Handbook lower text was clipped behind its scroll area; it invited swiping but I did not fully scroll it."
+    }
+  },
+  "cleanup": {
+    "status": "COMPLETE",
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "helperReportedBrowserClosed": true,
+    "ownedDriverPid": 49620,
+    "ownedChromePid": 49630,
+    "verificationCommand": "ps -p 49620,49630 -o pid=,ppid=,comm=",
+    "verificationResult": "No process rows returned; exact owned PIDs absent",
+    "broadKillUsed": false
+  },
+  "learningBetweenAttempts": [
+    "Stop ROUTE before selecting and firing at targets because travel can change facing",
+    "Inspect numbered coil OFF panel before selecting next target",
+    "Use shorter FIRE bursts on coils instead of continuing into inert cover",
+    "Attempt 2 sampled simultaneous manual MOVE/FIRE, AIM/FIRE and DASH, extending attempt 1 coverage; no causal claim about improved timing or quality from frequent pauses"
+  ],
+  "holisticAssessment": {
+    "overallMobile": 7.0,
+    "controls": 6.5,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable friction, 9 excellent with minor issues, 10 exceptional within assessed scope. Overall is a holistic judgment, not the mission outcome or arithmetic average.",
+    "reasons": {
+      "overallMobile": "A coherent, visually distinctive mission with useful touch assistance and objective feedback, held back by inconsistent apparent target centering, obstruction ambiguity and dense text at 844x390. Two wins do not by themselves establish quality or enjoyment.",
+      "controls": "Large anchored controls, tap aim, MOVE and two-contact FIRE worked in sampled situations. DASH feedback was clear. Route-facing changes and the right-side target tap complicated aiming. Brief drags do not establish fine control quality.",
+      "gameplay": "Receiver recovery, armor windows, numbered coils and final upload formed a legible progression; managing rear pressure while focusing forward added observed tension. Route assistance dominated navigation and enabled substantial bypass of patrol combat, limiting assessment of manual traversal and sustained encounters.",
+      "presentation": "Strong rainy industrial atmosphere, restrained cyan/amber palette and coherent title/result layouts. Judged visually only; audio unassessed.",
+      "usability": "Visible fresh restart, paused map with completion markers, recovery confirmations and progress percentages reduced uncertainty. Empty-magazine reload required a FIRE action in the observed run; cover outcomes were sometimes difficult to diagnose.",
+      "readability": "Core health/ammo/buttons and coil states readable; small environmental signage, compact hints, dense handbook and overlay competition strained the narrow landscape view. Handbook lower text was clipped behind its scroll area; it invited swiping but I did not fully scroll it."
+    }
+  },
+  "protocol": {
+    "readOnlyLearning": "Only tools/mobile-playtest.mjs --help read to learn helper; no game source/tests/docs/prior reviews/recordings/internal state/target metadata inspected",
+    "identityVerification": "BUILD 106 visibly observed in initial-menu.jpg; supplied frozen source SHA recorded but not independently verified by inspecting repository",
+    "input": "JSON-lines native Chromium two-contact touch; visible controls, selectors and normalized viewport geometry",
+    "attemptCount": 2,
+    "checkpointRetries": 0,
+    "thirdAttempt": false,
+    "settingsChanges": [],
+    "observation": "Every returned capture viewed separately before dependent input; planning map visibly closed. Helper shortened waits recorded in raw log; requested wait duration never assumed executed. No bypass of observation boundaries.",
+    "fileScope": "Only own report and own media directory created/updated; no implementation edits/builds/commits/publication/server changes/agents"
+  },
+  "rawEvidence": {
+    "actionsLog": "docs/media/build106-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build106-mobile-review1/a1-coil-wait.jpg",
+      "docs/media/build106-mobile-review1/a1-coil1.jpg",
+      "docs/media/build106-mobile-review1/a1-coil2.jpg",
+      "docs/media/build106-mobile-review1/a1-coil3try.jpg",
+      "docs/media/build106-mobile-review1/a1-deck-defend.jpg",
+      "docs/media/build106-mobile-review1/a1-deck-defend2.jpg",
+      "docs/media/build106-mobile-review1/a1-deck-route.jpg",
+      "docs/media/build106-mobile-review1/a1-fire-drag.jpg",
+      "docs/media/build106-mobile-review1/a1-jammer-route1.jpg",
+      "docs/media/build106-mobile-review1/a1-jammer-route2.jpg",
+      "docs/media/build106-mobile-review1/a1-manual-move.jpg",
+      "docs/media/build106-mobile-review1/a1-map.jpg",
+      "docs/media/build106-mobile-review1/a1-recover1.jpg",
+      "docs/media/build106-mobile-review1/a1-recover2.jpg",
+      "docs/media/build106-mobile-review1/a1-recover3.jpg",
+      "docs/media/build106-mobile-review1/a1-reload.jpg",
+      "docs/media/build106-mobile-review1/a1-route1.jpg",
+      "docs/media/build106-mobile-review1/a1-route2.jpg",
+      "docs/media/build106-mobile-review1/a1-route3.jpg",
+      "docs/media/build106-mobile-review1/a1-route4.jpg",
+      "docs/media/build106-mobile-review1/a1-route5.jpg",
+      "docs/media/build106-mobile-review1/a1-route6.jpg",
+      "docs/media/build106-mobile-review1/a1-route7.jpg",
+      "docs/media/build106-mobile-review1/a1-sentinel.jpg",
+      "docs/media/build106-mobile-review1/a1-sentinel2.jpg",
+      "docs/media/build106-mobile-review1/a1-terminal.jpg",
+      "docs/media/build106-mobile-review1/a1-turn-fire.jpg",
+      "docs/media/build106-mobile-review1/a1-upload1.jpg",
+      "docs/media/build106-mobile-review1/a1-window.jpg",
+      "docs/media/build106-mobile-review1/a2-aim-fire.jpg",
+      "docs/media/build106-mobile-review1/a2-coil-wait.jpg",
+      "docs/media/build106-mobile-review1/a2-coil1.jpg",
+      "docs/media/build106-mobile-review1/a2-coil2.jpg",
+      "docs/media/build106-mobile-review1/a2-coil3.jpg",
+      "docs/media/build106-mobile-review1/a2-dash-fire.jpg",
+      "docs/media/build106-mobile-review1/a2-deck-route.jpg",
+      "docs/media/build106-mobile-review1/a2-fresh.jpg",
+      "docs/media/build106-mobile-review1/a2-jammer-route1.jpg",
+      "docs/media/build106-mobile-review1/a2-jammer-route2.jpg",
+      "docs/media/build106-mobile-review1/a2-move-fire-drag.jpg",
+      "docs/media/build106-mobile-review1/a2-recover1.jpg",
+      "docs/media/build106-mobile-review1/a2-recover2.jpg",
+      "docs/media/build106-mobile-review1/a2-recover3.jpg",
+      "docs/media/build106-mobile-review1/a2-route1.jpg",
+      "docs/media/build106-mobile-review1/a2-route2.jpg",
+      "docs/media/build106-mobile-review1/a2-route3.jpg",
+      "docs/media/build106-mobile-review1/a2-route4.jpg",
+      "docs/media/build106-mobile-review1/a2-route5.jpg",
+      "docs/media/build106-mobile-review1/a2-route6.jpg",
+      "docs/media/build106-mobile-review1/a2-route7.jpg",
+      "docs/media/build106-mobile-review1/a2-side-threat.jpg",
+      "docs/media/build106-mobile-review1/a2-terminal.jpg",
+      "docs/media/build106-mobile-review1/a2-upload-defend.jpg",
+      "docs/media/build106-mobile-review1/a2-upload-reload.jpg",
+      "docs/media/build106-mobile-review1/a2-upload1.jpg",
+      "docs/media/build106-mobile-review1/a2-window.jpg",
+      "docs/media/build106-mobile-review1/a2-window2.jpg",
+      "docs/media/build106-mobile-review1/enter.jpg",
+      "docs/media/build106-mobile-review1/how-to-play.jpg",
+      "docs/media/build106-mobile-review1/initial-menu.jpg"
+    ],
+    "terminalScreenshots": [
+      "docs/media/build106-mobile-review1/a1-terminal.jpg",
+      "docs/media/build106-mobile-review1/a2-terminal.jpg"
+    ]
+  }
+}
