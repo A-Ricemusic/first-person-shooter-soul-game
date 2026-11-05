@@ -1,0 +1,268 @@
+{
+  "build": 109,
+  "frozenFilesVerified": 518,
+  "reports": [
+    {
+      "report": "build109-mobile-review1.json",
+      "sha256": "d1f0f90c708a592a175dd68c4b42d33abfbd5d9b4bd7632931a98d22d572557e",
+      "scores": {
+        "scale": "0 unusable; 5 mixed/playable with substantial friction; 7 good with noticeable rough edges; 9 excellent with minor friction; 10 exceptional across assessed scope. Holistic judgments from observed interaction, not computed from wins, scores or completion rate.",
+        "overall_mobile": 7.0,
+        "controls": 6.5,
+        "gameplay": 7.0,
+        "presentation": 8.0,
+        "usability": 7.5,
+        "readability": 6.5,
+        "reasons": {
+          "overall_mobile": "Coherent, completable touch mission with strong atmosphere and useful guidance; targeting clarity and crowded small-screen feedback temper the experience. Two assisted wins do not certify manual control quality.",
+          "controls": "MOVE, scene swipe, FIRE drag, AIM, DASH and JUMP responded in brief samples. Tap aim and two-contact route/fire made progress possible. Moving targets and armor/cover shots were hard to diagnose precisely; airborne route activation required retry. Sustained manual combat unassessed.",
+          "gameplay": "Recovery, exposed-coil timing and uplink survival formed a clear short progression. Shield loss added pressure. Much travel used route assists, so depth, challenge balance and continuous enjoyment remain uncertain.",
+          "presentation": "Consistent cyan/amber visual language, rain, reflective surfaces, industrial silhouettes and weapon/coil feedback created a cohesive mood. Audio and hardware smoothness unassessed.",
+          "usability": "Visible handbook, planning map, named receivers, changing hold prompts, SAVED/OFF states, upload percent and START FRESH supported completion. Reload trigger and airborne route behavior needed learning.",
+          "readability": "Health/ammo and main prompts were readable at 844x390. Distant enemies, small world labels, thin route marks and stacked banners/threat/interaction overlays demanded inspection; handbook lower content was clipped with scrolling indicated."
+        }
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+          "terminal_stats": {
+            "eliminations": 5,
+            "mission_time": "01:05",
+            "score": 6719,
+            "accuracy_percent": 40,
+            "critical_eliminations": 1,
+            "phase_evades": 0,
+            "uplink_retries": 0,
+            "assisted_shots": 1,
+            "tap_aims": 8,
+            "route_assists": 11,
+            "approach_assists": 6
+          },
+          "evidence": "docs/media/build109-mobile-review1/a1-terminal.jpg",
+          "coverage": [
+            "handbook",
+            "manual MOVE forward",
+            "FIRE hold and small drag",
+            "tap enemy and coil aiming",
+            "TURN warning",
+            "map open and visible CLOSE MAP",
+            "route and approach assists",
+            "three memories",
+            "three coils",
+            "uplink defense",
+            "automatic reload"
+          ],
+          "failures": [
+            "Distant patrol tap-and-fire spent ammo without immediate kill confirmation; some COVER/NO IMPACT feedback",
+            "Initial coil batch continued firing into inert coil after it switched OFF; retargeted on next viewed screen"
+          ],
+          "helpful": [
+            "TARGET DOWN and MEMORY SAVED confirmations",
+            "map receiver layout and route distance",
+            "numbered coil OFF states",
+            "upload percent"
+          ],
+          "uncertainties": [
+            "Manual turning, AIM zoom, DASH, JUMP, tools not yet sampled",
+            "Only brief manual movement and FIRE drag sampled; assisted route completion does not validate full manual controls",
+            "Later attempt showed reload requires further FIRE when stopped exactly at empty; first-run automatic-reload description is limited to continued firing"
+          ]
+        },
+        {
+          "attempt": 2,
+          "fresh_start": "Visible START FRESH on attempt-one result; timer 00:00, health 100, shield 60, ammo 30/180 observed",
+          "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+          "terminal_stats": {
+            "eliminations": 4,
+            "mission_time": "01:09",
+            "score": 6446,
+            "accuracy_percent": 43,
+            "critical_eliminations": 2,
+            "phase_evades": 0,
+            "uplink_retries": 0,
+            "assisted_shots": 2,
+            "tap_aims": 8,
+            "route_assists": 12,
+            "approach_assists": 5
+          },
+          "evidence": "docs/media/build109-mobile-review1/a2-terminal.jpg",
+          "coverage": [
+            "AIM zoom plus FIRE on opening guard: ARMOR HIT, guard not immediately eliminated",
+            "manual diagonal MOVE with DASH: visible displacement and cooldown",
+            "scene swipe: heading changed 000 to 345",
+            "JUMP: raised view and RETURN TO FLOOR cue",
+            "two-contact route plus FIRE",
+            "tap targeting on moving sentinel",
+            "route and approach recovery of all three memories",
+            "all three coils disabled",
+            "wait for armored/open cycle",
+            "uplink defense and reload"
+          ],
+          "failures": [
+            "Opening AIM burst hit armor without immediate kill",
+            "First route hold begun while airborne did not advance; repeated after landing and progressed",
+            "Moving sentinel shot batch spent remaining 11 rounds with COVER feedback; no immediate kill confirmation",
+            "Empty magazine persisted through route-only batch; additional FIRE contact triggered reload",
+            "Coil III window closed within burst leaving 15%; waited and finished on later OPEN view",
+            "Standing near coils while waiting depleted shield; reached deck with health 99/shield 0; later health 90/shield 0 during reload"
+          ],
+          "helpful": [
+            "DASH cooldown was visible",
+            "Scene swipe visibly turned view",
+            "Recovery prompts and SAVED confirmations remained legible",
+            "Coil OFF and percent states supported retargeting",
+            "UPLOADING percent and STAY ON DECK made final requirement clear"
+          ],
+          "uncertainties": [
+            "JUMP sampled once; vaulting and landing precision unassessed",
+            "DASH sampled once; terminal phase evades 0, so no claim of successful dodge",
+            "Scene swipe and MOVE sampled briefly; sustained manual navigation and fine aim unassessed",
+            "No tools, weapon switching, supplies selection, memory reading, difficulty/settings or checkpoint retry assessed"
+          ]
+        }
+      ],
+      "parentPidCheck": {
+        "pids": [
+          19736,
+          19746
+        ],
+        "exit": 1,
+        "absent": true
+      }
+    },
+    {
+      "report": "build109-mobile-review2.json",
+      "sha256": "c12e248ddd802e64e049cc78d1d11a286defd063e7df3b9c4856cd0749fc28c4",
+      "scores": {
+        "overallMobile": 7.0,
+        "controls": 6.5,
+        "gameplay": 6.5,
+        "presentation": 8.0,
+        "usability": 7.5,
+        "readability": 6.5
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 5,
+            "missionTime": "00:59",
+            "score": 6740,
+            "accuracyPercent": 35,
+            "criticalEliminations": 1,
+            "phaseEvades": 0,
+            "uplinkRetries": 0,
+            "assistedShots": 2,
+            "tapAims": 6,
+            "routeAssists": 11,
+            "approachAssists": 6
+          },
+          "terminalEvidence": "docs/media/build109-mobile-review2/a1-terminal.jpg",
+          "coverage": [
+            "handbook",
+            "manual MOVE forward plus simultaneous FIRE drag: entry guard target down, 100 health/60 shield",
+            "tap aim and anchored fire",
+            "TURN warning",
+            "route and receiver approach holds",
+            "map opened and visibly closed",
+            "three memories",
+            "all three coils",
+            "automatic reload",
+            "uplink defense"
+          ],
+          "failures": [
+            "rear threat left alive while traveling",
+            "no DASH/JUMP/AIM/tools sampled",
+            "one coil burst continued into inert cover"
+          ],
+          "settingsChanges": [],
+          "helpfulMoments": [
+            "Entry guard tap aim plus manual MOVE/FIRE drag produced TARGET DOWN with no observed damage.",
+            "HOLD APPROACH and MEMORY SAVED made receiver completion clear.",
+            "Map showed selected Custodian route and all three saved names; visibly closed before movement.",
+            "Numbered coil OFF states and upload percentage confirmed objective progress."
+          ],
+          "frustratingMoments": [
+            "Small enemies/world signs in the narrow portrait viewport.",
+            "Route movement sometimes ended facing a close wall while PATH indicated a turn.",
+            "Shooting continued into cover/inert cover after enemies or coils went down; observed 35% terminal accuracy."
+          ],
+          "uncertainties": [
+            "FIRE drag was only a small correction and combined with tap aim and manual movement; sensitivity/precision not established.",
+            "No continuous-play difficulty or enjoyment conclusion from paused assisted completion.",
+            "Terminal UI does not display final health/shield; last live preterminal view was 100/60."
+          ]
+        },
+        {
+          "attempt": 2,
+          "freshStart": "Visible START FRESH on first terminal screen; a2-start-fresh.jpg shows timer 00:00, 100 health, 60 shield, 30/180 ammunition and initial objective.",
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 4,
+            "missionTime": "01:04",
+            "score": 6702,
+            "accuracyPercent": 22,
+            "criticalEliminations": 2,
+            "phaseEvades": 0,
+            "uplinkRetries": 0,
+            "assistedShots": 2,
+            "tapAims": 6,
+            "routeAssists": 12,
+            "approachAssists": 5
+          },
+          "terminalEvidence": "docs/media/build109-mobile-review2/a2-terminal.jpg",
+          "coverage": [
+            "Manual MOVE diagonal plus simultaneous DASH tap: visible repositioning and DASH cooldown 3.4 (a2-manual-dash.jpg).",
+            "Scene contact drag: heading 000 to 018 degrees (a2-scene-drag.jpg).",
+            "AIM tap: zoomed sight visible (a2-aim.jpg); pause cleared AIM, subsequent route capture was fresh wide view. No claim of AIM persistence or aimed precision.",
+            "Tap aim and FIRE on patrol, moving edge enemy, coils, and close warden optic at upload.",
+            "Route, approach and recover holds; three memories, all coils, automatic reload and uplink upload."
+          ],
+          "settingsChanges": [],
+          "helpfulMoments": [
+            "Manual diagonal movement plus DASH visibly bypassed the entry guard without damage in that sample.",
+            "AIM visibly enlarged the sight picture.",
+            "HOLD TO RECOVER and saved card confirmed Mara completion.",
+            "OFF states and upload meter remained clear through completion."
+          ],
+          "frustratingMoments": [
+            "Edge enemy tap plus FIRE burst led to NO IMPACT and an empty-looking view (a2-interceptor-fire.jpg).",
+            "Shield fell to 41 on eastern travel, then 34 en route to coils while danger could be behind the view.",
+            "Bursts again continued into INERT COVER after coil destruction; terminal accuracy 22%."
+          ],
+          "failures": [
+            "Did not establish reliable tracking of the moving edge-of-screen enemy.",
+            "Did not use DASH to achieve a phase evade (terminal 0)."
+          ],
+          "uncertainties": [
+            "NO IMPACT does not establish that every shot missed or why; no internal hit state inspected.",
+            "Manual movement, scene drag, DASH and AIM samples were brief. AIM precision, sustained dual-thumb combat and dodge timing remain unassessed.",
+            "Last live view 100 health/60 shield; terminal does not show final health/shield."
+          ],
+          "notCovered": [
+            "JUMP/VAULT",
+            "TOOLS actions",
+            "weapon switching",
+            "AIM drag precision",
+            "map interaction in this attempt",
+            "full manual route completion",
+            "recovered-memory reading",
+            "settings menus"
+          ]
+        }
+      ],
+      "parentPidCheck": {
+        "pids": [
+          24887,
+          24897
+        ],
+        "exit": 1,
+        "absent": true
+      }
+    }
+  ],
+  "fourWins": true,
+  "limits": "Two paused synthetic attempts each. No isolated brightness benefit, physical-phone, Safari, audio, hardware-performance, reaction-time or continuous-enjoyment certification."
+}

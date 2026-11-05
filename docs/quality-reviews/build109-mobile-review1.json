@@ -1,0 +1,185 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "visible": "SOULFALL BUILD 109",
+    "requested_frozen_source": "a95951fa70010a2425872829ef0e7995805a3021",
+    "source_inspected": false
+  },
+  "environment": {
+    "viewport": [
+      844,
+      390
+    ],
+    "url": "http://127.0.0.1:61505/",
+    "input": "native CDP two-contact touch",
+    "limitations": [
+      "Synthetic Chromium; software WebGL fallback",
+      "Captures pause and clear contacts, including AIM; approximately 3s live or 1.2s FIRE boundaries shorten batches",
+      "No inference of human reaction-time benefit or causal game-quality benefit from pauses",
+      "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+    ]
+  },
+  "settings_changes": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 5,
+        "mission_time": "01:05",
+        "score": 6719,
+        "accuracy_percent": 40,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 1,
+        "tap_aims": 8,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "evidence": "docs/media/build109-mobile-review1/a1-terminal.jpg",
+      "coverage": [
+        "handbook",
+        "manual MOVE forward",
+        "FIRE hold and small drag",
+        "tap enemy and coil aiming",
+        "TURN warning",
+        "map open and visible CLOSE MAP",
+        "route and approach assists",
+        "three memories",
+        "three coils",
+        "uplink defense",
+        "automatic reload"
+      ],
+      "failures": [
+        "Distant patrol tap-and-fire spent ammo without immediate kill confirmation; some COVER/NO IMPACT feedback",
+        "Initial coil batch continued firing into inert coil after it switched OFF; retargeted on next viewed screen"
+      ],
+      "helpful": [
+        "TARGET DOWN and MEMORY SAVED confirmations",
+        "map receiver layout and route distance",
+        "numbered coil OFF states",
+        "upload percent"
+      ],
+      "uncertainties": [
+        "Manual turning, AIM zoom, DASH, JUMP, tools not yet sampled",
+        "Only brief manual movement and FIRE drag sampled; assisted route completion does not validate full manual controls",
+        "Later attempt showed reload requires further FIRE when stopped exactly at empty; first-run automatic-reload description is limited to continued firing"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH on attempt-one result; timer 00:00, health 100, shield 60, ammo 30/180 observed",
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 4,
+        "mission_time": "01:09",
+        "score": 6446,
+        "accuracy_percent": 43,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 2,
+        "tap_aims": 8,
+        "route_assists": 12,
+        "approach_assists": 5
+      },
+      "evidence": "docs/media/build109-mobile-review1/a2-terminal.jpg",
+      "coverage": [
+        "AIM zoom plus FIRE on opening guard: ARMOR HIT, guard not immediately eliminated",
+        "manual diagonal MOVE with DASH: visible displacement and cooldown",
+        "scene swipe: heading changed 000 to 345",
+        "JUMP: raised view and RETURN TO FLOOR cue",
+        "two-contact route plus FIRE",
+        "tap targeting on moving sentinel",
+        "route and approach recovery of all three memories",
+        "all three coils disabled",
+        "wait for armored/open cycle",
+        "uplink defense and reload"
+      ],
+      "failures": [
+        "Opening AIM burst hit armor without immediate kill",
+        "First route hold begun while airborne did not advance; repeated after landing and progressed",
+        "Moving sentinel shot batch spent remaining 11 rounds with COVER feedback; no immediate kill confirmation",
+        "Empty magazine persisted through route-only batch; additional FIRE contact triggered reload",
+        "Coil III window closed within burst leaving 15%; waited and finished on later OPEN view",
+        "Standing near coils while waiting depleted shield; reached deck with health 99/shield 0; later health 90/shield 0 during reload"
+      ],
+      "helpful": [
+        "DASH cooldown was visible",
+        "Scene swipe visibly turned view",
+        "Recovery prompts and SAVED confirmations remained legible",
+        "Coil OFF and percent states supported retargeting",
+        "UPLOADING percent and STAY ON DECK made final requirement clear"
+      ],
+      "uncertainties": [
+        "JUMP sampled once; vaulting and landing precision unassessed",
+        "DASH sampled once; terminal phase evades 0, so no claim of successful dodge",
+        "Scene swipe and MOVE sampled briefly; sustained manual navigation and fine aim unassessed",
+        "No tools, weapon switching, supplies selection, memory reading, difficulty/settings or checkpoint retry assessed"
+      ]
+    }
+  ],
+  "learned_between_attempts": [
+    "Hold route through APPROACH to save, then release after SAVED",
+    "Numbered coil OFF states make retargeting possible; avoid spending remaining batch on inert coil",
+    "Reload happens automatically when empty",
+    "Refinement during attempt two: empty ammo can persist until another FIRE input; no universal passive-auto-reload claim"
+  ],
+  "evidence_prefix": "docs/media/build109-mobile-review1",
+  "cleanup": {
+    "status": "PASS",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 19736,
+    "chrome_pid": 19746,
+    "verification": "ps -p 19736,19746 -o pid=,ppid=,stat=,command= returned no rows (exit 1); both exact owned PIDs absent",
+    "broad_kill_used": false,
+    "evidence": "docs/media/build109-mobile-review1/cleanup.json"
+  },
+  "review_method": {
+    "source_access": "Only helper --help read; no game source/tests/docs/prior reviews/recordings/internal state/target metadata inspected",
+    "interaction": "Visible selectors and geometry only; each screenshot viewed in a separate call before adaptive input. No keyboard/mouse/evaluation. No alternate URL. No checkpoint retries or third attempt. Map visibly closed.",
+    "boundaries": "Inspected timings and screenshots; requested 3000ms waits commonly shortened to roughly 2980ms and FIRE 1200ms waits to remaining budget. Did not bypass boundaries. Captures pause and clear all contacts and AIM; live zoom capture does not imply zoom survives resume.",
+    "build_identity": "BUILD 109 visible on title. Frozen SHA supplied by requester, not independently inspected or verified."
+  },
+  "scores": {
+    "scale": "0 unusable; 5 mixed/playable with substantial friction; 7 good with noticeable rough edges; 9 excellent with minor friction; 10 exceptional across assessed scope. Holistic judgments from observed interaction, not computed from wins, scores or completion rate.",
+    "overall_mobile": 7.0,
+    "controls": 6.5,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Coherent, completable touch mission with strong atmosphere and useful guidance; targeting clarity and crowded small-screen feedback temper the experience. Two assisted wins do not certify manual control quality.",
+      "controls": "MOVE, scene swipe, FIRE drag, AIM, DASH and JUMP responded in brief samples. Tap aim and two-contact route/fire made progress possible. Moving targets and armor/cover shots were hard to diagnose precisely; airborne route activation required retry. Sustained manual combat unassessed.",
+      "gameplay": "Recovery, exposed-coil timing and uplink survival formed a clear short progression. Shield loss added pressure. Much travel used route assists, so depth, challenge balance and continuous enjoyment remain uncertain.",
+      "presentation": "Consistent cyan/amber visual language, rain, reflective surfaces, industrial silhouettes and weapon/coil feedback created a cohesive mood. Audio and hardware smoothness unassessed.",
+      "usability": "Visible handbook, planning map, named receivers, changing hold prompts, SAVED/OFF states, upload percent and START FRESH supported completion. Reload trigger and airborne route behavior needed learning.",
+      "readability": "Health/ammo and main prompts were readable at 844x390. Distant enemies, small world labels, thin route marks and stacked banners/threat/interaction overlays demanded inspection; handbook lower content was clipped with scrolling indicated."
+    }
+  },
+  "unassessed": [
+    "Physical-device touch ergonomics",
+    "Safari",
+    "Audio",
+    "Hardware performance / frame pacing",
+    "Continuous unpaused enjoyment and reaction time",
+    "Sustained manual-only completion",
+    "Tools and weapons beyond coil rifle",
+    "Recovered memory prose",
+    "Vaulting",
+    "Checkpoint retry and failure recovery"
+  ],
+  "raw_evidence": {
+    "actions": "docs/media/build109-mobile-review1/actions.jsonl",
+    "captures_directory": "docs/media/build109-mobile-review1",
+    "capture_count": 62,
+    "terminal_images": [
+      "docs/media/build109-mobile-review1/a1-terminal.jpg",
+      "docs/media/build109-mobile-review1/a2-terminal.jpg"
+    ]
+  }
+}

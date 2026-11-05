@@ -713,6 +713,9 @@ export class Game {
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
     if (this.mouseDown) this.shoot();
+    // On touch, an exhausted active weapon reloads after its shot recovers,
+    // even if the firing thumb has already lifted. Partial magazines stay manual.
+    if(this.touchMode&&!this.vault&&this.ammo===0&&this.reserve>0&&this.fireTimer===0&&!this.reloading)this.reload();
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
     this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;

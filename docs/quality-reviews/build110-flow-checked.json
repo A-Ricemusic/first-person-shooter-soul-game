@@ -1,0 +1,2821 @@
+{
+  "method": "ENGINEERING native phone action targets and released-last-shot reload. Inventory and actor-free scenes arranged; actual native touches, live frame updates and reloads. No played mission, human ergonomics or performance claim. Baseline mode records the preserved previous build.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 642,
+          "y": 247,
+          "width": 190,
+          "height": 111,
+          "top": 247,
+          "right": 832,
+          "bottom": 358,
+          "left": 642
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 770,
+              "bottom": 299,
+              "left": 715
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 770,
+              "bottom": 358,
+              "left": 715
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 306,
+              "width": 55,
+              "height": 52,
+              "top": 306,
+              "right": 832,
+              "bottom": 358,
+              "left": 777
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 247,
+              "width": 66,
+              "height": 111,
+              "top": 247,
+              "right": 708,
+              "bottom": 358,
+              "left": 642
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 247,
+              "width": 55,
+              "height": 52,
+              "top": 247,
+              "right": 832,
+              "bottom": 299,
+              "left": 777
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 20,
+          "y": 254,
+          "width": 116,
+          "height": 116,
+          "top": 254,
+          "right": 136,
+          "bottom": 370,
+          "left": 20
+        },
+        "vitals": {
+          "x": 150,
+          "y": 324.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 324.8125,
+          "right": 250,
+          "bottom": 378,
+          "left": 150
+        },
+        "weapon": {
+          "x": 563,
+          "y": 308,
+          "width": 70,
+          "height": 70,
+          "top": 308,
+          "right": 633,
+          "bottom": 378,
+          "left": 563
+        },
+        "captionRects": [
+          {
+            "x": 649.984375,
+            "y": 303.5,
+            "width": 50.015625,
+            "height": 14,
+            "top": 303.5,
+            "right": 700,
+            "bottom": 317.5,
+            "left": 649.984375
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.41660000000000075,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6333666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.6499,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5249333333333344,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.6332666666666671,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6333666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.6499,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5249333333333344,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.6332666666666671,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.283299999999995,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5249333333333344,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.6332666666666671,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.283299999999995,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.7998999999999934,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5749333333333337,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.8832999999999926,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5749333333333337,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.8832999999999926,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.466500000000012,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.466500000000012,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.466500000000012,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333339,
+          "shots": 2,
+          "fire": false,
+          "time": 4.666500000000022,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.54153333333335,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5416333333333326,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.433200000000058,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.54153333333335,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.42483333333339,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.533100000000111,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.54153333333335,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.42483333333339,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 5.983066666666749,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.533100000000111,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": false,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 188,
+          "y": 701,
+          "width": 190,
+          "height": 111,
+          "top": 701,
+          "right": 378,
+          "bottom": 812,
+          "left": 188
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 316,
+              "bottom": 753,
+              "left": 261
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 316,
+              "bottom": 812,
+              "left": 261
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 760,
+              "width": 55,
+              "height": 52,
+              "top": 760,
+              "right": 378,
+              "bottom": 812,
+              "left": 323
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 701,
+              "width": 66,
+              "height": 111,
+              "top": 701,
+              "right": 254,
+              "bottom": 812,
+              "left": 188
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 701,
+              "width": 55,
+              "height": 52,
+              "top": 701,
+              "right": 378,
+              "bottom": 753,
+              "left": 323
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 20,
+          "y": 708,
+          "width": 116,
+          "height": 116,
+          "top": 708,
+          "right": 136,
+          "bottom": 824,
+          "left": 20
+        },
+        "vitals": {
+          "x": 12,
+          "y": 560.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 560.8125,
+          "right": 112,
+          "bottom": 614,
+          "left": 12
+        },
+        "weapon": {
+          "x": 299.484375,
+          "y": 544.609375,
+          "width": 78.515625,
+          "height": 69.390625,
+          "top": 544.609375,
+          "right": 378,
+          "bottom": 614,
+          "left": 299.484375
+        },
+        "captionRects": [
+          {
+            "x": 195.984375,
+            "y": 757.5,
+            "width": 50.015625,
+            "height": 14,
+            "top": 757.5,
+            "right": 246,
+            "bottom": 771.5,
+            "left": 195.984375
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.23339999999999966,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666664,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.40000000000000047,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2917333333333331,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666686,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666664,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.40000000000000047,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2917333333333331,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666686,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.049999999999996,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2917333333333331,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666686,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.049999999999996,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.5665999999999936,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.591733333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.6331999999999938,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.574933333333327,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.591733333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.6331999999999938,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.574933333333327,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.233199999999997,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.574933333333327,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.233166666666664,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.233199999999997,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333338,
+          "shots": 2,
+          "fire": false,
+          "time": 4.4499000000000075,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.324933333333335,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5417333333333331,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.216500000000043,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.324933333333335,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.208233333333377,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.333100000000093,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.324933333333335,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.208233333333377,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 5.766466666666735,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.324733333333425,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    },
+    {
+      "width": 568,
+      "height": 320,
+      "insets": false,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 392,
+          "y": 189,
+          "width": 164,
+          "height": 99,
+          "top": 189,
+          "right": 556,
+          "bottom": 288,
+          "left": 392
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 449,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 499,
+              "bottom": 235,
+              "left": 449
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 449,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 499,
+              "bottom": 288,
+              "left": 449
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 506,
+              "y": 242,
+              "width": 50,
+              "height": 46,
+              "top": 242,
+              "right": 556,
+              "bottom": 288,
+              "left": 506
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 392,
+              "y": 189,
+              "width": 50,
+              "height": 99,
+              "top": 189,
+              "right": 442,
+              "bottom": 288,
+              "left": 392
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 506,
+              "y": 189,
+              "width": 50,
+              "height": 46,
+              "top": 189,
+              "right": 556,
+              "bottom": 235,
+              "left": 506
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 20,
+          "y": 184,
+          "width": 116,
+          "height": 116,
+          "top": 184,
+          "right": 136,
+          "bottom": 300,
+          "left": 20
+        },
+        "vitals": {
+          "x": 150,
+          "y": 254.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 254.8125,
+          "right": 250,
+          "bottom": 308,
+          "left": 150
+        },
+        "weapon": {
+          "x": 313,
+          "y": 238,
+          "width": 70,
+          "height": 70,
+          "top": 238,
+          "right": 383,
+          "bottom": 308,
+          "left": 313
+        },
+        "captionRects": [
+          {
+            "x": 403.984375,
+            "y": 231.5,
+            "width": 26.015625,
+            "height": 14,
+            "top": 231.5,
+            "right": 430,
+            "bottom": 245.5,
+            "left": 403.984375
+          },
+          {
+            "x": 406.65625,
+            "y": 247.5,
+            "width": 20.6875,
+            "height": 14,
+            "top": 247.5,
+            "right": 427.34375,
+            "bottom": 261.5,
+            "left": 406.65625
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.21669999999999986,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666668,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.4000000000000005,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2916333333333337,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666736,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666668,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.4000000000000005,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2916333333333337,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666736,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.0666999999999955,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.2916333333333337,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.39996666666666736,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.058233333333329,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.583299999999994,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5750333333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.666599999999994,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.5916333333333275,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5750333333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.666599999999994,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.5916333333333275,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.249900000000002,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.5916333333333275,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.2498666666666685,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.249900000000002,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333338,
+          "shots": 2,
+          "fire": false,
+          "time": 4.516500000000014,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.391533333333341,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5416333333333326,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.283200000000049,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.391533333333341,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.274833333333381,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.383100000000097,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.391533333333341,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.274833333333381,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 5.824833333333403,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.383066666666764,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "insets": false,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 144,
+          "y": 509,
+          "width": 164,
+          "height": 99,
+          "top": 509,
+          "right": 308,
+          "bottom": 608,
+          "left": 144
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 20,
+          "y": 504,
+          "width": 116,
+          "height": 116,
+          "top": 504,
+          "right": 136,
+          "bottom": 620,
+          "left": 20
+        },
+        "vitals": {
+          "x": 12,
+          "y": 356.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 356.8125,
+          "right": 112,
+          "bottom": 410,
+          "left": 12
+        },
+        "weapon": {
+          "x": 229.484375,
+          "y": 340.609375,
+          "width": 78.515625,
+          "height": 69.390625,
+          "top": 340.609375,
+          "right": 308,
+          "bottom": 410,
+          "left": 229.484375
+        },
+        "captionRects": [
+          {
+            "x": 155.984375,
+            "y": 551.5,
+            "width": 26.015625,
+            "height": 14,
+            "top": 551.5,
+            "right": 182,
+            "bottom": 565.5,
+            "left": 155.984375
+          },
+          {
+            "x": 158.65625,
+            "y": 567.5,
+            "width": 20.6875,
+            "height": 14,
+            "top": 567.5,
+            "right": 179.34375,
+            "bottom": 581.5,
+            "left": 158.65625
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.3000000000000002,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6332666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.5000000000000008,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.3749333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.4832666666666678,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6332666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.5000000000000008,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.3749333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.4832666666666678,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.133299999999995,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.3749333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.4832666666666678,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.133299999999995,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.6498999999999935,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.574933333333334,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.7332999999999927,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.658233333333327,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.574933333333334,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.7332999999999927,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.658233333333327,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.316500000000001,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.658233333333327,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.316500000000001,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.316500000000001,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333334,
+          "shots": 2,
+          "fire": false,
+          "time": 4.5332000000000106,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.408233333333338,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5416333333333326,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.299900000000046,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.408233333333338,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.291533333333378,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.399800000000092,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.408233333333338,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.291533333333378,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 5.841533333333404,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.391533333333426,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "insets": true,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 642,
+          "y": 238,
+          "width": 190,
+          "height": 111,
+          "top": 238,
+          "right": 832,
+          "bottom": 349,
+          "left": 642
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 715,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 770,
+              "bottom": 290,
+              "left": 715
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 715,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 770,
+              "bottom": 349,
+              "left": 715
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 777,
+              "y": 297,
+              "width": 55,
+              "height": 52,
+              "top": 297,
+              "right": 832,
+              "bottom": 349,
+              "left": 777
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 642,
+              "y": 238,
+              "width": 66,
+              "height": 111,
+              "top": 238,
+              "right": 708,
+              "bottom": 349,
+              "left": 642
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 777,
+              "y": 238,
+              "width": 55,
+              "height": 52,
+              "top": 238,
+              "right": 832,
+              "bottom": 290,
+              "left": 777
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 44,
+          "y": 253,
+          "width": 116,
+          "height": 116,
+          "top": 253,
+          "right": 160,
+          "bottom": 369,
+          "left": 44
+        },
+        "vitals": {
+          "x": 174,
+          "y": 315.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 315.8125,
+          "right": 274,
+          "bottom": 369,
+          "left": 174
+        },
+        "weapon": {
+          "x": 560.5625,
+          "y": 299,
+          "width": 72.4375,
+          "height": 70,
+          "top": 299,
+          "right": 633,
+          "bottom": 369,
+          "left": 560.5625
+        },
+        "captionRects": [
+          {
+            "x": 649.984375,
+            "y": 294.5,
+            "width": 50.015625,
+            "height": 14,
+            "top": 294.5,
+            "right": 700,
+            "bottom": 308.5,
+            "left": 649.984375
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.43330000000000035,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6333666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.6333,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5083333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.616666666666667,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6333666666666669,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.6333,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5083333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.616666666666667,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.283299999999995,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.5083333333333341,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.616666666666667,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.2749333333333284,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.7998999999999934,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5750333333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.8831999999999933,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.5750333333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.8831999999999933,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.466500000000011,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.8082333333333267,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.466466666666678,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.483100000000011,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333346,
+          "shots": 2,
+          "fire": false,
+          "time": 4.749700000000024,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.624733333333352,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5416333333333326,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.516400000000061,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.624733333333352,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.508033333333393,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.6163000000001055,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.624733333333352,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.508033333333393,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.058033333333415,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.608033333333439,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": true,
+      "checks": [
+        {
+          "name": "expanded action targets and compact fallback fit without overlap or text wrapping",
+          "passed": true
+        },
+        {
+          "name": "released last rifle shot starts reload without a second FIRE press",
+          "passed": true
+        },
+        {
+          "name": "partial magazines remain manual and exhausted reserves never create rounds",
+          "passed": true
+        },
+        {
+          "name": "pause freezes reload and resume completes with unchanged ammunition cost",
+          "passed": true
+        },
+        {
+          "name": "released last breacher shot reloads after pump recovery and spends existing shells only",
+          "passed": true
+        },
+        {
+          "name": "swapping away cancels the reload and inactive empty weapons do not load in the background",
+          "passed": true
+        }
+      ],
+      "layout": {
+        "grid": {
+          "x": 188,
+          "y": 692,
+          "width": 190,
+          "height": 111,
+          "top": 692,
+          "right": 378,
+          "bottom": 803,
+          "left": 188
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 261,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 316,
+              "bottom": 744,
+              "left": 261
+            },
+            "hit": "touch-ads"
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 261,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 316,
+              "bottom": 803,
+              "left": 261
+            },
+            "hit": "touch-dash"
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 323,
+              "y": 751,
+              "width": 55,
+              "height": 52,
+              "top": 751,
+              "right": 378,
+              "bottom": 803,
+              "left": 323
+            },
+            "hit": "touch-jump"
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 188,
+              "y": 692,
+              "width": 66,
+              "height": 111,
+              "top": 692,
+              "right": 254,
+              "bottom": 803,
+              "left": 188
+            },
+            "hit": "touch-fire"
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 323,
+              "y": 692,
+              "width": 55,
+              "height": 52,
+              "top": 692,
+              "right": 378,
+              "bottom": 744,
+              "left": 323
+            },
+            "hit": "touch-more"
+          }
+        ],
+        "stick": {
+          "x": 44,
+          "y": 707,
+          "width": 116,
+          "height": 116,
+          "top": 707,
+          "right": 160,
+          "bottom": 823,
+          "left": 44
+        },
+        "vitals": {
+          "x": 44,
+          "y": 551.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 551.8125,
+          "right": 144,
+          "bottom": 605,
+          "left": 44
+        },
+        "weapon": {
+          "x": 299.484375,
+          "y": 535.609375,
+          "width": 78.515625,
+          "height": 69.390625,
+          "top": 535.609375,
+          "right": 378,
+          "bottom": 605,
+          "left": 299.484375
+        },
+        "captionRects": [
+          {
+            "x": 195.984375,
+            "y": 748.5,
+            "width": 50.015625,
+            "height": 14,
+            "top": 748.5,
+            "right": 246,
+            "bottom": 762.5,
+            "left": 195.984375
+          }
+        ]
+      },
+      "rifle": {
+        "before": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 1,
+          "reserve": 3,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 0,
+          "fire": false,
+          "time": 0.34990000000000043,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666668,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.5166000000000006,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.40823333333333395,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.5165666666666675,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 3,
+          "reloading": true,
+          "reloadTimer": 1.6499666666666668,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 0.5166000000000006,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.40823333333333395,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.5165666666666675,
+              "ammo": 0,
+              "reserve": 3
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 3,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.1831999999999954,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "rifle",
+              "time": 0.40823333333333395,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 0.5165666666666675,
+              "ammo": 0,
+              "reserve": 3
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 2.174833333333329,
+              "ammo": 3,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "noReserve": {
+        "phase": "playing",
+        "weapon": "rifle",
+        "ammo": 0,
+        "reserve": 0,
+        "reloading": false,
+        "reloadTimer": 0,
+        "fireTimer": 0,
+        "shots": 1,
+        "fire": false,
+        "time": 2.6998999999999933,
+        "events": []
+      },
+      "paused": {
+        "a": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.591733333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.7664999999999935,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.7082333333333266,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "c": {
+          "phase": "paused",
+          "weapon": "rifle",
+          "ammo": 0,
+          "reserve": 5,
+          "reloading": true,
+          "reloadTimer": 1.591733333333333,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 2.7664999999999935,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.7082333333333266,
+              "ammo": 0,
+              "reserve": 5
+            }
+          ]
+        },
+        "done": {
+          "phase": "playing",
+          "weapon": "rifle",
+          "ammo": 5,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.366500000000006,
+          "events": [
+            {
+              "type": "reload",
+              "weapon": "rifle",
+              "time": 2.7082333333333266,
+              "ammo": 0,
+              "reserve": 5
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "rifle",
+              "time": 4.366466666666672,
+              "ammo": 5,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "breacher": {
+        "before": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 1,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 1,
+          "fire": false,
+          "time": 4.366500000000006,
+          "events": []
+        },
+        "released": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0.7550333333333338,
+          "shots": 2,
+          "fire": false,
+          "time": 4.583100000000012,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.4581333333333415,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "afterRelease": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 0,
+          "reserve": 2,
+          "reloading": true,
+          "reloadTimer": 0.5417333333333331,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 5.349700000000043,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.4581333333333415,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.341433333333376,
+              "ammo": 0,
+              "reserve": 2
+            }
+          ]
+        },
+        "completed": {
+          "phase": "playing",
+          "weapon": "breacher",
+          "ammo": 2,
+          "reserve": 0,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0,
+          "shots": 2,
+          "fire": false,
+          "time": 6.449700000000091,
+          "events": [
+            {
+              "type": "shot",
+              "weapon": "breacher",
+              "time": 4.4581333333333415,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reload",
+              "weapon": "breacher",
+              "time": 5.341433333333376,
+              "ammo": 0,
+              "reserve": 2
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 5.899666666666732,
+              "ammo": 1,
+              "reserve": 1
+            },
+            {
+              "type": "reloadComplete",
+              "weapon": "breacher",
+              "time": 6.449700000000091,
+              "ammo": 2,
+              "reserve": 0
+            }
+          ]
+        }
+      },
+      "swap": {
+        "weapon": "breacher",
+        "slot": {
+          "ammo": 0,
+          "reserve": 10,
+          "reloading": false,
+          "reloadTimer": 0,
+          "fireTimer": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 31550,
+  "desktop": {
+    "touch": false,
+    "ammo": 0,
+    "reserve": 5,
+    "reloading": false
+  },
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

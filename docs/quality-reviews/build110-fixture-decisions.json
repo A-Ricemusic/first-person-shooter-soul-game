@@ -1,0 +1,36 @@
+{
+  "changes": {
+    "tests/mobile-thumb-layout.mjs": {
+      "before": "f5eccb61929aace881533767c5aebc1b3fed742d2c6ad21cc6ac80d080e2de69",
+      "after": "604555da391c496fa76899bff436602bc3b362d299995ee93e9284ce1449e07e"
+    },
+    "tests/mobile-visibility.mjs": {
+      "before": "8e65c8f20fdbc0e9a5683a553782a0df6c3442c9599b50c5cd34a24ba294f716",
+      "after": "03780b7dc2be66fd17aab8a3f766b3717a5fb4b218a41727743ada5ff1bce158"
+    }
+  },
+  "initialActionFixture": {
+    "report": "build110-flow-initial.json",
+    "source": "build110-action-flow-initial-fixture.txt",
+    "reason": "DOMRect serialization used an element-only helper. Corrected fixture uses DOMRect.toJSON. No app change needed."
+  },
+  "nativeComparison": {
+    "initialAggregationFailure": "build110-comparison-initial.json",
+    "reason": "The old rifle had already started held-fire reload before the native gesture released. No isolated rifle benefit is claimed from that comparison; breacher and candidate empty-state pause cases supply the relevant coverage."
+  },
+  "handbook": {
+    "initial": "build110-production-thumb-layout.json",
+    "observation": "build110-handbook-observation.json",
+    "image": "../media/build110-handbook-observation/failure.jpg",
+    "oldFixture": "build110-thumb-original-fixture.txt",
+    "reason": "The18th native swipe exposed the complete last paragraph, but the loop reported failure without checking that final swipe. Added the final visibility check, preserving the full-paragraph requirement.",
+    "retest": "build110-production-thumb-retest.json"
+  },
+  "settings": {
+    "initial": "build110-production-visibility.json",
+    "image": "../media/build110-production-visibility/568-false-false-failure.jpg",
+    "oldFixture": "build110-visibility-original-fixture.txt",
+    "reason": "A one-direction native swipe loop passed the desired slider and could not return to it on reopening Settings. Corrected fixture chooses native swipe direction from current target bounds; no DOM scrolling or product change. All brightness, persistence and rendering assertions remain.",
+    "retest": "build110-production-visibility-retest.json"
+  }
+}
