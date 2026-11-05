@@ -1,0 +1,17 @@
+{
+  "finalFixture": "tests/mobile-recent-results.mjs",
+  "finalFixtureSha256": "0e780bc03dbf26179ed701f2ffa3009f9b25867e306b9a1f586dbb0d87009ca9",
+  "baseline": "build115-recent-baseline-checked.json",
+  "sourceCandidate": "build115-recent-layout-checked.json",
+  "priorFailures": [
+    "build115-recent-initial.json",
+    "build115-recent-checked.json",
+    "build115-recent-font-checked.json"
+  ],
+  "corrections": "build115-recent-fixture-correction.json",
+  "notes": [
+    "Baseline and final candidate use the same current fixture; baseline mode samples actual results without asserting candidate-only behavior.",
+    "The0.609375px initial font-readiness ambiguity is distinct from the subsequent reproducible15px line wrap fixed in the stylesheet.",
+    "Final assertions retain exact ammo position/height, actor names and six-entry duplicate history checks."
+  ]
+}

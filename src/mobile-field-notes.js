@@ -5,7 +5,7 @@ export function installFieldNotes(){
  let entries=[],focusUntil=0;
  const paint=()=>{summary.textContent=`FIELD MESSAGES (${entries.length})`;list.replaceChildren(...entries.map(({text,time})=>{const item=document.createElement('li'),stamp=document.createElement('time'),copy=document.createElement('span');stamp.textContent=`${String(Math.floor(time/60)).padStart(2,'0')}:${String(Math.floor(time%60)).padStart(2,'0')}`;copy.textContent=text;item.append(stamp,copy);return item}));};
  return{
-  record(text,time){if(entries[0]?.text===text)return;entries.unshift({text,time:Math.max(0,time||0)});entries=entries.slice(0,6);paint()},
+  record(text,time,repeat=false){if(!repeat&&entries[0]?.text===text)return;entries.unshift({text,time:Math.max(0,time||0)});entries=entries.slice(0,6);paint()},
   reset(){entries=[];focusUntil=0;details.open=false;paint()},
   focused(phase,time,active){if(phase==='playing'&&active)focusUntil=time+.7;return phase==='playing'&&(active||time<focusUntil)}
  };

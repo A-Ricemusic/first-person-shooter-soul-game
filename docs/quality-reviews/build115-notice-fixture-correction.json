@@ -1,0 +1,10 @@
+{
+  "initialReport": "build115-production-tap-aim-initial.json",
+  "exactInitialFixture": "build115-tap-aim-before-notice-channel-fix.txt",
+  "diagnostic": "build115-notice-diagnostic.json",
+  "failure": "Fixture positioned an inherited advisory-channel notice but asserted it was opaque. Existing combat filtering hides advisory notices, yielding rect:null in4 profiles.",
+  "baselineObservation": "Both immutable114 and production115 hide the same advisory notice under combat focus and show it when explicitly priority.",
+  "correction": "Explicitly make the arranged occluding notice priority and restore its original channel in finally. Original rectangle and rejected-focus assertions unchanged; no runtime change.",
+  "beforeSha256": "02eb2dff0ce321066fef3c4a7f54a321df38beb3335be9ee0fae0924ff9b4f28",
+  "afterSha256": "98dbba9ab3e09b5516e21870eb15755b51c7cc9265b29736f6e74135da4e9b6c"
+}

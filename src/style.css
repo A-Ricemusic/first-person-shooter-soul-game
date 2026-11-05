@@ -460,3 +460,6 @@ body.touch-mode .world-marker.enemy.visor.optic.charging{opacity:1;color:#ffad72
 
 /* Confirmed mobile rifle completions end the current held burst. */
 body.touch-mode #touch-fire[data-latched="true"]{background:#163a36;border-color:#9cdece}
+
+/* Recent resolved outcome shares the reserved weapon line; never a target lock. */
+body.touch-mode #reload-label[data-impact="result"]:not([data-impact=""]){--impact-color:#bdddd5;font:700 14px/15px 'Barlow Condensed',Arial,sans-serif;letter-spacing:.1px;white-space:nowrap}

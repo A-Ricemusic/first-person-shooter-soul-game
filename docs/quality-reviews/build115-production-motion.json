@@ -1,0 +1,1207 @@
+{
+  "method": "ENGINEERING native FIRE/MOVE with an arranged elevated1000HP Sentinel moving laterally2m/s. AI replaced by this fixed trajectory after native reticle acquisition, zero spread, normal shot cadence. Tap-grace poses/clock waits and cancellation states are arranged separately. Physical cover and input/release cases separate; not ordinary control feel, human enjoyment or phone-performance evidence.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition",
+        "death, range, teleport, opt-out, reload and weapon change release ownership",
+        "pause clears ownership and resume cannot resurrect it",
+        "existing opt-out prevents camera motion and assisted count",
+        "fresh reticle miss never acquires a nearby actor through tolerance or shot assistance",
+        "simultaneous native MOVE/FIRE preserves current physical target ownership",
+        "fresh physical tap intent is revalidated at FIRE without snapping or automatic target switching",
+        "tap grace expires and cannot survive covered sight or a pause",
+        "native AIM keeps real reticle acquisition and current-pose motion compensation",
+        "followed shots use assisted personal best even after the preference is disabled"
+      ],
+      "motionStart": {
+        "time": 0.2,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.03319999999999982,
+          20,
+          -12
+        ],
+        "yaw": -0.0011957507765013643,
+        "pitch": -0.05540537487286834,
+        "health": 884,
+        "ammo": 28,
+        "shots": 2,
+        "hits": 2,
+        "assisted": 2,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.0009587081354043163,
+          "y": -0.025006515475058076
+        },
+        "phase": "playing"
+      },
+      "moving": {
+        "time": 1.0998999999999983,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.8329999999999975,
+          20,
+          -12
+        ],
+        "yaw": -0.09307681053804077,
+        "pitch": -0.05501139835955692,
+        "health": 228,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.03597701650396136,
+          "y": -0.01791890570329529
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "time": 1.2165999999999977,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          2.0663999999999962,
+          20,
+          -12
+        ],
+        "yaw": -0.10486709979865977,
+        "pitch": -0.05490624671743165,
+        "health": 146,
+        "ammo": 19,
+        "shots": 11,
+        "hits": 11,
+        "assisted": 11,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.04038967370170308,
+          "y": -0.01476326872668551
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "time": 0,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "time": 0.09999999999999999,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 966,
+          "ammo": 29,
+          "shots": 1,
+          "hits": 1,
+          "assisted": 1,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015049310054096618,
+            "y": -0.0009733384751631866
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "time": 0.36670000000000014,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015049933127317785,
+            "y": -0.011898939925791606
+          },
+          "phase": "playing"
+        }
+      },
+      "optOut": {
+        "time": 0.4000000000000004,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 720,
+        "ammo": 26,
+        "shots": 4,
+        "hits": 4,
+        "assisted": 0,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0,
+          "y": -0.012054343045899842
+        },
+        "phase": "playing"
+      },
+      "twoContacts": {
+        "time": 0.6333999999999997,
+        "player": [
+          1.031084460559521,
+          21.7,
+          -0.007795849382727381
+        ],
+        "actor": [
+          1.1000000000000008,
+          20,
+          -12
+        ],
+        "yaw": 0.014995966154932924,
+        "pitch": -0.05544007139546339,
+        "health": 604,
+        "ammo": 24,
+        "shots": 6,
+        "hits": 6,
+        "assisted": 6,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.012505556847141441,
+          "y": -0.02699322482771506
+        },
+        "phase": "playing"
+      },
+      "tapGrace": {
+        "time": 0.30000000000000016,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137741807,
+        "health": 918,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.05052824067414228,
+          "y": -0.00706550012875554
+        },
+        "phase": "playing",
+        "source": "tap"
+      },
+      "aimed": {
+        "time": 0.9999999999999992,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.9000000000000007,
+          20,
+          -12
+        ],
+        "yaw": -0.04358828750759205,
+        "pitch": -0.055313834246100924,
+        "health": 686,
+        "ammo": 25,
+        "shots": 5,
+        "hits": 5,
+        "assisted": 5,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.040456462518700075,
+          "y": -0.054339631446884376
+        },
+        "phase": "playing"
+      },
+      "scoring": {
+        "count": 3,
+        "normal": null,
+        "assisted": "3399",
+        "detail": "100% ACCURACY\n0 CRITICAL ELIMINATIONS\n0 PHASE EVADES\n0 UPLINK RETRIES\n3 ASSISTED SHOTS"
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition",
+        "death, range, teleport, opt-out, reload and weapon change release ownership",
+        "pause clears ownership and resume cannot resurrect it",
+        "existing opt-out prevents camera motion and assisted count",
+        "fresh reticle miss never acquires a nearby actor through tolerance or shot assistance",
+        "simultaneous native MOVE/FIRE preserves current physical target ownership",
+        "fresh physical tap intent is revalidated at FIRE without snapping or automatic target switching",
+        "tap grace expires and cannot survive covered sight or a pause",
+        "native AIM keeps real reticle acquisition and current-pose motion compensation",
+        "followed shots use assisted personal best even after the preference is disabled"
+      ],
+      "motionStart": {
+        "time": 0.18330000000000019,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 966,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0,
+          "y": -0.0032648638035704374
+        },
+        "phase": "playing"
+      },
+      "moving": {
+        "time": 1.0832999999999986,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.799999999999998,
+          20,
+          -12
+        ],
+        "yaw": -0.09056218724884486,
+        "pitch": -0.05502480966570778,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.07760638010234015,
+          "y": -0.010128171267120711
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "time": 1.166599999999998,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.9665999999999968,
+          20,
+          -12
+        ],
+        "yaw": -0.0999580046972974,
+        "pitch": -0.05494333588883629,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.08316444412580302,
+          "y": -0.003658777436185471
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "time": 0,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "time": 0.1165999999999999,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 884,
+          "ammo": 28,
+          "shots": 2,
+          "hits": 2,
+          "assisted": 2,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.03257166492378768,
+            "y": -0.008731886683876977
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "time": 0.3667000000000002,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.03256959860884895,
+            "y": -0.00549779559060012
+          },
+          "phase": "playing"
+        }
+      },
+      "optOut": {
+        "time": 0.40009999999999996,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 720,
+        "ammo": 26,
+        "shots": 4,
+        "hits": 4,
+        "assisted": 0,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0,
+          "y": -0.005569672594153395
+        },
+        "phase": "playing"
+      },
+      "twoContacts": {
+        "time": 0.6500000000000002,
+        "player": [
+          1.0309210572604575,
+          21.7,
+          -0.006246230947604087
+        ],
+        "actor": [
+          1.100000000000001,
+          20,
+          -12
+        ],
+        "yaw": 0.01372297545325977,
+        "pitch": -0.05543418083490488,
+        "health": 604,
+        "ammo": 24,
+        "shots": 6,
+        "hits": 6,
+        "assisted": 6,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.025422750687796147,
+          "y": -0.012472378156660465
+        },
+        "phase": "playing"
+      },
+      "tapGrace": {
+        "time": 0.3000000000000001,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137741807,
+        "health": 918,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.10934829520250278,
+          "y": -0.0032648638035718733
+        },
+        "phase": "playing",
+        "source": "tap"
+      },
+      "aimed": {
+        "time": 0.9998999999999988,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.9000000000000007,
+          20,
+          -12
+        ],
+        "yaw": -0.043674349158183655,
+        "pitch": -0.05531529000931867,
+        "health": 686,
+        "ammo": 25,
+        "shots": 5,
+        "hits": 5,
+        "assisted": 5,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.08731557949330536,
+          "y": -0.025124020005362416
+        },
+        "phase": "playing"
+      },
+      "scoring": {
+        "count": 3,
+        "normal": null,
+        "assisted": "3399",
+        "detail": "100% ACCURACY\n0 CRITICAL ELIMINATIONS\n0 PHASE EVADES\n0 UPLINK RETRIES\n3 ASSISTED SHOTS"
+      }
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition",
+        "death, range, teleport, opt-out, reload and weapon change release ownership",
+        "pause clears ownership and resume cannot resurrect it",
+        "existing opt-out prevents camera motion and assisted count",
+        "fresh reticle miss never acquires a nearby actor through tolerance or shot assistance",
+        "simultaneous native MOVE/FIRE preserves current physical target ownership",
+        "fresh physical tap intent is revalidated at FIRE without snapping or automatic target switching",
+        "tap grace expires and cannot survive covered sight or a pause",
+        "native AIM keeps real reticle acquisition and current-pose motion compensation",
+        "followed shots use assisted personal best even after the preference is disabled"
+      ],
+      "motionStart": {
+        "time": 0.16659999999999991,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 966,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0,
+          "y": -0.0043166578333850535
+        },
+        "phase": "playing"
+      },
+      "moving": {
+        "time": 1.0832999999999986,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.8333999999999988,
+          20,
+          -12
+        ],
+        "yaw": -0.08914369672498351,
+        "pitch": -0.05502470157074025,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.08304274242229777,
+          "y": -0.010953639234925898
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "time": 1.1498999999999986,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.9665999999999981,
+          20,
+          -12
+        ],
+        "yaw": -0.09628509055200021,
+        "pitch": -0.054962591796680386,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.08796541467027277,
+          "y": -0.004857685848202781
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "time": 0,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "time": 0.11670000000000026,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.033,
+          "pitch": -0.06159292137742011,
+          "health": 884,
+          "ammo": 28,
+          "shots": 2,
+          "hits": 2,
+          "assisted": 2,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.042959602944897535,
+            "y": -0.008478513508344552
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "time": 0.3667000000000007,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.033,
+          "pitch": -0.06159292137742011,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.042957224132353845,
+            "y": -0.004985546577137088
+          },
+          "phase": "playing"
+        }
+      },
+      "optOut": {
+        "time": 0.39990000000000003,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 720,
+        "ammo": 26,
+        "shots": 4,
+        "hits": 4,
+        "assisted": 0,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0,
+          "y": -0.006028846792438021
+        },
+        "phase": "playing"
+      },
+      "twoContacts": {
+        "time": 0.6334000000000006,
+        "player": [
+          1.0309164538014477,
+          21.7,
+          -0.00711097716355302
+        ],
+        "actor": [
+          1.1000000000000012,
+          20,
+          -12
+        ],
+        "yaw": 0.013722834623521613,
+        "pitch": -0.05543707334836341,
+        "health": 604,
+        "ammo": 24,
+        "shots": 6,
+        "hits": 6,
+        "assisted": 6,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.02542361533447249,
+          "y": -0.013495634040327506
+        },
+        "phase": "playing"
+      },
+      "tapGrace": {
+        "time": 0.3000000000000002,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137741807,
+        "health": 918,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.10934829135025054,
+          "y": -0.0035285132239919713
+        },
+        "phase": "playing",
+        "source": "tap"
+      },
+      "aimed": {
+        "time": 0.9999999999999987,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.9000000000000007,
+          20,
+          -12
+        ],
+        "yaw": -0.044855998300965476,
+        "pitch": -0.05531395248429843,
+        "health": 686,
+        "ammo": 25,
+        "shots": 5,
+        "hits": 5,
+        "assisted": 5,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.08407019113140549,
+          "y": -0.0271584056271289
+        },
+        "phase": "playing"
+      },
+      "scoring": {
+        "count": 3,
+        "normal": null,
+        "assisted": "3399",
+        "detail": "100% ACCURACY\n0 CRITICAL ELIMINATIONS\n0 PHASE EVADES\n0 UPLINK RETRIES\n3 ASSISTED SHOTS"
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fallback": true,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition",
+        "real cover cancels tracking with no hidden memory or automatic reacquisition",
+        "death, range, teleport, opt-out, reload and weapon change release ownership",
+        "pause clears ownership and resume cannot resurrect it",
+        "existing opt-out prevents camera motion and assisted count",
+        "fresh reticle miss never acquires a nearby actor through tolerance or shot assistance",
+        "simultaneous native MOVE/FIRE preserves current physical target ownership",
+        "fresh physical tap intent is revalidated at FIRE without snapping or automatic target switching",
+        "tap grace expires and cannot survive covered sight or a pause",
+        "native AIM keeps real reticle acquisition and current-pose motion compensation",
+        "followed shots use assisted personal best even after the preference is disabled"
+      ],
+      "motionStart": {
+        "time": 0.1999000000000001,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 966,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0,
+          "y": -0.0032648638035704374
+        },
+        "phase": "playing"
+      },
+      "moving": {
+        "time": 1.0998999999999983,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.799999999999998,
+          20,
+          -12
+        ],
+        "yaw": -0.08921544049670373,
+        "pitch": -0.055038492653225045,
+        "health": 276,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.07936544930623161,
+          "y": -0.010125438302041309
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "time": 1.199899999999998,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.9999999999999971,
+          20,
+          -12
+        ],
+        "yaw": -0.0975320878041757,
+        "pitch": -0.05496615558525122,
+        "health": 194,
+        "ammo": 19,
+        "shots": 11,
+        "hits": 11,
+        "assisted": 11,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.0899203822163998,
+          "y": -0.011842881539808876
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "time": 0.016700000000000274,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "time": 0.11660000000000036,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 966,
+          "ammo": 29,
+          "shots": 1,
+          "hits": 1,
+          "assisted": 1,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.032568250635078365,
+            "y": -0.00045368556114383935
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "time": 0.3833000000000006,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.032569600010635594,
+            "y": -0.005500634087396833
+          },
+          "phase": "playing"
+        }
+      },
+      "optOut": {
+        "time": 0.3999000000000001,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137742011,
+        "health": 720,
+        "ammo": 26,
+        "shots": 4,
+        "hits": 4,
+        "assisted": 0,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0,
+          "y": -0.005576467717364322
+        },
+        "phase": "playing"
+      },
+      "twoContacts": {
+        "time": 0.6332,
+        "player": [
+          1.03073624071568,
+          21.7,
+          -0.007208863332588377
+        ],
+        "actor": [
+          1.099800000000002,
+          20,
+          -12
+        ],
+        "yaw": 0.015023030340495614,
+        "pitch": -0.05543812527691185,
+        "health": 556,
+        "ammo": 24,
+        "shots": 6,
+        "hits": 6,
+        "assisted": 6,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.02711441998785343,
+          "y": -0.012488488487156868
+        },
+        "phase": "playing"
+      },
+      "tapGrace": {
+        "time": 0.30000000000000016,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1,
+          20,
+          -12
+        ],
+        "yaw": 0,
+        "pitch": -0.05540542137741807,
+        "health": 918,
+        "ammo": 29,
+        "shots": 1,
+        "hits": 1,
+        "assisted": 1,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.10934829520250278,
+          "y": -0.0032648638035718733
+        },
+        "phase": "playing",
+        "source": "tap"
+      },
+      "aimed": {
+        "time": 0.9998999999999985,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.8997999999999999,
+          20,
+          -12
+        ],
+        "yaw": -0.04610450765809819,
+        "pitch": -0.05531253552625676,
+        "health": 686,
+        "ammo": 25,
+        "shots": 5,
+        "hits": 5,
+        "assisted": 5,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.08059557872087189,
+          "y": -0.025105969916122555
+        },
+        "phase": "playing"
+      },
+      "scoring": {
+        "count": 3,
+        "normal": null,
+        "assisted": "3399",
+        "detail": "100% ACCURACY\n0 CRITICAL ELIMINATIONS\n0 PHASE EVADES\n0 UPLINK RETRIES\n3 ASSISTED SHOTS"
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 76670,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

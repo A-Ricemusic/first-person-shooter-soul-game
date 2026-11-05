@@ -93,7 +93,7 @@ export class Game {
   get fireTimer(){return this.weaponSlots[this.activeWeapon].fireTimer} set fireTimer(v){this.weaponSlots[this.activeWeapon].fireTimer=v}
   selectWeapon(name){
     if(this.phase!=='playing'||!this.weaponSlots[name]||name===this.activeWeapon)return;
-    this.rifleImpact=null;this.rifleConfirmation=null;this.touchTrack=null;this.touchTrackSeed=null;this.touchFireLatch=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
+    this.rifleResult=null;this.rifleImpact=null;this.rifleConfirmation=null;this.touchTrack=null;this.touchTrackSeed=null;this.touchFireLatch=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
@@ -409,6 +409,7 @@ export class Game {
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
   clearInput() { this.touchTrack=null;this.touchTrackSeed=null;this.touchFireLatch=null;this.rifleConfirmation=null;this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
+    this.rifleResult=null;
     this.rifleImpact=null;
     this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
     this.routeHelp?.reset();this.routeWaypoint=null;this.nextEnemyId=0;
@@ -591,7 +592,7 @@ export class Game {
       hit.red.emissive.setHex(0xffffff); hit.hitFlash = 0.08;
       hit.feedbackKind=headshot?'critical':hit.type==='warden'&&!(hit.armorOpen>0)?'armor':'damage';this.combatFeedback.impact(end,actorNormal,hit.health<=0?'kill':hit.feedbackKind,this.options.reducedMotion);
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
-      recordRifleImpact(this,hit.health<=0?'kill':hit.feedbackKind,hit.health<=0?'TARGET DOWN':hit.feedbackKind==='armor'?'ARMOR HIT':headshot?'OPTIC HIT':'TARGET HIT');
+      recordRifleImpact(this,hit.health<=0?'kill':hit.feedbackKind,hit.health<=0?'TARGET DOWN':hit.feedbackKind==='armor'?'ARMOR HIT':headshot?'OPTIC HIT':'TARGET HIT',hit.type==='warden'?'WARDEN':hit.type==='stalker'?'INTERCEPTOR':'SENTINEL');
       if (hit.health <= 0) this.killEnemy(hit, headshot);
     } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion);recordRifleImpact(this,propHit.point?'cover':'miss',propHit.bank?'CAPACITOR':propHit.point?'COVER':'NO IMPACT'); }
     this.event('shot', '', { ammo: this.ammo });

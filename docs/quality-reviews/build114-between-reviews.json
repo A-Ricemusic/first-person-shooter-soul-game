@@ -1,0 +1,130 @@
+{
+  "build": 114,
+  "sourceCommit": "056dc1ebaca5859e3d111f5d15f49cf26db6ead3",
+  "frozenFiles": 530,
+  "frozenMismatches": [],
+  "snapshotBundleHashesVerified": true,
+  "review1": {
+    "report": "build114-mobile-review1.json",
+    "sha256": "9cdfb92b2f4de208ec0002c111b7eca0d4c87fdc8757d8cb5b67b80f25b7bca6",
+    "ratings": {
+      "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable friction; 9 excellent with minor issues; 10 exceptional across assessed experience. Subjective judgments of observed content, not win/loss grades or physical-device certification.",
+      "overall_mobile": 7,
+      "controls": 6.5,
+      "gameplay": 7,
+      "presentation": 8,
+      "usability": 8,
+      "readability": 7,
+      "reasons": {
+        "overall_mobile": "Coherent atmospheric mission with helpful feedback and accessible objective completion; manual combat and small distant targets introduce uncertainty and friction.",
+        "controls": "Large separated touch buttons, tap aim and MOVE/FIRE simultaneous input worked at entry. Patrol drag/movement lost target visibility; automatic releases prevent continuous burst comfort assessment.",
+        "gameplay": "Recovery, coil shutdown and uplink provide distinct tasks with clear progress. Assisted traversal dominated and manual patrol engagements lacked clear immediate confirmations; independent combat depth and sustained enjoyment remain unassessed.",
+        "presentation": "Rain, industrial silhouettes, teal/orange lighting and consistent typography create a strong visual identity. Software WebGL images only; audio and hardware smoothness unassessed.",
+        "usability": "Contextual HOLD ROUTE/APPROACH/RECOVER, map, OFF labels, upload percent and START FRESH made progression and restart clear.",
+        "readability": "Health/ammo and key prompts readable at 844x390; distant patrols and environmental text small; dark structure and pillars can obscure targets."
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 5,
+          "mission_time": "01:10",
+          "score": 6859,
+          "accuracy_percent": 63,
+          "critical_eliminations": 3,
+          "phase_evades": 0,
+          "uplink_retries": 0,
+          "assisted_shots": 16,
+          "tap_aims": 7,
+          "route_assists": 12,
+          "approach_assists": 5
+        },
+        "terminal_evidence": "docs/media/build114-mobile-review1/attempt1-terminal.jpg",
+        "coverage": {
+          "manual_entry": "MOVE + FIRE drag, TARGET DOWN, ammo 30 to 21",
+          "patrol": "Two MOVE + FIRE drag attempts; first moved behind pillar, correction no kill confirmation; later uplink targeted burst. Attribution of terminal kills uncertain.",
+          "scene_turn": "swipe changed heading 345 to 007",
+          "boss": "Armor and inert-cover misses; corrected taps disabled II, I, III; automatic reload observed",
+          "map": "Opened planning map; selected Extraction visible, closed via CLOSE MAP",
+          "settings_changes": []
+        },
+        "helpful": [
+          "Readable recovery prompts and memory confirmations",
+          "Route assistance and map made objectives navigable",
+          "Boss phase and OFF labels",
+          "Uplink percentage and stay-on-deck instruction"
+        ],
+        "frustrating": [
+          "Distant patrol target small; movement and aim correction lost sight behind pillar",
+          "Initial boss bursts hit armor and inert cover"
+        ],
+        "uncertainties": [
+          "No continuous firing assessment across automatic contact releases",
+          "No unassisted route completion assessment"
+        ]
+      },
+      {
+        "attempt": 2,
+        "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 4,
+          "mission_time": "00:58",
+          "score": 6644,
+          "accuracy_percent": 100,
+          "critical_eliminations": 1,
+          "phase_evades": 0,
+          "uplink_retries": 0,
+          "assisted_shots": 15,
+          "tap_aims": 6,
+          "route_assists": 11,
+          "approach_assists": 6
+        },
+        "terminal_evidence": "docs/media/build114-mobile-review1/attempt2-terminal.jpg",
+        "fresh_start_evidence": "docs/media/build114-mobile-review1/attempt2-start-fresh.jpg",
+        "coverage": {
+          "manual_entry": "Tap target then simultaneous MOVE and FIRE drag; TARGET DOWN; ammo 30 to 21",
+          "manual_patrol": "Tapped distant right contact; MOVE drag left/back with FIRE drag; ammo 21 to 18, heading 000 to 057. No visible kill confirmation; patrol target absent in resulting view. Outcome uncertain.",
+          "later_patrol": "At uplink tapped charging contact and anchored FIRE, ammo 29 to 26. No individual kill confirmation.",
+          "scene_turn": "No separate scene swipe in attempt 2; target taps changed heading. Dedicated scene swipe sampled in attempt 1.",
+          "navigation": "HOLD ROUTE and HOLD APPROACH / recovery for all three memories; assisted route to deck",
+          "boss": "Tapped exposed middle coil then right and left coils from fresh views. II and I OFF; III 37% after magazine emptied, waited for reload and fired again, RETURN TO DECK confirmed. No inert-cover message in this run. Armor phase shots occurred.",
+          "settings_changes": [],
+          "unassessed": [
+            "DASH/phase evade",
+            "JUMP",
+            "TOOLS and alternate weapons",
+            "AIM zoom",
+            "Continuous FIRE rearming",
+            "Independent route completion"
+          ]
+        },
+        "helpful": [
+          "Applying coil tap correction produced clear OFF feedback",
+          "Recovery hold prompts reliably led to MEMORY SAVED",
+          "Upload progress and mission completion readable"
+        ],
+        "frustrating": [
+          "Small distant patrol targets still made precise outcome hard to judge",
+          "Manual firing consumed only three patrol rounds despite longer contact; reason cannot be established from visible evidence",
+          "Assistance makes manual precision difficult to isolate"
+        ],
+        "failures_and_uncertainties": [
+          "No individual patrol kill confirmation; displayed 100% accuracy is terminal statistic, not proof of manual precision",
+          "Reload interrupted coil III burst; continuation succeeded",
+          "No phase evades attempted or credited"
+        ]
+      }
+    ]
+  },
+  "parentCleanup": {
+    "pids": [
+      59777,
+      59787
+    ],
+    "psExit": 1,
+    "allAbsent": true
+  },
+  "next": "Fresh independent portrait mobile reviewer on identical frozen source; no app, dossier or snapshot edits between reviews."
+}

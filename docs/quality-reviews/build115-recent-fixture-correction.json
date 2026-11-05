@@ -1,0 +1,18 @@
+{
+  "initialReport": "build115-recent-initial.json",
+  "exactInitialFixture": "build115-recent-initial-fixture.txt",
+  "failure": "Pause was compared with a timestamp sampled while the game was still playing, before the native menu tap. The tap took additional live frames.",
+  "correction": "Sample frozen time after the actual native pause/planning transition, then assert unchanged after waiting. Same lifecycle/runtime, no game change.",
+  "secondObservation": {
+    "report": "build115-recent-checked.json",
+    "exactFixture": "build115-recent-checked-fixture.txt",
+    "failure": "Exact HUD y assertion differed by0.609375 CSS pixels at320px profile; initial layout was sampled before web fonts had been awaited.",
+    "correction": "Await document.fonts.ready before deployment/geometry samples, then retain exact position/height assertions. No runtime or stylesheet change for this correction."
+  },
+  "runtimeLayoutCorrection": {
+    "report": "build115-recent-font-checked.json",
+    "exactStyleBeforeFix": "build115-style-before-compact-result-fix.txt",
+    "failure": "After font readiness,568x320 named result wrapped into two lines and raised ammo by15CSS pixels. This is a presentation regression, not a fixture-only issue.",
+    "correction": "Use14px existing condensed font,15px reserved line height and no wrapping for historical result only. Keep exact geometry, longest actor label and inset assertions."
+  }
+}
