@@ -1,3 +1,4 @@
+import {installFieldNotes} from './mobile-field-notes.js';
 import {phoneBrightness} from './mobile-visibility.js';
 import {TOUCH_FOCUS_GAIN} from './touch-focus.js';
 import {touchScenePoint} from './touch-tap-regions.js';
@@ -43,6 +44,7 @@ export function fireAimDisplacement(pixels,width,height){
 export function installTouch(game,{map,onBrightness,onSensitivity,onFastTurns,onAimAssist,onAutoVault,onTapAim}){
  if(!game.touchMode)return;
  document.body.classList.add('touch-mode');
+ game.touchFieldNotes=installFieldNotes();
  const weaponName=document.getElementById('weapon-name');for(const node of [...weaponName.parentNode.childNodes])if(node!==weaponName)node.remove();
  const root=document.createElement('div');root.id='touch-controls';root.className='hidden';
  root.innerHTML=`<div id="touch-look" aria-label="Drag to look"></div><div id="touch-stick" aria-label="Movement joystick"><i></i><span>MOVE</span></div><button id="touch-use" data-action="use">HOLD ROUTE</button><div id="touch-actions">${[['ads','AIM'],['dash','DASH'],['jump','JUMP']].map(([id,t])=>`<button id="touch-${id}" data-action="${id}">${t}</button>`).join('')}<button id="touch-fire" data-action="fire">FIRE<br><small>drag aim</small></button><button id="touch-more" data-action="tools" aria-label="Open tools: manual reload, weapon swap, crouch and run" aria-expanded="false" aria-controls="touch-extra">TOOLS</button><div id="touch-extra" class="hidden" role="group" aria-label="Additional controls">${[['reload','RELOAD'],['swap','SWAP'],['crouch','CROUCH'],['sprint','RUN']].map(([id,t])=>`<button id="touch-${id}" data-action="${id}">${t}</button>`).join('')}</div></div><button id="touch-map">MAP</button>`;

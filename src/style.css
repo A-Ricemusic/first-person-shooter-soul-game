@@ -435,3 +435,20 @@ body.touch-mode #touch-threat-cue{width:var(--touch-action-width);max-width:var(
 @media(max-width:359px){body.touch-mode{--touch-action-width:164px;--touch-action-row:46px}}
 @media(orientation:landscape) and (max-width:699px){body.touch-mode{--touch-action-width:164px;--touch-action-row:46px}}
 @media(orientation:landscape){body.touch-mode .hud-bottom,body.touch-mode #touch-notices{right:calc(var(--touch-right) + var(--touch-action-width) + 9px)}}
+
+/* Combat gets the live visor; field advice remains in the paused message list. */
+body.touch-mode.touch-combat-focus #touch-notices #announcement[data-mobile-channel="advisory"],
+body.touch-mode.touch-combat-focus #touch-notices #announcement[data-mobile-channel="intro"],
+body.touch-mode.combat-priority #touch-notices #announcement[data-mobile-channel="advisory"],
+body.touch-mode.touch-interacting #touch-notices #announcement[data-mobile-channel="advisory"],
+body.touch-mode.touch-uplink-stage #touch-notices #announcement[data-mobile-channel="advisory"]{display:none}
+body.touch-mode #threat-focus:not(.charging){display:none}
+body.touch-mode #touch-field-notes{margin-top:16px;border-top:1px solid var(--line);text-align:left}
+body.touch-mode #touch-field-notes summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font:600 13px/18px 'Barlow',Arial,sans-serif;color:#b5fff0;touch-action:manipulation}
+body.touch-mode #touch-field-notes summary::before{content:'＋';margin-right:8px}
+body.touch-mode #touch-field-notes[open] summary::before{content:'−'}
+body.touch-mode #touch-field-notes ol{list-style:none;margin:0;padding:0;touch-action:pan-y}
+body.touch-mode #touch-field-notes li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:8px;margin:10px 0;padding:8px 0;border-top:1px solid var(--line);font:13px/19px 'Barlow',Arial,sans-serif;color:#d2e8e1;overflow-wrap:break-word}
+body.touch-mode #touch-field-notes time{color:#8ee8e0;font:12px/19px monospace}
+
+body.touch-mode .pause-panel #resume{position:sticky;top:0;z-index:2;box-shadow:0 8px 16px #0b1920}

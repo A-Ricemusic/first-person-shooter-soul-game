@@ -1,0 +1,128 @@
+{
+  "build": 110,
+  "source": "cdc4eec3f7a6a96d9e93ccd2e1d71279f8cd6922",
+  "frozenFilesVerified": 520,
+  "mismatches": [],
+  "snapshotBundlesVerified": 5,
+  "reviewer1": {
+    "report": "build110-mobile-review1.json",
+    "sha256": "6476dab2967fd3c1e7b74006d846b64c9d720ae6e4dc30db1ae76b41b397e5e1",
+    "scores": {
+      "scale": "0 unusable, 5 mixed/adequate with substantial friction, 7 good with clear limitations, 9 excellent, 10 exceptional. Subjective holistic evaluation of observed emulated mobile play; wins and mission stats are not the grade. Overall is a judgment, not an arithmetic average.",
+      "overallMobile": 7,
+      "controls": 6.5,
+      "gameplay": 7,
+      "presentation": 8,
+      "usability": 7.5,
+      "readability": 6.5,
+      "reasons": {
+        "overallMobile": "A coherent complete mission with helpful touch assistance, clear recover/coil/upload progression and a strong visual identity. Crowded HUD and limited manual-control evidence constrain the grade.",
+        "controls": "Large anchored controls, tap centering, AIM, automatic/manual reload and route assistance worked in samples. Manual stick only sampled briefly forward; FIRE drag sampled briefly. FACE COILS plus FIRE changed target orientation; precision and continuous two-thumb handling remain uncertain.",
+        "gameplay": "Recovery, shield pressure, timed armor windows and deck defense give observable progression and decisions. Both attempts relied heavily on route assistance. Cannot infer challenge depth or enjoyment of unassessed mechanics.",
+        "presentation": "Consistent restrained cyan/amber palette, rain, industrial silhouettes, dimensional weapon view and polished title/result screens. Audio not assessed.",
+        "usability": "Visible handbook, changing hold labels, planning map, status percentages and detailed fresh-start result screen help completion. Handbook lower paragraphs clipped behind its scroll region at this viewport, though scroll hint is present. Tools tray adds an extra opening step. Selector error is tooling friction, not counted as a game defect.",
+        "readability": "Health/ammo and main objectives stand out. Tiny environmental labels, small enemies, dark low-contrast geometry and stacked route/threat/tutorial overlays compete at 844x390."
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 5,
+          "missionTime": "01:17",
+          "score": 6609,
+          "accuracyPercent": 54,
+          "criticalEliminations": 2,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 3,
+          "tapAims": 6,
+          "routeAssists": 11,
+          "approachAssists": 6
+        },
+        "terminalEvidence": "docs/media/build110-mobile-review1/a1-terminal.jpg",
+        "coverage": [
+          "manual MOVE stick forward approximately 1.8 seconds",
+          "FIRE drag plus tap aim on opening guard",
+          "ROUTE / APPROACH recovery of all three memories",
+          "three coil targets; automatic reload; armor/inert-cover feedback",
+          "planning MAP opened and visibly closed",
+          "uplink defense and terminal win"
+        ],
+        "failures": [
+          "shot inert cover/armor; no mission failure",
+          "initial deploy click left live play running before first capture: timer 00:13, shield 3; this is review tooling delay, not a measured reaction test"
+        ],
+        "helpful": [
+          "tap aim centers targets",
+          "route/approach labels and MEMORY SAVED make recovery understandable",
+          "coil OFF and percentage display clearly reports progress"
+        ],
+        "friction": [
+          "crowded small viewport with route, threat, interaction and announcement overlays",
+          "small environmental lettering",
+          "armor/cover firing consumes ammo; early feedback can coexist with a successful coil OFF"
+        ]
+      },
+      {
+        "attempt": 2,
+        "freshStart": "Visible START FRESH from attempt 1 terminal screen; a2-fresh shows 00:00, 100 health, 60 shield, 30/180 ammo",
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 5,
+          "missionTime": "01:05",
+          "score": 6758,
+          "accuracyPercent": 35,
+          "criticalEliminations": 3,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 4,
+          "tapAims": 5,
+          "routeAssists": 12,
+          "approachAssists": 5
+        },
+        "terminalEvidence": "docs/media/build110-mobile-review1/a2-terminal.jpg",
+        "coverage": [
+          "Tap aim plus AIM zoom and FIRE on opening guard; zoom visibly present in live capture",
+          "ROUTE / APPROACH / RECOVER for all three memories",
+          "Simultaneous two-contact FACE COILS plus FIRE; coil II disabled",
+          "TOOLS opened and manual RELOAD selected in same reopened batch, ammo 6 to 30",
+          "Coils I and III tap-aim/fire to disable Custodian",
+          "Return to deck, uplink defense, automatic reload and terminal win"
+        ],
+        "failures": [
+          "No terminal loss or retry",
+          "Ambiguous text=RELOAD selector rejected by helper strict locator check; did not reload. Captured fresh paused view and then used #touch-reload in newly opened TOOLS batch successfully. Raw log sequence 49 preserves error. No hidden content from error used as game evidence.",
+          "Firing continued into inert cover after successful coil disable; consumed rounds",
+          "FACE COILS and FIRE together reoriented from tapped coil I to coil II; this is an observed assisted-control interaction, not a proven targeting defect"
+        ],
+        "helpful": [
+          "AIM visibly magnifies target and iron sight",
+          "Manual reload accessible in compact TOOLS tray",
+          "Status colors, OFF labels, recovery progress and uplink percentage communicate stage changes",
+          "End screen distinguishes touch assists and reports detailed actual stats"
+        ],
+        "friction": [
+          "Simultaneous face assistance changes the view relative to a preceding target tap",
+          "Small target silhouettes and scene lettering against dark geometry",
+          "Several warnings and tutorial messages compete with world view"
+        ],
+        "uncertainties": [
+          "No physical thumb occlusion or comfort measurement",
+          "Cannot establish continuous combat challenge or enjoyment from paused input",
+          "No claim that mission time improvement is a quality benefit or a reaction-time measure"
+        ]
+      }
+    ],
+    "cleanup": {
+      "pids": [
+        44366,
+        44377
+      ],
+      "parentPsExit": 1,
+      "absent": true
+    }
+  },
+  "next": "Fresh portrait reviewer on identical frozen source; no code edits or rescore."
+}

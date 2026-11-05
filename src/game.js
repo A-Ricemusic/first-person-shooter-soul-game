@@ -737,7 +737,7 @@ export class Game {
   updateEncounters() {
     const stage=(id,condition,message,units)=>{
       if(!condition||this.encounters.has(id))return;
-      this.encounters.add(id); this.event('notice',message);
+      this.encounters.add(id); this.event('notice',message,{fieldNote:true});
       for(const [x,z,type] of units)this.spawnEnemy(new THREE.Vector3(x,0,z),type,5,['medical','heart'].includes(id)?'guard':'hunter');
     };
     stage('ingress',this.player.z<13,'PERIMETER PATROL · Two contacts beyond the entry. Side lanes remain open.',[[-22,-5,'sentinel'],[22,-5,'sentinel']]);
