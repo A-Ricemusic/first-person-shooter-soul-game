@@ -1,0 +1,189 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "buildObserved": "BUILD 118",
+  "sourceFreezeProvidedNotInspected": "2a8ba10f83dfd51e95ac14019411e14715122d0b",
+  "url": "http://127.0.0.1:61514/",
+  "viewport": [
+    844,
+    390
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 6,
+        "missionTime": "01:02",
+        "score": 6934,
+        "accuracyPercent": 76,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 17,
+        "tapAims": 9,
+        "routeAssists": 12,
+        "approachAssists": 5
+      },
+      "terminalEvidence": "docs/media/build118-mobile-review1/attempt1-terminal.jpg",
+      "coverage": [
+        "Opening guard: tap aim, simultaneous manual MOVE and FIRE drag; target down, 30 to 21 ammo, heading 000 to 352",
+        "Scene swipe changed heading 352 to 329",
+        "Visible left perimeter patrol: tap aim, manual left MOVE and FIRE drag; SENTINEL DOWN, ammo 21 to 19",
+        "Distant east target burst: COVER, 19 to 08 ammo, no confirmed kill; shield 60 to 41",
+        "Corrected by tapping visible charging sentinel: SENTINEL DOWN, ammo 08 to 06",
+        "Three coils targeted separately from fresh images; coil II needed reload and another burst",
+        "Deck interceptor and sentinel engaged; assisted route/approach used for mission navigation"
+      ],
+      "uncertainties": [
+        "No individual shot miss count; COVER burst did not confirm damage",
+        "Manual combat used tap assistance; not a pure unassisted aim test",
+        "Continuous held-burst rearming comfort unassessed because captures release contacts"
+      ]
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH via #play-again after first terminal was saved",
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 6,
+        "missionTime": "01:01",
+        "score": 7075,
+        "accuracyPercent": 70,
+        "criticalEliminations": 4,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 16,
+        "tapAims": 8,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build118-mobile-review1/attempt2-terminal.jpg",
+      "coverage": [
+        "Opening guard tap aim with simultaneous MOVE and FIRE drag; TARGET DOWN, 30 to 21 ammo, heading 006",
+        "Left visible perimeter patrol tap aim with simultaneous manual left MOVE and FIRE drag; SENTINEL DOWN, 21 to 19 ammo",
+        "Opened planning map, inspected route and legend, visibly closed via #close-map",
+        "East enemy near right control area: tap did not change heading; COVER burst spent 11 rounds, no confirmed kill",
+        "Fresh image correction to central enemy: heading 108 to 137, SENTINEL DOWN, 08 to 06 ammo",
+        "All three coils individually tapped from fresh views; coil I went OFF but burst continued to 00/RELOADING; waited and fired at coils II and III",
+        "Deck interceptors engaged separately; route/approach assistance carried navigation"
+      ],
+      "failures": [
+        "East initial target acquisition failed despite visible enemy; exact cause uncertain, no claim of game defect",
+        "11-round COVER burst without confirmed kill",
+        "Continuous manual traversal, unassisted precision and continuous held-burst rearming not assessed"
+      ],
+      "sceneTurn": "No separate scene swipe in attempt 2; scene swipe sampled in attempt 1",
+      "settingsChanges": []
+    }
+  ],
+  "settingsChanges": [],
+  "limits": [
+    "Synthetic paused Chromium native touch emulation with software WebGL; not physical phone certification",
+    "Captures release contacts and pause; automatic boundaries about 3 seconds live input or 1.2 seconds FIRE; shortened waits respected",
+    "No human reaction-time or causal quality benefit inferred",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Each screenshot was viewed before adaptive continuation; image view and dependent input were separate calls",
+    "Boundary metadata/timings inspected: 3000ms route waits typically shortened to about 2981\u20132989ms; no bypass or assumption of full requested wait",
+    "Pausing clears AIM through ordinary lifecycle; no AIM/zoom assertions made",
+    "No source, tests, docs, prior reviews, recordings or internal game state inspected. Freeze hash is user-provided, not independently verified.",
+    "No settings changed; no checkpoint retry or third attempt"
+  ],
+  "evidenceDirectory": "docs/media/build118-mobile-review1",
+  "cleanup": {
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "browserClosedReported": true,
+    "driverPid": 73594,
+    "chromePid": 73604,
+    "verification": "ps -p 73594,73604 -o pid=,ppid=,command= returned no rows after awaited exit",
+    "exactOwnedPidsAbsent": true,
+    "broadKillUsed": false
+  },
+  "learningBetweenAttempts": [
+    "Learned route hold changes to approach near receivers and then back to route",
+    "Learned fresh target tap corrects a COVER/no-confirmed-kill burst; attempted to wait for clearer east threat, but another failure still occurred",
+    "Learned individual coil labels, health and OPEN/ARMOR feedback; applied that knowledge in attempt 2",
+    "No inference that second score/time improvement measures control quality or human learning speed"
+  ],
+  "helpfulMoments": [
+    {
+      "moment": "Opening guard and left patrol",
+      "detail": "Large MOVE/FIRE regions accepted two simultaneous native contacts; clear TARGET DOWN/SENTINEL DOWN confirmation in both attempts",
+      "evidence": [
+        "attempt1-manual-fire.jpg",
+        "attempt1-patrol-left.jpg",
+        "attempt2-patrol-manual.jpg"
+      ]
+    },
+    {
+      "moment": "Recovery navigation",
+      "detail": "Dotted route, direction cues, changing HOLD APPROACH label and memory saved banner made objective progress clear"
+    },
+    {
+      "moment": "Custodian",
+      "detail": "Three separate health percentages and OFF confirmations communicated progress; OPEN/ARMOR/CHARGE labels provided explicit timing context"
+    },
+    {
+      "moment": "Planning map",
+      "detail": "Large destination buttons and route line helped orientation; map remained open until visibly closed",
+      "evidence": [
+        "attempt2-map.jpg",
+        "attempt2-map-closed.jpg"
+      ]
+    },
+    {
+      "moment": "End screens",
+      "detail": "Readable result summary disclosed assistance counts rather than hiding them"
+    }
+  ],
+  "frustratingMoments": [
+    {
+      "moment": "East combat in both attempts",
+      "detail": "A visible target tap followed by firing produced COVER and wasted 11 rounds; correction required a new view and tap. The right-edge failure may involve target movement or control-area geometry; cannot isolate cause."
+    },
+    {
+      "moment": "Screen density",
+      "detail": "Threat cue, recovery banner, bottom controls and weapon HUD consume substantial view; small distant enemies and map legend are harder to scan at 844x390"
+    },
+    {
+      "moment": "Coil bursts",
+      "detail": "First attempt coil II needed reload and another burst; second attempt coil I switched OFF but held FIRE continued into reload. Automatic capture/release prevents assessing sustained-contact comfort."
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable friction, 10 exceptional with negligible observed friction. Subjective holistic ratings of these two emulated sessions; wins alone are not grades. Overall is not an arithmetic average.",
+    "overallMobile": 7,
+    "controls": 6.5,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overallMobile": "Coherent atmospheric mission with useful assistance and clear progression; target acquisition failures and dense small-screen information temper the rating.",
+      "controls": "Two-contact movement/fire drag and scene turn worked in sampled engagements, but two COVER bursts required correction. Much navigation and aiming was assisted; continuous hold comfort unassessed.",
+      "gameplay": "Observed recovery, patrols, three-coil timing phase and uplink defense supplied understandable variety. Assistance supported progress but limits conclusions about manual traversal, challenge and sustained enjoyment.",
+      "presentation": "Rain, reflective ground, cyan/amber palette and industrial silhouettes gave a cohesive atmosphere; end-screen typography was clear. Audio not assessed.",
+      "usability": "Route/approach holds, progress banners, large map destination buttons and explicit fresh restart were helpful. Context changes add learning overhead.",
+      "readability": "Objective, ammo and end stats were readable, but tiny enemies, small map legend and competing translucent HUD panels made scanning harder."
+    }
+  },
+  "unassessed": [
+    "Physical phones and thumb occlusion/ergonomics",
+    "Safari",
+    "Audio",
+    "Hardware performance/frame pacing",
+    "Continuous enjoyment",
+    "Continuous held-burst rearming comfort",
+    "DASH/JUMP/AIM/TOOLS and alternate weapons",
+    "Recovered memory prose",
+    "Checkpoint retry (not used)",
+    "Pure unassisted aiming and extended manual navigation"
+  ],
+  "evidence": {
+    "rawLog": "docs/media/build118-mobile-review1/actions.jsonl",
+    "screenshots": "docs/media/build118-mobile-review1/*.jpg",
+    "attempt1Terminal": "docs/media/build118-mobile-review1/attempt1-terminal.jpg",
+    "attempt2Terminal": "docs/media/build118-mobile-review1/attempt2-terminal.jpg",
+    "menuIdentity": "docs/media/build118-mobile-review1/menu.jpg"
+  }
+}

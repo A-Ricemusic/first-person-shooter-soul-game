@@ -408,7 +408,7 @@ body.touch-mode #reload-label[data-impact="aim-set"]{--impact-color:#b5fff0}
 /* A resolved elimination survives a continuing burst; latest-shot status stays separate. */
 body.touch-mode #hitmarker.confirmed{opacity:1;color:#b5fff0}
 body.touch-mode #hitmarker.confirmed::after{content:attr(data-confirmation);position:absolute;left:50%;top:39px;transform:translateX(-50%);width:132px;text-align:center;font:700 12px/15px 'Barlow',Arial,sans-serif;letter-spacing:.4px;color:#b5fff0;text-shadow:0 1px 3px #000,0 0 6px #000;white-space:nowrap}
-body.touch-mode:has(#touch-notices #memory-card:not(.hidden)) #hitmarker.confirmed::after,body.touch-mode:has(#touch-notices #announcement.visible:not([data-mobile-duplicate="true"])) #hitmarker.confirmed::after{display:none}
+body.touch-mode:has(#touch-notices #announcement.visible:not([data-mobile-duplicate="true"])) #hitmarker.confirmed::after{display:none}
 
 /* Mobile captions stay near their true projection; opaque UI always wins. */
 .world-marker .marker-copy{display:contents}
@@ -493,3 +493,11 @@ body.touch-mode #touch-controls .component-aim{min-width:44px;min-height:44px;pa
 body.touch-mode #touch-controls .component-aim small{display:block;font:600 12px/14px 'Barlow',Arial,sans-serif;letter-spacing:0}
 body.touch-mode #touch-controls .component-aim:disabled{opacity:1;cursor:default}
 body.touch-mode #touch-controls .component-aim:active{background:#285d59}
+
+/* Saved identities reuse the mission slots; recovery no longer masks the scene. */
+body.touch-mode #touch-notices #memory-card{display:none}
+body.touch-mode #core-slots{display:flex;gap:4px;width:max-content;max-width:100%;white-space:nowrap}
+body.touch-mode #core-slots span{font:700 12px/16px 'Barlow',Arial,sans-serif;letter-spacing:0;min-width:26px;padding:3px 5px;text-align:center}
+body.touch-mode .hud-mission{max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 118px)}
+body.touch-mode #core-slots span{flex:0 0 auto}
+body.touch-mode .bearing #timer{display:none}
