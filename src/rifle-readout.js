@@ -4,7 +4,7 @@ export function recordRifleImpact(g,kind,label){
  if(g.touchMode){
   g.rifleImpact={kind,label,time:g.runTime};
   // A completion is an event acknowledgement, separate from the latest shot.
-  if(kind==='kill')g.rifleConfirmation={label,time:g.runTime};
+  if(kind==='kill'){g.rifleConfirmation={label,time:g.runTime};if(g.mouseDown&&g.activeWeapon==='rifle')g.touchFireLatch=label;}
  }
 }
 export function rifleReadout(g){

@@ -1,0 +1,128 @@
+{
+  "build": 112,
+  "frozenFiles": 525,
+  "frozenMismatches": [],
+  "snapshotBundleHashesVerified": true,
+  "sourceCommit": "cda3efab565d874c05dd3b735e174611702f30c2",
+  "review1": {
+    "report": "build112-mobile-review1.json",
+    "sha256": "0176bcd3e0405e347713b317d19c3cf1e0df060561ac5c922c22b1217657df07",
+    "scores": {
+      "scope": "Holistic judgment of actually observed emulated mobile experience across both runs, not derived from winning, mission stats, or unassessed features.",
+      "scale": "0 unusable; 5 playable with substantial friction; 7 good with noticeable limitations; 10 exceptional and consistently effortless within assessed scope.",
+      "overall_mobile": 7.0,
+      "controls": 6.5,
+      "gameplay": 7.0,
+      "presentation": 8.0,
+      "usability": 7.5,
+      "readability": 7.0,
+      "reasons": {
+        "overall_mobile": "Clear mission flow, atmospheric setting and useful touch assistance supported completion, tempered by imprecise-feeling target retention and crowded combat overlays.",
+        "controls": "Manual stick visibly moved forward; brief concurrent movement and FIRE drag worked. Tap aim killed opening guard but moving-target shots and threat-turn taps were less predictable. Brief sample cannot establish sustained manual comfort.",
+        "gameplay": "Recoveries, coil exposure phases and uplink form a legible short mission arc. Rear threats caused damage; much navigation relied on holds, limiting evidence for freeform exploration and continuous combat enjoyment.",
+        "presentation": "Cohesive rain, cool cyan lighting, wet-looking ground and industrial architecture gave the scene a strong atmosphere. Audio and native rendering performance unassessed.",
+        "usability": "Large labeled action buttons, contextual hold changes, paused map and explicit end screen were helpful. Boss timing and no-impact feedback required interpretation.",
+        "readability": "Health/ammo/objectives were readable and large; small compass/signage and overlapping threat UI reduced easy scene reading."
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 7,
+          "mission_time": "01:13",
+          "score": 7206,
+          "accuracy_percent": 29,
+          "critical_eliminations": 5,
+          "phase_evades": 0,
+          "uplink_retries": 0,
+          "assisted_shots": 7,
+          "tap_aims": 8,
+          "route_assists": 11,
+          "approach_assists": 6
+        },
+        "terminal_evidence": "docs/media/build112-mobile-review1/a1-terminal.jpg",
+        "coverage": [
+          "manual MOVE forward for 1800ms",
+          "FIRE hold with small drag",
+          "scene tap aim",
+          "anchored FIRE",
+          "planning map opened and visibly closed",
+          "route and approach assists",
+          "three memories",
+          "three Custodian coils",
+          "uplink"
+        ],
+        "failures": [
+          "several shots returned COVER/NO IMPACT",
+          "two threat turn taps did not expose attacker clearly",
+          "shield damage while prioritizing route"
+        ],
+        "unassessed": [
+          "sustained simultaneous manual movement and aiming",
+          "AIM zoom",
+          "DASH",
+          "JUMP",
+          "TOOLS",
+          "settings",
+          "audio",
+          "recovered memory reading"
+        ]
+      },
+      {
+        "attempt": 2,
+        "fresh_start": "visible START FRESH via #play-again act and capture after first result persisted",
+        "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 7,
+          "mission_time": "01:05",
+          "score": 7043,
+          "accuracy_percent": 38,
+          "critical_eliminations": 4,
+          "phase_evades": 0,
+          "uplink_retries": 0,
+          "assisted_shots": 5,
+          "tap_aims": 7,
+          "route_assists": 11,
+          "approach_assists": 6
+        },
+        "terminal_evidence": "docs/media/build112-mobile-review1/a2-terminal.jpg",
+        "coverage": [
+          "manual MOVE forward plus concurrent FIRE with small drag, two native contacts in opening fight",
+          "scene tap aim and anchored FIRE",
+          "route and approach assists",
+          "three memories",
+          "three Custodian coils",
+          "automatic empty-magazine reload",
+          "uplink defense"
+        ],
+        "failures": [
+          "COVER feedback after shooting; final coil bursts continued into INERT COVER",
+          "shield fell to 8 by uplink, despite health remaining 100 in last live capture",
+          "did not try to evade rear attacks while waiting for coil openings"
+        ],
+        "unassessed": [
+          "planning map in this attempt",
+          "AIM zoom",
+          "DASH",
+          "JUMP",
+          "TOOLS",
+          "settings",
+          "audio",
+          "recovered memory reading",
+          "sustained freeform manual combat"
+        ]
+      }
+    ]
+  },
+  "parentCleanup": {
+    "pids": [
+      99589,
+      99599
+    ],
+    "psExit": 1,
+    "allAbsent": true
+  },
+  "next": "Fresh independent portrait mobile reviewer on identical source; no app, dossier or snapshot edits between reviews."
+}
