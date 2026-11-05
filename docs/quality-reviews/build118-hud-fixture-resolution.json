@@ -1,0 +1,15 @@
+{
+  "rerunExit": 0,
+  "productBundlesUnchanged": true,
+  "initialCommandExit": 1,
+  "initialReport": "build118-production-aim-hud.json",
+  "diagnostic": "build118-aim-hud-diagnostic.json",
+  "initialFixture": "build118-aim-hud-initial-fixture.txt",
+  "diagnosticFixture": "build118-aim-hud-diagnostic-fixture.txt",
+  "finalReport": "build118-production-aim-hud-checked.json",
+  "profiles": 5,
+  "checks": 66,
+  "finding": "At320x640 the reported44px badge was visibility:hidden, disabled, pointer-events:none, parent opacity0; center hit touch-look. Its stale rectangle crossed only the empty footer gap. Original fixture included all controls regardless of visibility.",
+  "correction": "Filter effective ancestor visibility and nonzero geometry. Keep conservative whole-footer overlap assertion for visible controls. Add hidden disabled/noninterception and visible center native-hit/reticle assertions. No product changes.",
+  "bundlesBefore": "build118-bundles-before-hud-fixture.json"
+}

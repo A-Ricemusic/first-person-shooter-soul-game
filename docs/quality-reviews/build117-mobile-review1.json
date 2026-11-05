@@ -1,0 +1,220 @@
+{
+  "status": "COMPLETE: exactly two fresh attempts, both actual terminal wins; helper closed",
+  "identity": {
+    "visible": "SOULFALL BUILD 117",
+    "requested_frozen_source": "9f239714c8a6589a0fdb9ef2eb5d3c6049315ce0",
+    "source_verified": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "00:57",
+        "score": 6909,
+        "accuracy_percent": 95,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 18,
+        "tap_aims": 8,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "evidence": "docs/media/build117-mobile-review1/a1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard and left perimeter patrol engaged with simultaneous native two-contact MOVE plus FIRE drag; target-down feedback observed. Left patrol visibly down, ammo 21 to 18.",
+        "scene_turn": "Scene swipe N 000 to NW 323.",
+        "map": "Opened overview at return-to-deck; visibly closed.",
+        "boss": "Three distinct coil taps with anchored FIRE; third depleted magazine and auto-reloaded, then coil III OFF.",
+        "misses_corrections": "No observed missed patrol target tap; terminal 95% accuracy means some shots missed overall. Third coil remained 37% after empty magazine; fresh FIRE batch after auto-reload completed it. Shield visibly fell from 60 to 41 near boss, then 34 on deck.",
+        "unassessed": "DASH, JUMP, AIM, tools, continuous held-fire rearming, unassisted route navigation"
+      },
+      "settings_changes": [],
+      "helpful": [
+        "Target-down feedback and tap aim",
+        "Contextual HOLD ROUTE / HOLD APPROACH labels",
+        "Coil OFF status and automatic reload",
+        "Map extraction selection and walking route distance"
+      ],
+      "frustrating": [
+        "Small distant patrol silhouettes",
+        "Dense small status text",
+        "ARMORED cue coexisted with successful coil damage; exact timing/mechanic unclear"
+      ],
+      "protocol_deviation": "Initial deployment used act tap at visible ENTER THE STORM geometry rather than requested #deploy selector; capture occurred in same batch, no bare click and no restart."
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH via act tap #play-again and capture; timer 00:00, ammo 30/180, health 100/shield 60. No checkpoint retry or third attempt.",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "mission_time": "01:01",
+        "score": 6993,
+        "accuracy_percent": 100,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 17,
+        "tap_aims": 8,
+        "route_assists": 12,
+        "approach_assists": 5
+      },
+      "evidence": "docs/media/build117-mobile-review1/a2-terminal.jpg",
+      "settings_changes": [],
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard and right perimeter patrol engaged with simultaneous MOVE and FIRE drag. TARGET DOWN / LAST SENTINEL DOWN observed; entry used 9 rounds and right patrol 3.",
+        "scene_turn": "Separate scene swipe changed heading 051 to 023; fire drag also changed scene heading.",
+        "additional_combat": "Left perimeter patrol tapped and fired from fresh observed screen, LAST SENTINEL DOWN. Three coil targets engaged separately. Two deck interceptors engaged separately.",
+        "misses_corrections": "No visible failed target tap; terminal reports 100% accuracy, not an independent hit audit. Coil II still 47% when magazine emptied; after automatic reload a fresh FIRE contact completed it. No manual reload or continuous-contact rearming tested. Shield fell to 57 during boss route, recovered to 60, then 47 on deck; health remained 100 in inspected views.",
+        "unassessed": [
+          "DASH",
+          "JUMP",
+          "AIM",
+          "TOOLS",
+          "unassisted full navigation",
+          "continuous held-burst comfort",
+          "recovered-memory reading"
+        ]
+      },
+      "helpful": [
+        "START FRESH reset clearly",
+        "Tap aim turned to distant patrol and target-down confirmed elimination",
+        "HOLD TO RECOVER progress at Mara was visible",
+        "Coil remaining percent exposed incomplete damage after empty magazine",
+        "Uplink percent and stay-on-deck instruction made finish legible"
+      ],
+      "frustrating": [
+        "Distant enemies small at 844x390",
+        "Coil open/armored messaging did not make damage timing fully understandable",
+        "Dense HUD and environmental signs compete with combat scene"
+      ],
+      "what_tried": "Repeated manual two-contact entry combat, sampled right patrol instead of first-run left patrol, turned scene, cleared left patrol later, used contextual route/recovery assistance, separately fired at each coil and visible deck enemies."
+    }
+  ],
+  "limits": [
+    "Synthetic Chromium native touch at 844x390 with software WebGL; not a physical-device certification.",
+    "Captures release contacts and pause; ~3s live / ~1.2s FIRE observation boundaries shorten waits. No reaction-time or causal game-quality benefit inferred.",
+    "Pauses clear AIM and close TOOLS; continuous burst rearming comfort cannot be assessed.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "cleanup": {
+    "status": "SUCCESS",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browser_closed": true,
+    "driver_pid": 45967,
+    "chrome_pid": 45977,
+    "verification": "ps -p 45967,45977 -o pid=,ppid=,stat=,command= returned no rows, exit 1; both exact owned PIDs absent. No kill issued."
+  },
+  "between_attempts_learning": [
+    "Learned contextual HOLD ROUTE changes to HOLD APPROACH / HOLD TO RECOVER at receivers.",
+    "Learned to inspect coil percent/OFF after each burst and allow automatic reload before a fresh FIRE contact.",
+    "Used second attempt to sample the opposite perimeter patrol with manual MOVE and FIRE drag. No settings changes."
+  ],
+  "scores": {
+    "scale": "0 = unusable in observed scope; 5 = functional with substantial friction; 7 = good with clear limitations; 9 = excellent with minor friction; 10 = exceptional across assessed scope. Holistic judgment, not win/loss, score, or accuracy conversion. Unassessed features receive no inferred enjoyment credit.",
+    "overall_mobile": 7,
+    "controls": 7,
+    "gameplay": 6.5,
+    "presentation": 8,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "A coherent, attractive short touch-assisted mission with clear progress, usable large main targets and successful sampled two-contact combat. Small distant targets, dense typography and unclear boss phase feedback constrain confidence.",
+      "controls": "Manual MOVE with FIRE drag and separate scene turns visibly worked in both runs; target selection was forgiving. Large control anchors helped. Limited paused bursts cannot establish comfortable sustained thumb play or rearming. DASH/JUMP/AIM/tools untested.",
+      "gameplay": "Recovery, three-part Custodian and deck upload provided observable objective variety. Route assistance removed navigation friction but accounted for most travel and limited independent assessment of navigation/combat depth. Sustained challenge and continuous enjoyment remain unassessed.",
+      "presentation": "Rain, reflective ground, cyan/orange contrast and station geometry gave a cohesive atmosphere; target-down and saved-memory overlays were clear. Audio was not assessed.",
+      "usability": "Context-sensitive hold labels, objective changes, extraction map and explicit fresh start helped complete the sequence. Boss damage occurred across batches ending ARMORED, leaving phase-rule clarity uncertain.",
+      "readability": "Main health/ammo, objective and terminal stats were legible. Patrol silhouettes, environmental labels and compact tactical text were noticeably small at landscape 844x390."
+    }
+  },
+  "evidence": {
+    "directory": "docs/media/build117-mobile-review1",
+    "raw_action_log": "docs/media/build117-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build117-mobile-review1/a1-approach.jpg",
+      "docs/media/build117-mobile-review1/a1-boss-route.jpg",
+      "docs/media/build117-mobile-review1/a1-boss-route2.jpg",
+      "docs/media/build117-mobile-review1/a1-coil1.jpg",
+      "docs/media/build117-mobile-review1/a1-coil2-armored.jpg",
+      "docs/media/build117-mobile-review1/a1-coil3-reload.jpg",
+      "docs/media/build117-mobile-review1/a1-coil3.jpg",
+      "docs/media/build117-mobile-review1/a1-deck-fire.jpg",
+      "docs/media/build117-mobile-review1/a1-deck-fire2.jpg",
+      "docs/media/build117-mobile-review1/a1-elian.jpg",
+      "docs/media/build117-mobile-review1/a1-manual-patrol.jpg",
+      "docs/media/build117-mobile-review1/a1-map.jpg",
+      "docs/media/build117-mobile-review1/a1-patrol-left.jpg",
+      "docs/media/build117-mobile-review1/a1-return.jpg",
+      "docs/media/build117-mobile-review1/a1-route1.jpg",
+      "docs/media/build117-mobile-review1/a1-route2.jpg",
+      "docs/media/build117-mobile-review1/a1-route3.jpg",
+      "docs/media/build117-mobile-review1/a1-route4.jpg",
+      "docs/media/build117-mobile-review1/a1-route5.jpg",
+      "docs/media/build117-mobile-review1/a1-route6.jpg",
+      "docs/media/build117-mobile-review1/a1-route7.jpg",
+      "docs/media/build117-mobile-review1/a1-scene-turn.jpg",
+      "docs/media/build117-mobile-review1/a1-sera.jpg",
+      "docs/media/build117-mobile-review1/a1-terminal.jpg",
+      "docs/media/build117-mobile-review1/a1-uplink.jpg",
+      "docs/media/build117-mobile-review1/a2-boss-front.jpg",
+      "docs/media/build117-mobile-review1/a2-boss-route.jpg",
+      "docs/media/build117-mobile-review1/a2-coil1.jpg",
+      "docs/media/build117-mobile-review1/a2-coil2-empty.jpg",
+      "docs/media/build117-mobile-review1/a2-coil2-rearm.jpg",
+      "docs/media/build117-mobile-review1/a2-coil3.jpg",
+      "docs/media/build117-mobile-review1/a2-deck-fire.jpg",
+      "docs/media/build117-mobile-review1/a2-deck-fire2.jpg",
+      "docs/media/build117-mobile-review1/a2-elian-saved.jpg",
+      "docs/media/build117-mobile-review1/a2-left-fire.jpg",
+      "docs/media/build117-mobile-review1/a2-manual-entry.jpg",
+      "docs/media/build117-mobile-review1/a2-manual-right-patrol.jpg",
+      "docs/media/build117-mobile-review1/a2-mara-saved.jpg",
+      "docs/media/build117-mobile-review1/a2-mara.jpg",
+      "docs/media/build117-mobile-review1/a2-return.jpg",
+      "docs/media/build117-mobile-review1/a2-route1.jpg",
+      "docs/media/build117-mobile-review1/a2-route2.jpg",
+      "docs/media/build117-mobile-review1/a2-route3.jpg",
+      "docs/media/build117-mobile-review1/a2-route4.jpg",
+      "docs/media/build117-mobile-review1/a2-route5.jpg",
+      "docs/media/build117-mobile-review1/a2-route6.jpg",
+      "docs/media/build117-mobile-review1/a2-route7.jpg",
+      "docs/media/build117-mobile-review1/a2-scene-turn.jpg",
+      "docs/media/build117-mobile-review1/a2-sera-saved.jpg",
+      "docs/media/build117-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build117-mobile-review1/a2-terminal.jpg",
+      "docs/media/build117-mobile-review1/a2-uplink.jpg",
+      "docs/media/build117-mobile-review1/brief.jpg",
+      "docs/media/build117-mobile-review1/menu.jpg"
+    ],
+    "terminal_screenshots": [
+      "docs/media/build117-mobile-review1/a1-terminal.jpg",
+      "docs/media/build117-mobile-review1/a2-terminal.jpg"
+    ],
+    "manual_patrol_screenshots": [
+      "docs/media/build117-mobile-review1/a1-patrol-left.jpg",
+      "docs/media/build117-mobile-review1/a2-manual-right-patrol.jpg"
+    ]
+  },
+  "method": {
+    "url": "http://127.0.0.1:61513/",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "input": "Helper native CDP two-contact touch JSON lines only",
+    "source_access": "Only mobile-playtest.mjs --help used to learn helper; no source/tests/docs/prior reviews/internal state/target metadata inspected. Own generated screenshots viewed individually before adaptive input. UI result text only.",
+    "observation_boundaries": "Requested 3000ms waits commonly shortened to about 2966\u20132986ms and 1200ms FIRE waits to about 1198ms; exact per-batch timings and boundaries retained in actions.jsonl. No attempt to execute skipped time. No wait exceeded 3000ms.",
+    "planning": "Map opened once in attempt one, remained planning and was visibly closed using #close-map.",
+    "identity": "BUILD 117 visible at title; requested source hash is provenance supplied by user, not independently verified."
+  },
+  "uncertainties": [
+    "Terminal accuracy is game-reported; individual miss count not independently measured. First-run 95% preserves observed misses without attributing their cause.",
+    "Capture metadata and image may straddle live damage; screenshot a1-coil3 shows shield 41 while that batch metadata says 60. No inference of exact impact timing.",
+    "Automatic contact release and pause materially alter continuity and observation frequency. No human reaction-time or causal quality advantage claimed.",
+    "Two wins do not establish difficulty balance, physical-device comfort or enjoyment outside this sampled assisted mission."
+  ]
+}

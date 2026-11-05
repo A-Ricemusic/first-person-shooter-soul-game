@@ -5,7 +5,7 @@ export function mobileBossWindow(s,blocked=false){
  const c=s.custodian;
  if(c.charging)return{text:'CHARGE · COVER',mode:'charging',ratio:0,seconds:0};
  if(blocked)return{text:'MAP · FIND ENTRY',mode:'route',ratio:0,seconds:0};
- if(!c.open)return{text:'ARMORED · MOVE',mode:'armored',ratio:0,seconds:0};
+ if(!c.open)return{text:'ARMOR · CHIP ONLY',mode:'armored',ratio:0,seconds:0};
  const seconds=Number.isFinite(c.openRemaining)?Math.max(0,c.openRemaining):0;
  if(!seconds)return{text:'OPEN · FIND COIL',mode:'open',ratio:0,seconds:0};
  // Truncate rather than promise more time than the captured state has.

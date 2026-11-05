@@ -26,7 +26,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 117</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 118</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -242,24 +242,24 @@ function mobileMarker(el,m,placed){
  const visible=!m.suppressed&&m.front&&mobileMarkerAnchorVisible(anchor,viewport,placed.filter(p=>p.markerId!==m.id));
  el.style.opacity=visible?'1':'0';el.dataset.anchorVisible=String(visible);
  const copy=el.querySelector('.marker-copy'),leader=el.querySelector('.marker-leader path');
+ const button=copy.tagName==='BUTTON';const conceal=()=>{copy.style.visibility='hidden';if(button){copy.disabled=true;copy.style.pointerEvents='none';}};
  leader.setAttribute('d','');
  // The compass already owns offscreen route words. Keep the exact step symbol
  // without a second PATH caption, and leave the central aiming aperture clear.
  const aperture={left:innerWidth/2-18,right:innerWidth/2+18,top:innerHeight/2-24,bottom:innerHeight/2+24};
- copy.style.visibility='hidden';
- if(!visible)return;
+ if(!visible){conceal();return;}
  const rect={left:anchor.x-11,right:anchor.x+11,top:anchor.y-11,bottom:anchor.y+11};
- if(document.body.classList.contains('touch-combat-focus')&&['core','exit','supply'].includes(m.kind)){placed.push(rect);return}
+ if(document.body.classList.contains('touch-combat-focus')&&['core','exit','supply'].includes(m.kind)){conceal();placed.push(rect);return}
  const sizeKey=[copy.textContent,el.className,innerWidth,innerHeight].join('|');
  if(el._captionKey!==sizeKey){el._captionKey=sizeKey;el._captionSize={width:copy.offsetWidth,height:copy.offsetHeight}}
  const spot=m.id==='ground-step'||m.approach?null:mobileMarkerCaption(anchor,el._captionSize,viewport,[...placed,aperture]);
- if(spot){copy.style.left=`${spot.dx+11}px`;copy.style.top=`${spot.dy+11}px`;copy.style.visibility='visible';const ex=Math.max(spot.rect.left,Math.min(spot.rect.right,anchor.x))-anchor.x,ey=Math.max(spot.rect.top,Math.min(spot.rect.bottom,anchor.y))-anchor.y,length=Math.hypot(ex,ey);leader.setAttribute('d',`M ${11+ex/length*12} ${11+ey/length*12} L ${11+ex} ${11+ey}`);placed.push(spot.rect)}
+ if(spot){if(button){copy.disabled=game.options.touchTapAim===false;copy.style.pointerEvents=copy.disabled?'none':'auto';}copy.style.left=`${spot.dx+11}px`;copy.style.top=`${spot.dy+11}px`;copy.style.visibility='visible';const ex=Math.max(spot.rect.left,Math.min(spot.rect.right,anchor.x))-anchor.x,ey=Math.max(spot.rect.top,Math.min(spot.rect.bottom,anchor.y))-anchor.y,length=Math.hypot(ex,ey);leader.setAttribute('d',`M ${11+ex/length*12} ${11+ey/length*12} L ${11+ex} ${11+ey}`);placed.push(spot.rect)}else conceal();
  placed.push(rect);
 }
 let visorFocus;
 function drawMarkers(markers){
  const active=new Set(), placed=[];
- if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button,.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint,.bearing,#timer,#touch-route-cue,#touch-threat-cue')){if(el.getClientRects().length){const r=el.getBoundingClientRect();placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
+ if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button:not(.component-aim),.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint,.bearing,#timer,#touch-route-cue,#touch-threat-cue')){if(el.getClientRects().length){const r=el.getBoundingClientRect();if(r.width&&r.height)placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
  const blocked=nearest?.occluded?nearest:null;
  if(game?.touchMode)mobileUplinkBlocked=current.phase==='playing'&&current.cores===current.totalCores&&!!blocked;
@@ -303,13 +303,13 @@ function drawMarkers(markers){
  markers.sort((a,b)=>(b.charging?4:b.recent?3:b.inRange?2:0)-(a.charging?4:a.recent?3:a.inRange?2:0));
  for(const m of markers){
   active.add(m.id);let el=markerPool.get(m.id);
-  if(!el){el=document.createElement('div');el.className=`world-marker ${m.kind}`;el.dataset.markerId=m.id;el.innerHTML='<span class="marker-symbol">◇</span><span class="marker-copy"><b></b><small></small></span><svg class="marker-leader" viewBox="0 0 22 22" aria-hidden="true"><path/></svg><div class="enemy-track"><i></i></div>';$('waypoints').append(el);markerPool.set(m.id,el)}
+  if(!el){el=document.createElement('div');el.className=`world-marker ${m.kind}`;el.dataset.markerId=m.id;el.innerHTML='<span class="marker-symbol">◇</span>'+((m.kind==='component'&&game?.touchMode)?'<button type="button" class="marker-copy component-aim" disabled><b></b><small></small></button>':'<span class="marker-copy"><b></b><small></small></span>')+'<svg class="marker-leader" viewBox="0 0 22 22" aria-hidden="true"><path/></svg><div class="enemy-track"><i></i></div>';(m.kind==='component'&&game?.touchMode?$('touch-controls'):$('waypoints')).append(el);markerPool.set(m.id,el)}
   if(m.kind==='component'){
    el.className=`world-marker component ${m.exposed?'exposed':'armored'}`;
    el.style.left=`${(m.x+1)*innerWidth/2}px`;el.style.top=`${(1-m.y)*innerHeight/2}px`;
    el.querySelector('.marker-symbol').textContent='';el.querySelector('b').textContent=m.label;
-   el.querySelector('small').textContent='';
-   if(game?.touchMode)mobileMarker(el,m,placed);
+   el.querySelector('small').textContent=game?.touchMode?(game.options.touchTapAim===false?'COIL':'AIM'):'';
+   if(game?.touchMode){const badge=el.querySelector('.component-aim');badge.dataset.coil=String(m.componentIndex??['I','II','III'].indexOf(m.label));badge.setAttribute('aria-label',`Center view on visible coil ${m.label}; FIRE is separate`);mobileMarker(el,m,placed);}
    el.setAttribute('aria-label',`Coil ${m.label}: ${m.exposed?'exposed component':'armored component'}`);
    continue;
   }

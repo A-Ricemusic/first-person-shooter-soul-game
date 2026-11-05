@@ -486,3 +486,10 @@ body.touch-mode #touch-controls button,body.touch-mode #touch-use{font-size:14px
 body.touch-mode #touch-threat-cue{padding:5px 10px}
 body.touch-mode #touch-threat-cue small{font-size:13px;line-height:15px}
 body.touch-mode #touch-threat-cue b{font-size:16px;line-height:19px}
+
+/* The visible coil badge is a deliberate aim control, separate from FIRE. */
+body.touch-mode #touch-controls .world-marker.component{z-index:1}
+body.touch-mode #touch-controls .component-aim{min-width:44px;min-height:44px;padding:3px 6px;border:1px solid currentColor;border-radius:4px;background:#082129ed;color:inherit;touch-action:none;cursor:pointer}
+body.touch-mode #touch-controls .component-aim small{display:block;font:600 12px/14px 'Barlow',Arial,sans-serif;letter-spacing:0}
+body.touch-mode #touch-controls .component-aim:disabled{opacity:1;cursor:default}
+body.touch-mode #touch-controls .component-aim:active{background:#285d59}

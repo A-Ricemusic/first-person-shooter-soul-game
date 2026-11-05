@@ -1,0 +1,46 @@
+{
+  "build": 118,
+  "status": "Final production reports passed after documented fixture corrections; initial failures retained.",
+  "records": [
+    {
+      "report": "build118-component-baseline.json",
+      "source": "build118-component-initial-fixture.txt",
+      "finding": "Baseline portrait annotation hidden; record hidden as observation instead of asserting visible."
+    },
+    {
+      "report": "build118-component-initial.json",
+      "source": "build118-component-initial-fixture.txt",
+      "finding": "Fixture cover persisted into next stage; restore original collider array before every stage."
+    },
+    {
+      "report": "build118-component-checked.json",
+      "source": "build118-component-checked-fixture.txt",
+      "finding": "Negative-control DOM index was overwritten by normal render; change captured marker identity after pointer-down."
+    },
+    {
+      "report": "build118-component-final-checked.json",
+      "source": "build118-component-before-stale-view-fixture-fix.txt",
+      "finding": "A deliberately mismatched-surface fixture moved the compact badge to a hidden location. The stronger fixture now retains stale UI during a held gesture, sends a different real surface with the same stated identity, requires rejection, and confirms that an unconstrained physical query can select that surface."
+    },
+    {
+      "report": "build118-production-aim-hud.json",
+      "source": "build118-aim-hud-initial-fixture.txt",
+      "finding": "At320x640 the reported44px badge was visibility:hidden, disabled, pointer-events:none, parent opacity0; center hit touch-look. Its stale rectangle crossed only the empty footer gap. Original fixture included all controls regardless of visibility.",
+      "correction": "Filter effective ancestor visibility and nonzero geometry. Keep conservative whole-footer overlap assertion for visible controls. Add hidden disabled/noninterception and visible center native-hit/reticle assertions. No product changes.",
+      "diagnostic": "build118-aim-hud-diagnostic.json",
+      "finalReport": "build118-production-aim-hud-checked.json"
+    }
+  ],
+  "presentationFix": {
+    "source": "build118-main-before-empty-rectangle-fix.txt",
+    "finding": "Zero-area empty notice rectangle could suppress the anchor; skip empty rectangles while retaining real opaque UI constraints."
+  },
+  "stableControlState": {
+    "source": "build118-main-before-stable-caption-state.txt",
+    "finding": "Avoid transiently disabling/hiding a valid badge each render; apply concealment only when its placement actually becomes invalid, preserving DOM node and focus."
+  },
+  "limits": [
+    "Engineering arrangements, not ordinary mission or independent review outcomes.",
+    "No rating, timing benefit or hardware claim inferred."
+  ]
+}

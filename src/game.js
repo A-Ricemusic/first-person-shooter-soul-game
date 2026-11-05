@@ -524,13 +524,13 @@ export class Game {
 
   touchRifleTarget(direction) { return touchRifleTarget(this,direction); }
 
-  tapAimAt(clientX,clientY) {
+  tapAimAt(clientX,clientY,expectedKey=null) {
     this.touchTrack=null;this.touchTrackSeed=null;
     if(!this.touchMode||this.options.touchTapAim===false||this.phase!=='playing'||this.vault)return false;
     const r=this.canvas.getBoundingClientRect();
     if(!r.width||!r.height||clientX<r.left||clientX>r.right||clientY<r.top||clientY>r.bottom)return false;
     const target=touchTapTarget(this,new THREE.Vector2((clientX-r.left)/r.width*2-1,1-(clientY-r.top)/r.height*2));
-    if(!target){recordTouchAim(this,false);this.emit();return false;}
+    if(!target||expectedKey&&target.key!==expectedKey){recordTouchAim(this,false);this.emit();return false;}
     const delta=target.point.clone().sub(this.player),pitch=Math.atan2(delta.y,Math.hypot(delta.x,delta.z));
     // syncCamera adds current recoil; compensate so the rendered centre, not
     // only the stored base pitch, points at the actual tapped surface.
@@ -1053,7 +1053,7 @@ export class Game {
       const center=extractionCenter(this.world.playerSpawn),target=this.world.playerSpawn.clone().set(center.x,1.7,center.z);
       if(!this.custodian.dead){
         const target=focusedCustodianTarget(this);
-        if(target)markers.push({id:'custodian-component',kind:'component',label:['I','II','III'][target.index],exposed:target.exposed,...project(target.point)});
+        if(target)markers.push({id:'custodian-component',kind:'component',componentIndex:target.index,label:['I','II','III'][target.index],exposed:target.exposed,...project(target.point)});
         else markers.push({id:'custodian',kind:'exit',occluded:!custodianObjectiveVisible(this),approachHint:this.touchMode?'USE A HALL OPENING · MAP TO PLAN':'USE A HALL OPENING · HOLD TAB FOR GROUND TRACE',label:'DISABLE CUSTODIAN',...project(this.custodian.group.position.clone().setY(3))});
       }
       else markers.push({id:'extraction',kind:'exit',occluded:!this.hasLineOfSight(this.player,target,0),label:'EXTRACTION',...project(target.clone().setY(3)),distance:extractionDistance(this.player,target),inZone:isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))});

@@ -1,0 +1,1262 @@
+{
+  "method": "Mobile Chromium native-touch engineering checks. Real input measures camera angles, utility actions and independent contact release. HUD fixtures explicitly stage all recoveries, a camera pose, a receiver pose, a synthetic ground cue, a visible hint, a loss with long assistance statistics and one assisted-victory UI fixture; they are not mission wins or independent play.",
+  "profiles": [
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "visible phone briefing names touch controls",
+        "20px scene look stays within12 degrees yaw and3.5 degrees pitch",
+        "rotating preserves horizontal viewport-fraction turn and vertical pixel gain",
+        "ADS provides a slower fine-aim range",
+        "utility hold can drag aim while the other thumb keeps moving",
+        "native crouch prompt uses touch wording",
+        "real held recovery has readiness and progress feedback",
+        "ground step uses a compact cue rather than a large target label",
+        "blocked-signal hint is readable and separate from suit vitals",
+        "recovery notices avoid vitals, controls, boss strip and reticle",
+        "loss statistics remain visible beside reachable retry actions"
+      ],
+      "failures": [
+        {
+          "name": "compact boss strip leaves the aiming aperture clear",
+          "error": "health/ammo overlap touch controls"
+        }
+      ],
+      "hip20pxDegrees": {
+        "yaw": 11.459155902616464,
+        "pitch": 3.22288759761088
+      },
+      "quarterViewportDegrees": 45.83662361046586,
+      "ads20pxDegrees": {
+        "yaw": 3.922059126669442,
+        "pitch": 1.1030791293757813
+      },
+      "utility": {
+        "before": {
+          "yaw": -1.8684528452182751,
+          "pitch": -0.18800236271763987,
+          "aim": false,
+          "weapon": "rifle",
+          "move": {
+            "x": 0,
+            "z": -0.3213531293440816
+          }
+        },
+        "moved": {
+          "yaw": -1.8872396417826787,
+          "pitch": -0.17743478965016285,
+          "aim": false,
+          "weapon": "breacher",
+          "move": {
+            "x": 0,
+            "z": -0.3213531293440816
+          }
+        }
+      },
+      "holdFeedback": {
+        "ready": "true",
+        "progress": 37.03333333333338,
+        "cores": 0
+      },
+      "groundCue": {
+        "x": 181,
+        "y": 373,
+        "width": 22,
+        "height": 22,
+        "top": 373,
+        "right": 203,
+        "bottom": 395,
+        "left": 181
+      },
+      "hint": {
+        "hint": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 40,
+          "top": 88,
+          "right": 308,
+          "bottom": 128,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 356.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 356.8125,
+          "right": 112,
+          "bottom": 410,
+          "left": 12
+        },
+        "font": 12
+      },
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "vitals": {
+          "x": 12,
+          "y": 356.8125,
+          "width": 100,
+          "height": 53.1875,
+          "top": 356.8125,
+          "right": 112,
+          "bottom": 410,
+          "left": 12
+        },
+        "hud": {
+          "x": 12,
+          "y": 340,
+          "width": 296,
+          "height": 70,
+          "top": 340,
+          "right": 308,
+          "bottom": 410,
+          "left": 12
+        },
+        "bearing": {
+          "x": 105,
+          "y": 62,
+          "width": 110,
+          "height": 16,
+          "top": 62,
+          "right": 215,
+          "bottom": 78,
+          "left": 105
+        },
+        "status": "ARMOR · CHIP ONLY",
+        "notices": [
+          {
+            "id": "#memory-card",
+            "rect": {
+              "x": 12,
+              "y": 264,
+              "width": 296,
+              "height": 28,
+              "top": 264,
+              "right": 308,
+              "bottom": 292,
+              "left": 12
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "x": 20,
+            "y": 504,
+            "width": 116,
+            "height": 116,
+            "top": 504,
+            "right": 136,
+            "bottom": 620,
+            "left": 20
+          },
+          {
+            "x": 20,
+            "y": 446,
+            "width": 116,
+            "height": 46,
+            "top": 446,
+            "right": 136,
+            "bottom": 492,
+            "left": 20
+          },
+          {
+            "x": 201,
+            "y": 509,
+            "width": 50,
+            "height": 46,
+            "top": 509,
+            "right": 251,
+            "bottom": 555,
+            "left": 201
+          },
+          {
+            "x": 201,
+            "y": 562,
+            "width": 50,
+            "height": 46,
+            "top": 562,
+            "right": 251,
+            "bottom": 608,
+            "left": 201
+          },
+          {
+            "x": 258,
+            "y": 562,
+            "width": 50,
+            "height": 46,
+            "top": 562,
+            "right": 308,
+            "bottom": 608,
+            "left": 258
+          },
+          {
+            "x": 144,
+            "y": 509,
+            "width": 50,
+            "height": 99,
+            "top": 509,
+            "right": 194,
+            "bottom": 608,
+            "left": 144
+          },
+          {
+            "x": 258,
+            "y": 509,
+            "width": 50,
+            "height": 46,
+            "top": 509,
+            "right": 308,
+            "bottom": 555,
+            "left": 258
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          {
+            "x": 206,
+            "y": 10,
+            "width": 46,
+            "height": 46,
+            "top": 10,
+            "right": 252,
+            "bottom": 56,
+            "left": 206
+          },
+          {
+            "x": 144,
+            "y": 449,
+            "width": 164,
+            "height": 48,
+            "top": 449,
+            "right": 308,
+            "bottom": 497,
+            "left": 144
+          },
+          {
+            "x": 149,
+            "y": 313.734375,
+            "width": 44,
+            "height": 44,
+            "top": 313.734375,
+            "right": 193,
+            "bottom": 357.734375,
+            "left": 149
+          }
+        ],
+        "diagnostic": [
+          {
+            "id": "",
+            "cls": "vitals",
+            "box": {
+              "x": 12,
+              "y": 356.8125,
+              "width": 100,
+              "height": 53.1875,
+              "top": 356.8125,
+              "right": 112,
+              "bottom": 410,
+              "left": 12
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "hitId": "touch-look",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "flex",
+                "opacity": "1"
+              },
+              {
+                "id": "hud",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "app",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "",
+            "cls": "ability",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "none",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "hitId": "game-canvas",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "none",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "flex",
+                "opacity": "1"
+              },
+              {
+                "id": "hud",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "app",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "",
+            "cls": "weapon-info",
+            "box": {
+              "x": 207.109375,
+              "y": 340,
+              "width": 100.890625,
+              "height": 70,
+              "top": 340,
+              "right": 308,
+              "bottom": 410,
+              "left": 207.109375
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "hitId": "touch-look",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "flex",
+                "opacity": "1"
+              },
+              {
+                "id": "hud",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "app",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-stick",
+            "cls": "",
+            "box": {
+              "x": 20,
+              "y": 504,
+              "width": 116,
+              "height": 116,
+              "top": 504,
+              "right": 136,
+              "bottom": 620,
+              "left": 20
+            },
+            "visibility": "visible",
+            "display": "grid",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "hitId": "touch-stick",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-stick",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-use",
+            "cls": "",
+            "box": {
+              "x": 20,
+              "y": 446,
+              "width": 116,
+              "height": 46,
+              "top": 446,
+              "right": 136,
+              "bottom": 492,
+              "left": 20
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-use",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-use",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-ads",
+            "cls": "",
+            "box": {
+              "x": 201,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 251,
+              "bottom": 555,
+              "left": 201
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-ads",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-ads",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-dash",
+            "cls": "",
+            "box": {
+              "x": 201,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 251,
+              "bottom": 608,
+              "left": 201
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-dash",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-dash",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-jump",
+            "cls": "",
+            "box": {
+              "x": 258,
+              "y": 562,
+              "width": 50,
+              "height": 46,
+              "top": 562,
+              "right": 308,
+              "bottom": 608,
+              "left": 258
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-jump",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-jump",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-fire",
+            "cls": "",
+            "box": {
+              "x": 144,
+              "y": 509,
+              "width": 50,
+              "height": 99,
+              "top": 509,
+              "right": 194,
+              "bottom": 608,
+              "left": 144
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-fire",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-more",
+            "cls": "",
+            "box": {
+              "x": 258,
+              "y": 509,
+              "width": 50,
+              "height": 46,
+              "top": 509,
+              "right": 308,
+              "bottom": 555,
+              "left": 258
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-more",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-more",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-reload",
+            "cls": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "inline-block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "game-canvas",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-reload",
+                "visibility": "visible",
+                "display": "inline-block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-extra",
+                "visibility": "visible",
+                "display": "none",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-swap",
+            "cls": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "inline-block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "game-canvas",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-swap",
+                "visibility": "visible",
+                "display": "inline-block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-extra",
+                "visibility": "visible",
+                "display": "none",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-crouch",
+            "cls": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "inline-block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "game-canvas",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-crouch",
+                "visibility": "visible",
+                "display": "inline-block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-extra",
+                "visibility": "visible",
+                "display": "none",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-sprint",
+            "cls": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            },
+            "visibility": "visible",
+            "display": "inline-block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "game-canvas",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-sprint",
+                "visibility": "visible",
+                "display": "inline-block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-extra",
+                "visibility": "visible",
+                "display": "none",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-actions",
+                "visibility": "visible",
+                "display": "grid",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-map",
+            "cls": "",
+            "box": {
+              "x": 206,
+              "y": 10,
+              "width": 46,
+              "height": 46,
+              "top": 10,
+              "right": 252,
+              "bottom": 56,
+              "left": 206
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "touch-map",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-map",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "touch-threat-cue",
+            "cls": "touch-compass-cue",
+            "box": {
+              "x": 144,
+              "y": 449,
+              "width": 164,
+              "height": 48,
+              "top": 449,
+              "right": 308,
+              "bottom": 497,
+              "left": 144
+            },
+            "visibility": "visible",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "auto",
+            "disabled": false,
+            "hitId": "",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "touch-threat-cue",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          },
+          {
+            "id": "",
+            "cls": "marker-copy component-aim",
+            "box": {
+              "x": 149,
+              "y": 313.734375,
+              "width": 44,
+              "height": 44,
+              "top": 313.734375,
+              "right": 193,
+              "bottom": 357.734375,
+              "left": 149
+            },
+            "visibility": "hidden",
+            "display": "block",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "disabled": true,
+            "hitId": "touch-look",
+            "hitClass": "",
+            "ancestors": [
+              {
+                "id": "",
+                "visibility": "hidden",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "0"
+              },
+              {
+                "id": "touch-controls",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              },
+              {
+                "id": "",
+                "visibility": "visible",
+                "display": "block",
+                "opacity": "1"
+              }
+            ]
+          }
+        ]
+      },
+      "end": {
+        "stats": [
+          {
+            "x": 37,
+            "y": 288.328125,
+            "width": 76.015625,
+            "height": 34,
+            "top": 288.328125,
+            "right": 113.015625,
+            "bottom": 322.328125,
+            "left": 37
+          },
+          {
+            "x": 134.984375,
+            "y": 288.328125,
+            "width": 72.578125,
+            "height": 34,
+            "top": 288.328125,
+            "right": 207.5625,
+            "bottom": 322.328125,
+            "left": 134.984375
+          },
+          {
+            "x": 229.515625,
+            "y": 288.328125,
+            "width": 53.484375,
+            "height": 34,
+            "top": 288.328125,
+            "right": 283,
+            "bottom": 322.328125,
+            "left": 229.515625
+          }
+        ],
+        "actions": {
+          "x": 37,
+          "y": 448,
+          "width": 246,
+          "height": 159,
+          "top": 448,
+          "right": 283,
+          "bottom": 607,
+          "left": 37
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}
