@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "method": "Production build and nine affected phone groups; initial usability fixture failed on a sticky-footer-obscured native slider. Visible-hit-aware native scrolling corrected the fixture, retaining the same persistence assertion; corrected production group passed. Other eight groups passed unchanged.42 visibility contracts over seven viewport/inset/fallback profiles. Not a full canonical suite, human aiming or physical-phone/FPS certification.",
+  "runner": "tools/mobile-visibility-suite.mjs",
+  "runtimeFilesVerified": 517,
+  "runtimeMismatches": [],
+  "testRevision": "build109-test-revision.json",
+  "pipeline": [
+    {
+      "name": "build",
+      "exit": 0,
+      "wallSeconds": 18.63
+    },
+    {
+      "name": "production",
+      "exit": 1,
+      "wallSeconds": 432.97
+    }
+  ],
+  "usabilityRetest": {
+    "exit": 0,
+    "method": "Corrected native-visible-hit reach fixture against the unchanged tested production build."
+  },
+  "groups": [
+    {
+      "name": "build109-production-aim-hud",
+      "finalReport": "build109-production-aim-hud.json",
+      "passed": true,
+      "initialReport": "build109-production-aim-hud.json"
+    },
+    {
+      "name": "build109-production-compact",
+      "finalReport": "build109-production-compact.json",
+      "passed": true,
+      "initialReport": "build109-production-compact.json"
+    },
+    {
+      "name": "build109-production-insets",
+      "finalReport": "build109-production-insets.json",
+      "passed": true,
+      "initialReport": "build109-production-insets.json"
+    },
+    {
+      "name": "build109-production-markers",
+      "finalReport": "build109-production-markers.json",
+      "passed": true,
+      "initialReport": "build109-production-markers.json"
+    },
+    {
+      "name": "build109-production-paint",
+      "finalReport": "build109-production-paint.json",
+      "passed": true,
+      "initialReport": "build109-production-paint.json"
+    },
+    {
+      "name": "build109-production-readout",
+      "finalReport": "build109-production-readout.json",
+      "passed": true,
+      "initialReport": "build109-production-readout.json"
+    },
+    {
+      "name": "build109-production-tolerance",
+      "finalReport": "build109-production-tolerance.json",
+      "passed": true,
+      "initialReport": "build109-production-tolerance.json"
+    },
+    {
+      "name": "build109-production-usability",
+      "finalReport": "build109-production-usability-retest.json",
+      "passed": true,
+      "initialReport": "build109-production-usability.json"
+    },
+    {
+      "name": "build109-production-visibility",
+      "finalReport": "build109-production-visibility.json",
+      "passed": true,
+      "initialReport": "build109-production-visibility.json"
+    }
+  ],
+  "visibilityChecks": 42,
+  "visibilityProfiles": 7,
+  "parentPlay": "build109-parent-play.json",
+  "mechanicsAudit": "build109-mechanics-audit.json",
+  "bundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/three-DjHVo1cm.js": "dff96b07aef54ae14d566f08b04442821dc121504d2de3f5fd0d46a7c8f9e9e8",
+    "dist/assets/index-FQiFPnM5.css": "a8421a2b15d10497f0b63d9d3535b4c44fd2da2d7f73c16288f7167fdd016568",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-D5LdckcC.js": "6b7d87569ace9d248404a35939bdc5028b00dcb6507a0f21092fec61662bb455"
+  }
+}

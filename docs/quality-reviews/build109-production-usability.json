@@ -1,0 +1,74 @@
+{
+  "method": "Mobile Chromium emulation, native touch. Tests inspect visible DOM/storage and count hidden-canvas drawing. Only the end-state fixture uses a privileged finish call; no mission victory is implied.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "hidden mobile radar is not painted",
+        "map close and route buttons fit without helper scroll",
+        "fresh restart action fits on the initial loss screen",
+        "earned retry anchor is reachable without scrolling",
+        "touch sensitivity survives Apply & Close and page reload"
+      ],
+      "failures": [],
+      "radarPaints": 0,
+      "sensitivity": 0.85
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "hidden mobile radar is not painted",
+        "map close and route buttons fit without helper scroll",
+        "fresh restart action fits on the initial loss screen",
+        "earned retry anchor is reachable without scrolling",
+        "touch sensitivity survives Apply & Close and page reload"
+      ],
+      "failures": [],
+      "radarPaints": 0,
+      "sensitivity": 0.85
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "hidden mobile radar is not painted",
+        "map close and route buttons fit without helper scroll",
+        "fresh restart action fits on the initial loss screen",
+        "earned retry anchor is reachable without scrolling"
+      ],
+      "failures": [
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "native slider must change sensitivity"
+        }
+      ],
+      "radarPaints": 0
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "hidden mobile radar is not painted",
+        "map close and route buttons fit without helper scroll",
+        "fresh restart action fits on the initial loss screen",
+        "earned retry anchor is reachable without scrolling",
+        "touch sensitivity survives Apply & Close and page reload"
+      ],
+      "failures": [],
+      "radarPaints": 0,
+      "sensitivity": 0.85
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

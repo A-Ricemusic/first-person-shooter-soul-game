@@ -1,0 +1,33 @@
+{
+  "method": "Mobile Chromium emulation, native touch. Tests inspect visible DOM/storage and count hidden-canvas drawing. Only the end-state fixture uses a privileged finish call; no mission victory is implied.",
+  "profiles": [
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "hidden mobile radar is not painted",
+        "map close and route buttons fit without helper scroll",
+        "fresh restart action fits on the initial loss screen",
+        "earned retry anchor is reachable without scrolling"
+      ],
+      "failures": [
+        {
+          "name": "touch sensitivity survives Apply & Close and page reload",
+          "error": "native slider must change sensitivity"
+        }
+      ],
+      "radarPaints": 0,
+      "sliderRect": {
+        "x": 96.5,
+        "y": 267.59375,
+        "width": 478,
+        "height": 44
+      },
+      "sliderHit": "<button class=\"primary-button\" data-close=\"\">APPLY &amp; CLOSE <span>↗</span></button>"
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

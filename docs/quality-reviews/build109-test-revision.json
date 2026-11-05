@@ -1,0 +1,15 @@
+{
+  "reason": "The667\u00d7375 sensitivity gesture hit the sticky Apply & Close button, not the slider. Existing reach checked bounds but not touch occlusion. The fixture now natively scrolls until both actual gesture coordinates hit the slider; the original persistence assertion is unchanged. No app edit followed parent play.",
+  "initialFailure": "build109-production-usability.json",
+  "observation": "build109-slider-observation.json",
+  "screenshot": "../media/build109-slider-observation/slider-before.jpg",
+  "oldFixture": "build109-usability-original-fixture.txt",
+  "correctedDevelopment": "build109-usability-corrected.json",
+  "correctedProduction": "build109-production-usability-retest.json",
+  "changedFiles": {
+    "tests/mobile-usability.mjs": {
+      "before": "58a3fb50fe8a8ac9fccca0733b80917f65660ad58d5999cf1fc871af2a0337a1",
+      "after": "043cb917ca64df07ab493f989191c09ea5168f8ca77762dece1db24cb9eec962"
+    }
+  }
+}

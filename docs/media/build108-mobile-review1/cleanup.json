@@ -1,0 +1,17 @@
+{
+  "status": "SUCCESS",
+  "close_command": "JSON {op:close}",
+  "helper_exit_code": 0,
+  "helper_report": {
+    "reason": "input ended or close requested",
+    "driverPid": 93788,
+    "chromePid": 93798,
+    "browserLaunched": true,
+    "browserClosed": true
+  },
+  "verification_command": "ps -p 93788,93798 -o pid=,ppid=,stat=,command=",
+  "verification_exit_code": 1,
+  "verification_stdout": "",
+  "conclusion": "Exact owned driver and Chrome PIDs absent; no broad kill used.",
+  "evidence": "docs/media/build108-mobile-review1/cleanup.json"
+}
