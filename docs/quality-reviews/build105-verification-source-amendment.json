@@ -1,0 +1,13 @@
+{
+  "changed": [
+    "tests/mobile-confirmation.mjs"
+  ],
+  "beforeSHA256": "92046a5fdeaabe6cacbe4b5192c99d5eb142f349f1363936a534f7fcebe3c8e2",
+  "afterSHA256": "6c27557e660397f42bd103c876f0e0868ff4048489d9f8a04bf34f0baf7098e9",
+  "runtimeChanged": false,
+  "reason": "Release native FIRE before polling for completion, avoiding unintended empty-ammo warnings in the one-round fixture. Add exact one-shot assertion and notice metadata.",
+  "priorFixture": "build105-confirmation-before-pulse-fixture.txt",
+  "priorManifest": "build105-runtime-before-pulse-correction.json",
+  "initialProductionFailure": "build105-production-confirmation-initial.json",
+  "policy": "Retain first production failure, finish other groups, retest only corrected confirmation group against same tested bundle."
+}

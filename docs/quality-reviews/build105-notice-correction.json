@@ -1,0 +1,13 @@
+{
+  "ordinaryEvidence": "../media/build105-parent-play/coil-ii-off.jpg",
+  "engineeringReproduction": "build105-notice-diagnosis.json",
+  "finding": "A COIL OFF notification sets announcement.visible with data-mobile-duplicate=true. Existing CSS hides that redundant announcement, but the new suppression rule still matched its visible class and hid the completion word.",
+  "correction": "Suppress the added word only for non-duplicate announcements and actual memory notices. Preserve the marker and the latest-shot line.",
+  "applicationChanged": [
+    "src/style.css: duplicate exemption only"
+  ],
+  "regression": "Native contracts now require an actual component word to render, explicit duplicate/non-duplicate notice behavior, plus all prior lifecycle and time-label checks.",
+  "limits": "Post-parent ordinary-play correction. No rescore or human perceptual benefit claimed.",
+  "diagnosticCaveat": "The initial/native after-correction visibility fixture was confounded by its one-round/zero-reserve FIRE contact waiting for a state poll before release. That could issue an empty-ammo warning after the kill, legitimately suppressing the word. Preserve both failures. The fixture now releases native FIRE immediately, waits afterward for actual shot/DOM resolution and asserts exactly one shot; notice state is recorded.",
+  "pipelineFailure": "build105-production-confirmation-initial.json"
+}

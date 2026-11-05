@@ -1,0 +1,14 @@
+{
+  "initial": "build105-confirmation-focused.json",
+  "initialFixture": "build105-confirmation-initial-fixture.txt",
+  "finding": "Initial layout assertion expected the completion word while a real empty-ammo announcement was visible. The existing collision-suppression rule intentionally hid the added word; confirmed marker and latest actual COVER remained valid.",
+  "correction": "Arrange notice-free layout explicitly for fit assertions; retain separate native notice-suppression checks. Save original boss/colliders for later normal-height component fixture rather than retain the elevated scene.",
+  "applicationChanged": false,
+  "limits": "Engineering fixture diagnosis, not proof of ordinary aiming improvement.",
+  "secondFailure": {
+    "report": "build105-confirmation-corrected.json",
+    "fixture": "build105-confirmation-corrected-fixture.txt",
+    "finding": "The fixture compared the width of proportional ammo digits before/after 01 to00. Right edge, vertical position and height were stable; digit widths may differ.",
+    "correction": "Assert stable right edge, y and height rather than identical digit width. No application change."
+  }
+}

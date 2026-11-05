@@ -3,7 +3,7 @@ import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRout
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
 import {inCustodianApproach} from './custodian-approach.js';
-import {recordRifleImpact,rifleReadout} from './rifle-readout.js';
+import {recordRifleImpact,rifleReadout,rifleConfirmation} from './rifle-readout.js';
 import {recordTouchAim,touchAimReadout} from './touch-aim-readout.js';
 import {mobileCadence,attackCapacity,attackRecoveryReady,advanceAttackRecovery,resolveMobileAttack,warningDuration,rangedChargeProgress} from './mobile-combat.js';
 import {clearTouchRoute,touchRouteStep} from './touch-route-follow.js';
@@ -90,7 +90,7 @@ export class Game {
   get fireTimer(){return this.weaponSlots[this.activeWeapon].fireTimer} set fireTimer(v){this.weaponSlots[this.activeWeapon].fireTimer=v}
   selectWeapon(name){
     if(this.phase!=='playing'||!this.weaponSlots[name]||name===this.activeWeapon)return;
-    this.rifleImpact=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
+    this.rifleImpact=null;this.rifleConfirmation=null;this.touchAimNotice=null;this.reloading=false;this.reloadTimer=0;this.activeWeapon=name;this.muzzle.visible=false;this.flashLight.intensity=0;this.emit();
   }
   supply(rifle,shells){this.weaponSlots.rifle.reserve=Math.min(360,this.weaponSlots.rifle.reserve+rifle);this.weaponSlots.breacher.reserve=Math.min(36,this.weaponSlots.breacher.reserve+shells)}
   async init() {
@@ -402,7 +402,7 @@ export class Game {
     this.phase = 'paused'; this.audio.setActive(false); this.clearInput(); if (document.pointerLockElement === this.canvas) document.exitPointerLock?.(); this.emit();
   }
   resume() { if (this.phase !== 'paused') return; this.phase = 'playing'; this.lastFrame = 0; this.clearInput(); this.canvas.focus({ preventScroll: true }); this.audio.wake(); this.audio.setActive(true); this.requestLock(); this.emit(); }
-  clearInput() { this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
+  clearInput() { this.rifleConfirmation=null;this.touchAimNotice=null;this.touchThreatTurn=null;this.touchThreatCue=null;clearTouchRoute(this);clearTouchApproach(this);this.touchFocusUntil=-1;this.touchRecoveryBraked=false;this.touchVaultContact=null;this.touchAssistUntil=-1;this.touchRouteUntil=0;this.touchInput?.clear(); this.touchMove.x=0;this.touchMove.z=0;this.touchUse=false;this.touchSprint=false; if(this.suitService)this.suitService.progress=0; if(this.routeTrace)this.routeTrace.visible=false;this.routeHelp?.clearInput();this.routeWaypoint=null;if(!['paused','planning','playing'].includes(this.phase))this.routeHelp?.reset();this.routeStatus='';this.routeNext=0;this.routePath=[]; this.keys.clear(); this.mouseDown = false; this.aim = false; this.dragging = false; }
   clearRun() {
     this.rifleImpact=null;
     this.mobileAttackRecovery=0;this.mobileLastAttackId=0;
@@ -1093,7 +1093,7 @@ export class Game {
       autoVaults:this.autoVaults||0,assistedShots:this.assistedShots||0,tapAims:this.tapAims||0,approachAssists:this.approachAssists||0,routeAssists:this.routeAssists||0,touchRouteActive:!!this.touchRouteActive,touchRouteArrived:!!this.touchRouteArrived,touchRouteFraming:!!this.touchRouteFraming,touchRouteStatus:this.touchRouteStatus||'',touchRouteGoal:this.touchRoute?.key||null,touchApproachActive:!!this.touchApproachActive,touchApproachAvailable:this.touchMode&&this.grounded&&!this.vault&&Math.abs(feetY(this.player,profileOf(this)))<.025,touchApproachStatus:this.touchApproachStatus||'',touchAssistActive:this.phase==='playing'&&(this.activeWeapon==='rifle'&&this.runTime<this.touchAssistUntil||this.runTime<this.touchFocusUntil),touchRecoveryBraked:this.phase==='playing'&&this.touchUse&&!!this.touchRecoveryBraked,
       supplies:this.touchMode?liveSupplies(this).map(p=>({id:p.id,x:p.mesh.position.x,z:p.mesh.position.z,life:Math.ceil(p.life)})):[],supplyRouteStatus:this.supplyRouteStatus||'',touchSupplyCollected:!!this.touchSupplyCollected,
       weapon:this.activeWeapon, ammo: this.ammo, reserve: this.reserve, reloading: this.reloading, reloadProgress: this.reloading ? 1 - this.reloadTimer / (this.activeWeapon==='breacher'?.55:1.65) : 0,
-      rifleReadout:rifleReadout(this),touchAimReadout:touchAimReadout(this),
+      rifleReadout:rifleReadout(this),rifleConfirmation:rifleConfirmation(this),touchAimReadout:touchAimReadout(this),
       kills: this.kills, cores: this.cores, totalCores: this.coreNodes.length, time: this.runTime, dashCooldown: this.dashCooldown,
       objective: this.cores === this.coreNodes.length ? (!this.custodian.dead?'DISABLE UPLINK CUSTODIAN':isInsideExtraction(this.player,this.world.playerSpawn,profileOf(this))?'HOLD THE EXTRACTION ZONE':'RETURN TO EXTRACTION') : closest?.distance < RECOVERY_RADIUS ? 'HOLD E TO RECOVER MEMORY' : 'RECOVER THE THREE MEMORIES',
       suitService:this.suitService?serviceStatus(this):null,

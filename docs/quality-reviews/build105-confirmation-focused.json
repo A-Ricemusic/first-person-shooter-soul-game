@@ -1,0 +1,94 @@
+{
+  "method": "ENGINEERING native-touch fixtures. Elevated platform, exact camera aim, 34HP Sentinel, suppressed AI, one-round inventory and zero spread arrange actual resolved kills followed by actual cover hits. Forced cache/result states test time labels, not ordinary wins or reaction-time benefits.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        {
+          "name": "actual elimination acknowledgement survives a following cover shot without replacing latest-shot status",
+          "passed": true
+        },
+        {
+          "name": "a fresh scene tap and switching weapons clear old confirmation; ordinary nonfatal shots do not invent one",
+          "passed": true
+        },
+        {
+          "name": "pause, planning and fresh run clear acknowledgement with no resume resurrection",
+          "passed": true
+        },
+        {
+          "name": "visible confirmation fits phone and safe area, preserves ammo layout and never owns scene touches",
+          "passed": false,
+          "error": "Expected values to be strictly equal:\n\n'none' !== 'block'\n"
+        }
+      ],
+      "killThenCover": {
+        "killed": {
+          "confirmation": {
+            "label": "TARGET DOWN",
+            "time": 0.09173333333333342
+          },
+          "impact": {
+            "kind": "kill",
+            "label": "TARGET DOWN",
+            "time": 0.09173333333333342
+          },
+          "label": "TARGET DOWN",
+          "classes": "visible kill confirmed",
+          "word": "TARGET DOWN",
+          "opacity": "1",
+          "pseudoDisplay": "none",
+          "pseudoContent": "\"TARGET DOWN\"",
+          "font": 12,
+          "time": 0.2167000000000003,
+          "kills": 1,
+          "ammo": 0,
+          "shots": 1,
+          "afterRect": {
+            "x": 356,
+            "y": 213.60000610351562,
+            "width": 132,
+            "height": 15
+          },
+          "phase": "playing"
+        },
+        "covered": {
+          "confirmation": {
+            "label": "TARGET DOWN",
+            "time": 0.09173333333333342
+          },
+          "impact": {
+            "kind": "cover",
+            "label": "COVER",
+            "time": 0.2917333333333336
+          },
+          "label": "COVER",
+          "classes": "kill confirmed",
+          "word": "TARGET DOWN",
+          "opacity": "1",
+          "pseudoDisplay": "none",
+          "pseudoContent": "\"TARGET DOWN\"",
+          "font": 12,
+          "time": 0.4168000000000008,
+          "kills": 1,
+          "ammo": 0,
+          "shots": 2,
+          "afterRect": {
+            "x": 356,
+            "y": 213.60000610351562,
+            "width": 132,
+            "height": 15
+          },
+          "phase": "playing"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 9377,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'none' !== 'block'\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-confirmation.mjs:14:288\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-confirmation.mjs:7:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-confirmation.mjs:14:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
