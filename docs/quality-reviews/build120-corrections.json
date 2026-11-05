@@ -1,0 +1,34 @@
+{
+  "build": 120,
+  "records": [
+    {
+      "report": "build120-fire-speed-initial.json",
+      "source": "build120-fire-speed-initial-fixture.txt",
+      "finding": "At320x640 automatic scroll put the FINE button beneath sticky Apply; native tap closed Settings instead of selecting. Fixture now pans natively until target center is clear and above footer. No product change inferred necessary from this arranged scroll."
+    },
+    {
+      "report": "build120-fire-speed-checked.json",
+      "source": "build120-fire-speed-checked-fixture.txt",
+      "finding": "Fixture pan began on an existing range slider and changed look sensitivity from1 to2. Native scrolling now starts in the Settings padding gutter, and every preset asserts that look preference was retained. Safe-area overrides are also reapplied across reloads."
+    },
+    {
+      "report": "build120-production.txt",
+      "source": "build120-focus-before-import-fix.txt",
+      "finding": "Focus test failed before browser startup because Node imported touch UI -> targeting -> JSON assets without import attributes. Expected20px fine gain now uses existing optical constant directly; native UI/physical-shot/lifecycle checks remain. Product source/bundles unchanged."
+    },
+    {
+      "report": "build120-production-focus-checked.json",
+      "source": "build120-focus-before-ownership-shot-isolation.txt",
+      "command": "build120-focus-rerun-command.json",
+      "log": "build120-focus-rerun-output.txt",
+      "finding": "First browser rerun exposed measured actor killed by ownership-stage FIRE. That stage now holds cooldown and asserts shot count unchanged; separate native real-shot damage check remains. Final production rerun passed.",
+      "finalCommand": "build120-focus-final-command.json",
+      "finalReport": "build120-production-focus-final.json",
+      "finalLog": "build120-focus-final-output.txt"
+    }
+  ],
+  "limits": [
+    "Engineering diagnostics did not reproduce the reported large heading change. Different timing/poses prevent causal conclusions.",
+    "Independent FIRE speed remains optional with default1; no aim-quality or performance claim."
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "status": "complete \u2014 exactly two fresh attempts, both actual terminal wins",
+  "buildObserved": "BUILD 119",
+  "frozenSourceProvided": "9c06784a65e590cb3aa5418e9c6c04636c4e5de4 (not independently inspected)",
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61515/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 4,
+        "missionTime": "00:59",
+        "score": 6722,
+        "accuracy": "100%",
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 14,
+        "tapAims": 6,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "evidence": "docs/media/build119-mobile-review1/attempt1-terminal.jpg",
+      "coverage": [
+        "Opening guard: scene tap then simultaneous manual MOVE and FIRE drag; TARGET DOWN; ammo 30 to 21.",
+        "Visible left perimeter patrol: scene tap then simultaneous MOVE and FIRE drag; SENTINEL DOWN; ammo 21 to 18.",
+        "Scene swipe changed heading 355 to 023.",
+        "Map opened and visibly closed.",
+        "Route and approach holds recovered three memories.",
+        "Charging sentinel tapped and fired on; SENTINEL DOWN.",
+        "Three coil targets tapped and fired; automatic reload observed.",
+        "Stayed on uplink deck through incoming damage."
+      ],
+      "missesAndCorrections": [
+        "No visible failed target acquisition; terminal reports 100% accuracy, with assisted shots. Individual projectile misses cannot be resolved from captures.",
+        "Coil III firing began while reloading, then resumed with fresh FIRE contact; 49% then OFF."
+      ],
+      "settingsChanges": [],
+      "lastLiveStats": {
+        "health": 100,
+        "shield": 21,
+        "ammo": 28,
+        "reserve": 330
+      }
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH (#play-again), act batch and capture after first terminal saved",
+      "outcome": "OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "missionTime": "00:58",
+        "score": 6547,
+        "accuracy": "67%",
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 6,
+        "tapAims": 4,
+        "routeAssists": 11,
+        "approachAssists": 6,
+        "displayedTouchAssistPersonalBest": 6722
+      },
+      "evidence": "docs/media/build119-mobile-review1/attempt2-terminal.jpg",
+      "coverage": [
+        "Opening guard: simultaneous manual MOVE and FIRE drag without target tap; WARDEN DOWN; ammo 30 to 27.",
+        "Visible perimeter patrol: simultaneous left MOVE and left FIRE drag without target tap; heading 000 to 340; COVER; ammo 27 to 15; patrol still visible.",
+        "Correction from newly viewed scene: tap patrol, manual MOVE and FIRE drag; SENTINEL DOWN; ammo 15 to 12; heading 310.",
+        "Route and approach holds recovered all three memories.",
+        "Tapped each coil and fired; auto reload at zero; coil III armor feedback and subsequent fresh FIRE burst disabled it.",
+        "Returned to deck and stayed through upload under incoming damage."
+      ],
+      "missesAndCorrections": [
+        "Unassisted patrol drag failed to eliminate patrol and consumed 12 rounds, with COVER feedback. Corrected using fresh-view scene tap and dual-contact MOVE/FIRE drag.",
+        "Coil III first post-reload round hit armor: 90% remaining. Next fresh FIRE contact brought it OFF.",
+        "Terminal 67% accuracy preserves actual misses; no exact per-projectile miss accounting inferred."
+      ],
+      "settingsChanges": [],
+      "lastLiveStats": {
+        "health": 100,
+        "shield": 28,
+        "ammo": 24,
+        "reserve": 330
+      }
+    }
+  ],
+  "limitations": [
+    "Synthetic native touch Chromium, software WebGL, not physical device.",
+    "Every act releases contacts and captures live then pauses; live boundaries about 3 seconds or cumulative FIRE about 1.2 seconds shorten waits. Timings inspected; no reaction-time or causal quality benefit inferred.",
+    "Continuous held-burst rearming comfort cannot be assessed due to capture releases.",
+    "Pausing clears AIM and closes TOOLS; neither used in attempt 1.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Automatic paused observation increases inspection frequency; no human reaction-time or causal game-quality benefit inferred. Each continuation used the newly viewed screenshot; waits shortened by driver boundaries were not assumed fully executed.",
+    "AIM clears through normal pause lifecycle; live zoom captures would not establish retained AIM. TOOLS closes at captures; unused here."
+  ],
+  "betweenAttemptsLearning": [
+    "HOLD ROUTE changes to HOLD APPROACH near receivers and can complete recovery.",
+    "Tap aiming and individual coil OFF feedback made target acquisition/progress understandable.",
+    "Used learned route flow in second attempt; also tried FIRE drag without target taps, preserving the failed patrol burst and correction."
+  ],
+  "helpfulMoments": [
+    {
+      "observation": "Opening tutorial directly names tap guard, hold FIRE, swipe turn, DASH breaks charge. Large labeled controls were easy to locate.",
+      "evidence": "attempt1-deploy.jpg"
+    },
+    {
+      "observation": "Manual movement plus firing registered guard/patrol eliminations, with visible TARGET DOWN/SENTINEL DOWN feedback.",
+      "evidence": [
+        "attempt1-manual-fire.jpg",
+        "attempt1-patrol-fire.jpg",
+        "attempt2-patrol-correction.jpg"
+      ]
+    },
+    {
+      "observation": "Map showed walls, low cover, named receiver positions and a walking route; visibly closed without trouble.",
+      "evidence": "attempt1-map.jpg"
+    },
+    {
+      "observation": "Receiver checkmarks, coil percentages/OFF states, upload percentage and terminal assist counts made progress and assistance explicit.",
+      "evidence": [
+        "attempt1-elian.jpg",
+        "attempt1-coil2.jpg",
+        "attempt2-upload.jpg",
+        "attempt2-terminal.jpg"
+      ]
+    },
+    {
+      "observation": "Rainy teal industrial setting, glowing relay and restrained terminal typography form a coherent atmosphere.",
+      "evidence": [
+        "initial-menu.jpg",
+        "attempt1-route2.jpg",
+        "attempt2-terminal.jpg"
+      ]
+    }
+  ],
+  "frustratingMoments": [
+    {
+      "observation": "Manual left FIRE drag did not turn far enough to acquire the patrol in that batch; spent 12 rounds on COVER while target remained standing. Tap correction was easier. This describes my synthetic input, not a proven control defect.",
+      "evidence": [
+        "attempt2-patrol-drag.jpg",
+        "attempt2-patrol-correction.jpg"
+      ]
+    },
+    {
+      "observation": "Large right-side threat panels and bottom controls consume substantial scene space; warnings compete with targets and objective text.",
+      "evidence": [
+        "attempt1-route5.jpg",
+        "attempt2-route7.jpg"
+      ]
+    },
+    {
+      "observation": "Small distant enemies and thin scene markers are less readable than HUD labels at 844x390; fine scene signage and map legend need close inspection.",
+      "evidence": [
+        "attempt2-route1.jpg",
+        "attempt1-map.jpg"
+      ]
+    },
+    {
+      "observation": "Coil III armor timing consumed a post-reload shot with only chip damage before the next burst disabled it. Small phase countdown was harder to monitor than the large OFF indicators.",
+      "evidence": [
+        "attempt2-coil3-reload.jpg",
+        "attempt2-coil3-burst.jpg"
+      ]
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 9 excellent with minor friction; 10 exceptional. Subjective scores for observed emulated mobile interaction only, not derived from wins, accuracy or score; overall is holistic, not an arithmetic average.",
+    "overallMobile": 7.2,
+    "controls": {
+      "score": 7.0,
+      "reason": "Large labeled controls, simultaneous MOVE/FIRE drag and visible scene turn worked; tap aiming helped correct failed manual patrol targeting. Continuous rearming, ergonomics and physical precision remain unassessed."
+    },
+    "gameplay": {
+      "score": 7.0,
+      "reason": "Clear recover/coils/upload progression and useful feedback; patrol engagement and armor timing provided observed challenges. Most travel/recovery was assisted, limiting assessment of free navigation, depth and sustained combat."
+    },
+    "presentation": {
+      "score": 8.0,
+      "reason": "Cohesive rainy teal industrial atmosphere, distinctive relay and orderly results screen; scene geometry remains fairly spare and blocky."
+    },
+    "usability": {
+      "score": 7.5,
+      "reason": "Explicit tutorial, route/approach labels, map and fresh-start result flow were understandable. Dense simultaneous warnings compete for attention."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Health, ammo, mission labels and terminal stats are clear. Distant enemies, small phase text, fine signage and map legend strain the compact landscape view."
+    }
+  },
+  "uncertaintiesAndUnassessed": [
+    "No source, tests, docs, prior reviews, recordings, internal state or target metadata inspected. Only helper --help and this run\u2019s visible UI/screens used. Provided source hash not independently verified; title BUILD 119 matched.",
+    "No AIM, TOOLS, DASH, JUMP, weapon switching, manual reload, settings, checkpoint retry, loss UI or recovered-memory reader assessment. No phase evade claimed.",
+    "Attempt 1 sampled a scene swipe (355 to 023); attempt 2 turning covered by FIRE drag and target taps, no separate scene swipe.",
+    "No audio assessment or enjoyment inference for unread recovered stories or other unassessed content.",
+    "Screenshot pixel values and UI metadata can differ slightly because capture occurs live before pause (for example upload metadata 87%, image 89%); terminal stats agree visibly.",
+    "Two wins with extensive route/approach assistance do not establish unassisted navigation quality or difficulty balance."
+  ],
+  "cleanup": {
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "browserClosedReported": true,
+    "driverPid": 94497,
+    "chromePid": 94507,
+    "verificationCommand": "ps -p 94497,94507 -o pid=,ppid=,command=",
+    "verificationExitCode": 1,
+    "verificationOutput": "",
+    "result": "Both exact owned PIDs absent; no process kills used."
+  },
+  "evidence": {
+    "directory": "docs/media/build119-mobile-review1",
+    "rawActionLog": "docs/media/build119-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build119-mobile-review1/attempt1-approach.jpg",
+      "docs/media/build119-mobile-review1/attempt1-coil1.jpg",
+      "docs/media/build119-mobile-review1/attempt1-coil2.jpg",
+      "docs/media/build119-mobile-review1/attempt1-coil3-reload.jpg",
+      "docs/media/build119-mobile-review1/attempt1-coils-off.jpg",
+      "docs/media/build119-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build119-mobile-review1/attempt1-elian.jpg",
+      "docs/media/build119-mobile-review1/attempt1-manual-fire.jpg",
+      "docs/media/build119-mobile-review1/attempt1-map-closed.jpg",
+      "docs/media/build119-mobile-review1/attempt1-map.jpg",
+      "docs/media/build119-mobile-review1/attempt1-patrol-fire.jpg",
+      "docs/media/build119-mobile-review1/attempt1-return1.jpg",
+      "docs/media/build119-mobile-review1/attempt1-return2.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route1.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route2.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route3.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route4.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route5.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route6.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route7.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route8.jpg",
+      "docs/media/build119-mobile-review1/attempt1-route9.jpg",
+      "docs/media/build119-mobile-review1/attempt1-sentinel.jpg",
+      "docs/media/build119-mobile-review1/attempt1-sera.jpg",
+      "docs/media/build119-mobile-review1/attempt1-terminal.jpg",
+      "docs/media/build119-mobile-review1/attempt1-turn.jpg",
+      "docs/media/build119-mobile-review1/attempt1-upload.jpg",
+      "docs/media/build119-mobile-review1/attempt2-coil1.jpg",
+      "docs/media/build119-mobile-review1/attempt2-coil2.jpg",
+      "docs/media/build119-mobile-review1/attempt2-coil3-burst.jpg",
+      "docs/media/build119-mobile-review1/attempt2-coil3-reload.jpg",
+      "docs/media/build119-mobile-review1/attempt2-elian.jpg",
+      "docs/media/build119-mobile-review1/attempt2-manual-no-tap.jpg",
+      "docs/media/build119-mobile-review1/attempt2-mara.jpg",
+      "docs/media/build119-mobile-review1/attempt2-patrol-correction.jpg",
+      "docs/media/build119-mobile-review1/attempt2-patrol-drag.jpg",
+      "docs/media/build119-mobile-review1/attempt2-return1.jpg",
+      "docs/media/build119-mobile-review1/attempt2-return2.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route1.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route2.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route3.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route4.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route5.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route6.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route7.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route8.jpg",
+      "docs/media/build119-mobile-review1/attempt2-route9.jpg",
+      "docs/media/build119-mobile-review1/attempt2-sera.jpg",
+      "docs/media/build119-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build119-mobile-review1/attempt2-terminal.jpg",
+      "docs/media/build119-mobile-review1/attempt2-upload.jpg",
+      "docs/media/build119-mobile-review1/initial-menu.jpg"
+    ],
+    "terminalScreens": [
+      "docs/media/build119-mobile-review1/attempt1-terminal.jpg",
+      "docs/media/build119-mobile-review1/attempt2-terminal.jpg"
+    ]
+  }
+}

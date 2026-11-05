@@ -501,3 +501,8 @@ body.touch-mode #core-slots span{font:700 12px/16px 'Barlow',Arial,sans-serif;le
 body.touch-mode .hud-mission{max-width:calc(100vw - var(--touch-left) - var(--touch-right) - 118px)}
 body.touch-mode #core-slots span{flex:0 0 auto}
 body.touch-mode .bearing #timer{display:none}
+
+/* Optional firing precision lives in Settings, without new live controls. */
+body.touch-mode .touch-fire-presets{display:flex;gap:8px;margin:8px 0}
+body.touch-mode .touch-fire-presets button{flex:1;min-width:44px;min-height:44px;padding:8px;border:1px solid var(--line);background:#102a31;font:700 13px/18px 'Barlow',Arial,sans-serif;touch-action:manipulation}
+body.touch-mode .touch-fire-presets button[aria-pressed=true]{background:#8ee8e0;color:#102627;border-color:#8ee8e0}

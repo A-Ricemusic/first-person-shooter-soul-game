@@ -1,3 +1,4 @@
+import {fireDragSpeed} from './touch-fire-speed.js';
 import {seedTouchTracking,updateTouchTracking} from './touch-tracking.js';
 import {DEFAULT_PHONE_BRIGHTNESS,phoneBrightness,sceneExposure} from './mobile-visibility.js';
 import {fallbackPaint} from './enemy-paint.js';
@@ -71,7 +72,7 @@ export class Game {
     this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
     this.mobileLastAttackId=0;this.mobileAttackRecovery=0;this.touchMove={x:0,z:0}; this.touchRecoveryBraked=false;this.touchUse=false; this.touchSprint=false;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
-    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, mobileBrightness: DEFAULT_PHONE_BRIGHTNESS, touchAimAssist: true, touchTapAim: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
+    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchFireSpeed: 1, mobileBrightness: DEFAULT_PHONE_BRIGHTNESS, touchAimAssist: true, touchTapAim: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
     this.mouseDown = false; this.aim = false; this.dragging = false; this.pointerFallback = false;
     this.yaw = 0; this.pitch = 0; this.animTime = 0; this.runTime = 0; this.lastFrame = 0; this.emitTimer = 0;
@@ -336,6 +337,7 @@ export class Game {
     this.options = { ...this.options, ...options }; this.routeHelp?.reset();this.routeWaypoint=null;if(this.routeTrace)this.routeTrace.visible=false;this.routePath=[];this.routeNext=0; this.audio.setVolume(this.options.volume);
     if (this.renderer && options.quality) { this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, options.quality === 'low' ? 1 : options.quality === 'high' ? (this.touchMode?1.5:2) : (this.touchMode?1:1.5))); this.renderer.shadowMap.enabled = options.quality === 'high' || (!this.touchMode && options.quality !== 'low'); }
     this.options.mobileBrightness=phoneBrightness(this.options.mobileBrightness);
+    this.options.touchFireSpeed=fireDragSpeed(this.options.touchFireSpeed);
     if(this.renderer)this.renderer.toneMappingExposure=sceneExposure(this.touchMode,this.options.mobileBrightness);
     this.resize?.();
   }
