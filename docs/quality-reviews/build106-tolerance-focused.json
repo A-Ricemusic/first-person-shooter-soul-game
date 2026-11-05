@@ -1,0 +1,178 @@
+{
+  "method": "ENGINEERING native phone fixtures. Elevated floor, exact actor/camera poses, disabled AI and explicit relocation during held touch are arranged. Native taps/fire test physical results; direct synchronous calls instrument ray budget and weapon occlusion. Not ordinary missions or proof of every reviewer miss, human acquisition, frame rate or hardware performance.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "eight-pixel near miss selects a real surface without firing; later native FIRE uses normal physical damage",
+          "passed": true
+        },
+        {
+          "name": "small movement during contact can be acquired but no ongoing tracking or large-jump prediction occurs",
+          "passed": true
+        },
+        {
+          "name": "far misses and hidden, dead, invisible or beyond-range actors cannot attract the tap",
+          "passed": true
+        },
+        {
+          "name": "nearer foreground cover blocks tolerance even when an adjacent probe could see the actor",
+          "passed": true
+        },
+        {
+          "name": "HUD-covered origin and HUD-covered offset surfaces remain ineligible",
+          "passed": true
+        },
+        {
+          "name": "visible weapon remains an absolute selection occluder",
+          "passed": true
+        },
+        {
+          "name": "probe count is bounded under crowded misses; no target is selected past nearer cover",
+          "passed": true
+        },
+        {
+          "name": "option disable and breacher selection retain native gesture semantics",
+          "passed": false,
+          "error": "Expected values to be strictly equal:\n\n0 !== 1\n"
+        }
+      ],
+      "nearMiss": {
+        "a": {
+          "x": 396.4594022408005,
+          "y": 203.42839726053583
+        },
+        "accepted": {
+          "taps": 1,
+          "yaw": 0.08815345237773589,
+          "pitch": -0.03302500824738875,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM SET",
+          "weapon": "rifle"
+        },
+        "fired": {
+          "taps": 1,
+          "yaw": 0.08815345237773589,
+          "pitch": -0.03302500824738875,
+          "ammo": 29,
+          "shots": 1,
+          "hits": 1,
+          "health": 66,
+          "label": "TARGET HIT",
+          "weapon": "rifle"
+        }
+      },
+      "moved": {
+        "selected": {
+          "taps": 1,
+          "yaw": 0.07704755340040023,
+          "pitch": -0.03161646203013353,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM SET",
+          "weapon": "rifle"
+        }
+      },
+      "exclusions": [
+        {
+          "mode": "offset28",
+          "taps": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM UNCHANGED",
+          "weapon": "rifle"
+        },
+        {
+          "mode": "hidden",
+          "taps": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM UNCHANGED",
+          "weapon": "rifle"
+        },
+        {
+          "mode": "dead",
+          "taps": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 0,
+          "label": "AIM UNCHANGED",
+          "weapon": "rifle"
+        },
+        {
+          "mode": "material",
+          "taps": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM UNCHANGED",
+          "weapon": "rifle"
+        },
+        {
+          "mode": "range",
+          "taps": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "health": 100,
+          "label": "AIM UNCHANGED",
+          "weapon": "rifle"
+        }
+      ],
+      "hud": {
+        "taps": 0,
+        "yaw": 0,
+        "pitch": 0,
+        "ammo": 30,
+        "shots": 0,
+        "hits": 0,
+        "health": 100,
+        "label": "AIM UNCHANGED",
+        "weapon": "rifle"
+      },
+      "weapon": {
+        "blocked": false,
+        "clear": true,
+        "ndc": {
+          "x": 0.3,
+          "y": -0.3
+        }
+      },
+      "budget": {
+        "rays": 13,
+        "selected": false,
+        "milliseconds": 27.200000047683716
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 33511,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-tap-tolerance.mjs:18:405\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-tap-tolerance.mjs:6:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-tap-tolerance.mjs:18:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

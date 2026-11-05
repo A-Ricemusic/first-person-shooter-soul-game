@@ -1,0 +1,75 @@
+{
+  "build": 105,
+  "commit": "f853ca688e2b3e1b42397fc3059fa02b51458d1a",
+  "frozenFilesVerified": 506,
+  "mismatches": [],
+  "review1": {
+    "report": "build105-mobile-review1.json",
+    "sha256": "b2ef767ec64434abd3dbef3b56d738ec2e27081d918072900bbaf1c512c8144d",
+    "overallMobile": 7.0,
+    "attempts": [
+      {
+        "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 3,
+          "missionTime": "01:03",
+          "score": 6447,
+          "accuracyPercent": 27,
+          "criticalEliminations": 0,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "tapAims": 6,
+          "routeAssists": 11,
+          "approachAssists": 6,
+          "personalBestLabel": "NEW TOUCH ASSIST PERSONAL BEST"
+        }
+      },
+      {
+        "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+        "stats": {
+          "eliminations": 2,
+          "missionTime": "01:03",
+          "score": 6338,
+          "accuracyPercent": 39,
+          "criticalEliminations": 0,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "tapAims": 4,
+          "routeAssists": 12,
+          "approachAssists": 5,
+          "personalBestLabel": "TOUCH ASSIST PERSONAL BEST \u00b7 6,447"
+        }
+      }
+    ],
+    "cleanup": {
+      "status": "verified",
+      "driverPid": 20156,
+      "chromePid": 20166,
+      "closeResponse": {
+        "reason": "input ended or close requested",
+        "browserLaunched": true,
+        "browserClosed": true
+      },
+      "helperExitCode": 0,
+      "psCommand": "ps -p 20156,20166 -o pid=,ppid=,command=",
+      "psExitCode": 1,
+      "psOutput": "",
+      "conclusion": "Exact owned driver and Chrome PIDs absent; no kill commands used."
+    },
+    "parentExactPIDCheck": {
+      "pids": [
+        20156,
+        20166
+      ],
+      "absent": true,
+      "psExit": 1
+    }
+  },
+  "method": "No runtime, dossier or frozen file edits between sequential reviews. Original rating retained; first browser closed before second starts.",
+  "limits": [
+    "Synthetic native touch in paused Chromium with software WebGL, not physical device",
+    "Automatic observation boundaries near 3 seconds live / 1.2 seconds FIRE shorten requested waits and clear contacts",
+    "Every screenshot inspected before adaptive continuation; no human reaction-time or causal game-quality benefit inferred",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+  ]
+}

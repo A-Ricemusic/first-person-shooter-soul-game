@@ -1,0 +1,39 @@
+{
+  "build": 106,
+  "status": "Tested candidate; two fresh sequential independent mobile reviews pending. Overall mission remains open.",
+  "changes": [
+    "Exact physical tap selection wins first; an exact miss may probe real visible surfaces within10 CSS pixels, with unchanged36m range.",
+    "Hard weapon/ineligible-machine exclusions, original-pixel nearer-cover depth and shared HUD/control regions constrain all offset candidates.",
+    "At most12 extra probes; per-gesture transform/mesh snapshots and conservative near-cover broadphase reject unnecessary work."
+  ],
+  "priorReviews": {
+    "build": 105,
+    "overallMobile": [
+      7,
+      7
+    ],
+    "attempts": 4,
+    "wins": 4,
+    "losses": 0,
+    "reports": [
+      "build105-mobile-review1.json",
+      "build105-mobile-review2.json"
+    ]
+  },
+  "releaseChecks": "build106-release-checks.json",
+  "parentPlay": "build106-parent-play.json",
+  "limits": [
+    "Intentional easier touch acquisition; no larger physical hit volumes, damage, spread, AI, resource, movement, projection, assets or driver-cadence change.",
+    "Accepted near-edge selection can miss due motion, spread or cover.",
+    "Parent ordinary moving-patrol tap failures remain unresolved; no causal improvement inferred from a win.",
+    "Projected bounds nominate pixels only; the real ray must hit. Limited probes can reject some eligible surfaces.",
+    "Dense warnings, small targets, short/repeated content and sustained manual combat remain gaps.",
+    "Paused synthetic Chromium/software WebGL cannot certify physical phones, Safari, audio, hardware performance, reaction time or continuous enjoyment.",
+    "No parent rating, perfection or AAA certification."
+  ],
+  "publication": {
+    "record": "build106-publication.json",
+    "playLink": "http://bonnies-macbook-air.tail21e865.ts.net:5174/",
+    "build": 106
+  }
+}

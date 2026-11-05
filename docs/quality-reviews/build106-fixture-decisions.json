@@ -1,0 +1,15 @@
+{
+  "baselineInitial": "build106-tap-baseline-initial.json",
+  "baselineCorrection": "The initial baseline fixture retained the prior successful tap count across clearRun. Reset tapAims before each case; rejection label already showed AIM UNCHANGED. Preserve initial source and output.",
+  "broadInitial": "build106-tolerance-focused.json",
+  "broadCorrection": "The option-disable case correctly persisted the disabled preference into the subsequent breacher fixture. Stage now explicitly restores enabled preference between independent cases. No product preference behavior changed.",
+  "optimization": "Initial crowded-cover fixture used13 rays and27.2ms locally. Reuse current per-model transforms/mesh lists within each synchronous gesture instead of recomputing them per probe; recompute instanced bounds per gesture. No physical-phone or FPS gain claim.",
+  "limits": "Engineered cases and isolated timings do not establish cause for every ordinary miss or human quality.",
+  "alignmentFailure": {
+    "report": "build106-tolerance-corrected.json",
+    "priorFixture": "build106-tolerance-before-spread-fixture.txt",
+    "finding": "A near-edge surface was selected, then one normal-spread shot missed. This is retained as a real possibility, not labelled a selection rejection or a guaranteed-hit defect.",
+    "correction": "Arrange zero spread in the engineering alignment check, as in prior physical-hit fixtures. Keep actual gameplay spread and independent normal-input reviews unchanged.",
+    "risk": "Accepted near-edge selection can still miss due spread, motion or cover; no hit guarantee."
+  }
+}

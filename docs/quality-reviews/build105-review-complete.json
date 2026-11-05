@@ -1,0 +1,129 @@
+{
+  "frozenFilesVerified": 506,
+  "mismatches": [],
+  "reviewers": [
+    {
+      "report": "build105-mobile-review1.json",
+      "sha256": "b2ef767ec64434abd3dbef3b56d738ec2e27081d918072900bbaf1c512c8144d",
+      "overallMobile": 7.0,
+      "attempts": [
+        {
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 3,
+            "missionTime": "01:03",
+            "score": 6447,
+            "accuracyPercent": 27,
+            "criticalEliminations": 0,
+            "phaseEvades": 0,
+            "uplinkRetries": 0,
+            "tapAims": 6,
+            "routeAssists": 11,
+            "approachAssists": 6,
+            "personalBestLabel": "NEW TOUCH ASSIST PERSONAL BEST"
+          }
+        },
+        {
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 2,
+            "missionTime": "01:03",
+            "score": 6338,
+            "accuracyPercent": 39,
+            "criticalEliminations": 0,
+            "phaseEvades": 0,
+            "uplinkRetries": 0,
+            "tapAims": 4,
+            "routeAssists": 12,
+            "approachAssists": 5,
+            "personalBestLabel": "TOUCH ASSIST PERSONAL BEST \u00b7 6,447"
+          }
+        }
+      ],
+      "cleanup": {
+        "status": "verified",
+        "driverPid": 20156,
+        "chromePid": 20166,
+        "closeResponse": {
+          "reason": "input ended or close requested",
+          "browserLaunched": true,
+          "browserClosed": true
+        },
+        "helperExitCode": 0,
+        "psCommand": "ps -p 20156,20166 -o pid=,ppid=,command=",
+        "psExitCode": 1,
+        "psOutput": "",
+        "conclusion": "Exact owned driver and Chrome PIDs absent; no kill commands used."
+      }
+    },
+    {
+      "report": "build105-mobile-review2.json",
+      "sha256": "126b2714792ef8e8b06b05b12945091d8fe67135bd66836f257200083992b658",
+      "overallMobile": 7.0,
+      "attempts": [
+        {
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 7,
+            "mission_time": "01:01",
+            "score": 7013,
+            "accuracy_percent": 52,
+            "critical_eliminations": 2,
+            "phase_evades": 0,
+            "uplink_retries": 0,
+            "assisted_shots": 4,
+            "tap_aims": 7,
+            "route_assists": 11,
+            "approach_assists": 6
+          }
+        },
+        {
+          "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+          "stats": {
+            "eliminations": 7,
+            "mission_time": "00:58",
+            "score": 7265,
+            "accuracy_percent": 43,
+            "critical_eliminations": 5,
+            "phase_evades": 0,
+            "uplink_retries": 0,
+            "assisted_shots": 6,
+            "tap_aims": 7,
+            "route_assists": 12,
+            "approach_assists": 6
+          }
+        }
+      ],
+      "cleanup": {
+        "close_requested": true,
+        "helper_exit_code": 0,
+        "helper_closed": {
+          "driverPid": 24738,
+          "chromePid": 24748,
+          "browserClosed": true
+        },
+        "ps_command": "ps -p 24738,24748 -o pid=,ppid=,stat=,command=",
+        "ps_exit_code": 1,
+        "ps_stdout": "",
+        "ps_stderr": "",
+        "exact_owned_pids_absent": true,
+        "broad_kill_used": false
+      }
+    }
+  ],
+  "totalAttempts": 4,
+  "wins": 4,
+  "losses": 0,
+  "parentExactCleanup": {
+    "review1Pids": [
+      20156,
+      20166
+    ],
+    "review2Pids": [
+      24738,
+      24748
+    ],
+    "absent": true
+  },
+  "limits": "Both overall7/10 retained. Useful completion feedback was reported, but no isolated causal benefit or human physical-phone quality is established. Manual combat, small targets, crowded cues and cover ambiguity remain."
+}
