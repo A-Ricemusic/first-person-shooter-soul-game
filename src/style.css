@@ -556,3 +556,11 @@ body.touch-mode #touch-fire[data-latched="true"]{background:#163a36a6!important}
 
 /* A blocked held trigger is amber; confirmed completion keeps its green state. */
 body.touch-mode #touch-fire[data-latch="COVER"]{background:#50331fd9!important;color:#ffe5b3;border-color:#e0a164}
+
+/* Readable charging captions use their content width, preserving existing
+   priority, docking, scene anchors and touch ownership. */
+body.touch-mode #threat-focus{top:clamp(calc(var(--touch-top) + 70px),calc(50dvh - 80px),var(--touch-focus-top));width:max-content;max-width:min(300px,calc(100vw - var(--touch-left) - var(--touch-right)));right:auto;font:700 14px/18px 'Barlow',Arial,sans-serif;letter-spacing:.2px;padding:5px 8px;text-align:left}
+@media(orientation:landscape) and (max-height:360px){body.touch-mode:not(.touch-uplink-stage) #threat-focus{top:calc(var(--touch-top) + 70px)}}
+
+/* The live charging caption takes priority over verbose blocked-route advice. */
+body.touch-mode:has(#threat-focus.charging) #blocked-signal{display:none}

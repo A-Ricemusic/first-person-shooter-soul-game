@@ -1,0 +1,180 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "identity": {
+    "visibleTitle": "SOULFALL BUILD 138",
+    "requestedFrozenSource": "023b1839d1f335af9e336bb34f1ed1772acaf756",
+    "sourceInspected": false
+  },
+  "environment": {
+    "url": "http://127.0.0.1:61536/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native two-contact Chromium touch emulation",
+    "renderer": "software WebGL"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 8,
+        "missionTime": "01:04",
+        "score": 7090,
+        "accuracyPercent": 83,
+        "criticalEliminations": 4,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 27,
+        "tapAims": 12,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build138-mobile-review1/a1-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "opening guard and visible perimeter patrol; TARGET DOWN then SENTINEL DOWN",
+        "sceneTurn": "first patrol turn wrong direction (315 to 355); corrected to 256 and acquired guard",
+        "dash": "visible control tapped, displacement/tint and 4.3 cooldown seen; no phase evade",
+        "aimZoomFire": "zoomed 7-round burst, NO IMPACT; fired empty lane, no enemy hit assessment",
+        "map": "opened and visibly closed",
+        "route": "assisted recovery, coils and return"
+      },
+      "failures": [
+        "Zoom burst NO IMPACT",
+        "Wrong-direction patrol turn corrected",
+        "COVER shot during reload pressure",
+        "Shield depleted and health reached 83 during boss"
+      ],
+      "settingsChanges": [],
+      "protocolDeviation": "Initial deployment used act tap at visible ENTER THE STORM coordinate rather than required #deploy selector; captured in same batch, no bare click.",
+      "helpfulMoments": [
+        "Opening instruction directly explained tap aim, FIRE, scene swipe and DASH",
+        "TARGET DOWN and SENTINEL DOWN confirmed engagements",
+        "HOLD ROUTE changed to HOLD APPROACH near each recovery",
+        "Map showed selected extraction, walking route and all three recovered",
+        "OPEN and COIL OFF feedback made boss progress explicit",
+        "Terminal named all three recovered people"
+      ],
+      "frustratingMoments": [
+        "Initial patrol turn in wrong direction needed correction",
+        "Zoomed burst into empty lane consumed seven rounds with NO IMPACT",
+        "COVER feedback during reload pressure and shield depletion complicated boss encounter",
+        "Distant targets were small at 844x390; right-side controls and threat cards occupy substantial scene area"
+      ]
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH via act tap #play-again and same-batch capture; no checkpoint retry",
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 9,
+        "missionTime": "01:04",
+        "score": 7363,
+        "accuracyPercent": 100,
+        "criticalEliminations": 4,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 30,
+        "tapAims": 12,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build138-mobile-review1/a2-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Visible perimeter sentinel: scene tap, left MOVE drag plus right FIRE drag; ammo 21 to 19 and SENTINEL DOWN (a2-patrol-manual.jpg). Tap aiming assisted this engagement; not unaided marksmanship.",
+        "sceneTurn": "Scene swipe 333 to 264 acquired patrol (a2-turn-dash.jpg)",
+        "dash": "Tapped after scene turn near charging sentinel; tint and 4.4 cooldown visible; terminal reports zero phase evades, so successful dodge not established",
+        "aimZoomFire": "Scene tap on opening guard, AIM, FIRE 1000ms; zoomed held capture shows TARGET DOWN, ammo 30 to 21 (a2-zoom-guard.jpg). Subsequent route capture unzoomed; no scene coordinate chosen from stale zoom.",
+        "route": "Assisted recovery of all three, approach holds, coil targeting and uplink completion",
+        "map": "Not opened",
+        "kit": "Not used"
+      },
+      "failuresAndUncertainties": [
+        "Coil III left at 26% and ammo zero, RELOADING after first burst",
+        "Next FIRE batch still showed zero and RELOADING; 1700ms no-fire wait then showed 30. No diagnosis of pause/rearm effects.",
+        "Coil I shot began with OPEN 0.1s but continued into another phase; terminal coil disabled, no precise timing inference",
+        "Damage reduced shield to 17 during boss and 28 on uplink; final live view before terminal health 100",
+        "Displayed 100% accuracy is game-reported and not proof every held round hit or of unaided control precision"
+      ],
+      "settingsChanges": [],
+      "helpfulMoments": [
+        "Zoomed opening target readable and TARGET DOWN explicit",
+        "Correct-direction turn found patrol without first-run reversal",
+        "Coil labels and OFF feedback made remaining targets understandable",
+        "Recovery checks and stay-on-deck percentage gave clear next steps"
+      ],
+      "frustratingMoments": [
+        "FIRE during reload did not produce rounds in observed batch",
+        "Rear threat cues required reorientation while route continued",
+        "Small targets among similarly dark structures required inspection"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic paused Chromium/software-WebGL only",
+    "Captures release contacts and pause play; captureHeld also breaks holds",
+    "Approximately 3 seconds live or 1.2 seconds FIRE per batch; shortened waits inspected",
+    "AIM cleared on pause; fresh unzoomed capture inspected",
+    "Cannot assess continuous burst rearming comfort or human reaction-time benefit",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Increased paused observation frequency is a harness limitation, not evidence of human reaction-time or causal game-quality benefit",
+    "Automatic release at every capture prevents establishing continuous held-burst rearming comfort",
+    "No inference of enjoyment from memories, audio or other unassessed content; only the observed two missions graded"
+  ],
+  "betweenAttemptsLearning": [
+    "Learned swipe direction by first-run wrong turn and correction",
+    "Learned route/approach flow and coil AIM labels from actual play",
+    "Second opening AIM burst targeted the visible guard instead of an empty lane",
+    "No settings changes; no third attempt, retries or post-result exploration"
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 playable with substantial friction; 7 good observed experience with meaningful rough edges; 10 exceptional across assessed mobile play. Subjective quality, not mission outcome or a device certification.",
+    "overallMobile": 7,
+    "controls": 7,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 8,
+    "readability": 6,
+    "reasons": {
+      "overallMobile": "Two coherent complete missions, helpful assists and clear feedback; target visibility and turning/reload interpretation remain friction. Wins alone do not determine grade.",
+      "controls": "Two-contact MOVE/FIRE drag worked in both patrol samples, scene turns and DASH responded, AIM visibly zoomed. Wrong turn, a NO IMPACT burst and interrupted holds limit confidence in sustained combat comfort.",
+      "gameplay": "Recoveries, three coil stages and uplink formed a legible varied short loop. Assisted routes carried most traversal; free navigation, broader tactics and prolonged challenge not assessed.",
+      "presentation": "Cohesive rainy teal station, distinctive relay machinery, readable weapon/impact changes and restrained results screen. Audio and hardware smoothness not assessed.",
+      "usability": "Large labeled touch controls, changing route/approach action, planning map and fresh-start reset supported completion. Reload transition required observation and an extra wait.",
+      "readability": "Primary objective, health/ammo and completion checks clear; small distant patrols, dark structures, tiny signs and overlapping threat cards reduced fast scene comprehension."
+    }
+  },
+  "method": {
+    "toolsRead": "Only tools/mobile-playtest.mjs --help; no source/tests/docs/prior reviews/recordings/internal state/target metadata read",
+    "visibleIdentity": "BUILD 138 title observed in menu.jpg; requested source hash not independently verified because source inspection prohibited",
+    "batches": "Each new screenshot viewed separately before adaptive input. Native touch only. At most one new scene target per batch; anchored FIRE followed tap. No custom controller or simulation advance.",
+    "boundaries": "Inspected live/fire observationBoundary and shortened timings; no wait over 3000ms requested, no boundary bypass",
+    "projection": "AIM is cleared through pause lifecycle. First zoom sample followed by explicit fresh unzoomed capture before scene targeting. Second followed by non-scene route input and fresh unzoomed capture.",
+    "deploymentDeviation": "First deployment was act tap on visible ENTER THE STORM coordinate, not the specifically requested #deploy selector. It captured and paused in that batch. Preserved as a protocol deviation; did not add an attempt."
+  },
+  "evidence": {
+    "directory": "docs/media/build138-mobile-review1",
+    "rawLog": "docs/media/build138-mobile-review1/actions.jsonl",
+    "attempt1Sequences": [
+      2,
+      35
+    ],
+    "attempt2Sequences": [
+      36,
+      65
+    ],
+    "allScreenshotsViewedBeforeContinuation": true
+  },
+  "cleanup": {
+    "closeRequested": true,
+    "awaitedExitCode": 0,
+    "browserClosed": true,
+    "ownedDriverPid": 60550,
+    "ownedChromePid": 60560,
+    "verificationCommand": "ps -p 60550,60560 -o pid=,ppid=,stat=,command=",
+    "verificationExitCode": 1,
+    "verificationOutput": "empty; both exact owned PIDs absent",
+    "broadKillUsed": false
+  }
+}

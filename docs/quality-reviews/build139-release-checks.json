@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "caption",
+      "report": "docs/quality-reviews/build139-verified-caption.json",
+      "sha256": "e799628e2d5b5b8e9c1051e3f0eda347905adc64a143a9ea83f4ac23861cbcdf",
+      "profiles": 6
+    },
+    {
+      "name": "cues",
+      "report": "docs/quality-reviews/build139-verified-cues.json",
+      "sha256": "c669c62d0b80a3bfae602f1964bc75368efafa04bf799dc8b9f9623644c9dec8",
+      "profiles": 7
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build139-verified-compact.json",
+      "sha256": "62b338ee242a81bc81ab1702d5f87363a3f7d83828b0ae0ad27fee4251d1a000",
+      "profiles": 7
+    },
+    {
+      "name": "destination",
+      "report": "docs/quality-reviews/build139-verified-destination.json",
+      "sha256": "d88d2f85044b93a3eb703e31158a1066528fe45c39d436592e05c49461fd1305",
+      "profiles": 6
+    },
+    {
+      "name": "window",
+      "report": "docs/quality-reviews/build139-verified-window.json",
+      "sha256": "71709c4fc9b3343174c5bed22ba8b30c89ce68ec0d1ec8dcdc83c2c27325ad78",
+      "profiles": 7
+    },
+    {
+      "name": "markers",
+      "report": "docs/quality-reviews/build139-verified-markers.json",
+      "sha256": "5b21eb901f2a7dfb3ed7cfbea239361376c8076991e0bd52c6f1033f61a39b92",
+      "profiles": 6
+    }
+  ],
+  "runtimeRecordFiles": 208,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/index-DmLI4jVG.css": "de5b32b5cb86185b1b2602b7cde2cc52fc7e2f78d0c3fdcc8dea795b9882431f",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BT6RGDnA.js": "c3e97678fc31debb5e3d964916bb4a2bdb593d25068b9a27963313a36c4a049b",
+    "dist/assets/index-9oE6IWhT.js": "cf1e557a1ae8171bcb16ac23078138262f9aae8cb4afc22958e35b818b4d4fb4",
+    "dist/assets/build135-sentinel-fallback-MG4DxE5u.js": "799e0bb396d7a6fd52b1615e1463a7586c38779b72ff540d011b073e07344a71"
+  },
+  "scope": "Six selected production groups. Caption fixture was expanded to include the existing Warden and contact-discharge wording and passed a final separate run. All other groups passed sequentially against identical runtime bundles. Not the entire canonical suite. Cue group includes one desktop menu DOM check without gameplay; ordinary play is mobile only.",
+  "limits": [
+    "Forced marker/camera/progression states are engineering arrangements.",
+    "Caption rectangle changes alter annotation avoidance and scene-tap exclusion; world rules and input ownership are unchanged.",
+    "Uplink position, width, font-size and line-height remain more specific; common typeface, weight and padding change.",
+    "Physical phones, Safari, audio, hardware performance, reaction timing, continuous held-fire comfort and enjoyment remain unassessed."
+  ]
+}
