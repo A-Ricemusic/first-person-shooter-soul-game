@@ -1,0 +1,17 @@
+{
+  "baseline": "build129-baseline-phase-route.json",
+  "baselineResult": "Fresh held USE during actual dash remained cancelled after dash; zero route movement in four phone profiles.",
+  "retainedFailure": "build129-dev-phase-route-final.json",
+  "failureReason": "Fixture read render status synchronously before the next simulation step processed the new touch. No source change was made for this failure.",
+  "correction": "Wait for the real dash-pending route state while dashTime is still positive, then inspect UI.",
+  "passedRetest": "build129-dev-phase-route-final2.json",
+  "limits": [
+    "Engineering encounters were suppressed. Native inputs exercise actual time, dash movement, navigation, receiver handoff and cancellation; this is not a played mission.",
+    "No evidence of successful defensive phase evade or continuous physical-thumb comfort."
+  ],
+  "publicationCorrection": {
+    "retainedFailure": "build129-publication-links-initial.json",
+    "issue": "First shipped-link audit ran after generating the freeze manifest but before copying that new file to the two shipped copies. Only the manifest link was absent in dist/snapshot; game bundles matched.",
+    "correction": "Synchronize generated reports, rerun the three-copy audit, then synchronize the passing audit. No gameplay or frozen source change."
+  }
+}

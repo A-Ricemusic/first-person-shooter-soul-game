@@ -11,13 +11,17 @@ export function clearTouchRoute(g,cancel=false){
 // Explicit held-USE navigation uses only the already-visible static map field.
 // Default view follows walking direction with bounded turning; any scene
 // contact grants free look for this hold. FIRE/ADS may defend while walking;
-// manual MOVE, DASH and JUMP take over. No enemies, teleport or protection.
+// manual MOVE, DASH and JUMP take over. A fresh held request during a ground
+// dash waits for its physical completion. No enemies, teleport or protection.
 export function touchRouteStep(g,manual,dt,approaching=false){
  g.touchRouteActive=false;
  if(!g.touchMode||!g.touchUse||g.phase!=='playing'){clearTouchRoute(g);return null;}
  if(g.touchRouteCancelled)return null;
- if(!g.grounded||g.vault||g.dashTime>0||Math.abs(feetY(g.player,profileOf(g)))>.025){clearTouchRoute(g,true);return null;}
+ if(!g.grounded||g.vault||Math.abs(feetY(g.player,profileOf(g)))>.025){clearTouchRoute(g,true);return null;}
  if(manual.lengthSq()>.000625){clearTouchRoute(g,true);return null;}
+ // DASH already cancels an older hold in Game.dash(). A new USE contact
+ // clears that latch: defer this new intent instead of cancelling it again.
+ if(g.dashTime>0){g.touchRoute=null;g.touchRouteStatus='PHASING · ROUTE HELD';return null;}
  if(g.touchRecoveryBraked||approaching){g.touchRoute=null;g.touchRouteStatus='';return null;}
  // A nearby receiver keeps the existing precise held approach. Once a far
  // route is requested, passing a different receiver cannot redirect the hold.
