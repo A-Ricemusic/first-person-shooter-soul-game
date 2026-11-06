@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "dash",
+      "report": "build126-final-dash.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "quiet",
+      "report": "build126-final-quiet.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "compass-cues",
+      "report": "build126-final-compass-cues.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "compact",
+      "report": "build126-final-compact.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "insets",
+      "report": "build126-final-insets.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "scene",
+      "report": "build126-final-scene.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "defense",
+      "report": "build126-final-defense.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "markers",
+      "report": "build126-final-markers.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "visor",
+      "report": "build126-final-visor.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "rifle-assist",
+      "report": "build126-final-rifle-assist.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "cover",
+      "report": "build126-final-cover.json",
+      "phase": "final production bundle",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "auto-vault",
+      "report": "build126-production-auto-vault.json",
+      "phase": "earlier production bundle, before HUD-only correction",
+      "passed": true,
+      "limits": "Movement, dash, collision and mission code identical; retained regression result, not claimed rerun on final bundle."
+    },
+    {
+      "name": "route-follow",
+      "report": "build126-production-route-follow.json",
+      "phase": "earlier production bundle, before HUD-only correction",
+      "passed": true,
+      "limits": "Movement, dash, collision and mission code identical; retained regression result, not claimed rerun on final bundle."
+    },
+    {
+      "name": "boss-approach",
+      "report": "build126-production-boss-approach.json",
+      "phase": "earlier production bundle, before HUD-only correction",
+      "passed": true,
+      "limits": "Movement, dash, collision and mission code identical; retained regression result, not claimed rerun on final bundle."
+    }
+  ],
+  "method": "Eleven affected groups pass on final production bundle; three earlier production regressions retained with explicit pre-HUD scope. Six pure dash contracts pass. Not full canonical suite, physical phones or human quality certification.",
+  "commands": [
+    {
+      "name": "initial build",
+      "exit": 0,
+      "log": "build126-build-output.txt"
+    },
+    {
+      "name": "initial14-group suite",
+      "exit": 1,
+      "log": "build126-production-output.txt",
+      "finding": "Manual PATH/header2px overlap; retained and corrected."
+    },
+    {
+      "name": "final build",
+      "exit": 0,
+      "log": "build126-final-build-output.txt"
+    },
+    {
+      "name": "final11-group suite",
+      "exit": 0,
+      "log": "build126-final-output.txt"
+    }
+  ],
+  "runtimeFilesVerified": 560,
+  "runtimeMismatches": [],
+  "bundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-CX1oQb0z.css": "3650480f9a5d2a08a9c3d393d58c0bf4589f19f0be4ee2723b031317f0f74631",
+    "dist/assets/index-C399a2tx.js": "4c5c0e45d6c5873474d4b1f20d5d6dd2220e5385642c3375d8fa9b89f5e6f862",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b"
+  },
+  "evidence": "build126-dash-and-hud-evidence.json",
+  "parent": "build126-parent-play.json",
+  "corrections": "build126-corrections.json"
+}

@@ -516,6 +516,10 @@ body.touch-mode #hitmarker.cover-priority{opacity:0!important}
 
 /* Build123: one unobstructed cue per optic cluster; the coil strip owns boss text. */
 body.touch-mode #threat-focus.component-duplicate{display:none}
+
+/* Keep the existing warning type/direction and a full-height touch target,
+   with less opaque area above the firing thumb. */
+body.touch-mode #touch-threat-cue{width:min(164px,var(--touch-action-width));max-width:164px}
 body.touch-mode .world-marker.enemy.visor.optic,
 body.touch-mode .world-marker.enemy.visor.optic .marker-symbol{width:24px;height:24px}
 body.touch-mode .world-marker.enemy.visor.optic{filter:drop-shadow(0 0 1px #000) drop-shadow(0 1px 2px #000);color:#e6f5f0}
@@ -524,3 +528,6 @@ body.touch-mode .world-marker.enemy.visor.optic.charging{color:#ffad72}
 /* Build124: secondary controls keep their full hit areas with quieter fills.
    Active/pressed controls and the primary FIRE action retain their emphasis. */
 body.touch-mode #touch-actions>button:not(#touch-fire):not([aria-pressed=true]):not(:active){background:#0a202b73;text-shadow:0 1px 2px #000,0 0 2px #000}
+
+/* The 50px mission header ends where this 28px compass row begins. */
+body.touch-mode #touch-route-cue{top:50px}

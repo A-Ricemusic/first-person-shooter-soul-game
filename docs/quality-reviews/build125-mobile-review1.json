@@ -1,0 +1,213 @@
+{
+  "status": "complete \u2014 exactly two fresh terminal attempts",
+  "build_observed": 125,
+  "source_identity": "User supplied frozen SHA 3328eee1f2ffa2c779fae5f68ab7a9f8d14f5e46; source not inspected",
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61521/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "00:59",
+        "score": 6543,
+        "accuracy_percent": 97,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 12,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build125-mobile-review1/a1-terminal.jpg",
+      "coverage": [
+        "Opening guard: scene tap plus simultaneous manual MOVE and FIRE drag; TARGET DOWN.",
+        "Scene swipe: heading 345 to 013.",
+        "Visible perimeter patrol: first left-edge tap and MOVE/FIRE drag showed no kill, ammo 21 to 20; fresh-view correction showed SENTINEL DOWN, ammo 18. Exact miss cause uncertain.",
+        "Assisted route and approach for three recoveries; coil taps with anchored FIRE; automatic reload observed; return and uplink.",
+        "Map opened, inspected, visibly closed."
+      ],
+      "failures": [
+        "Initial deployment used visible Enter coordinate in an act with capture instead of required #deploy selector; preserved attempt without restart.",
+        "Coil III needed continuation after empty magazine; shield fell 60 to 41, later 15 during uplink."
+      ],
+      "settings_changes": [],
+      "helpful": [
+        "Target-down and coil-OFF feedback",
+        "Route, approach and threat direction cues",
+        "Map extraction selection and walking distance",
+        "Explicit uplink progress"
+      ],
+      "frustrating": [
+        "Tiny distant patrol silhouette",
+        "Dark coil machinery and AIM badge overlap",
+        "First patrol target needed correction"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH via #play-again act with capture; health 100, shield 60, ammo 30/180, recover Mara objective. No checkpoint retry.",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "mission_time": "01:00",
+        "score": 6997,
+        "accuracy_percent": 97,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 17,
+        "tap_aims": 9,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build125-mobile-review1/a2-terminal.jpg",
+      "coverage": [
+        "Opening guard: simultaneous MOVE and FIRE drag after target tap; TARGET DOWN, ammo 30 to 21.",
+        "Perimeter patrol: simultaneous MOVE and FIRE drag after left target tap; ammo 21 to 19, patrol still visible. Fresh-view correction with stationary anchored FIRE showed SENTINEL DOWN, ammo 18.",
+        "Close patrol during Elian route hit shield; scene tap plus stationary FIRE showed SENTINEL DOWN.",
+        "Assisted route/approach to all three recoveries; labeled coil target taps with stationary FIRE.",
+        "Coil III went 100 to 69 percent with empty magazine; next batch reloaded and reduced to 26 with ARMOR feedback; another burst disabled it.",
+        "Deck defense: two fresh-view target taps with FIRE showed INTERCEPTOR DOWN; stayed on deck through terminal upload."
+      ],
+      "failures": [
+        "First moving patrol burst did not visibly eliminate target; correction required. Cause uncertain.",
+        "Damage taken on route and around boss; shield fell to 34 before coil engagement.",
+        "Empty magazine interrupted coil III; needed continuation."
+      ],
+      "settings_changes": [],
+      "helpful": [
+        "Fresh start visibly reset objectives and supplies",
+        "Immediate enemy-down and coil-off feedback",
+        "Directional hit warnings",
+        "Upload percentage made completion requirement clear"
+      ],
+      "frustrating": [
+        "Moving patrol targeting still needed correction",
+        "Small silhouettes in dark architecture",
+        "Armor/open timing not fully learned in these short bursts"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic paused Chromium native touch emulation; software WebGL fallback.",
+    "Every capture releases contacts and pauses; approximately 3s live / 1.2s FIRE boundaries shorten waits. No human reaction-time or causal quality inference.",
+    "Continuous held-burst rearming comfort unassessed; captures break holds.",
+    "Physical phones, Safari, audio, hardware performance, continuous enjoyment unassessed."
+  ],
+  "cleanup": {
+    "status": "success",
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "helper_reported_browserClosed": true,
+    "driverPid": 34452,
+    "chromePid": 34462,
+    "verification_command": "ps -p 34452,34462 -o pid=,ppid=,stat=,comm=",
+    "verification_exit_code": 1,
+    "verification_output": "empty \u2014 neither exact PID present",
+    "broad_kill_used": false
+  },
+  "between_attempts_learning": [
+    "Retarget patrol from fresh screenshot after moving drag failed.",
+    "HOLD ROUTE changes to HOLD APPROACH at receivers; continue visible prompt to recover.",
+    "Labeled coil taps, OFF indicators and automatic reload allowed boss progress.",
+    "Attempt two added close patrol response and two deck defense targets. No claim that extra eliminations or score establish quality improvement."
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with clear rough edges; 10 exceptional and consistently effortless within assessed scope. Holistic judgment, not a win/loss grade or numerical average.",
+    "overall_mobile": 7.0,
+    "controls": 6.5,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Coherent atmospheric short mission with understandable objectives and effective touch assistance, tempered by moving-patrol targeting corrections and small distant targets.",
+      "controls": "MOVE plus FIRE drag and scene turning responded, and anchored target taps corrected misses. Both perimeter moving bursts required a fresh-view correction. Pause lifecycle prevents judging sustained control comfort.",
+      "gameplay": "Three recoveries, staged coil fight and deck upload supplied clear progression and combat decisions. Much traversal used assistance, leaving free navigation and broader combat depth uncertain.",
+      "presentation": "Rain, wet-looking ground, cyan lighting and distinct industrial setting form a cohesive visual mood. This is visual presentation only; audio and hardware frame pacing not assessed.",
+      "usability": "Large primary buttons, dynamic approach labels, map route selection and clear terminal breakdown were helpful. Several secondary controls remain unassessed.",
+      "readability": "Objective, ammo, shield, threats and boss status were legible; distant patrol silhouettes, small signage and AIM badge overlap were harder to parse."
+    }
+  },
+  "unassessed": [
+    "Dash, jump, tools, zoom, settings options, recovered-memory content, alternate weapons, checkpoint retry, physical ergonomics, continuous held-burst rearming comfort.",
+    "No inference of enjoyment from unassessed content or continuous enjoyment from paused play."
+  ],
+  "protocol": {
+    "source_access": "Only mobile-playtest.mjs --help read; no source, tests, docs, prior reviews or internal state inspected. Visible UI metadata and screenshots used.",
+    "deployment_deviation": "Attempt one deployed by visible Enter coordinate in an act/capture rather than #deploy selector. No extra run was added.",
+    "input": "Native JSON-lines two-contact touch; each screenshot viewed separately before adaptive input. One new scene target per batch. No keyboard/mouse/evaluation/custom controller.",
+    "waits": "All requested waits 3000ms or less; shortened waits and observation boundaries inspected, no bypass.",
+    "planning": "Map opened in attempt one and explicitly closed via #close-map.",
+    "lifecycle": "Default release then live capture then pause throughout. No captureHeld used. Pauses clear AIM and close TOOLS; no zoom or tools used.",
+    "settings_changes": [],
+    "attempt1_saved_before_attempt2": true,
+    "third_attempt": false
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build125-mobile-review1",
+    "action_log": "docs/media/build125-mobile-review1/actions.jsonl",
+    "images": [
+      "docs/media/build125-mobile-review1/a1-approach.jpg",
+      "docs/media/build125-mobile-review1/a1-boss-position.jpg",
+      "docs/media/build125-mobile-review1/a1-coil1.jpg",
+      "docs/media/build125-mobile-review1/a1-coil2.jpg",
+      "docs/media/build125-mobile-review1/a1-coil3.jpg",
+      "docs/media/build125-mobile-review1/a1-custodian-route.jpg",
+      "docs/media/build125-mobile-review1/a1-elian.jpg",
+      "docs/media/build125-mobile-review1/a1-manual-fire.jpg",
+      "docs/media/build125-mobile-review1/a1-map.jpg",
+      "docs/media/build125-mobile-review1/a1-patrol-correct.jpg",
+      "docs/media/build125-mobile-review1/a1-patrol-left.jpg",
+      "docs/media/build125-mobile-review1/a1-reload-fire.jpg",
+      "docs/media/build125-mobile-review1/a1-return1.jpg",
+      "docs/media/build125-mobile-review1/a1-route1.jpg",
+      "docs/media/build125-mobile-review1/a1-route2.jpg",
+      "docs/media/build125-mobile-review1/a1-route3.jpg",
+      "docs/media/build125-mobile-review1/a1-route4.jpg",
+      "docs/media/build125-mobile-review1/a1-route5.jpg",
+      "docs/media/build125-mobile-review1/a1-route6.jpg",
+      "docs/media/build125-mobile-review1/a1-route7.jpg",
+      "docs/media/build125-mobile-review1/a1-sera.jpg",
+      "docs/media/build125-mobile-review1/a1-terminal.jpg",
+      "docs/media/build125-mobile-review1/a1-turn.jpg",
+      "docs/media/build125-mobile-review1/a1-uplink1.jpg",
+      "docs/media/build125-mobile-review1/a1-uplink2.jpg",
+      "docs/media/build125-mobile-review1/a2-boss-position.jpg",
+      "docs/media/build125-mobile-review1/a2-boss-route.jpg",
+      "docs/media/build125-mobile-review1/a2-close-patrol.jpg",
+      "docs/media/build125-mobile-review1/a2-coil1.jpg",
+      "docs/media/build125-mobile-review1/a2-coil2.jpg",
+      "docs/media/build125-mobile-review1/a2-coil3.jpg",
+      "docs/media/build125-mobile-review1/a2-coils-off.jpg",
+      "docs/media/build125-mobile-review1/a2-deck-defense.jpg",
+      "docs/media/build125-mobile-review1/a2-deck-defense2.jpg",
+      "docs/media/build125-mobile-review1/a2-elian.jpg",
+      "docs/media/build125-mobile-review1/a2-manual-guard.jpg",
+      "docs/media/build125-mobile-review1/a2-mara.jpg",
+      "docs/media/build125-mobile-review1/a2-patrol-correct.jpg",
+      "docs/media/build125-mobile-review1/a2-patrol-manual.jpg",
+      "docs/media/build125-mobile-review1/a2-reload.jpg",
+      "docs/media/build125-mobile-review1/a2-return.jpg",
+      "docs/media/build125-mobile-review1/a2-route1.jpg",
+      "docs/media/build125-mobile-review1/a2-route2.jpg",
+      "docs/media/build125-mobile-review1/a2-route3.jpg",
+      "docs/media/build125-mobile-review1/a2-route4.jpg",
+      "docs/media/build125-mobile-review1/a2-route5.jpg",
+      "docs/media/build125-mobile-review1/a2-route6.jpg",
+      "docs/media/build125-mobile-review1/a2-route7.jpg",
+      "docs/media/build125-mobile-review1/a2-sera.jpg",
+      "docs/media/build125-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build125-mobile-review1/a2-terminal.jpg",
+      "docs/media/build125-mobile-review1/a2-uplink1.jpg",
+      "docs/media/build125-mobile-review1/brief.jpg",
+      "docs/media/build125-mobile-review1/menu.jpg"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "records": [
+    {
+      "failure": "build126-dev-dash.json",
+      "sourceBefore": "build126-dash-before-clear-ground.txt",
+      "finding": "Old arranged coordinate was clear at start but met actual architecture before the enemy. Replaced with a four-direction capsule-clear fixture origin. No game change."
+    },
+    {
+      "failure": "build126-dev-dash-clear.json",
+      "sourceBefore": "build126-dash-before-embedded-sentinel-fix.txt",
+      "finding": "Incorrect test assumption: Sentinel download failure intentionally uses embedded exact authored GLB, so its template is present. Corrected expectation, verified all three failed requests, retained both shapes."
+    },
+    {
+      "failure": "build126-dev-quiet.json",
+      "sourceBefore": "build126-warning-before-width-fix.txt",
+      "finding": "150px panel clipped full HIT FROM +2 wording. Final164px preserves wording, font and48px height. Smaller164px layouts gain no warning-area reduction."
+    },
+    {
+      "failure": "build126-production-compass-cues.json",
+      "finding": "2px manual PATH/header overlap. Final PATH top50px preserves its28px height and text size, ending at the next panel boundary. Seven native layouts passed after correction."
+    },
+    {
+      "ordinaryFinding": "build126-parent-play.json triage-departure",
+      "sourceBefore": "build126-main-before-front-refinement.txt",
+      "finding": "Broad automatic PATH suppression removed useful bend direction during a wall-facing view. Final suppresses only automatic FRONT; non-front bend, combat and manual-view cues remain. Full ordinary mission predates these HUD-only corrections.",
+      "passedFinal": "build126-final-quiet.json"
+    },
+    {
+      "finding": "Runner omitted MOBILE_COVER_PREFIX; successful cover reports used a new task-owned default folder. Final report/media moved byte-identically under Build126 and initial raw report recovered from build copy. Distinct initial screenshots not claimed. No historical files changed; future runner prefix fixed.",
+      "record": "build126-cover-output-routing.json"
+    }
+  ]
+}

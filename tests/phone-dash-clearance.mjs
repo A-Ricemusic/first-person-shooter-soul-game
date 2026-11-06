@@ -1,0 +1,14 @@
+import {phoneDashTravel,PHONE_DASH_BODIES} from '../src/phone-dash-clearance.js';
+import {Vector3} from 'three';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const checks=[];const check=(name,fn)=>{fn();checks.push(name)};
+const enemy=(x,z,type='warden',health=150)=>({type,health,group:{position:new Vector3(x,0,z)}});
+const game=(enemies)=>({touchMode:true,player:new Vector3(0,1.7,0),dashVector:new Vector3(0,0,-1),enemies,hasLineOfSight:()=>true});
+check('swept body entry wins over large steps and array order',()=>{for(const type of Object.keys(PHONE_DASH_BODIES)){const g=game([enemy(0,-8,type),enemy(0,-3,type)]),r=PHONE_DASH_BODIES[type].radius+.55,travel=phoneDashTravel(g,30);assert(Math.abs(travel-(3-r))<1e-9);g.enemies.reverse();assert.equal(phoneDashTravel(g,30),travel);assert(g.player.equals(new Vector3(0,1.7,0)));}});
+check('off-axis and tangent misses keep full travel',()=>{const r=PHONE_DASH_BODIES.warden.radius+.55;for(const x of[r,r+.0001,4])assert.equal(phoneDashTravel(game([enemy(x,-3)]),6),6)});
+check('oblique entry ends outside the padded body',()=>{for(let i=0;i<120;i++){const x=i/120*1.64,g=game([enemy(x,-3)]),d=phoneDashTravel(g,6);assert(d<6);assert(Math.abs(Math.hypot(x,3-d)-1.65)<1e-8)}});
+check('dead, unknown, covered and vertically clear bodies do not brake',()=>{for(const g of[game([enemy(0,-3,'warden',0)]),game([enemy(0,-3,'unknown')]),{...game([enemy(0,-3)]),hasLineOfSight:()=>false},{...game([enemy(0,-3)]),player:new Vector3(0,4.31,0)}])assert.equal(phoneDashTravel(g,6),6)});
+check('escaping an existing overlap works; continuing into it stops without a push',()=>{for(const z of[-1,-.01]){const g=game([enemy(0,z)]);assert.equal(phoneDashTravel(g,6),0);g.dashVector.z=1;assert.equal(phoneDashTravel(g,6),6)}const g=game([enemy(0,0)]);assert.equal(phoneDashTravel(g,6),6)});
+check('sideways and retreating routes preserve distance; non-touch behavior is untouched',()=>{const g=game([enemy(0,-3)]);g.dashVector.set(1,0,0);assert.equal(phoneDashTravel(g,6),6);g.dashVector.set(0,0,1);assert.equal(phoneDashTravel(g,6),6);g.touchMode=false;g.dashVector.z=-1;assert.equal(phoneDashTravel(g,6),6)});
+const report={method:'Deterministic swept-circle edge contracts, not played missions or visible-body art validation.',passed:true,checks};writeFileSync('docs/quality-reviews/build126-dash-contracts.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

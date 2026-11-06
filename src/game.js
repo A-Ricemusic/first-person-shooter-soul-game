@@ -5,6 +5,7 @@ import {fallbackPaint} from './enemy-paint.js';
 import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRoute,removeSupplyRoute,emptyAmmoAdvice} from './supply-route.js';
 import {updateThreatTurn} from './touch-threat-turn.js';
 import {updateTouchRouteView} from './touch-route-view.js';
+import {phoneDashTravel} from './phone-dash-clearance.js';
 import {inCustodianApproach} from './custodian-approach.js';
 import {recordRifleImpact,rifleReadout,rifleConfirmation} from './rifle-readout.js';
 import {recordTouchAim,touchAimReadout} from './touch-aim-readout.js';
@@ -709,8 +710,13 @@ export class Game {
     updateTouchRouteView(this,routeFollow||(this.touchUseGoal?approach:null),dt);
     const speed = touchRecoveryBrake(this,receiverInReach)?0:guided?Math.min(baseSpeed,approach?3.1:5.5,guided.distance/Math.max(dt,1e-6)):careful?Math.min(baseSpeed,2.2):baseSpeed;
     const routeSpecial=!!this.vault||this.dashTime>0;
+    let dashBodyStop=false;
     if(this.vault)advanceVault(this,this.traversalWorld(),dt);
-    else if (this.dashTime > 0) { this.dashTime -= dt; movePlayer(this, this.world, this.dashVector.x * dt * 27, this.dashVector.z * dt * 27, dt); }
+    else if (this.dashTime > 0) {
+      this.dashTime-=dt;const requested=dt*27,travel=phoneDashTravel(this,requested);
+      dashBodyStop=travel<requested-1e-8;
+      movePlayer(this,this.world,this.dashVector.x*travel,this.dashVector.z*travel,dt);
+    }
     else movePlayer(this, this.world, direction.x * speed * dt, direction.z * speed * dt, dt);
     if(routeFollow&&!this.touchRouteCounted&&Math.hypot(this.player.x-previousPlayer.x,this.player.z-previousPlayer.z)>.001){this.routeAssists++;this.touchRouteCounted=true;}
     if(approach&&!this.touchApproachCounted&&Math.hypot(this.player.x-previousPlayer.x,this.player.z-previousPlayer.z)>.001){this.approachAssists++;this.touchApproachCounted=true;}
@@ -725,7 +731,8 @@ export class Game {
     // even if the firing thumb has already lifted. Partial magazines stay manual.
     if(this.touchMode&&!this.vault&&this.ammo===0&&this.reserve>0&&this.fireTimer===0&&!this.reloading)this.reload();
     updateCapacitors(this,dt); if(this.phase!=='playing')return;
-    this.updateEncounters(); this.updatePhaseInterrupts(); this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
+    this.updateEncounters(); this.updatePhaseInterrupts(dashBodyStop);if(dashBodyStop)this.dashTime=0;
+    this.updateEnemies(dt); updateCustodian(this,dt); this.updateProjectiles(dt); this.updatePickups(dt);
     if(this.phase !== 'playing')return;
     if(this.touchMode&&this.touchUseGoal?.startsWith('supply-'))this.suitService.progress=0;else updateService(this,dt);
     const nearby=this.coreNodes.find(c=>!c.collected&&(!this.touchUseGoal||this.touchUseGoal===`core-${c.id}`)&&recoveryDistance(this.player,c.position,profileOf(this))<RECOVERY_RADIUS);
@@ -757,8 +764,8 @@ export class Game {
     }
   }
 
-  updatePhaseInterrupts() {
-    if(this.dashTime<=0)return;
+  updatePhaseInterrupts(dashBodyStop=false) {
+    if(this.dashTime<=0&&!dashBodyStop)return;
     for(const e of this.enemies){
       if(!(e.windup>0||e.contactWindup>0) || e.group.position.distanceTo(this.player)>4.8)continue;
       const eye=e.group.position.clone().add(new THREE.Vector3(0,1.3,0));
