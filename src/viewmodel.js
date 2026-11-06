@@ -1,9 +1,10 @@
 import * as THREE from 'three';
-import {phoneHipLowering} from './mobile-viewmodel.js';
+import {phoneHipLowering,phoneHipScale} from './mobile-viewmodel.js';
 const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
 const wrist=new THREE.Vector3(),elbow=new THREE.Vector3(),direction=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
 /** Deterministic visual pose only. Reload mechanics and camera are game-owned. */
 export function poseHandling(g,{ads,progress,bob}){
+ g.weapon.scale.setScalar(phoneHipScale(g.touchMode,g.camera.aspect,ads));
  const reach=smooth(.03,.24,progress)*(1-smooth(.78,1,progress));
  const pull=smooth(.26,.44,progress)*(1-smooth(.59,.77,progress));
  if(g.supportHand){g.supportHand.position.set(-.033*reach,(-.037-.155*pull)*reach,(.175+.045*pull)*reach);g.supportHand.rotation.set(0,0,0)}

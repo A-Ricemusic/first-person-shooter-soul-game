@@ -1,0 +1,257 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts; no checkpoint retry or third attempt",
+  "identity": {
+    "expected_source": "17c113461eae9c89c6fcf68d9fd0007692145d76",
+    "source_verified": false,
+    "visible_title": "SOULFALL BUILD 129"
+  },
+  "viewport": [
+    844,
+    390
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:04",
+        "score": 6722,
+        "accuracy_percent": 98,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 17,
+        "tap_aims": 7,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build129-mobile-review1/a1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard and visible west perimeter patrol; target down with simultaneous native two-contact MOVE/FIRE drag. Patrol 21 to 19 ammo; heading 257 to 225. Assisted tap aim preceded firing; manual precision isolated from assistance unassessed.",
+        "scene_turn": "Swipe changed heading 351 to 018; threat TURN cue also sampled.",
+        "dash": "Visible DASH tapped after entry guard, displacement/tint and 4.3 cooldown observed. No phase evade confirmed.",
+        "misses_corrections": "Charge guard first shot 16 to 15 ammo left target partly occluded; new view tap then 15 to 12 and SENTINEL DOWN. Coil II ran empty and required reload; shield fell 60 to 28 while waiting.",
+        "route": "Assisted route and approach completed recoveries and deck; ignored some rear threats while routing."
+      },
+      "deviation": "Initial deployment used an act tap on visible ENTER THE STORM geometry with capture, rather than requested #deploy selector. It started attempt 1; no restart or extra attempt.",
+      "last_live_capture": {
+        "health": 100,
+        "shield": 9,
+        "ammo": 18,
+        "reserve": 330,
+        "upload_percent": 88
+      },
+      "terminal_health_shield": "Not displayed on terminal screen; not inferred."
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH via act tap #play-again and capture after saving attempt 1 partial report.",
+      "outcome": "WIN / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 9,
+        "mission_time": "01:05",
+        "score": 7488,
+        "accuracy_percent": 100,
+        "critical_eliminations": 7,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 22,
+        "tap_aims": 10,
+        "route_assists": 12,
+        "approach_assists": 5
+      },
+      "terminal_evidence": "docs/media/build129-mobile-review1/a2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard down using simultaneous MOVE and FIRE drag with no preceding target tap, ammo 30 to 21. Visible west perimeter patrol tapped, then simultaneous MOVE and FIRE drag: ammo 21 to 19, SENTINEL DOWN. These are native synthetic two-contact controls, not proof of unaided precision.",
+        "scene_turn": "Visible threat TURN cue sampled; fresh view showed heading 299 after initial metadata still read 008. No extra scene swipe in attempt 2.",
+        "dash": "Tapped after west patrol (cooldown 1.5 at next capture), and after visible charge warning (cooldown 3.8 and moved near wall/cover). Health/shield stayed 100/60 at that capture; phase evades ultimately 0, so successful charge evade is not established.",
+        "map": "Opened #touch-map; overview showed selected Mara, 58m walking route, low-cover legend and mission selectors. Closed visibly with #close-map before play. No map destination or setting changed.",
+        "other_combat": "Second perimeter sentinel, Heart warden optic, east sentinel and three deck interceptors engaged with scene tap and anchored FIRE. WARDEN DOWN after 2 rounds.",
+        "misses_corrections": "No explicit miss observed in this attempt; displayed 100% accuracy includes assistance and does not prove every gesture was precise. Ignored rear threats caused shield damage (60 to 41 en route east, later 60 to 47 to 34). Coil II used remaining 10 rounds and triggered reload; waited 1.8s, shield 53 to 47. Deck defense still lost shield 21 to 8.",
+        "route": "Assisted routing/approach recovered all three, reached coils and deck. Most navigation was assisted; manual navigation through the whole facility unassessed."
+      },
+      "last_live_capture": {
+        "health": 100,
+        "shield": 8,
+        "ammo": 18,
+        "reserve": 330,
+        "upload_percent": 84
+      },
+      "terminal_health_shield": "Not displayed on terminal screen; not inferred."
+    }
+  ],
+  "settings_changes": [],
+  "limitations": [
+    "Synthetic paused Chromium native touch emulation with software-WebGL; no physical-device certification.",
+    "Every capture releases contacts and pauses; automatic approximately 3s live / 1.2s FIRE observation boundaries shorten waits. No human reaction-time or causal game-quality benefit inference.",
+    "Continuous held-burst rearming comfort, physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "cleanup": {
+    "driverPid": 39122,
+    "chromePid": 39132,
+    "close": "Explicit JSON op close; helper returned browserClosed true; session awaited to exit code 0.",
+    "verification": "ps -p 39122,39132 -o pid=,ppid=,stat=,command= returned no rows, exit 1; exact owned driver/Chrome absent.",
+    "status": "complete; no broad kills"
+  },
+  "between_attempts_learning": [
+    "HOLD ROUTE changes to HOLD APPROACH and HOLD TO RECOVER near receivers, so the same visible action area can finish recoveries.",
+    "Threat TURN cue helps reveal offscreen targets but needs a fresh view; capture metadata can lag the actual rendered heading during a turn.",
+    "Target-down and coil OFF feedback distinguish progress from firing. Reload interrupts firing; armor/open cues explain ammunition expenditure.",
+    "Second attempt sampled entry firing without tap aim, planning map, DASH in charge-warning context, Heart optic and active deck defense. No claim of causal improvement from scores or pauses."
+  ],
+  "helpful_moments": [
+    {
+      "evidence": "a1-patrol-manual.jpg",
+      "observation": "Large FIRE pad and separated MOVE stick supported two-contact move/fire drag; target-down label gave clear confirmation."
+    },
+    {
+      "evidence": "a2-map.jpg",
+      "observation": "Map route, selected receiver and cover legend made the facility layout understandable at 844x390."
+    },
+    {
+      "evidence": "a2-sera.jpg",
+      "observation": "Named recovery checkmarks and changing objective made mission progress clear."
+    },
+    {
+      "evidence": "a1-coil2-off.jpg",
+      "observation": "Numbered coil health/OFF indicators and open timer explained boss progress."
+    },
+    {
+      "evidence": "a2-terminal.jpg",
+      "observation": "Result screen separated assisted shots, tap aims, route/approach assists from accuracy and eliminations."
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "evidence": "a1-charge-fire.jpg",
+      "observation": "Charge guard ended partially hidden behind cover after first shot; needed a new target selection. Small silhouette and cover made immediate result uncertain."
+    },
+    {
+      "evidence": "a1-reload.jpg",
+      "observation": "Waiting for reload while exposed cost shield; the narrow coil opening and armor cycle demanded attention alongside rear threats."
+    },
+    {
+      "evidence": "a2-dash-charge.jpg",
+      "observation": "DASH produced clear cooldown/displacement but left a close wall/cover view, with no confirmed phase evade. This single use cannot establish steering comfort."
+    },
+    {
+      "evidence": "a2-route6.jpg",
+      "observation": "Rear warning and forward route compete for attention; shield fell while routing. Threat text is useful but covers part of the scene."
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with clear remaining friction; 9 excellent in assessed scope; 10 exceptional. Subjective holistic evaluation of these two synthetic paused mobile runs, not a win/loss grade or arithmetic average.",
+    "overall_mobile": 7.2,
+    "controls": {
+      "score": 7,
+      "reason": "Large separated controls, tap aim, MOVE/FIRE drag, scene swipe and DASH all responded. Target acquisition near cover needed correction; unaided precision, continuous holds and real thumb ergonomics remain unassessed."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "Recovery, patrols, armor openings and deck defense supplied distinct observed tasks with legible feedback. Assisted navigation reduced exploration burden and most of this review used it; short paused runs do not establish sustained enjoyment or challenge balance."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Cohesive rainy station, teal/gold signals, illuminated machinery and restrained result screen convey a strong atmosphere in still captures. Audio and real-time hardware smoothness unassessed."
+    },
+    "usability": {
+      "score": 8,
+      "reason": "Context action labels, named checkmarks, threat TURN prompts, map route and explicit START FRESH made progression understandable without source knowledge. Facing/target changes require fresh orientation and many simultaneous cues compete."
+    },
+    "readability": {
+      "score": 6.5,
+      "reason": "Health/ammo, objectives and action pads are readable at 844x390; small distant guards, low-contrast gray geometry, compact compass/announcement text and overlapping world labels demand inspection."
+    }
+  },
+  "unassessed": [
+    "Physical phones and thumb occlusion/ergonomics",
+    "Safari",
+    "Audio",
+    "Hardware performance and frame pacing",
+    "Continuous enjoyment",
+    "Continuous held-burst rearming comfort",
+    "Tools selection/use, zoom/AIM and jump",
+    "Recovered memory reading and unvisited optional content",
+    "Checkpoint retry (prohibited)",
+    "Source SHA verification (source frozen supplied by requester, no source inspection)"
+  ],
+  "method": {
+    "url": "http://127.0.0.1:61525/",
+    "helper": "tools/mobile-playtest.mjs; read only --help; no helper/source inspection",
+    "input": "JSON-lines native CDP touch, at most two contacts; visible UI selectors and geometry",
+    "screenshots": "Every capture viewed separately before dependent adaptive input. At most one new scene target per batch; fresh view after turn. No keyboard/mouse/evaluation/internal handles.",
+    "boundaries": "Waits at most 12000ms; first route request 12000 shortened to about 2985ms. Later route waits about 3000 shortened by boundary; inspected returned images/timings. No boundary bypass.",
+    "settings": "No visible settings changes.",
+    "pause_lifecycle": "Contacts released at captures and mission paused. Observation is much more frequent than continuous human play. No reaction-time or causal game-quality benefit inferred. Both capture modes break continuous holds; no captureHeld used. AIM/TOOLS not sampled."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build129-mobile-review1",
+    "actions_log": "docs/media/build129-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build129-mobile-review1/a1-approach.jpg",
+      "docs/media/build129-mobile-review1/a1-charge-correction.jpg",
+      "docs/media/build129-mobile-review1/a1-charge-fire.jpg",
+      "docs/media/build129-mobile-review1/a1-charge-turn.jpg",
+      "docs/media/build129-mobile-review1/a1-coil1.jpg",
+      "docs/media/build129-mobile-review1/a1-coil2-off.jpg",
+      "docs/media/build129-mobile-review1/a1-coil2.jpg",
+      "docs/media/build129-mobile-review1/a1-coil3.jpg",
+      "docs/media/build129-mobile-review1/a1-cover.jpg",
+      "docs/media/build129-mobile-review1/a1-dash-turn.jpg",
+      "docs/media/build129-mobile-review1/a1-elian.jpg",
+      "docs/media/build129-mobile-review1/a1-manual-fire.jpg",
+      "docs/media/build129-mobile-review1/a1-patrol-manual.jpg",
+      "docs/media/build129-mobile-review1/a1-patrol-turn.jpg",
+      "docs/media/build129-mobile-review1/a1-reload.jpg",
+      "docs/media/build129-mobile-review1/a1-return1.jpg",
+      "docs/media/build129-mobile-review1/a1-route1.jpg",
+      "docs/media/build129-mobile-review1/a1-route2.jpg",
+      "docs/media/build129-mobile-review1/a1-route3.jpg",
+      "docs/media/build129-mobile-review1/a1-route4.jpg",
+      "docs/media/build129-mobile-review1/a1-route5.jpg",
+      "docs/media/build129-mobile-review1/a1-route6.jpg",
+      "docs/media/build129-mobile-review1/a1-route7.jpg",
+      "docs/media/build129-mobile-review1/a1-route8.jpg",
+      "docs/media/build129-mobile-review1/a1-second-patrol.jpg",
+      "docs/media/build129-mobile-review1/a1-sera.jpg",
+      "docs/media/build129-mobile-review1/a1-terminal.jpg",
+      "docs/media/build129-mobile-review1/a1-uplink.jpg",
+      "docs/media/build129-mobile-review1/a1-upload.jpg",
+      "docs/media/build129-mobile-review1/a2-charge-turn.jpg",
+      "docs/media/build129-mobile-review1/a2-coil1.jpg",
+      "docs/media/build129-mobile-review1/a2-coil2.jpg",
+      "docs/media/build129-mobile-review1/a2-coil3.jpg",
+      "docs/media/build129-mobile-review1/a2-dash-charge.jpg",
+      "docs/media/build129-mobile-review1/a2-dash-route.jpg",
+      "docs/media/build129-mobile-review1/a2-deck-defense.jpg",
+      "docs/media/build129-mobile-review1/a2-deck-defense2.jpg",
+      "docs/media/build129-mobile-review1/a2-east-patrol.jpg",
+      "docs/media/build129-mobile-review1/a2-elian.jpg",
+      "docs/media/build129-mobile-review1/a2-face-coils.jpg",
+      "docs/media/build129-mobile-review1/a2-heart-guard.jpg",
+      "docs/media/build129-mobile-review1/a2-manual-entry.jpg",
+      "docs/media/build129-mobile-review1/a2-map-closed.jpg",
+      "docs/media/build129-mobile-review1/a2-map.jpg",
+      "docs/media/build129-mobile-review1/a2-mara.jpg",
+      "docs/media/build129-mobile-review1/a2-patrol-manual.jpg",
+      "docs/media/build129-mobile-review1/a2-patrol2.jpg",
+      "docs/media/build129-mobile-review1/a2-reload.jpg",
+      "docs/media/build129-mobile-review1/a2-return.jpg",
+      "docs/media/build129-mobile-review1/a2-route1.jpg",
+      "docs/media/build129-mobile-review1/a2-route2.jpg",
+      "docs/media/build129-mobile-review1/a2-route3.jpg",
+      "docs/media/build129-mobile-review1/a2-route4.jpg",
+      "docs/media/build129-mobile-review1/a2-route5.jpg",
+      "docs/media/build129-mobile-review1/a2-route6.jpg",
+      "docs/media/build129-mobile-review1/a2-route7.jpg",
+      "docs/media/build129-mobile-review1/a2-route8.jpg",
+      "docs/media/build129-mobile-review1/a2-sera.jpg",
+      "docs/media/build129-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build129-mobile-review1/a2-terminal.jpg",
+      "docs/media/build129-mobile-review1/a2-uplink.jpg",
+      "docs/media/build129-mobile-review1/brief.jpg",
+      "docs/media/build129-mobile-review1/menu.jpg"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "retainedFailures": [
+    {
+      "report": "build130-dev-footprint.json",
+      "issue": "Strict vector equality treated -0 and0 as different even though camera direction was identical. Corrected to1e-12 component tolerance."
+    },
+    {
+      "report": "build130-dev-footprint-final.json",
+      "issue": "Exact hip-position equality rejected breacher animation settling differences below1e-8. Corrected to1e-6 positional tolerance; unchanged physical camera, original pose and strict footprint comparisons remain."
+    }
+  ],
+  "passingDevelopmentRetest": "build130-dev-footprint-settled.json",
+  "scope": "Seven phone profiles, two authored weapons, settled ADS and native reload/rotation/planning/pause; world and actors arranged for reproducible diagnostic masks. No mission or aiming-quality claim."
+}

@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "footprint",
+      "report": "docs/quality-reviews/build130-production-footprint.json",
+      "sha256": "7495902f739ac5fa6bfaaccaf15262dc5a2c8be84be76c6db251d49ce75a803e",
+      "passed": true
+    },
+    {
+      "name": "frame",
+      "report": "docs/quality-reviews/build130-production-frame.json",
+      "sha256": "631b202d7b8a1482ac68bd80e7f962ad11481d96967a0f35c84b723dd2c9812a",
+      "passed": true
+    },
+    {
+      "name": "focus",
+      "report": "docs/quality-reviews/build130-production-focus.json",
+      "sha256": "37be2603d0545abed8a7ee69f602f12fe9cb3d39b86a77762e24090e4000d7c5",
+      "passed": true
+    },
+    {
+      "name": "projection",
+      "report": "docs/quality-reviews/build130-production-projection.json",
+      "sha256": "846efb1e2e0a8435d58219ce3b93182644c540a2ed41e2307d0b094dca5ff296",
+      "passed": true
+    },
+    {
+      "name": "tolerance",
+      "report": "docs/quality-reviews/build130-production-tolerance.json",
+      "sha256": "eae4f8475a606b732cc498be4ce00c2e507f8e9f8df49723bbbd2f842b7d66de",
+      "passed": true
+    },
+    {
+      "name": "rifle-assist",
+      "report": "docs/quality-reviews/build130-production-rifle-assist.json",
+      "sha256": "c9be9ff75d8e9f4eb9dbc664e799d36559f0e7657919dc8e9d686d595d25c09b",
+      "passed": true
+    },
+    {
+      "name": "markers",
+      "report": "docs/quality-reviews/build130-production-markers.json",
+      "sha256": "2e7930373fe0c0e139ab6d2f45f1abfa30a64efbd3cb8c5380af8badf03586ad",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build130-production-compact.json",
+      "sha256": "93e209b2bcf7b210636691f1b7a5a0de04354bc790657a17a734f35daf6595a7",
+      "passed": true
+    },
+    {
+      "name": "insets",
+      "report": "docs/quality-reviews/build130-production-insets.json",
+      "sha256": "e91981f64a480217ebd398da05336e44fcbafbec485fbd2c90d622e5fc3353ce",
+      "passed": true
+    },
+    {
+      "name": "scene",
+      "report": "docs/quality-reviews/build130-production-scene.json",
+      "sha256": "6eb483b0711c38cf501121bf83d62523447bc4286abf5c349aa3f54adc1a479f",
+      "passed": true
+    },
+    {
+      "name": "confirmation",
+      "report": "docs/quality-reviews/build130-production-confirmation.json",
+      "sha256": "461f69a9a288da5a18d5b9e8c15d9ecbdb2649770a3c6a636044c6880363cad9",
+      "passed": true
+    },
+    {
+      "name": "cover",
+      "report": "docs/quality-reviews/build130-production-cover.json",
+      "sha256": "4d6a03649301f91635c5145cc43a73b990ad02fea58af462e89b4f5c34d9f0cb",
+      "passed": true
+    }
+  ],
+  "command": "MOBILE_PREFIX=build130-production node tools/mobile-footprint-suite.mjs",
+  "exitCode": 0,
+  "scope": "12 affected production groups, not the full canonical suite. Seven footprint profiles include two weapons, loaded/fallback rigs, insets and native zoom/reload/lifecycle.",
+  "runtimeRecordFiles": 568,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/index-CDYoitW1.js": "efa6018b6d73e46f26092d51becfa458f505f4d138855f29af00c7467fd85b0d",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-CX1oQb0z.css": "3650480f9a5d2a08a9c3d393d58c0bf4589f19f0be4ee2723b031317f0f74631",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b"
+  },
+  "parentOrdinary": "build130-parent-play.json",
+  "notClaims": [
+    "Human targeting benefit, mission enjoyment, reaction time, continuous holds, physical device quality, FPS or AAA readiness."
+  ]
+}

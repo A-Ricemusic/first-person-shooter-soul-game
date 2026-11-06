@@ -1,0 +1,466 @@
+{
+  "method": "ENGINEERING fixed entrance view: all actors removed, encounters suppressed, invulnerability and no bob/recoil. Pixel masks measure viewmodel occlusion only; they do not establish visible-target acquisition improvement. Native zoom, tool swap/reload and lifecycle. A5/60 rifle inventory is arranged for reload. Diagnostic white geometry mask counts on-screen weapon triangles, including transparent surfaces; it is not a human visibility, aiming, ergonomics or FPS score. Diagnostic renders occur only in this fixture, never the product.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "rifle reduces only phone hip footprint and keeps authored muzzle and original ADS pose",
+          "passed": true
+        },
+        {
+          "name": "breacher reduces only phone hip footprint and keeps authored muzzle and original ADS pose",
+          "passed": false,
+          "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   0.2999999814644313,\n+   -0.35999998702510194,\n-   0.29999998982746423,\n-   -0.359999992879225,\n    -0.28\n  ]\n"
+        }
+      ],
+      "rifle": {
+        "hip": {
+          "state": {
+            "phase": "playing",
+            "time": 0.3833000000000001,
+            "weapon": "rifle",
+            "aim": false,
+            "blend": 0,
+            "reference": 75,
+            "vertical": 75,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.3,
+              -0.35000000000000003,
+              -0.35
+            ],
+            "scale": [
+              0.86,
+              0.86,
+              0.86
+            ],
+            "direction": [
+              0,
+              0,
+              -1
+            ],
+            "ammo": 30,
+            "reserve": 180,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 10936,
+            "upperPixels": 3,
+            "top": 246,
+            "muzzleGap": 0,
+            "drawCalls": 209,
+            "triangles": 75752
+          }
+        },
+        "zoom": {
+          "state": {
+            "phase": "playing",
+            "time": 1.5332999999999968,
+            "weapon": "rifle",
+            "aim": true,
+            "blend": 0.9999908375779657,
+            "reference": 40.00032068477121,
+            "vertical": 40.00032068477121,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.000002748726610291019,
+              -0.1550017866722967,
+              -0.35
+            ],
+            "scale": [
+              0.9999987172609152,
+              0.9999987172609152,
+              0.9999987172609152
+            ],
+            "direction": [
+              0,
+              0,
+              -1
+            ],
+            "ammo": 30,
+            "reserve": 180,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgb(80, 123, 121)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 20866,
+            "upperPixels": 5128,
+            "top": 155,
+            "muzzleGap": 3.552713678800526e-15,
+            "drawCalls": 207,
+            "triangles": 75748
+          }
+        },
+        "comparison": {
+          "hipRatio": 0.8446092060549892,
+          "upperRatio": 0.018292682926829267,
+          "zoomDifference": 0
+        }
+      },
+      "breacher": {
+        "hip": {
+          "state": {
+            "phase": "playing",
+            "time": 3.066599999999991,
+            "weapon": "breacher",
+            "aim": false,
+            "blend": 6.178522896642465e-8,
+            "reference": 74.99999783751699,
+            "vertical": 74.99999783751699,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.2999999814644313,
+              -0.35999998702510194,
+              -0.28
+            ],
+            "scale": [
+              0.8600000086499321,
+              0.8600000086499321,
+              0.8600000086499321
+            ],
+            "direction": [
+              0,
+              0,
+              -1
+            ],
+            "ammo": 6,
+            "reserve": 24,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 10444,
+            "upperPixels": 21,
+            "top": 243,
+            "muzzleGap": 0,
+            "drawCalls": 209,
+            "triangles": 62880
+          }
+        },
+        "zoom": {
+          "state": {
+            "phase": "playing",
+            "time": 4.1831999999999985,
+            "weapon": "breacher",
+            "aim": true,
+            "blend": 0.9999908265765532,
+            "reference": 40.000321069820636,
+            "vertical": 40.000321069820636,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.000002752027034025328,
+              -0.15000192641892385,
+              -0.28
+            ],
+            "scale": [
+              0.9999987157207175,
+              0.9999987157207175,
+              0.9999987157207175
+            ],
+            "direction": [
+              0,
+              0,
+              -1
+            ],
+            "ammo": 6,
+            "reserve": 24,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgb(80, 123, 121)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 21749,
+            "upperPixels": 3148,
+            "top": 171,
+            "muzzleGap": 2.220446049254352e-16,
+            "drawCalls": 206,
+            "triangles": 62864
+          }
+        },
+        "comparison": {
+          "hipRatio": 0.8629265471370735,
+          "upperRatio": 0.14788732394366197,
+          "zoomDifference": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 51311,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   0.2999999814644313,\n+   -0.35999998702510194,\n-   0.29999998982746423,\n-   -0.359999992879225,\n    -0.28\n  ]\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-weapon-footprint.mjs:69:828\n    at check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-weapon-footprint.mjs:59:42)\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-weapon-footprint.mjs:68:23",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
