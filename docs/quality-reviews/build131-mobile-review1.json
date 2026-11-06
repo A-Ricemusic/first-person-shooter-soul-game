@@ -1,0 +1,216 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "identity": {
+    "expectedCommit": "da2afdc85010b3311bc962bd7db97316104ef1de",
+    "visibleTitle": "SOULFALL",
+    "visibleBuild": 131,
+    "sourceInspected": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 4,
+        "missionTime": "01:00",
+        "score": 6558,
+        "accuracyPercent": 100,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 15,
+        "tapAims": 6,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build131-mobile-review1/attempt1-terminal.jpg",
+      "coverage": {
+        "manualMoveAndFireDrag": "Opening guard and visible west patrol; TARGET DOWN then SENTINEL DOWN. Small right FIRE drag changed heading; tap aim assistance used.",
+        "sceneTurn": "013 to 033; later 315 to 265 to locate left patrol.",
+        "dash": "Tapped visible DASH after opening guard; teal vignette, changed position toward wall and 4.3 cooldown. No phase evade credited; defensive timing unassessed.",
+        "map": "Opened overview and visibly closed it.",
+        "route": "Assisted receiver recovery and deck return.",
+        "boss": "Tap aimed each coil and fired, reload observed. II took multiple batches.",
+        "failures": "Took rear shield damage while shooting coils; ignored offscreen charge cues during route travel. No observed terminal failure; no individual miss established (UI 100% accuracy includes assists)."
+      },
+      "settingsChanges": [],
+      "helpful": [
+        "Threat direction cue helped locate patrol",
+        "Map route and receiver selection",
+        "Approach labels and checkmarks",
+        "Coil percentage/OFF feedback"
+      ],
+      "frustrating": [
+        "Dark geometry and offscreen threats while following route",
+        "Crowded lower-right controls and small secondary labels",
+        "Armor/open timing required several paused fire batches"
+      ]
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH / #play-again, captured in act batch after attempt 1 report save",
+      "outcome": "WIN / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "00:59",
+        "score": 7003,
+        "accuracyPercent": 97,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 11,
+        "tapAims": 7,
+        "routeAssists": 11,
+        "approachAssists": 5
+      },
+      "terminalEvidence": "docs/media/build131-mobile-review1/attempt2-terminal.jpg",
+      "settingsChanges": [],
+      "coverage": {
+        "manualMoveAndFireDrag": "Opening guard with MOVE plus FIRE drag and no scene tap: WARDEN DOWN, 30 to 27 ammo. West patrol with tap aim plus MOVE and FIRE drag: SENTINEL DOWN, 27 to 24. Later charging sentinel tap plus MOVE/FIRE drag: 21 to 20, target left view, no kill confirmed.",
+        "sceneTurn": "Visible swipe 303 to 336 to see second patrol; fresh capture inspected before selecting it.",
+        "dash": "Travel DASH cooldown 1.5 visible; later DASH against visible SENTINEL CHARGING, teal vignette and 4.3 cooldown, forward position change. End UI credited zero phase evades; no defensive success claimed.",
+        "patrol": "Second west patrol tap/anchored FIRE registered SENTINEL DOWN. Charging east patrol unresolved.",
+        "boss": "Tapped coils I, II, III on individually refreshed views. III first burst spent reloading at zero ammo; next burst completed it.",
+        "uplink": "Two separate tap aims and FIRE holds reported INTERCEPTOR DOWN, shield damage still taken.",
+        "assistedRoute": "Recovered all three receivers and returned to deck using holds.",
+        "failuresAndCorrections": [
+          "Charging sentinel was lost after DASH and follow-up shot; did not blindly chase or assert a kill.",
+          "Took shield damage at Elian and en route to coils after leaving threats behind.",
+          "Reload delayed coil III: observed zero ammo then resumed FIRE on fresh view.",
+          "97% terminal accuracy indicates some misses; exact projectile/target attribution cannot be established from screenshots."
+        ]
+      },
+      "helpful": [
+        "Familiar contextual holds made second receiver route understandable",
+        "SENTINEL CHARGING and directional cues exposed danger",
+        "Coil OFF states and upload percentage provide explicit progress",
+        "Clear terminal breakdown separates assisted shots and route assists"
+      ],
+      "frustrating": [
+        "Close charging target left screen during movement and was hard to track",
+        "Rear attackers demanded attention while operating objectives",
+        "Secondary HUD and coil labels are small at 844x390; lower-right buttons compete with the scene"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic paused Chromium native touch emulation at 844x390; software WebGL fallback.",
+    "Captures release contacts and pause; automatic live ~3s / cumulative FIRE ~1.2s boundaries can shorten waits. Actual timings in raw helper log. No human reaction-time or causal game-quality benefit inferred.",
+    "Continuous held-burst rearming comfort cannot be established.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Paused observation frequency is synthetic; no inference of human reaction-time or causal game-quality benefit. Wait requests shortened to approximately 3 seconds in raw observationBoundary records and each was inspected before continuation.",
+    "Every capture released contacts and paused during play. No captureHeld used. AIM/KIT not assessed; no conclusions about zoom persistence, kit tools, jump or unassessed memories.",
+    "No settings changes, checkpoint retries or third attempt. Both actual terminal results preserved; no implementation changes."
+  ],
+  "environment": {
+    "url": "http://127.0.0.1:61527/",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "input": "native CDP two-contact touch",
+    "reviewerModel": "GPT-6.1 Sol",
+    "noSourceOrInternalStateInspection": true,
+    "commitVerification": "User-supplied frozen SHA recorded only; no source inspection performed. Visible BUILD 131 matched."
+  },
+  "learningBetweenAttempts": [
+    "Learned tap aim plus right FIRE drag can move view substantially; kept drags small.",
+    "Learned HOLD ROUTE changes to APPROACH/RECOVER and assists navigation; continued using visible labels.",
+    "Used known coil percentage and OFF feedback to confirm each stage, inspecting fresh projection before each next target.",
+    "Sampled opening combat without a scene tap, and a later DASH against an actual visible charging patrol. No reaction-time benefit or causal quality improvement inferred."
+  ],
+  "scores": {
+    "scale": "Holistic subjective 0\u201310 for observed emulated mobile play: 0 unusable, 5 workable with substantial friction, 7 good with noticeable friction, 10 exceptional and consistently clear/comfortable in assessed scope. Wins and terminal score are not quality grades. Unassessed content receives no inferred enjoyment credit.",
+    "overallMobile": 7,
+    "controls": 6.5,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overallMobile": "A coherent compact mission with strong atmosphere, understandable completion stages and useful touch assistance. View tracking, dense HUD and interrupted manual control coverage limit confidence.",
+      "controls": "Two-contact MOVE/FIRE drag, scene turns and DASH registered. Tap aim made engagements approachable. Lost close charging target, several bursts used assist, continuous held-fire comfort and physical ergonomics unassessed.",
+      "gameplay": "Receiver recovery, coil states, patrols and defended upload give progression and tactical demands. Offscreen attackers remained consequential. Assisted route dominated traversal; no claim of broad manual mastery or sustained enjoyment.",
+      "presentation": "Rain, wet reflections, teal lighting, large title and restrained terminal layout communicate a cohesive mood. Assessment limited to rendered stills and brief live inputs, without audio/performance certification.",
+      "usability": "Map selection/route, clear contextual hold labels, objective checkmarks and explicit assisted stats help orient and confirm progress. Managing changing hold phases and rear threats adds friction.",
+      "readability": "Primary health, ammo, objectives and terminal results read well. Secondary text, small distant patrol silhouettes and dark architectural surfaces need more effort at this viewport; controls occupy substantial lower screen area."
+    }
+  },
+  "cleanup": {
+    "explicitCloseSent": true,
+    "helperExitCode": 0,
+    "helperReported": {
+      "driverPid": 96717,
+      "chromePid": 96727,
+      "browserClosed": true
+    },
+    "verificationCommand": "ps -p 96717,96727 -o pid=,comm=",
+    "psExitCode": 1,
+    "psOutput": "",
+    "ownedPidsAbsent": true,
+    "broadKillUsed": false
+  },
+  "rawEvidence": {
+    "actionLog": "docs/media/build131-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build131-mobile-review1/attempt1-approach.jpg",
+      "docs/media/build131-mobile-review1/attempt1-charge-fire.jpg",
+      "docs/media/build131-mobile-review1/attempt1-coil1-fire.jpg",
+      "docs/media/build131-mobile-review1/attempt1-coil2-fire1.jpg",
+      "docs/media/build131-mobile-review1/attempt1-coil2-fire2.jpg",
+      "docs/media/build131-mobile-review1/attempt1-coil2-reload.jpg",
+      "docs/media/build131-mobile-review1/attempt1-coil3.jpg",
+      "docs/media/build131-mobile-review1/attempt1-custodian-route1.jpg",
+      "docs/media/build131-mobile-review1/attempt1-custodian-route2.jpg",
+      "docs/media/build131-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build131-mobile-review1/attempt1-elian.jpg",
+      "docs/media/build131-mobile-review1/attempt1-manual-fire.jpg",
+      "docs/media/build131-mobile-review1/attempt1-map.jpg",
+      "docs/media/build131-mobile-review1/attempt1-patrol-manual.jpg",
+      "docs/media/build131-mobile-review1/attempt1-patrol-turn.jpg",
+      "docs/media/build131-mobile-review1/attempt1-return1.jpg",
+      "docs/media/build131-mobile-review1/attempt1-return2.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route1.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route2.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route3.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route4.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route5.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route6.jpg",
+      "docs/media/build131-mobile-review1/attempt1-route7.jpg",
+      "docs/media/build131-mobile-review1/attempt1-sera.jpg",
+      "docs/media/build131-mobile-review1/attempt1-terminal.jpg",
+      "docs/media/build131-mobile-review1/attempt1-turn-dash.jpg",
+      "docs/media/build131-mobile-review1/attempt1-upload1.jpg",
+      "docs/media/build131-mobile-review1/attempt2-charge-combat.jpg",
+      "docs/media/build131-mobile-review1/attempt2-charge-dash.jpg",
+      "docs/media/build131-mobile-review1/attempt2-coil1a.jpg",
+      "docs/media/build131-mobile-review1/attempt2-coil2a.jpg",
+      "docs/media/build131-mobile-review1/attempt2-coil3a.jpg",
+      "docs/media/build131-mobile-review1/attempt2-coil3b.jpg",
+      "docs/media/build131-mobile-review1/attempt2-custodian-route1.jpg",
+      "docs/media/build131-mobile-review1/attempt2-custodian-route2.jpg",
+      "docs/media/build131-mobile-review1/attempt2-dash-route.jpg",
+      "docs/media/build131-mobile-review1/attempt2-elian.jpg",
+      "docs/media/build131-mobile-review1/attempt2-manual-no-tap.jpg",
+      "docs/media/build131-mobile-review1/attempt2-mara-recover.jpg",
+      "docs/media/build131-mobile-review1/attempt2-mara.jpg",
+      "docs/media/build131-mobile-review1/attempt2-patrol-drag.jpg",
+      "docs/media/build131-mobile-review1/attempt2-return1.jpg",
+      "docs/media/build131-mobile-review1/attempt2-return2.jpg",
+      "docs/media/build131-mobile-review1/attempt2-route1.jpg",
+      "docs/media/build131-mobile-review1/attempt2-route2.jpg",
+      "docs/media/build131-mobile-review1/attempt2-route3.jpg",
+      "docs/media/build131-mobile-review1/attempt2-route4.jpg",
+      "docs/media/build131-mobile-review1/attempt2-route5.jpg",
+      "docs/media/build131-mobile-review1/attempt2-scene-turn.jpg",
+      "docs/media/build131-mobile-review1/attempt2-second-patrol.jpg",
+      "docs/media/build131-mobile-review1/attempt2-sera.jpg",
+      "docs/media/build131-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build131-mobile-review1/attempt2-terminal.jpg",
+      "docs/media/build131-mobile-review1/attempt2-uplink-fire.jpg",
+      "docs/media/build131-mobile-review1/attempt2-uplink-fire2.jpg",
+      "docs/media/build131-mobile-review1/initial-menu.jpg"
+    ],
+    "cleanup": "docs/media/build131-mobile-review1/cleanup.json"
+  }
+}

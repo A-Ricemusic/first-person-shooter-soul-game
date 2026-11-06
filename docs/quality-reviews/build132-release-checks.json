@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "lamp",
+      "report": "docs/quality-reviews/build132-final-lamp.json",
+      "sha256": "4e5f0099a43d2a539080ab71534171fec2166dc9c1a8872f3b8e08135206ee5e",
+      "passed": true
+    },
+    {
+      "name": "visibility",
+      "report": "docs/quality-reviews/build132-production-visibility.json",
+      "sha256": "828956e920e8dc91493f2b10b25c3431951f8df5d5fce12b86f9eec3f9a728c4",
+      "passed": true
+    },
+    {
+      "name": "paint",
+      "report": "docs/quality-reviews/build132-production-paint.json",
+      "sha256": "03e4f11da94d6abbc41f359ed9d7b81cfee959d0c50ad9d88b3d0c6be74c76ce",
+      "passed": true
+    },
+    {
+      "name": "hierarchy",
+      "report": "docs/quality-reviews/build132-production-hierarchy.json",
+      "sha256": "c0f049f114f3aa6a3e0760468f3b2275d4a1805e7f1d1134968981e3cddc02af",
+      "passed": true
+    },
+    {
+      "name": "usability",
+      "report": "docs/quality-reviews/build132-production-usability.json",
+      "sha256": "3202619c19bd8f804fc28f71ce28eaf9b3b483064640892a0b92895e4bd0a486",
+      "passed": true
+    },
+    {
+      "name": "insets",
+      "report": "docs/quality-reviews/build132-production-insets.json",
+      "sha256": "e91981f64a480217ebd398da05336e44fcbafbec485fbd2c90d622e5fc3353ce",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build132-production-compact.json",
+      "sha256": "5945796ad26a5e1fa5ca0605a4b0a0dbc9f8218185838c750b73dbce63b40fca",
+      "passed": true
+    },
+    {
+      "name": "window",
+      "report": "docs/quality-reviews/build132-production-window.json",
+      "sha256": "98ab6c457837e3ffb38b6ee53d095a5a8be8272c8277ae4c2c532360a71ad01b",
+      "passed": true
+    },
+    {
+      "name": "defense",
+      "report": "docs/quality-reviews/build132-production-defense.json",
+      "sha256": "d794cb2a8db0d358c6711454f0c67fbc4301abf65392a7fb03449cd0d2a2c3f7",
+      "passed": true
+    },
+    {
+      "name": "confirmation",
+      "report": "docs/quality-reviews/build132-production-confirmation.json",
+      "sha256": "a54140a44f2d366317f867bcd95003398d87b1d0be187184d700fd6080e2fffd",
+      "passed": true
+    },
+    {
+      "name": "readout",
+      "report": "docs/quality-reviews/build132-production-readout.json",
+      "sha256": "4d03b28d4c8882c7e709d0cd6169f3606b79a8dcbb567189bdaa87fdc65dcb81",
+      "passed": true
+    }
+  ],
+  "commands": [
+    "npm run build",
+    "MOBILE_PREFIX=build132-production node tools/mobile-lamp-suite.mjs",
+    "MOBILE_URL=http://127.0.0.1:61469/ MOBILE_LAMP_PREFIX=build132-final-lamp node tests/mobile-field-lamp.mjs"
+  ],
+  "scope": "11 affected production groups; final lamp fixture rerun with authored/fallback identifier checks. This is not the full canonical suite or a performance benchmark. The first runner overlapped the build wrapper; final fixture was rerun after completed build. All referenced checks exercised the candidate lamp and Build132 content.",
+  "runtimeMismatches": [],
+  "runtimeRecordFiles": 201,
+  "testedBundles": {
+    "dist/assets/index-Bo_zCyBL.js": "3fbccec76f6c656c269645de955eb7769b6d96ebdf2fda8652dae3d384eb6ec2",
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-BDNulAgc.css": "55c75bf23dcb088fbac3363eb1c007857d690c790587ddbc12e538cb4c60d37f",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b"
+  },
+  "limits": [
+    "One additional unshadowed spotlight adds per-fragment lighting work even when draw calls are unchanged. Physical-phone GPU cost is unassessed.",
+    "ROI luminance is not target recognition or aiming quality.",
+    "Paused phone emulation does not establish human reaction time or continuous comfort."
+  ],
+  "ordinaryEvidence": "docs/quality-reviews/build132-parent-play.json",
+  "corrections": "docs/quality-reviews/build132-validation-corrections.json"
+}

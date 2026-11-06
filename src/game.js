@@ -1,3 +1,4 @@
+import {createFieldLamp,updateFieldLamp} from './field-lamp.js';
 import {fireDragSpeed} from './touch-fire-speed.js';
 import {seedTouchTracking,updateTouchTracking} from './touch-tracking.js';
 import {DEFAULT_PHONE_BRIGHTNESS,phoneBrightness,sceneExposure} from './mobile-visibility.js';
@@ -73,7 +74,7 @@ export class Game {
     this.touchMode = typeof matchMedia === 'function' && matchMedia('(pointer:coarse)').matches && (globalThis.navigator?.maxTouchPoints || 0) > 0;
     this.mobileLastAttackId=0;this.mobileAttackRecovery=0;this.touchMove={x:0,z:0}; this.touchRecoveryBraked=false;this.touchUse=false; this.touchSprint=false;
     this.weaponSlots={rifle:{ammo:30,reserve:180,reloading:false,reloadTimer:0,fireTimer:0},breacher:{ammo:6,reserve:24,reloading:false,reloadTimer:0,fireTimer:0}};this.activeWeapon='rifle';
-    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchFireSpeed: 1, mobileBrightness: DEFAULT_PHONE_BRIGHTNESS, touchAimAssist: true, touchTapAim: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
+    this.phase = 'ready'; this.options = { difficulty: 'standard', sensitivity: 1, touchSensitivity: 1, touchFireSpeed: 1, mobileBrightness: DEFAULT_PHONE_BRIGHTNESS, mobileLamp: true, touchAimAssist: true, touchTapAim: true, touchAutoVault: true, volume: 0.65, reducedMotion: false, quality: 'balanced' };
     this.audio = new SoulAudio(); this.keys = new Set(); this.cleanups = [];
     this.mouseDown = false; this.aim = false; this.dragging = false; this.pointerFallback = false;
     this.yaw = 0; this.pitch = 0; this.animTime = 0; this.runTime = 0; this.lastFrame = 0; this.emitTimer = 0;
@@ -106,6 +107,7 @@ export class Game {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = sceneExposure(this.touchMode,this.options.mobileBrightness);
     this.scene = new THREE.Scene(); this.combatFeedback=new CombatFeedback(this.scene); this.camera = new THREE.PerspectiveCamera(75, 1, 0.08, 260);
     this.referenceFov=75;this.camera.rotation.order = 'YXZ'; this.scene.add(this.camera);
+    this.fieldLamp=createFieldLamp(this.camera);updateFieldLamp(this);
     this.world = await buildWorld(this.scene,{mobile:this.touchMode});
     this.custodian=await createCustodian(this);
     this.navigation=new StaticNavigation((x,z,r)=>this.canOccupy(x,z,r),this.world.bounds);
@@ -340,6 +342,7 @@ export class Game {
     this.options.mobileBrightness=phoneBrightness(this.options.mobileBrightness);
     this.options.touchFireSpeed=fireDragSpeed(this.options.touchFireSpeed);
     if(this.renderer)this.renderer.toneMappingExposure=sceneExposure(this.touchMode,this.options.mobileBrightness);
+    updateFieldLamp(this);
     this.resize?.();
   }
   invalidateAnchor() { this.finaleAnchor=null; this.anchorInvalidated=true; }
