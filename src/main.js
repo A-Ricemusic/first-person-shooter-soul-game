@@ -10,6 +10,7 @@ import {mobileCompassCues} from './mobile-cues.js';
 import { placeMarker } from './marker-layout.js';
 import { mobileMarkerCaption, mobileMarkerAnchorVisible, mobileOpticLayout } from './mobile-marker-layout.js';
 import {touchTapBlocks} from './touch-tap-regions.js';
+import {chooseThreatDock,threatTargetRects} from './mobile-threat-dock.js';
 import './style.css';
 import { Game } from './game.js';
 import { CORE_SITES, serviceRouteAt } from './mission.js';
@@ -26,7 +27,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 126</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 127</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -261,10 +262,33 @@ function mobileMarker(el,m,placed){
  if(spot){if(button){copy.disabled=game.options.touchTapAim===false;copy.style.pointerEvents=copy.disabled?'none':'auto';}copy.style.left=`${spot.dx+11}px`;copy.style.top=`${spot.dy+11}px`;copy.style.visibility='visible';const ex=Math.max(spot.rect.left,Math.min(spot.rect.right,anchor.x))-anchor.x,ey=Math.max(spot.rect.top,Math.min(spot.rect.bottom,anchor.y))-anchor.y,length=Math.hypot(ex,ey);leader.setAttribute('d',`M ${11+ex/length*12} ${11+ey/length*12} L ${11+ex} ${11+ey}`);placed.push(spot.rect)}else conceal();
  placed.push(rect);
 }
-let visorFocus;
+let visorFocus,threatDockState;
+function dockMobileThreat(markers){
+ const el=$('touch-threat-cue');if(!el)return;
+ if(el.classList.contains('hidden')||!el.getClientRects().length){threatDockState=null;el.style.left=el.style.right=el.style.top=el.style.bottom='';delete el.dataset.dock;return;}
+ const css=getComputedStyle(document.body),key=[innerWidth,innerHeight,...['left','right','top','bottom'].map(side=>css.getPropertyValue('--touch-'+side))].join('|');
+ if(!threatDockState||threatDockState.key!==key){
+  el.style.left=el.style.right=el.style.top=el.style.bottom='';
+  const r=el.getBoundingClientRect(),stick=$('touch-stick').getBoundingClientRect(),use=$('touch-use').getBoundingClientRect(),vitals=document.querySelector('.vitals').getBoundingClientRect();
+  const gap=innerWidth>innerHeight?24:12,top=Math.min(stick.top,use.top,vitals.top)-gap-r.height;
+  threatDockState={key,side:'right',changed:-Infinity,candidates:[{id:'right',rect:{left:r.left,right:r.right,top:r.top,bottom:r.bottom}},{id:'left',rect:{left:stick.left,right:stick.left+r.width,top,bottom:top+r.height}}]};
+ }
+ const state=threatDockState,now=performance.now();
+ const occupied=touchTapBlocks(el);
+ // Pointer ownership is locked until release/cancel. A short dwell also
+ // prevents alternating targets from making the button oscillate every frame.
+ if(el.dataset.held!=='true'&&now-state.changed>=600){
+  const viewport={width:innerWidth,height:innerHeight},aperture={left:innerWidth/2-26,right:innerWidth/2+26,top:innerHeight/2-26,bottom:innerHeight/2+26};
+  const side=chooseThreatDock(state.candidates,threatTargetRects(markers,viewport),[...occupied,aperture],viewport,state.side);
+  if(side!==state.side){state.side=side;state.changed=now;}
+ }
+ const r=state.candidates.find(c=>c.id===state.side).rect;
+ el.style.left=r.left+'px';el.style.top=r.top+'px';el.style.right=el.style.bottom='auto';el.dataset.dock=state.side;
+ return [...occupied,r];
+}
 function drawMarkers(markers){
  const active=new Set(), placed=[];
- if(game?.touchMode)for(const el of document.querySelectorAll('#touch-stick,#touch-controls button:not(.component-aim),.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint,.bearing,#timer,#touch-route-cue,#touch-threat-cue')){if(el.getClientRects().length){const r=el.getBoundingClientRect();if(r.width&&r.height)placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
+ let phoneOpaque;
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];
  const blocked=nearest?.occluded?nearest:null;
  if(game?.touchMode)mobileUplinkBlocked=current.phase==='playing'&&current.cores===current.totalCores&&!!blocked;
@@ -287,6 +311,8 @@ function drawMarkers(markers){
    const el=$(id);if(!el)continue;el.classList.toggle('hidden',!cue);
    if(cue){const signature=[prefix,cue.direction,cue.sector,cue.otherDirections||0].join('|');if(el.dataset.signature!==signature){el.dataset.signature=signature;el.querySelector('small').textContent=(id==='touch-threat-cue'?'TURN · ':'')+prefix+(cue.otherDirections?' +'+cue.otherDirections:'');el.querySelector('b').textContent=cue.direction;el.dataset.kind=cue.kind||'PATH';el.dataset.sector=String(cue.sector);el.setAttribute('aria-label',`${id==='touch-threat-cue'?'Turn toward ':''}${prefix}: ${cue.direction.toLowerCase()}, relative to your view${cue.otherDirections?'; '+cue.otherDirections+' other alerted directions':''}`);}}
   }
+  phoneOpaque=dockMobileThreat(markers);
+  for(const el of document.querySelectorAll('#touch-stick,#touch-controls button:not(.component-aim),.hud-top,.hud-bottom .vitals,.hud-bottom .weapon-info,#touch-notices,#extraction-panel,#service-hint,.bearing,#timer,#touch-route-cue,#touch-threat-cue')){if(el.getClientRects().length){const r=el.getBoundingClientRect();if(r.width&&r.height)placed.push({left:r.left,right:r.right,top:r.top,bottom:r.bottom})}}
  }
 
  document.body.classList.toggle('combat-priority',visor.cues.some(m=>m.charging||m.recent));
@@ -302,7 +328,7 @@ function drawMarkers(markers){
  if(!game?.touchMode)placed.push({left:innerWidth-205,right:innerWidth,top:90,bottom:315});
  const phoneOptics=new Map();
  if(game?.touchMode){
-  const opaque=touchTapBlocks();
+  const opaque=phoneOpaque||touchTapBlocks();
   for(const m of markers.filter(m=>m.kind==='component')){const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;opaque.push({left:x-12,right:x+12,top:y-12,bottom:y+12});}
   // One actual component badge owns the machine; nearby patrol brackets
   // share a deterministic priority and may hide, never shift their anchors.

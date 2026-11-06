@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "threat-actor",
+      "report": "docs/quality-reviews/build127-production-threat-actor.json",
+      "sha256": "5a50f4de71dbd81b2da6b528d83ad665713df3e5cd51013e979fa2499ac961ee",
+      "passed": true
+    },
+    {
+      "name": "threat-dock",
+      "report": "docs/quality-reviews/build127-production-threat-dock.json",
+      "sha256": "8e7f2d5ffd322c55baee54b148bf64896bac8c82ed7b1878eead3179e39edd58",
+      "passed": true
+    },
+    {
+      "name": "dash",
+      "report": "docs/quality-reviews/build127-production-dash.json",
+      "sha256": "1c02932306fb567e7ef39fd90b40445a39c5d35bf4b374de0d9217c79cb179bc",
+      "passed": true
+    },
+    {
+      "name": "quiet",
+      "report": "docs/quality-reviews/build127-production-quiet.json",
+      "sha256": "d424ae844011522ea9befd7ee44a2eba60a1ce615034a82a8f3210008a07741b",
+      "passed": true
+    },
+    {
+      "name": "compass-cues",
+      "report": "docs/quality-reviews/build127-production-compass-cues.json",
+      "sha256": "810efbe98be30b7b9d748a1398663be1f9ac6db58383e19b94ca3628ce6935bb",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build127-production-compact.json",
+      "sha256": "0e2bf01535a84cecb29f3cfa5f2870e77a752263f9e8abe73a358e06a9257c7d",
+      "passed": true
+    },
+    {
+      "name": "insets",
+      "report": "docs/quality-reviews/build127-production-insets.json",
+      "sha256": "e91981f64a480217ebd398da05336e44fcbafbec485fbd2c90d622e5fc3353ce",
+      "passed": true
+    },
+    {
+      "name": "scene",
+      "report": "docs/quality-reviews/build127-production-scene.json",
+      "sha256": "6eb483b0711c38cf501121bf83d62523447bc4286abf5c349aa3f54adc1a479f",
+      "passed": true
+    },
+    {
+      "name": "defense",
+      "report": "docs/quality-reviews/build127-production-defense.json",
+      "sha256": "46137a1b34ab827ec70f61d993eefb5d8aa3c89ba6cbef065df6b21f505084ec",
+      "passed": true
+    },
+    {
+      "name": "markers",
+      "report": "docs/quality-reviews/build127-production-markers.json",
+      "sha256": "5300cdc25c7346e3de5033f19e8baa3b8831d19d9be98eeff858ab0274e696d8",
+      "passed": true
+    },
+    {
+      "name": "visor",
+      "report": "docs/quality-reviews/build127-production-visor.json",
+      "sha256": "42292b838db41c7dd4f2e61152910c67295b897970ee71a2e38d5218c6b07aa2",
+      "passed": true
+    },
+    {
+      "name": "rifle-assist",
+      "report": "docs/quality-reviews/build127-production-rifle-assist.json",
+      "sha256": "10f575c2b7a0f6f3128e262783c9bef0c8d12c113d46f180c776da715d32ffe1",
+      "passed": true
+    },
+    {
+      "name": "cover",
+      "report": "docs/quality-reviews/build127-production-cover.json",
+      "sha256": "fb387595af301dad05fecd4033da765966e4931e0fa69a5b108fe47eabab6fed",
+      "passed": true
+    }
+  ],
+  "command": "MOBILE_PREFIX=build127-production MOBILE_FINAL_HUD=1 node tools/mobile-dash-clearance-suite.mjs",
+  "exitCode": 0,
+  "scope": "13 affected production groups, not the full canonical suite. No game-mechanics edits.",
+  "runtimeFilesVerified": 563,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-CX1oQb0z.css": "3650480f9a5d2a08a9c3d393d58c0bf4589f19f0be4ee2723b031317f0f74631",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-3fzPm0zQ.js": "67d82b544d1a09738096b523fe138b2b4ca0bd1f2d2737c2f502bdae234e432a"
+  },
+  "parentOrdinary": "build127-parent-play.json",
+  "productionLog": "build127-production-output.txt"
+}

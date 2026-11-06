@@ -1,0 +1,202 @@
+{
+  "method": "ENGINEERING forced eligible marker projections reproduce an alert button covering an optic. Native touch tests button ownership and broad direction turning. Existing Game LOS/expiry is separately covered by compass regressions. No played mission, physical device, reaction-time or enjoyment claim.",
+  "base": "http://127.0.0.1:5173/",
+  "baseline": false,
+  "contracts": [
+    "right-edge optic moves only the warning to a clear left dock",
+    "clear current dock is retained; neither valid alternative hides the warning",
+    "outside safe area and central aperture cannot become alternate docks",
+    "only finite public front viewport enemy/component markers reserve target space"
+  ],
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        {
+          "name": "covered optic uses clear alternate when architecture of HUD permits",
+          "passed": true
+        },
+        {
+          "name": "no return jump after target clears; press locks side until release",
+          "passed": true
+        },
+        {
+          "name": "native warning turn keeps ammunition and clears ownership on pause/map",
+          "passed": false,
+          "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'shots')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:72)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+        }
+      ],
+      "before": {
+        "left": 668,
+        "right": 832,
+        "top": 187,
+        "bottom": 235,
+        "width": 164,
+        "height": 48,
+        "dock": "right",
+        "text": "TURN · CHARGE\nREAR"
+      },
+      "target": {
+        "x": 750,
+        "y": 211
+      },
+      "after": {
+        "left": 20,
+        "right": 184,
+        "top": 194,
+        "bottom": 242,
+        "width": 164,
+        "height": 48,
+        "dock": "left",
+        "text": "TURN · CHARGE\nREAR"
+      },
+      "occupied": [
+        {
+          "id": "hud-mission",
+          "left": 12,
+          "right": 177.421875,
+          "top": 10,
+          "bottom": 60
+        },
+        {
+          "id": "bearing",
+          "left": 367,
+          "right": 477,
+          "top": 62,
+          "bottom": 78
+        },
+        {
+          "id": "pause-button",
+          "left": 786,
+          "right": 832,
+          "top": 10,
+          "bottom": 56
+        },
+        {
+          "id": "vitals",
+          "left": 278,
+          "right": 378,
+          "top": 324.8125,
+          "bottom": 378
+        },
+        {
+          "id": "weapon-info",
+          "left": 563,
+          "right": 633,
+          "top": 308,
+          "bottom": 378
+        },
+        {
+          "id": "announcement",
+          "left": 150,
+          "right": 633,
+          "top": 248,
+          "bottom": 286
+        },
+        {
+          "id": "touch-stick",
+          "left": 20,
+          "right": 136,
+          "top": 254,
+          "bottom": 370
+        },
+        {
+          "id": "touch-use",
+          "left": 150,
+          "right": 266,
+          "top": 324,
+          "bottom": 370
+        },
+        {
+          "id": "touch-ads",
+          "left": 715,
+          "right": 770,
+          "top": 247,
+          "bottom": 299
+        },
+        {
+          "id": "touch-dash",
+          "left": 715,
+          "right": 770,
+          "top": 306,
+          "bottom": 358
+        },
+        {
+          "id": "touch-jump",
+          "left": 777,
+          "right": 832,
+          "top": 306,
+          "bottom": 358
+        },
+        {
+          "id": "touch-fire",
+          "left": 642,
+          "right": 708,
+          "top": 247,
+          "bottom": 358
+        },
+        {
+          "id": "touch-more",
+          "left": 777,
+          "right": 832,
+          "top": 247,
+          "bottom": 299
+        },
+        {
+          "id": "touch-reload",
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        {
+          "id": "touch-swap",
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        {
+          "id": "touch-crouch",
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        {
+          "id": "touch-sprint",
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        {
+          "id": "touch-map",
+          "left": 730,
+          "right": 776,
+          "top": 10,
+          "bottom": 56
+        }
+      ],
+      "alternateAvailable": true,
+      "targetHit": null,
+      "afterRelease": {
+        "left": 668,
+        "right": 832,
+        "top": 187,
+        "bottom": 235,
+        "width": 164,
+        "height": 48,
+        "dock": "right",
+        "text": "TURN · CHARGE\nREAR"
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 76862,
+  "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'shots')\n    at eval (eval at evaluate (:370:30), <anonymous>:1:72)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-threat-dock.mjs:25:317\n    at async check (/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-threat-dock.mjs:22:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-threat-dock.mjs:25:15",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}
