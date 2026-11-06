@@ -1,0 +1,2961 @@
+{"passed":true,"profiles":[{"width":844,"height":390,"insets":false,"area":17373.015625,"overlap":0,"comparison":{"baselineArea":18766,"candidateArea":17373.015625,"ratio":0.9257708422146435,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":390,"height":844,"insets":false,"area":17373.015625,"overlap":0,"comparison":{"baselineArea":18766,"candidateArea":17373.015625,"ratio":0.9257708422146435,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":568,"height":320,"insets":false,"area":13838,"overlap":0,"comparison":{"baselineArea":14150,"candidateArea":13838,"ratio":0.9779505300353357,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":320,"height":640,"insets":false,"area":13640,"overlap":0,"comparison":{"baselineArea":14150,"candidateArea":13640,"ratio":0.9639575971731449,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":844,"height":390,"insets":true,"area":17373.015625,"overlap":0,"comparison":{"baselineArea":18766,"candidateArea":17373.015625,"ratio":0.9257708422146435,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":390,"height":844,"insets":true,"area":17373.015625,"overlap":0,"comparison":{"baselineArea":18766,"candidateArea":17373.015625,"ratio":0.9257708422146435,"baselineStickOverlap":0,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]},{"width":320,"height":640,"insets":true,"area":12452,"overlap":0,"comparison":{"baselineArea":14150,"candidateArea":12452,"ratio":0.88,"baselineStickOverlap":1536,"candidateStickOverlap":0},"checks":[{"name":"five direct actions fit, readable labels retain minimum44px hit areas, FIRE is outermost","passed":true},{"name":"both30px FIRE corrections remain on screen with independent moving contact","passed":true},{"name":"new utility gap is live scene input instead of the old solid FIRE pad","passed":true},{"name":"AIM, KIT and all four secondary actions remain visible one-gesture controls","passed":true},{"name":"JUMP and DASH keep their direct native actions","passed":true}]}]}
+{
+  "method": "Native-touch mobile control engineering. Actor removal isolates input; reads camera/state and DOM only on test URL. No played mission or human ergonomics claim. Baseline mode measures the frozen comparison build without asserting the candidate controls.",
+  "baseline": false,
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "insets": false,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 630,
+          "y": 259,
+          "width": 196,
+          "height": 99,
+          "top": 259,
+          "right": 826,
+          "bottom": 358,
+          "left": 630
+        },
+        "use": {
+          "x": 150,
+          "y": 324,
+          "width": 116,
+          "height": 46,
+          "top": 324,
+          "right": 266,
+          "bottom": 370,
+          "left": 150
+        },
+        "stick": {
+          "x": 20,
+          "y": 254,
+          "width": 116,
+          "height": 116,
+          "top": 254,
+          "right": 136,
+          "bottom": 370,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 683.0625,
+              "y": 259,
+              "width": 46.078125,
+              "height": 46,
+              "top": 259,
+              "right": 729.140625,
+              "bottom": 305,
+              "left": 683.0625
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 683.0625,
+              "y": 312,
+              "width": 46.078125,
+              "height": 46,
+              "top": 312,
+              "right": 729.140625,
+              "bottom": 358,
+              "left": 683.0625
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 630,
+              "y": 312,
+              "width": 46.0625,
+              "height": 46,
+              "top": 312,
+              "right": 676.0625,
+              "bottom": 358,
+              "left": 630
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 736.140625,
+              "y": 259,
+              "width": 89.859375,
+              "height": 99,
+              "top": 259,
+              "right": 826,
+              "bottom": 358,
+              "left": 736.140625
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 630,
+              "y": 259,
+              "width": 46.0625,
+              "height": 46,
+              "top": 259,
+              "right": 676.0625,
+              "bottom": 305,
+              "left": 630
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -52.13644557449049,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.04164257909858796,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 278,
+          "y": 308,
+          "width": 349,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 550.421875,
+          "y": 363,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "insets": false,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 176,
+          "y": 713,
+          "width": 196,
+          "height": 99,
+          "top": 713,
+          "right": 372,
+          "bottom": 812,
+          "left": 176
+        },
+        "use": {
+          "x": 20,
+          "y": 650,
+          "width": 116,
+          "height": 46,
+          "top": 650,
+          "right": 136,
+          "bottom": 696,
+          "left": 20
+        },
+        "stick": {
+          "x": 20,
+          "y": 708,
+          "width": 116,
+          "height": 116,
+          "top": 708,
+          "right": 136,
+          "bottom": 824,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 229.0625,
+              "y": 713,
+              "width": 46.078125,
+              "height": 46,
+              "top": 713,
+              "right": 275.140625,
+              "bottom": 759,
+              "left": 229.0625
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 229.0625,
+              "y": 766,
+              "width": 46.078125,
+              "height": 46,
+              "top": 766,
+              "right": 275.140625,
+              "bottom": 812,
+              "left": 229.0625
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 176,
+              "y": 766,
+              "width": 46.0625,
+              "height": 46,
+              "top": 766,
+              "right": 222.0625,
+              "bottom": 812,
+              "left": 176
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 282.140625,
+              "y": 713,
+              "width": 89.859375,
+              "height": 99,
+              "top": 713,
+              "right": 372,
+              "bottom": 812,
+              "left": 282.140625
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 176,
+              "y": 713,
+              "width": 46.0625,
+              "height": 46,
+              "top": 713,
+              "right": 222.0625,
+              "bottom": 759,
+              "left": 176
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -112.82861196422365,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.04164257909858794,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 12,
+          "y": 544,
+          "width": 366,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 301.421875,
+          "y": 599,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "insets": false,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 489,
+          "y": 244,
+          "width": 160,
+          "height": 99,
+          "top": 244,
+          "right": 649,
+          "bottom": 343,
+          "left": 489
+        },
+        "use": {
+          "x": 20,
+          "y": 181,
+          "width": 116,
+          "height": 46,
+          "top": 181,
+          "right": 136,
+          "bottom": 227,
+          "left": 20
+        },
+        "stick": {
+          "x": 20,
+          "y": 239,
+          "width": 116,
+          "height": 116,
+          "top": 239,
+          "right": 136,
+          "bottom": 355,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 540,
+              "y": 244,
+              "width": 44,
+              "height": 46,
+              "top": 244,
+              "right": 584,
+              "bottom": 290,
+              "left": 540
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 540,
+              "y": 297,
+              "width": 44,
+              "height": 46,
+              "top": 297,
+              "right": 584,
+              "bottom": 343,
+              "left": 540
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 489,
+              "y": 297,
+              "width": 44,
+              "height": 46,
+              "top": 297,
+              "right": 533,
+              "bottom": 343,
+              "left": 489
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 591,
+              "y": 244,
+              "width": 58,
+              "height": 99,
+              "top": 244,
+              "right": 649,
+              "bottom": 343,
+              "left": 591
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 489,
+              "y": 244,
+              "width": 44,
+              "height": 46,
+              "top": 244,
+              "right": 533,
+              "bottom": 290,
+              "left": 489
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -65.97174792863831,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.041642579098588,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 150,
+          "y": 293,
+          "width": 336,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 409.421875,
+          "y": 348,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "insets": false,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 701,
+          "y": 281,
+          "width": 196,
+          "height": 99,
+          "top": 281,
+          "right": 897,
+          "bottom": 380,
+          "left": 701
+        },
+        "use": {
+          "x": 150,
+          "y": 346,
+          "width": 116,
+          "height": 46,
+          "top": 346,
+          "right": 266,
+          "bottom": 392,
+          "left": 150
+        },
+        "stick": {
+          "x": 20,
+          "y": 276,
+          "width": 116,
+          "height": 116,
+          "top": 276,
+          "right": 136,
+          "bottom": 392,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 754.0625,
+              "y": 281,
+              "width": 46.078125,
+              "height": 46,
+              "top": 281,
+              "right": 800.140625,
+              "bottom": 327,
+              "left": 754.0625
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 754.0625,
+              "y": 334,
+              "width": 46.078125,
+              "height": 46,
+              "top": 334,
+              "right": 800.140625,
+              "bottom": 380,
+              "left": 754.0625
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 701,
+              "y": 334,
+              "width": 46.0625,
+              "height": 46,
+              "top": 334,
+              "right": 747.0625,
+              "bottom": 380,
+              "left": 701
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 807.140625,
+              "y": 281,
+              "width": 89.859375,
+              "height": 99,
+              "top": 281,
+              "right": 897,
+              "bottom": 380,
+              "left": 807.140625
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 701,
+              "y": 281,
+              "width": 46.0625,
+              "height": 46,
+              "top": 281,
+              "right": 747.0625,
+              "bottom": 327,
+              "left": 701
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -48.09088378802975,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.041642579098587956,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 278,
+          "y": 330,
+          "width": 420,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 621.421875,
+          "y": 385,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "insets": false,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 144,
+          "y": 509,
+          "width": 158,
+          "height": 99,
+          "top": 509,
+          "right": 302,
+          "bottom": 608,
+          "left": 144
+        },
+        "use": {
+          "x": 20,
+          "y": 446,
+          "width": 116,
+          "height": 46,
+          "top": 446,
+          "right": 136,
+          "bottom": 492,
+          "left": 20
+        },
+        "stick": {
+          "x": 20,
+          "y": 504,
+          "width": 116,
+          "height": 116,
+          "top": 504,
+          "right": 136,
+          "bottom": 620,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 195,
+              "y": 509,
+              "width": 44,
+              "height": 46,
+              "top": 509,
+              "right": 239,
+              "bottom": 555,
+              "left": 195
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 195,
+              "y": 562,
+              "width": 44,
+              "height": 46,
+              "top": 562,
+              "right": 239,
+              "bottom": 608,
+              "left": 195
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 144,
+              "y": 562,
+              "width": 44,
+              "height": 46,
+              "top": 562,
+              "right": 188,
+              "bottom": 608,
+              "left": 144
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 246,
+              "y": 509,
+              "width": 56,
+              "height": 99,
+              "top": 509,
+              "right": 302,
+              "bottom": 608,
+              "left": 246
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 144,
+              "y": 509,
+              "width": 44,
+              "height": 46,
+              "top": 509,
+              "right": 188,
+              "bottom": 555,
+              "left": 144
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -137.50987083139756,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.04164257909858796,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 12,
+          "y": 340,
+          "width": 296,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 231.421875,
+          "y": 395,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "insets": true,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 630,
+          "y": 250,
+          "width": 196,
+          "height": 99,
+          "top": 250,
+          "right": 826,
+          "bottom": 349,
+          "left": 630
+        },
+        "use": {
+          "x": 174,
+          "y": 323,
+          "width": 116,
+          "height": 46,
+          "top": 323,
+          "right": 290,
+          "bottom": 369,
+          "left": 174
+        },
+        "stick": {
+          "x": 44,
+          "y": 253,
+          "width": 116,
+          "height": 116,
+          "top": 253,
+          "right": 160,
+          "bottom": 369,
+          "left": 44
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 683.0625,
+              "y": 250,
+              "width": 46.078125,
+              "height": 46,
+              "top": 250,
+              "right": 729.140625,
+              "bottom": 296,
+              "left": 683.0625
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 683.0625,
+              "y": 303,
+              "width": 46.078125,
+              "height": 46,
+              "top": 303,
+              "right": 729.140625,
+              "bottom": 349,
+              "left": 683.0625
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 630,
+              "y": 303,
+              "width": 46.0625,
+              "height": 46,
+              "top": 303,
+              "right": 676.0625,
+              "bottom": 349,
+              "left": 630
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 736.140625,
+              "y": 250,
+              "width": 89.859375,
+              "height": 99,
+              "top": 250,
+              "right": 826,
+              "bottom": 349,
+              "left": 736.140625
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 630,
+              "y": 250,
+              "width": 46.0625,
+              "height": 46,
+              "top": 250,
+              "right": 676.0625,
+              "bottom": 296,
+              "left": 630
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -52.13644557449049,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.04164257909858794,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 302,
+          "y": 299,
+          "width": 325,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 550.421875,
+          "y": 354,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "insets": true,
+      "checks": [
+        "fresh profile defaults to linear scene turns and title identifies the build",
+        "right controls fit two rows and left ROUTE is separate from manual MOVE",
+        "tools toggle neither aims nor shifts primary targets; opening stays live",
+        "secondary action closes the tray without releasing the moving thumb",
+        "firing closes tools while retaining the captured aiming thumb",
+        "crouch and run remain accessible with visible active-tool state",
+        "left route remains held through manual reload in TOOLS and reload status avoids memory feedback",
+        "single-thumb MAP stays in planning until a separate close tap",
+        "map and pause close the tray and clear captured input",
+        "orientation cancels a held secondary action without stuck movement or fire"
+      ],
+      "failures": [],
+      "title": {
+        "text": " BUILD 131",
+        "visible": true
+      },
+      "closedLayout": {
+        "grid": {
+          "x": 176,
+          "y": 704,
+          "width": 196,
+          "height": 99,
+          "top": 704,
+          "right": 372,
+          "bottom": 803,
+          "left": 176
+        },
+        "use": {
+          "x": 44,
+          "y": 649,
+          "width": 116,
+          "height": 46,
+          "top": 649,
+          "right": 160,
+          "bottom": 695,
+          "left": 44
+        },
+        "stick": {
+          "x": 44,
+          "y": 707,
+          "width": 116,
+          "height": 116,
+          "top": 707,
+          "right": 160,
+          "bottom": 823,
+          "left": 44
+        },
+        "buttons": [
+          {
+            "id": "touch-ads",
+            "rect": {
+              "x": 229.0625,
+              "y": 704,
+              "width": 46.078125,
+              "height": 46,
+              "top": 704,
+              "right": 275.140625,
+              "bottom": 750,
+              "left": 229.0625
+            }
+          },
+          {
+            "id": "touch-dash",
+            "rect": {
+              "x": 229.0625,
+              "y": 757,
+              "width": 46.078125,
+              "height": 46,
+              "top": 757,
+              "right": 275.140625,
+              "bottom": 803,
+              "left": 229.0625
+            }
+          },
+          {
+            "id": "touch-jump",
+            "rect": {
+              "x": 176,
+              "y": 757,
+              "width": 46.0625,
+              "height": 46,
+              "top": 757,
+              "right": 222.0625,
+              "bottom": 803,
+              "left": 176
+            }
+          },
+          {
+            "id": "touch-fire",
+            "rect": {
+              "x": 282.140625,
+              "y": 704,
+              "width": 89.859375,
+              "height": 99,
+              "top": 704,
+              "right": 372,
+              "bottom": 803,
+              "left": 282.140625
+            }
+          },
+          {
+            "id": "touch-more",
+            "rect": {
+              "x": 176,
+              "y": 704,
+              "width": 46.0625,
+              "height": 46,
+              "top": 704,
+              "right": 222.0625,
+              "bottom": 750,
+              "left": 176
+            }
+          }
+        ]
+      },
+      "scene240Degrees": -112.82861196422365,
+      "manualReload": {
+        "mid": {
+          "phase": "playing",
+          "yaw": -0.041642579098587956,
+          "pitch": 0,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": false,
+          "use": true,
+          "sprint": false,
+          "crouch": false,
+          "weapon": "rifle",
+          "fast": false,
+          "ammo": 5
+        },
+        "hud": {
+          "x": 44,
+          "y": 535,
+          "width": 334,
+          "height": 70
+        },
+        "notice": null,
+        "label": {
+          "x": 301.421875,
+          "y": 590,
+          "width": 76.578125,
+          "height": 15
+        }
+      },
+      "singleMap": {
+        "phase": "planning",
+        "events": [
+          {
+            "type": "pointerdown",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "playing"
+          },
+          {
+            "type": "pointerup",
+            "id": "touch-map",
+            "pointer": 21,
+            "detail": 0,
+            "phase": "planning"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
+{
+  "method": "Engineering simulation of44px top/side and21px bottom cutout insets in mobile Chromium. CSS substitutes viewport insets; native touches test actual hit targets. Not a physical-phone or Safari result.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "hitAtPauseCenter": "pause-button",
+      "pauseRect": {
+        "x": 754,
+        "y": 44,
+        "width": 46,
+        "height": 46
+      },
+      "phase": "paused",
+      "passed": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "hitAtPauseCenter": "pause-button",
+      "pauseRect": {
+        "x": 300,
+        "y": 44,
+        "width": 46,
+        "height": 46
+      },
+      "phase": "paused",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
+{
+  "method": "Native-touch mobile engineering regressions, five viewport sizes. Camera input is real; receiver/boss/posture/occlusion fixtures are explicitly staged via the test handle and are not independent mission play or victories.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "phone handbook starts with four clear steps and keeps detailed tactics available",
+        "left and center scene drags turn without a touch-down jump",
+        "look release refreshes heading before the next periodic HUD emission",
+        "scene look and movement retain independent contact ownership",
+        "receiver button distinguishes outside reach, ready and held progress",
+        "boss context occupies one status strip without keyboard hints or posture banners"
+      ],
+      "failures": [],
+      "gestures": [
+        {
+          "nx": 0.2,
+          "delta": -0.07582938388625593
+        },
+        {
+          "nx": 0.36,
+          "delta": -0.07582938388625593
+        },
+        {
+          "nx": 0.62,
+          "delta": -0.07582938388625593
+        }
+      ],
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "blocked": false,
+        "focus": false,
+        "interaction": false,
+        "text": "CUSTODIAN\nI\n100%\nII\n100%\nIII\n100%\nARMOR · CHIP ONLY",
+        "crouch": "true"
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "phone handbook starts with four clear steps and keeps detailed tactics available",
+        "left and center scene drags turn without a touch-down jump",
+        "look release refreshes heading before the next periodic HUD emission",
+        "scene look and movement retain independent contact ownership",
+        "receiver button distinguishes outside reach, ready and held progress",
+        "boss context occupies one status strip without keyboard hints or posture banners"
+      ],
+      "failures": [],
+      "gestures": [
+        {
+          "nx": 0.2,
+          "delta": -0.1641025641025641
+        },
+        {
+          "nx": 0.36,
+          "delta": -0.1641025641025641
+        },
+        {
+          "nx": 0.62,
+          "delta": -0.16410243890224357
+        }
+      ],
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "blocked": false,
+        "focus": false,
+        "interaction": false,
+        "text": "CUSTODIAN\nI\n100%\nII\n100%\nIII\n100%\nARMOR · CHIP ONLY",
+        "crouch": "true"
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "phone handbook starts with four clear steps and keeps detailed tactics available",
+        "left and center scene drags turn without a touch-down jump",
+        "look release refreshes heading before the next periodic HUD emission",
+        "scene look and movement retain independent contact ownership",
+        "receiver button distinguishes outside reach, ready and held progress",
+        "boss context occupies one status strip without keyboard hints or posture banners"
+      ],
+      "failures": [],
+      "gestures": [
+        {
+          "nx": 0.2,
+          "delta": -0.09595202398800601
+        },
+        {
+          "nx": 0.36,
+          "delta": -0.09595202398800601
+        },
+        {
+          "nx": 0.62,
+          "delta": -0.09595202398800601
+        }
+      ],
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "blocked": false,
+        "focus": false,
+        "interaction": false,
+        "text": "CUSTODIAN\nI\n100%\nII\n100%\nIII\n100%\nARMOR · CHIP ONLY",
+        "crouch": "true"
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "phone handbook starts with four clear steps and keeps detailed tactics available",
+        "left and center scene drags turn without a touch-down jump",
+        "look release refreshes heading before the next periodic HUD emission",
+        "scene look and movement retain independent contact ownership",
+        "receiver button distinguishes outside reach, ready and held progress",
+        "boss context occupies one status strip without keyboard hints or posture banners"
+      ],
+      "failures": [],
+      "gestures": [
+        {
+          "nx": 0.2,
+          "delta": -0.06994535519125683
+        },
+        {
+          "nx": 0.36,
+          "delta": -0.06994535519125683
+        },
+        {
+          "nx": 0.62,
+          "delta": -0.06994535519125683
+        }
+      ],
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 300,
+          "height": 46,
+          "top": 88,
+          "right": 312,
+          "bottom": 134,
+          "left": 12
+        },
+        "blocked": false,
+        "focus": false,
+        "interaction": false,
+        "text": "CUSTODIAN\nI\n100%\nII\n100%\nIII\n100%\nARMOR · CHIP ONLY",
+        "crouch": "true"
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "phone handbook starts with four clear steps and keeps detailed tactics available",
+        "left and center scene drags turn without a touch-down jump",
+        "look release refreshes heading before the next periodic HUD emission",
+        "scene look and movement retain independent contact ownership",
+        "receiver button distinguishes outside reach, ready and held progress",
+        "boss context occupies one status strip without keyboard hints or posture banners"
+      ],
+      "failures": [],
+      "gestures": [
+        {
+          "nx": 0.2,
+          "delta": -0.2
+        },
+        {
+          "nx": 0.36,
+          "delta": -0.2
+        },
+        {
+          "nx": 0.62,
+          "delta": -0.20000000000000007
+        }
+      ],
+      "boss": {
+        "panel": {
+          "x": 12,
+          "y": 88,
+          "width": 296,
+          "height": 46,
+          "top": 88,
+          "right": 308,
+          "bottom": 134,
+          "left": 12
+        },
+        "blocked": false,
+        "focus": false,
+        "interaction": false,
+        "text": "CUSTODIAN\nI\n100%\nII\n100%\nIII\n100%\nARMOR · CHIP ONLY",
+        "crouch": "true"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
+{
+  "method": "Native-touch phone engineering checks. Internal angles and input magnitudes are measured; route and source poses/settings are explicitly arranged through the test handle. Not ordinary play, human feel, or a played victory.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route"
+      ],
+      "failures": [],
+      "short": 4.344703659759797,
+      "long": 52.13644060237173,
+      "quarter": 45.836620295720024,
+      "eventBatching": {
+        "direct": 52.136440602371735,
+        "segmented": 52.13644060237167
+      },
+      "fire": 13.123750864005535,
+      "ads": 17.844438493929736,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913059664803916,
+          "z": 25.864137480691223,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "0",
+          "rect": {
+            "x": 375.40625,
+            "y": 263.546875,
+            "width": 22,
+            "height": 22,
+            "top": 263.546875,
+            "right": 397.40625,
+            "bottom": 285.546875,
+            "left": 375.40625
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.908168616839063,
+          "waypoint": {
+            "x": 0,
+            "z": 25.908168616839063,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.328168869018555,
+            30.108169555664062,
+            30.328168869018555,
+            30.108169555664062,
+            29.17816925048828,
+            28.958168029785156,
+            29.17816925048828,
+            28.958168029785156,
+            28.028167724609375,
+            27.808168411254883,
+            28.028167724609375,
+            27.808168411254883,
+            26.8781681060791,
+            26.65816879272461,
+            26.8781681060791,
+            26.65816879272461,
+            25.728168487548828,
+            25.508169174194336,
+            25.728168487548828,
+            25.508169174194336,
+            24.578168869018555,
+            24.358169555664062,
+            24.578168869018555,
+            24.358169555664062
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route",
+        "native optional fast-turn preference persists and increases long scene travel"
+      ],
+      "failures": [],
+      "short": 9.402384330351971,
+      "long": 112.82861196422365,
+      "quarter": 45.83662361046588,
+      "eventBatching": {
+        "direct": 112.82861196422365,
+        "segmented": 112.82861196422387
+      },
+      "fire": 13.123750864005535,
+      "ads": 38.617197554899136,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913080561541616,
+          "z": 25.864027398155613,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "1",
+          "rect": {
+            "x": 148.421875,
+            "y": 490.546875,
+            "width": 22,
+            "height": 22,
+            "top": 490.546875,
+            "right": 170.421875,
+            "bottom": 512.546875,
+            "left": 148.421875
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 25.889625741393104,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.30962562561035,
+            30.08962631225586,
+            30.30962562561035,
+            30.08962631225586,
+            29.159626007080078,
+            28.939626693725586,
+            29.159626007080078,
+            28.939626693725586,
+            28.009626388549805,
+            27.78962516784668,
+            28.009626388549805,
+            27.78962516784668,
+            26.8596248626709,
+            26.639625549316406,
+            26.8596248626709,
+            26.639625549316406,
+            25.709625244140625,
+            25.489625930786133,
+            25.709625244140625,
+            25.489625930786133,
+            24.55962562561035,
+            24.33962631225586,
+            24.55962562561035,
+            24.33962631225586
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ],
+      "accelerated": 140.44658451942806
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route"
+      ],
+      "failures": [],
+      "short": 5.497646010250778,
+      "long": 65.97175212300934,
+      "quarter": 45.83662361046588,
+      "eventBatching": {
+        "direct": 65.97175212300932,
+        "segmented": 65.97175212300922
+      },
+      "fire": 17.898464705504573,
+      "ads": 22.57977068427387,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913080561541616,
+          "z": 25.864027398155613,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "0",
+          "rect": {
+            "x": 288.296875,
+            "y": 252.984375,
+            "width": 22,
+            "height": 22,
+            "top": 252.984375,
+            "right": 310.296875,
+            "bottom": 274.984375,
+            "left": 288.296875
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.889515367134496,
+          "waypoint": {
+            "x": 0,
+            "z": 25.889515367134496,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.30951499938965,
+            30.089515686035156,
+            30.30951499938965,
+            30.089515686035156,
+            29.159515380859375,
+            28.939516067504883,
+            29.159515380859375,
+            28.939516067504883,
+            28.0095157623291,
+            27.789514541625977,
+            28.0095157623291,
+            27.789514541625977,
+            26.859516143798828,
+            26.639514923095703,
+            26.859516143798828,
+            26.639514923095703,
+            25.709514617919922,
+            25.48951530456543,
+            25.709514617919922,
+            25.48951530456543,
+            24.55951499938965,
+            24.339515686035156,
+            24.55951499938965,
+            24.339515686035156
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route"
+      ],
+      "failures": [],
+      "short": 4.007573649002479,
+      "long": 48.09088378802975,
+      "quarter": 45.83662361046586,
+      "eventBatching": {
+        "direct": 48.09088378802975,
+        "segmented": 48.09088378802987
+      },
+      "fire": 11.856016559122352,
+      "ads": 16.459789121760284,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913059664803916,
+          "z": 25.864137480691223,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "0",
+          "rect": {
+            "x": 408.78125,
+            "y": 279.03125,
+            "width": 22,
+            "height": 22,
+            "top": 279.03125,
+            "right": 430.78125,
+            "bottom": 301.03125,
+            "left": 408.78125
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.908058242580456,
+          "waypoint": {
+            "x": 0,
+            "z": 25.908058242580456,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.32805824279785,
+            30.10805892944336,
+            30.32805824279785,
+            30.10805892944336,
+            29.178058624267578,
+            28.958057403564453,
+            29.178058624267578,
+            28.958057403564453,
+            28.028059005737305,
+            27.80805778503418,
+            28.028059005737305,
+            27.80805778503418,
+            26.8780574798584,
+            26.658058166503906,
+            26.8780574798584,
+            26.658058166503906,
+            25.728057861328125,
+            25.508058547973633,
+            25.728057861328125,
+            25.508058547973633,
+            24.57805824279785,
+            24.35805892944336,
+            24.57805824279785,
+            24.35805892944336
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route"
+      ],
+      "failures": [],
+      "short": 11.459155902616464,
+      "long": 137.50987083139756,
+      "quarter": 45.83662361046588,
+      "eventBatching": {
+        "direct": 137.5098708313976,
+        "segmented": 137.5098708313976
+      },
+      "fire": 18.94108946047012,
+      "ads": 47.064709520033354,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913059664803916,
+          "z": 25.864137480691223,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "0",
+          "rect": {
+            "x": 119.796875,
+            "y": 374.265625,
+            "width": 22,
+            "height": 22,
+            "top": 374.265625,
+            "right": 141.796875,
+            "bottom": 396.265625,
+            "left": 119.796875
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 25.889625741393104,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.30962562561035,
+            30.08962631225586,
+            30.30962562561035,
+            30.08962631225586,
+            29.159626007080078,
+            28.939626693725586,
+            29.159626007080078,
+            28.939626693725586,
+            28.009626388549805,
+            27.78962516784668,
+            28.009626388549805,
+            27.78962516784668,
+            26.8596248626709,
+            26.639625549316406,
+            26.8596248626709,
+            26.639625549316406,
+            25.709625244140625,
+            25.489625930786133,
+            25.709625244140625,
+            25.489625930786133,
+            24.55962562561035,
+            24.33962631225586,
+            24.55962562561035,
+            24.33962631225586
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
+{"passed":true,"profiles":[{"width":844,"height":390,"insets":false,"fallback":false,"checks":9},{"width":390,"height":844,"insets":false,"fallback":false,"checks":9},{"width":568,"height":320,"insets":false,"fallback":false,"checks":9},{"width":320,"height":640,"insets":false,"fallback":false,"checks":9},{"width":844,"height":390,"insets":true,"fallback":false,"checks":9},{"width":390,"height":844,"insets":true,"fallback":false,"checks":9},{"width":390,"height":844,"insets":false,"fallback":true,"checks":9}],"cleanup":true}
+{"passed":true,"profiles":[{"width":844,"insets":false,"checks":8},{"width":390,"insets":false,"checks":8},{"width":568,"insets":false,"checks":8},{"width":320,"insets":false,"checks":8},{"width":844,"insets":true,"checks":8},{"width":390,"insets":true,"checks":8}]}
+{"passed":true,"checks":[7,7,7,7,7,7,7],"chromePid":76699,"absent":true}
+{"passed":true,"profiles":[{"width":844,"height":390,"insets":false,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":668,"right":832,"top":199,"bottom":247,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":750,"y":223},"after":{"left":20,"right":184,"top":182,"bottom":230,"width":164,"height":48,"dock":"left","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":12,"right":177.421875,"top":10,"bottom":60},{"id":"bearing","left":367,"right":477,"top":62,"bottom":78},{"id":"pause-button","left":786,"right":832,"top":10,"bottom":56},{"id":"vitals","left":278,"right":378,"top":324.8125,"bottom":378},{"id":"weapon-info","left":557,"right":627,"top":308,"bottom":378},{"id":"announcement","left":150,"right":627,"top":248,"bottom":286},{"id":"touch-stick","left":20,"right":136,"top":254,"bottom":370},{"id":"touch-use","left":150,"right":266,"top":324,"bottom":370},{"id":"touch-ads","left":683.0625,"right":729.140625,"top":259,"bottom":305},{"id":"touch-dash","left":683.0625,"right":729.140625,"top":312,"bottom":358},{"id":"touch-jump","left":630,"right":676.0625,"top":312,"bottom":358},{"id":"touch-fire","left":736.140625,"right":826,"top":259,"bottom":358},{"id":"touch-more","left":630,"right":676.0625,"top":259,"bottom":305},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":730,"right":776,"top":10,"bottom":56}],"alternateAvailable":true,"targetHit":null,"afterRelease":{"left":668,"right":832,"top":199,"bottom":247,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}},{"width":390,"height":844,"insets":false,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":214,"right":378,"top":653,"bottom":701,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":296,"y":677},"after":{"left":20,"right":184,"top":500.8125,"bottom":548.8125,"width":164,"height":48,"dock":"left","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":12,"right":177.421875,"top":10,"bottom":60},{"id":"bearing","left":140,"right":250,"top":62,"bottom":78},{"id":"pause-button","left":332,"right":378,"top":10,"bottom":56},{"id":"vitals","left":12,"right":112,"top":560.8125,"bottom":614},{"id":"weapon-info","left":308,"right":378,"top":544,"bottom":614},{"id":"announcement","left":12,"right":378,"top":446,"bottom":484},{"id":"touch-stick","left":20,"right":136,"top":708,"bottom":824},{"id":"touch-use","left":20,"right":136,"top":650,"bottom":696},{"id":"touch-ads","left":229.0625,"right":275.140625,"top":713,"bottom":759},{"id":"touch-dash","left":229.0625,"right":275.140625,"top":766,"bottom":812},{"id":"touch-jump","left":176,"right":222.0625,"top":766,"bottom":812},{"id":"touch-fire","left":282.140625,"right":372,"top":713,"bottom":812},{"id":"touch-more","left":176,"right":222.0625,"top":713,"bottom":759},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":276,"right":322,"top":10,"bottom":56}],"alternateAvailable":true,"targetHit":null,"afterRelease":{"left":214,"right":378,"top":653,"bottom":701,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}},{"width":568,"height":320,"insets":false,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":396,"right":556,"top":129,"bottom":177,"width":160,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":476,"y":153},"after":{"left":396,"right":556,"top":129,"bottom":177,"width":160,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":12,"right":177.421875,"top":10,"bottom":60},{"id":"bearing","left":229,"right":339,"top":62,"bottom":78},{"id":"pause-button","left":510,"right":556,"top":10,"bottom":56},{"id":"vitals","left":150,"right":250,"top":254.8125,"bottom":308},{"id":"weapon-info","left":317,"right":387,"top":238,"bottom":308},{"id":"announcement","left":150,"right":387,"top":178,"bottom":216},{"id":"touch-stick","left":20,"right":136,"top":184,"bottom":300},{"id":"touch-use","left":20,"right":136,"top":126,"bottom":172},{"id":"touch-ads","left":441,"right":485,"top":189,"bottom":235},{"id":"touch-dash","left":441,"right":485,"top":242,"bottom":288},{"id":"touch-jump","left":390,"right":434,"top":242,"bottom":288},{"id":"touch-fire","left":492,"right":550,"top":189,"bottom":288},{"id":"touch-more","left":390,"right":434,"top":189,"bottom":235},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":454,"right":500,"top":10,"bottom":56}],"alternateAvailable":false,"targetHit":"touch-threat-cue","afterRelease":{"left":396,"right":556,"top":129,"bottom":177,"width":160,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}},{"width":320,"height":640,"insets":false,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":150,"right":308,"top":449,"bottom":497,"width":158,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":229,"y":473},"after":{"left":150,"right":308,"top":449,"bottom":497,"width":158,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":12,"right":177.421875,"top":10,"bottom":60},{"id":"bearing","left":105,"right":215,"top":62,"bottom":78},{"id":"pause-button","left":262,"right":308,"top":10,"bottom":56},{"id":"vitals","left":12,"right":112,"top":356.8125,"bottom":410},{"id":"weapon-info","left":238,"right":308,"top":340,"bottom":410},{"id":"announcement","left":12,"right":308,"top":254,"bottom":292},{"id":"touch-stick","left":20,"right":136,"top":504,"bottom":620},{"id":"touch-use","left":20,"right":136,"top":446,"bottom":492},{"id":"touch-ads","left":195,"right":239,"top":509,"bottom":555},{"id":"touch-dash","left":195,"right":239,"top":562,"bottom":608},{"id":"touch-jump","left":144,"right":188,"top":562,"bottom":608},{"id":"touch-fire","left":246,"right":302,"top":509,"bottom":608},{"id":"touch-more","left":144,"right":188,"top":509,"bottom":555},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":206,"right":252,"top":10,"bottom":56}],"alternateAvailable":false,"targetHit":"touch-threat-cue","afterRelease":{"left":150,"right":308,"top":449,"bottom":497,"width":158,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}},{"width":844,"height":390,"insets":true,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":668,"right":832,"top":190,"bottom":238,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":750,"y":214},"after":{"left":44,"right":208,"top":181,"bottom":229,"width":164,"height":48,"dock":"left","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":44,"right":209.421875,"top":44,"bottom":94},{"id":"bearing","left":383,"right":493,"top":96,"bottom":112},{"id":"pause-button","left":786,"right":832,"top":44,"bottom":90},{"id":"vitals","left":302,"right":402,"top":315.8125,"bottom":369},{"id":"weapon-info","left":557,"right":627,"top":299,"bottom":369},{"id":"announcement","left":174,"right":627,"top":239,"bottom":277},{"id":"touch-stick","left":44,"right":160,"top":253,"bottom":369},{"id":"touch-use","left":174,"right":290,"top":323,"bottom":369},{"id":"touch-ads","left":683.0625,"right":729.140625,"top":250,"bottom":296},{"id":"touch-dash","left":683.0625,"right":729.140625,"top":303,"bottom":349},{"id":"touch-jump","left":630,"right":676.0625,"top":303,"bottom":349},{"id":"touch-fire","left":736.140625,"right":826,"top":250,"bottom":349},{"id":"touch-more","left":630,"right":676.0625,"top":250,"bottom":296},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":730,"right":776,"top":44,"bottom":90}],"alternateAvailable":true,"targetHit":null,"afterRelease":{"left":668,"right":832,"top":190,"bottom":238,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}},{"width":390,"height":844,"insets":true,"checks":[{"name":"covered optic uses clear alternate when architecture of HUD permits","passed":true},{"name":"no return jump after target clears; press locks side until release","passed":true},{"name":"native warning turn keeps ammunition and clears ownership on pause/map","passed":true}],"before":{"left":214,"right":378,"top":644,"bottom":692,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"},"target":{"x":296,"y":668},"after":{"left":44,"right":208,"top":491.8125,"bottom":539.8125,"width":164,"height":48,"dock":"left","text":"TURN · CHARGE\nREAR"},"occupied":[{"id":"hud-mission","left":44,"right":209.421875,"top":44,"bottom":94},{"id":"bearing","left":156,"right":266,"top":96,"bottom":112},{"id":"pause-button","left":332,"right":378,"top":44,"bottom":90},{"id":"vitals","left":44,"right":144,"top":551.8125,"bottom":605},{"id":"weapon-info","left":308,"right":378,"top":535,"bottom":605},{"id":"announcement","left":44,"right":378,"top":446,"bottom":484},{"id":"touch-stick","left":44,"right":160,"top":707,"bottom":823},{"id":"touch-use","left":44,"right":160,"top":649,"bottom":695},{"id":"touch-ads","left":229.0625,"right":275.140625,"top":704,"bottom":750},{"id":"touch-dash","left":229.0625,"right":275.140625,"top":757,"bottom":803},{"id":"touch-jump","left":176,"right":222.0625,"top":757,"bottom":803},{"id":"touch-fire","left":282.140625,"right":372,"top":704,"bottom":803},{"id":"touch-more","left":176,"right":222.0625,"top":704,"bottom":750},{"id":"touch-reload","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-swap","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-crouch","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-sprint","left":0,"right":0,"top":0,"bottom":0},{"id":"touch-map","left":276,"right":322,"top":44,"bottom":90}],"alternateAvailable":true,"targetHit":null,"afterRelease":{"left":214,"right":378,"top":644,"bottom":692,"width":164,"height":48,"dock":"right","text":"TURN · CHARGE\nREAR"}}]}
+{"base":"http://127.0.0.1:61469/","baseline":false,"method":"ENGINEERING isolated elevated platform, frozen enemy motion and attacks, actual Game LOS-gated markers and original Blender Sentinel or embedded download fallback. A visible edge optic is arranged under the old warning. Native tap tests whether HUD intercepts or actual scene mesh is selected. No ordinary mission, natural encounter, phase use, phone comfort or enjoyment claim.","profiles":[{"fallback":false,"aborted":[],"originalWarning":{"x":668,"y":199,"width":164,"height":48},"target":{"x":802,"y":223},"arranged":{"marker":{"id":"enemy-2","kind":"enemy","type":"sentinel","label":"SENTINEL","health":1,"charging":false,"recent":true,"x":0.9004739336492892,"y":-0.1435897435897379,"front":true,"distance":5,"bearing":0.9813456237415675},"los":true,"id":2,"group":[4.148456565013162,20.094324253104304,-3.2043234249018187]},"buttonAtTarget":null,"before":{"taps":0,"ammo":30,"shots":0},"after":{"taps":1,"ammo":30,"shots":0,"yaw":-0.9813456237415675,"notice":"aim-set"},"passed":true},{"fallback":true,"aborted":["http://127.0.0.1:61469/assets/build104-sentinel.glb"],"originalWarning":{"x":668,"y":199,"width":164,"height":48},"target":{"x":802,"y":223},"arranged":{"marker":{"id":"enemy-2","kind":"enemy","type":"sentinel","label":"SENTINEL","health":1,"charging":false,"recent":true,"x":0.9004739336492892,"y":-0.1435897435897379,"front":true,"distance":5,"bearing":0.9813456237415675},"los":true,"id":2,"group":[4.148456565013162,20.094324253104304,-3.2043234249018187]},"buttonAtTarget":null,"before":{"taps":0,"ammo":30,"shots":0},"after":{"taps":1,"ammo":30,"shots":0,"yaw":-0.9813456237415675,"notice":"aim-set"},"passed":true}],"errors":[],"chromePid":77457,"passed":true,"browserClosed":true,"chromePidAbsent":true}
+{"passed":true,"profiles":[{"width":844,"insets":false,"checks":6},{"width":390,"insets":false,"checks":6},{"width":568,"insets":false,"checks":6},{"width":320,"insets":false,"checks":6},{"width":844,"insets":true,"checks":6},{"width":390,"insets":true,"checks":6}]}
+{
+  "method": "Native-touch phone engineering checks. Actual camera/input and DOM layout measured. The collected map-state fixture briefly stages playing phase to collect a receiver, then restores planning synchronously; it is not a played recovery or mission.",
+  "profiles": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "checks": [
+        "handbook marks its scroll region and native swipes reveal the full lesson",
+        "full handbook expands and remains natively scrollable above dismissal",
+        "recovering a receiver preserves every map target and canvas position"
+      ],
+      "failures": [
+        {
+          "name": "FIRE retains horizontal and downward thumb travel with symmetric80px corrections",
+          "error": "62.9296875"
+        }
+      ],
+      "nativeScrollSearches": [
+        {
+          "selector": "#touch-quickstart li:last-child",
+          "budget": 18,
+          "swipes": 1
+        },
+        {
+          "selector": "#touch-handbook summary",
+          "budget": 18,
+          "swipes": 0
+        },
+        {
+          "selector": "#touch-handbook p:last-child",
+          "budget": 35,
+          "swipes": 15
+        }
+      ],
+      "handbookScroll": {
+        "top": 102,
+        "height": 190,
+        "total": 292
+      },
+      "fireCenter": {
+        "x": 781.0703125,
+        "y": 308.5
+      },
+      "rightTravel": 62.9296875,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 421,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 421,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 393,
+            "height": 218,
+            "top": 137,
+            "right": 414,
+            "bottom": 355,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 421,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 138,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 421,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            },
+            {
+              "x": 621,
+              "y": 188,
+              "w": 194,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 393,
+            "height": 218,
+            "top": 137,
+            "right": 414,
+            "bottom": 355,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "handbook marks its scroll region and native swipes reveal the full lesson",
+        "full handbook expands and remains natively scrollable above dismissal",
+        "recovering a receiver preserves every map target and canvas position"
+      ],
+      "failures": [
+        {
+          "name": "FIRE retains horizontal and downward thumb travel with symmetric80px corrections",
+          "error": "62.9296875"
+        }
+      ],
+      "nativeScrollSearches": [
+        {
+          "selector": "#touch-quickstart li:last-child",
+          "budget": 18,
+          "swipes": 0
+        },
+        {
+          "selector": "#touch-handbook summary",
+          "budget": 18,
+          "swipes": 0
+        },
+        {
+          "selector": "#touch-handbook p:last-child",
+          "budget": 24,
+          "swipes": 8
+        }
+      ],
+      "handbookScroll": {
+        "top": 0,
+        "height": 644,
+        "total": 644
+      },
+      "fireCenter": {
+        "x": 327.0703125,
+        "y": 762.5
+      },
+      "rightTravel": 62.9296875,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 189,
+              "y": 130,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 189,
+              "y": 180,
+              "w": 171,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 267,
+            "width": 340,
+            "height": 340,
+            "top": 267,
+            "right": 361,
+            "bottom": 607,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 189,
+              "y": 130,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 171,
+              "h": 44
+            },
+            {
+              "x": 189,
+              "y": 180,
+              "w": 171,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 267,
+            "width": 340,
+            "height": 340,
+            "top": 267,
+            "right": 361,
+            "bottom": 607,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "checks": [
+        "handbook marks its scroll region and native swipes reveal the full lesson",
+        "full handbook expands and remains natively scrollable above dismissal",
+        "recovering a receiver preserves every map target and canvas position"
+      ],
+      "failures": [
+        {
+          "name": "FIRE retains horizontal and downward thumb travel with symmetric80px corrections",
+          "error": "47"
+        }
+      ],
+      "nativeScrollSearches": [
+        {
+          "selector": "#touch-quickstart li:last-child",
+          "budget": 18,
+          "swipes": 2
+        },
+        {
+          "selector": "#touch-handbook summary",
+          "budget": 18,
+          "swipes": 0
+        },
+        {
+          "selector": "#touch-handbook p:last-child",
+          "budget": 45,
+          "swipes": 19
+        }
+      ],
+      "handbookScroll": {
+        "top": 173,
+        "height": 175,
+        "total": 348
+      },
+      "fireCenter": {
+        "x": 620,
+        "y": 293.5
+      },
+      "rightTravel": 47,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 333,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 333,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 304.5,
+            "height": 203,
+            "top": 137,
+            "right": 325.5,
+            "bottom": 340,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 333,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 138,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 333,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            },
+            {
+              "x": 488,
+              "y": 188,
+              "w": 149,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 304.5,
+            "height": 203,
+            "top": 137,
+            "right": 325.5,
+            "bottom": 340,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        915,
+        412
+      ],
+      "checks": [
+        "handbook marks its scroll region and native swipes reveal the full lesson",
+        "full handbook expands and remains natively scrollable above dismissal",
+        "recovering a receiver preserves every map target and canvas position"
+      ],
+      "failures": [
+        {
+          "name": "FIRE retains horizontal and downward thumb travel with symmetric80px corrections",
+          "error": "62.9296875"
+        }
+      ],
+      "nativeScrollSearches": [
+        {
+          "selector": "#touch-quickstart li:last-child",
+          "budget": 18,
+          "swipes": 1
+        },
+        {
+          "selector": "#touch-handbook summary",
+          "budget": 18,
+          "swipes": 0
+        },
+        {
+          "selector": "#touch-handbook p:last-child",
+          "budget": 31,
+          "swipes": 12
+        }
+      ],
+      "handbookScroll": {
+        "top": 80,
+        "height": 212,
+        "total": 292
+      },
+      "fireCenter": {
+        "x": 852.0703125,
+        "y": 330.5
+      },
+      "rightTravel": 62.9296875,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 457,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 457,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 428.5,
+            "height": 240,
+            "top": 137,
+            "right": 449.5,
+            "bottom": 377,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 457,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 138,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 457,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            },
+            {
+              "x": 674,
+              "y": 188,
+              "w": 211,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 137,
+            "width": 428.5,
+            "height": 240,
+            "top": 137,
+            "right": 449.5,
+            "bottom": 377,
+            "left": 21
+          }
+        }
+      }
+    },
+    {
+      "viewport": [
+        320,
+        640
+      ],
+      "checks": [
+        "handbook marks its scroll region and native swipes reveal the full lesson",
+        "full handbook expands and remains natively scrollable above dismissal",
+        "recovering a receiver preserves every map target and canvas position"
+      ],
+      "failures": [
+        {
+          "name": "FIRE retains horizontal and downward thumb travel with symmetric80px corrections",
+          "error": "46"
+        }
+      ],
+      "nativeScrollSearches": [
+        {
+          "selector": "#touch-quickstart li:last-child",
+          "budget": 18,
+          "swipes": 1
+        },
+        {
+          "selector": "#touch-handbook summary",
+          "budget": 18,
+          "swipes": 1
+        },
+        {
+          "selector": "#touch-handbook p:last-child",
+          "budget": 39,
+          "swipes": 15
+        }
+      ],
+      "handbookScroll": {
+        "top": 258,
+        "height": 440,
+        "total": 730
+      },
+      "fireCenter": {
+        "x": 274,
+        "y": 558.5
+      },
+      "rightTravel": 46,
+      "mapLayout": {
+        "before": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 154,
+              "y": 130,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 154,
+              "y": 180,
+              "w": 136,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 267,
+            "width": 278,
+            "height": 278,
+            "top": 267,
+            "right": 299,
+            "bottom": 545,
+            "left": 21
+          }
+        },
+        "after": {
+          "buttons": [
+            {
+              "x": 12,
+              "y": 130,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 154,
+              "y": 130,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 12,
+              "y": 180,
+              "w": 136,
+              "h": 44
+            },
+            {
+              "x": 154,
+              "y": 180,
+              "w": 136,
+              "h": 44
+            }
+          ],
+          "canvas": {
+            "x": 21,
+            "y": 267,
+            "width": 278,
+            "height": 278,
+            "top": 267,
+            "right": 299,
+            "bottom": 545,
+            "left": 21
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}
+{"passed":true,"profiles":[{"width":844,"height":390,"fallback":false,"checks":4,"rifle":{"hip":{"width":844,"height":390,"pixels":10936,"upperPixels":3,"top":246,"muzzleGap":0,"drawCalls":209,"triangles":75752},"zoom":{"width":844,"height":390,"pixels":20866,"upperPixels":5128,"top":155,"muzzleGap":0,"drawCalls":207,"triangles":75748}}},{"width":390,"height":844,"fallback":false,"checks":4,"rifle":{"hip":{"width":390,"height":844,"pixels":25310,"upperPixels":3454,"top":480,"muzzleGap":3.553147333202946e-15,"drawCalls":207,"triangles":75748},"zoom":{"width":390,"height":844,"pixels":59533,"upperPixels":12978,"top":382,"muzzleGap":2.220446049250313e-16,"drawCalls":142,"triangles":70848}}},{"width":568,"height":320,"fallback":false,"checks":4,"rifle":{"hip":{"width":568,"height":320,"pixels":7381,"upperPixels":2,"top":202,"muzzleGap":0,"drawCalls":207,"triangles":75748},"zoom":{"width":568,"height":320,"pixels":14067,"upperPixels":3359,"top":127,"muzzleGap":0,"drawCalls":184,"triangles":75230}}},{"width":320,"height":640,"fallback":false,"checks":4,"rifle":{"hip":{"width":320,"height":640,"pixels":15996,"upperPixels":1834,"top":368,"muzzleGap":3.553147333202946e-15,"drawCalls":207,"triangles":75748},"zoom":{"width":320,"height":640,"pixels":35265,"upperPixels":7927,"top":287,"muzzleGap":2.220446049254352e-16,"drawCalls":142,"triangles":70848}}},{"width":844,"height":390,"fallback":false,"checks":4,"rifle":{"hip":{"width":844,"height":390,"pixels":10936,"upperPixels":3,"top":246,"muzzleGap":0,"drawCalls":209,"triangles":75752},"zoom":{"width":844,"height":390,"pixels":20866,"upperPixels":5128,"top":155,"muzzleGap":0,"drawCalls":207,"triangles":75748}}},{"width":390,"height":844,"fallback":false,"checks":4,"rifle":{"hip":{"width":390,"height":844,"pixels":25310,"upperPixels":3454,"top":480,"muzzleGap":3.553147333202946e-15,"drawCalls":207,"triangles":75748},"zoom":{"width":390,"height":844,"pixels":59533,"upperPixels":12978,"top":382,"muzzleGap":2.220446049254352e-16,"drawCalls":142,"triangles":70848}}},{"width":390,"height":844,"fallback":true,"checks":4,"rifle":{"hip":{"width":390,"height":844,"pixels":27381,"upperPixels":4635,"top":482,"muzzleGap":null,"drawCalls":199,"triangles":49948},"zoom":{"width":390,"height":844,"pixels":127285,"upperPixels":29900,"top":382,"muzzleGap":null,"drawCalls":134,"triangles":45048}}}]}
+{"passed":true,"profiles":[{"width":844,"checks":7},{"width":390,"checks":7},{"width":320,"checks":7}]}
+{
+  "method": "ENGINEERING native-touch supply navigation. Actual world grid, collision, Game.killEnemy-created pickups, magnet/collection and real animation frames are exercised. Starts, kills, suppressed encounters, resources, expiry and some blockers are arranged through the test handle. No ordinary mission, independent quality, physical-phone or enjoyment result.",
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        "map supply action fits, plotting does not grant resources, collection is physical and held route stays stopped",
+        "explicit supply route bypasses a nearby unrecovered receiver without recovering or braking",
+        "no live supply and insufficient lifetime are reported honestly and leave mission routing available",
+        "expiry cancels an active held route without a reward or automatically walking to the next mission",
+        "map and manual movement stop supply navigation; mission selection releases its dynamic field",
+        "crouched supply arrival goes around low cover and reaches an actual collectible face",
+        "empty rifle advice names available backup and live supply action; restart clears dropped resources and fields"
+      ],
+      "failures": [],
+      "drop": {
+        "id": 1,
+        "x": -2,
+        "z": 21.5
+      },
+      "plan": {
+        "count": 2,
+        "clear": true,
+        "fields": [
+          "supply-1"
+        ]
+      },
+      "collection": {
+        "phase": "playing",
+        "time": 1.5663999999999974,
+        "position": [
+          -0.48775729656663264,
+          1.7,
+          23.683640551500503
+        ],
+        "ammo": 0,
+        "reserve": 24,
+        "shells": 4,
+        "health": 66,
+        "shield": 10,
+        "cores": 0,
+        "progress": 0,
+        "held": true,
+        "braked": false,
+        "active": false,
+        "collected": true,
+        "goal": "core-0",
+        "locked": "supply-1",
+        "status": "RESUPPLIED · RELEASE USE",
+        "pickups": 0,
+        "fields": []
+      },
+      "crouchedFace": {
+        "clear": true,
+        "end": {
+          "x": -9,
+          "z": 28.5
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": false,
+      "checks": [
+        "map supply action fits, plotting does not grant resources, collection is physical and held route stays stopped",
+        "explicit supply route bypasses a nearby unrecovered receiver without recovering or braking",
+        "no live supply and insufficient lifetime are reported honestly and leave mission routing available",
+        "expiry cancels an active held route without a reward or automatically walking to the next mission",
+        "map and manual movement stop supply navigation; mission selection releases its dynamic field",
+        "crouched supply arrival goes around low cover and reaches an actual collectible face",
+        "empty rifle advice names available backup and live supply action; restart clears dropped resources and fields"
+      ],
+      "failures": [],
+      "drop": {
+        "id": 1,
+        "x": -2,
+        "z": 21.5
+      },
+      "plan": {
+        "count": 2,
+        "clear": true,
+        "fields": [
+          "supply-1"
+        ]
+      },
+      "collection": {
+        "phase": "playing",
+        "time": 1.5665999999999964,
+        "position": [
+          -0.4877572965666331,
+          1.7,
+          23.683640551500492
+        ],
+        "ammo": 0,
+        "reserve": 24,
+        "shells": 4,
+        "health": 66,
+        "shield": 10,
+        "cores": 0,
+        "progress": 0,
+        "held": true,
+        "braked": false,
+        "active": false,
+        "collected": true,
+        "goal": "core-0",
+        "locked": "supply-1",
+        "status": "RESUPPLIED · RELEASE USE",
+        "pickups": 0,
+        "fields": []
+      },
+      "crouchedFace": {
+        "clear": true,
+        "end": {
+          "x": -9,
+          "z": 28.5
+        }
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "insets": true,
+      "checks": [
+        "map supply action fits, plotting does not grant resources, collection is physical and held route stays stopped",
+        "explicit supply route bypasses a nearby unrecovered receiver without recovering or braking",
+        "no live supply and insufficient lifetime are reported honestly and leave mission routing available",
+        "expiry cancels an active held route without a reward or automatically walking to the next mission",
+        "map and manual movement stop supply navigation; mission selection releases its dynamic field",
+        "crouched supply arrival goes around low cover and reaches an actual collectible face",
+        "empty rifle advice names available backup and live supply action; restart clears dropped resources and fields"
+      ],
+      "failures": [],
+      "drop": {
+        "id": 1,
+        "x": -2,
+        "z": 21.5
+      },
+      "plan": {
+        "count": 2,
+        "clear": true,
+        "fields": [
+          "supply-1"
+        ]
+      },
+      "collection": {
+        "phase": "playing",
+        "time": 1.5331999999999972,
+        "position": [
+          -0.4877451014147035,
+          1.7,
+          23.683823478779438
+        ],
+        "ammo": 0,
+        "reserve": 24,
+        "shells": 4,
+        "health": 66,
+        "shield": 10,
+        "cores": 0,
+        "progress": 0,
+        "held": true,
+        "braked": false,
+        "active": false,
+        "collected": true,
+        "goal": "core-0",
+        "locked": "supply-1",
+        "status": "RESUPPLIED · RELEASE USE",
+        "pickups": 0,
+        "fields": []
+      },
+      "crouchedFace": {
+        "clear": true,
+        "end": {
+          "x": -9,
+          "z": 28.5
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "insets": true,
+      "checks": [
+        "map supply action fits, plotting does not grant resources, collection is physical and held route stays stopped",
+        "explicit supply route bypasses a nearby unrecovered receiver without recovering or braking",
+        "no live supply and insufficient lifetime are reported honestly and leave mission routing available",
+        "expiry cancels an active held route without a reward or automatically walking to the next mission",
+        "map and manual movement stop supply navigation; mission selection releases its dynamic field",
+        "crouched supply arrival goes around low cover and reaches an actual collectible face",
+        "empty rifle advice names available backup and live supply action; restart clears dropped resources and fields"
+      ],
+      "failures": [],
+      "drop": {
+        "id": 1,
+        "x": -2,
+        "z": 21.5
+      },
+      "plan": {
+        "count": 2,
+        "clear": true,
+        "fields": [
+          "supply-1"
+        ]
+      },
+      "collection": {
+        "phase": "playing",
+        "time": 1.5332999999999972,
+        "position": [
+          -0.48778168687049295,
+          1.7,
+          23.683274696942593
+        ],
+        "ammo": 0,
+        "reserve": 24,
+        "shells": 4,
+        "health": 66,
+        "shield": 10,
+        "cores": 0,
+        "progress": 0,
+        "held": true,
+        "braked": false,
+        "active": false,
+        "collected": true,
+        "goal": "core-0",
+        "locked": "supply-1",
+        "status": "RESUPPLIED · RELEASE USE",
+        "pickups": 0,
+        "fields": []
+      },
+      "crouchedFace": {
+        "clear": true,
+        "end": {
+          "x": -9,
+          "z": 28.5
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 79144,
+  "passed": true,
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

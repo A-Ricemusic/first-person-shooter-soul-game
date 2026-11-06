@@ -1,0 +1,45 @@
+{
+  "retainedFailures": [
+    {
+      "report": "build131-dev-hierarchy.json",
+      "issue": "Held native pointer motion was read before dispatch completed. Added50ms real event-dispatch wait and records before assertion; no input-gain change."
+    },
+    {
+      "report": "build131-dev-hierarchy-dispatch.json",
+      "issue": "Scene-gap fixture used exactly6px, the existing tap-jitter dead zone. Changed the exercised drag to12px; input dead zone unchanged."
+    },
+    {
+      "report": "build131-dev-hierarchy-gap.json",
+      "issue": "Short landscape retained a legacy5px gap and46px button minimum, slightly increasing occupied area despite smaller grid. Explicit7px gaps and44px button minimum now fulfill the intended layout. Added2px outward margin to retain40px from FIRE center on narrow inset profile."
+    }
+  ],
+  "passingDevelopmentRetest": "build131-dev-hierarchy-final.json",
+  "limits": [
+    "Native synthetic input and CSS-injected insets; not physical-phone comfort or aiming improvement.",
+    "Primary FIRE remains right-edge biased; long rightward turns may require releasing and using the scene. No continuous-hold quality claim."
+  ],
+  "outerEdgePrototype": {
+    "failure": "build131-production-thumb-layout.json",
+    "decision": "Rejected. All five existing80px symmetric FIRE-travel checks failed: outer-edge room was47\u201363px. The80px requirement remains unchanged. Final FIRE returns near the original inner-column thumb anchor; compact utilities and narrow-inset separation are retained.",
+    "followup": "Full final16-group suite, including unchanged thumb-layout regression."
+  },
+  "ordinaryOverlap": {
+    "evidence": "docs/media/build131-parent-play/kit-open.jpg",
+    "issue": "Live last-shot text crossed open KIT tray.",
+    "fix": "Suppress duplicate weapon status only while KIT is open; ammo stays visible, the KIT reload button supplies LOADING/aria-busy, and normal weapon status returns on close.",
+    "verification": "Augmented native hierarchy checks plus rifle confirmation in the full final suite."
+  },
+  "readoutSpecificityFailure": {
+    "report": "build131-final-hierarchy.json",
+    "cause": "Existing data-impact selector outranked the initial KIT visibility rule. Final KIT-only visibility override is explicit and important; ammo and LOADING remain available.",
+    "retest": "Full corrected suite under build131-final2 prefix. Failed engineering run cancelled with exact owned process cleanup; partial later checks are not final validation."
+  },
+  "nativeGapRouting": {
+    "failedFullRun": "build131-final2-hierarchy.json",
+    "diagnosis": "build131-native-target-diagnosis.json",
+    "trace": "build131-gap-diagnosis.json",
+    "focusedRetest": "build131-gap-guard-check.json",
+    "cause": "Native Chromium touch target adjustment delivered a free-gap pointerdown to FIRE outside its real bounds. Not a fixture carry-over.",
+    "fix": "Re-hit-test out-of-bounds delivered button touches at their actual initial coordinates; route a real control or free look. Existing in-bounds capture, drag math and combat remain unchanged. Threat/pause direct handlers also reject out-of-bounds initial touches."
+  }
+}

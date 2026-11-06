@@ -29,7 +29,7 @@ export function emptyAmmoAdvice(g){
  if(!g.touchMode)return 'No ammunition. Recover a core or collect a fallen sentinel’s supply.';
  const backup=g.weaponSlots[g.activeWeapon==='rifle'?'breacher':'rifle'];
  const options=[];
- if(backup.ammo+backup.reserve>0)options.push(`TOOLS → SWAP (${backup.ammo+backup.reserve} ${g.activeWeapon==='rifle'?'shells':'rounds'})`);
+ if(backup.ammo+backup.reserve>0)options.push(`KIT → SWAP (${backup.ammo+backup.reserve} ${g.activeWeapon==='rifle'?'shells':'rounds'})`);
  const count=liveSupplies(g).length;if(count)options.push(`MAP → SUPPLIES (${count})`);
  if(g.coreNodes.some(c=>!c.collected))options.push('recover a memory');
  return options.length?'NO AMMO · '+options.join(' · '):'NO AMMO OR SUPPLIES · Pause to restart the mission';

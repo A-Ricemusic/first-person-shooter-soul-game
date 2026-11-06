@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "hierarchy",
+      "report": "docs/quality-reviews/build131-final3-hierarchy.json",
+      "sha256": "7a55bc384e469c34e1aaa9d58b75708168487de990360f8303317c7f131f8657",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build131-final3-compact.json",
+      "sha256": "7c3b8a2cf097e9cc319baf94f3993b19e9d11d1bc0617249dedf02791ca3f9c5",
+      "passed": true
+    },
+    {
+      "name": "insets",
+      "report": "docs/quality-reviews/build131-final3-insets.json",
+      "sha256": "e91981f64a480217ebd398da05336e44fcbafbec485fbd2c90d622e5fc3353ce",
+      "passed": true
+    },
+    {
+      "name": "scene",
+      "report": "docs/quality-reviews/build131-final3-scene.json",
+      "sha256": "6eb483b0711c38cf501121bf83d62523447bc4286abf5c349aa3f54adc1a479f",
+      "passed": true
+    },
+    {
+      "name": "turn-route",
+      "report": "docs/quality-reviews/build131-final3-turn-route.json",
+      "sha256": "127f952b38ec4c1b0dd16e51a709ad1b6620a93bbddf2b594cb5f54ad54ebf11",
+      "passed": true
+    },
+    {
+      "name": "tolerance",
+      "report": "docs/quality-reviews/build131-final3-tolerance.json",
+      "sha256": "2ea2d8b00091df17b35e0a0cd8b0b9162eeffcead41a794f997330f1ed7bd4de",
+      "passed": true
+    },
+    {
+      "name": "fire-speed",
+      "report": "docs/quality-reviews/build131-final3-fire-speed.json",
+      "sha256": "b321202cd25518d3ccfe35935008fde2cb7417cb1ac18c8f82552f00c3a02fa7",
+      "passed": true
+    },
+    {
+      "name": "focus",
+      "report": "docs/quality-reviews/build131-final3-focus.json",
+      "sha256": "3351f5e734fa3ea22716c5ace8ebec61375ab7ef21e4a9167db2f3a383bb3e54",
+      "passed": true
+    },
+    {
+      "name": "threat-dock",
+      "report": "docs/quality-reviews/build131-final3-threat-dock.json",
+      "sha256": "f2595a41b4abc293d2e7687cf03f437f677a4d7e23f100d72344316a622fe013",
+      "passed": true
+    },
+    {
+      "name": "threat-actor",
+      "report": "docs/quality-reviews/build131-final3-threat-actor.json",
+      "sha256": "43fe56f19c90b9f8bf3c277c3211a6d66c3c01e83de07d000edfe692650ce188",
+      "passed": true
+    },
+    {
+      "name": "recovery-dock",
+      "report": "docs/quality-reviews/build131-final3-recovery-dock.json",
+      "sha256": "f00229079d3181c7ede41de81471902b1466f25788d34153f92918ccd9dbf4af",
+      "passed": true
+    },
+    {
+      "name": "thumb-layout",
+      "report": "docs/quality-reviews/build131-final3-thumb-layout.json",
+      "sha256": "e5781fb7980941945ae06cfb06e265827cf9257063ba8b66e631e10c1955bb43",
+      "passed": true
+    },
+    {
+      "name": "frame",
+      "report": "docs/quality-reviews/build131-final3-frame.json",
+      "sha256": "00d5ca26257aae4846bd1e42229f100de380790faed17f13694855f6c3a1f5f9",
+      "passed": true
+    },
+    {
+      "name": "defense",
+      "report": "docs/quality-reviews/build131-final3-defense.json",
+      "sha256": "b055e3dee6476e4d23547e41c40ba0db567e2c6fe6d1ef64a3e6a14042742fd5",
+      "passed": true
+    },
+    {
+      "name": "supplies",
+      "report": "docs/quality-reviews/build131-final3-supplies.json",
+      "sha256": "fc6ba8a3ecafdddfc205aa744187a3e5295e4698a9f336321ba7cd135746a7c5",
+      "passed": true
+    },
+    {
+      "name": "confirmation",
+      "report": "docs/quality-reviews/build131-final3-confirmation.json",
+      "sha256": "67d04075c3d20b6fcf7035f1a8caff7ee2a1ff89ac2e968f091a0590753f1125",
+      "passed": true
+    }
+  ],
+  "command": "MOBILE_PREFIX=build131-final3 node tools/mobile-hierarchy-suite.mjs",
+  "exitCode": 0,
+  "scope": "All 16 affected groups against the final production bundle, not the full canonical suite. Native hierarchy spans7 profiles including narrow side insets. Original80px FIRE-travel contract retained.",
+  "runtimeRecordFiles": 570,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/index-BDNulAgc.css": "55c75bf23dcb088fbac3363eb1c007857d690c790587ddbc12e538cb4c60d37f",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-D9skrR4M.js": "89424ce520404e864773a509612d0ce3baefe35525ba10fe35c0556c3336dbe6"
+  },
+  "ordinaryEvidence": [
+    "build131-parent-play.json",
+    "build131-parent-presentation-play.json"
+  ],
+  "rejectedPrototype": "build131-production-thumb-layout.json",
+  "intermediateFailures": [
+    "build131-final-hierarchy.json",
+    "build131-final2-hierarchy.json"
+  ],
+  "limits": [
+    "Geometry and native-input checks do not establish human comfort, target acquisition quality, physical phones, Safari, audio, FPS or enjoyment."
+  ]
+}

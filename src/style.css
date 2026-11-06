@@ -531,3 +531,22 @@ body.touch-mode #touch-actions>button:not(#touch-fire):not([aria-pressed=true]):
 
 /* The 50px mission header ends where this 28px compass row begins. */
 body.touch-mode #touch-route-cue{top:50px}
+
+/* Build131: retain the familiar FIRE anchor; smaller utilities keep every
+   action direct. Reserve both outward fine drag and downward correction. */
+body.touch-mode{--touch-action-width:clamp(146px,calc(100vw - max(20px,var(--touch-left)) - 116px - var(--touch-right) - 14px),196px);--touch-action-row:46px;--touch-stick-size:clamp(88px,calc(100vw - max(20px,var(--touch-left)) - var(--touch-right) - 6px - var(--touch-action-width) - 8px),116px)}
+body.touch-mode #touch-stick{width:var(--touch-stick-size);height:var(--touch-stick-size)}
+body.touch-mode #touch-actions{right:calc(var(--touch-right) + 6px);gap:7px;grid-template-columns:minmax(44px,1.95fr) repeat(2,minmax(44px,1fr))}
+body.touch-mode #touch-actions>button{min-width:44px}
+body.touch-mode #touch-actions>button:not(#touch-fire){padding:2px 1px}
+body.touch-mode #touch-fire{grid-column:1;grid-row:1 / 3;background:#704433a6!important;text-shadow:0 1px 2px #000,0 0 2px #000}
+body.touch-mode #touch-more{grid-column:3;grid-row:1}
+body.touch-mode #touch-jump{grid-column:3;grid-row:2}
+@media(max-width:359px){body.touch-mode{--touch-action-width:clamp(146px,calc(100vw - max(20px,var(--touch-left)) - 116px - var(--touch-right) - 14px),160px)}}
+@media(orientation:landscape) and (max-width:699px){body.touch-mode{--touch-action-width:clamp(146px,calc(100vw - max(20px,var(--touch-left)) - 116px - var(--touch-right) - 14px),160px)}}
+
+/* KIT already exposes LOADING on its reload button; keep duplicate shot/status
+   text from crossing the open tray without moving ammo or primary controls. */
+body.touch-mode.touch-tools-open #reload-label{visibility:hidden!important}
+
+body.touch-mode #touch-fire[data-latched="true"]{background:#163a36a6!important}

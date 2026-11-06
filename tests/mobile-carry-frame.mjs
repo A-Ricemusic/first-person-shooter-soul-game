@@ -68,7 +68,7 @@ try{
     const {hip,zoom:z}=row[weapon];assert(Math.abs(hip.state.position[1]-(weapon==='rifle'?-.35:-.36))<.00001);
     assert(Math.abs(z.state.position[1]-(weapon==='rifle'?-.155:-.15))<.00001);assert(z.state.aim&&z.state.ammo===hip.state.ammo&&z.state.shots===hip.state.shots);
     assert(Math.abs(z.state.reference-40)<.0005);assert.equal(z.state.yaw,hip.state.yaw);assert.equal(z.state.pitch,hip.state.pitch);
-    assert.equal(z.state.controls['touch-ads'].label,'ZOOM');assert.equal(z.state.controls['touch-ads'].width,hip.state.controls['touch-ads'].width);
+    assert.equal(z.state.controls['touch-ads'].label,'AIM');assert.equal(z.state.controls['touch-ads'].width,hip.state.controls['touch-ads'].width);
     if(!fallback){assert(hip.mask.muzzleGap<1e-6);assert(z.mask.muzzleGap<1e-6);}assert(hip.mask.pixels>0&&z.mask.pixels>0);
    });
    await wide();const returned=await read();if(!baseline){assert(Math.abs(returned.position[1]-row[weapon].hip.state.position[1])<.00001);assert.equal(returned.ammo,row[weapon].hip.state.ammo);}

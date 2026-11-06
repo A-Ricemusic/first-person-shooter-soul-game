@@ -1,0 +1,201 @@
+{
+  "build": 130,
+  "source": "99dfeb5b57bcbece778724999c3b4ccd3491d426",
+  "frozenFilesVerified": 571,
+  "mismatches": [],
+  "bundleChecks": [
+    {
+      "file": "dist/assets/build104-sentinel-fallback-B1ru7wdT.js",
+      "distMatch": true,
+      "snapshotMatch": true
+    },
+    {
+      "file": "dist/assets/index-CDYoitW1.js",
+      "distMatch": true,
+      "snapshotMatch": true
+    },
+    {
+      "file": "dist/assets/build69-custodian-surfaces-CJr5upgj.js",
+      "distMatch": true,
+      "snapshotMatch": true
+    },
+    {
+      "file": "dist/assets/index-CX1oQb0z.css",
+      "distMatch": true,
+      "snapshotMatch": true
+    },
+    {
+      "file": "dist/assets/three-BHq7hzKl.js",
+      "distMatch": true,
+      "snapshotMatch": true
+    }
+  ],
+  "review1": {
+    "report": "docs/quality-reviews/build130-mobile-review1.json",
+    "sha256": "55b13ad684c9c3f5d04c5796f1ef325aca6a756bf7cdf0893b2fafba62d25d57",
+    "originalReviewSchema": {
+      "scale": "0 unusable; 5 mixed but playable; 7 good with meaningful friction; 9 excellent with little observed friction; 10 exceptional. Subjective holistic assessment of observed emulated mobile play only, not an average of stats or win/loss.",
+      "scoresOutOf10": {
+        "overallMobile": 7.0,
+        "controls": 6.5,
+        "gameplay": 7.0,
+        "presentation": 8.0,
+        "usability": 7.5,
+        "readability": 6.5
+      },
+      "overallReason": "Both complete runs were understandable and rewarding in their clear objective/progress feedback. Strong atmosphere, large primary touch buttons and contextual route/recovery assistance make the mission approachable. Manual patrol touch engagement was feasible, but acquisition at the right control edge failed, distant threats were small, and close coil geometry complicated identification. Heavy assisted routing and paused observation limit confidence about sustained mobile play. Wins do not independently determine this grade.",
+      "controlsReason": "MOVE plus FIRE drag, scene swipes, tap aim, DASH, map close, and START FRESH worked visibly. One right-edge target attempt failed without turn/down; continuous held rearming, unassisted precision, physical thumb comfort, ZOOM, JUMP and TOOLS remain unassessed. DASH activation observed, defensive success not established.",
+      "gameplayReason": "Recoveries, coil phases, reloads and uplink provide a readable sequence with some tension from shield loss. Assisted route completion involved little navigation decision-making; two short runs do not establish sustained depth or enjoyment.",
+      "presentationReason": "Cohesive rain, teal/orange lighting, industrial geometry and restrained result card support the rescue mood. Some silhouettes and foreground structures look coarse in software WebGL; performance/artifact causes cannot be assigned. Audio not assessed.",
+      "usabilityReason": "Contextual HOLD ROUTE/APPROACH/RECOVER instructions, named destinations, map route and fresh-start result button are helpful. Map overview is small and UI covers substantial scene area in landscape. No settings changed; broader settings usability unassessed.",
+      "readabilityReason": "Health/ammo and objective progress are legible; explicit coil percentages/OFF and upload percentage support recovery from mistakes. Small patrols, muted contrast, tiny world labels, overlapping prompts/control areas and close coil supports complicate scene reading.",
+      "helpfulMoments": [
+        "Opening instruction immediately explained tap aim, FIRE, swipe and DASH.",
+        "TARGET DOWN/SENTINEL DOWN feedback confirmed manual engagements.",
+        "Recovery checkmarks, coil OFF states and upload percentages clarified progress.",
+        "Map gave named destinations, walking route and close button without requiring mission abandonment.",
+        "Result cards exposed assist counts, so assisted runs were not mistaken for unaided skill."
+      ],
+      "frustratingMoments": [
+        "Needed corrective turn to locate front-left patrol in attempt 1.",
+        "Right-side target attempt in attempt 2 failed to acquire/down; could not isolate control overlap versus other cause.",
+        "Close boss view caused mistaken coil identity and required corrective swipe.",
+        "Ammo exhaustion/reload interrupted attempted damage; individual wasted shots unresolved."
+      ],
+      "unassessed": [
+        "Recovered memory text/content and enjoyment",
+        "TOOLS and tool selection",
+        "ZOOM/AIM persistence and JUMP",
+        "Unassisted aiming quality",
+        "Continuous held-burst rearming comfort",
+        "Long-term challenge or sustained enjoyment"
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "terminalStats": {
+          "eliminations": 4,
+          "missionTime": "01:00",
+          "score": 6637,
+          "accuracyPercent": 100,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 15,
+          "tapAims": 7,
+          "routeAssists": 11,
+          "approachAssists": 5
+        },
+        "evidence": "docs/media/build130-mobile-review1/a1-terminal.jpg",
+        "coverage": {
+          "manualCombat": "Opening guard plus two perimeter guards: target tap, manual MOVE displacement plus FIRE drag in each batch; TARGET DOWN / SENTINEL DOWN visible. Tap aim assistance used; not unaided aiming.",
+          "turn": "Scene swipes 008 to 034 and 315 to 278; corrected toward front-left patrol.",
+          "dash": "Two visible DASH taps: initial cooldown 4.3 with forward displacement; later while reloading cooldown 2.7 and forward displacement. No certified evade; terminal 0 phase evades.",
+          "failures": "Coil firing consumed 10 rounds in second burst, coil II OFF despite filename coil2-miss; third burst emptied magazine with coil III at 69%, automatic reload. No invented misses: individual misses cannot be counted; game reports 100% accuracy. Shield fell during boss and uplink; lowest observed 15.",
+          "navigation": "Repeated visibly prompted HOLD ROUTE/APPROACH/RECOVER; three recoveries, three coil shutdowns, returned to deck and stayed through upload. No map/tools/settings used.",
+          "settingsChanges": []
+        }
+      },
+      {
+        "attempt": 2,
+        "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+        "freshStart": "Visible START FRESH via captured act tap #play-again; no checkpoint retry",
+        "terminalStats": {
+          "eliminations": 4,
+          "missionTime": "01:01",
+          "score": 6634,
+          "accuracyPercent": 90,
+          "criticalEliminations": 1,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 13,
+          "tapAims": 6,
+          "routeAssists": 11,
+          "approachAssists": 5,
+          "displayedTouchAssistPersonalBest": 6637
+        },
+        "evidence": "docs/media/build130-mobile-review1/a2-terminal.jpg",
+        "coverage": {
+          "manualCombat": "Opening guard and left perimeter guard: single scene target tap, MOVE drag with contact 1 plus FIRE drag with contact 2; TARGET DOWN / SENTINEL DOWN. Later right-side guard attempted with same two contacts: guard remained visible, ammo 18 to 17, heading unchanged at 108. At uplink a tapped interceptor went down with FIRE; next target did not show down before automatic reload.",
+          "failuresAndMisses": "Failed right-side acquisition may overlap control zone; cannot prove cause. Final accuracy 90%, individual misses not attributed. At boss, selected left coil thinking I but visible feedback was III OFF; corrected with scene turn 136 to 194 then tapped visible remaining coil. File a2-coil1.jpg actually shows III OFF. Last coil burst consumed 10 rounds. Uplink second burst emptied magazine and showed RELOADING without down confirmation.",
+          "turn": "Manual scene swipe 136 to 194 to find remaining coil, independently of tap aims and route turns.",
+          "dash": "Tapped near Sera approach: cooldown 1.7 visible afterward. Tapped again at boss: forward displacement to very close coils and cooldown 2.6. Subsequent shield 41/28/15; no confirmed defensive evade, terminal 0 phase evades.",
+          "map": "Opened MAP, inspected named destinations and route line, visibly closed with #close-map before continuation.",
+          "navigation": "Three recoveries, three coil shutdowns, route-assisted return and stayed on deck to completion.",
+          "settingsChanges": []
+        },
+        "learnedBetweenAttempts": "Used learned tap aim and context-sensitive HOLD ROUTE/APPROACH/RECOVER. Added planning-map inspection and attempted to use visible coil phase status; waited through armor/charge, took shield damage, corrected coil identity. No claim that pauses improve game quality or human timing."
+      }
+    ]
+  },
+  "media": {
+    "docs/media/build130-mobile-review1/a2-find-last-coil.jpg": "2fa51d52733173aeef9a7106141e36e69f7db7b66dcc3f8a89a9e0f5627d54d6",
+    "docs/media/build130-mobile-review1/a1-coil3.jpg": "0b0417b45387242ce37eaaeb822d7bfb7955c54724ec65ab02e106ee106c0632",
+    "docs/media/build130-mobile-review1/a1-terminal.jpg": "9a87326a254d7c67f453c754f46114963d1384bdbe45eec25cebf371472b091d",
+    "docs/media/build130-mobile-review1/a1-coil1.jpg": "9d2597e64b2d2b09f284a6e6d0c2e762cce551deafe2b9841accd73026db2545",
+    "docs/media/build130-mobile-review1/a1-manual-move-fire.jpg": "8c5a040b00895c65bfa9fa61de85f1a7c07b27f8d0c3ae0be802d3895601777b",
+    "docs/media/build130-mobile-review1/a1-route6.jpg": "fef7acf0eeb43cb9f2bb13be066798886f4e14fdb478209f8bde0bdfc298b34f",
+    "docs/media/build130-mobile-review1/a2-start-fresh.jpg": "fdbbf812df92416104f763c8b9c59b60415662336651bf0a5e37bd19bfb5b5a7",
+    "docs/media/build130-mobile-review1/a1-route7.jpg": "c4166ad806cb815b1b218f43459257fb37a35856e1219b4cb5a6e13fc9f75d78",
+    "docs/media/build130-mobile-review1/a2-boss-route2.jpg": "df04e68b82627130351e138586abffdc460e60249f1b01fd694a34017055c75d",
+    "docs/media/build130-mobile-review1/brief.jpg": "a1dc7a7a10101f6fbf269265a82e54f5f8528f48ac01178a69e39db4044dd4f4",
+    "docs/media/build130-mobile-review1/a1-route5.jpg": "576e67039a3b11f59b8c1c96ab8024949e6c8ca791fcd82e85cb7937ff26ea11",
+    "docs/media/build130-mobile-review1/a1-route4.jpg": "538172637bf3c54b79dcdd4b93ed84de7a60bafdc92a8f4336bfa6a2ac3eca09",
+    "docs/media/build130-mobile-review1/a2-boss-route1.jpg": "c34fdbfcfad2bc09c2aa4b1621925fb975fef145b5d8a37334e6032dbb66ff98",
+    "docs/media/build130-mobile-review1/a2-recover3.jpg": "60970d1f2cfc3826082319f2799c3facb562d5040fb34edfd0caec75e82e3ae3",
+    "docs/media/build130-mobile-review1/a1-route1.jpg": "f0c0c13b2db6ab13e44d3c9ff7c4beae55f9f7845476005d538b6ffd7e54aee9",
+    "docs/media/build130-mobile-review1/a1-patrol-turn.jpg": "ed68e09257f11d228731aa0cfcab258ed00f08e194f90811c26e3f92cba30a5c",
+    "docs/media/build130-mobile-review1/a2-last-open.jpg": "cb3ba650e88ae992c7212525c86da44ba31f05f027dffb6b357619036ea72de0",
+    "docs/media/build130-mobile-review1/a1-final-coil.jpg": "08e3d7edecb1334fa86c44a30200ca28c9cb4aa2def2f20f285b15715034c023",
+    "docs/media/build130-mobile-review1/a1-dash-turn.jpg": "ce2803b66083c4ad36acff4094577616b523f85178f61fdf2f50ae66d8fec4f5",
+    "docs/media/build130-mobile-review1/a1-route3.jpg": "53e69339310c2ba537196a4e4ce4265b14e774443071af17c0fe9747705cc349",
+    "docs/media/build130-mobile-review1/a1-route2.jpg": "faa920e84f938b2e2c05527cf52c04449226fb774ab3df0c0b4871a722517dbb",
+    "docs/media/build130-mobile-review1/a2-uplink-fire2.jpg": "45c867cb97ce2e65b9fde6ab95cb91e80e63b3e16ec1d5d1fbceb7e57c142fa8",
+    "docs/media/build130-mobile-review1/a2-recover1.jpg": "aa9bac875f2fa6d8fe90589c7bf0777dcf4eca9f401ed6cf7fafd06279c27409",
+    "docs/media/build130-mobile-review1/a2-return1.jpg": "8204dd8fb3b671892a7b08df9b1232a4edbe9e0c5085ba6b07c7149408daa71b",
+    "docs/media/build130-mobile-review1/a2-route1.jpg": "e08622feb1dc19696c5865cd001be95d6b5f264a32196f436fbe6be2f5a51622",
+    "docs/media/build130-mobile-review1/a1-coil2-miss.jpg": "71119b262adae4f465a9545c1d5297912212a5a81ef6b955575e2effcb673a68",
+    "docs/media/build130-mobile-review1/a2-route2.jpg": "56c75b861385c1fe7db6657adee41c1ad3f8b546438fbb60aa7db4f604e51a82",
+    "docs/media/build130-mobile-review1/a2-dash-approach.jpg": "2b730f6472f80a201225b7d54a2090fc0e51f30cea5464cf9e966cc607e7ef50",
+    "docs/media/build130-mobile-review1/a2-map-closed.jpg": "77e28849dbb1fb340164b8b496186cf768125da2b7b1ed1ed87477c04d9352e6",
+    "docs/media/build130-mobile-review1/a2-route3.jpg": "f2bf3122312ce230640bff3cf30a3e39a7b590a4921c6cf96287780fc7a89d73",
+    "docs/media/build130-mobile-review1/a2-uplink-fire.jpg": "1e3e17f86267bae44129be1ab7f1809f0eae4e1402807ce2ab7cc6f0db35c4c7",
+    "docs/media/build130-mobile-review1/a1-recover2.jpg": "7ea54202d7983db232e95d6b705ade8c441774e1f5940664e7fcae213ff6ceec",
+    "docs/media/build130-mobile-review1/a2-route7.jpg": "d4d3c1efca4690605adbea2bd2b5e8930fc3416b14c35c207f6ffb430422d72f",
+    "docs/media/build130-mobile-review1/a2-route6.jpg": "6b2eec9d97c6814ca4feac284ccced06513cdab58b422f1b4f9dbbc48fd41244",
+    "docs/media/build130-mobile-review1/a2-opening-manual.jpg": "44fa56c73cd1602d7c2110e230e69ea176be70d43d44804e0a8dfd94e86dd9eb",
+    "docs/media/build130-mobile-review1/a2-uplink1.jpg": "03d1ed5cf1a7b7d0e9339ca8aadcadcf08cf88a30c997768326caf3f62a233e6",
+    "docs/media/build130-mobile-review1/a1-recover3.jpg": "248eb456207bc6465ce820d6d26d8062a487733e0a7fc6d75b08343f9ce0ba1f",
+    "docs/media/build130-mobile-review1/a2-patrol-manual.jpg": "bb691dcfcb86abe68f9ef55bd71a6a9397118e711937c72d8330e7b7557550cf",
+    "docs/media/build130-mobile-review1/a2-second-patrol-manual.jpg": "a0e693a3f1a24a00ce356b65d27479efcdfffad2bdfd4374c8d16c8788d3fb40",
+    "docs/media/build130-mobile-review1/a1-recover1.jpg": "f20b2ac61cc95c8173ffb879276af52e658b6f83770459ec500109f2e4c47eb0",
+    "docs/media/build130-mobile-review1/a2-route4.jpg": "9335aec86d90c29d5956214a419da375c3dbb551443c2a12ffea83d01f18c91a",
+    "docs/media/build130-mobile-review1/a2-route5.jpg": "542a79ebf875514358913c90340c2426d991118ed1a86929b468481643a154a8",
+    "docs/media/build130-mobile-review1/a1-uplink2.jpg": "762d6ea0b84b96fc238c983d10a69b70a2ee4f57e1b3c1f9e5733de58ca77671",
+    "docs/media/build130-mobile-review1/a1-patrol-manual1.jpg": "6ecb3e0d1d8ee1c71b734796e870633688e15d369d506239a0c7e712f1270988",
+    "docs/media/build130-mobile-review1/a1-uplink1.jpg": "4d5ba00a7b74066437a220201346ee15a82f5efdab104611a1ab6c9b72da4c5a",
+    "docs/media/build130-mobile-review1/a2-boss-dash.jpg": "274ac8b31f8023999789a984a0ce2551ab856d59a455b9cfb0c6d63d03e1e500",
+    "docs/media/build130-mobile-review1/a1-reload-dash.jpg": "306bc1ad4c4d41e4ff48d70930689e4187607f624f8ab54fd1c0944d3b296959",
+    "docs/media/build130-mobile-review1/a1-patrol-manual2.jpg": "3d39d80e6a990b2a0b01e126cb7d4da6d4b2ba66b281ddbf0762f065904f4e92",
+    "docs/media/build130-mobile-review1/a1-boss-route2.jpg": "70569ceba9926a6f90694cd619c40172d540bfc8f0363a391ef145fc94379de1",
+    "docs/media/build130-mobile-review1/a2-coils-open.jpg": "8cef843c7e74868e7068c99b962275626c5ab435697bb7035bd33c494ec4f4d9",
+    "docs/media/build130-mobile-review1/a2-last-coil-fire.jpg": "55084099f02bcb3a454193c34f27bfa4286205030ae7fff7feb79a59ad368c10",
+    "docs/media/build130-mobile-review1/a2-coil2.jpg": "16b3b6fa7c26e6a88ddc3cf858e5df496d28129ea1bbf1b6cbf004913eb9f500",
+    "docs/media/build130-mobile-review1/actions.jsonl": "af57d96fb93efc90077c6d0de3970a5fce14ff3e7c69d81307acd484c8513b89",
+    "docs/media/build130-mobile-review1/initial-menu.jpg": "6594e6040eb05d5ba9a80d6907f9d9bf5ce53a9a244c3900586f4abdaa617ab8",
+    "docs/media/build130-mobile-review1/a1-boss-route1.jpg": "8db557f4555f0558c376a0185cf70394e339ee8b0c96755cf1935af44d9ecf23",
+    "docs/media/build130-mobile-review1/a2-map.jpg": "582446836291c8a3269dd8b90ad9acc9a39098ce830b8309ca5a0b597e259713",
+    "docs/media/build130-mobile-review1/a1-return1.jpg": "8e90679be1b39fb007fc8011cd60f9b1682a980b0ce83844c35a083c4bbe79d2",
+    "docs/media/build130-mobile-review1/a2-coil1.jpg": "7b5466cdcd263270aeabedae142b19cc6ffb1dee6a6f2e5cd4db35fb1d342eeb",
+    "docs/media/build130-mobile-review1/a2-terminal.jpg": "f205a34c13e15c59931e19d6dabf690d547472d7abb3854f5993e34b2fa5926f"
+  },
+  "cleanup": {
+    "driverPid": 59021,
+    "chromePid": 59031,
+    "psExit": 1,
+    "psOutput": ""
+  },
+  "status": "First fresh landscape review complete; second fresh portrait review pending. No source, HTML, build or commit changes between reviewers."
+}

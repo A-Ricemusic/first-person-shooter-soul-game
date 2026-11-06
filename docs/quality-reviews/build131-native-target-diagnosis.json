@@ -1,0 +1,62 @@
+{
+  "scope": "Reproduced native Chromium touch target adjustment in568x320 software-WebGL engineering fixture; physical phones/Safari unassessed.",
+  "raw": "build131-gap-diagnosis.json",
+  "sceneProbe": {
+    "x": 451,
+    "y": 191,
+    "baselineControl": "touch-ads",
+    "hit": "touch-look",
+    "before": {
+      "phase": "playing",
+      "yaw": 0,
+      "pitch": 0,
+      "fire": false,
+      "move": {
+        "x": 0,
+        "z": 0
+      },
+      "aim": false,
+      "ammo": 29,
+      "velocity": 0,
+      "dash": 0,
+      "cooldown": 0
+    },
+    "after": {
+      "phase": "playing",
+      "yaw": -0.0371830985915493,
+      "pitch": 0,
+      "fire": false,
+      "move": {
+        "x": 0,
+        "z": 0
+      },
+      "aim": false,
+      "ammo": 28,
+      "velocity": 0,
+      "dash": 0,
+      "cooldown": 0
+    }
+  },
+  "nativePointerDown": {
+    "type": "pointerdown",
+    "target": "touch-fire",
+    "x": 451,
+    "y": 191,
+    "fire": false,
+    "ammo": 29,
+    "yaw": 0
+  },
+  "fireBounds": {
+    "x": 390,
+    "y": 189,
+    "width": 58,
+    "height": 99,
+    "top": 189,
+    "right": 448,
+    "bottom": 288,
+    "left": 390
+  },
+  "cause": "elementFromPoint at451,191 returned touch-look; native pointerdown targeted touch-fire despite its right edge448. Captured FIRE drag spent a round.",
+  "fix": "Re-hit-test only an initial touch outside its delivered button bounds. Route the actual visible root control or free scene; keep captured in-bounds gestures unchanged.",
+  "mechanismLimit": "Native retargeting is observed directly; the internal Chromium mechanism was not inspected. Touch target adjustment is an inference, not a browser-source audit."
+}
