@@ -1,8 +1,13 @@
 {
+  "lateAttachmentFailure": "build136-attachment-initial.json reproduces a mark hanging at its old world position when its inert machine part moves. Final local contact point/normal attachment passes translation, rotation and nonuniform scale. Final native readout verifies actual inert-machine anchor selection. First published136/61533 preserved; final136 uses61534. Three earlier control groups were not repeated for this surface-transform-only correction.",
   "retainedInitialImages": "build136-cover-dev.json passed its state checks but a later paused screenshot exposed the pause overlay. The engineering fixture now explicitly hides that overlay while freezing game time for comparison. Initial images remain; no game fix was necessary.",
   "baseline": "Two frozen Build135 phone views: old surface effect expired by350ms. The corrected baseline-render record uses the same explicit overlay-hiding arrangement.",
   "candidate": "Five production profiles check native physical shot/normal/point, persistence at350ms and1150ms, reduced motion, assist disabled, camera-fixed world position, opaque foreground depth ordering, expiry, next-shot clearing and terminal/fresh reset.",
   "resource": "Three shared immutable geometries versus96 separate old per-instance geometries;48 independent materials/roots remain.1000 substitutions and idempotent disposal tested. This is ownership/count evidence, not a frame-rate claim.",
   "existingRules": "Held cover correction, seven handoff profiles, six readout profiles including real inert Custodian vs live armor, and six confirmation compositions exercise actual existing shot resolution.",
-  "scope": "Procedure-generated transient ring/core is an engine effect; all previously authored Blender assets remain unchanged."
+  "scope": "Procedure-generated transient ring/core is an engine effect; all previously authored Blender assets remain unchanged.",
+  "finalNativeCommand": "MOBILE_PREFIX=build136-final MOBILE_COVER_GROUPS=witness,readout node tools/mobile-cover-witness-suite.mjs",
+  "finalResourceCommand": "COVER_POOL_PREFIX=build136-attachment-final node tests/cover-feedback-pool.mjs",
+  "preservedFirstPublication": "build136-before-attachment-publication.json",
+  "proxyImageArchive": "build136-attachment-preserved.json"
 }
