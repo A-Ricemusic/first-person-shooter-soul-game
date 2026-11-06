@@ -1,0 +1,29 @@
+import {chromium} from '@playwright/test';
+import {mobileTouch} from '../tools/mobile-touch.mjs';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const prefix=process.env.MOBILE_CORNER_PREFIX||'build125-corner',base=process.env.MOBILE_URL||'http://127.0.0.1:5173/';
+const report={method:'ENGINEERING paired camera composition at a recorded native route pose. Same production scene, position, pitch, assets and controls; only yaw differs. Actors suppressed. Previous camera is a replay over identical inputs, not an independently played baseline mission. This illustrates a selected bend, not all frames, physical phones or enjoyment.',profiles:[],errors:[]};
+mkdirSync(`docs/media/${prefix}`,{recursive:true});
+const server=await chromium.launchServer({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--enable-unsafe-swiftshader']});report.chromePid=server.process().pid;
+try{
+ const browser=await chromium.connect(server.wsEndpoint());
+ for(const [width,height]of[[844,390],[390,844]]){
+  const trace=JSON.parse(readFileSync(`docs/quality-reviews/build125-production-lookahead-${width}-trace.json`));
+  const frame=trace.frames.filter(f=>f.moving&&f.baselineWall<1.5&&f.candidateWall>2.5).sort((a,b)=>a.baselineWall-b.baselineWall)[0];assert(frame,'trace must contain an actual clear-view comparison pose');
+  const page=await browser.newPage({viewport:{width,height},isMobile:true,hasTouch:true,deviceScaleFactor:3}),touch=await mobileTouch(page);page.on('pageerror',e=>report.errors.push(e.message));
+  await page.addInitScript(()=>{window.requestAnimationFrame=()=>1;window.cancelAnimationFrame=()=>{}});
+  await page.goto(base+'?test');await page.waitForFunction(()=>window.__SOULFALL__?.game.loaded,null,{timeout:60000});await touch.tap('#deploy');
+  const row={width,height,frame,images:{}};report.profiles.push(row);
+  for(const mode of ['baseline','candidate']){
+   row[mode]=await page.evaluate(({frame,mode})=>{const g=window.__SOULFALL__.game;g.clearRun();g.encounters=new Set(['ingress','medical','engineering','heart']);g.player.fromArray(frame.position);g.yaw=frame[mode];g.pitch=0;g.aim=false;g.syncCamera();g.animate(0);g.emit();g.renderer.render(g.scene,g.camera);return{position:g.player.toArray(),yaw:g.yaw,pitch:g.pitch,phase:g.phase,ammo:g.ammo}}, {frame,mode});
+   row.images[mode]=`docs/media/${prefix}/${width}-${mode}.jpg`;await page.screenshot({path:row.images[mode],type:'jpeg',quality:80});
+  }
+  assert.deepEqual(row.baseline.position,row.candidate.position);assert.equal(row.baseline.pitch,row.candidate.pitch);assert.equal(row.baseline.ammo,row.candidate.ammo);await page.close();
+ }
+ assert.deepEqual(report.errors,[]);report.passed=true;
+}catch(e){report.failure=e.stack;process.exitCode=1}finally{
+ await server.close();report.browserClosed=true;try{execFileSync('ps',['-p',String(report.chromePid),'-o','pid=,comm=']);report.chromePidAbsent=false}catch(e){report.chromePidAbsent=e.status===1}
+ writeFileSync(`docs/quality-reviews/${prefix}.json`,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,failure:report.failure}));
+}

@@ -1,0 +1,29 @@
+{
+  "records": [
+    {
+      "finding": "Production suite started before build completion; cancelled exact owned PIDs, exit143, excluded all interrupted outputs.",
+      "record": "build125-overlap-cancellation.json",
+      "retainedPrefix": "build125-overlap",
+      "rerun": "build125-production-output.txt"
+    },
+    {
+      "finding": "Two camera fixtures shared one output prefix. Completed new report, traces and media copied to distinct lookahead prefix before previous-camera overwrite; future runner uses MOBILE_LOOKAHEAD_PREFIX.",
+      "retained": "build125-production-lookahead.json",
+      "sourceNote": "Only output routing changed after invocation; product camera and assertions unchanged. Original copied paths preserved where present."
+    },
+    {
+      "finding": "Arranged composition disabled requestAnimationFrame but its waitForFunction polled on RAF. Timeout retained; changed to100ms polling. No game change.",
+      "failure": "build125-corner-raf-failure.json",
+      "sourceBefore": "build125-corner-before-poll-fix.txt",
+      "passed": "build125-corner.json"
+    },
+    {
+      "finding": "Parent guessed #touch-tools selector in two commands; Selector must be visible. Both retained, helper paused safely; used actual visible coordinates to open tools and reload. No product fix or invented success.",
+      "commands": [
+        26,
+        28
+      ],
+      "log": "docs/media/build125-parent-play/actions.jsonl"
+    }
+  ]
+}
