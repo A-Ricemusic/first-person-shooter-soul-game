@@ -1,0 +1,156 @@
+{
+  "status": "complete",
+  "identity": {
+    "visible": "BUILD 137",
+    "requested_frozen_source": "f185c8cb1c3b1f6fd8d7b651be09e0f0cff19187",
+    "source_verified": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:01",
+        "score": 6894,
+        "accuracy_percent": 97,
+        "critical_eliminations": 3,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 14,
+        "tap_aims": 7,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "evidence": "docs/media/build137-mobile-review1/attempt1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard and visible perimeter sentinel; TARGET DOWN / SENTINEL DOWN feedback. Second patrol shot with tap aim and anchored FIRE.",
+        "turn": "Scene swipes changed heading 334\u2192353 and 278\u2192238; corrected to visible patrol.",
+        "dash": "Tapped visible DASH; cyan displacement and 4.3 cooldown; no phase evade established.",
+        "aim": "Zoomed FIRE capture; ammo 21\u219220, COVER AIM CLEAR. Miss/cover strike, no aimed combat success established.",
+        "failures": "AIM shot hit cover; rear hit reduced shield 60\u219241; coil armor shots and empty magazine/reload. Continuous held rearming unassessed.",
+        "manual_assistance_note": "Target tap assistance used before manual MOVE+FIRE drag; down feedback does not prove unassisted precision or per-shot accuracy."
+      },
+      "settings_changes": [],
+      "helpful": [
+        "Large route/approach control and objective transitions",
+        "Threat direction labels and explicit target/coil down feedback",
+        "Planning map clearly showed extraction and 23m route"
+      ],
+      "frustrating": [
+        "Pillar concealed patrol; turning needed correction",
+        "Dense overlays and small world signs",
+        "Cover blocked initial AIM burst"
+      ],
+      "route": "Recovered Mara, Sera, Elian using route/approach holds; three coils disabled, planning map inspected and visibly closed, deck upload completed."
+    },
+    {
+      "attempt": 2,
+      "outcome": "WIN \u2014 SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 8,
+        "mission_time": "00:59",
+        "score": 7516,
+        "accuracy_percent": 100,
+        "critical_eliminations": 6,
+        "phase_evades": 1,
+        "uplink_retries": 0,
+        "assisted_shots": 19,
+        "tap_aims": 9,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "evidence": "docs/media/build137-mobile-review1/attempt2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Visible left perimeter patrol selected from fresh screen; simultaneous MOVE drag and FIRE drag, 21\u219219 ammo and SENTINEL DOWN. Native two contacts. Tap aim assistance contributes; this is not unassisted aiming proof.",
+        "turn": "Tap aiming visibly changed heading 000\u2192304 for patrol, later 326\u2192020. Dedicated scene swipe sampled in attempt 1 only.",
+        "aim": "Tap guard, tap AIM, FIRE hold; captureHeld screenshot visibly zoomed, TARGET DOWN, ammo 30\u219221. Next resumed unzoomed capture inspected before further coordinates.",
+        "dash": "Early post-guard dash showed cooldown only. Later visibly charging sentinel: target tap + DASH + FIRE produced PHASE EVADE +75, SENTINEL DOWN; terminal confirms one phase evade.",
+        "combat": "Second patrol, later charging sentinel, three coils, two interceptor shots and final visible sentinel targeted.",
+        "failures_uncertainties": "Magazine emptied at coil II; reload sampled, shield fell 60\u219247 with HIT FROM FRONT. Attacker identity uncertain. Coil armor/open windows varied; no per-shot hit/miss count inferred from terminal 100%. Early DASH not established as evade. Held contact captures interrupt continuous bursts."
+      },
+      "settings_changes": [],
+      "helpful": [
+        "Zoomed guard burst visibly connected after the earlier cover miss",
+        "PHASE EVADE +75 and cooldown gave clear DASH confirmation",
+        "Coil percentages, auto reload, extraction percent and terminal assist counts explained progress"
+      ],
+      "frustrating": [
+        "Offscreen direction cues did not always reveal attacker identity",
+        "Reload exposure caused a hit",
+        "Crowded HUD and muted scene contrast still required careful inspection"
+      ],
+      "route": "Recovered Mara, Sera, Elian using route/approach holds; disabled coils; returned to deck and remained through upload. Assisted completion is not full manual traversal coverage."
+    }
+  ],
+  "learned_between_attempts": [
+    "Route and approach share a context-sensitive hold control.",
+    "AIM is cleared by capture pause; inspect unzoomed projection before choosing another target.",
+    "Coil percentage and armor/open labels explain damage; reload occurs automatically."
+  ],
+  "limitations": [
+    "Synthetic Chromium native two-contact touch at 844x390; software WebGL.",
+    "Captures release contacts and pause; captureHeld also releases. Approximately 3s live / 1.2s FIRE boundaries increase paused observation. No human reaction-time or causal quality benefit inferred.",
+    "Physical phones, Safari, audio, hardware performance, continuous held-burst rearming comfort and continuous enjoyment unassessed.",
+    "AIM is cleared by ordinary pause lifecycle; zoomed capture does not imply persisted zoom after pause. Fresh unzoomed captures inspected. Pausing also closes KIT; KIT not sampled.",
+    "Assisted shots, tap aims and route/approach assists explicitly counted; do not interpret terminal accuracy as manual precision. No unassessed content enjoyment inferred.",
+    "No pageErrors reported by helper during these batches. This is not source validation or certification."
+  ],
+  "cleanup": {
+    "status": "complete",
+    "explicit_close": "Sent {\"op\":\"close\"}; helper reported browserClosed:true, driverPid:42418, chromePid:42428.",
+    "awaited_exit": true,
+    "exit_code": 0,
+    "pid_verification": "ps -p 42418,42428 -o pid=,ppid=,stat=,command= returned no rows, exit 1; exact owned driver and Chrome absent.",
+    "broad_kill": false
+  },
+  "method": {
+    "reviewer": "Independent mobile test sub-agent, GPT-6.1 Sol; no agents",
+    "url": "http://127.0.0.1:61535/",
+    "viewport": {
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "attempt_count": 2,
+    "fresh_lifecycle": "#deploy act+capture; after first terminal report saved incomplete, #play-again act+capture for second attempt. No retry or third attempt.",
+    "inspection": "Only helper --help, live visible screenshots/UI and own report/evidence; no source, tests, docs, prior reviews, recordings or target metadata inspected. Requested source hash not independently verified.",
+    "input": "JSON-lines native CDP two-contact touch; no keyboard/mouse/evaluation. Each screenshot viewed in a separate call before adaptive input. One new scene target per batch; fresh images after turns.",
+    "map": "Opened in attempt 1; planning remained open, closed visibly with #close-map. No KIT or settings changes.",
+    "boundaries": "Observed live boundary shortening including 12000ms request executed 2984.612ms; subsequent 3000ms waits also shortened. Never treated requested duration as executed."
+  },
+  "ratings": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable limitations/friction; 10 exceptional in assessed use. Scores judge observed mobile interaction and presentation, not win/loss or displayed accuracy. No desired score applied.",
+    "overall_mobile": 7,
+    "controls": 7,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 6,
+    "reasons": {
+      "overall_mobile": "A coherent, atmospheric short mission with accessible assist paths and informative feedback; dense landscape HUD and limited continuous manual-control evidence keep this below excellent.",
+      "controls": "Two-contact MOVE+FIRE drag worked in visible patrol combat; tap aim, scene swipe, zoomed FIRE and DASH produced observable results. Cover strike and aiming correction occurred. Physical thumb comfort and continuous held rearming remain unknown.",
+      "gameplay": "Recoveries, coil armor/open feedback, patrol charges and deck defense provided understandable changes in task. Route assistance carried much traversal; this cannot grade unassisted navigation depth or sustained enjoyment.",
+      "presentation": "Rain, wet lighting, industrial silhouettes, teal objectives and restrained terminal panel form a consistent atmosphere. Audio unassessed.",
+      "usability": "Large context-sensitive hold control, map route, explicit objective transitions, auto reload and terminal assist accounting are helpful. Need to distinguish onscreen target from offscreen direction cue added inspection effort.",
+      "readability": "Health/ammo and objective labels were strong. Small world signage, dark geometry, a concealing pillar, and simultaneous threat/interaction/status overlays made 844x390 visually busy."
+    }
+  },
+  "evidence": {
+    "directory": "docs/media/build137-mobile-review1",
+    "raw_actions": "docs/media/build137-mobile-review1/actions.jsonl",
+    "screenshots": "All 58 screenshots preserved under evidence directory, initial plus attempt1-* and attempt2-*",
+    "key_controls": [
+      "attempt1-patrol-manual.jpg",
+      "attempt1-dash-turn.jpg",
+      "attempt1-aim-burst.jpg",
+      "attempt2-patrol-manual.jpg",
+      "attempt2-aim-guard.jpg",
+      "attempt2-charge-dash.jpg"
+    ],
+    "terminal": [
+      "attempt1-terminal.jpg",
+      "attempt2-terminal.jpg"
+    ]
+  }
+}

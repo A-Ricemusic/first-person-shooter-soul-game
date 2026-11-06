@@ -1,0 +1,16 @@
+{
+  "sourceAuditCorrection": "The first scope-normalizer removed an unchanged damage-direction line while stripping the new prefix. It was narrowed to the exact inserted gate. Actual game source was already correct; no runtime edit.",
+  "initialFixtureError": "First service fixture expected HOLD SERVICE; existing unchanged button text is HOLD TO REPAIR. The initial failed build138-service-dev.json and copied build138-initial-service-dev.json remain. Corrected fixture asserts the actual unchanged action label. No game copy changed.",
+  "inheritedFailure": "Old precision-recovery angular assertion assumed full raw scene displacement while tap selection startup easing was enabled. All five profiles fail the same assertion on both frozen Build137 and candidate. Original failures are retained.",
+  "fixtureCorrection": "Disable tap selection only during the four raw angular-gain/lens measurement blocks, restore it before recovery fixtures, retain all original numeric tolerances and movement/resource assertions. Separate current default scene-start group also passes. No input/game setting default changed.",
+  "baselineFailure": "build138-baseline-recovery.json",
+  "candidateInitialFailure": "build138-production-recovery.json",
+  "correctedRecovery": "build138-final-recovery.json",
+  "defaultStartupCoverage": "build138-final-scene.json",
+  "commands": [
+    "MOBILE_PREFIX=build138-production node tools/mobile-service-prompt-suite.mjs (stopped after inherited recovery assertion)",
+    "MOBILE_URL=http://127.0.0.1:61535/ MOBILE_PRECISION_PREFIX=build138-baseline-recovery node /tmp/soulfall-build138-baseline-recovery.mjs (same expected failure)",
+    "MOBILE_PREFIX=build138-final MOBILE_SERVICE_GROUPS=recovery,cues,compact,scene node tools/mobile-service-prompt-suite.mjs"
+  ],
+  "scope": "Five selected groups, not the entire canonical suite. Cue suite retains one desktop menu DOM compatibility check without deployment/gameplay; ordinary playtests remain phone-only."
+}
