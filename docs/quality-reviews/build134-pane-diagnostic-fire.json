@@ -1,0 +1,94 @@
+{
+  "method": "ENGINEERING native phone input/preferences: actor-free arranged world, disabled shots, measured angles, native presets/range and lifecycle. Direct core recoveries earn a retry fixture. Not ordinary play, human comfort, reaction time or performance evidence.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "checks": [
+        "default1 retains the original fine/long FIRE response and no input-down jump"
+      ],
+      "defaultBefore": {
+        "yaw": 0,
+        "pitch": 0,
+        "fire": false,
+        "move": {
+          "x": 0,
+          "z": 0
+        },
+        "ammo": 30,
+        "reserve": 180,
+        "shots": 0,
+        "hp": 100,
+        "shield": 60,
+        "speed": 1,
+        "look": 1,
+        "phase": "playing"
+      },
+      "default": {
+        "fine": {
+          "x": 0.04170616113744076,
+          "y": 0.023459715639810426
+        },
+        "long": {
+          "x": 0.29075837469958,
+          "y": 0
+        },
+        "scene": {
+          "x": 0.07559451135088036,
+          "y": 0.042521912634870214
+        }
+      },
+      "settingsPanEvents": [
+        {
+          "target": "",
+          "x": 674,
+          "y": 195,
+          "before": "1",
+          "after": "1"
+        },
+        {
+          "target": "touch-brightness",
+          "x": 674,
+          "y": 195,
+          "before": "1",
+          "after": "1"
+        },
+        {
+          "target": "touch-sensitivity",
+          "x": 674,
+          "y": 195,
+          "before": "1",
+          "after": "1"
+        },
+        {
+          "target": "",
+          "x": 257.328125,
+          "y": 229.9375,
+          "before": "2.5",
+          "after": "2.5"
+        },
+        {
+          "target": "",
+          "x": 643,
+          "y": 50.5,
+          "before": "2.5",
+          "after": "2.5"
+        },
+        {
+          "target": "resume",
+          "x": 422,
+          "y": 203.4375,
+          "before": "2.5",
+          "after": "2.5"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "chromePid": 72612,
+  "failure": "AssertionError [ERR_ASSERTION]: Panning Settings must not adjust look sensitivity\n\n2.5 !== 1\n\n    at preset (file:///private/tmp/soulfall-build134-fire-diagnostic.mjs:13:707)\n    at async file:///private/tmp/soulfall-build134-fire-diagnostic.mjs:14:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

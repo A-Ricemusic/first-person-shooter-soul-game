@@ -1,0 +1,244 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh terminal attempts",
+  "buildIdentity": {
+    "visible": "BUILD 133",
+    "expectedFrozenSource": "60590c2c27e5e09c5d71dc83f8160c186f2c5ba3",
+    "sourceInspected": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "missionTime": "00:56",
+        "score": 6474,
+        "accuracyPercent": 90,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 12,
+        "tapAims": 5,
+        "routeAssists": 10,
+        "approachAssists": 5
+      },
+      "terminalEvidence": "docs/media/build133-mobile-review1/attempt1-terminal.jpg",
+      "coverage": {
+        "manualCombat": "Entry guard down during simultaneous MOVE and FIRE drag. Patrol first tap hit scenery/fixture (19\u219218 ammo), then visible guard retargeted with MOVE and FIRE drag, LAST SENTINEL DOWN (18\u219215). Final deck guard tapped and fired before win; no separate elimination attribution.",
+        "turn": "Scene swipe changed heading 339\u2192355. FIRE drag also changed view.",
+        "dash": "Tapped after entry kill; displacement, teal flash and 4.3 cooldown visible. No verified evade; terminal phase evades 0.",
+        "aim": "Zoom visible. Re-engaged after pause and fired 900ms into cover, 21\u219219 ammo, COVER AIM CLEAR. No zoomed enemy hit confirmed.",
+        "map": "Opened, inspected and visibly closed.",
+        "assistedCompletion": "Route/approach holds, coil taps with anchored FIRE, auto reload, deck upload."
+      },
+      "failures": [
+        "Patrol first tap selected scenery rather than guard.",
+        "Zoomed burst hit cover.",
+        "Ignored rear threats while routing; shield fell to 41 and later 28.",
+        "No successful phase evade established."
+      ],
+      "settingsChanges": [],
+      "helpfulMoments": [
+        "Entry instruction gave tap/hold/turn/DASH guidance beside large controls.",
+        "TARGET DOWN and SENTINEL DOWN provided kill feedback.",
+        "Route/approach button changed with proximity and survivor checks confirmed recovery.",
+        "Map showed 15m walking route and low-cover legend.",
+        "Numbered coil AIM markers and OFF feedback made boss progress legible.",
+        "Automatic reload completed during movement.",
+        "Upload percentage and STAY ON DECK made final goal explicit."
+      ],
+      "frustratingMoments": [
+        "Mistook a fixture for a patrol target against gray scenery.",
+        "Zoomed shots struck cover rather than an enemy.",
+        "Threats behind the view required interpretation/turning while route movement changed heading.",
+        "Small world signs and map details were harder to read at 844x390."
+      ],
+      "lastObservedCombatVitals": {
+        "health": 100,
+        "shield": 28,
+        "ammo": 20,
+        "reserve": 330,
+        "note": "Before final tap/FIRE batch; end screen does not report final vitals."
+      }
+    },
+    {
+      "attempt": 2,
+      "freshStartEvidence": "docs/media/build133-mobile-review1/attempt2-start-fresh.jpg",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "00:59",
+        "score": 6921,
+        "accuracyPercent": 98,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 23,
+        "tapAims": 9,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build133-mobile-review1/attempt2-terminal.jpg",
+      "settingsChanges": [],
+      "coverage": {
+        "manualCombat": "At Sera approach, tapped newly visible left guard, toggled AIM, simultaneous MOVE drag and FIRE drag for 1000ms. Zoomed held image showed TARGET DOWN, ammo 21\u219212. Another visible patrol tapped and anchored FIRE: ammo 12\u21929, LAST SENTINEL DOWN. Entry guard also down. Two deck-target bursts each consumed one round; LAST INTERCEPTOR DOWN visible, but do not attribute every burst independently.",
+        "dash": "Tapped with CHARGE FRONT LEFT cue then held route. Later cooldown 1.6 visible; full health/shield at approach. Terminal phase evades 0: no successful phase evade established.",
+        "aim": "Visible zoomed FIRE engagement with TARGET DOWN. No new scene coordinate chosen after zoom in that batch; anchored FIRE drag.",
+        "turn": "Tap aim changed heading 90\u219233; no separate scene swipe this attempt (sampled in attempt one).",
+        "map": "Not opened this attempt.",
+        "assistedCompletion": "Route and approach holds, visible coil targets + anchored FIRE, automatic reload, deck upload.",
+        "unassessed": "KIT tools, jump, settings and memories not sampled; no claim about these experiences."
+      },
+      "failures": [
+        "Initial coil III burst exhausted magazine at 15% coil health; waited 1600ms for reload and retargeted coil before firing again.",
+        "Shield dropped to 34 in boss approach and 15 during final upload despite target bursts.",
+        "LAST INTERCEPTOR DOWN coexisted with active INTERCEPTOR CHARGING cue; current-vs-last feedback took interpretation.",
+        "No verified successful evade; zero phase evades."
+      ],
+      "helpfulMoments": [
+        "AIM made the patrol larger and TARGET DOWN confirmed the zoomed engagement.",
+        "Coil percentage made incomplete burst explicit; reload and correction completed it.",
+        "Route/approach prompts and survivor checks stayed consistent.",
+        "Upload progress remained clear under damage."
+      ],
+      "frustratingMoments": [
+        "Gray targets and architecture can blend together.",
+        "Right-side AIM/FIRE/DASH controls require coordination with camera changes.",
+        "Several shots/bursts ended quickly despite held FIRE; LIFT then FIRE appeared in zoomed held capture. Helper release prevents a normal continuous-hold assessment."
+      ],
+      "lastObservedCombatVitals": {
+        "health": 100,
+        "shield": 15,
+        "ammo": 9,
+        "reserve": 330,
+        "note": "Last live image before terminal wait; end screen does not report final vitals."
+      }
+    }
+  ],
+  "limits": [
+    "Synthetic native touch in landscape Chromium 844x390; software WebGL.",
+    "Captures release contacts and pause. captureHeld also releases afterward. AIM cleared by pause; KIT closes.",
+    "Approximately 3s live / 1.2s FIRE boundaries shorten waits. No human reaction-time or causal quality benefit inferred.",
+    "Continuous held-burst rearming comfort, physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Observed title BUILD 133 matches expected title; frozen SHA supplied by task was not independently verified because source inspection was prohibited.",
+    "Paused frequent observations cannot establish human reaction-time, human combat difficulty or causal game-quality benefit.",
+    "Assisted route completion alone does not assess manual controls; actual manual coverage is separately recorded.",
+    "Reported accuracy and assisted-shot counts are terminal UI stats, not an independent raw hit/miss measurement.",
+    "No outcome or enjoyment inferred for unassessed content. No implementation changes or rescore."
+  ],
+  "method": {
+    "url": "http://127.0.0.1:61529/",
+    "viewport": {
+      "width": 844,
+      "height": 390,
+      "orientation": "landscape"
+    },
+    "input": "JSON-lines native two-contact touch through mobile-playtest.mjs",
+    "inspection": "Only helper --help, own screenshots, visible UI/helper output, own evidence filenames and report. No game source, tests, docs, prior reviews, recordings, internal state or target metadata inspected.",
+    "deployment": "act tap #deploy + capture; attempt two act tap #play-again + capture from visible START FRESH. No checkpoint retry or third attempt.",
+    "observation": "Every screenshot viewed separately before dependent adaptive input. At most one new scene target per batch; FIRE anchored afterward. Planning map visibly closed. Wait steps <=12000ms; 12000ms request shortened to ~2982ms. Subsequent ~3000ms requests often shortened; actual timings and boundaries preserved in actions.jsonl.",
+    "settingsChanges": []
+  },
+  "learningBetweenAttempts": [
+    "Learned that HOLD ROUTE changes to HOLD APPROACH at receiver range and survivor recovery changes objective.",
+    "Learned visible numbered coil AIM markers accept scene targeting and OFF confirms completion.",
+    "Recognized scenery-targeting mistake from attempt one and selected clearly visible patrols in attempt two.",
+    "Re-engaged AIM after pause; did not assume zoom survived helper lifecycle.",
+    "Used observed route/coil behavior to proceed, without claiming score changes are causal evidence of control quality."
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 workable with substantial friction; 7 good with noticeable friction; 10 exceptionally clear and comfortable across assessed content. Scores are holistic judgments of these two synthetic paused attempts, not win/loss grades, benchmarks or physical-device certification.",
+    "overallMobile": {
+      "score": 7,
+      "reason": "Coherent playable mission with useful touch assists and strong progress feedback; target recognition and camera/control coordination remain noticeable friction. Paused observation limits confidence about sustained comfort."
+    },
+    "controls": {
+      "score": 7,
+      "reason": "Two-contact MOVE/FIRE drag, scene swipe, AIM and DASH visibly responded. Zoomed patrol engagement worked. Scenery mis-target, cover shots and burst lift prompt prevented a friction-free assessment; continuous rearming remains unassessed."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "Recovery, coil disable and deck upload form a clear changing objective sequence. Patrol combat and incomplete coil/reload correction added decisions. Much traversal was assisted; broader tactics, balance and continuous enjoyment unassessed."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Rainy relay architecture, teal lighting, wet-looking surfaces, weapon view and consistent HUD give a cohesive atmosphere. Gray scenery reduces target separation. Audio and hardware frame pacing unassessed."
+    },
+    "usability": {
+      "score": 8,
+      "reason": "Large labeled controls, contextual route/approach action, paused planning map, automatic reload, objective updates and clear START FRESH/result stats helped completion. Dense right-side actions and LAST-vs-current threat interpretation add friction."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Objectives, health/ammo, survivor checks, coil percentages and upload bar read clearly. Small world labels, map details and gray patrol silhouettes were harder at 844x390."
+    }
+  },
+  "evidence": {
+    "directory": "docs/media/build133-mobile-review1",
+    "rawActions": "docs/media/build133-mobile-review1/actions.jsonl",
+    "cleanup": "docs/media/build133-mobile-review1/cleanup.json",
+    "screenshots": [
+      "docs/media/build133-mobile-review1/attempt1-aim.jpg",
+      "docs/media/build133-mobile-review1/attempt1-approach.jpg",
+      "docs/media/build133-mobile-review1/attempt1-boss-fire1.jpg",
+      "docs/media/build133-mobile-review1/attempt1-boss-fire2.jpg",
+      "docs/media/build133-mobile-review1/attempt1-boss-route.jpg",
+      "docs/media/build133-mobile-review1/attempt1-coil1.jpg",
+      "docs/media/build133-mobile-review1/attempt1-dash-turn.jpg",
+      "docs/media/build133-mobile-review1/attempt1-deck1.jpg",
+      "docs/media/build133-mobile-review1/attempt1-deck2.jpg",
+      "docs/media/build133-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build133-mobile-review1/attempt1-elian.jpg",
+      "docs/media/build133-mobile-review1/attempt1-entry-route.jpg",
+      "docs/media/build133-mobile-review1/attempt1-manual-fire.jpg",
+      "docs/media/build133-mobile-review1/attempt1-map.jpg",
+      "docs/media/build133-mobile-review1/attempt1-patrol-correction.jpg",
+      "docs/media/build133-mobile-review1/attempt1-patrol-manual.jpg",
+      "docs/media/build133-mobile-review1/attempt1-resumed-view.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route1.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route2.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route3.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route4.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route5.jpg",
+      "docs/media/build133-mobile-review1/attempt1-route6.jpg",
+      "docs/media/build133-mobile-review1/attempt1-sera.jpg",
+      "docs/media/build133-mobile-review1/attempt1-terminal.jpg",
+      "docs/media/build133-mobile-review1/attempt1-upload1.jpg",
+      "docs/media/build133-mobile-review1/attempt1-zoom-fire.jpg",
+      "docs/media/build133-mobile-review1/attempt2-boss-route.jpg",
+      "docs/media/build133-mobile-review1/attempt2-coil1.jpg",
+      "docs/media/build133-mobile-review1/attempt2-coil2.jpg",
+      "docs/media/build133-mobile-review1/attempt2-coil3-correction.jpg",
+      "docs/media/build133-mobile-review1/attempt2-coil3.jpg",
+      "docs/media/build133-mobile-review1/attempt2-dash-route.jpg",
+      "docs/media/build133-mobile-review1/attempt2-deck-fire.jpg",
+      "docs/media/build133-mobile-review1/attempt2-deck-fire2.jpg",
+      "docs/media/build133-mobile-review1/attempt2-deck1.jpg",
+      "docs/media/build133-mobile-review1/attempt2-deck2.jpg",
+      "docs/media/build133-mobile-review1/attempt2-elian.jpg",
+      "docs/media/build133-mobile-review1/attempt2-entry-route.jpg",
+      "docs/media/build133-mobile-review1/attempt2-entry.jpg",
+      "docs/media/build133-mobile-review1/attempt2-mara.jpg",
+      "docs/media/build133-mobile-review1/attempt2-patrol-zoom-manual.jpg",
+      "docs/media/build133-mobile-review1/attempt2-patrol2.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route1.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route2.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route3.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route4.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route5.jpg",
+      "docs/media/build133-mobile-review1/attempt2-route6.jpg",
+      "docs/media/build133-mobile-review1/attempt2-sera.jpg",
+      "docs/media/build133-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build133-mobile-review1/attempt2-terminal.jpg",
+      "docs/media/build133-mobile-review1/menu.jpg"
+    ]
+  },
+  "cleanup": {
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "browserClosed": true,
+    "driverPid": 47162,
+    "chromePid": 47183,
+    "verification": "ps -p 47162,47183 -o pid=,ppid=,stat=,command= returned empty output, exit 1: both exact owned PIDs absent. No process kill used."
+  }
+}

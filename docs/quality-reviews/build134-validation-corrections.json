@@ -1,0 +1,48 @@
+{
+  "initialRun": "build134-production-turn-route.json",
+  "unchangedRetest": "build134-production-retest-turn-route.json",
+  "diagnosis": "build134-diagnostic-turn-route.json",
+  "diagnosticHit": {
+    "point": {
+      "x": 51.59375,
+      "y": 771.828125
+    },
+    "rect": {
+      "x": 40.59375,
+      "y": 760.828125,
+      "width": 22,
+      "height": 22,
+      "top": 760.828125,
+      "right": 62.59375,
+      "bottom": 782.828125,
+      "left": 40.59375
+    },
+    "dialogRect": {
+      "x": 15.59375,
+      "y": 42.203125,
+      "width": 358.796875,
+      "height": 759.59375,
+      "top": 42.203125,
+      "right": 374.390625,
+      "bottom": 801.796875,
+      "left": 15.59375
+    },
+    "scroll": 0,
+    "hit": {
+      "id": "",
+      "tag": "BUTTON",
+      "text": "APPLY & CLOSE \u2197"
+    },
+    "checked": false,
+    "after": false
+  },
+  "cause": "Sticky Apply & Close overlapped the fast-turn checkbox at390x844. Native tapping the checkbox center actually activated Apply; removing the sticky positioning lets the settings content flow and scroll normally. Not caused by scene taper and not labeled a transient.",
+  "intermediateCorrection": "Removing sticky positioning fixed the checkbox but the existing four-profile native UI suite then failed to reach the distant Apply button within 10 swipes in three short landscape profiles. Portrait passed. This exposed the usability tradeoff of a long unbounded form.",
+  "intermediateUiReport": "build134-final-settings-ui.json",
+  "paneFollowupFailure": "With16px inner padding, native right-gutter swipes were retargeted to brightness/sensitivity ranges; sensitivity changed from 1 to 2.5. Source diagnostics recorded actual pointerdown targets touch-brightness and touch-sensitivity. This is an actual input failure, not an assertion update.",
+  "paneFollowupReport": "build134-pane-fire-speed.json",
+  "paneFollowupDiagnosis": "build134-pane-diagnostic-fire.json",
+  "correction": "A 28px horizontal gutter separates the native scrolling edge from range hit areas. Preferences now occupy a native overflow region between separate non-overlapping header and Apply rows. Footer/header remain direct dialog children; existing settings elements and handlers are moved into the scroll region without recreation. No failed checkbox, reach or persistence assertion was weakened. Six affected groups rerun on final padded-pane runtime; six previously passing groups cover unchanged game/controls behavior.",
+  "tapContractUpdate": "The old full scene displacement assertion at20px was deliberately moved to30px, the new boundary of unchanged endpoints. Native6.25/7/8/10/20px and jitter/diagonal/reversal checks now separately measure the changed range. No earlier report is overwritten.",
+  "limits": "This is a concrete UI overlap correction; physical-device preference reach and comfort remain unvalidated. Broader canonical tests were not all rerun."
+}

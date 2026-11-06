@@ -1,3 +1,4 @@
+import {sceneDragOffset} from './touch-scene-drag.js';
 import {fireDragSpeed} from './touch-fire-speed.js';
 import {beginTouchTracking} from './touch-tracking.js';
 import {installFieldNotes} from './mobile-field-notes.js';
@@ -138,8 +139,9 @@ export function installTouch(game,{map,onLamp,onBrightness,onSensitivity,onFireS
     if(p.travel>6||game.options.touchTapAim===false)p.sceneDragging=true;
     if(!p.sceneDragging)dx=dy=0;
     else{
-     dx=!game.aim&&game.options.fastSceneTurns!==false?sceneTurnDisplacement(x,innerWidth,innerHeight)-sceneTurnDisplacement(p.appliedX,innerWidth,innerHeight):x-p.appliedX;
-     dy=y-p.appliedY;p.appliedX=x;p.appliedY=y;
+     const offset=game.options.touchTapAim===false?{x,y}:sceneDragOffset(x,y);
+     dx=!game.aim&&game.options.fastSceneTurns!==false?sceneTurnDisplacement(offset.x,innerWidth,innerHeight)-sceneTurnDisplacement(p.appliedX,innerWidth,innerHeight):offset.x-p.appliedX;
+     dy=offset.y-p.appliedY;p.appliedX=offset.x;p.appliedY=offset.y;
     }
    }
    if(game.touchUse&&p.looking&&(dx||dy))game.touchRouteManualLook=true;
@@ -210,4 +212,9 @@ export function installTouch(game,{map,onLamp,onBrightness,onSensitivity,onFireS
  const assistLabel=document.createElement('label');assistLabel.className='checkbox-label';const assist=document.createElement('input');assist.id='touch-aim-assist';assist.type='checkbox';assist.checked=game.options.touchAimAssist!==false;assist.onchange=()=>{game.options.touchAimAssist=assist.checked;onAimAssist?.(assist.checked)};assistLabel.append(assist,document.createTextNode(' Rifle aim assistance'));const assistNote=document.createElement('p');assistNote.className='setting-note';assistNote.textContent='Rifle assistance helps follow the motion of a target you aim at while FIRE is held. Fine drags stay manual; drag away or lift to release. Cover, defeat or reload cancels follow. Lift and press on a target to acquire again. Includes near-miss shot correction. FOLLOW appears on FIRE; assisted shots use a separate personal best.';
  const vaultLabel=document.createElement('label');vaultLabel.className='checkbox-label';const vault=document.createElement('input');vault.id='touch-auto-vault';vault.type='checkbox';vault.checked=game.options.touchAutoVault!==false;vault.onchange=()=>{game.options.touchAutoVault=vault.checked;game.touchVaultContact=null;onAutoVault?.(vault.checked)};vaultLabel.append(vault,document.createTextNode(' Hold-forward auto vault'));const vaultNote=document.createElement('p');vaultNote.className='setting-note';vaultNote.textContent='Hold MOVE forward against low cover to vault. Release MOVE before it starts, or use AIM, to stay behind cover. Auto vault pauses during firing, reload, crouch and held action button. JUMP still vaults manually.';
  const tapLabel=document.createElement('label');tapLabel.className='checkbox-label';const tap=document.createElement('input');tap.id='touch-tap-aim';tap.type='checkbox';tap.checked=game.options.touchTapAim!==false;tap.onchange=()=>{game.options.touchTapAim=tap.checked;onTapAim?.(tap.checked)};tapLabel.append(tap,document.createTextNode(' Tap visible targets to aim'));const tapNote=document.createElement('p');tapNote.className='setting-note';tapNote.textContent='A short scene tap on or near a visible enemy or coil centers a real surface within 36 m. Small finger-position errors are forgiven; nearer cover, the weapon and HUD still block selection. AIM SET confirms an accepted tap; AIM UNCHANGED means no selection was made. Neither promises a hit. The message clears when you drag, fire, switch weapons or leave play. It does not fire or track. Cover blocks selection. Drags still turn normally. Both weapons; using this joins touch-assisted personal bests.';setting.append(lampLabel,lampNote,brightnessLabel,brightness,brightnessNote,label,input,fireLabel,fireInput,firePresets,fireNote,turnLabel,note,tapLabel,tapNote,assistLabel,assistNote,vaultLabel,vaultNote);document.querySelector('#settings-dialog h2').after(setting);
+ // Reserve separate header/footer space; preferences scroll without an overlaid Apply button.
+ const dialog=document.getElementById('settings-dialog'),footer=dialog.querySelector(':scope > .primary-button'),header=dialog.querySelector('.dialog-header');
+ const content=document.createElement('div');content.id='touch-settings-content';content.setAttribute('role','region');content.setAttribute('aria-label','Scrollable field configuration');content.tabIndex=0;
+ for(const node of [...dialog.children])if(node!==header&&node!==footer)content.append(node);
+ dialog.insertBefore(content,footer);
 }

@@ -1,0 +1,162 @@
+{
+  "method": "Native-touch phone engineering checks. Internal angles and input magnitudes are measured; route and source poses/settings are explicitly arranged through the test handle. Not ordinary play, human feel, or a played victory.",
+  "profiles": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "checks": [
+        "scene swipes turn by viewport width; a quarter screen turns46 degrees",
+        "segmented and coalesced scene swipes have equal displacement",
+        "scene swipe reversal returns to its start angle",
+        "fire drag and AIM provide fine control",
+        "joystick gives a gentler middle range with full deflection unchanged",
+        "walking exposes a swept-clear route before a stall; firing hides it",
+        "cached origin and passed corner cannot reverse a clear forward route"
+      ],
+      "failures": [
+        {
+          "name": "native optional fast-turn preference persists and increases long scene travel",
+          "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+        }
+      ],
+      "short": 8.341351376406001,
+      "long": 112.82861196422365,
+      "quarter": 45.83662361046585,
+      "eventBatching": {
+        "direct": 112.82861196422365,
+        "segmented": 112.82861196422381
+      },
+      "fire": 13.123750864005535,
+      "ads": 38.617197554899136,
+      "expectedFocusRatio": 0.3422642260913756,
+      "midStick": 0.20068047019433102,
+      "maxStick": 1,
+      "route": {
+        "trace": true,
+        "next": {
+          "x": -0.6913080561541616,
+          "z": 25.864027398155613,
+          "goal": "core-0",
+          "label": "WEST ARCHIVE"
+        },
+        "clear": true,
+        "stallRemaining": 0,
+        "marker": {
+          "opacity": "1",
+          "rect": {
+            "x": 148.40625,
+            "y": 490.546875,
+            "width": 22,
+            "height": 22,
+            "top": 490.546875,
+            "right": 170.40625,
+            "bottom": 512.546875,
+            "left": 148.40625
+          }
+        }
+      },
+      "cacheProgress": [
+        {
+          "mode": "origin",
+          "z": 30.908058242580456,
+          "waypoint": {
+            "x": 0,
+            "z": 25.908058242580456,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            30.32805824279785,
+            30.10805892944336,
+            30.32805824279785,
+            30.10805892944336,
+            29.178058624267578,
+            28.958057403564453,
+            29.178058624267578,
+            28.958057403564453,
+            28.028059005737305,
+            27.80805778503418,
+            28.028059005737305,
+            27.80805778503418,
+            26.8780574798584,
+            26.658058166503906,
+            26.8780574798584,
+            26.658058166503906,
+            25.728057861328125,
+            25.508058547973633,
+            25.728057861328125,
+            25.508058547973633,
+            24.57805824279785,
+            24.35805892944336,
+            24.57805824279785,
+            24.35805892944336
+          ]
+        },
+        {
+          "mode": "corner",
+          "z": 27.889625741393104,
+          "waypoint": {
+            "x": 0,
+            "z": 24,
+            "goal": "core-0",
+            "label": "WEST ARCHIVE"
+          },
+          "clear": true,
+          "traceZ": [
+            27.30962562561035,
+            27.08962631225586,
+            27.30962562561035,
+            27.08962631225586,
+            26.159626007080078,
+            25.939626693725586,
+            26.159626007080078,
+            25.939626693725586,
+            25.009626388549805,
+            24.78962516784668,
+            25.009626388549805,
+            24.78962516784668
+          ]
+        }
+      ],
+      "settingsDiagnosis": {
+        "point": {
+          "x": 51.59375,
+          "y": 771.828125
+        },
+        "rect": {
+          "x": 40.59375,
+          "y": 760.828125,
+          "width": 22,
+          "height": 22,
+          "top": 760.828125,
+          "right": 62.59375,
+          "bottom": 782.828125,
+          "left": 40.59375
+        },
+        "dialogRect": {
+          "x": 15.59375,
+          "y": 42.203125,
+          "width": 358.796875,
+          "height": 759.59375,
+          "top": 42.203125,
+          "right": 374.390625,
+          "bottom": 801.796875,
+          "left": 15.59375
+        },
+        "scroll": 0,
+        "hit": {
+          "id": "",
+          "tag": "BUTTON",
+          "text": "APPLY & CLOSE ↗"
+        },
+        "checked": false,
+        "after": false
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false
+}

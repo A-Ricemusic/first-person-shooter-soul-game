@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "start",
+      "report": "docs/quality-reviews/build134-padded-start.json",
+      "sha256": "7fe94237b62f2563aa4ed05876ddad8ed095e0f00942adb2b98692b471e3c8a8",
+      "passed": true
+    },
+    {
+      "name": "scene",
+      "report": "docs/quality-reviews/build134-final-scene.json",
+      "sha256": "74d2cfe3bee7f3b17f4c597a16092870741171c4f81f1486592ae550166f37d9",
+      "passed": true
+    },
+    {
+      "name": "tap-aim",
+      "report": "docs/quality-reviews/build134-padded-tap-aim.json",
+      "sha256": "fa347ab191da9303d0a7123f95c7fc3ea93c882f7419c694a6185e5c4e948a5a",
+      "passed": true
+    },
+    {
+      "name": "tolerance",
+      "report": "docs/quality-reviews/build134-final-tolerance.json",
+      "sha256": "02baecfac4554f9abce565e4fbe4bf10001e6a155e078438503c6a95d17b5c5d",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build134-final-compact.json",
+      "sha256": "5475bc0ee81210180f15ed1a4d25876d29bcc8135b5f80ee84f050611fea732a",
+      "passed": true
+    },
+    {
+      "name": "turn-route",
+      "report": "docs/quality-reviews/build134-padded-turn-route.json",
+      "sha256": "388464cb765c851865dcbb889b195980d6d4ffa0166fb27da0ab59ec30c78fce",
+      "passed": true
+    },
+    {
+      "name": "focus",
+      "report": "docs/quality-reviews/build134-padded-focus.json",
+      "sha256": "04acf3930aef94901a3c6da94497b874cb2eb8f08bbf1338e6b0220289f4304d",
+      "passed": true
+    },
+    {
+      "name": "hierarchy",
+      "report": "docs/quality-reviews/build134-final-hierarchy.json",
+      "sha256": "333f5c419ecaf49b1b61e67ad6b8a3456b0233b9cba7323b304d712eeaaede66",
+      "passed": true
+    },
+    {
+      "name": "thumb-layout",
+      "report": "docs/quality-reviews/build134-final-thumb-layout.json",
+      "sha256": "ca94487d63bf71fb17347dffb7af7bdc95b4930f0d4da091503730b8598a1d68",
+      "passed": true
+    },
+    {
+      "name": "fire-speed",
+      "report": "docs/quality-reviews/build134-padded-fire-speed.json",
+      "sha256": "c2f5e98fc426a2a964ae063a82030a166f8be7e02af07287c6fab1c7304f0178",
+      "passed": true
+    },
+    {
+      "name": "phase-route",
+      "report": "docs/quality-reviews/build134-final-phase-route.json",
+      "sha256": "f6461b097c4ba61c823a60388ada50ef995eaf1f3081fdada84dcfbe9cf8628f",
+      "passed": true
+    },
+    {
+      "name": "settings-ui",
+      "report": "docs/quality-reviews/build134-padded-settings-ui.json",
+      "sha256": "3202619c19bd8f804fc28f71ce28eaf9b3b483064640892a0b92895e4bd0a486",
+      "passed": true
+    }
+  ],
+  "commands": [
+    "npm run build (initial candidate)",
+    "MOBILE_PREFIX=build134-production node tools/mobile-scene-start-suite.mjs (five passed, settings case failed)",
+    "MOBILE_PREFIX=build134-production-retest node /tmp/soulfall-build134-remaining.mjs (unchanged turn/settings failure repeated)",
+    "MOBILE_PREFIX=build134-diagnostic node /tmp/soulfall-build134-diagnostic-run.mjs (instrumented native diagnosis, failed as expected)",
+    "npm run build (intermediate natural-flow CSS correction)",
+    "MOBILE_PREFIX=build134-final node tools/mobile-scene-start-suite.mjs (11 passed, final native UI group failed in landscape)",
+    "npm run build (separate settings scroll pane)",
+    "MOBILE_PREFIX=build134-pane node /tmp/soulfall-build134-pane-suite.mjs (UI,turning,tap aim passed; native gutter changed sensitivity)",
+    "MOBILE_URL=http://127.0.0.1:5173/ MOBILE_FIRE_SPEED_PREFIX=build134-pane-diagnostic-fire node /tmp/soulfall-build134-fire-diagnostic.mjs (actual retargeted pointerdown)",
+    "npm run build (wider settings gutter)",
+    "MOBILE_PREFIX=build134-padded node /tmp/soulfall-build134-padded-suite.mjs"
+  ],
+  "scope": "12 affected groups passed: six on the intermediate camera-identical build, then six affected camera/settings groups rerun on final padded-pane runtime/bundles after the documented settings correction. Not the full canonical suite, a natural human-control rating or hardware benchmark.",
+  "runtimeRecordFiles": 204,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/index-B-Rp9BBg.js": "e8bf3522ecad5f5801cad5cae410ee317339473eb41f8e941658f422d9d84dc2",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-DlTFtOKl.css": "cec7eb4577f4007906d75858bcae82540dd9cf25c7a60cdf6ba1ee621ab484f1"
+  },
+  "baseline": "build134-baseline-start.json",
+  "ordinaryEvidence": "build134-parent-play.json",
+  "corrections": "build134-validation-corrections.json",
+  "limits": [
+    "No temporal smoothing: deterministic radial displacement taper. First6px remain reserved for tap intent;6\u201330px intentionally change and catch up gradually.",
+    "30px+ scene endpoints, opt-out immediate motion, FIRE/utility gain, tap intent and finite physical combat use prior rules.",
+    "Rendering geometry and lights are unchanged; no real-device CPU/GPU performance benefit is claimed.",
+    "Paused emulation cannot establish reaction timing, continuous comfort or enjoyment."
+  ]
+}
