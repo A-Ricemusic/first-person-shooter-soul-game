@@ -27,7 +27,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 136</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 137</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -101,6 +101,13 @@ function drawFieldControls(s,service){
  el.classList.toggle('contextual',!!(hint||route));
  hide('field-controls',!(route||hint||(!service&&s.phase==='playing'&&s.time<18&&s.cores===0)));
 }
+let compassSignature='';
+function renderCompass(heading){
+ const bearing=compassReadout(heading),signature=bearing.heading+'|'+bearing.direction;
+ if(signature===compassSignature)return;
+ compassSignature=signature;$('heading').textContent=bearing.heading;$('compass-direction').textContent=bearing.direction;
+ document.querySelector('.bearing').setAttribute('aria-label',bearing.spoken);
+}
 function renderState(s){
  $('damage-direction').classList.toggle('visible',s.damageDirection!=null);if(s.damageDirection!=null)$('damage-direction').style.transform=`rotate(${s.damageDirection}rad)`;
  current=s;if(game?.touchMode){document.body.classList.toggle('touch-combat-focus',game.touchFieldNotes?.focused(s.phase,s.time,game.mouseDown||game.aim)||false);for(const [name,value] of [['ads',game.aim],['sprint',game.touchSprint],['crouch',game.crouchRequested]])document.querySelector('#touch-'+name)?.setAttribute('aria-pressed',String(!!value));const dash=document.querySelector('#touch-dash');if(dash)dash.textContent=s.dashCooldown>0?`DASH ${s.dashCooldown.toFixed(1)}`:'DASH';}hide('custodian-cells',!s.custodian?.active||s.custodian.dead);$('uplink-title').textContent=s.custodian?.active&&!s.custodian.dead?'CUSTODIAN / BROADCAST COILS':'EXTRACTION UPLINK';if(s.custodian?.active&&!s.custodian.dead)renderCoilStates(s);mapOpen=s.phase==='planning';if(mapOpen)renderRouteSelection(s);hide('facility-map',!mapOpen);drawRadar(s);if(mapOpen)drawFacility(s);renderArchive(s);const phase=s.phase;const service=phase==='playing'&&serviceRouteAt(s.player,{eyeHeight:s.player.eyeHeight});hide('service-hint',!service);drawFieldControls(s,service);hide('extraction-panel',!(phase==='playing'&&s.cores===s.totalCores));if(!game?.touchMode)$('extraction-progress').style.width=`${(s.extractionProgress||0)*100}%`;const zoneEdge=s.insideExtraction&&s.extractionMargin<.65;$('extraction-panel').classList.toggle('zone-edge',zoneEdge);if(!game?.touchMode)$('extraction-status').textContent=uploadStatus(s);$('recovery-progress').style.width=`${(s.suitService?.valid&&s.suitService?.near?s.suitService.progress:s.coreProgress||0)*100}%`;
@@ -128,7 +135,7 @@ function renderState(s){
  const count=typeof s.cores==='number'?s.cores:0,slots=$('core-slots');const collected=[...slots.children].map((el,i)=>{const saved=s.coreMarkers?s.coreMarkers.some(c=>c.id===i&&c.collected):i<count;el.classList.toggle('recovered',saved);if(game?.touchMode){const person=CORE_SITES[i].person,text=saved?`${person.split(' ')[0].toUpperCase()} ✓`:String(i+1).padStart(2,'0');if(el.textContent!==text)el.textContent=text;el.setAttribute('aria-label',`${person}: ${saved?'recovered':'not recovered'}`)}return saved});
  if(game?.touchMode){const signature=collected.join('|');if(slots.dataset.memorySignature!==signature){slots.dataset.memorySignature=signature;slots.setAttribute('role','status');slots.setAttribute('aria-live','polite');slots.setAttribute('aria-atomic','true');slots.setAttribute('aria-label',`Memories recovered: ${collected.map((v,i)=>v?CORE_SITES[i].person:null).filter(Boolean).join(', ')||'none'}`)}}
  const cooldown=s.dashCooldown||0;$('dash-status').textContent=cooldown>0?`RECHARGING ${cooldown.toFixed(1)}s`:'SOUL SHIFT READY';$('dash-bar').style.width=`${100-Math.min(100,cooldown/4.5*100)}%`;
- if(s.heading!==undefined){const bearing=compassReadout(s.heading);$('heading').textContent=bearing.heading;$('compass-direction').textContent=bearing.direction;document.querySelector('.bearing').setAttribute('aria-label',bearing.spoken);}
+ if(s.heading!==undefined)renderCompass(s.heading);
  $('interaction').classList.toggle('recovery-local',!!s.localRecovery&&!!s.interaction&&!s.interaction.startsWith('CROUCHED')&&s.interaction!=='Space · Vault');hide('interaction',!s.interaction);if(s.interaction){const suit=s.interaction.startsWith('SUIT SERVICE'),ss=s.suitService;const vault=s.interaction==='Space · Vault',approach=s.interaction.startsWith('APPROACH'),stance=s.interaction.startsWith('CROUCHED');$('interaction').querySelector('kbd').textContent=suit?'E':stance?'C':vault?'SPACE':s.recoveryReady?'E':'◇';$('interaction').querySelector('small').textContent=suit?(ss.spent?'CARTRIDGE SPENT':!ss.powered?'NEEDS 3 MEMORIES + CUSTODIAN DEFEATED':ss.full?'SUIT FULL · CARTRIDGE SAVED':`HOLD ${game?.touchMode?'BUTTON':'E'} · 2 SECONDS · +40 HEALTH / AEGIS 60${ss.progress>0?' · '+Math.floor(ss.progress*100)+'%':''}`):approach?(s.touchApproachStatus||'RELEASE MOVE · HOLD APPROACH'):stance?(s.player.standBlocked?'MOVE TO CLEAR HEADROOM':'LOW PROFILE · SLOWER MOVEMENT'):vault?'CLEAR LANDING':s.recoveryReady?'HOLD TO RECOVER':recoveryApproachText(s);$('interaction').querySelector('span').textContent=typeof s.interaction==='string'?(game?.touchMode?s.interaction.replace(/^E · /,'HOLD · ').replace('Space · Vault','JUMP · Vault').replace('CROUCHED','CROUCH').replace('C TO STAND','TAP CROUCH TO STAND'):s.interaction.replace(/^E · /,'')):'RECOVER SOUL CORE';}
  renderMobileHUD(s,service);
  document.body.classList.toggle('critical-health',s.health<30&&phase==='playing');
@@ -287,7 +294,8 @@ function dockMobileThreat(markers){
  el.style.left=r.left+'px';el.style.top=r.top+'px';el.style.right=el.style.bottom='auto';el.dataset.dock=state.side;
  return [...occupied,r];
 }
-function drawMarkers(markers){
+function drawMarkers(markers,heading=null){
+ if(heading!==null)renderCompass(heading);
  const active=new Set(), placed=[];
  let phoneOpaque;
  const nearest=markers.filter(m=>m.kind==='core'||m.kind==='exit').sort((a,b)=>a.distance-b.distance)[0];

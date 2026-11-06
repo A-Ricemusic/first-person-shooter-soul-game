@@ -1042,7 +1042,7 @@ export class Game {
       this.updateRouteTrace();this.animate(frozen?0:dt);this.renderer.render(this.scene,this.camera);
       this.renderDirty=false;this.renderedPhase=this.phase;
     }
-    this.onMarkers(this.captureMarkers());
+    this.onMarkers(this.captureMarkers(),this.touchMode&&this.phase==='playing'?((-this.yaw*180/Math.PI)%360+360)%360:null);
     this.emitTimer -= dt; if (this.emitTimer <= 0) { this.emit(); this.emitTimer = 0.1; }
     this.frameId = requestAnimationFrame(t => this.frame(t));
   }

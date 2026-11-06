@@ -1,0 +1,240 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "visible": "BUILD 136",
+    "requested_frozen_source": "e835054cbb50ce6c25a753b30bc52d28086e44d5",
+    "source_verified": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 4,
+        "mission_time": "01:04",
+        "score": 6703,
+        "accuracy_percent": 79,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 13,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build136-mobile-review1/attempt1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Opening guard down. Visible perimeter patrol attempted with two contacts; drag shifted aim away, patrol remained. Fresh target tap and anchored FIRE corrected to SENTINEL DOWN. Second sentinel down later.",
+        "scene_turn": "Swipe changed heading 006 to 337; visible TURN cues also used.",
+        "dash": "Tapped after opening guard down; cooldown 4.2 visible. No phase evade credited; no claim it avoided attack.",
+        "aim_zoom_fire": "Visible zoomed capture; ammo 21 to 15, NO IMPACT; no enemy target hit. Pause cleared AIM.",
+        "route": "Used assisted route/approach to recover three people, boss coils, deck upload.",
+        "reload": "Automatic empty-mag reload observed with shield damage."
+      },
+      "settings_changes": [],
+      "failures_uncertainties": [
+        "Patrol drag overshot; required retarget.",
+        "Zoomed burst missed / NO IMPACT.",
+        "Continuous held-burst rearming not assessable due capture releases.",
+        "No successful DASH evade established."
+      ]
+    },
+    {
+      "attempt": 2,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "01:00",
+        "score": 6538,
+        "accuracy_percent": 97,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 11,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build136-mobile-review1/attempt2-terminal.jpg",
+      "coverage": {
+        "aim_zoom_fire": "Tap opening guard, AIM, anchored FIRE; zoomed capture shows TARGET DOWN, ammo 30 to 21. Capture pause cleared zoom; subsequent route capture established normal projection before scene targeting.",
+        "dash": "Tapped during visible FRONT LEFT charge warning; next view cooldown 4.2, sentinel still CHARGING. No phase evade credited. Successful interrupt not established.",
+        "manual_move_fire_drag": "Visible charging patrol target tapped; left MOVE drag and right FIRE drag together. Ammo 21 to 20, heading 322 to 243, sentinel remained. Fresh retarget and anchored burst: ammo 20 to 18, SENTINEL DOWN. Exact first shot impact uncertain.",
+        "scene_turn": "Visible TURN threat cue tapped and fresh view inspected. Manual FIRE drag also changed heading. No separate scene swipe this attempt; scene swipe sampled in attempt 1.",
+        "route": "Assisted recoveries, coil approach and deck entry. Untreated second sentinel/rear threats caused shield damage.",
+        "boss_reload": "Coils I/II off, III reduced to 37% before empty magazine. Reload wait took shield damage; fresh observed target burst turned III off.",
+        "upload": "Stayed on deck while enemies visible; shield 60 to 34; terminal win."
+      },
+      "settings_changes": [],
+      "failures_uncertainties": [
+        "Manual drag again needed correction; first batch not a confirmed kill.",
+        "DASH success against charge unproven, zero phase evades.",
+        "Continuous hold/rearming comfort unassessed."
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic native-touch Chromium at 844x390; software WebGL fallback.",
+    "Every capture releases contacts and pauses for inspection; approximately 3s live / 1.2s FIRE boundaries shorten waits. No human reaction-time or causal quality benefit inferred.",
+    "Pausing clears AIM and closes KIT.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "evidence_directory": "docs/media/build136-mobile-review1",
+  "protocol": {
+    "url": "http://127.0.0.1:61534/",
+    "viewport": [
+      844,
+      390
+    ],
+    "input": "native CDP two-contact touch",
+    "source_access": "Only mobile-playtest.mjs --help read; no game source, tests, docs, prior reviews, recordings or hidden state inspected. Own generated evidence/report only.",
+    "fresh_lifecycle": "Attempt 1 act tap #deploy + capture. Attempt 2 act tap #play-again + capture after first terminal stats saved. No retry or third attempt.",
+    "observation": "Every returned screenshot viewed in separate tool call before dependent input. One new scene target per batch. Waits <=3000ms; actual shortened waits inspected in timings.",
+    "menus": "No map, KIT or settings opened; no settings changed."
+  },
+  "learning_between_attempts": [
+    "Opening AIM burst in attempt 1 had no target and reported NO IMPACT; attempt 2 applied tap aim to visible opening guard then zoomed burst, confirmed TARGET DOWN.",
+    "Tap aim and anchored fire were easier to direct than simultaneous manual MOVE/FIRE drag; even a smaller second drag still required retarget.",
+    "Learned visible route/approach and coil/deck flow from attempt 1. Later completion remains assisted and cannot certify manual traversal or combat comfort."
+  ],
+  "helpful_moments": [
+    {
+      "attempt": 1,
+      "moment": "Opening instruction names tap aim, FIRE, swipe and DASH; opening guard down confirmation was immediate and readable.",
+      "evidence": "attempt1-manual-move-fire.jpg"
+    },
+    {
+      "attempt": 1,
+      "moment": "TURN FIRE LEFT revealed patrol; fresh retarget produced clear SENTINEL DOWN feedback.",
+      "evidence": "attempt1-patrol-correction.jpg"
+    },
+    {
+      "attempt": 1,
+      "moment": "Recovery checkmarks, individual coil OFF meters, automatic reload and upload percentage kept objectives understandable.",
+      "evidence": "attempt1-coil2b.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Zoomed guard kill and explicit assisted statistics at terminal distinguish assist use.",
+      "evidence": "attempt2-zoom-guard.jpg"
+    }
+  ],
+  "frustrating_moments": [
+    {
+      "attempt": 1,
+      "moment": "FIRE drag shifted aim away during patrol engagement; needed a new target tap.",
+      "evidence": "attempt1-patrol-manual.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Manual drag still changed heading substantially and left target alive; successful correction relied on tap aim.",
+      "evidence": "attempt2-patrol-manual.jpg"
+    },
+    {
+      "attempt": 1,
+      "moment": "Zoomed empty-scene burst wasted six rounds (NO IMPACT); my input error retained.",
+      "evidence": "attempt1-aim-burst.jpg"
+    },
+    {
+      "attempt": 2,
+      "moment": "Rear threats and small world labels were harder to interpret than large overlay cues. Empty magazine interrupted coil damage.",
+      "evidence": "attempt2-coil3.jpg"
+    }
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with noticeable friction, 10 exceptionally clear and comfortable across assessed content. Holistic judgment, not outcome-derived or arithmetic average; no desired score.",
+    "overall_mobile": 7.0,
+    "controls": 6.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 7.0,
+    "reasons": {
+      "overall_mobile": "Clear objective progression and attractive coherent station presentation, with reliable visible assist completion across two runs. Repeated manual aim corrections limit confidence in mobile combat comfort.",
+      "controls": "Large labeled controls and tap aim helped. Two-contact patrol drag needed correction in both attempts. DASH activation/cooldown observed, effective evade not proven. Zoom works, but sustained rearming cannot be judged.",
+      "gameplay": "Recoveries, timed coil vulnerability, reload pressure and deck hold supplied distinct observable tasks. Assisted route reduced navigation effort. Two wins do not establish difficulty balance or uninterrupted enjoyment.",
+      "presentation": "Rainy station, teal/orange feedback, gun view, environmental names and recovery result gave a coherent visual identity. Audio unassessed.",
+      "usability": "Route/approach labels, directional threat prompts, phase labels, auto reload and transparent assist counts were useful. Untreated rear enemies created pressure while focus stayed on coils.",
+      "readability": "Objective, health/ammo, target feedback and results were legible at 844x390. World signage and distant enemies were much smaller and lower contrast; overlays occupy appreciable scene space."
+    }
+  },
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "driver_pid": 25801,
+    "chrome_pid": 25811,
+    "helper_browser_closed": true,
+    "ps_check": "ps -p 25801,25811 -o pid=,ppid=,comm= returned no process rows after helper exit",
+    "owned_pids_absent": true,
+    "broad_kill_used": false
+  },
+  "raw_evidence": {
+    "actions": "docs/media/build136-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build136-mobile-review1/attempt1-aim-burst.jpg",
+      "docs/media/build136-mobile-review1/attempt1-approach.jpg",
+      "docs/media/build136-mobile-review1/attempt1-boss-route.jpg",
+      "docs/media/build136-mobile-review1/attempt1-coil1.jpg",
+      "docs/media/build136-mobile-review1/attempt1-coil2.jpg",
+      "docs/media/build136-mobile-review1/attempt1-coil2b.jpg",
+      "docs/media/build136-mobile-review1/attempt1-coil3.jpg",
+      "docs/media/build136-mobile-review1/attempt1-dash-turn.jpg",
+      "docs/media/build136-mobile-review1/attempt1-deck1.jpg",
+      "docs/media/build136-mobile-review1/attempt1-deck2.jpg",
+      "docs/media/build136-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build136-mobile-review1/attempt1-elian.jpg",
+      "docs/media/build136-mobile-review1/attempt1-manual-move-fire.jpg",
+      "docs/media/build136-mobile-review1/attempt1-patrol-correction.jpg",
+      "docs/media/build136-mobile-review1/attempt1-patrol-manual.jpg",
+      "docs/media/build136-mobile-review1/attempt1-patrol-turn.jpg",
+      "docs/media/build136-mobile-review1/attempt1-reload.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route1.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route2.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route3.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route4.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route5.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route6.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route7.jpg",
+      "docs/media/build136-mobile-review1/attempt1-route8.jpg",
+      "docs/media/build136-mobile-review1/attempt1-second-patrol-fire.jpg",
+      "docs/media/build136-mobile-review1/attempt1-second-patrol-turn.jpg",
+      "docs/media/build136-mobile-review1/attempt1-sera.jpg",
+      "docs/media/build136-mobile-review1/attempt1-terminal.jpg",
+      "docs/media/build136-mobile-review1/attempt1-upload.jpg",
+      "docs/media/build136-mobile-review1/attempt2-boss-route.jpg",
+      "docs/media/build136-mobile-review1/attempt2-coil1.jpg",
+      "docs/media/build136-mobile-review1/attempt2-coil2.jpg",
+      "docs/media/build136-mobile-review1/attempt2-coil3.jpg",
+      "docs/media/build136-mobile-review1/attempt2-coil3b.jpg",
+      "docs/media/build136-mobile-review1/attempt2-dash-threat.jpg",
+      "docs/media/build136-mobile-review1/attempt2-deck1.jpg",
+      "docs/media/build136-mobile-review1/attempt2-deck2.jpg",
+      "docs/media/build136-mobile-review1/attempt2-elian.jpg",
+      "docs/media/build136-mobile-review1/attempt2-mara.jpg",
+      "docs/media/build136-mobile-review1/attempt2-patrol-correct.jpg",
+      "docs/media/build136-mobile-review1/attempt2-patrol-manual.jpg",
+      "docs/media/build136-mobile-review1/attempt2-reload.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route1.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route2.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route3.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route4.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route5.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route6.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route7.jpg",
+      "docs/media/build136-mobile-review1/attempt2-route8.jpg",
+      "docs/media/build136-mobile-review1/attempt2-sera.jpg",
+      "docs/media/build136-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build136-mobile-review1/attempt2-terminal.jpg",
+      "docs/media/build136-mobile-review1/attempt2-upload.jpg",
+      "docs/media/build136-mobile-review1/attempt2-zoom-guard.jpg",
+      "docs/media/build136-mobile-review1/menu.jpg"
+    ]
+  },
+  "unassessed": [
+    "Physical phone ergonomics, Safari, audio, hardware performance, continuous enjoyment",
+    "Continuous held-burst rearming comfort: both capture modes release contacts and pause",
+    "KIT/tool selection, planning map, settings, checkpoint retry, recovered memory reading",
+    "Successful DASH evade; both terminal screens report zero phase evades",
+    "Unassisted full mission completion; assisted route completion is not a proxy for manual controls"
+  ]
+}

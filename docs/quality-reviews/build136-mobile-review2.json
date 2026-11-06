@@ -1,0 +1,242 @@
+{
+  "status": "complete: exactly two fresh terminal attempts",
+  "identity": {
+    "expectedSource": "e835054cbb50ce6c25a753b30bc52d28086e44d5",
+    "sourceInspected": false,
+    "visibleTitle": "SOULFALL",
+    "visibleBuild": 136
+  },
+  "viewport": [
+    390,
+    844
+  ],
+  "url": "http://127.0.0.1:61534/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 4,
+        "missionTime": "01:00",
+        "score": 6717,
+        "accuracy": "100%",
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 12,
+        "tapAims": 5,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "evidence": "docs/media/build136-mobile-review2/attempt1-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Opening guard down, 30\u219221 rounds; visible patrol engaged after TURN, MOVE left plus FIRE drag and AIM, 21\u219219; SENTINEL DOWN. Tap aiming assistance used.",
+        "dash": "Tapped after opening guard; cooldown 4.2 visible. No phase evade demonstrated.",
+        "turn": "Scene swipe changed heading 003\u2192334; visible TURN cue brought patrol into view.",
+        "aim": "Zoomed held capture attempt1-aim-patrol.jpg; LIFT then FIRE visible. Pause clears AIM.",
+        "map": "Opened, inspected and visibly closed.",
+        "mission": "Three assisted recoveries, three coils disabled, upload complete.",
+        "unassessed": "KIT, JUMP, alternate tools, unassisted precision and successful phase evasion not assessed."
+      },
+      "failuresUncertainties": [
+        "Exact misses not countable from screenshots; terminal reports 100% accuracy, not independently verified.",
+        "Coil III burst exhausted magazine with 26% remaining; waited for reload then fired again.",
+        "Tap/cue heading metadata briefly lagged visible orientation.",
+        "DASH did not demonstrate a combat evade."
+      ],
+      "start": "Visible #deploy act batch with capture"
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH (#play-again), captured; no checkpoint retry",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalStats": {
+        "eliminations": 4,
+        "missionTime": "00:59",
+        "score": 6722,
+        "accuracy": "100%",
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 12,
+        "tapAims": 6,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "evidence": "docs/media/build136-mobile-review2/attempt2-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Opening guard: scene tap, AIM, simultaneous MOVE forward/right and FIRE drag, 30\u219221 rounds, TARGET DOWN. Separate visible patrol: TURN cue, inspect, scene tap, MOVE left and FIRE drag, 21\u219219, SENTINEL DOWN. Assisted tap aims used; not an unassisted precision test.",
+        "aim": "attempt2-manual-aim.jpg shows zoomed FIRE burst and LIFT then FIRE. AIM cleared at pause; next batch used anchored controls, not a zoom-derived scene coordinate.",
+        "dash": "Tapped after opening guard in route batch; cooldown 1.5 visible. No evade success claimed; terminal phase evades 0.",
+        "turn": "Visible TURN cue brought patrol into view, heading 292 in capture.",
+        "mission": "Three recoveries by HOLD ROUTE/APPROACH, coils II/I/III fired on individually after fresh views, magazine empty with III at 26%; waited 1.8s for reload and fired; returned to deck, shot interceptor, stayed for terminal upload.",
+        "map": "Not reopened in second attempt. KIT, JUMP and alternate tools not sampled."
+      },
+      "failuresUncertainties": [
+        "Magazine exhausted before coil III disabled; reload correction required.",
+        "Exact missed shots cannot be counted from visible feedback; UI reports 100% accuracy, retained as displayed rather than independent verification.",
+        "Shield dropped to 41 after final coil/reload batch and 47 during uplink burst; attacker attribution uncertain. Health remained 100 in observed live captures.",
+        "DASH sampled without demonstrating charge interruption.",
+        "No sustained continuous hold/rearm assessment due helper capture releases."
+      ]
+    }
+  ],
+  "settingsChanges": [],
+  "limitations": [
+    "Synthetic paused Chromium native touch, Software-WebGL fallback.",
+    "Captures release contacts and pause; captureHeld also releases before pause. Automatic boundaries around 3s live / 1.2s FIRE shorten waits. No reaction-time or causal quality benefit inferred.",
+    "Continuous held-burst rearming comfort unassessed. Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Automatic approximately 3s live / 1.2s FIRE captures increase paused observation frequency. They may skip later steps; no human reaction-time or causal game-quality benefit inferred.",
+    "Pause closes KIT and clears AIM through ordinary lifecycle. Zoomed captures do not establish continuing AIM after pause.",
+    "Two short, heavily assisted mission runs do not establish sustained enjoyment or assess all content."
+  ],
+  "betweenAttemptsLearning": [
+    "HOLD ROUTE changes to HOLD APPROACH at receivers; continuing the visible hold recovered the memory and selected another objective.",
+    "TURN cue can bring a patrol into view; inspect the changed scene before tapping it.",
+    "Numbered coils show OFF and remaining percentage; auto reload required after the initial magazine.",
+    "Applied familiarity on second fresh run; no conclusion that second-run speed or score differences reflect quality or reaction time."
+  ],
+  "helpfulMoments": [
+    {
+      "evidence": "attempt1-map.jpg",
+      "observation": "Readable facility overview with selected receiver and walking route; stayed open until CLOSE MAP."
+    },
+    {
+      "evidence": "attempt1-mara.jpg",
+      "observation": "Teal named recovery check and next objective clearly confirmed progress."
+    },
+    {
+      "evidence": "attempt1-coil-fire1.jpg",
+      "observation": "Numbered coil II OFF provided concrete hit/progress confirmation."
+    },
+    {
+      "evidence": "attempt2-manual-aim.jpg",
+      "observation": "AIM visibly magnified the rifle view; large FIRE and MOVE areas supported two native contacts."
+    },
+    {
+      "evidence": "attempt2-terminal.jpg",
+      "observation": "Terminal panel fits portrait and separately discloses touch assists."
+    }
+  ],
+  "frustratingMoments": [
+    {
+      "evidence": "attempt2-turn.jpg",
+      "observation": "Small patrol against dark, repetitive architecture required careful visual inspection."
+    },
+    {
+      "evidence": "attempt1-aim-patrol.jpg",
+      "observation": "LIFT then FIRE was explicit but burst cessation/rearm comfort remained unclear under forced captures."
+    },
+    {
+      "evidence": "attempt2-coil-fire3.jpg",
+      "observation": "Last coil remained at 26% as magazine emptied; auto reload interrupted attack."
+    },
+    {
+      "evidence": "attempt1-route4.jpg",
+      "observation": "Assisted routing turned toward a close wall while PATH RIGHT and rear threat competed for attention; route later continued successfully."
+    },
+    {
+      "evidence": "attempt1-deploy.jpg",
+      "observation": "Four compact AIM/KIT/DASH/JUMP buttons cluster beside FIRE; physical thumb precision and occlusion remain untested."
+    }
+  ],
+  "ratings": {
+    "scale": "Subjective observed emulated-mobile quality, 0 unusable, 5 workable with substantial friction, 7 good with clear limitations, 10 exceptional with negligible observed friction. Overall is holistic, not an arithmetic average or outcome grade. No enjoyment inferred for unplayed memories or other content.",
+    "overallMobile": 7,
+    "controls": {
+      "score": 7,
+      "reason": "Reachable MOVE/FIRE, working two-contact drag, visible zoom and dash cooldown. Tap assistance supported acquisition. Dense secondary buttons; unassisted precision, physical ergonomics and continuous rearm unassessed."
+    },
+    "gameplay": {
+      "score": 7,
+      "reason": "Coherent recover/disable/upload progression with patrol and coil feedback. Assisted route dominated traversal; brief assisted combat and repeated reload interruption limit depth assessment."
+    },
+    "presentation": {
+      "score": 8,
+      "reason": "Consistent teal/amber visual language, rain, industrial architecture and polished title/result composition. Dark repeated scenery reduces silhouette separation."
+    },
+    "usability": {
+      "score": 7,
+      "reason": "Map, changing action labels, named checks and START FRESH made progression understandable. Route-facing-wall moment and competing threat/path prompts added friction."
+    },
+    "readability": {
+      "score": 7,
+      "reason": "Primary objective, health/ammo and result panel legible at 390x844. Small enemy silhouettes, tiny secondary text and dense stacked HUD need closer inspection."
+    }
+  },
+  "protocol": {
+    "readOnlyLearning": "Only tools/mobile-playtest.mjs --help read; no game source/tests/docs/prior reviews/recordings/internal state/target metadata inspected. Own report reread solely to append results.",
+    "input": "JSON-lines helper native two-contact touch; visible UI/selectors/geometry; no keyboard, mouse, evaluation or simulation changes.",
+    "screenshots": "Each returned screenshot viewed in a separate tool call before dependent adaptive input. At most one new scene target per batch.",
+    "observationBoundaries": "Inspected timing/boundary output; requested waits <=3000ms and accepted shortened waits. No boundary bypass.",
+    "attemptCount": 2,
+    "checkpointRetries": 0,
+    "settingsChanges": [],
+    "sourceIdentity": "Frozen SHA supplied by requester; not independently inspected. BUILD 136 visible on title; no visible identity mismatch."
+  },
+  "cleanup": {
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "browserClosed": true,
+    "ownedDriverPid": 31114,
+    "ownedChromePid": 31124,
+    "verification": "ps -p 31114,31124 -o pid=,ppid=,comm= returned no rows, exit 1; both exact PIDs absent. No broad kill used."
+  },
+  "rawEvidence": {
+    "directory": "docs/media/build136-mobile-review2",
+    "actionsLog": "docs/media/build136-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build136-mobile-review2/attempt1-aim-patrol.jpg",
+      "docs/media/build136-mobile-review2/attempt1-coil-fire1.jpg",
+      "docs/media/build136-mobile-review2/attempt1-coil-fire2.jpg",
+      "docs/media/build136-mobile-review2/attempt1-coil-fire3.jpg",
+      "docs/media/build136-mobile-review2/attempt1-coil-fire4.jpg",
+      "docs/media/build136-mobile-review2/attempt1-custodian-near.jpg",
+      "docs/media/build136-mobile-review2/attempt1-custodian-route.jpg",
+      "docs/media/build136-mobile-review2/attempt1-dash-turn.jpg",
+      "docs/media/build136-mobile-review2/attempt1-deploy.jpg",
+      "docs/media/build136-mobile-review2/attempt1-elian.jpg",
+      "docs/media/build136-mobile-review2/attempt1-manual-fire.jpg",
+      "docs/media/build136-mobile-review2/attempt1-map.jpg",
+      "docs/media/build136-mobile-review2/attempt1-mara.jpg",
+      "docs/media/build136-mobile-review2/attempt1-return1.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route2.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route3.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route4.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route5.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route6.jpg",
+      "docs/media/build136-mobile-review2/attempt1-route7.jpg",
+      "docs/media/build136-mobile-review2/attempt1-sera.jpg",
+      "docs/media/build136-mobile-review2/attempt1-terminal.jpg",
+      "docs/media/build136-mobile-review2/attempt1-turn-patrol.jpg",
+      "docs/media/build136-mobile-review2/attempt1-uplink-fire.jpg",
+      "docs/media/build136-mobile-review2/attempt1-uplink1.jpg",
+      "docs/media/build136-mobile-review2/attempt2-coil-fire1.jpg",
+      "docs/media/build136-mobile-review2/attempt2-coil-fire2.jpg",
+      "docs/media/build136-mobile-review2/attempt2-coil-fire3.jpg",
+      "docs/media/build136-mobile-review2/attempt2-coil-fire4.jpg",
+      "docs/media/build136-mobile-review2/attempt2-custodian-near.jpg",
+      "docs/media/build136-mobile-review2/attempt2-custodian-route.jpg",
+      "docs/media/build136-mobile-review2/attempt2-elian.jpg",
+      "docs/media/build136-mobile-review2/attempt2-fresh.jpg",
+      "docs/media/build136-mobile-review2/attempt2-manual-aim.jpg",
+      "docs/media/build136-mobile-review2/attempt2-mara.jpg",
+      "docs/media/build136-mobile-review2/attempt2-patrol-fire.jpg",
+      "docs/media/build136-mobile-review2/attempt2-return1.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route1.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route2.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route3.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route4.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route5.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route6.jpg",
+      "docs/media/build136-mobile-review2/attempt2-route7.jpg",
+      "docs/media/build136-mobile-review2/attempt2-sera.jpg",
+      "docs/media/build136-mobile-review2/attempt2-terminal.jpg",
+      "docs/media/build136-mobile-review2/attempt2-turn.jpg",
+      "docs/media/build136-mobile-review2/attempt2-uplink-fire.jpg",
+      "docs/media/build136-mobile-review2/attempt2-uplink1.jpg",
+      "docs/media/build136-mobile-review2/menu.jpg"
+    ]
+  }
+}
