@@ -1,0 +1,412 @@
+{
+  "method": "ENGINEERING: DOM-only phone fixture, not the game. Visible counters respond to native FIRE/ROUTE contacts. Checks observation truncation, modal exceptions, skipped stale inputs and exact owned-process cleanup. No quality, damage, balance or enjoyment claim.",
+  "cases": [
+    {
+      "name": "selector long wait",
+      "result": {
+        "type": "result",
+        "sequence": 2,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build124-driver-before-fix/fire-0.jpg",
+        "captureMs": 20.304665999999997,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "FIXTURE READY",
+          "health": null,
+          "shield": null,
+          "ammo": "29",
+          "reserve": "0",
+          "weapon-name": "FIXTURE RIFLE",
+          "reload-label": "VISIBLE SHOT",
+          "touch-use": "ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": null,
+          "compass-direction": null,
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 11.752000000000407
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.563917
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 12000
+            },
+            "clientMs": 1200.244791
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1229.1709580000002,
+          "fireMilliseconds": 1217.3478330000003,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 2,
+          "skippedActions": 2,
+          "requestedWaitMs": 12000,
+          "executedWaitMs": 1198.563917
+        },
+        "clientMs": 1580.687042,
+        "pageErrors": []
+      },
+      "passed": true
+    },
+    {
+      "name": "coordinate long wait",
+      "result": {
+        "type": "result",
+        "sequence": 3,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build124-driver-before-fix/fire-1.jpg",
+        "captureMs": 13.926250000000437,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "FIXTURE READY",
+          "health": null,
+          "shield": null,
+          "ammo": "57",
+          "reserve": "0",
+          "weapon-name": "FIXTURE RIFLE",
+          "reload-label": "VISIBLE SHOT",
+          "touch-use": "ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": null,
+          "compass-direction": null,
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "x": 0.8767772511848341,
+              "y": 0.782051282051282
+            },
+            "clientMs": 2.0854589999999007
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 1198.4878330000001
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 12000
+            },
+            "clientMs": 1200.2321250000005
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1205.5656250000002,
+          "fireMilliseconds": 1203.4724580000002,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 2,
+          "skippedActions": 1,
+          "requestedWaitMs": 12000,
+          "executedWaitMs": 1198.4878330000001
+        },
+        "clientMs": 1549.6880420000002,
+        "pageErrors": []
+      },
+      "passed": true
+    },
+    {
+      "name": "split waits share one budget",
+      "result": {
+        "type": "result",
+        "sequence": 4,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build124-driver-before-fix/fire-2.jpg",
+        "captureMs": 19.927959000000556,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "FIXTURE READY",
+          "health": null,
+          "shield": null,
+          "ammo": "85",
+          "reserve": "0",
+          "weapon-name": "FIXTURE RIFLE",
+          "reload-label": "VISIBLE SHOT",
+          "touch-use": "ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": null,
+          "compass-direction": null,
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 7.258041999999477
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 700
+            },
+            "clientMs": 702.140875
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 494.95337500000005
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 700
+            },
+            "clientMs": 494.2261669999998
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1214.5269169999992,
+          "fireMilliseconds": 1207.265125,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 3,
+          "skippedActions": 1,
+          "requestedWaitMs": 700,
+          "executedWaitMs": 494.95337500000005
+        },
+        "clientMs": 1563.860084,
+        "pageErrors": []
+      },
+      "passed": true
+    },
+    {
+      "name": "released fire retains cumulative budget within one batch",
+      "result": {
+        "type": "result",
+        "sequence": 5,
+        "path": "/Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/docs/media/build124-driver-before-fix/fire-3.jpg",
+        "captureMs": 20.244582999999693,
+        "beforePause": {
+          "phase": "playing",
+          "objective": "FIXTURE READY",
+          "health": null,
+          "shield": null,
+          "ammo": "112",
+          "reserve": "0",
+          "weapon-name": "FIXTURE RIFLE",
+          "reload-label": "VISIBLE SHOT",
+          "touch-use": "ROUTE",
+          "kills": null,
+          "timer": null,
+          "heading": null,
+          "compass-direction": null,
+          "interaction": null,
+          "signal-distance": null,
+          "extraction-status": null,
+          "memory-card": null,
+          "announcement": null,
+          "event-feed": null,
+          "dash-status": null,
+          "facility-map": null,
+          "field-controls": null,
+          "service-hint": null,
+          "threat-focus": null,
+          "touch-route-cue": null,
+          "touch-threat-cue": null
+        },
+        "after": {
+          "phase": "paused"
+        },
+        "cssViewport": {
+          "width": 844,
+          "height": 390
+        },
+        "imagePixels": {
+          "width": 844,
+          "height": 390
+        },
+        "screenshotScale": 1,
+        "timings": [
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 5.03716600000007
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 650
+            },
+            "clientMs": 650.979875
+          },
+          {
+            "action": {
+              "type": "up",
+              "id": 1
+            },
+            "clientMs": 6.493667000000642
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 350
+            },
+            "clientMs": 351.63274999999885
+          },
+          {
+            "action": {
+              "type": "down",
+              "id": 1,
+              "selector": "#touch-fire"
+            },
+            "clientMs": 5.953582999998616
+          },
+          {
+            "action": {
+              "type": "wait",
+              "ms": 539.0035000000016
+            },
+            "requestedAction": {
+              "type": "wait",
+              "ms": 1000
+            },
+            "clientMs": 541.1132080000007
+          }
+        ],
+        "inputMode": "native-cdp-touch",
+        "observation": {
+          "liveMilliseconds": 1581.4094999999988,
+          "fireMilliseconds": 1215.9248329999982,
+          "liveLimitMs": 3000,
+          "fireLimitMs": 1200
+        },
+        "observationBoundary": {
+          "reason": "fire",
+          "beforeAction": 6,
+          "skippedActions": 1,
+          "requestedWaitMs": 1000,
+          "executedWaitMs": 539.0035000000016
+        },
+        "clientMs": 1932.130709000001,
+        "pageErrors": []
+      },
+      "passed": true
+    }
+  ],
+  "failure": "Error: Command failed: Two contact maximum\n    at EventEmitter.check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-driver-observation.mjs:14:338)\n    at EventEmitter.emit (node:events:509:28)\n    at Interface.<anonymous> (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-driver-observation.mjs:13:125)\n    at Interface.emit (node:events:509:28)\n    at [_onLine] [as _onLine] (node:internal/readline/interface:465:12)\n    at [_normalWrite] [as _normalWrite] (node:internal/readline/interface:647:22)\n    at Socket.ondata (node:internal/readline/interface:263:23)\n    at Socket.emit (node:events:509:28)\n    at addChunk (node:internal/streams/readable:563:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)",
+  "cleanup": {
+    "driverPid": 4937,
+    "chromePid": 4938,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "closed": {
+      "type": "closed",
+      "reason": "input ended or close requested",
+      "driverPid": 4937,
+      "chromePid": 4938,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "ownedPidsAbsent": [
+      true,
+      true
+    ]
+  },
+  "stderr": ""
+}

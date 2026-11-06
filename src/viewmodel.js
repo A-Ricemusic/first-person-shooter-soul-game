@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {phoneHipLowering} from './mobile-viewmodel.js';
 const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
 const wrist=new THREE.Vector3(),elbow=new THREE.Vector3(),direction=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
 /** Deterministic visual pose only. Reload mechanics and camera are game-owned. */
@@ -10,7 +11,7 @@ export function poseHandling(g,{ads,progress,bob}){
  const vaultReach=g.vault?Math.sin(Math.PI*g.vault.elapsed/.62):0;
  if(g.supportHand&&vaultReach){g.supportHand.position.y+=.13*vaultReach;g.supportHand.position.z-=.14*vaultReach;g.supportHand.rotation.x=-.35*vaultReach;}
  const handling=Math.sin(progress*Math.PI);
- g.weapon.position.set(.3*(1-ads),-.27+ads*.115-Math.abs(bob)+handling*.15,-.35+g.kick*.065);
+ g.weapon.position.set(.3*(1-ads),-.27+ads*.115-Math.abs(bob)+handling*.15-phoneHipLowering(g.touchMode,ads),-.35+g.kick*.065);
  g.weapon.rotation.set(g.kick*.035-handling*.12,handling*.08,-handling*.16-bob*.8);
  // Sleeves bridge a fixed elbow to each wrist. Hand geometry never scales.
  for(const [side,x,y,z] of [['Support',-.27,-.34,-.06],['Grip',.23,-.36,.10]]){

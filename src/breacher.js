@@ -5,6 +5,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {capacitorShot,activateCapacitor} from './capacitors.js';
 import {hitCustodian} from './custodian.js';
 import {disposeAsset} from './viewmodel.js';
+import {phoneHipLowering} from './mobile-viewmodel.js';
 export const BREACHER={pellets:8,spread:.065,adsSpread:.048,cadence:.88,reload:.55};
 export const falloff=d=>d<=6?1:Math.max(0,1-(d-6)/18);
 export function shootBreacher(g){
@@ -55,7 +56,7 @@ export function poseBreacher(g,{ads,bob}){
  const active=g.activeWeapon==='breacher';g.breacherRoot.visible=active;if(!active)return;
  const model=g.breacherModel,cycle=g.options.reducedMotion?0:Math.sin(Math.min(1,(.88-g.fireTimer)/.65)*Math.PI)*.13;
  const progress=g.reloading?1-g.reloadTimer/.55:0,insert=Math.sin(progress*Math.PI);
- g.weapon.position.set(.3*(1-ads),-.28+ads*.13-Math.abs(bob),-.28+g.kick*.07*(g.options.reducedMotion?0:1));
+ g.weapon.position.set(.3*(1-ads),-.28+ads*.13-Math.abs(bob)-phoneHipLowering(g.touchMode,ads),-.28+g.kick*.07*(g.options.reducedMotion?0:1));
  g.weapon.rotation.set(0,0,0);
  for(const name of ['Pump','SupportHand']){const o=model.getObjectByName(name);if(o){o.userData.home??=o.position.clone();o.position.copy(o.userData.home);o.position.z+=cycle;if(name==='SupportHand'){o.position.x+=insert*.012;o.position.y+=insert*.001;o.position.z+=insert*.37;}}}
  const vaultReach=g.vault?Math.sin(Math.PI*g.vault.elapsed/.62):0;

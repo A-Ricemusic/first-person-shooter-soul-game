@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "method": "11 affected native production groups plus two separate synthetic DOM-only driver regressions. All passed. Not full canonical suite, physical-phone experience, human comfort or performance certification. Product bundles unchanged after tool-only capture fix.",
+  "groups": [
+    {
+      "name": "frame",
+      "report": "build124-production-frame.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "focus",
+      "report": "build124-production-focus.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "projection",
+      "report": "build124-production-projection.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "tolerance",
+      "report": "build124-production-tolerance.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "rifle-assist",
+      "report": "build124-production-rifle-assist.json",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "markers",
+      "report": "build124-production-markers.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "compact",
+      "report": "build124-production-compact.json",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "insets",
+      "report": "build124-production-insets.json",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "scene",
+      "report": "build124-production-scene.json",
+      "passed": true,
+      "cleanup": "Fixture awaits browser close; no exact-PID report emitted."
+    },
+    {
+      "name": "confirmation",
+      "report": "build124-production-confirmation.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "cover",
+      "report": "build124-production-cover.json",
+      "passed": true,
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    }
+  ],
+  "driverRegressions": [
+    {
+      "report": "build124-driver-fixed.json",
+      "cases": 9,
+      "passed": true
+    },
+    {
+      "report": "build124-driver-terminal.json",
+      "cases": 2,
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "production build",
+      "exit": 0,
+      "log": "build124-build-output.txt"
+    },
+    {
+      "name": "11 affected native groups",
+      "exit": 0,
+      "log": "build124-production-output.txt"
+    },
+    {
+      "name": "held capture before fix",
+      "exit": 1,
+      "log": "build124-driver-before-fix-output.txt"
+    },
+    {
+      "name": "held capture after fix",
+      "exit": 0,
+      "log": "build124-driver-fixed-output.txt"
+    },
+    {
+      "name": "concurrent terminal launch",
+      "exit": 1,
+      "log": "build124-driver-terminal-output.txt"
+    },
+    {
+      "name": "sequential terminal fixture",
+      "exit": 0,
+      "log": "build124-driver-terminal-fixed-output.txt"
+    }
+  ],
+  "runtimeFilesVerified": 552,
+  "runtimeMismatches": [],
+  "bundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/index-B8bZ-A0j.css": "dc4316e32aa2110e1a53f4b3bbc5555160c1506a800e7b308242f475b68b37e0",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-DBTJ2p-y.js": "7df0a07910a5cdf681a9f12d0bdb726fd5c395c03a3e92564a65d74270809737"
+  },
+  "pairedEvidence": "build124-frame-paired.json",
+  "parentPlay": "build124-parent-play.json",
+  "mechanicsAudit": "build124-mechanics-audit.json"
+}

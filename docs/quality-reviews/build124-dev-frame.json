@@ -1,0 +1,420 @@
+{
+  "method": "ENGINEERING fixed entrance view, no actors/encounters, invulnerability, no bob/recoil. Native zoom, tool swap/reload and lifecycle. Diagnostic white geometry mask counts on-screen weapon triangles, including transparent surfaces; it is not a human visibility, aiming, ergonomics or FPS score. Diagnostic renders occur only in this fixture, never the product.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "rifle lowers only hip carry and keeps authored muzzle connected with exact original ADS pose",
+          "passed": true
+        },
+        {
+          "name": "breacher lowers only hip carry and keeps authored muzzle connected with exact original ADS pose",
+          "passed": true
+        },
+        {
+          "name": "secondary button opacity is quiet, active zoom stays distinct and all hit areas remain usable",
+          "passed": false,
+          "error": "The input did not match the regular expression /0\\.451/. Input:\n\n'rgba(10, 32, 43, 0.45)'\n"
+        }
+      ],
+      "rifle": {
+        "hip": {
+          "state": {
+            "phase": "playing",
+            "time": 0.38340000000000046,
+            "weapon": "rifle",
+            "aim": false,
+            "blend": 0,
+            "reference": 75,
+            "vertical": 75,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.3,
+              -0.35000000000000003,
+              -0.35
+            ],
+            "ammo": 30,
+            "reserve": 180,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 12948,
+            "upperPixels": 164,
+            "top": 236,
+            "muzzleGap": 0,
+            "drawCalls": 209,
+            "triangles": 75752
+          }
+        },
+        "zoom": {
+          "state": {
+            "phase": "playing",
+            "time": 1.7665999999999964,
+            "weapon": "rifle",
+            "aim": true,
+            "blend": 0.999990815561744,
+            "reference": 40.00032145533898,
+            "vertical": 40.00032145533898,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.0000027553314768113957,
+              -0.15500179096545993,
+              -0.35
+            ],
+            "ammo": 30,
+            "reserve": 180,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgb(80, 123, 121)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 20866,
+            "upperPixels": 5128,
+            "top": 155,
+            "muzzleGap": 0,
+            "drawCalls": 207,
+            "triangles": 75748
+          }
+        }
+      },
+      "breacher": {
+        "hip": {
+          "state": {
+            "phase": "playing",
+            "time": 3.3165999999999913,
+            "weapon": "breacher",
+            "aim": false,
+            "blend": 5.056523671623721e-8,
+            "reference": 74.9999982302167,
+            "vertical": 74.9999982302167,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.299999984830429,
+              -0.35999998938130034,
+              -0.28
+            ],
+            "ammo": 6,
+            "reserve": 24,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 12103,
+            "upperPixels": 142,
+            "top": 234,
+            "muzzleGap": 0,
+            "drawCalls": 209,
+            "triangles": 67040
+          }
+        },
+        "zoom": {
+          "state": {
+            "phase": "playing",
+            "time": 4.516500000000013,
+            "weapon": "breacher",
+            "aim": true,
+            "blend": 0.9999908265764879,
+            "reference": 40.00032106982294,
+            "vertical": 40.00032106982294,
+            "yaw": 0,
+            "pitch": 0,
+            "position": [
+              0.000002752027053642969,
+              -0.15000192641893756,
+              -0.28
+            ],
+            "ammo": 6,
+            "reserve": 24,
+            "shots": 0,
+            "controls": {
+              "touch-stick": {
+                "x": 20,
+                "y": 254,
+                "width": 116,
+                "height": 116,
+                "label": "MOVE",
+                "background": "rgba(9, 31, 41, 0.4)",
+                "pointer": "auto"
+              },
+              "touch-use": {
+                "x": 150,
+                "y": 324,
+                "width": 116,
+                "height": 46,
+                "label": "HOLD ROUTE",
+                "background": "rgba(10, 32, 43, 0.85)",
+                "pointer": "auto"
+              },
+              "touch-ads": {
+                "x": 715,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "ZOOM",
+                "background": "rgb(80, 123, 121)",
+                "pointer": "auto"
+              },
+              "touch-dash": {
+                "x": 715,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "DASH",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-jump": {
+                "x": 777,
+                "y": 306,
+                "width": 55,
+                "height": 52,
+                "label": "JUMP",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              },
+              "touch-fire": {
+                "x": 642,
+                "y": 247,
+                "width": 66,
+                "height": 111,
+                "label": "FIRE\ndrag aim",
+                "background": "rgba(112, 68, 51, 0.867)",
+                "pointer": "auto"
+              },
+              "touch-more": {
+                "x": 777,
+                "y": 247,
+                "width": 55,
+                "height": 52,
+                "label": "TOOLS",
+                "background": "rgba(10, 32, 43, 0.45)",
+                "pointer": "auto"
+              }
+            }
+          },
+          "mask": {
+            "width": 844,
+            "height": 390,
+            "pixels": 21749,
+            "upperPixels": 3148,
+            "top": 171,
+            "muzzleGap": 0,
+            "drawCalls": 206,
+            "triangles": 62864
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 95458,
+  "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /0\\.451/. Input:\n\n'rgba(10, 32, 43, 0.45)'\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-carry-frame.mjs:78:180\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-carry-frame.mjs:58:36)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-carry-frame.mjs:77:4",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

@@ -520,3 +520,7 @@ body.touch-mode .world-marker.enemy.visor.optic,
 body.touch-mode .world-marker.enemy.visor.optic .marker-symbol{width:24px;height:24px}
 body.touch-mode .world-marker.enemy.visor.optic{filter:drop-shadow(0 0 1px #000) drop-shadow(0 1px 2px #000);color:#e6f5f0}
 body.touch-mode .world-marker.enemy.visor.optic.charging{color:#ffad72}
+
+/* Build124: secondary controls keep their full hit areas with quieter fills.
+   Active/pressed controls and the primary FIRE action retain their emphasis. */
+body.touch-mode #touch-actions>button:not(#touch-fire):not([aria-pressed=true]):not(:active){background:#0a202b73;text-shadow:0 1px 2px #000,0 0 2px #000}

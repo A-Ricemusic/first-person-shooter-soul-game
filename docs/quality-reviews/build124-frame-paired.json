@@ -1,0 +1,64 @@
+{
+  "method": "Same actor-free entrance view and diagnostic white viewmodel geometry mask, not a photometric visibility or aiming/FPS/comfort measurement. Transparent surfaces count as opaque geometry. Two loaded phone orientations and two weapons; exact zoom-mask counts and control rectangles checked. Baseline frozen Build123 on61519; candidate production. The diagnostic excludes world/HUD occlusion and counts projected viewmodel geometry rather than photometric screen coverage.",
+  "baseline": "build124-baseline-frame.json",
+  "candidate": "build124-production-frame.json",
+  "pairs": [
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "weapon": "rifle",
+      "beforeHipMaskPixels": 17954,
+      "afterHipMaskPixels": 12948,
+      "fewerWeaponMaskPixelsPercent": 27.88,
+      "beforeZoomMaskPixels": 20866,
+      "afterZoomMaskPixels": 20866,
+      "controlRectanglesIdentical": true
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "weapon": "breacher",
+      "beforeHipMaskPixels": 17760,
+      "afterHipMaskPixels": 12103,
+      "fewerWeaponMaskPixelsPercent": 31.85,
+      "beforeZoomMaskPixels": 21749,
+      "afterZoomMaskPixels": 21749,
+      "controlRectanglesIdentical": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "weapon": "rifle",
+      "beforeHipMaskPixels": 32541,
+      "afterHipMaskPixels": 31917,
+      "fewerWeaponMaskPixelsPercent": 1.92,
+      "beforeZoomMaskPixels": 59534,
+      "afterZoomMaskPixels": 59534,
+      "controlRectanglesIdentical": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "weapon": "breacher",
+      "beforeHipMaskPixels": 35187,
+      "afterHipMaskPixels": 33497,
+      "fewerWeaponMaskPixelsPercent": 4.8,
+      "beforeZoomMaskPixels": 89862,
+      "afterZoomMaskPixels": 89862,
+      "controlRectanglesIdentical": true
+    }
+  ],
+  "limits": [
+    "More clearance does not establish improved target acquisition or enjoyment.",
+    "Original aimed pose is preserved; hip geometry and its scene-tap mask move down.",
+    "Fallback/safe-area cases checked separately; paired percentages describe loaded models only."
+  ]
+}

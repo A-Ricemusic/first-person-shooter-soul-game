@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "report": "build124-dev-frame.json",
+      "sourceBefore": "build124-frame-before-alpha-parser.txt",
+      "finding": "Chromium serializes115/255 opacity as0.45 rather than0.451. Fixed numeric parsing/range assertion; no product change.",
+      "passedRerun": "build124-dev-frame-checked.json"
+    },
+    {
+      "ordinaryFailure": "build124-parent-play.json command3",
+      "reproduction": "build124-driver-before-fix.json",
+      "sourceBefore": "build124-helper-before-held-capture-fix.txt.gz",
+      "finding": "captureHeld with two contacts tried to tap Pause as a third contact. Capture image first, release in finally, then tap Pause and report paused state. Continuous input still breaks.",
+      "passedRerun": "build124-driver-fixed.json",
+      "sourceEncoding": "gzip; lossless original source including inherited trailing whitespace",
+      "sourceSHA256": "6eade1017274fa70af545c09b1d59d461cdc8b75e569d00461b2a3973d73dd26"
+    },
+    {
+      "failure": "build124-driver-terminal-lock-failure.json",
+      "log": "build124-driver-terminal-output.txt",
+      "finding": "Root launched two DOM driver fixtures concurrently despite their shared exclusive lock. Wrong environment-prefix name also selected the historical default report. Retained failed report as Build124, restored exact HEAD bytes of historical build89-driver-terminal.json, then ran sequentially with MOBILE_DRIVER_END_PREFIX. No historical media changed.",
+      "passedRerun": "build124-driver-terminal.json"
+    }
+  ]
+}

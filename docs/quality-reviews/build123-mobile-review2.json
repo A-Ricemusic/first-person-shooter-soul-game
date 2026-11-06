@@ -1,0 +1,222 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "expectedSource": "014a51a0e7da53bd1ec0d4d6a202b3293aa566a6",
+    "sourceInspected": false,
+    "visibleTitle": "SOULFALL BUILD 123"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "url": "http://127.0.0.1:61519/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalEvidence": "docs/media/build123-mobile-review2/attempt1-terminal.jpg",
+      "stats": {
+        "eliminations": 3,
+        "missionTime": "00:57",
+        "score": 6472,
+        "accuracy": "100%",
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 8,
+        "tapAims": 5,
+        "routeAssists": 12,
+        "approachAssists": 5
+      },
+      "coverage": {
+        "manualMoveAndFireDrag": [
+          "attempt1-manual-fire.jpg: opening guard, TARGET DOWN, 30 to 25 ammunition",
+          "attempt1-patrol-manual.jpg: visible left patrol targeted, simultaneous MOVE and FIRE drag, SENTINEL DOWN, 25 to 22 ammunition"
+        ],
+        "sceneTurn": "attempt1-turn.jpg: swipe changed 357 to 311 degrees",
+        "map": "Opened at MAP FIND ENTRY, inspected overview, visibly closed with #close-map",
+        "toolsAimDashJump": "Not sampled",
+        "misses": "No explicit miss observed; terminal reports 100% accuracy, assisted targeting prevents interpreting this as raw aim skill",
+        "corrections": "Used map and HOLD ROUTE to reach remaining coil after II/III disabled; one fresh target per scene batch"
+      },
+      "settingsChanges": [],
+      "helpful": [
+        "Target-down and coil-OFF feedback",
+        "Contextual route/approach labels and recovery checkmarks",
+        "Map route and selected destination",
+        "Clear terminal assistance counters"
+      ],
+      "frustrating": [
+        "Dark small patrol silhouettes",
+        "Crowded lower portrait HUD and threat cue",
+        "Route can show wall-facing views before next segment; manual orientation less clear"
+      ],
+      "uncertainties": [
+        "Assisted targeting and route completion dominate run; no continuous raw aim skill assessment"
+      ]
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH via #play-again after first result saved",
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminalEvidence": "docs/media/build123-mobile-review2/attempt2-terminal.jpg",
+      "stats": {
+        "eliminations": 4,
+        "missionTime": "01:00",
+        "score": 6717,
+        "accuracy": "97%",
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 14,
+        "tapAims": 8,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "settingsChanges": [],
+      "coverage": {
+        "manualMoveAndFireDrag": [
+          "attempt2-manual-guard.jpg: simultaneous MOVE and FIRE drag, ammunition 30 to 28, DAMAGED cue; guard not eliminated",
+          "attempt2-manual-patrol.jpg: visible left patrol targeted with simultaneous MOVE and FIRE drag, 20 to 18 ammunition, SENTINEL DOWN"
+        ],
+        "sceneTurn": "attempt2-turn.jpg: separate swipe changed heading 359 to 333; revealed surviving guard",
+        "corrections": [
+          "Guard remained alive after opening lateral MOVE/FIRE drag; turned, inspected and tapped newly visible guard, FIRE then TARGET DOWN (attempt2-guard-correction.jpg)",
+          "Final coil remained 37% after emptying six rounds, automatic RELOADING visible; waited 2 seconds, inspected full 30-round magazine, retargeted visible I AIM and fired; COIL I OFF",
+          "Used visible HOLD ROUTE after MAP FIND ENTRY without opening map this time"
+        ],
+        "misses": "Terminal accuracy 97% establishes some shots did not register hits; individual miss location/count not independently established. Opening guard burst only damaged target; final coil burst ran out of ammunition. Do not infer exact miss causes.",
+        "deckCombat": "Tap-aim and anchored FIRE at visible charging sentinel, SENTINEL DOWN at upload 64%; no manual MOVE in that batch",
+        "notAssessed": [
+          "TOOLS actions",
+          "Dedicated AIM toggle",
+          "DASH",
+          "JUMP",
+          "Continuous held-burst rearming",
+          "Unassisted-only combat",
+          "Checkpoint retry"
+        ]
+      },
+      "helpful": [
+        "Directional DAMAGED cue guided turn and correction",
+        "Coil health made incomplete burst obvious",
+        "Automatic reload and ammunition feedback clear",
+        "Upload percentage and stay-on-deck instruction clear"
+      ],
+      "frustrating": [
+        "Initial lateral movement carried guard out of view while still alive",
+        "Needed another target tap after turning",
+        "Portrait scene leaves small targets amid dark structures",
+        "Route wall-facing segment repeated"
+      ],
+      "uncertainties": [
+        "Cannot attribute miss cause to control design from synthetic short batches",
+        "Combat uses tap assistance; raw aiming comfort remains limited"
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic Chromium touch emulation at 390x844 with software WebGL",
+    "Every live capture releases contacts and pauses, allowing inspection; does not establish human reaction-time, causal quality benefit, or continuous held-burst rearming comfort",
+    "Waits shortened near 3s live / 1.2s FIRE boundaries; inspected screenshots before adaptive input",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Pausing clears AIM through ordinary lifecycle; no zoomed capture interpreted as persistent AIM. No TOOLS selection attempted.",
+    "No causal game-quality or human reaction-time benefit inferred from frequent paused observations.",
+    "Frozen source hash supplied by requester, not verified by source inspection; visible BUILD 123 matched expected identity."
+  ],
+  "cleanup": {
+    "status": "COMPLETE",
+    "closeRequested": true,
+    "helperExitCode": 0,
+    "browserClosedReported": true,
+    "driverPid": 89158,
+    "chromePid": 89168,
+    "verificationCommand": "ps -p 89158,89168 -o pid=,ppid=,comm=",
+    "verificationResult": "No rows: both exact owned PIDs absent",
+    "broadKillUsed": false
+  },
+  "betweenAttemptsLearning": [
+    "HOLD ROUTE advances travel and changes to HOLD APPROACH near recovery; continue using current visible label",
+    "Coil AIM prompts select available coil; MAP FIND ENTRY leads to closer route position",
+    "New scene inspection needed after turn; never reused a target from first run",
+    "Applied learned route flow, but preserved second-run damaged guard and reload correction"
+  ],
+  "assessment": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 9 excellent with minor friction; 10 exceptional. Judgments cover observed emulated portrait play only, not win/loss or score.",
+    "scores": {
+      "overallMobile": 7.0,
+      "controls": 6.5,
+      "gameplay": 6.5,
+      "presentation": 8.0,
+      "usability": 7.5,
+      "readability": 6.5
+    },
+    "reasons": {
+      "overallMobile": "Coherent short mission, helpful navigation and targeting feedback, distinctive atmosphere. Crowded controls and dark small combat targets constrain portrait readability; assisted route dominates and sustained manual play remains uncertain.",
+      "controls": "Native two-contact MOVE/FIRE drag and scene swipe worked in both runs; guard survived one moving burst and needed a turn/retap. Assistance helps acquire targets. Thumb comfort, continuous rearming, AIM/tools/dash/jump not established.",
+      "gameplay": "Recoveries, three-coil phase and deck upload provide a clear progression. Route assistance made much of travel repetitive holds and limited assessment of exploration or sustained combat challenge; no enjoyment inferred for unassessed content.",
+      "presentation": "Strong teal/amber visual identity, rain, architecture and restrained result screen make a cohesive observed visual experience. Audio and hardware smoothness unassessed.",
+      "usability": "Contextual interaction labels, map overview, checkmarks, explicit coil feedback, automatic reload, terminal assistance counters and START FRESH supported completion. Wall-facing route moments weaken spatial understanding.",
+      "readability": "Health/ammo and large objectives readable at 390x844; small scene targets, labels, dark silhouettes and crowded bottom control region require inspection."
+    },
+    "outcomeDoesNotDetermineGrade": true
+  },
+  "evidence": {
+    "directory": "docs/media/build123-mobile-review2",
+    "rawLog": "docs/media/build123-mobile-review2/actions.jsonl",
+    "screenshots": [
+      "docs/media/build123-mobile-review2/attempt1-approach.jpg",
+      "docs/media/build123-mobile-review2/attempt1-approach2.jpg",
+      "docs/media/build123-mobile-review2/attempt1-boss1.jpg",
+      "docs/media/build123-mobile-review2/attempt1-boss2.jpg",
+      "docs/media/build123-mobile-review2/attempt1-boss3.jpg",
+      "docs/media/build123-mobile-review2/attempt1-deploy.jpg",
+      "docs/media/build123-mobile-review2/attempt1-manual-fire.jpg",
+      "docs/media/build123-mobile-review2/attempt1-map.jpg",
+      "docs/media/build123-mobile-review2/attempt1-patrol-manual.jpg",
+      "docs/media/build123-mobile-review2/attempt1-return1.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route1.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route10.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route2.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route3.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route4.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route5.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route6.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route7.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route8.jpg",
+      "docs/media/build123-mobile-review2/attempt1-route9.jpg",
+      "docs/media/build123-mobile-review2/attempt1-terminal.jpg",
+      "docs/media/build123-mobile-review2/attempt1-turn.jpg",
+      "docs/media/build123-mobile-review2/attempt1-uplink1.jpg",
+      "docs/media/build123-mobile-review2/attempt1-uplink2.jpg",
+      "docs/media/build123-mobile-review2/attempt2-approach1.jpg",
+      "docs/media/build123-mobile-review2/attempt2-approach2.jpg",
+      "docs/media/build123-mobile-review2/attempt2-approach3.jpg",
+      "docs/media/build123-mobile-review2/attempt2-boss1.jpg",
+      "docs/media/build123-mobile-review2/attempt2-boss2.jpg",
+      "docs/media/build123-mobile-review2/attempt2-boss3.jpg",
+      "docs/media/build123-mobile-review2/attempt2-boss4.jpg",
+      "docs/media/build123-mobile-review2/attempt2-deck-fire.jpg",
+      "docs/media/build123-mobile-review2/attempt2-guard-correction.jpg",
+      "docs/media/build123-mobile-review2/attempt2-manual-guard.jpg",
+      "docs/media/build123-mobile-review2/attempt2-manual-patrol.jpg",
+      "docs/media/build123-mobile-review2/attempt2-reload.jpg",
+      "docs/media/build123-mobile-review2/attempt2-return1.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route1.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route2.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route3.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route4.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route5.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route6.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route7.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route8.jpg",
+      "docs/media/build123-mobile-review2/attempt2-route9.jpg",
+      "docs/media/build123-mobile-review2/attempt2-start-fresh.jpg",
+      "docs/media/build123-mobile-review2/attempt2-terminal.jpg",
+      "docs/media/build123-mobile-review2/attempt2-turn.jpg",
+      "docs/media/build123-mobile-review2/attempt2-uplink1.jpg",
+      "docs/media/build123-mobile-review2/menu.jpg"
+    ],
+    "allScreenshotsViewedBeforeAdaptiveContinuation": true
+  }
+}

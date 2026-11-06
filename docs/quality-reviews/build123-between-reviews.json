@@ -1,0 +1,199 @@
+{
+  "build": 123,
+  "source": "014a51a0e7da53bd1ec0d4d6a202b3293aa566a6",
+  "frozenFilesVerified": 550,
+  "mismatches": [],
+  "productTrackedClean": true,
+  "review1": {
+    "report": "docs/quality-reviews/build123-mobile-review1.json",
+    "sha256": "14374341de53f030935d38c679928ff72edb5d793ba2c513e44087a5f98bfaf1",
+    "ratings": {
+      "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 10 exceptional across assessed use. Scores reflect observed friction/features, not win/loss or physical-device certification. Unassessed features receive no invented credit.",
+      "overallMobile": 7.0,
+      "controls": 7.0,
+      "gameplay": 6.5,
+      "presentation": 8.0,
+      "usability": 7.5,
+      "readability": 6.5,
+      "reasons": {
+        "overallMobile": "Coherent and finishable assisted mission with clear progress and generous touch controls; small targets, crowded screen and uncertain selection/cover friction keep it below exceptional.",
+        "controls": "Two-contact movement/firing and scene swipe worked. One right-edge tap failed and needed correction; assistance prevents claims about precise aim, sustained holds or actual thumb comfort.",
+        "gameplay": "Recoveries, coil sequence and upload provide changing goals with readable feedback. Route assistance dominated traversal, armor/cover firing caused wasted inputs, and long-term challenge/enjoyment remains unassessed.",
+        "presentation": "Rain, cool teal palette, warm floor lighting, relay machinery and cohesive title/result screens create a strong consistent atmosphere. Audio and hardware rendering/performance unassessed.",
+        "usability": "Context-sensitive route/approach, threat directions, map and explicit fresh start were useful. Off-camera threats while following route and dense overlays demand attention.",
+        "readability": "Health/ammo, main buttons and progress indicators are legible. Small environmental signs/map legend, distant enemies and overlapping weapon/control area are less comfortable at 844x390."
+      }
+    },
+    "attempts": [
+      {
+        "number": 1,
+        "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+        "terminalStats": {
+          "eliminations": 5,
+          "missionTime": "00:58",
+          "score": 6825,
+          "accuracy": "100%",
+          "criticalEliminations": 2,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 15,
+          "tapAims": 7,
+          "routeAssists": 11,
+          "approachAssists": 6
+        },
+        "evidence": "docs/media/build123-mobile-review1/attempt1-terminal.jpg",
+        "coverage": {
+          "manualMoveFireDrag": "Opening guard and left perimeter patrol: simultaneous MOVE and FIRE drag; target-down/sentinel-down feedback. Small drag adjustments, no demonstrated free-aim precision.",
+          "turn": "Scene swipe changed heading 006 to 333.",
+          "combat": "Additional sentinel and deck interceptor tapped then fired; three coils disabled.",
+          "missesAndCorrections": "Fired during armor; emptied magazine and held FIRE while reloading without immediate damage, then resumed FIRE after reload. No verified missed-shot count; terminal reports 100% accuracy with assists.",
+          "route": "Used visible HOLD ROUTE / HOLD APPROACH for recoveries and return.",
+          "unassessed": "Continuous held-burst rearming, unassisted aim precision, dash, jump, tools, map, physical thumb comfort."
+        },
+        "helpfulMoments": [
+          "Immediate TARGET DOWN feedback after opening MOVE + FIRE drag.",
+          "Changing HOLD ROUTE to HOLD APPROACH made receiver interaction discoverable.",
+          "Coil I/II/III OFF indicators and upload percent made objective progress explicit."
+        ],
+        "frustratingMoments": [
+          "Small distant patrol silhouettes required careful targeting.",
+          "Route traversal turned away from surviving threats; rear/side cues required attention.",
+          "Armor firing consumed ammunition; reload interrupted final coil engagement."
+        ],
+        "lastObservedHUD": {
+          "health": 100,
+          "shield": 34,
+          "ammo": 27,
+          "reserve": 330,
+          "note": "Before terminal wait, not terminal-screen stats."
+        }
+      },
+      {
+        "number": 2,
+        "freshStart": "Visible START FRESH via #play-again; captured health 100, shield 60, ammo 30/180. No checkpoint retry.",
+        "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+        "terminalStats": {
+          "eliminations": 5,
+          "missionTime": "01:03",
+          "score": 6886,
+          "accuracy": "89%",
+          "criticalEliminations": 3,
+          "phaseEvades": 0,
+          "uplinkRetries": 0,
+          "assistedShots": 13,
+          "tapAims": 7,
+          "routeAssists": 11,
+          "approachAssists": 6
+        },
+        "evidence": "docs/media/build123-mobile-review1/attempt2-terminal.jpg",
+        "lastObservedHUD": {
+          "health": 100,
+          "shield": 47,
+          "ammo": 24,
+          "reserve": 330,
+          "note": "At upload 83%, before terminal wait; not terminal-screen stats."
+        },
+        "coverage": {
+          "manualMoveFireDrag": "Opening warden defeated with simultaneous MOVE and FIRE drag without scene tap; perimeter left patrol tapped once then engaged with simultaneous MOVE and FIRE drag, LAST SENTINEL DOWN visible. Assistance still present; cannot isolate unassisted accuracy.",
+          "turn": "FIRE drag moved opening heading 000 to 003; perimeter tap/drag changed view to 313. Independent scene swipe was sampled in attempt 1.",
+          "map": "Opened planning map, viewed overview route and legend; explicitly closed #close-map and inspected fresh live image.",
+          "route": "HOLD ROUTE / APPROACH for all three receivers, boss position and return.",
+          "combat": "Additional sentinel, coils and deck interceptor engaged.",
+          "missesAndCorrections": "Sentinel tap at x .84/y .57 did not change heading or produce down feedback; ammo 25 to 24, sentinel remained. Corrected from fresh image at .686/.56, then TARGET DOWN. Cause uncertain (edge region/target motion/selection). Fired into armor phases; final coil stalled at 5% with empty magazine. Waited 2 seconds for reload, then fired to finish. Deck follow-up shot produced COVER while target remained; no kill claimed. Terminal accuracy 89%, exact miss allocation unknown.",
+          "unassessed": "Continuous held-burst rearming comfort; precise unassisted aiming; dash, jump, AIM, tools; physical thumb ergonomics."
+        },
+        "helpfulMoments": [
+          "START FRESH reset visibly and immediately.",
+          "Map showed selected Mara and walking path with obstacle legend.",
+          "Explicit 5% remaining coil and reload ammo change guided final correction.",
+          "Upload progress and stay-on-deck wording made the final task clear."
+        ],
+        "frustratingMoments": [
+          "Right-edge sentinel tap failed to select/turn; required correction.",
+          "Wait for armor did not land on a useful captured open phase and rear attacks continued.",
+          "Cover blocked deck follow-up fire despite the visible target."
+        ]
+      }
+    ],
+    "evidence": {
+      "docs/media/build123-mobile-review1/actions.jsonl": "223a45f53151a844b0f69f304c44c5960f88372f03c86835441f3850a41f2f69",
+      "docs/media/build123-mobile-review1/attempt1-approach.jpg": "0b6a7bdf72525c358ace4a1b922fc6188a6ea243ef81ddd1d799287e12eb475f",
+      "docs/media/build123-mobile-review1/attempt1-boss-route.jpg": "7f5f182ecd86b07b233a5c7c595513c8a56684836838ac38797c85c637bd6a71",
+      "docs/media/build123-mobile-review1/attempt1-boss-route2.jpg": "cfc919b2ad41d20fe5892a58f339d0abcb4152ff50e3ac6c61088cc650ee7ef8",
+      "docs/media/build123-mobile-review1/attempt1-coil1.jpg": "588194d4647ef0b538ec1bdc7f47fe0560e53b852e9d74eb795919d2bc81a86f",
+      "docs/media/build123-mobile-review1/attempt1-coil2-armor.jpg": "a5e5a1fd3216ef2573e1eae04587bd41e8074eceeb1fab80731106f8413da1ba",
+      "docs/media/build123-mobile-review1/attempt1-coil3-fire.jpg": "ea02827e0aa83c1a2911691c9c82837429cbb73a5b5193435ddd2015cfa9fb0c",
+      "docs/media/build123-mobile-review1/attempt1-coil3-reloading.jpg": "beed9d04cd3f067c66243e879f8dcfefb9c8af1f5d3efaba3cc33d7968d2d110",
+      "docs/media/build123-mobile-review1/attempt1-deck-defense.jpg": "36972a18f51413a851d1e1d5fd33e18cf1727d7ad30fa40a89e3f1d849b354c5",
+      "docs/media/build123-mobile-review1/attempt1-deploy.jpg": "d685a4715558c8877f79ab75c3b956a0fe52f1405df6d4a9073776ce63a11439",
+      "docs/media/build123-mobile-review1/attempt1-elian.jpg": "bfa6149973085f0e65af7c4950e2aa2363a929c0fb8c9dc8c2db94e2a06d4b52",
+      "docs/media/build123-mobile-review1/attempt1-manual-engagement.jpg": "33787688217d86d1619bc63b45a13c128df440d7184af98d92c5fa62a8c0420a",
+      "docs/media/build123-mobile-review1/attempt1-patrol-manual.jpg": "8114641f02d1c6a1b1b9b8b18cbbf281c09babcbabe7f1a4e388ecb8e49f89c4",
+      "docs/media/build123-mobile-review1/attempt1-return1.jpg": "01395ec7299f8a8d7236d7be4c090a7beb0a3e478d5eaaafdad664ae7e386c57",
+      "docs/media/build123-mobile-review1/attempt1-route1.jpg": "479b7e894e71a1f287dd9b1835b8c01fb759a8a87cbd514a376d3059773cc74d",
+      "docs/media/build123-mobile-review1/attempt1-route2.jpg": "c3b7c7dd911411deccaf41a2db73b3e87e6e34de919c844f1a4bbc436691aac3",
+      "docs/media/build123-mobile-review1/attempt1-route3.jpg": "8e9e7f0c3f272ed3ce86213e6b32198ee933d67673b083db96017da18c91a7d0",
+      "docs/media/build123-mobile-review1/attempt1-route4.jpg": "928188629ff058ff3dd93361017ed7c22b9e9612de7c4895abd1ee089c2cb60c",
+      "docs/media/build123-mobile-review1/attempt1-route5.jpg": "f8c4b7e749c3f3b4170039e0235d350cf06de209df437eea78716efbbd3aa142",
+      "docs/media/build123-mobile-review1/attempt1-route6.jpg": "15aea06e4eb4d693ca98e718bb35845fed0eba7358fb542d30823aea95d864cf",
+      "docs/media/build123-mobile-review1/attempt1-route7.jpg": "c338acd7e0328b6a812ed168f89c9a92149bb481f767077fc3711ffed3d04f90",
+      "docs/media/build123-mobile-review1/attempt1-scene-turn.jpg": "970b944e93da644a96c3083f9b09db49c502a5dcdf14bfd1574db1cd79d6279f",
+      "docs/media/build123-mobile-review1/attempt1-sentinel.jpg": "402cbf04f345c4636f6793cdc961f12bb166b381030b488e4588e13d5e465e64",
+      "docs/media/build123-mobile-review1/attempt1-sera.jpg": "69c83ca0977d6e9a05067874c2dca46f9be36fe7a56cfcfa7a3064d125777ca8",
+      "docs/media/build123-mobile-review1/attempt1-terminal.jpg": "104177b0b74860210287ed60a61ce295c71d98d717218099752b9437add57aa1",
+      "docs/media/build123-mobile-review1/attempt1-uplink.jpg": "e3a6693eab87ada4f19fd267fd13777930c8f1e673c379b7a7c3bfe509e32bc6",
+      "docs/media/build123-mobile-review1/attempt2-boss-route1.jpg": "42594f48f4cfd84ee2f2ddbccd28ce5b05ba7a2880f6e5010e049935a2850b8b",
+      "docs/media/build123-mobile-review1/attempt2-boss-route2.jpg": "9c5d81444ee86d3a58f3185e6aaf37c18c3a1a6683277a8f0a054173ed9f2d42",
+      "docs/media/build123-mobile-review1/attempt2-coil1.jpg": "51d112229d35390f0a739979a2c7575fefe677850bae26045bdf7ce145e12410",
+      "docs/media/build123-mobile-review1/attempt2-coil2-fire.jpg": "c2c739cb6eaa5a7f49d63b2f0361be7be44c558edab2f90eb5641630349bd4fe",
+      "docs/media/build123-mobile-review1/attempt2-coil2-wait.jpg": "ebab9ffa936b0c1b63e2edd26cbaa18f053acfd20f7541d86408bd22715364f2",
+      "docs/media/build123-mobile-review1/attempt2-coil3-fire.jpg": "fbca0dfca8421205406be272813410e571a7835fc3e98647e17d29515b497b35",
+      "docs/media/build123-mobile-review1/attempt2-coil3-off.jpg": "4e4ca9485cae55b3b0a2d4ff7e49b0d8607e14161175bdb6a4ab0742950e00a9",
+      "docs/media/build123-mobile-review1/attempt2-deck-defense.jpg": "6d7292b2aeb09736e1f9c4d013bcd3fd5172ff8ab5d79d1f7da1776da2905f0f",
+      "docs/media/build123-mobile-review1/attempt2-defense2.jpg": "cea730027b67e01702751da165c5711fabbe998a8a3d089dab8c5fcc167f0edf",
+      "docs/media/build123-mobile-review1/attempt2-elian.jpg": "dee5b398b2b2d35efa3350ae3a8011e8993082b0b137ce7aae44c33df106b2d4",
+      "docs/media/build123-mobile-review1/attempt2-manual-no-tap.jpg": "48ca94dbf914ce0c997ba711f4cb99a6eaee4d989b9c318dd7f5bc62902fab0b",
+      "docs/media/build123-mobile-review1/attempt2-map-closed.jpg": "54a2c72f260c7ca2c6d6e11a2c35a31990205c0622359d404ed63244efd28eb3",
+      "docs/media/build123-mobile-review1/attempt2-map.jpg": "f3dfbb77e37713c49bdd880678c7ced224bcf05579101677021b1b7058d659cf",
+      "docs/media/build123-mobile-review1/attempt2-mara.jpg": "ffa49d795a7574fa4774af8f4800f1a97e1d933779eedce3274213e7620e67c5",
+      "docs/media/build123-mobile-review1/attempt2-patrol-manual.jpg": "1cb39521c6683b8ed338ba60626888095578f4885918a7b888b31df6cc18a763",
+      "docs/media/build123-mobile-review1/attempt2-reload-wait.jpg": "4aa849d4d664eafadc6fe30866a9ef3e8f94836ff372e8edf8288cac7f69c451",
+      "docs/media/build123-mobile-review1/attempt2-return1.jpg": "7a1ccc7227b0025b79a06b96cd9ca35711cd6d63b0272c4658b7a14aaa6db0c3",
+      "docs/media/build123-mobile-review1/attempt2-route1.jpg": "f1bd7990c8e27c70bbf3457ead9466f185c02a9b0b2393e1de32b43d30647a1d",
+      "docs/media/build123-mobile-review1/attempt2-route2.jpg": "adda52089bff000250b5e22caedc1ea518fa9d65359dd271a5b9e6e2c46dab8c",
+      "docs/media/build123-mobile-review1/attempt2-route3.jpg": "d38fdab21a16b462dfa2a45f59b672be2b22dcd0508b7cb94b4cd6d01dde7394",
+      "docs/media/build123-mobile-review1/attempt2-route4.jpg": "9a82a1b0c45a6c9641344e4ef27938b8c1fd6e4ed8f668b496aedf56243bc02b",
+      "docs/media/build123-mobile-review1/attempt2-route5.jpg": "6d12e8c1c8fafde8821b7643694ca4445840c3748831a81eb1def7d867fdedc4",
+      "docs/media/build123-mobile-review1/attempt2-route6.jpg": "7fd401dbb90ba7ffeb1d6cc42505bcbd0112a62160f2d4edcbc379dfe4c1d449",
+      "docs/media/build123-mobile-review1/attempt2-route7.jpg": "d95d7ca1b19ff91feb7bd96b664c648dae6fd3f63cd444347c342c3211e4af20",
+      "docs/media/build123-mobile-review1/attempt2-sentinel-correction.jpg": "6f9a6789fc9ae5da5b884403b980f6fa03fb168643e2857dc23931023f1ac7e1",
+      "docs/media/build123-mobile-review1/attempt2-sentinel.jpg": "cb0501c9ad3bce199e35541928529333bc45cff7eff034e270ddc73d0e4fcb80",
+      "docs/media/build123-mobile-review1/attempt2-sera.jpg": "f45e83d4d114e5f15561a2db90b0d41149fed6e32cef2390128c81171ac5725d",
+      "docs/media/build123-mobile-review1/attempt2-start-fresh.jpg": "e7e0d5a967d271171ae3e2ecd04f083c462e58f4ab54db65f02c22bc2f63ba39",
+      "docs/media/build123-mobile-review1/attempt2-terminal.jpg": "b89fea79af79c5b77705e320492530b40794522286a5043fb62718fd72cd1e3a",
+      "docs/media/build123-mobile-review1/attempt2-uplink.jpg": "989bcb512ada2c067e2519aa678226a580422ab4f4a9a70429041716c808e43d",
+      "docs/media/build123-mobile-review1/menu.jpg": "96e1be222c5b3110c2c87302a0eaebd565c3f4c790cec8389c350bc49e5f81c1"
+    }
+  },
+  "cleanup": {
+    "ownedPids": [
+      84519,
+      84529
+    ],
+    "psExit": 1,
+    "output": "",
+    "absent": true
+  },
+  "snapshot": {
+    "path": "/var/folders/mb/w3bq2hm932372_myp3qh55600000gn/T/soulfall-play-build123-xfqpvjhu",
+    "testedBundleFiles": [
+      "dist/assets/build104-sentinel-fallback-B1ru7wdT.js",
+      "dist/assets/build69-custodian-surfaces-CJr5upgj.js",
+      "dist/assets/three-BHq7hzKl.js",
+      "dist/assets/index-Dfb8gAgm.css",
+      "dist/assets/index-C4aKgnKH.js"
+    ],
+    "allMatch": true
+  },
+  "status": "Landscape reviewer complete; portrait fresh reviewer pending. No source/dossier edits or rescore."
+}
