@@ -1,0 +1,185 @@
+{
+  "method": "ENGINEERING native FIRE/MOVE with an arranged elevated1000HP Sentinel moving laterally2m/s. AI replaced by this fixed trajectory after native reticle acquisition, zero spread, normal shot cadence. Tap-grace poses/clock waits and cancellation states are arranged separately. Physical cover and input/release cases separate; not ordinary control feel, human enjoyment or phone-performance evidence.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "fallback": false,
+      "checks": [
+        "native hold follows actual target motion without automatic firing after release; shots counted as assisted",
+        "small manual drag offset remains yours; no centering pull on stationary actor",
+        "dragging outside8-degree leash releases without later reacquisition"
+      ],
+      "motionStart": {
+        "time": 0.2,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          0.03339999999999964,
+          20,
+          -12
+        ],
+        "yaw": -0.0014591254966165312,
+        "pitch": -0.055405360557130884,
+        "health": 884,
+        "ammo": 28,
+        "shots": 2,
+        "hits": 2,
+        "assisted": 2,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.000810424530066541,
+          "y": -0.024990390079757136
+        },
+        "phase": "playing"
+      },
+      "moving": {
+        "time": 1.0999999999999979,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          1.833399999999997,
+          20,
+          -12
+        ],
+        "yaw": -0.15220480784123036,
+        "pitch": -0.05476617554901734,
+        "health": 228,
+        "ammo": 20,
+        "shots": 10,
+        "hits": 10,
+        "assisted": 10,
+        "following": true,
+        "button": "FIRE\nFOLLOW",
+        "point": {
+          "x": 0.00039718095315198406,
+          "y": -0.018089473901340962
+        },
+        "phase": "playing"
+      },
+      "released": {
+        "time": 1.2165999999999975,
+        "player": [
+          0,
+          21.7,
+          0
+        ],
+        "actor": [
+          2.066599999999996,
+          20,
+          -12
+        ],
+        "yaw": -0.1713772171146328,
+        "pitch": -0.05459539995122745,
+        "health": 146,
+        "ammo": 19,
+        "shots": 11,
+        "hits": 11,
+        "assisted": 11,
+        "following": false,
+        "button": "FIRE\ndrag aim",
+        "point": {
+          "x": 0.00034381092779014723,
+          "y": -0.017349386558885106
+        },
+        "phase": "playing"
+      },
+      "manual": {
+        "a": {
+          "time": 0,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": 0,
+          "pitch": -0.05540542137742011,
+          "health": 1000,
+          "ammo": 30,
+          "shots": 0,
+          "hits": 0,
+          "assisted": 0,
+          "following": true,
+          "button": "FIRE\ndrag aim",
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "phase": "playing"
+        },
+        "c": {
+          "time": 0.1166999999999998,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 884,
+          "ammo": 28,
+          "shots": 2,
+          "hits": 2,
+          "assisted": 2,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015050886657776211,
+            "y": -0.018889753891252668
+          },
+          "phase": "playing"
+        },
+        "d": {
+          "time": 0.3667000000000002,
+          "player": [
+            0,
+            21.7,
+            0
+          ],
+          "actor": [
+            0,
+            20,
+            -12
+          ],
+          "yaw": -0.025023696682464458,
+          "pitch": -0.060097364505382195,
+          "health": 720,
+          "ammo": 26,
+          "shots": 4,
+          "hits": 4,
+          "assisted": 4,
+          "following": true,
+          "button": "FIRE\nFOLLOW",
+          "point": {
+            "x": -0.015049933617741342,
+            "y": -0.011903590631694688
+          },
+          "phase": "playing"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "chromePid": 37521,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(!(await read()).following)\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-motion-assist.mjs:12:402",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

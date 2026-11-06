@@ -1,0 +1,19 @@
+node:internal/modules/esm/assert:88
+        throw new ERR_IMPORT_ATTRIBUTE_MISSING(url, 'type', validType);
+              ^
+
+TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/src/capacitor-parts.json" needs an import attribute of "type: json"
+    at validateAttributes (node:internal/modules/esm/assert:88:15)
+    at defaultLoadSync (node:internal/modules/esm/load:168:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:770:12)
+    at #loadSync (node:internal/modules/esm/loader:790:49)
+    at ModuleLoader.load (node:internal/modules/esm/loader:756:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:488:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:549:36)
+    at afterResolve (node:internal/modules/esm/loader:597:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_IMPORT_ATTRIBUTE_MISSING'
+}
+
+Node.js v24.16.0

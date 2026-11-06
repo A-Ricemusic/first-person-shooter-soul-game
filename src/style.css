@@ -550,3 +550,6 @@ body.touch-mode #touch-jump{grid-column:3;grid-row:2}
 body.touch-mode.touch-tools-open #reload-label{visibility:hidden!important}
 
 body.touch-mode #touch-fire[data-latched="true"]{background:#163a36a6!important}
+
+/* A blocked held trigger is amber; confirmed completion keeps its green state. */
+body.touch-mode #touch-fire[data-latch="COVER"]{background:#50331fd9!important;color:#ffe5b3;border-color:#e0a164}

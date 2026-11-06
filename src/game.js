@@ -1,6 +1,7 @@
+import {resumeTouchFire} from './touch-cover-resume.js';
 import {createFieldLamp,updateFieldLamp} from './field-lamp.js';
 import {fireDragSpeed} from './touch-fire-speed.js';
-import {seedTouchTracking,updateTouchTracking} from './touch-tracking.js';
+import {seedTouchTracking,beginTouchTracking,updateTouchTracking} from './touch-tracking.js';
 import {DEFAULT_PHONE_BRIGHTNESS,phoneBrightness,sceneExposure} from './mobile-visibility.js';
 import {fallbackPaint} from './enemy-paint.js';
 import {supplyKey,liveSupplies,selectedSupply,clearSupplyFields,selectSupplyRoute,removeSupplyRoute,emptyAmmoAdvice} from './supply-route.js';
@@ -728,6 +729,7 @@ export class Game {
     if (speed > 0 && direction.lengthSq() > 0.1 && this.grounded) { this.stepDistance += dt * speed; this.footTimer -= dt; if (this.footTimer <= 0) { this.audio.footstep(sprint); this.footTimer = sprint ? 0.28 : 0.39; } }
     if(dt>0){this.playerVelocity.copy(this.player).sub(previousPlayer).divideScalar(dt);this.playerVelocity.y=0;}
     this.syncCamera(); // Fire from this input frame, rather than the previous render pose.
+    if(resumeTouchFire(this))beginTouchTracking(this);
     updateTouchTracking(this,dt);
     if (this.mouseDown) this.shoot();
     // On touch, an exhausted active weapon reloads after its shot recovers,

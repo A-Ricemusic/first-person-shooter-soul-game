@@ -1,0 +1,39 @@
+{
+  "invalidOrIntermediateEvidence": [
+    {
+      "files": [
+        "build133-baseline-resume.json",
+        "build133-baseline-ray-resume.json",
+        "build133-dev-resume.json"
+      ],
+      "issue": "Initial elevated fixture assumed spawnEnemy preserved supplied Y. The game grounds spawns; the test aimed above the actor. The added direct-mesh assertion correctly failed. The first report without that assertion is invalid as proof, despite its passed flag.",
+      "correction": "Set the arranged actor group Y explicitly and require a real unoccluded optic mesh ray after native correction. Use build133-baseline-valid-resume.json as the valid baseline."
+    },
+    {
+      "file": "build133-dev-valid-resume.json",
+      "issue": "Valid intermediate implementation required a pose change before checking.",
+      "correction": "Final version checks at bounded frequency while held and cover-stopped, so an enemy moving into the current clear ray also resumes. Final production fixture includes that case."
+    },
+    {
+      "file": "build133-initial-import-error.txt",
+      "issue": "Node direct import of browser input module reached a JSON import without Node attributes.",
+      "correction": "Engineering fixture uses bounded real native drag feedback instead of importing browser runtime gain code. The production runtime was unaffected."
+    },
+    {
+      "file": "build133-production-resume.json",
+      "issue": "The initial near-target emergence case kept the initial pitch for12m while moving the actor to6m. It was not valid proof of a clear current ray.",
+      "correction": "Aim the explicitly arranged initial camera for the6m emergence surface before firing cover, then require a real clear actor-mesh intersection and unchanged yaw/pitch. The production2 fixture checks this case."
+    },
+    {
+      "file": "build133-production2-thumb-layout.json",
+      "issue": "Strict manual-gain symmetry failed by about0.001 degree in two profiles while live target following was still enabled. The prior exact following state was not recorded, so that cause remains an inference.",
+      "correction": "Disable rifle assistance only inside this manual-gain fixture, retaining original80px travel and1e-6 symmetry thresholds. Separate tracking/cover/moving-fire suites remain enabled and passed."
+    },
+    {
+      "file": "build133-final-motion.json",
+      "issue": "A prior motion test explicitly expected no held reacquisition after physical cover was removed. The new trigger rule deliberately permits a fresh current physical target at that point.",
+      "correction": "Keep its assertion that actual cover drops tracking; require held following and real damage only after cover clears. Death, range, teleport, opt-out, reload, release and fresh-reticle-miss cases remain. The dedicated cover-resume suite separately requires no shots for empty/occluded targets."
+    }
+  ],
+  "limits": "These are arranged fixtures and implementation decisions, not independent quality grades or proof of what caused an earlier visible-only review miss."
+}

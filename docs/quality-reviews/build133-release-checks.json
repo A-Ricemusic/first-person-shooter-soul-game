@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "resume",
+      "report": "docs/quality-reviews/build133-production2-resume.json",
+      "sha256": "5d313e9cc7f4d2f4773e99cd19b373edd03d22a32fc6eda35c75ab2622506943",
+      "passed": true
+    },
+    {
+      "name": "cover",
+      "report": "docs/quality-reviews/build133-production2-cover.json",
+      "sha256": "ec65cb2f7b45f74f980d9c94fbf01d3d00b629c36aab199f84817c2bec61ba91",
+      "passed": true
+    },
+    {
+      "name": "burst",
+      "report": "docs/quality-reviews/build133-production2-burst.json",
+      "sha256": "8f0a2ff626ce52a337abbfdc6c1728a71098b3d4448c7a00c51854dcd4a981b8",
+      "passed": true
+    },
+    {
+      "name": "close",
+      "report": "docs/quality-reviews/build133-production2-close.json",
+      "sha256": "31206e4877f89397b2d86b1252bd198f3cd06583a6644a1f881c76c479a048cf",
+      "passed": true
+    },
+    {
+      "name": "tracking-contracts",
+      "report": "docs/quality-reviews/build133-production2-tracking-contracts.json",
+      "sha256": "131a2e28581ff9b02b06422931ea559e438eeb5e7a08642a80b1c2c836f26147",
+      "passed": true
+    },
+    {
+      "name": "hierarchy",
+      "report": "docs/quality-reviews/build133-production2-hierarchy.json",
+      "sha256": "a2cfe7eaae38f37829f68c6152ddeda1967bb63e8efdaf6ec095ed45ae3eeb20",
+      "passed": true
+    },
+    {
+      "name": "thumb-layout",
+      "report": "docs/quality-reviews/build133-final-thumb-layout.json",
+      "sha256": "ca94487d63bf71fb17347dffb7af7bdc95b4930f0d4da091503730b8598a1d68",
+      "passed": true
+    },
+    {
+      "name": "tolerance",
+      "report": "docs/quality-reviews/build133-final-tolerance.json",
+      "sha256": "d4f275ea33876a677aaf9cc80264c5f9fca7b193c13d73326aac4672357ad5b8",
+      "passed": true
+    },
+    {
+      "name": "confirmation",
+      "report": "docs/quality-reviews/build133-final-confirmation.json",
+      "sha256": "e02de94ad96ad6677545b01da71854c74c594746f493b978620700c050f2ab5f",
+      "passed": true
+    },
+    {
+      "name": "defense",
+      "report": "docs/quality-reviews/build133-final-defense.json",
+      "sha256": "5b3fd11502ae842d42b24bc15d49ee38a57df1075581bd960bbe2aff871410a6",
+      "passed": true
+    },
+    {
+      "name": "fire-speed",
+      "report": "docs/quality-reviews/build133-final-fire-speed.json",
+      "sha256": "41009d2ac6f684c9e1465a73d4a6174ff1be5732d637997e652931c9b006ee96",
+      "passed": true
+    },
+    {
+      "name": "motion",
+      "report": "docs/quality-reviews/build133-finish-motion.json",
+      "sha256": "c3f25687d4ac1b87f7f6ae634deb8425418e5140d9a75d08fd428fc87de63376",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build133-finish-compact.json",
+      "sha256": "9acc57622423cac0953f9de422c87bf592658fdf1c55ad95a19095096eea592b",
+      "passed": true
+    },
+    {
+      "name": "readout",
+      "report": "docs/quality-reviews/build133-finish-readout.json",
+      "sha256": "73f4d3e8d2781cce89660f61d5aa87a501065f09e12731301a5292edd1f6a863",
+      "passed": true
+    }
+  ],
+  "commands": [
+    "npm run build",
+    "MOBILE_PREFIX=build133-production2 node tools/mobile-cover-resume-suite.mjs (stopped at thumb-layout failure)",
+    "MOBILE_PREFIX=build133-final node /tmp/soulfall-build133-remaining.mjs (five groups passed; stopped at old motion-cover expectation)",
+    "MOBILE_PREFIX=build133-finish node /tmp/soulfall-build133-finish.mjs (updated held-cover recovery expectation plus final two groups)"
+  ],
+  "scope": "14 affected production groups. Six passed in the initial run, five in the next continuation, and the updated motion-cover expectation plus final two in a last continuation, all on identical runtime/bundles. Not the full canonical suite, a human-control rating or hardware benchmark.",
+  "runtimeRecordFiles": 203,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-Bl1aPO_y.js": "dbef5f4f63d5afdb715b17c010e7fc325416d5e58da5be162b929899d4a7913a",
+    "dist/assets/index-C8mG_OgL.css": "8dc0593a88c6193f50eb48a0cf4c90db9714df35db8d5541282f589b327e7639"
+  },
+  "baseline": "build133-baseline-valid-resume.json",
+  "ordinaryEvidence": "build133-parent-play.json",
+  "corrections": "build133-validation-corrections.json",
+  "limits": [
+    "Exact current reticle selection uses the existing 36m physical query and ignores the carried weapon, consistent with rifle shot origin. This is no wider selection tolerance.",
+    "A new target query is bounded to one per0.08 game seconds while actually cover-stopped and FIRE-held; no physical-device CPU result is established.",
+    "Paused emulation cannot establish reaction time, continuous comfort or enjoyment."
+  ]
+}

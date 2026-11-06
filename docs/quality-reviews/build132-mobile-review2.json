@@ -1,0 +1,151 @@
+{
+  "build": "132 observed on title",
+  "expected_source": "974aa9c84a7e094ba7ade40d1cf7b81d232aea0a (not inspected)",
+  "complete": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 5,
+        "mission_time": "01:03",
+        "score": 6727,
+        "accuracy_percent": 97,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 17,
+        "tap_aims": 7,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build132-mobile-review2/attempt1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard TARGET DOWN at 21 ammo; perimeter patrol manual strafe plus FIRE drag fired one round but left guard standing; corrected with fresh tap and FIRE, SENTINEL DOWN at 18 ammo. No exact miss count can be inferred.",
+        "turn": "Scene swipe 010 to 344 degrees; additional visible threat-turn buttons.",
+        "dash": "Tapped after scene swipe in cleared entry lane; visible cyan effect, movement and 4.3 cooldown. No successful combat evade established; terminal phase evades 0.",
+        "map": "Opened visibly, read route, closed via #close-map.",
+        "boss": "Coils II and III off from outside; MAP FIND ENTRY prompted map use and route to entry. Coil I 37% after magazine empty, then OFF after automatic reload/fire.",
+        "assistance": "Substantial route, approach and tap-aim assistance; not a manual-only completion."
+      },
+      "last_live_hud": {
+        "health": 100,
+        "shield": 34,
+        "ammo": 29,
+        "reserve": 330
+      },
+      "fresh_start": "Initial #deploy act capture from title. No checkpoint retry."
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH via #play-again act capture; full health/shield and 30/180 ammo observed. No checkpoint retry.",
+      "outcome": "WIN: OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "00:57",
+        "score": 6471,
+        "accuracy_percent": 92,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 12,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "displayed_personal_best": 6727
+      },
+      "terminal_evidence": "docs/media/build132-mobile-review2/attempt2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry target tap plus simultaneous MOVE and FIRE drag produced TARGET DOWN, ammo 30 to 21. Perimeter: after visible SENTINEL CHARGING, tapped DASH then simultaneous manual MOVE/FIRE drag. Ammo 21 to 20; guard still standing. Fresh target tap and FIRE corrected, ammo 17, SENTINEL DOWN. Exact miss attribution unavailable; do not treat entry success as patrol coverage.",
+        "turn": "Visible threat TURN sampled 315 to 292 degrees; FIRE drag also changed heading. Free scene swipe separately sampled in attempt 1 only.",
+        "dash": "Sampled against visible charging patrol; cooldown 3.3 and view shift observed. No shield loss in this sample, but terminal phase evades 0; cannot establish successful charge break or causality.",
+        "boss": "First coil II batch produced INERT COVER and II 79%, requiring retarget to visible marker; II OFF, then III OFF. HOLD ROUTE reached entry, coil I OFF.",
+        "route": "Left more patrols alive; shield fell to 41 near Sera; recovered to 60 before boss. Route/approach assisted travel to all memories and deck.",
+        "uplink": "Stayed on deck without firing, upload 36 to 88 percent, shield 60 to 34, then actual win.",
+        "unassessed": "KIT/tools, AIM zoom, jump and manual-only traversal; no physical ergonomics or sustained hold assessment."
+      },
+      "last_live_hud": {
+        "health": 100,
+        "shield": 34,
+        "ammo": 4,
+        "reserve": 360
+      }
+    }
+  ],
+  "settings_changes": [],
+  "limitations": [
+    "Synthetic paused Chromium at portrait 390x844 with software WebGL. Captures release contacts and pause; frequent automatic live/FIRE boundaries shorten waits. No human reaction-time or causal quality advantage inference. Continuous held-burst rearming comfort cannot be established. Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Pausing closes KIT and clears AIM; no zoom or KIT assessment was attempted.",
+    "Automatic observation boundaries were respected and shortened route waits (roughly 2.97\u20132.99 seconds executed). No skipped action was assumed executed. Transport timing sometimes exceeded nominal FIRE budget: attempt2-coil2 reports 2145ms FIRE, attempt2-coil1 2250ms despite requested 1100ms waits. These were helper-reported timing overruns, not deliberate bypasses or reliable timing measurements.",
+    "Captures pause for inspection with approximately 3-second live / 1.2-second FIRE boundaries, affording repeated paused observations. This prevents claims about human reaction time, continuous enjoyment, sustained held-burst rearming comfort or a causal game-quality benefit.",
+    "Displayed accuracy is the game terminal statistic; exact manual misses versus cover impacts cannot be reconstructed from these views.",
+    "Recovered memories reading and other unvisited content were not graded for enjoyment."
+  ],
+  "evidence_prefix": "docs/media/build132-mobile-review2",
+  "cleanup": {
+    "driver_pid": 22423,
+    "chrome_pid": 22433,
+    "helper_close": "Explicit op close; closed event browserClosed true; awaited PTY exit code 0.",
+    "ps_command": "ps -p 22423,22433 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_stdout": "",
+    "ps_stderr": "",
+    "status": "verified exact owned driver and Chrome PIDs absent",
+    "broad_kills": false
+  },
+  "attempt_count": 2,
+  "reviewer": "Independent visible-only mobile reviewer; assigned GPT-6.1 Sol; no agents.",
+  "method": {
+    "url": "http://127.0.0.1:61528/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "input": "JSON-lines native two-contact touch through tools/mobile-playtest.mjs; only --help read. Each returned screenshot viewed separately before dependent input.",
+    "identity": "SOULFALL / BUILD 132 visible on title; source hash supplied by requester, not independently inspected.",
+    "scope": "Exactly two fresh attempts, both actual terminal wins. No game source, tests, docs, prior reviews, recordings or hidden state inspected. Only own evidence/logs/report created.",
+    "settings_changes": []
+  },
+  "learning_between_attempts": [
+    "Learned the route/approach interaction and checked recovery names.",
+    "Learned to target visible coil AIM markers and follow MAP FIND ENTRY / HOLD ROUTE to the remaining coil.",
+    "Second attempt deliberately sampled DASH in a visible charging-patrol context; did not manufacture an evade success.",
+    "Used more assisted traversal with patrols alive in second attempt, preserving shield damage."
+  ],
+  "helpful_moments": [
+    "Entry instruction directly links tap target, FIRE, scene swipe and DASH; TARGET DOWN feedback clearly confirms first engagement.",
+    "HOLD ROUTE, path arrows, changing HOLD APPROACH prompt and checked names made recoveries legible.",
+    "Threat direction buttons made offscreen patrols discoverable.",
+    "Boss percentages, OFF labels, OPEN timer, INERT COVER response and route prompt supported correction.",
+    "Distinct teal/gold rainy station presentation, clear result screen and explicit assist counts communicate identity and outcome."
+  ],
+  "frustrating_moments": [
+    "Manual patrol FIRE drag batches spent only one round and left target alive in both runs. Fresh taps plus FIRE corrected them; cause cannot be assigned from visible evidence, and capture releases prevent assessing continuous held rearming.",
+    "Small guards and distant coils compete with low-contrast gray geometry; world text is tiny at 390px width.",
+    "Large lower control area and HUD reduce unobstructed portrait scene; threat cue competes with action reading.",
+    "First boss entry search required map/route help after two exterior coils; second run still hit inert cover before correction.",
+    "Assisted traversal can expose the player to offscreen attacks; second run lost shield near a recovery. Directional hit feedback helped, but did not remove that friction."
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 mixed/functional with substantial friction, 7 good with clear limitations, 9 excellent, 10 exceptional. Holistic observed mobile-emulation experience; not an average of category scores, win rate, desired target or physical-device certification.",
+    "overall_mobile": 7.0,
+    "controls": 6.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Coherent, finishable mission with strong atmosphere and helpful recovery feedback; manual combat uncertainty and crowded portrait targeting keep it from an excellent grade. Both wins substantially assisted; not evidence of manual-only quality.",
+      "controls": "MOVE/FIRE drag, scene turn and DASH responded visibly, but patrol firing required corrections and DASH success was not confirmed. Continuous holds and physical thumb comfort unassessed.",
+      "gameplay": "Recovery to multi-coil boss to defended upload gives observable progression, with readable damage/opening feedback and patrol pressure. Limited manual-combat sample and assisted travel constrain depth/enjoyment judgment.",
+      "presentation": "Consistent teal/gold UI, rainy industrial setting, weapon model and composed title/results create strong visual identity. Audio and hardware rendering quality unassessed.",
+      "usability": "Explicit instructions, route/approach assistance, map, recovery checkmarks and terminal assist accounting make progress recoverable. Boss entry and offscreen threats still needed interpretation.",
+      "readability": "Main objective, health/ammo and end stats are clear. Distant enemies, coil targets and small environmental labels are harder to parse; bottom controls occupy substantial view."
+    }
+  },
+  "raw_evidence": {
+    "actions": "docs/media/build132-mobile-review2/actions.jsonl",
+    "screenshots": "docs/media/build132-mobile-review2/*.jpg",
+    "cleanup": "docs/media/build132-mobile-review2/cleanup.json"
+  }
+}
