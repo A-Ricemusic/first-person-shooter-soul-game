@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "groups": [
+    {
+      "name": "mantle",
+      "report": "docs/quality-reviews/build135-production-mantle.json",
+      "sha256": "be64c98ddb693847d84e23d615d999cbeb5fc044b01e5ac720cca5d44a3d37ff",
+      "passed": true
+    },
+    {
+      "name": "paint",
+      "report": "docs/quality-reviews/build135-production-paint.json",
+      "sha256": "b2e4a02ec5d0e821aa192eeaa7b6ebacda81b98316ae2bf5474db9dafae76571",
+      "passed": true
+    },
+    {
+      "name": "optics",
+      "report": "docs/quality-reviews/build135-production-optics.json",
+      "sha256": "0bc7d50a6130d112a88736e0756ac44c38cc7a5f1641e013100ce82bddf01759",
+      "passed": true
+    },
+    {
+      "name": "tap-aim",
+      "report": "docs/quality-reviews/build135-production-tap-aim.json",
+      "sha256": "ad5719cedd367d5423e8487798e469b86a5cdd32f870cf6ff6692f80be42ad85",
+      "passed": true
+    },
+    {
+      "name": "close",
+      "report": "docs/quality-reviews/build135-production-close.json",
+      "sha256": "b50be52d98d1ffc602ca37489d774b943b2c4be6a7cf90ac4d46f64958f569b6",
+      "passed": true
+    },
+    {
+      "name": "focus",
+      "report": "docs/quality-reviews/build135-production-focus.json",
+      "sha256": "bcc448d0e927dcf3a84dc058c35176643c96f06b8d31cbf47221cfb056713c93",
+      "passed": true
+    },
+    {
+      "name": "resume",
+      "report": "docs/quality-reviews/build135-production-resume.json",
+      "sha256": "0aace1bdb078144a02d37c77b231e83eec4e6098b38a73cb752a7820af0a8954",
+      "passed": true
+    },
+    {
+      "name": "burst",
+      "report": "docs/quality-reviews/build135-production-burst.json",
+      "sha256": "eaf22c8977fa049bd0c47cb8bd32c47efc866fe5902c77368f921d3690a7e3a9",
+      "passed": true
+    },
+    {
+      "name": "compact",
+      "report": "docs/quality-reviews/build135-production-compact.json",
+      "sha256": "16095bf74e3638f838b9b1876e2eb9e37aea0fc512a74569e8099f93a6bbb040",
+      "passed": true
+    },
+    {
+      "name": "tracking",
+      "report": "docs/quality-reviews/build135-production-tracking.json",
+      "sha256": "131a2e28581ff9b02b06422931ea559e438eeb5e7a08642a80b1c2c836f26147",
+      "passed": true
+    }
+  ],
+  "commands": [
+    "Blender --background --python tools/build135-sentinel-mantle.py (initial fairing and wider revision, both outputs retained)",
+    "python3 tools/audit135-sentinel-mantle.py",
+    "MOBILE_URL=http://127.0.0.1:61530/ MOBILE_MANTLE_BASELINE=1 MOBILE_MANTLE_PREFIX=build135-baseline-mantle node tests/mobile-sentinel-mantle.mjs",
+    "MOBILE_MANTLE_PREFIX=build135-dev-mantle node tests/mobile-sentinel-mantle.mjs (initial narrower fairing)",
+    "npm run build",
+    "MOBILE_PREFIX=build135-production node tools/mobile-sentinel-mantle-suite.mjs"
+  ],
+  "scope": "Ten selected production groups on the final tested runtime. Full canonical suite not rerun. Includes loaded, aborted and malformed downloads; actual native body/precision/cover shots; projection/tap, tracking, zoom, cover recovery, trigger handoff and compact inputs.",
+  "runtimeRecordFiles": 208,
+  "runtimeMismatches": [],
+  "testedBundles": {
+    "dist/assets/build135-sentinel-fallback-XZFAKvhY.js": "08fe51f89cdcedf1ce0b0fc14029715e80d150f723fde7f7cb476e49b80b20d7",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-DUw6sqJ0.js": "52d2fbb2c4c5c7d9b34f134c08ff6f79fad78690d5547ca7a511a257c8b98c38",
+    "dist/assets/index-DlTFtOKl.css": "cec7eb4577f4007906d75858bcae82540dd9cf25c7a60cdf6ba1ee621ab484f1"
+  },
+  "assetMetrics": {
+    "baseline": {
+      "bytes": 355544,
+      "triangles": 4996,
+      "primitives": 17
+    },
+    "candidate": {
+      "bytes": 431424,
+      "triangles": 6076,
+      "primitives": 17
+    },
+    "extraGlbBytes": 75880,
+    "extraTriangles": 1080
+  },
+  "baseline": "build135-baseline-mantle.json",
+  "comparison": "build135-control-comparison.json",
+  "assetAudit": "build135-asset-audit.json",
+  "ordinaryEvidence": "build135-parent-play.json",
+  "limits": [
+    "17 potential mesh primitives retained; more geometry/data and wider projected coverage do not prove equal rendering or query cost.",
+    "Added armor is an actual easier body target, with normal34 damage; fixed precision sphere,82 precision damage and100 Sentinel health remain.",
+    "Original HUD, controls, encounter and movement algorithms are unchanged.",
+    "Synthetic paused emulation cannot establish physical-device/Safari/audio/hardware performance, human acquisition or enjoyment."
+  ]
+}

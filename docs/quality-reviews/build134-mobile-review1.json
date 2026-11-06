@@ -1,0 +1,163 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "visible": "SOULFALL BUILD 134",
+    "sourceFreezeUserProvided": "1c5b6ec398c85556bfd83359e2c966fc31976ef8",
+    "sourceInspected": false
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "01:06",
+        "score": 6895,
+        "accuracyPercent": 88,
+        "criticalEliminations": 2,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 24,
+        "tapAims": 7,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build134-mobile-review1/a1-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Entry warden TARGET DOWN; visible patrol manual strafe and FIRE drag produced SENTINEL DOWN (a1-patrol-manual.jpg). Touch-assisted tap aim preceded bursts; this is not unaided accuracy.",
+        "sceneTurn": "Swipe changed heading 344 to 009; later threat turns sampled.",
+        "dash": "Tapped visible DASH; forward displacement and 4.2 cooldown visible; no phase evade credited.",
+        "aim": "Visible zoom plus held FIRE capture; hit cover, ammo 21 to 19. No aimed enemy hit established.",
+        "map": "Opened and visibly closed."
+      },
+      "failures": [
+        "AIM burst hit COVER / AIM CLEAR",
+        "Later patrol burst hit COVER with enemies remaining",
+        "Threat cue tap returned AIM UNCHANGED",
+        "Initial deployment used visible button coordinates in act capture instead of requested #deploy selector; no extra attempt taken"
+      ],
+      "notes": [
+        "Recovered all three with HOLD APPROACH; route assists used extensively",
+        "Coil II initial burst emptied magazine and reduced health to 79%; reload then numbered coils disabled",
+        "Deck upload 36%, 62%, terminal win"
+      ]
+    },
+    {
+      "attempt": 2,
+      "freshStart": "Visible START FRESH via act tap #play-again and capture; no checkpoint or third attempt",
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 6,
+        "missionTime": "01:02",
+        "score": 6989,
+        "accuracyPercent": 100,
+        "criticalEliminations": 3,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 22,
+        "tapAims": 8,
+        "routeAssists": 12,
+        "approachAssists": 5
+      },
+      "terminalEvidence": "docs/media/build134-mobile-review1/a2-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Visible charging SENTINEL tapped, manually strafed with MOVE and dragged FIRE using two contacts; LAST SENTINEL DOWN, ammo 21 to 19 (a2-manual-patrol.jpg). Assisted target tap used, so not unaided accuracy.",
+        "sceneTurn": "Visible TURN cue rotated toward charging patrol (a2-patrol-turn.jpg). No separate scene swipe in this attempt; swipe sampled in attempt 1.",
+        "dash": "Visible DASH tapped while navigating from patrol toward Mara; cooldown 1.7 visible after batch. No phase evade credited, so no successful charge break established.",
+        "aim": "Tapped entry guard then AIM, held zoomed FIRE burst; a2-zoom-guard.jpg shows iron sight, AIM active, TARGET DOWN and 21 ammo. Pause cleared AIM; next route capture inspected before new scene target.",
+        "map": "Not opened in this attempt; sampled and visibly closed in attempt 1."
+      },
+      "failures": [
+        "Coil I burst crossed from OPEN to ARMOR, emptied magazine, coil I remained at 15%; waited for reload then fired to disable",
+        "Shield fell during recovery and coil focus; patrols remained active/offscreen",
+        "100% result accuracy is game-reported and does not establish unaided precision or absence of armor chip shots"
+      ],
+      "notes": [
+        "Recovered all three with route/approach assistance",
+        "Disabled coils II, I, III",
+        "On deck upload 36%, 59%, 82%, then actual terminal win",
+        "Two uplink interceptors visibly downed across separate bursts"
+      ]
+    }
+  ],
+  "settingsChanges": [],
+  "limits": [
+    "Synthetic Chromium native touch at 844x390, software WebGL",
+    "Each capture releases contacts and pauses; about 3 seconds live / 1.2 seconds cumulative FIRE boundaries truncate waits. Cannot infer human reaction-time or causal quality benefit.",
+    "captureHeld also releases; continuous held-burst rearming comfort unassessed. Pause clears AIM and closes KIT.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "evidenceDirectory": "docs/media/build134-mobile-review1",
+  "cleanup": {
+    "close": "Explicit op close, awaited helper exit code 0",
+    "helperResponse": {
+      "driverPid": 78179,
+      "chromePid": 78189,
+      "browserClosed": true
+    },
+    "psVerification": "ps -p 78179,78189 -o pid=,ppid=,stat=,command= returned no rows; both exact owned PIDs absent. No broad kill."
+  },
+  "learnedBetweenAttempts": [
+    "Used familiar route/approach progression and numbered coil panels after learning them in attempt 1",
+    "Corrected first AIM sample against cover by sampling zoomed FIRE against entry guard in attempt 2",
+    "Did not infer speed or score improvements were caused by learning; conditions include paused inspection and assistance"
+  ],
+  "helpfulMoments": [
+    "Entry instruction explains tap aim, FIRE, scene swipe and DASH in place",
+    "Clear TARGET DOWN and named enemy messages make brief combat results visible",
+    "Large FIRE, MOVE and labeled AIM/DASH targets at 844x390",
+    "Route line, objective badges and contextual HOLD APPROACH / HOLD TO RECOVER provide navigation and recovery feedback",
+    "Numbered coil health, OPEN timer and OFF states explain boss progress",
+    "End screen explicitly reports assisted shots, tap aims and route/approach assists"
+  ],
+  "frustratingMoments": [
+    "First zoomed burst spent two rounds on cover; COVER / AIM CLEAR was useful feedback but no target hit",
+    "Later patrol burst returned COVER while enemies remained visible",
+    "One threat cue tap resulted in AIM UNCHANGED instead of a useful turn",
+    "Offscreen threat warnings required repeated turn captures and competed for attention with recovery/boss prompts",
+    "Fine world signage and small top-left text are cramped at landscape mobile size; muted gray enemies/cover can blend into the dark scene",
+    "Coil armor timing consumed ammunition before reload; readable state feedback helped explain the incomplete disable"
+  ],
+  "scores": {
+    "scale": "0 unusable; 5 functional with substantial friction; 7 good with noticeable limitations; 10 exceptional across observed scope. Subjective ratings of observed emulated mobile interaction, not grades derived from wins, accuracy or unassessed content.",
+    "overallMobile": 7.0,
+    "controls": 7.0,
+    "gameplay": 7.0,
+    "presentation": 8.0,
+    "usability": 7.0,
+    "readability": 6.5,
+    "reasons": {
+      "overallMobile": "Coherent playable recovery/combat/uplink loop with helpful assistance and atmospheric visuals; cover ambiguity, offscreen threat orientation and dense small HUD reduce confidence.",
+      "controls": "Two-contact MOVE and FIRE drag, swipe turn, AIM and DASH all responded visibly. Assisted tap aim helped. DASH evasion success and continuous burst rearming comfort remain unestablished.",
+      "gameplay": "Recovery progression, timed coils and deck defense provided understandable variation and pressure. Route completion was heavily assisted, so exploration and sustained manual combat enjoyment remain unassessed.",
+      "presentation": "Strong rain-soaked industrial atmosphere, cyan highlights and consistent menu/result styling. Audio and hardware frame pacing unassessed.",
+      "usability": "Contextual hold labels, map route and explicit assist accounting are helpful; threat cue handling and attention competition create friction.",
+      "readability": "Large key controls and coil states read well; small signage, condensed prompts and muted enemies against gray structures are harder at 844x390."
+    }
+  },
+  "protocol": {
+    "noAgents": true,
+    "sourceTestsDocsPriorReviewsNotInspected": true,
+    "helperLearning": "Only tools/mobile-playtest.mjs --help",
+    "url": "http://127.0.0.1:61530/",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "input": "JSON-lines native CDP two-contact touch only",
+    "deviations": [
+      "Initial visible ENTER THE STORM button was tapped by coordinates in an act/capture instead of required #deploy selector. It started attempt 1; no restart or extra attempt was used."
+    ],
+    "boundaries": "Requested initial route wait 12000ms executed about 2986ms; later 3000ms requests also shortened. Read observationBoundary/timings and viewed each new capture before continuation. No bypass used.",
+    "projection": "After first zoom capture, resumed for fresh unzoomed capture before scene targeting. Second zoom followed by anchored route action then fresh unzoomed image before scene targeting.",
+    "settingsChanges": []
+  },
+  "rawEvidence": {
+    "actionLog": "docs/media/build134-mobile-review1/actions.jsonl",
+    "screenshots": "docs/media/build134-mobile-review1/*.jpg",
+    "terminalScreens": [
+      "docs/media/build134-mobile-review1/a1-terminal.jpg",
+      "docs/media/build134-mobile-review1/a2-terminal.jpg"
+    ]
+  }
+}

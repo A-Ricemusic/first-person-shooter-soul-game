@@ -1,0 +1,117 @@
+{
+  "method": "Authored GLBs and real existing contact animation in Node/Three. Samples shutter vertices against actual armor with parity rays, plus a conservative side-shoulder vertical clearance. Geometry audit, not a played mission, complete solid-intersection proof or performance result.",
+  "cases": [
+    {
+      "fallback": false,
+      "pose": "closed",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.1050000384449958,
+      "gap": 0.14499991685152058,
+      "penetratingSampledVertices": []
+    },
+    {
+      "fallback": false,
+      "pose": "charging",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.2104545838995413,
+      "gap": 0.039545371396975115,
+      "penetratingSampledVertices": []
+    },
+    {
+      "fallback": false,
+      "pose": "nearlyCharged",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.2649998202631776,
+      "gap": -0.01499986496666117,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750"
+      ]
+    },
+    {
+      "fallback": false,
+      "pose": "flash",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.2650000384449958,
+      "gap": -0.015000083148479337,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750"
+      ]
+    },
+    {
+      "fallback": false,
+      "pose": "phaseCancel",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.2650000384449958,
+      "gap": -0.015000083148479337,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750"
+      ]
+    },
+    {
+      "fallback": true,
+      "pose": "closed",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.1050000002980231,
+      "gap": 0.14499995499849327,
+      "penetratingSampledVertices": []
+    },
+    {
+      "fallback": true,
+      "pose": "charging",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.2104545457525686,
+      "gap": 0.03954540954394781,
+      "penetratingSampledVertices": []
+    },
+    {
+      "fallback": true,
+      "pose": "nearlyCharged",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.264999782116205,
+      "gap": -0.014999826819688478,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750"
+      ]
+    },
+    {
+      "fallback": true,
+      "pose": "flash",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.265000000298023,
+      "gap": -0.015000045001506646,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750"
+      ]
+    },
+    {
+      "fallback": true,
+      "pose": "phaseCancel",
+      "shoulderBottom": 1.2499999552965164,
+      "movingShutterTop": 1.265000000298023,
+      "gap": -0.015000045001506646,
+      "penetratingSampledVertices": [
+        "Shutter1:0.41250,1.26500,-0.05750",
+        "Shutter1:0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,0.05750",
+        "Shutter4:-0.41250,1.26500,-0.05750"
+      ]
+    }
+  ],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Moving shutters enter armor or lack20mm side-shoulder clearance\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/sentinel-contact-clearance.mjs:5:88"
+}
