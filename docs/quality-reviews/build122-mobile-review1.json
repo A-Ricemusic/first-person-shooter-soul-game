@@ -1,0 +1,194 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh attempts, both actual terminal wins",
+  "identity": {
+    "visible": "BUILD 122",
+    "source_frozen_as_supplied": "1f3cf84659f2acd44568fa3293910191436a6fae",
+    "source_inspected": false
+  },
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61518/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 4,
+        "mission_time": "00:57",
+        "score": 6730,
+        "accuracy_percent": 100,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 14,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6
+      },
+      "terminal_evidence": "docs/media/build122-mobile-review1/attempt1-uplink.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Opening guard then visible left perimeter patrol; two contacts simultaneously; SENTINEL DOWN after patrol batch. Move forward/left and small FIRE drag. Exact missed shots not distinguishable; terminal reports 100% accuracy.",
+        "scene_turn": "Scene swipe changed heading 359 to 341.",
+        "other": "Tapped coils individually and fired; coil III depleted magazine at 37%, resumed FIRE batch completed reload and coil OFF. Used assisted routing/approach for recoveries and deck, shot deck sentinel.",
+        "unassessed": "Continuous held-burst rearming comfort; capture releases prevent this.",
+        "manual_combat_evidence": [
+          "docs/media/build122-mobile-review1/attempt1-manual-combat.jpg",
+          "docs/media/build122-mobile-review1/attempt1-patrol-manual.jpg"
+        ],
+        "turn_evidence": "docs/media/build122-mobile-review1/attempt1-scene-turn.jpg"
+      },
+      "failures_uncertainties": [
+        "No terminal failure. Coil II targeted from ARMOR status; phase between captures uncertain.",
+        "Coil III not finished by initial burst; ammo reached zero and RELOADING; subsequent FIRE batch completed it.",
+        "Small patrol targets and peripheral threat prompts compete with world view."
+      ],
+      "settings_changes": [],
+      "fresh_start": "Initial #deploy act with capture from title."
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH via #play-again act with capture, after first terminal was saved in incomplete report. No checkpoint retry or third attempt.",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "stats": {
+        "eliminations": 3,
+        "mission_time": "01:00",
+        "score": 6457,
+        "accuracy_percent": 100,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 18,
+        "tap_aims": 5,
+        "route_assists": 12,
+        "approach_assists": 5,
+        "displayed_personal_best": 6730
+      },
+      "terminal_evidence": "docs/media/build122-mobile-review1/attempt2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Visible close patrol beside Sera tapped at normalized (0.079,0.558), left contact MOVE dragged right to (0.12,0.8), concurrent FIRE contact dragged to (0.8,0.74), requested 1000ms executed 1000ms. Ammo 21 to 12, TARGET DOWN, heading 090 to 027. Target selection and drag changed view; inspected fresh capture before further input.",
+        "scene_turn": "No standalone scene swipe in attempt 2; standalone scene swipe sampled in attempt 1. Tap aim changed headings.",
+        "map": "Opened #touch-map and inspected planning screenshot. Selected Mara, overview 62m walking route, legible legend and large signal buttons. Closed visibly using #close-map. No target selection or settings change.",
+        "other": "Opening guard tap/FIRE. Assisted route and approach for all recoveries and deck. Individually tapped coils, repeated FIRE on coil II after reload/armor feedback. Waited on deck to terminal.",
+        "unassessed": "No dash/jump, tool selector, aim zoom or manual reload sampling. Continuous held-burst rearming unassessed. Map target switching/local zoom unassessed.",
+        "manual_combat_evidence": "docs/media/build122-mobile-review1/attempt2-patrol-manual.jpg"
+      },
+      "failures_uncertainties": [
+        "No terminal loss. Did not engage the early perimeter contacts; threat cues often pointed offscreen, so did not fire blindly. Shield fell during routing.",
+        "Coil II initial burst exhausted remaining 2 rounds, leaving 79% and RELOADING. Next batch reloaded to 25 rounds and left coil at 26%, COIL II ARMOR; next fresh FIRE batch took it OFF.",
+        "No individually confirmed shot miss; terminal reports 100% accuracy. That assisted aggregate does not prove precise manual aim.",
+        "No objective progress failure requiring checkpoint or uplink retry. No inference that routing would work equally well in uninterrupted physical play."
+      ],
+      "settings_changes": []
+    }
+  ],
+  "learned_between_attempts": "Tap aim and route/approach help; coils individually labeled; magazine can empty during coils. Second attempt will use visible START FRESH and sample map and additional patrol correction.",
+  "limitations": [
+    "Synthetic Chromium touch at 844x390, software WebGL, no physical phone certification.",
+    "Each capture releases contacts and may pause; frequent ~3s live/~1.2s FIRE boundaries. Requested waits may be shortened. No human reaction-time or causal quality benefit inferred.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed.",
+    "Pause clears AIM; zoom captures do not establish post-pause AIM.",
+    "No game source, tests, docs, earlier reviews, recordings, internal state or target metadata inspected. Only helper --help and current visible observations used. Source SHA supplied by task, not independently verified.",
+    "Assisted shots, tap aims and routing explicitly recorded; route completion alone is not manual-controls coverage. No enjoyment inference for unassessed memories or other content.",
+    "Each screenshot viewed in a separate tool call before dependent adaptive input. At most one new scene target coordinate per batch. Waits <=3000ms; automatic boundaries honored and timings inspected.",
+    "No causal benefit or human reaction-time inference from frequent paused observations. Actual device comfort and continuous enjoyment remain unassessed."
+  ],
+  "cleanup": {
+    "close_requested": true,
+    "helper_exit_code": 0,
+    "browserClosed": true,
+    "driver_pid": 64271,
+    "chrome_pid": 64281,
+    "verification": "ps -p 64271,64281 -o pid=,ppid=,command= returned no rows, exit 1; exact owned driver and Chrome PIDs absent. No kill used."
+  },
+  "what_changed_between_attempts": "Knowledge only: understood route/approach and coil labels from attempt 1, opened overview map in attempt 2, took a later close patrol engagement. No visible settings changes. Did not attempt to match strategy or infer causal differences from results.",
+  "helpful_moments": [
+    "Opening tap-guard instruction immediately corresponded to visible target and TARGET DOWN feedback.",
+    "Distinct HOLD ROUTE / HOLD APPROACH / HOLD TO RECOVER labels made contextual action discoverable. Recovery checkmarks named the people saved.",
+    "Map overview clearly connected current position to Mara with a walking route and described low cover as blocking movement.",
+    "Custodian numbered coils, percentages, OFF states, and uplink upload progress clearly exposed objective progress.",
+    "Rain, cyan trim, warm reflected lights, station signage and restrained terminal panel formed a coherent atmospheric presentation."
+  ],
+  "frustrating_moments": [
+    "Far patrols were tiny at 844x390; world detail and dark gray cover reduced quick target separation.",
+    "Threat prompt sits above FIRE and can cover the world; multiple banners, crosshair, route dots, weapon and controls leave limited unobstructed scene.",
+    "Offscreen TURN/FIRE or CHARGE cues indicated direction without establishing a safe visible firing target.",
+    "Coil II attempt 2 required several bursts through reload and armor; feedback was informative but the correct real-time firing cadence remains uncertain.",
+    "Assisted routing did much of traversal. The observed path was usable, but autonomous assistance limited the amount of independent navigation and combat evaluated."
+  ],
+  "scores": {
+    "scale": "0 unusable, 5 functional with substantial friction, 7 good with clear limitations, 9 excellent across assessed areas, 10 exceptional. Holistic judgment of observed emulated mobile play only; wins and reported accuracy are not quality grades. Overall is not an arithmetic average.",
+    "overall_mobile": 7.0,
+    "controls": 7.0,
+    "gameplay": 6.5,
+    "presentation": 8.0,
+    "usability": 7.5,
+    "readability": 6.5,
+    "reasons": {
+      "overall_mobile": "Two coherent complete missions with accessible touch assistance and strong atmosphere, constrained by crowded view, small targets and limited sustained manual combat evidence.",
+      "controls": "Two-contact MOVE plus FIRE drag and a scene swipe produced visible movement/turn/target-down feedback. Large anchored controls and tap aim helped; precise unassisted tracking, prolonged physical ergonomics and held rearming remain unassessed.",
+      "gameplay": "Recoveries, coil objective and deck hold supplied understandable progression and pressure. Manual patrol engagements and reload correction were observed, but route assistance dominated traversal and short bursts limited combat depth assessment.",
+      "presentation": "Strong consistent industrial storm atmosphere, readable spatial silhouettes in close views and polished result panel. Audio unassessed.",
+      "usability": "Contextual hold actions, route assistance, recovery checkmarks, map close and fresh start were discoverable and worked in observed use. Several overlapping prompts compete for attention.",
+      "readability": "Main objectives, health/ammo and result statistics are clear; distant enemies, smaller signage, compact phase information and overlapping cues are less comfortable at 844x390."
+    }
+  },
+  "evidence": {
+    "directory": "docs/media/build122-mobile-review1",
+    "raw_log": "docs/media/build122-mobile-review1/actions.jsonl",
+    "screenshots": [
+      "docs/media/build122-mobile-review1/attempt1-approach.jpg",
+      "docs/media/build122-mobile-review1/attempt1-coil1.jpg",
+      "docs/media/build122-mobile-review1/attempt1-coil2-armored.jpg",
+      "docs/media/build122-mobile-review1/attempt1-coil3.jpg",
+      "docs/media/build122-mobile-review1/attempt1-custodian-route.jpg",
+      "docs/media/build122-mobile-review1/attempt1-custodian-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt1-deck-fire.jpg",
+      "docs/media/build122-mobile-review1/attempt1-deck-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt1-deck-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt1-deploy.jpg",
+      "docs/media/build122-mobile-review1/attempt1-elian-approach.jpg",
+      "docs/media/build122-mobile-review1/attempt1-elian-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt1-elian-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt1-manual-combat.jpg",
+      "docs/media/build122-mobile-review1/attempt1-patrol-manual.jpg",
+      "docs/media/build122-mobile-review1/attempt1-reload.jpg",
+      "docs/media/build122-mobile-review1/attempt1-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt1-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt1-route3.jpg",
+      "docs/media/build122-mobile-review1/attempt1-scene-turn.jpg",
+      "docs/media/build122-mobile-review1/attempt1-sera-approach.jpg",
+      "docs/media/build122-mobile-review1/attempt1-sera-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt1-sera-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt1-uplink.jpg",
+      "docs/media/build122-mobile-review1/attempt2-coil1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-coil2-continue.jpg",
+      "docs/media/build122-mobile-review1/attempt2-coil2-finish.jpg",
+      "docs/media/build122-mobile-review1/attempt2-coil2-reload.jpg",
+      "docs/media/build122-mobile-review1/attempt2-coil3.jpg",
+      "docs/media/build122-mobile-review1/attempt2-custodian-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-custodian-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt2-deck-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-deck-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt2-elian-done.jpg",
+      "docs/media/build122-mobile-review1/attempt2-elian-near.jpg",
+      "docs/media/build122-mobile-review1/attempt2-elian-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-guard.jpg",
+      "docs/media/build122-mobile-review1/attempt2-map.jpg",
+      "docs/media/build122-mobile-review1/attempt2-mara-done.jpg",
+      "docs/media/build122-mobile-review1/attempt2-mara-near.jpg",
+      "docs/media/build122-mobile-review1/attempt2-mara-recover.jpg",
+      "docs/media/build122-mobile-review1/attempt2-patrol-manual.jpg",
+      "docs/media/build122-mobile-review1/attempt2-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-route2.jpg",
+      "docs/media/build122-mobile-review1/attempt2-sera-near.jpg",
+      "docs/media/build122-mobile-review1/attempt2-sera-recover.jpg",
+      "docs/media/build122-mobile-review1/attempt2-sera-route1.jpg",
+      "docs/media/build122-mobile-review1/attempt2-start-fresh.jpg",
+      "docs/media/build122-mobile-review1/attempt2-terminal.jpg",
+      "docs/media/build122-mobile-review1/attempt2-uplink-wait.jpg",
+      "docs/media/build122-mobile-review1/menu.jpg"
+    ]
+  }
+}

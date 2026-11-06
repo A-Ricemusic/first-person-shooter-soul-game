@@ -8,7 +8,7 @@ import { uploadStatus } from './upload.js';
 import { threatVisor } from './threat-visor.js';
 import {mobileCompassCues} from './mobile-cues.js';
 import { placeMarker } from './marker-layout.js';
-import { mobileMarkerCaption, mobileMarkerAnchorVisible, mobileOpticMarker } from './mobile-marker-layout.js';
+import { mobileMarkerCaption, mobileMarkerAnchorVisible, mobileOpticLayout } from './mobile-marker-layout.js';
 import {touchTapBlocks} from './touch-tap-regions.js';
 import './style.css';
 import { Game } from './game.js';
@@ -26,7 +26,7 @@ document.querySelector('#app').innerHTML = `
 <div id="waypoints" aria-hidden="true"></div><div id="damage-direction" aria-hidden="true"><i></i></div>
 <div id="damage-flash" aria-hidden="true"></div><div id="shift-flash" aria-hidden="true"></div>
 <section id="menu" class="screen menu-screen">
- <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 122</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
+ <header class="topbar"><a class="studio-mark" href="./">${icon}<span>VESPER<br><b>INTERACTIVE</b></span></a><div class="build-label"><i></i> <span class="build-description">PLAYABLE VERTICAL SLICE / </span>BUILD 123</div><button class="text-button" id="open-settings" aria-label="Open settings">SETTINGS <span>⚙</span></button></header>
  <div class="menu-copy"><div class="eyebrow"><span class="short-line"></span> A SIGNAL WORTH DYING FOR.</div><h1>SOUL<span>FALL</span><i>THE LAST SIGNAL</i></h1><p>The station went silent. The dead didn't.<br>Enter the storm. Bring the signal home.</p>
  <button class="primary-button" id="deploy" disabled><span id="deploy-label">INITIALIZING STATION</span><span class="button-arrow">↗</span></button>
  <div class="menu-secondary"><button id="open-briefing">MISSION BRIEF <span>↗</span></button><button id="open-controls">HOW TO PLAY <span>↗</span></button></div><div id="load-status" class="load-status" role="status">Preparing environment & combat systems…</div></div>
@@ -119,7 +119,7 @@ function renderState(s){
  $('crosshair').dataset.blocked=String(blockedCover);$('hitmarker').classList.toggle('cover-priority',blockedCover);
  const confirmation=s.rifleConfirmation;
  const trigger=$('touch-fire');
- if(trigger){const label=s.touchFireLatch||'',following=!!s.touchFollowing,key=label+'|'+following;if(trigger.dataset.presentationKey!==key){trigger.dataset.presentationKey=key;trigger.dataset.latch=label;trigger.dataset.latched=String(!!label);trigger.innerHTML=label?'LIFT<br><small>then FIRE</small>':following?'FIRE<br><small>FOLLOW</small>':'FIRE<br><small>drag aim</small>';trigger.setAttribute('aria-label',label?`${label}. Lift FIRE, then press again.`:following?'FIRE with target motion assistance. Drag away or lift to release.':'Hold FIRE and drag to aim. Rifle eliminations and blocked followed shots end the burst; lift and press again.');}}
+ if(trigger){const label=s.touchFireLatch||'',following=!!s.touchFollowing,key=label+'|'+following;if(trigger.dataset.presentationKey!==key){trigger.dataset.presentationKey=key;trigger.dataset.latch=label;trigger.dataset.latched=String(!!label);trigger.innerHTML=label?'LIFT<br><small>then FIRE</small>':following?'FIRE<br><small>FOLLOW</small>':'FIRE<br><small>drag aim</small>';trigger.setAttribute('aria-label',label?`${label}. Lift FIRE, then press again.`:following?'FIRE with target motion assistance. Drag away or lift to release.':'Hold FIRE and drag to aim. Rifle eliminations and solid-cover shots end assisted bursts; lift and press again.');}}
 
  $('hitmarker').classList.toggle('confirmed',!!confirmation);$('hitmarker').dataset.confirmation=confirmation?.label||'';
  $('ammo').classList.toggle('low',s.ammo<7);$('reload-label').dataset.reloading=String(!!s.reloading);$('reload-label').dataset.impact=weaponStatus?.kind||'';$('reload-label').innerHTML=s.reloading?'RELOADING…':weaponStatus?weaponStatus.label:game?.touchMode?'':'<kbd>R</kbd> RELOAD <span>•</span> <kbd>RMB</kbd> AIM';
@@ -292,6 +292,7 @@ function drawMarkers(markers){
  if(game?.touchMode)focus.textContent=focus.textContent.replace(/\bSHIFT\b/g,'DASH');
  focus.dataset.target=visor.focused?.id||'';
  focus.classList.toggle('charging',!!visor.focused?.charging);
+ focus.classList.toggle('component-duplicate',!!(game?.touchMode&&visor.focused?.type==='custodian'));
  markers=[...markers.filter(m=>m.kind!=='enemy'),...(game?.touchMode?visor.cues.filter(m=>m.onscreen):visor.cues)];
  const memory=$('memory-card');if(!memory.classList.contains('hidden')){const r=memory.getBoundingClientRect();if(r.width&&r.height)placed.push(r);}
  for(const panel of [focus,note,$('interaction')])if(!panel.classList.contains('hidden'))placed.push(panel.getBoundingClientRect());
@@ -300,10 +301,11 @@ function drawMarkers(markers){
  if(game?.touchMode){
   const opaque=touchTapBlocks();
   for(const m of markers.filter(m=>m.kind==='component')){const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;opaque.push({left:x-12,right:x+12,top:y-12,bottom:y+12});}
-  for(const m of markers.filter(m=>m.kind==='component'||m.kind==='enemy'&&m.onscreen)){
-   if(m.kind==='enemy'){const cue=mobileOpticMarker(m,{width:innerWidth,height:innerHeight},opaque);phoneOptics.set(m.id,cue);if(cue.visible)placed.push({...cue.rect,markerId:m.id});}
-   else{const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;placed.push({left:x-12,right:x+12,top:y-12,bottom:y+12,markerId:m.id});}
-  }
+  // One actual component badge owns the machine; nearby patrol brackets
+  // share a deterministic priority and may hide, never shift their anchors.
+  const optics=mobileOpticLayout(markers.filter(m=>m.kind==='enemy'&&m.onscreen),{width:innerWidth,height:innerHeight},opaque);
+  for(const [id,cue] of optics){phoneOptics.set(id,cue);if(cue.visible)placed.push({...cue.rect,markerId:id});}
+  for(const m of markers.filter(m=>m.kind==='component')){const x=(m.x+1)*innerWidth/2,y=(1-m.y)*innerHeight/2;placed.push({left:x-12,right:x+12,top:y-12,bottom:y+12,markerId:m.id});}
  }
  markers.sort((a,b)=>(b.charging?4:b.recent?3:b.inRange?2:0)-(a.charging?4:a.recent?3:a.inRange?2:0));
  for(const m of markers){

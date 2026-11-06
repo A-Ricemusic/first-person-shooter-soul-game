@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "method": "13 native affected groups plus pure optic-layout policy. Initial production had two intentional-contract failures; retained and corrected. Six UI/contract groups rerun on the final production build after parent-discovered inert boss-cue removal. Other7 groups exercise unchanged code. Not a full canonical suite or physical/human/performance certification.",
+  "groups": [
+    {
+      "name": "cover",
+      "report": "build123-production-cover.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "optics",
+      "report": "build123-final-optics.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "markers",
+      "report": "build123-final-markers.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "visor",
+      "report": "build123-final-visor.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "burst",
+      "report": "build123-final-burst.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "motion",
+      "report": "build123-production-motion.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "tolerance",
+      "report": "build123-production-tolerance.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "readout",
+      "report": "build123-production-readout.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "rifle-assist",
+      "report": "build123-production-rifle-assist.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": "Fixture awaits browser.close; no exact-PID record emitted."
+    },
+    {
+      "name": "focus",
+      "report": "build123-production-focus.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "confirmation",
+      "report": "build123-production-confirmation.json",
+      "passed": true,
+      "round": "Initial production; unchanged covered behavior retained. Final UI-affected groups separately rerun.",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    },
+    {
+      "name": "compact",
+      "report": "build123-final-compact.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": "Fixture awaits browser.close; no exact-PID record emitted."
+    },
+    {
+      "name": "route-reload",
+      "report": "build123-final-route-reload.json",
+      "passed": true,
+      "round": "Final production UI correction rerun",
+      "cleanup": {
+        "browserClosed": true,
+        "chromePidAbsent": true
+      }
+    }
+  ],
+  "purePolicy": {
+    "file": "tests/mobile-optic-layout.mjs",
+    "passed": true,
+    "log": "build123-final-reruns-final-output.txt"
+  },
+  "runtimeFilesVerified": 549,
+  "runtimeMismatches": [],
+  "commands": [
+    {
+      "name": "initial build",
+      "exit": 0,
+      "log": "build123-build-output.txt"
+    },
+    {
+      "name": "initial affected suite",
+      "exit": 1,
+      "log": "build123-production-output.txt"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "seconds": 23.53,
+      "log": "build123-build-final-output.txt"
+    },
+    {
+      "name": "final-reruns",
+      "command": [
+        "node",
+        "/tmp/soulfall-build123-final-reruns.mjs"
+      ],
+      "exit": 0,
+      "seconds": 271.14,
+      "log": "build123-final-reruns-final-output.txt"
+    }
+  ],
+  "bundles": {
+    "dist/assets/build104-sentinel-fallback-B1ru7wdT.js": "aaa10ff27804d0397c7b26554ee279715e32de0e9bc2d7b600bd24e8ad0fda4b",
+    "dist/assets/build69-custodian-surfaces-CJr5upgj.js": "359f0c687c4bc2f2952f4b3b78a709972c0599b2efc4c5b4a00bfcf72dd6c326",
+    "dist/assets/three-BHq7hzKl.js": "2528336258c1a27e69af1ca5796b591efcdf49bc87d82d31777cc8914ad3a10b",
+    "dist/assets/index-Dfb8gAgm.css": "eb1fb7192fbb47b04ccbb6fed0c8c3689ac0f951133b9ca703216860ef476027",
+    "dist/assets/index-C4aKgnKH.js": "d526733c0e190cbf1170cdb0038523c4734c1e7c662671cbb065f06b724fc38f"
+  },
+  "coverChecks": 63,
+  "parentMission": "build123-parent-play.json",
+  "postParentCorrection": "Generic inert-boss bracket removed after ordinary win; final native optics, marker, visor and compact checks cover the correction. Fresh independent reviews pending."
+}

@@ -513,3 +513,10 @@ body.touch-mode #crosshair[data-blocked="true"] b::after{content:'';position:abs
 body.touch-mode #crosshair[data-blocked="true"] i{opacity:.35}
 body.touch-mode #crosshair[data-blocked="true"]::after{opacity:0}
 body.touch-mode #hitmarker.cover-priority{opacity:0!important}
+
+/* Build123: one unobstructed cue per optic cluster; the coil strip owns boss text. */
+body.touch-mode #threat-focus.component-duplicate{display:none}
+body.touch-mode .world-marker.enemy.visor.optic,
+body.touch-mode .world-marker.enemy.visor.optic .marker-symbol{width:24px;height:24px}
+body.touch-mode .world-marker.enemy.visor.optic{filter:drop-shadow(0 0 1px #000) drop-shadow(0 1px 2px #000);color:#e6f5f0}
+body.touch-mode .world-marker.enemy.visor.optic.charging{color:#ffad72}

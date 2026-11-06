@@ -1,0 +1,182 @@
+{
+  "status": "COMPLETE \u2014 exactly two fresh terminal attempts",
+  "build": {
+    "expected_source": "1f3cf84659f2acd44568fa3293910191436a6fae",
+    "visible_title": "SOULFALL BUILD 122",
+    "source_inspected": false
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "url": "http://127.0.0.1:61518/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 4,
+        "mission_time": "01:10",
+        "score": 6678,
+        "accuracy_percent": 65,
+        "critical_eliminations": 2,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 14,
+        "tap_aims": 6,
+        "route_assists": 12,
+        "approach_assists": 5
+      },
+      "terminal_evidence": "docs/media/build122-mobile-review2/attempt1-terminal.jpg",
+      "coverage": {
+        "manual_move_and_fire_drag": "Opening guard plus both visible perimeter patrol contacts. Simultaneous native contacts on MOVE and FIRE, with FIRE drag. First patrol went down; second burst used 11 rounds and showed COVER, retap correction then two rounds produced SENTINEL DOWN.",
+        "scene_turn": "Swipe changed heading 004 to 035 degrees; threat TURN taps also sampled.",
+        "boss": "III and II disabled; 11-round INERT COVER burst failed at same view; route reposition exposed I, disabled after reload.",
+        "route": "Assisted recoveries and deck return; waited on deck to terminal.",
+        "unassessed": [
+          "continuous held-burst rearming comfort",
+          "dash",
+          "jump",
+          "tools",
+          "map",
+          "AIM zoom"
+        ]
+      },
+      "settings_changes": [],
+      "helpful": [
+        "Large MOVE/FIRE targets",
+        "Tap aim and threat direction prompts",
+        "Ground route arrows and contextual HOLD button",
+        "Boss percentages, OFF and reload feedback"
+      ],
+      "frustrations": [
+        "Second patrol burst hit COVER, needed fresh-view retap",
+        "Rear threat required multiple TURN taps",
+        "Boss INERT COVER wasted 11 rounds; clearer angle required reposition"
+      ],
+      "uncertainties": [
+        "Exact missed-shot breakdown unavailable; COVER feedback does not prove every shot missed",
+        "No human reaction-time conclusion"
+      ]
+    },
+    {
+      "attempt": 2,
+      "fresh_start": "Visible START FRESH via #play-again act + capture, after attempt-one result was saved",
+      "outcome": "WIN \u2014 OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "00:58",
+        "score": 6545,
+        "accuracy_percent": 100,
+        "critical_eliminations": 1,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 11,
+        "tap_aims": 5,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "displayed_touch_assist_personal_best": 6678
+      },
+      "terminal_evidence": "docs/media/build122-mobile-review2/attempt2-terminal.jpg",
+      "coverage": {
+        "manual_move_and_fire_drag": "Opening guard and one visible perimeter patrol contact: simultaneous MOVE and FIRE contacts, both moved, target down after each batch. Patrol ammo 21 to 19. Other patrol contact left alive; no claim of complete manual combat coverage.",
+        "scene_turn": "Visible threat TURN sampled, heading 297 to 262; no free scene swipe in this attempt (sampled in attempt one).",
+        "map": "Opened planning map, inspected overview route/receiver labels/cover legend, visibly closed with #close-map. No map destination change.",
+        "boss": "III disabled with 10-round burst. II reached 5% after nine rounds, automatic reload, then one round disabled it. Route reposition to visible I marker, ten-round burst disabled I. No INERT COVER burst repeated.",
+        "route": "Assisted all recoveries, boss reposition, deck return; waited on deck to actual terminal.",
+        "misses_and_failures": "Terminal displays 100% accuracy; do not interpret this as unaided aim precision or zero friction. II required reload at 5%; this was unfinished damage, not a missed-shot claim. Shield damage occurred; no loss or checkpoint retry.",
+        "unassessed": [
+          "continuous held-burst rearming comfort",
+          "dash",
+          "jump",
+          "tools",
+          "AIM zoom",
+          "second patrol manual engagement"
+        ]
+      },
+      "settings_changes": [],
+      "helpful": [
+        "Planning map fit portrait with readable route and explicit close",
+        "Contextual approach/recover prompts",
+        "Boss marker and percentage feedback",
+        "Automatic reload and persistent target firing after pause (without AIM zoom)"
+      ],
+      "frustrations": [
+        "Small distant patrol/coil targets amid cover",
+        "Ammo ran out with coil II still at 5%",
+        "Weapon and touch controls occupy much of lower portrait view"
+      ],
+      "uncertainties": [
+        "100% accuracy is the game-reported terminal metric, not independently verified shot accounting",
+        "Synthetic short gestures cannot establish physical thumb ergonomics"
+      ]
+    }
+  ],
+  "between_attempts_learning": "Retap contacts using the fresh projection; INERT COVER required reposition. In attempt two, after III/II were off and MAP \u00b7 FIND ENTRY appeared, used route to reach the visible I marker instead of repeating the failed cover burst. Learned contextual HOLD changes and map overview. No settings changes.",
+  "limitations": [
+    "Synthetic paused Chromium native touch emulation at 390x844 with software WebGL",
+    "Captures release contacts then pause; auto boundary about 3 seconds live or 1.2 seconds FIRE; waits shortened as logged",
+    "Pausing clears AIM and closes TOOLS; no continuous held-burst rearming conclusion",
+    "No causal quality or human reaction-time benefit inferred from paused observations",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed"
+  ],
+  "evidence_directory": "docs/media/build122-mobile-review2",
+  "cleanup": {
+    "status": "COMPLETE",
+    "explicit_close_sent": true,
+    "helper_exit_code": 0,
+    "helper_closed_response": {
+      "driverPid": 68820,
+      "chromePid": 68830,
+      "browserLaunched": true,
+      "browserClosed": true
+    },
+    "verification_command": "ps -p 68820,68830 -o pid=,ppid=,stat=,command=",
+    "ps_exit_code": 1,
+    "ps_stdout": "",
+    "exact_owned_pids_absent": true,
+    "broad_kill_used": false
+  },
+  "ratings": {
+    "scale": "0 unusable; 5 mixed but playable with substantial friction; 7 good with clear limitations; 10 exceptional within assessed scope. Holistic judgments, not an arithmetic average or outcome grade. Scores apply only to observed emulation; no desired score used.",
+    "overall_mobile": 7.0,
+    "controls": {
+      "score": 7.0,
+      "reason": "Large separated MOVE/FIRE targets, simultaneous native contacts and drag worked in short guard/patrol engagements; scene turn responded. Cover/aim correction and incremental rear turns caused friction. Pauses prevent continuous rearming or ergonomic certification; dash/jump/tools/AIM unassessed."
+    },
+    "gameplay": {
+      "score": 6.5,
+      "reason": "Recover-three, disable-three-coils, hold-deck sequence was coherent, with threat and armor/open feedback. Assisted traversal dominated and both uploads finished while waiting; limited evidence of sustained tactical depth or enjoyment. Patrol and cover interaction produced actual correction work."
+    },
+    "presentation": {
+      "score": 8.0,
+      "reason": "Cohesive rain-soaked teal/amber facility, distinct silhouettes, strong title and terminal hierarchy; dark geometry and distant low-detail contacts sometimes blend. Audio not assessed."
+    },
+    "usability": {
+      "score": 7.5,
+      "reason": "Context-sensitive HOLD button, path arrows, threat prompts, explicit map close and START FRESH supported both complete missions. Assistance and precise manual combat are different coverage; map was useful but only overview sampled."
+    },
+    "readability": {
+      "score": 7.0,
+      "reason": "Health/ammo, objective checks, boss percentages and end stats legible at 390x844. Small scene signage/targets and transient small feedback are harder to read; weapon/control occupancy reduces unobstructed view."
+    },
+    "holistic_reason": "Good accessible portrait mission with useful navigation and feedback, plus appealing visual coherence. Cover-related wasted shots, small distant targets and dependence on assisted traversal constrain the grade. Wins alone do not establish quality; unassessed content does not establish enjoyment."
+  },
+  "protocol": {
+    "attempt_count": 2,
+    "checkpoint_retries": 0,
+    "third_attempt": false,
+    "source_or_tests_or_docs_inspected": false,
+    "identity": "Visible BUILD 122 matched; expected source SHA supplied by requester, not independently verified because source inspection was prohibited.",
+    "input": "Only helper JSON-lines native touch. No keyboard/mouse, evaluation, internal state, alternate URL or custom controller.",
+    "observation": "Every captured screenshot viewed separately before dependent adaptive input; automatic fire/live boundaries and shortened waits respected. Contacts released and mission paused at captures. No bypass.",
+    "settings_changes": []
+  },
+  "raw_evidence": {
+    "actions_log": "docs/media/build122-mobile-review2/actions.jsonl",
+    "screenshots": "docs/media/build122-mobile-review2/*.jpg",
+    "first_terminal": "docs/media/build122-mobile-review2/attempt1-terminal.jpg",
+    "second_terminal": "docs/media/build122-mobile-review2/attempt2-terminal.jpg",
+    "cleanup": "docs/media/build122-mobile-review2/cleanup.json"
+  }
+}

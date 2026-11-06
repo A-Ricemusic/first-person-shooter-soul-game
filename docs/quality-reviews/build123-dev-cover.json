@@ -1,0 +1,212 @@
+{
+  "method": "ENGINEERING native phone fixtures: elevated floor, healthy stationary actor, suppressed AI, no spread/recoil, explicit cover inserted during a held tracked burst. Not reproduction of specific reviewer timing, ordinary play, human comfort or performance. Physical shots, ammunition and actor health measured. Baseline observations and candidate assertions are separate.",
+  "baseline": false,
+  "profiles": [
+    {
+      "width": 844,
+      "height": 390,
+      "insets": false,
+      "fallback": false,
+      "checks": [
+        {
+          "name": "actual loss of tracked sight resolves cover without hidden damage; subsequent held burst is measured",
+          "passed": true
+        },
+        {
+          "name": "FIRE dragging and independent MOVE remain live while stopped; only release/new FIRE rearms",
+          "passed": true
+        },
+        {
+          "name": "fresh manual cover shots stop enabled assistance, while disabled assistance stays continuous",
+          "passed": true
+        },
+        {
+          "name": "lost tracking in open air cannot stop the rifle without a resolved cover impact",
+          "passed": false,
+          "error": "The expression evaluated to a falsy value:\n\n  assert(!s.following&&!s.latch&&!s.guard)\n"
+        }
+      ],
+      "occlusion": {
+        "before": {
+          "phase": "playing",
+          "time": 0.2666000000000004,
+          "shots": 2,
+          "ammo": 28,
+          "health": 835,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": true,
+          "guard": false,
+          "latch": null,
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "OPTIC HIT",
+          "button": "FIRE\nFOLLOW",
+          "aria": "FIRE with target motion assistance. Drag away or lift to release."
+        },
+        "blocked": {
+          "phase": "playing",
+          "time": 0.28320000000000034,
+          "shots": 2,
+          "ammo": 28,
+          "health": 835,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": true,
+          "guard": false,
+          "latch": null,
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "OPTIC HIT",
+          "button": "FIRE\nFOLLOW",
+          "aria": "FIRE with target motion assistance. Drag away or lift to release."
+        },
+        "after": {
+          "phase": "playing",
+          "time": 1.0498999999999994,
+          "shots": 3,
+          "ammo": 27,
+          "health": 835,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "COVER · LIFT FIRE",
+          "button": "LIFT\nthen FIRE",
+          "aria": "COVER. Lift FIRE, then press again."
+        }
+      },
+      "rearm": {
+        "stopped": {
+          "phase": "playing",
+          "time": 1.2665999999999977,
+          "shots": 2,
+          "ammo": 28,
+          "health": 917,
+          "yaw": -0.025023696682464458,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0.05268994715316373,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "COVER · LIFT FIRE",
+          "button": "LIFT\nthen FIRE",
+          "aria": "COVER. Lift FIRE, then press again."
+        },
+        "released": {
+          "phase": "playing",
+          "time": 1.2998999999999978,
+          "shots": 2,
+          "ammo": 28,
+          "health": 917,
+          "yaw": -0.025023696682464458,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": null,
+          "held": false,
+          "move": {
+            "x": 0.05268994715316373,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "",
+          "button": "FIRE\ndrag aim",
+          "aria": "Hold FIRE and drag to aim. Rifle eliminations and solid-cover shots end assisted bursts; lift and press again."
+        },
+        "resumed": {
+          "phase": "playing",
+          "time": 1.8665999999999963,
+          "shots": 3,
+          "ammo": 27,
+          "health": 917,
+          "yaw": -0.025023696682464458,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": true,
+          "label": "COVER · LIFT FIRE",
+          "button": "LIFT\nthen FIRE",
+          "aria": "COVER. Lift FIRE, then press again."
+        }
+      },
+      "unassisted": [
+        {
+          "assist": true,
+          "phase": "playing",
+          "time": 0.6331999999999999,
+          "shots": 1,
+          "ammo": 29,
+          "health": 999,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": "COVER",
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": false,
+          "label": "COVER · LIFT FIRE",
+          "button": "LIFT\nthen FIRE",
+          "aria": "COVER. Lift FIRE, then press again."
+        },
+        {
+          "assist": false,
+          "phase": "playing",
+          "time": 0.6333000000000003,
+          "shots": 5,
+          "ammo": 25,
+          "health": 999,
+          "yaw": 0,
+          "pitch": -0.04995839572194276,
+          "following": false,
+          "guard": false,
+          "latch": null,
+          "held": true,
+          "move": {
+            "x": 0,
+            "z": 0
+          },
+          "coverCue": true,
+          "label": "COVER",
+          "button": "FIRE\ndrag aim",
+          "aria": "Hold FIRE and drag to aim. Rifle eliminations and solid-cover shots end assisted bursts; lift and press again."
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "chromePid": 74448,
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(!s.following&&!s.latch&&!s.guard)\n\n    at file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:22:232\n    at async check (file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:16:35)\n    at async file:///Users/pelicannurse/.t3/projects/first-person-shooter-soul-game/tests/mobile-cover-handoff.mjs:22:2",
+  "browserClosed": true,
+  "chromePidAbsent": true
+}

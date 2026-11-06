@@ -18,8 +18,22 @@ export function mobileMarkerAnchorVisible(anchor,viewport,occupied=[]){
 // Empty corner marks surround the existing optic projection. Opaque phone UI
 // can hide the cue, but never displace it onto a different scene surface.
 export function mobileOpticMarker(marker,viewport,occupied=[]){
- const x=(marker.x+1)*viewport.width/2,y=(1-marker.y)*viewport.height/2,size=20;
+ const x=(marker.x+1)*viewport.width/2,y=(1-marker.y)*viewport.height/2,size=24;
  const rect={left:x-size/2,right:x+size/2,top:y-size/2,bottom:y+size/2};
  const visible=marker.front&&marker.onscreen&&rect.left>=8&&rect.right<=viewport.width-8&&rect.top>=8&&rect.bottom<=viewport.height-8&&!occupied.some(p=>overlaps(rect,p,2));
  return {x,y,rect,visible};
+}
+
+// The same eligible optic points compete only for screen space. Charging and
+// recent attackers win crowded clusters; ties use distance then stable identity.
+// No target metadata, hit testing, tracking or camera state is changed.
+export function mobileOpticLayout(markers,viewport,occupied=[]){
+ const layout=new Map(),reserved=[...occupied];
+ const ordered=[...markers].sort((a,b)=>Number(!!b.charging)-Number(!!a.charging)||Number(!!b.recent)-Number(!!a.recent)||(a.distance??Infinity)-(b.distance??Infinity)||String(a.id).localeCompare(String(b.id)));
+ for(const m of ordered){
+  const cue=mobileOpticMarker(m,viewport,reserved);
+  if(m.type==='custodian')cue.visible=false;
+  layout.set(m.id,cue);if(cue.visible)reserved.push(cue.rect);
+ }
+ return layout;
 }
