@@ -1,0 +1,215 @@
+{
+  "status": "COMPLETE: exactly two fresh terminal attempts",
+  "identity": {
+    "expected_frozen_source": "1d73981d43c875f3f5ac51e803583eb1d27a42ce",
+    "observed_title": "SOULFALL / BUILD 127",
+    "source_verified": false,
+    "url": "http://127.0.0.1:61523/",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "00:59",
+        "score": 6461,
+        "accuracy_percent": 75,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 23,
+        "tap_aims": 5,
+        "route_assists": 11,
+        "approach_assists": 5
+      },
+      "evidence": "docs/media/build127-mobile-review2/a1-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry guard TARGET DOWN; later visible patrol NO IMPACT with 12 rounds spent (21 to 09), guard remained; fresh-view retap and anchored fire corrected to SENTINEL DOWN (07 rounds).",
+        "scene_turn": "Swipe changed heading 013 to 336.",
+        "dash": "Tapped visible DASH after turn; teal effect and 4.4 cooldown observed; terminal phase evades 0, no successful charge evasion claimed.",
+        "navigation": "HOLD ROUTE and contextual recover/approach; all three recoveries and coils completed; upload waited on deck.",
+        "settings_changes": []
+      },
+      "helpful": [
+        "Large FIRE and MOVE regions",
+        "TARGET DOWN / NO IMPACT feedback supported correction",
+        "Objective checklist, approach labels, coil percentages and upload progress made state understandable"
+      ],
+      "frustrations": [
+        "Manual drag overshot patrol aim and consumed rounds",
+        "Threats behind route required directional text interpretation",
+        "Some world signs and status text small in portrait"
+      ],
+      "uncertainties": [
+        "Cannot assign exact shot-by-shot misses from captures",
+        "DASH movement distance or defensive success unverified",
+        "No continuous burst rearming assessment"
+      ]
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH via #play-again after first outcome saved",
+      "outcome": "WIN / OPERATION COMPLETE / SIGNAL RESTORED",
+      "terminal_stats": {
+        "eliminations": 3,
+        "mission_time": "01:03",
+        "score": 6448,
+        "accuracy_percent": 74,
+        "critical_eliminations": 0,
+        "phase_evades": 0,
+        "uplink_retries": 0,
+        "assisted_shots": 18,
+        "tap_aims": 6,
+        "route_assists": 11,
+        "approach_assists": 6,
+        "touch_assist_personal_best": 6461
+      },
+      "evidence": "docs/media/build127-mobile-review2/a2-terminal.jpg",
+      "coverage": {
+        "manual_move_fire_drag": "Entry tap plus two-contact MOVE/FIRE drag showed TARGET DOWN (30 to 21 ammo). Later visible patrol tap plus MOVE/smaller FIRE drag still showed NO IMPACT (21 to 10) with guard visible left of reticle. Fresh-view retap and anchored FIRE corrected to SENTINEL DOWN (10 to 09). Exact per-shot hit count unknown.",
+        "scene_turn": "Short scene swipe sampled before route hold; final heading 095 includes subsequent assisted route turn, so isolated turn amount not measured. Attempt 1 provides isolated turn evidence.",
+        "dash": "Visible DASH tapped after entry engagement; 1.5 cooldown visible after batch. Subsequent route contact made little apparent progress in same batch; fresh route hold advanced. Cause uncertain; no defensive evasion claimed.",
+        "navigation": "Assisted route/approach/recover for all memories; coils targeted one per fresh view; coil III armor feedback and 5% observed before OFF; returned to deck and waited through upload to win.",
+        "settings_changes": [],
+        "unassessed": [
+          "Continuous held-burst rearming comfort",
+          "Tools, zoom, jump, map and memory reading",
+          "Unassisted full-route navigation",
+          "Successful charge evasion"
+        ]
+      },
+      "helpful": [
+        "Recovery checklist and contextual approach labels stayed understandable",
+        "Coil percentage/OFF, ARMOR and reload labels communicated encounter progress",
+        "End screen distinguishes assistance counts and gives visible START FRESH"
+      ],
+      "frustrations": [
+        "Smaller manual FIRE drag still failed to maintain patrol aim while moving",
+        "Route progress after DASH was unclear in one batch",
+        "Rear threat cues and small secondary text demand attention away from scene"
+      ],
+      "uncertainties": [
+        "No exact causal diagnosis of patrol miss or post-DASH route behavior",
+        "No uninterrupted combat timing or sustained enjoyment judgement"
+      ]
+    }
+  ],
+  "learned_between_attempts": "Tap aim plus anchored FIRE was more reliable in the observed patrol correction than my simultaneous movement/drag. HOLD ROUTE changes to contextual approach/recovery; coil OFF and percentages identify progress. Will retain these observations without implying human timing benefit.",
+  "limitations": [
+    "Synthetic Chromium native touch at 390x844 with software WebGL fallback",
+    "Captures release contacts and pause; automatic boundaries about 3s live / 1.2s FIRE shorten waits and interrupt continuous holds",
+    "Paused inspection increases observation frequency; no human reaction-time or causal quality benefit inferred",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed",
+    "Source, tests, docs, prior reviews and internal state not inspected",
+    "Pausing closes TOOLS and clears AIM through game lifecycle; neither sampled here",
+    "Automatic contact release at every capture cannot establish continuous held-burst rearming comfort",
+    "Mission times are terminal UI stats, not wall-clock play durations",
+    "No independent frozen-SHA verification because source inspection was prohibited; observed BUILD 127 matched title expectation"
+  ],
+  "cleanup": {
+    "helper_close": "Explicit op close; browserClosed true; awaited process exit code 0",
+    "driver_pid": 95481,
+    "chrome_pid": 95491,
+    "ps_command": "ps -p 95481,95491 -o pid=,ppid=,command=",
+    "ps_exit_code": 1,
+    "ps_stdout": "",
+    "ps_stderr": "",
+    "status": "PASS: exact owned driver and Chrome PIDs absent",
+    "broad_kill_used": false
+  },
+  "scores": {
+    "scale": "0 unusable, 5 workable with substantial friction, 7 good with meaningful rough edges, 10 exceptional within assessed scope. Scores are holistic observations of these two emulated paused runs, not grades for wins or device certification.",
+    "overall_mobile": 7,
+    "controls": 6,
+    "gameplay": 7,
+    "presentation": 8,
+    "usability": 7,
+    "readability": 7,
+    "reasons": {
+      "overall_mobile": "Readable objectives, generous assistance and clear encounter progression supported completion; repeated mobile manual-aim friction limits confidence.",
+      "controls": "Large labeled controls, tap aim and visible DASH cooldown help; both patrol MOVE/FIRE-drag samples missed and required paused retap correction. Entry samples succeeded. Continuous holds and physical ergonomics unassessed.",
+      "gameplay": "Recovery, coil encounter and uplink provide a coherent observed sequence with useful progress feedback. Assisted navigation dominated; tactical depth and continuous enjoyment not established.",
+      "presentation": "Consistent teal industrial identity, rain, architecture and strong result screen have a coherent atmosphere in captured views. Software WebGL artifacts/performance cannot be attributed to hardware phones.",
+      "usability": "Contextual HOLD ROUTE/APPROACH/RECOVER and fresh-start UI reduced navigation ambiguity. Threats behind the route and unclear progress after one DASH batch caused uncertainty.",
+      "readability": "Health/ammo/objective checklist, coil percentages and upload progress legible; world signs, reserve counts and secondary status labels small at 390px width."
+    }
+  },
+  "protocol": {
+    "attempt_count": 2,
+    "checkpoint_retry": false,
+    "third_attempt": false,
+    "settings_changes": [],
+    "inspection": "Only helper --help read for instructions; played visible UI, viewed each capture separately before adaptive input; no source, tests, docs, prior review or internal state inspection. Own report/evidence paths only.",
+    "inputs": "Native two-contact touch JSON lines. Wait requests at most 3000ms; inspected observationBoundary/timings; did not bypass shortened waits. No keyboard/mouse or alternative URLs.",
+    "map": "Not opened; no planning map left open.",
+    "aim_tools": "Not sampled; no zoom persistence assumption."
+  },
+  "raw_evidence": {
+    "directory": "docs/media/build127-mobile-review2",
+    "actions_log": "docs/media/build127-mobile-review2/actions.jsonl",
+    "terminal_images": [
+      "docs/media/build127-mobile-review2/a1-terminal.jpg",
+      "docs/media/build127-mobile-review2/a2-terminal.jpg"
+    ],
+    "cleanup": "docs/media/build127-mobile-review2/cleanup.json",
+    "all_captures": [
+      "docs/media/build127-mobile-review2/a1-coil1.jpg",
+      "docs/media/build127-mobile-review2/a1-coil2.jpg",
+      "docs/media/build127-mobile-review2/a1-coil3.jpg",
+      "docs/media/build127-mobile-review2/a1-coil4.jpg",
+      "docs/media/build127-mobile-review2/a1-deploy.jpg",
+      "docs/media/build127-mobile-review2/a1-manual-fire.jpg",
+      "docs/media/build127-mobile-review2/a1-patrol-correct.jpg",
+      "docs/media/build127-mobile-review2/a1-patrol-manual.jpg",
+      "docs/media/build127-mobile-review2/a1-recover1.jpg",
+      "docs/media/build127-mobile-review2/a1-recover2.jpg",
+      "docs/media/build127-mobile-review2/a1-recover3.jpg",
+      "docs/media/build127-mobile-review2/a1-return1.jpg",
+      "docs/media/build127-mobile-review2/a1-return2.jpg",
+      "docs/media/build127-mobile-review2/a1-route1.jpg",
+      "docs/media/build127-mobile-review2/a1-route2.jpg",
+      "docs/media/build127-mobile-review2/a1-route3.jpg",
+      "docs/media/build127-mobile-review2/a1-route4.jpg",
+      "docs/media/build127-mobile-review2/a1-route5.jpg",
+      "docs/media/build127-mobile-review2/a1-route6.jpg",
+      "docs/media/build127-mobile-review2/a1-route7.jpg",
+      "docs/media/build127-mobile-review2/a1-route8.jpg",
+      "docs/media/build127-mobile-review2/a1-route9.jpg",
+      "docs/media/build127-mobile-review2/a1-terminal.jpg",
+      "docs/media/build127-mobile-review2/a1-turn-dash.jpg",
+      "docs/media/build127-mobile-review2/a1-upload1.jpg",
+      "docs/media/build127-mobile-review2/a2-coil1.jpg",
+      "docs/media/build127-mobile-review2/a2-coil2.jpg",
+      "docs/media/build127-mobile-review2/a2-coil3.jpg",
+      "docs/media/build127-mobile-review2/a2-coil4.jpg",
+      "docs/media/build127-mobile-review2/a2-coil5.jpg",
+      "docs/media/build127-mobile-review2/a2-dash-route1.jpg",
+      "docs/media/build127-mobile-review2/a2-entry-manual.jpg",
+      "docs/media/build127-mobile-review2/a2-patrol-correct.jpg",
+      "docs/media/build127-mobile-review2/a2-patrol-manual.jpg",
+      "docs/media/build127-mobile-review2/a2-recover1.jpg",
+      "docs/media/build127-mobile-review2/a2-recover2.jpg",
+      "docs/media/build127-mobile-review2/a2-recover3.jpg",
+      "docs/media/build127-mobile-review2/a2-return1.jpg",
+      "docs/media/build127-mobile-review2/a2-return2.jpg",
+      "docs/media/build127-mobile-review2/a2-route10.jpg",
+      "docs/media/build127-mobile-review2/a2-route2.jpg",
+      "docs/media/build127-mobile-review2/a2-route3.jpg",
+      "docs/media/build127-mobile-review2/a2-route4.jpg",
+      "docs/media/build127-mobile-review2/a2-route5.jpg",
+      "docs/media/build127-mobile-review2/a2-route6.jpg",
+      "docs/media/build127-mobile-review2/a2-route7.jpg",
+      "docs/media/build127-mobile-review2/a2-route9.jpg",
+      "docs/media/build127-mobile-review2/a2-start-fresh.jpg",
+      "docs/media/build127-mobile-review2/a2-terminal.jpg",
+      "docs/media/build127-mobile-review2/a2-turn-route8.jpg",
+      "docs/media/build127-mobile-review2/a2-upload1.jpg",
+      "docs/media/build127-mobile-review2/menu.jpg"
+    ]
+  }
+}

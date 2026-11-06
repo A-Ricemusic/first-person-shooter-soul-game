@@ -1,6 +1,8 @@
 import * as T from 'three';
 import {touchDirectTarget} from './touch-targeting.js';
-export const TOUCH_TRACK_GAIN=.85,TOUCH_TRACK_LEASH=8*Math.PI/180,TOUCH_TRACK_SPEED=Math.PI/3,TOUCH_TRACK_RANGE=28,TOUCH_TRACK_TAP_GRACE=.35;
+import {TOUCH_TRACK_LEASH,trackedMotionStep} from './touch-tracking-motion.js';
+export {TOUCH_TRACK_GAIN,TOUCH_TRACK_LEASH,TOUCH_TRACK_SPEED,trackedMotionStep} from './touch-tracking-motion.js';
+export const TOUCH_TRACK_RANGE=28,TOUCH_TRACK_TAP_GRACE=.35;
 const wrap=x=>Math.atan2(Math.sin(x),Math.cos(x));
 const enabled=g=>g.touchMode&&g.options.touchAimAssist!==false&&g.phase==='playing'&&g.activeWeapon==='rifle'&&g.mouseDown&&!g.reloading&&!g.vault&&!g.touchFireLatch&&g.ammo>0;
 const angles=d=>({yaw:Math.atan2(-d.x,-d.z),pitch:Math.atan2(d.y,Math.hypot(d.x,d.z))});
@@ -26,7 +28,8 @@ export function beginTouchTracking(g){
  const current=ownedPoint(g,seed.enemy,seed.local);if(!current)return false;
  g.touchTrack={enemy:seed.enemy,key:`enemy-${seed.enemy.id}`,local:seed.local,...angles(current.d),source:'tap'};return true;
 }
-// Compensate real angular motion, never pull a manual offset toward centre.
+// Compensate bounded real angular motion in full so fractional lag cannot
+// accumulate during a strafe. Never pull a manual offset toward centre.
 // One current physical ray revalidates the same actor; hidden contact is never followed.
 export function updateTouchTracking(g,dt){
  const track=g.touchTrack;if(!track)return;
@@ -41,7 +44,8 @@ export function updateTouchTracking(g,dt){
  if(Math.hypot(dyaw,dpitch)>TOUCH_TRACK_LEASH)return drop();
  const ndc=point.clone().project(g.camera),hit=touchDirectTarget(g,ndc,{ignoreViewmodel:true});
  if(!hit||hit.key!==track.key)return drop(!hit);
- const motion=Math.hypot(dyaw,dpitch),gain=motion?Math.min(TOUCH_TRACK_GAIN,TOUCH_TRACK_SPEED*dt/motion):0;
- g.yaw+=dyaw*gain;g.pitch=T.MathUtils.clamp(g.pitch+dpitch*gain,-1.44,1.44);
+ const step=trackedMotionStep(track,dyaw,dpitch,dt);if(!step)return drop();
+ g.yaw+=step.yaw;const pitch=T.MathUtils.clamp(g.pitch+step.pitch,-1.44,1.44);
+ track.pendingPitch+=step.pitch-(pitch-g.pitch);g.pitch=pitch;
  track.yaw=a.yaw;track.pitch=a.pitch;g.syncCamera();
 }

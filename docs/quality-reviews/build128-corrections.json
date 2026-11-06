@@ -1,0 +1,22 @@
+{
+  "retainedFailures": [
+    {
+      "report": "build128-dev-close.json",
+      "issue": "Full motion gain and90degree/s cap alone still discarded correction at tiny simulation remainder steps. The corrected implementation carries unapplied target motion within the same leash; final production close test passes12 cases."
+    },
+    {
+      "issue": "Initial pure-contract test imported browser gameplay dependencies through touch-tracking.js; Node rejected the existing JSON imports without attributes (ERR_IMPORT_ATTRIBUTE_MISSING). Extracted the pure motion step/constants into a leaf module. Browser loader was not changed. Final Node contracts and production browser tests pass."
+    },
+    {
+      "report": "build128-production-thumb-layout.json",
+      "issue": "Original fixture allowed18 native swipes;667x375 required19 to reveal the whole last paragraph. Layout diagnosis measured97.5px paragraph inside176px content viewport. Native gesture budget now derives from scroll height; all original visibility and dismissal assertions remain. No app layout/copy change.",
+      "diagnosis": "build128-handbook-diagnosis.json",
+      "retest": "build128-final-thumb-layout.json"
+    }
+  ],
+  "limits": [
+    "Initial tap error/manual offsets remain; this is target-motion compensation, not a centering magnet or target chooser.",
+    "90degree/s correction and8degree leash still release extreme close angular motion; no through-cover ownership or automatic reacquisition.",
+    "Build127 left warning/guard overlap and small dark target readability remain findings; no UI/art fix claimed here."
+  ]
+}
