@@ -1,0 +1,222 @@
+{
+  "status": "complete",
+  "buildObserved": 135,
+  "sourceFreezeProvided": "1c2242c67dee6e18872f48700fe317b3ab8e2fbe",
+  "sourceNotInspected": true,
+  "viewport": [
+    844,
+    390
+  ],
+  "url": "http://127.0.0.1:61532/",
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 2,
+        "missionTime": "01:05",
+        "score": 6336,
+        "accuracyPercent": 84,
+        "criticalEliminations": 0,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 10,
+        "tapAims": 5,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build135-mobile-review1/a1-terminal.jpg",
+      "coverage": {
+        "manualMoveFireDrag": "Opening guard down; visible patrol engaged with two contacts, then multiple failed corrections. Completion of that patrol not established individually.",
+        "sceneTurn": "Swipe 358 to 331 degrees; later threat TURN cue used.",
+        "dash": "Tapped after opening guard; cooldown 4.3 visible; no phase evade.",
+        "aimZoomFire": "Zoomed burst, COVER AIM CLEAR, guard off-reticle; miss preserved. Pause cleared zoom, fresh unzoom capture inspected.",
+        "route": "Three recoveries, three coils disabled using visible AIM selectors and fire, deck upload."
+      },
+      "friction": [
+        "Patrol aiming corrections failed; several batches consumed only one round. Cause uncertain.",
+        "Cover message during zoomed shot."
+      ],
+      "helpful": [
+        "Route and approach prompts",
+        "Coil AIM selectors",
+        "Automatic reload",
+        "Clear terminal assist accounting"
+      ],
+      "settingsChanges": [],
+      "deviations": [
+        "Initial deployment used visible ENTER THE STORM geometry in an act with capture rather than requested #deploy selector; no extra attempt was made."
+      ]
+    },
+    {
+      "attempt": 2,
+      "start": "Visible START FRESH via #play-again captured act; fresh 100 health / 60 shield / 30 ammo / 180 reserve.",
+      "outcome": "SIGNAL RESTORED / OPERATION COMPLETE",
+      "stats": {
+        "eliminations": 3,
+        "missionTime": "01:00",
+        "score": 6538,
+        "accuracyPercent": 97,
+        "criticalEliminations": 1,
+        "phaseEvades": 0,
+        "uplinkRetries": 0,
+        "assistedShots": 12,
+        "tapAims": 5,
+        "routeAssists": 11,
+        "approachAssists": 6
+      },
+      "terminalEvidence": "docs/media/build135-mobile-review1/a2-terminal.jpg",
+      "coverage": {
+        "aimZoomFire": "Opening guard tapped, AIM tapped, FIRE held 1000ms. Live capture shows zoom, TARGET DOWN, LIFT then FIRE; ammo 30 to 21.",
+        "manualMoveFireDrag": "Visible charging sentinel after TURN cue; simultaneous MOVE drag and FIRE drag consumed two rounds (21 to 19), changed heading 288 to 266; sentinel remained near reticle. Following DASH and anchored FIRE consumed one round and showed LAST SENTINEL DOWN. Initial burst did not finish it; exact individual misses cannot be counted from captures.",
+        "sceneTurn": "Visible TURN cue changed heading 333 to 288, fresh screenshot inspected before target selection; FIRE drag further changed heading. No separate scene swipe in attempt two; sampled in attempt one.",
+        "dash": "Tapped during patrol engagement; position changed and 3.2 cooldown visible after burst. Terminal 0 phase evades; no successful phase evade claimed.",
+        "route": "Three recoveries with route/approach; coil selectors plus FIRE; coil III reached 37%, empty magazine and reload, then finished; deck uploaded to win."
+      },
+      "settingsChanges": [],
+      "helpful": [
+        "LIFT then FIRE cue clarified release requirement",
+        "Sentinel down feedback after correction",
+        "Coil OFF states and objective transitions",
+        "Route and approach labels consistently enabled progress"
+      ],
+      "friction": [
+        "First patrol burst left target alive; combination of aiming and movement needed correction.",
+        "Reload interrupted final coil burst.",
+        "Threat and interaction overlays compete for scene area."
+      ],
+      "uncertainties": [
+        "Terminal critical elimination is not assigned to a particular shot by this reviewer.",
+        "No claim that DASH prevented damage; terminal phase evade count is zero."
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic paused Chromium touch emulation and software WebGL; no physical device certification.",
+    "Captures release contacts and pause; approximately 3s live or 1.2s FIRE boundaries shortened waits; no human reaction-time or causal quality benefit inferred.",
+    "Continuous held-burst rearming comfort not established, including captureHeld.",
+    "Physical phones, Safari, audio, hardware performance and continuous enjoyment unassessed."
+  ],
+  "learningForAttempt2": "Route/approach and coil selectors were legible and effective; patrol tap/drag aiming remained uncertain. Will preserve failures and use fresh views for corrections.",
+  "assessment": {
+    "scale": "0 unusable in observed scope; 5 playable with substantial friction; 7 good with noticeable friction; 9 excellent with minor friction; 10 exceptional across assessed scope. Holistic judgment, not a win/loss grade or arithmetic average.",
+    "scoresOutOf10": {
+      "overallMobile": 7,
+      "controls": 6.5,
+      "gameplay": 7,
+      "presentation": 8,
+      "usability": 7.5,
+      "readability": 7
+    },
+    "reasons": {
+      "overallMobile": "A coherent, atmospheric short mission with clear assisted progression, readable key controls and satisfying visible objective completion. Manual patrol aim/drag needed repeated correction and firing/cover feedback was initially hard to interpret. Both completions used substantial route, approach and shot assists; those wins do not certify unassisted combat quality.",
+      "controls": "MOVE and FIRE worked together; turns, DASH cooldown and zoom were observable. Patrol aiming missed or failed to finish targets and first-run corrections were awkward. Coil selectors were effective. Continuous held-burst comfort remains unassessed.",
+      "gameplay": "Recoveries, changing Custodian states, coil disabling and deck upload gave a complete objective arc. Visible danger and reload added demands, though route assistance carried much navigation and enemies could be left behind. Unassisted balance and broader content unassessed.",
+      "presentation": "Distinct rainy teal industrial setting, reflective ground, large typography and consistent terminal treatment. Strong visual identity in software rendering; audio unassessed.",
+      "usability": "HOLD ROUTE / HOLD APPROACH, explicit coil selectors, automatic reload and detailed assist accounting reduced uncertainty. Firing rearm/cover behavior and simultaneous threat overlays took learning. No menu/settings exploration beyond the visible opening screen.",
+      "readability": "Main objective, ammo, health and touch controls legible at 844x390. World text and tiny distant enemies required attention; threat/interaction panels occupied useful scene space."
+    }
+  },
+  "observedSettingsChanges": [],
+  "unassessed": [
+    "KIT/tool selection",
+    "Planning map",
+    "Recovered memory reading",
+    "Jump",
+    "Physical comfort and hardware performance",
+    "Audio",
+    "Safari",
+    "Continuous uninterrupted play enjoyment",
+    "Unassisted route completion"
+  ],
+  "protocol": {
+    "attemptCount": 2,
+    "bothTerminal": true,
+    "noCheckpointRetries": true,
+    "noThirdAttempt": true,
+    "onlyHelpRead": true,
+    "noSourceTestsDocsPriorReviewsOrInternalStateInspected": true,
+    "input": "JSON-lines native two-contact touchscreen acts only",
+    "screenshots": "Every returned screenshot viewed before adaptive continuation, separate image calls. One new scene target coordinate per batch; anchored FIRE could follow.",
+    "waits": "All waits <=3000ms; helper boundaries inspected. FIRE-limited a1-patrol-manual wait shortened from 1100 to about 1057ms; route waits typically shortened to approximately 2980ms. No skipped-step assumption or bypass.",
+    "planningMap": "Not opened",
+    "aimPause": "After zoomed first-run capture, resumed empty act and inspected fresh unzoom view before scene target. Second-run zoom followed by anchored route input and fresh view before new scene target.",
+    "identity": "BUILD 135 observed on title. Provided frozen SHA recorded but intentionally not independently inspected."
+  },
+  "cleanup": {
+    "closeRequested": true,
+    "driverPid": 5660,
+    "chromePid": 5682,
+    "helperExitCode": 0,
+    "browserClosedReported": true,
+    "psExactPidsAbsent": true,
+    "psEvidence": "docs/media/build135-mobile-review1/cleanup-ps.txt",
+    "broadKillUsed": false
+  },
+  "rawEvidence": {
+    "directory": "docs/media/build135-mobile-review1",
+    "actionsLog": "docs/media/build135-mobile-review1/actions.jsonl",
+    "files": [
+      "docs/media/build135-mobile-review1/a1-aim-fire.jpg",
+      "docs/media/build135-mobile-review1/a1-approach.jpg",
+      "docs/media/build135-mobile-review1/a1-coil1.jpg",
+      "docs/media/build135-mobile-review1/a1-coil2.jpg",
+      "docs/media/build135-mobile-review1/a1-coil3-finish.jpg",
+      "docs/media/build135-mobile-review1/a1-coil3.jpg",
+      "docs/media/build135-mobile-review1/a1-custodian-route.jpg",
+      "docs/media/build135-mobile-review1/a1-custodian-route2.jpg",
+      "docs/media/build135-mobile-review1/a1-dash-turn.jpg",
+      "docs/media/build135-mobile-review1/a1-deck.jpg",
+      "docs/media/build135-mobile-review1/a1-elian.jpg",
+      "docs/media/build135-mobile-review1/a1-fire-adjust.jpg",
+      "docs/media/build135-mobile-review1/a1-fire-adjust2.jpg",
+      "docs/media/build135-mobile-review1/a1-move-fire.jpg",
+      "docs/media/build135-mobile-review1/a1-patrol-correct.jpg",
+      "docs/media/build135-mobile-review1/a1-patrol-manual.jpg",
+      "docs/media/build135-mobile-review1/a1-patrol-turn.jpg",
+      "docs/media/build135-mobile-review1/a1-reload.jpg",
+      "docs/media/build135-mobile-review1/a1-return1.jpg",
+      "docs/media/build135-mobile-review1/a1-route1.jpg",
+      "docs/media/build135-mobile-review1/a1-route2.jpg",
+      "docs/media/build135-mobile-review1/a1-route3.jpg",
+      "docs/media/build135-mobile-review1/a1-route4.jpg",
+      "docs/media/build135-mobile-review1/a1-route5.jpg",
+      "docs/media/build135-mobile-review1/a1-route6.jpg",
+      "docs/media/build135-mobile-review1/a1-route7.jpg",
+      "docs/media/build135-mobile-review1/a1-sera.jpg",
+      "docs/media/build135-mobile-review1/a1-terminal.jpg",
+      "docs/media/build135-mobile-review1/a1-unzoom.jpg",
+      "docs/media/build135-mobile-review1/a1-upload.jpg",
+      "docs/media/build135-mobile-review1/a2-coil1.jpg",
+      "docs/media/build135-mobile-review1/a2-coil2.jpg",
+      "docs/media/build135-mobile-review1/a2-coil3-finish.jpg",
+      "docs/media/build135-mobile-review1/a2-coil3.jpg",
+      "docs/media/build135-mobile-review1/a2-custodian-route1.jpg",
+      "docs/media/build135-mobile-review1/a2-custodian-route2.jpg",
+      "docs/media/build135-mobile-review1/a2-dash-fire.jpg",
+      "docs/media/build135-mobile-review1/a2-deck.jpg",
+      "docs/media/build135-mobile-review1/a2-elian.jpg",
+      "docs/media/build135-mobile-review1/a2-mara.jpg",
+      "docs/media/build135-mobile-review1/a2-patrol-manual.jpg",
+      "docs/media/build135-mobile-review1/a2-patrol-turn.jpg",
+      "docs/media/build135-mobile-review1/a2-reload.jpg",
+      "docs/media/build135-mobile-review1/a2-return1.jpg",
+      "docs/media/build135-mobile-review1/a2-route1.jpg",
+      "docs/media/build135-mobile-review1/a2-route2.jpg",
+      "docs/media/build135-mobile-review1/a2-route3.jpg",
+      "docs/media/build135-mobile-review1/a2-route4.jpg",
+      "docs/media/build135-mobile-review1/a2-route5.jpg",
+      "docs/media/build135-mobile-review1/a2-route6.jpg",
+      "docs/media/build135-mobile-review1/a2-route7.jpg",
+      "docs/media/build135-mobile-review1/a2-sera.jpg",
+      "docs/media/build135-mobile-review1/a2-start-fresh.jpg",
+      "docs/media/build135-mobile-review1/a2-terminal.jpg",
+      "docs/media/build135-mobile-review1/a2-upload.jpg",
+      "docs/media/build135-mobile-review1/a2-zoom-opening.jpg",
+      "docs/media/build135-mobile-review1/actions.jsonl",
+      "docs/media/build135-mobile-review1/brief.jpg",
+      "docs/media/build135-mobile-review1/cleanup-ps.txt",
+      "docs/media/build135-mobile-review1/menu.jpg"
+    ]
+  }
+}

@@ -554,6 +554,7 @@ export class Game {
     if (this.fireTimer > 0 || this.reloading || this.phase !== 'playing') return;
     if (this.ammo <= 0) { this.reload(); if (!this.reloading) { this.fireTimer = 0.4; this.audio.tone(100, 0.04, 'square', 0.1); this.event('notice', emptyAmmoAdvice(this)); } return; }
     this.ammo--; this.shotsFired++; this.fireTimer = 0.105; this.recoil = Math.min(0.1, this.recoil + 0.018); this.kick = 1;
+    this.combatFeedback.clearCover();
     this.emitShotNoise(this.player);
     this.audio.shoot(); this.muzzle.visible = true; this.flashLight.intensity = 5; this.flashTimer = 0.045; this.flashJustTriggered = true;
     const direction = new THREE.Vector3(); this.camera.getWorldDirection(direction);
@@ -601,7 +602,7 @@ export class Game {
       this.event('hit', headshot ? 'CRITICAL' : '', { headshot, damage });
       recordRifleImpact(this,hit.health<=0?'kill':hit.feedbackKind,hit.health<=0?'TARGET DOWN':hit.feedbackKind==='armor'?'ARMOR HIT':headshot?'OPTIC HIT':'TARGET HIT',hit.type==='warden'?'WARDEN':hit.type==='stalker'?'INTERCEPTOR':'SENTINEL');
       if (hit.health <= 0) this.killEnemy(hit, headshot);
-    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion);recordRifleImpact(this,propHit.point?'cover':'miss',propHit.bank?'CAPACITOR':propHit.point?'COVER':'NO IMPACT'); }
+    } else { if(propHit.bank)activateCapacitor(this,propHit.bank); if(propHit.point)this.combatFeedback.impact(propHit.point,propHit.normal,'surface',this.options.reducedMotion,this.touchMode&&!propHit.bank);recordRifleImpact(this,propHit.point?'cover':'miss',propHit.bank?'CAPACITOR':propHit.point?'COVER':'NO IMPACT'); }
     this.event('shot', '', { ammo: this.ammo });
   }
 

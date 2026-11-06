@@ -1,0 +1,8 @@
+{
+  "retainedInitialImages": "build136-cover-dev.json passed its state checks but a later paused screenshot exposed the pause overlay. The engineering fixture now explicitly hides that overlay while freezing game time for comparison. Initial images remain; no game fix was necessary.",
+  "baseline": "Two frozen Build135 phone views: old surface effect expired by350ms. The corrected baseline-render record uses the same explicit overlay-hiding arrangement.",
+  "candidate": "Five production profiles check native physical shot/normal/point, persistence at350ms and1150ms, reduced motion, assist disabled, camera-fixed world position, opaque foreground depth ordering, expiry, next-shot clearing and terminal/fresh reset.",
+  "resource": "Three shared immutable geometries versus96 separate old per-instance geometries;48 independent materials/roots remain.1000 substitutions and idempotent disposal tested. This is ownership/count evidence, not a frame-rate claim.",
+  "existingRules": "Held cover correction, seven handoff profiles, six readout profiles including real inert Custodian vs live armor, and six confirmation compositions exercise actual existing shot resolution.",
+  "scope": "Procedure-generated transient ring/core is an engine effect; all previously authored Blender assets remain unchanged."
+}
